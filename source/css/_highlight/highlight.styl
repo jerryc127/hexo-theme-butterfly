@@ -1,0 +1,303 @@
+// https://github.com/equinusocio/vsc-material-theme
+@require "theme"
+@require "diff"
+
+languages = "js" "javascript" "python" "ruby" "xml" "html" "css" "perl" "sql" "coffeescript" "java" "scala" "kotlin" "c" "c\+\+" "go" "less" "sass" "scss" "stylus" "styl" "typescript" "ts" "bash" "yml" "gradle" "groovy" "ejs" "swig"
+wordWrap = !hexo-config("rootConfig.highlight.line_number") && hexo-config("code_word_wrap")
+
+loopForLanguages()
+  for lang in languages
+    .article-container
+      figure.highlight
+        &{"." + lang}
+          table
+            &:before
+              content: lang
+
+loopForLanguages()
+
+// Placeholder: $code-block
+$code-block
+  overflow: auto
+  margin: 1rem 0
+  padding: 0
+  padding-top: 1.4rem
+  background: $highlight-background
+  color: $highlight-foreground
+  font-size: $code-font-size
+  line-height: $line-height-code-block
+
+  if wordWrap
+    counter-reset: line
+    white-space: pre-wrap
+
+figure.highlight
+  position: relative
+
+blockquote
+  margin: 0
+  padding: 0.1rem 0.8rem
+  border-left: 0.2rem solid $blockquote-padding-color
+  color: $blockquote-color
+  background-color: $blockquote-background-color
+
+.article-container
+  pre,
+  code
+    font-family: $code-font !important
+
+  code
+    padding: 0.1rem 0.2rem
+    background: $code-background
+    color: $code-foreground
+    word-wrap: break-word
+    font-size: $code-font-size
+
+  pre
+    @extend $code-block
+
+    code
+      padding: 0
+      background: none
+      color: $highlight-foreground
+      text-shadow: none
+
+  .highlight
+    @extend $code-block
+    position: relative
+    border-radius: 1px
+
+    &:after
+      position: absolute
+      top: 0
+      z-index: 0
+      min-width: 100%
+      height: 1.4rem
+      background: darken($highlight-background, 5)
+      content: ""
+
+    pre
+      margin: 0
+      padding: 8px 0
+      border: none
+
+    .line
+      &::selection
+        background: $highlight-selection
+        color: $highlight-foreground
+
+      if wordWrap
+        &:before
+          display: inline-block
+          padding: 0 0.3rem 0 0
+          min-width: 1.6rem
+          color: $highlight-gutter.color
+          content: counter(line)
+          counter-increment: line
+          text-align: left
+
+    table
+      position: relative
+      margin: 0
+      width: auto
+      border: none
+
+      &:before
+        position: absolute
+        z-index: 1
+        display: inline-block
+        margin-top: -1.4rem
+        padding: 0 0.7rem
+        width: 5rem
+        color: $highlight-foreground
+        content: "Code"
+        font-weight: bold
+        font-size: 0.8rem
+        line-height: 1.4rem
+
+      &:after
+        position: absolute
+        top: -1.4rem
+        z-index: 0
+        width: 100%
+        height: 1.4rem
+        background: darken($highlight-background, 5)
+        content: ""
+
+    td
+      padding: 0
+      border: none
+
+    figcaption
+      clearfix()
+      position: absolute
+      z-index: 1
+      margin-bottom: 1em
+      padding: 0.2em 0 0.2em 0.7rem
+      width: 100%
+      height: 1.4em
+      color: $highlight-foreground
+      font-size: 1em
+      line-height: 1em
+
+      span
+        float: left
+        overflow: hidden
+        max-width: 100%
+        text-overflow: ellipsis
+        white-space: nowrap
+
+      a
+        float: right
+        padding-right: 10px
+        color: $highlight-foreground
+
+        &:hover
+          border-bottom-color: $highlight-foreground
+
+      &+table
+        margin-top: 1em
+
+        &:before
+          margin-top: -2.1rem
+
+        &:after
+          top: -2.1rem
+
+    .gutter pre
+      padding-right: 0.5rem
+      padding-left: 0.5rem
+      background-color: $highlight-gutter.bg-color
+      color: $highlight-gutter.color
+      text-align: right
+
+    .code pre
+      padding-right: 0.5rem
+      padding-left: 0.5rem
+      width: 100%
+      background-color: $highlight-background
+
+    .line
+      height: 1rem
+
+  .gutter
+    user-select: none
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+
+  .gist table
+    width: auto
+
+    td
+      border: none
+
+  // For diff highlight
+  pre .deletion
+    background: $highlight-deletion
+
+  pre .addition
+    background: $highlight-addition
+
+  pre .meta
+    color: $highlight-purple
+
+  pre
+    .comment
+      color: $highlight-comment
+
+      &::selection
+        background: $highlight-selection
+        color: $highlight-foreground
+
+    .variable,
+    .attribute,
+    .regexp,
+    .ruby .constant,
+    .xml .tag .title,
+    .xml .pi,
+    .xml .doctype,
+    .html .doctype,
+    .css .id,
+    .tag .name,
+    .css .class,
+    .css .pseudo
+      color: $highlight-red
+
+      &::selection
+        background: $highlight-selection
+        color: $highlight-foreground
+
+    .tag
+      color: $highlight-aqua
+
+      &::selection
+        background: $highlight-selection
+        color: $highlight-foreground
+
+    .number,
+    .preprocessor,
+    .literal,
+    .params,
+    .constant,
+    .command
+      color: $highlight-orange
+
+      &::selection
+        background: $highlight-selection
+        color: $highlight-foreground
+
+    .built_in
+      color: $highlight-yellow
+
+      &::selection
+        background: $highlight-selection
+        color: $highlight-foreground
+
+    .ruby .class .title,
+    .css .rules .attribute,
+    .string,
+    .value,
+    .inheritance,
+    .header,
+    .ruby .symbol,
+    .xml .cdata,
+    .special,
+    .number,
+    .formula
+      color: $highlight-green
+
+      &::selection
+        background: $highlight-selection
+        color: $highlight-foreground
+
+    .keyword,
+    .title,
+    .css .hexcolor
+      color: $highlight-aqua
+
+      &::selection
+        background: $highlight-selection
+        color: $highlight-foreground
+
+    .function,
+    .python .decorator,
+    .python .title,
+    .ruby .function .title,
+    .ruby .title .keyword,
+    .perl .sub,
+    .javascript .title,
+    .coffeescript .title
+      color: $highlight-blue
+
+      &::selection
+        background: $highlight-selection
+        color: $highlight-foreground
+
+    .tag .attr,
+    .javascript .function
+      color: $highlight-purple
+
+      &::selection
+        background: $highlight-selection
+        color: $highlight-foreground

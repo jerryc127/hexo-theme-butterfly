@@ -1,0 +1,17 @@
+hr
+#post-comment
+  .comment_headling
+    i.fa.fa-comments.fa-fw(aria-hidden="true")
+    =" "
+    span= _p('comment')
+   
+  if theme.disqus.enable
+    include ./disqus.pug
+  else if theme.laibili && theme.laibili.enable
+    include ./laibili.pug
+  else if theme.gitment && theme.gitment.enable
+    include ./gitment.pug
+  else if theme.gitalk && theme.gitalk.enable
+    include ./gitalk.pug
+  else if theme.valine && theme.valine.enable
+    include ./valine.pug

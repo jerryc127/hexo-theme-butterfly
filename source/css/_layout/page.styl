@@ -1,0 +1,319 @@
+galleryItemStyle(w, h)
+  .gallery
+    &-item
+      width: w
+      height: unit(h, "rem")
+
+      &__title
+        transform: translate3d(0, unit(h, "rem"), 0)
+
+      &:hover
+        .gallery-item__title
+          transform: translate3d(0, unit(h - 1.5, "rem"), 0)
+
+.recent-post-item
+  .content
+    margin-top: 0.5rem
+
+    p
+      word-break: break-word
+
+
+    ol,
+    ul
+      margin-top: 0.4rem
+      padding: 0 0 0 0.8rem
+      list-style: none
+      counter-reset: li
+
+      p
+        margin: 0
+
+      ol,
+      ul
+        padding-left: 0.5rem
+
+      li
+        position: relative
+        margin: 0.2rem 0
+        padding: 0.1rem 0.5rem 0.1rem 1.5rem
+
+        &:hover
+          &:before
+            transform: rotate(360deg)
+
+        &:before
+          position: absolute
+          top: 0
+          left: 0
+          background: $light-blue
+          color: $white
+          cursor: pointer
+          transition: all 0.3s ease-out
+
+    ol
+      li
+        &:before
+          margin-top: 0.2rem
+          width: w = 1.2rem
+          height: h = w
+          border-radius: 0.5 * w
+          content: counter(li)
+          counter-increment: li
+          text-align: center
+          font-size: 0.6rem
+          line-height: h
+
+    ul
+      li
+        &:hover
+          &:before
+            border-color: $ruby
+
+        &:before
+          $w = 0.3rem
+          top: 10px
+          margin-left: 0.45rem
+          width: w = $w
+          height: h = w
+          border: 0.5 * w solid $light-blue
+          border-radius: w
+          background: $white
+          content: ""
+          line-height: h
+
+  .article-type
+    margin-left: 0.3rem
+    color: $grey
+
+  .article-meta
+    color: $grey
+
+    .sticky
+      color: $theme-button-hover-color
+
+    i
+      margin: 0 0.2rem 0 0.3rem
+
+    &__separator
+      margin-left: 0.3rem
+
+    .fa-angle-right,
+    &__link
+      margin: 0 0 0 0.3rem
+
+  time
+    color: $grey
+  
+  .more_setting
+    display: none
+
+  .more
+    display: inline-block
+    padding: 0 1rem
+    height: h = 1.6rem
+    // background: $light-blue
+    // color: $white
+    text-align: center
+    text-decoration: none
+    line-height: h
+    cursor: pointer
+    // transition: all 0.2s ease-in-out
+
+    // &:hover
+    //   background: $ruby
+
+  .article-title
+    margin-bottom: 0.3rem
+    color: $black
+    text-decoration: none
+    font-size: 1.2rem
+    cursor: pointer
+    transition: all 0.2s ease-in-out
+    line-height: 1.4
+    text-overflow: ellipsis
+    display: -webkit-box
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 2
+    overflow: hidden
+    word-wrap: break-word
+
+    &:hover
+      // border-bottom: 1px solid $light-blue
+      color: $light-blue !important
+
+.tag-cloud
+  padding: 1.5rem 1rem 2rem
+  text-align: center
+
+  a
+    display: inline-block
+    margin: 0 0.4rem
+    text-decoration: none
+    cursor: pointer
+
+    &:hover
+      color: $ruby !important
+
+  &__title
+    font-size: 1.8rem
+
+#tag,
+#category,
+#archive
+  padding: 3rem 3rem 3rem
+
+.article-sort
+  padding-left: 1rem
+  border-left: 2px solid $pale-blue
+
+  &-title
+    position: relative
+    padding-bottom: 1.2rem
+    padding-left: 1rem
+    font-size: 1.2rem
+    line-height: 1
+
+    &:hover
+      &:before
+        border-color: $ruby
+
+    &:before
+      position: absolute
+      top: 0.25rem
+      left: calc(-0.5rem + 1px)
+      z-index: 1
+      width: w = 0.5rem
+      height: h = w
+      border: 0.5 * w solid $light-blue
+      border-radius: w
+      background: $white
+      content: ""
+      line-height: h
+      transition: all 0.2s ease-in-out
+
+    &:after
+      position: absolute
+      bottom: 0
+      left: 0
+      z-index: 0
+      width: 0.1rem
+      height: 1.3rem
+      background: $pale-blue
+      content: ""
+
+  &-item
+    position: relative
+    margin-bottom: 1rem
+    transition: all 0.2s ease-in-out
+
+    &:hover
+      &:before
+        border-color: $ruby
+
+    &:before
+      $w = 0.3rem
+      position: absolute
+      top: 0.48rem
+      left: calc(-1rem - 7px)
+      width: w = $w
+      height: h = w
+      border: 0.5 * w solid $light-blue
+      border-radius: w
+      background: $white
+      content: ""
+      line-height: h
+      transition: all 0.2s ease-in-out
+
+    &.year
+      font-size: 1rem
+
+      &:hover
+        &:before
+          border-color: $light-blue
+
+      &:before
+        top: 0.7rem
+        border-color: $ruby
+
+    &__time
+      position: absolute
+      top: 0.1rem
+      color: $a-link-color
+
+    &__title
+      display: block
+      margin-left: 5rem
+      color: $font-black
+      text-decoration: none
+      font-size: 0.8rem
+      cursor: pointer
+
+.category-lists
+  padding: 1rem 0 1.5rem
+
+  .category__title
+    text-align: center
+    font-size: 1.8rem
+
+.category-list
+  a
+    color: $font-black
+    text-decoration: none
+    cursor: pointer
+
+  .category-list-count
+    margin-left: 0.4rem
+    color: $a-link-color
+
+    &:before
+      content: "("
+
+    &:after
+      content: ")"
+
+.gallery
+  &-item
+    position: relative
+    display: inline-block
+    overflow: hidden
+    margin: 0.4rem
+    width: 6rem
+    height: 6rem
+    background-position: 50% 50%
+    background-size: cover
+    background-repeat: no-repeat
+    cursor: pointer
+    transition: all 0.2s ease-in-out
+
+    &__title
+      position: absolute
+      overflow: hidden
+      padding: 0 0.4rem
+      width: 100%
+      height: 1.5rem
+      background: rgba(0, 0, 0, 0.5)
+      color: $pale-blue
+      text-align: center
+      text-overflow: ellipsis
+      white-space: nowrap
+      line-height: 1.5rem
+      transition: 0.2s ease-in-out
+      transform: translate3d(0, 6rem, 0)
+
+    &:hover
+      .gallery-item__title
+        transform: translate3d(0, 4.5rem, 0)
+
+@media screen and (max-width: $sm)
+  .recent-post-item
+    .article-title
+      font-size: 1rem
+
+    .article-meta.tags
+      display: none
+
+  galleryItemStyle(calc(50% - 22px), 6)
+
+@media screen and (min-width: $md)
+  galleryItemStyle(8rem, 8)

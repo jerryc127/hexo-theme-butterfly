@@ -1,0 +1,114 @@
+#pagination
+  overflow: hidden
+  margin-top: 1rem
+  width: 100%
+
+  .pagination
+    text-align: center
+  .space
+    color: $a-link-color
+
+  .page-number
+    display: inline-block
+    margin: 0 0.2rem
+    min-width: w = 1.2rem
+    height: w
+    text-align: center
+    line-height: w
+    cursor: pointer
+
+    &.current
+      background: $cyan
+      color: $white
+      cursor: default
+
+  img.prev_cover, img.next_cover
+    position: absolute
+    padding: 0
+    z-index: 50
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    opacity: .4
+    background-size: cover
+    transition: all 0.6s;
+    object-fit: cover
+    pointer-events: none
+
+  .prev_info
+    position: absolute
+    z-index: 100
+    font-weight: 400
+    width: 70%
+    color: #fff
+    overflow: hidden
+    white-space: nowrap
+    -o-text-overflow: ellipsis
+    text-overflow: ellipsis
+    display: block
+    bottom: 50px
+
+  .next_info
+    position: absolute
+    z-index: 100
+    font-weight: 400
+    width: 70%
+    color: #fff
+    overflow: hidden
+    white-space: nowrap
+    -o-text-overflow: ellipsis
+    text-overflow: ellipsis
+    display: block
+    right: 40px
+    bottom: 50px
+    text-align: right
+
+  .pull-full
+    width: 100% !important
+
+  .prev-post .label
+    position: absolute
+    top: 50px 
+    z-index: 100
+    font-size: 13px
+    display: block
+    text-transform: uppercase
+    color: rgba(255,255,255,.7)
+
+  .next-post .label
+    position: absolute
+    top: 50px
+    right: 40px
+    z-index: 100
+    display: block
+    text-transform: uppercase
+    color: rgba(255,255,255,.7)
+
+  .prev-post, .next-post
+    width: 50%
+    float: left
+
+    a
+      width: 100%
+      height: 150px
+      padding: 55px 40px
+      text-align: left
+      position: relative
+      display: block
+      float: left
+      overflow: hidden
+
+    &:hover
+      img.prev_cover, img.next_cover
+        opacity: .8
+        transform:scale(1.1)
+
+
+@media screen and (max-width:768px) 
+  .prev-post, .next-post
+    width: 100% !important
+
+.pagination_post
+    margin: 2rem 0 !important
+    background: #000

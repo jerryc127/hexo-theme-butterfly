@@ -1,0 +1,342 @@
+html
+  height: 100%
+  font-size: $rem
+
+body
+  position: relative
+  display: flex
+  flex-direction: column
+  min-height: 100%
+  background: #fff
+  color: $font-black
+  font-size: $font-size
+  font-family: $font-family
+  line-height: $text-line-height
+
+*::-webkit-scrollbar
+  width: 8px
+  height: 8px
+
+*::-webkit-scrollbar-thumb
+  background: $light-blue
+
+*::-webkit-scrollbar-track
+  background-color: transparent
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  position: relative
+  margin: 0.2rem 0
+  color: lighten($font-color, 15%)
+  font-weight: bold
+
+#content-outer
+  flex: 1 auto
+
+*
+  box-sizing: border-box
+
+#content-inner
+  .img-alt
+    text-decoration: none
+    color: $a-link-color
+
+#toggle-sidebar
+  position: fixed
+  bottom: $sidebar-icon-top
+  left: $sidebar-icon-left
+  z-index: 100
+  font-size: $sidebar-icon-size
+  cursor: pointer
+  transition: all 0.2s
+  opacity: 0
+
+#go-up
+  position: fixed
+  right: $go-up-right
+  bottom: $go-up-bottom
+  z-index: 100
+  font-size: $sidebar-icon-size
+  opacity: 0
+  cursor: pointer
+  transition: all .2s
+
+.fancybox-caption
+  text-align: center
+
+
+hr
+  position: relative
+  margin: 2rem auto
+  width: calc(100% - 4px)
+  border: 2px dashed $pale-blue
+  background: $white
+
+  &:hover
+    &:before
+      left: calc(95% - 20px)
+
+  &:before
+    position: absolute
+    top: -10px
+    left: 5%
+    z-index: 1
+    color: $light-blue
+    content: "\f0c4"
+    font: normal normal normal 14px / 1 FontAwesome
+    font-size: 20px
+    transition: all 1s ease-in-out
+
+// collapse/expand beautify
+details
+  padding: 0.3rem
+  border: 2px solid darken($light-grey, 10%)
+
+  summary
+    color: $theme-color
+
+// set <caption> of <figure> to center-align
+// use class="not-code" to avoid conflicts because code also use <figure> tag
+.not-code
+  margin: 0.5em
+  padding: 0.5em
+  border: thin silver solid
+  text-align: center
+
+table
+  overflow: auto
+  width: 100%
+  border-spacing: 0
+  border-collapse: collapse
+
+  thead
+    background: alpha($a-link-color, 10%)
+
+  th,
+  td
+    padding: 0.3rem 0.6rem
+    border: 1px solid darken($light-grey, 10%)
+    vertical-align: top
+
+*::selection
+  background: $selection
+  color: $pale-grey
+
+.text-center
+  text-align: center
+.pull-left
+  float: left
+
+.pull-right
+  float: right
+
+@media screen and (max-width: $bg)
+  i#toggle-sidebar,
+  #sidebar
+    display: none
+
+  body
+    padding-left: 0 !important
+
+
+
+// valine 
+#vcomment 
+  input 
+    font-size: 0.65rem
+
+  button 
+    font-size: .7rem;
+    padding: .3rem 1rem;
+    background-color: #49b1f5;
+    color: #fff;
+    border-color: #fff;
+
+  textarea 
+    font-size: 0.7rem
+    background: url(/img/comment_bg.png) 100% 100% no-repeat
+
+  .info
+    display: none
+
+  .vcomment
+    margin-top: 20px
+  
+  .vimg
+    border: 0
+
+    &:hover
+      -moz-transform: rotate(540deg)
+      -o-transform: rotate(540deg)
+      -webkit-transform: rotate(540deg)
+      transform: rotate(540deg)
+  .vcount
+    font-size: 0.775rem
+
+  .vnum 
+    font-size: 1.1rem
+
+  .vnick
+    font-size: 100%
+
+  .vsys
+    font-size: 70%
+  
+  .vtime
+    font-size: .65rem
+  
+  .vcontent
+    font-size: 100%
+  
+  .vat
+    font-size: .7125rem;
+    color: $cyan;
+    border: 1px solid $cyan;
+    padding: 0 .8rem;
+    border-radius: 5px;
+  
+
+#site-title, #site-sub-title, 
+#site-name,
+#aside_content .author-info__name,
+#aside_content .author-info__description
+  font-family: 'Titillium Web',Lato,PingFang SC, Hiragino Sans GB, "Microsoft JhengHei", "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
+
+
+
+#rightside 
+  right: -38px
+  z-index: 100
+  position: fixed
+  bottom: 50px
+  padding-bottom: 32px
+  opacity: 0
+  transition: all .2s
+
+  .translate_chn_to_cht
+    width: 30px
+    height: 30px
+    background-color: #49b1f5
+    color: #e3e8ee
+    text-align: center
+    line-height: 29px
+    font-size: 16px
+    display: block
+    margin-bottom: 2px
+    cursor: pointer
+    text-decoration: none
+
+  .nightshift
+    width: 30px
+    height: 30px
+    background-color: #49b1f5
+    color: #e3e8ee
+    text-align: center
+    font-size: 17px
+    display: block
+    margin-bottom: 2px
+    cursor: pointer
+    padding-top: 6px
+    
+  #to_comment
+      width: 30px
+      height: 30px
+      background-color: #49b1f5
+      color: #e3e8ee
+      text-align: center
+      font-size: 17px
+      display: block
+      margin-bottom: 2px
+      cursor: pointer
+      padding-top: 6px
+
+  a
+    &:hover  
+      color: white
+    &:after    
+      color: white
+
+  
+
+.comment_headling
+  font-size: 20px
+  font-weight: 700
+  margin-bottom: 10px
+
+
+// bookmark 樣式
+.fc-container .fancybox-bg {
+  background: #eee;
+}
+
+.fancybox-is-open.fc-container .fancybox-bg {
+  opacity: 0.95;
+}
+
+.fc-content {
+  margin: 20px;
+  max-width: 550px;
+  padding: 50px;
+  box-shadow: 10px 10px 60px -25px;
+  border-radius: 4px;
+}
+
+.fc-content h3 {
+  margin-top: 0;
+  font-size: 1.6em;
+  letter-spacing: normal;
+}
+
+.fc-content p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.fc-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Custom animation */
+.fancybox-fx-material.fancybox-slide--previous,
+.fancybox-fx-material.fancybox-slide--next {
+  transform: translateY(-60px) scale(1.1);
+  opacity: 0;
+}
+
+.fancybox-fx-material.fancybox-slide--current {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.bookmark-ok
+  background: #FF6666;
+  border-width: 0;
+  color: #fff;
+  text-decoration: none;
+  padding: 7px 20px;
+  line-height: 1.5;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 80%;
+  font-weight: 700;
+  margin: 5px 5px 5px 0;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  transition: all .2s ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+.tright
+  text-align: right 
+
+
+
+

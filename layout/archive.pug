@@ -1,0 +1,11 @@
+
+extends includes/layout.pug
+
+block content
+  include ./includes/mixins/article-sort.pug
+  #archive
+    .article-sort-title= _p('page.articles') + ' - ' + site.posts.length
+    +articleSort(page.posts)
+    include includes/pagination.pug
+  #aside_content.aside_content
+      include includes/aside.pug

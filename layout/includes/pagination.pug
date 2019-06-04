@@ -1,0 +1,56 @@
+-
+  var options = {
+    prev_text: '<i class="fa fa-chevron-left"></i>',
+    next_text: '<i class="fa fa-chevron-right"></i>',
+    mid_size: 1
+  }
+
+if(!is_post())
+  nav#pagination
+    div.pagination
+      !=paginator(options)
+else
+  nav#pagination.pagination_post
+    if(page.prev)
+      if(page.next)
+        .prev-post.pull-left
+          - var pagination_cover = page.prev.cover || theme.default_cover
+          a(href=url_for(page.prev.path))
+            img.prev_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
+            .label=_p('pagination.prev')
+            .prev_info
+              //- i.fa.fa-chevron-left   
+              span=page.prev.title
+      else
+        .prev-post.pull-full
+          - var pagination_cover = page.prev.cover || theme.default_cover
+          a(href=url_for(page.prev.path))
+            img.prev_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+            .label=_p('pagination.prev')
+            .prev_info
+              //- i.fa.fa-chevron-left   
+              span=page.prev.title
+
+          
+
+    if(page.next)
+      if(page.prev)
+        .next-post.pull-right
+          - var pagination_cover = page.next.cover || theme.default_cover
+          a(href=url_for(page.next.path))
+            img.next_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+            .label=_p('pagination.next')
+            .next_info
+              span=page.next.title 
+              //- i.fa.fa-chevron-right
+      else
+        .next-post.pull-full
+          - var pagination_cover = page.next.cover || theme.default_cover
+          a(href=url_for(page.next.path))
+            img.next_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+            .label=_p('pagination.next')
+            .next_info
+              span=page.next.title 
+              //- i.fa.fa-chevron-right
+      
+

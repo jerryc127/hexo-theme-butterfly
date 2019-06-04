@@ -1,0 +1,7 @@
+section#rightside.rightside
+  if page.comments !== false && !is_home() && !is_archive()
+    i#to_comment.fa.fa-comments-o 
+  if theme.translate && theme.translate.enable
+    a#translateLink.translate_chn_to_cht=theme.translate.show 
+  if theme.nightshift.enable
+    i#nightshift.fa.fa-moon-o.nightshift

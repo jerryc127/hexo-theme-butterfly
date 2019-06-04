@@ -1,0 +1,65 @@
+.post-reward
+  a.reward-buttom
+    i.fa.fa-qrcode
+    = ' ' + _p('donate')
+    .reward-main
+      ul.reward-all
+        each item in theme.reward.QR_code
+          li.reward-item
+            img.lozad.post-qr-code__img(data-src=(item.itemlist||item).img)
+            .post-qr-code__desc=(item.itemlist||item).text
+
+
+
+//- donate-share样式1
+//- .post-reward-share
+//-   .post-reward
+//-     a.reward-buttom
+//-       i.fa.fa-qrcode
+//-       = ' ' + _p('donate')
+//-     .reward-main
+//-       ul.reward-all
+//-         each item in theme.QR_code
+//-           li.reward-item
+//-             img.lozad.post-qr-code__img(data-src=(item.itemlist||item).img)
+//-             .post-qr-code__desc=(item.itemlist||item).text
+  
+//-   .post-share
+//-     include share/index.pug
+//-     a.share-buttom
+//-       i.fa.fa-share-alt
+//-       = ' ' + _p('share')
+
+//- donate-share样式1
+//- #social
+//-   .social-main
+//-     span.social-donate
+//-       a#social-donate
+//-         i.fa.fa-qrcode
+//-         = _p('donate')
+
+
+//-     .circle
+//-       .circle-empty
+//-         span
+//-       span.circle_item
+//-         a(style="cursor:pointer")
+
+//-     .social-sharebutton
+//-       span.share-s
+//-         a(href="javascript:void(0)" id="share-s" title=_p('share'))
+//-           i.fa.fa-share-alt
+//-           = _p('share')
+//-       include share/index.pug
+
+
+//- if (theme.QR_code)
+//-   if (theme.QR_code.length > 0)
+//-     .post-qr-code
+//-         each item in theme.QR_code
+//-           .post-qr-code-item
+//-             img.lozad.post-qr-code__img(data-src=(item.itemlist||item).img)
+//-             .post-qr-code__desc=(item.itemlist||item).text
+
+
+

@@ -1,0 +1,17 @@
+#sidebar
+  - const showToc = is_post() && page.toc != false && theme.toc.enable
+  -
+    let tocNumber
+    if (page.toc_number !== undefined) tocNumber = page.toc_number
+    else if (theme.toc.number !== undefined) tocNumber = theme.toc.number
+    else tocNumber = true
+  -
+  if(showToc)
+    .sidebar-toc
+      div.sidebar-toc__title= _p('sidebar.catalog')
+      div.sidebar-toc__progress
+        span.progress-notice= _p('sidebar.have_read')
+        span.progress-num 0
+        span.progress-percentage %
+        div.sidebar-toc__progress-bar
+      div.sidebar-toc__content!=toc(page.content, {list_number: tocNumber})

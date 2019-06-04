@@ -1,0 +1,40 @@
+extends includes/layout.pug
+
+block content
+  if page.type === 'tags'
+    .tag-cloud
+      .tag-cloud__title= _p('page.tag')
+        |  - 
+        span.tag-cloud__amount= site.tags.length
+      .tag-cloud-tags!= tagcloud({min_font: 20, max_font: 43, amount: 200, color: true, start_color: '#A4D8FA', end_color: '#0790E8'})
+      if page.comments !== false
+        include includes/comments/index.pug
+    #aside_content.aside_content
+      include includes/aside.pug
+
+  else if page.type === 'link'
+    include flink.pug
+      if page.comments !== false
+        include includes/comments/index.pug
+    #aside_content.aside_content
+      include includes/aside.pug
+  else if page.type === 'categories'    
+    #post-content.category-content
+      .category-lists
+        .category__title= _p('page.category')
+          |  - 
+          span.category__amount= site.categories.length
+        div!= list_categories()
+      if page.comments !== false
+        include includes/comments/index.pug
+    #aside_content.aside_content
+      include includes/aside.pug
+  else
+    article#page
+      h1= page.title
+      .article-container!= page.content
+      include includes/pagination.pug
+      if page.comments !== false
+        include includes/comments/index.pug
+    #aside_content.aside_content
+      include includes/aside.pug

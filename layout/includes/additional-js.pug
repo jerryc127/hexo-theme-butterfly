@@ -1,0 +1,132 @@
+if (theme.algolia_search.enable)
+  script(async src=url_for('/js/search/algolia.js'))
+if (theme.mathjax && theme.mathjax.enable)
+  if(!is_tag() && !is_category() && !is_archive())
+    include ./third-party/mathjax.pug
+if (theme.katex && theme.katex.enable)
+  if(!is_tag() && !is_category() && !is_archive())
+    include ./third-party/katex.pug
+if (theme.local_search && theme.local_search.enable)
+  script(async src=url_for('/js/search/local-search.js'))
+
+
+if theme.translate && theme.translate.enable
+  script(src=url_for('/js/tw_cn.js'))
+  script.
+    $(document).ready(function() { 
+      initializeChineseConversion();
+    });
+    function simplifyTextInPage(simplified) {
+      if (simplified) {
+        $(document.body).t2s();
+        $('#translateLink').addClass('simplified');
+        $('#translateLink').text('繁');
+      } else {
+        $(document.body).s2t();
+        $('#translateLink').removeClass('simplified');
+        $('#translateLink').text('簡');
+      }
+    }
+    function initializeChineseConversion() {
+      var simplified = +Cookies.get('simplified');
+      // ?lang=zh-Hans, ?lang=zh-Hant
+      var scriptCode = /[?&;]lang=[^&;]*(Han[st])/i.exec(window.location.search);
+      if (scriptCode) {
+        simplified = +(scriptCode[1].match(/Hans/i) != null);
+        Cookies.set('simplified', simplified, {expires: 7, path: '/'});
+      }
+      simplifyTextInPage(simplified);
+      $('#translateLink').click(function() {
+        simplified = +!simplified;
+        Cookies.set('simplified', simplified, {expires: 7, path: '/'});
+        simplifyTextInPage(simplified);
+        $(this).blur();
+      });
+    }
+
+if theme.nightshift.enable
+  script(src=url_for('js/nightshift.js'))
+
+if (theme.canvas_ribbon && theme.canvas_ribbon.enable)
+  include ./third-party/canvas-ribbon.pug
+
+if (theme.canvas_ribbon_piao && theme.canvas_ribbon_piao.enable)
+  include ./third-party/canvas-ribbon-piao.pug
+
+if theme.activate_power_mode.enable
+  script(src=url_for('js/activate-power-mode.js'))
+  script.
+    POWERMODE.colorful = true; // make power mode colorful
+    POWERMODE.shake = true; // turn off shake
+    document.body.addEventListener('input', POWERMODE);
+
+
+
+
+
+//- script(src="https://unpkg.com/aos@next/dist/aos.js")
+//- script.
+//-     $(".recent-post-item,.card_widget,#archive,.tag-cloud,#tag,.category-content,#category,#page,.flink").attr("data-aos","slide-up");
+//-     AOS.init();
+
+
+script(src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module")
+
+//- if is_post()
+//-   script(src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9")
+//-   script.
+//-     var typed = new Typed("#typed", {
+//-     stringsElement: '#post-title-effects',
+//-     typeSpeed: 150,
+//-     loop: true,
+//-     backSpeed: 100
+//-     });
+
+if is_home()
+  script(src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9")
+  script.
+    var typed = new Typed(".subtitle", {
+    strings: ["今日事,今日畢", "Never put off till tomorrow what you can do today"],
+    startDelay: 300,
+    typeSpeed: 100,
+    loop: true,
+    backSpeed: 50
+    });
+  
+  script.
+    //首頁fullpage
+    function alignContent() {
+      for (var n = $(window).height(), e = document.querySelectorAll(".full_page"), i = 0; i < e.length; i++) 
+        e[i].style.height = n + "px";
+        $("#site-info").each(function () {
+          var x = $(this).height();
+          $(this).css("top", (n-x)/2)
+        })
+    }
+
+    function recent_post_padding() {
+      $(".recent-post-info").each(function () {
+        var k = $(".recent-post-item").height();
+        var e = $(this).height();
+        $(this).css({"padding-top": (k-e)/2 , "padding-bottom": (k-e)/2 })
+      })   
+    }
+
+    alignContent();
+
+    //recent-post-item垂直置中
+    if ($(window).width() > 768) {    
+      recent_post_padding();
+    }
+     
+    $(window).bind("resize", function () {
+
+      alignContent()
+
+      if ($(window).width() > 768) {    
+        recent_post_padding();     
+      }
+    })
+
+
+script(async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")

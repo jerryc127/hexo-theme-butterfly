@@ -1,0 +1,52 @@
+#local-search
+  .local-search-box
+    margin: 0 auto
+    max-width: 100%
+    width: 100%
+
+    input
+      padding: 0.25rem 0.7rem
+      width: 100%
+      outline: none
+      border: 2px solid $light-blue
+      border-radius: 2rem
+      font-size: 14px
+
+  .local-search__hit-item
+    position: relative
+    padding-left: 1.5rem
+
+    &:hover
+      &:before
+        border-color: $ruby
+
+    &:before
+      $w = 0.3rem
+      position: absolute
+      top: 0.4rem
+      left: 0
+      width: w = $w
+      height: h = w
+      border: 0.5 * w solid $light-blue
+      border-radius: w
+      background: $white
+      content: ""
+      line-height: h
+      transition: all 0.2s ease-in-out
+
+    a
+      display: block
+      color: $font-black
+      text-decoration: none
+      font-size: 14px
+      cursor: pointer
+
+      &:hover
+        color: $light-blue
+
+  .local-search-stats__hr
+    display: none !important
+
+  .search-result-list
+    overflow-y: auto
+    max-height: 10.5rem

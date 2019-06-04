@@ -1,0 +1,60 @@
+#sidebar
+  position: fixed
+  top: 0
+  left: -300px
+  z-index: 10
+  overflow-y: auto
+  padding: 1rem 0 2rem 0.5rem
+  width: $sidebar-width
+  height: 100%
+  background: $sidebar-background
+  box-shadow: -0.25rem 0 0.25rem rgba(232, 237, 250, 0.6) inset
+  opacity:  0.9
+  transition: all 0.2s
+
+  .sidebar-toc
+    ol,
+    li
+      list-style: none
+
+    ol
+      margin-top: 0.2rem
+      padding-left: 0.4rem
+
+    &__title
+      padding-right: 0.5rem
+      text-align: center
+      font-size: unit(0.9 * $rem, "px")
+
+    .toc-link
+      display: block
+      padding-left: 0.2rem
+      border-right: 3px solid transparent
+      text-decoration: none
+      transition: all 0.2s ease-in-out
+
+      &.active
+        border-right-color: darken($cyan, 20%)
+        background: $cyan
+        color: $white
+
+    &__progress
+      position: relative
+      margin-top: -0.3rem
+      padding-left: 0.6rem
+      color: $cyan
+
+      .progress-notice
+        margin-right: 0.4rem
+
+      .progress-num
+        display: inline-block
+        min-width: 0.9rem
+
+      &-bar
+        width: 0
+        height: 1px
+        background: $cyan
+
+
+

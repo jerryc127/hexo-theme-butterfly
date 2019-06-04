@@ -1,0 +1,12 @@
+mixin articleSort(posts)
+  .article-sort
+    - var year
+    - posts.each(function (article) {
+      - var tempYear = date(article.date, 'YYYY')
+      if tempYear !== year
+        - year = tempYear
+        .article-sort-item.year= year
+      .article-sort-item
+        time.article-sort-item__time= date(article.date)
+        a.article-sort-item__title(href=url_for(article.path))= article.title || 'No Title'
+    - })

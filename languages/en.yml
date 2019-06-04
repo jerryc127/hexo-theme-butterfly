@@ -1,0 +1,73 @@
+sidebar:
+  catalog: Catalog
+  have_read: You've read
+
+footer:
+  driven: Driven
+  theme: Theme
+
+copy:
+  success: Copy successfully
+  error: Copy error
+  noSupport: The browser does not support
+
+page:
+  articles: Articles
+  tag: Tag
+  category: Category
+  archives: Archives
+
+sticky: Sticky
+no_title: No title
+read_more: Read more
+
+post:
+  created: Created
+  updated: Updated
+  wordcount: Word count
+  min2read: 'Reading time: %s min'
+  copyright:
+    author: Author
+    link: Link
+    copyright_notice: Copyright Notice
+    copyright_content: 'All articles in this blog are licensed under <a href="%s">%s</a> unless stating additionally.'
+
+
+search: Search
+algolia_search:
+  input_placeholder: Search for Posts
+  hits_empty: "We didn't find any results for the search: ${query}."
+  hits_stats: "${hits} results found in ${time} ms"
+
+local_search:
+  label: Local search
+  input_placeholder: Search for Posts
+  hits_empty: "We didn't find any results for the search: ${query}"
+  powered_by: Powered by
+
+pagination:
+  prev: Previous Post
+  next: Next Post
+
+comment: Comment
+
+aside:
+  articles: Articles
+  tags: Tags
+  categories: Categories
+  card_announcement: Announcement
+  card_categories:  Categories
+  card_tags: Tags
+  card_archives: Archives
+  card_recent_post: Recent Post
+  card_bookmark: Add to bookmark
+  card_webinfo:
+    headline: Info
+    article_name: Article
+    runtime_name: Run time
+    site_uv_name: UV
+    site_pv_name: PV
+
+
+donate: Donate
+share: Share

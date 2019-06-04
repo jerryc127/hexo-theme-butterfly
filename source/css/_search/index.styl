@@ -1,0 +1,46 @@
+.search-dialog
+  position: fixed
+  top: 5rem
+  left: 50%
+  z-index: 1001
+  display: none
+  margin-left: -15rem
+  padding: 1rem
+  width: 30rem
+  background: $white
+
+  hr
+    margin: 1rem auto
+
+  span.search-close-button
+    position: absolute
+    top: 0.5rem
+    right: 0.5rem
+    color: $grey
+    line-height: 1
+    cursor: pointer
+    transition: color 0.2s ease-in-out
+
+    &:hover
+      color: $light-blue
+
+  &__title
+    padding: 0 0 0.7rem
+    color: $light-blue
+    font-size: 1rem
+    line-height: 1
+
+.search-mask
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  z-index: 1000
+  display: none
+  background: rgba(0, 0, 0, 0.6)
+
+@media screen and (max-width: $sm)
+  .search-dialog
+    margin-left: -45%
+    width: 90%

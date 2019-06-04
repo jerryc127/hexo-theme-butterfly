@@ -1,0 +1,71 @@
+.post-reward
+  position: relative
+  width: 100%
+  margin: 75px auto 0
+  text-align: center
+  display: block
+
+  .reward-buttom
+    text-align: center
+    display: inline-block
+    cursor: pointer
+    color: #fff
+    line-height: 36px
+    background: #49b1f5
+    width: 80px
+    
+    &:hover
+      background: #00c4b6
+      
+      .reward-main
+        display: block
+
+  
+    .reward-main
+      position: absolute
+      bottom: 40px
+      margin: 0
+      padding: 0 0 15px
+      width: 100%
+      left: 0
+      transition: all 0.6s
+      display: none
+  
+      .reward-all
+        margin: 0 auto
+        padding: 20px 10px 8px
+        background: #f5f5f5
+        display: inline-block
+        border-radius: 4px
+        cursor: auto
+
+        &:after
+          content: ""
+          width: 0
+          height: 0
+          border-left: 13px solid transparent
+          border-right: 13px solid transparent
+          border-top: 13px solid #f5f5f5
+          position: absolute
+          bottom: 2px
+          left: 0
+          right: 0
+          margin: 0 auto
+
+        .reward-item
+          list-style-type: none
+          padding: 0 8px
+          display: inline-block
+
+          img
+            width: 130px
+            max-width: 130px
+            border-radius: 3px
+            position: relative
+
+          .post-qr-code__desc
+            text-align: center
+            margin: -10px 0
+            color: #858585
+
+

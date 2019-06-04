@@ -1,0 +1,83 @@
+
+- var pageTitle = page.title || config.subtitle || ''
+- if (is_archive()) pageTitle = _p('page.archives')
+- if (is_tag()) pageTitle = _p('page.tag') + ': ' + page.tag
+- if (is_category()) pageTitle = _p('page.category') + ': ' + page.category
+- if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
+- if (is_year()) pageTitle += ': ' + page.year
+- var pageTitle_saved  //- 暂时存储pageTitle
+- var pageTitle_no_include_blog_name //- 存储pageTitle， 不带 " | "，meta用
+//- home时显示config.title (JerryC)，其他显示 pageTitle。meta用
+- is_home() ? pageTitle_no_include_blog_name = config.title : pageTitle_no_include_blog_name = pageTitle
+//- 暂时存储pageTitle
+- pageTitle ? pageTitle_saved = pageTitle + ' | ' + config.title : pageTitle_saved = config.title
+//- home时pageTitle显示 JerryC - subtitle，其他显示 pageTitle | JerryC
+- is_home() ? pageTitle = config.title + ' - ' + config.subtitle : pageTitle = pageTitle_saved
+
+- var pageDescription = page.description || page.title || config.description || ''
+- var pageKeywords = (config.keywords || []).join(',')
+- if (page.tags && page.tags.data) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
+- var pageAuthor = config.email ? config.author + ',' + config.email : config.author
+- var pageCopyright = config.copyright || config.author
+
+doctype html
+html(lang=config.language)
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
+    title= pageTitle
+    meta(name="description" content=pageDescription)
+    meta(name="keywords" content=pageKeywords)
+    meta(name="author" content=pageAuthor)
+    meta(name="copyright" content=pageCopyright)
+    meta(name ="format-detection" content="telephone=no")
+    //- !=favicon_tag(config.favicon || theme.favicon || '/favicon.ico')
+    if theme.stylesheets !== undefined && theme.stylesheets.length > 0
+      each url in theme.stylesheets
+        link(rel='stylesheet', href=url_for(url))
+    each item in theme.cdn.css
+      if item !== undefined
+        link(rel='stylesheet', href=item)
+    include ./head.pug
+    include ./config.pug
+  body
+    if (is_post() && page.toc != false && theme.toc.enable)
+      i.fa.fa-arrow-right#toggle-sidebar(aria-hidden="true")
+      include ./sidebar.pug
+    if (!is_post())
+      include ./nav.pug
+    #content-outer
+      block top_img
+      if (!is_post())
+        #content-inner.layout_page
+          if body
+            div!= body
+          else
+            block content
+      else
+        #content-inner.layout.layout_post    
+          if body
+            div!= body
+          else
+            block content
+    //- - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img || true
+    //- - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
+    //- - var footer_bg_class= bg_img ? 'footer-bg' : ''
+    //- footer(style=bg_img class=footer_bg_class)
+    footer
+      include ./footer.pug
+    i.fa.fa-arrow-up#go-up(aria-hidden="true")
+    include ./rightside.pug
+    each item in theme.cdn.js
+      if item !== undefined
+        script(src=url_for(item))
+    if theme.scripts !== undefined && theme.scripts.length > 0
+      //- scripts list from config.yml
+      each url in theme.scripts
+        script(src=url_for(url))
+    include ./additional-js.pug
+    include ./search/index.pug
+    
+
+    

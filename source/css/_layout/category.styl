@@ -1,0 +1,64 @@
+.category-content
+  ol,
+  ul
+    margin-top: 0.4rem
+    padding: 0 0 0 0.8rem
+    list-style: none
+    counter-reset: li
+
+    p
+      margin: 0
+
+    ol,
+    ul
+      padding-left: 0.5rem
+
+    li
+      position: relative
+      margin: 0.3rem 0
+      // padding-left: 0.3rem
+      padding: 0.1rem 0.5rem 0.1rem 1.5rem !important
+
+      &:hover
+        &:before
+          transform: rotate(360deg)
+
+      &:before
+        position: absolute
+        top: 0
+        left: 0
+        background: $light-blue
+        color: $white
+        cursor: pointer
+        transition: all 0.3s ease-out
+
+  ol
+    li
+      &:before
+        margin-top: 0.2rem
+        width: w = 1.2rem
+        height: h = w
+        border-radius: 0.5 * w
+        content: counter(li)
+        counter-increment: li
+        text-align: center
+        font-size: 0.6rem
+        line-height: h
+
+  ul
+    li
+      &:hover
+        &:before
+          border-color: $ruby
+
+      &:before
+        $w = 0.3rem
+        top: 10px
+        margin-left: 0.45rem
+        width: w = $w
+        height: h = w
+        border: 0.5 * w solid $light-blue
+        border-radius: w
+        background: $white
+        content: ""
+        line-height: h

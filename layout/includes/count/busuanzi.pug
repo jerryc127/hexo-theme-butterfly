@@ -1,0 +1,29 @@
+.busuanzi
+  script(async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")
+  if(!is_post())
+    if(theme.busuanzi.site_uv)
+      span#busuanzi_container_site_uv!= theme.busuanzi.site_uv_header
+        span#busuanzi_value_site_uv
+        span!=theme.busuanzi.site_uv_footer
+    if(theme.busuanzi.site_pv)
+      if(theme.busuanzi.site_pv)
+        span.footer-separator |
+      span#busuanzi_container_site_pv!= theme.busuanzi.site_pv_header
+        span#busuanzi_value_site_pv
+        span!=theme.busuanzi.site_pv_footer
+  else
+    if(theme.busuanzi.page_pv)
+      span#busuanzi_container_page_pv!= theme.busuanzi.page_pv_header
+        span#busuanzi_value_page_pv
+        span!=theme.busuanzi.page_pv_footer
+    else
+      if(theme.busuanzi.site_uv)
+        span#busuanzi_container_site_uv!= theme.busuanzi.site_uv_header
+          span#busuanzi_value_site_uv
+          span!=theme.busuanzi.site_uv_footer
+      if(theme.busuanzi.site_pv)
+        if(theme.busuanzi.site_pv)
+          span.footer-separator |
+        span#busuanzi_container_site_pv!= theme.busuanzi.site_pv_header
+          span#busuanzi_value_site_pv
+          span!=theme.busuanzi.site_pv_footer

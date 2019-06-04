@@ -1,0 +1,130 @@
+extends includes/layout.pug
+
+block top_img
+  - var top_img =  page.top_img || page.cover || theme.post_meta.top_img || theme.post_img || config.top_img
+  if (top_img && page.top_img !== false)
+    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
+    - var flag = top_img === true ? 'no-bg' : ''
+    div#top-container(style=bg_img class=flag)
+      include ./includes/header.pug
+      #post-info
+        #post-title
+            .posttitle=page.title || _p('no_title')
+        #post-meta
+          if (theme.post_meta.date_type)
+            if (theme.post_meta.date_type === 'both')
+              time.post-meta__date
+                i.fa.fa-calendar(aria-hidden="true")
+                =' '+_p('post.created')+' '+date(page.date, config.date_format)
+                span.post-meta__separator |
+                i.fa.fa-history(aria-hidden="true")
+                =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
+            else
+              - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
+              time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
+                    
+          if (theme.post_meta.categories && page.categories.data.length > 0)
+            if (theme.post_meta.date_type)
+              span.post-meta__separator.mobile_hidden |
+            span.mobile_hidden
+              each item, index in page.categories.data
+                i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
+                a(href=url_for(item.path)).post-meta__categories #[=item.name]
+                if (index < page.categories.data.length - 1)
+                  i.fa.fa-angle-right(aria-hidden="true")
+            //- if (theme.disqus.enable && theme.disqus.count)
+            //-   if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
+            //-     span.post-meta__separator |
+            //-   i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
+            //-   a(href=url_for(page.path) + '#disqus_thread')
+            //-     span.disqus-comment-count(data-disqus-identifier=page.path)
+            //- if theme.valine && theme.valine.enable
+            //-   if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
+            //-     span.post-meta__separator |
+            //-   i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
+            //-   a(href=url_for(page.path) + '#vcomment')
+            //-     pan.valine-comment-count(data-xid=url_for(page.path))
+          if (theme.wordcount && theme.wordcount.enable)
+            .post-meta-wordcount
+              span= _p('post.wordcount') + ': '
+              span.word-count= wordcount(page.content)
+              span.post-meta__separator |
+              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))  
+            
+  else
+    div#top-container.plain
+      include ./includes/header.pug
+
+block content
+  article#post(class="")
+    if (!top_img)
+      #post-title.plain= page.title || _p('no_title')
+      #post-meta
+        if (theme.post_meta.date_type)
+          //- - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
+          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[= _p('created_date') + " "+ date(page['date'], config.date_format)]
+          span.post-meta__separator |
+          time.post-meta__update #[i.fa.fa-history(aria-hidden="true")] #[= _p('update_date') + " "+ date(page['updated'], config.date_format)]
+        
+        if (theme.post_meta.categories && page.categories.data.length > 0)
+          if (theme.post_meta.date_type)
+            span.post-meta__separator.mobile_hidden |
+          span.mobile_hidden
+            each item, index in page.categories.data
+              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
+              a(href=url_for(item.path)).post-meta__categories #[=item.name]
+              if (index < page.categories.data.length - 1)
+                i.fa.fa-angle-right(aria-hidden="true")
+        //- if (theme.disqus.enable && theme.disqus.count)
+        //-   if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
+        //-     span.post-meta__separator |
+        //-   i.fa.fa-comment-o(aria-hidden="true")
+        //-   a(href=url_for(page.path) + '#disqus_thread')
+        //-     span.disqus-comment-count(data-disqus-identifier=page.path)
+        //- if theme.valine && theme.valine.enable
+        //-   if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
+        //-     span.post-meta__separator |
+        //-   i.fa.fa-comment-o(aria-hidden="true")
+        //-   a(href=url_for(page.path) + '#vcomment')
+        //-     span.valine-comment-count(data-xid=url_for(page.path))
+        if (theme.wordcount && theme.wordcount.enable)
+          span.post-meta__separator |
+          span.post-meta-wordcount
+            span= _p('post.wordcount') + ': '
+            span.word-count= wordcount(page.content)
+            span.post-meta__separator |
+            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
+
+
+    #post-content.article-container!= page.content
+  if (theme.post_copyright && theme.post_copyright.enable)
+    .post-copyright
+      .post-copyright__author
+        span.post-copyright-meta= _p('post.copyright.author') + ": "
+        span.post-copyright-info
+          a(href=`mailto:${config.email}`) #[=config.author]
+      .post-copyright__type
+        span.post-copyright-meta= _p('post.copyright.link') + ": "
+        span.post-copyright-info
+          a(href=url_for(page.permalink)) #[=page.permalink]
+      .post-copyright__notice
+        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
+        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
+  
+  .tag_share
+    if (theme.post_meta.tags)
+      .post-meta__tag-list
+        each item, index in page.tags.data
+          a(href=url_for(item.path)).post-meta__tags #[=item.name]    
+    include includes/share/index.pug
+        
+  if theme.reward.enable
+    include includes/reward.pug
+  include includes/pagination.pug
+
+  if theme.related_post && theme.related_post.enable
+    div.relatedPosts!= related_posts(page,site.posts)
+  if (theme.adv && theme.adv.enable)
+    .post-adv!= theme.adv.info
+  if page.comments !== false
+    include includes/comments/index.pug

@@ -1,0 +1,5 @@
+if (theme.algolia_search.enable)
+  include ./algolia.pug
+if (theme.local_search)
+  if (!theme.algolia_search.enable && theme.local_search.enable)
+    include ./local-search.pug

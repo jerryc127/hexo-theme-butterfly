@@ -1,0 +1,80 @@
+.relatedPosts
+    margin: 0 auto
+    padding: 0
+    margin-top: 1rem
+    width: 100%
+
+  .relatedPosts_item
+    width: calc(100%/3 - 10px)
+    height: 200px
+    overflow: hidden
+    float: left
+    position: relative
+    margin: 5px
+    background: #000
+
+    &:hover
+      .relatedPosts_cover
+        opacity: .8
+        transform:scale(1.1)
+
+
+  .relatedPosts_cover
+    border: 0
+    -webkit-transition: all 0.6s
+    -moz-transition: all 0.6s
+    -o-transition: all 0.6s
+    -ms-transition: all 0.6s
+    transition: all 0.6s
+    display: block
+    width: 100%
+    height: 100%
+    padding: 0
+    opacity: 0.4
+    margin: 0
+    object-fit: cover
+
+  .relatedPosts_title
+      color: #fff
+      position: absolute
+      left: 0
+      right: 0
+      top: 45%
+      height: 60px
+      padding: 0 30px
+      display: -webkit-box
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+      overflow: hidden
+      max-width: 100%
+      width: 100%
+      margin: 0 auto
+      text-align: center
+
+  .relatedPosts_headling
+    font-size: 20px
+    font-weight: 700
+    margin-bottom: 5px
+
+  .clear_both
+    clear: both
+
+
+
+@media screen and (max-width:768px) 
+  .relatedPosts_item
+    width: calc(100%/2 - 4px)
+    height: 150px
+    margin: 2px
+  
+  .relatedPosts_title
+    top: 40%
+
+@media screen and (max-width:480px) 
+  .relatedPosts_item
+    width: calc(100% - 4px)
+    height: 150px
+    margin: 2px
+  
+  .relatedPosts_title
+    top: 40%

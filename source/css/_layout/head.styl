@@ -1,0 +1,236 @@
+#nav
+  position: relative
+  margin-bottom: 1rem
+  background-color: $light-blue
+  background-position: center
+  background-size: cover
+
+
+  &.full_page
+    background-attachment: local
+    height: 100vh
+  
+  &.bg_local
+    background-attachment: local
+
+
+  &.no-bg
+    $bg-svg += ""
+    background-image: url($bg-svg) !important
+    background-size: initial
+
+  #site-social-icons
+    margin: 0 auto
+    width: 15rem
+    text-align: center
+    display: none
+
+    .social-icon
+      margin: 0 0.5rem
+      color: $light-grey
+      text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
+      font-size: .9rem
+      cursor: pointer
+
+      &:hover
+        color: $white
+
+#site-info
+  position: absolute
+  width: 100%
+  top: 43%
+
+#site-title,
+#site-sub-title
+  color: $light-grey
+  text-align: center
+  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
+  line-height: 1.5
+
+#site-title
+  font-weight: bold
+  font-size: 1.3rem
+
+#site-sub-title
+  font-size: 0.8rem
+
+.scroll-down
+  position: absolute
+  bottom: 0
+  width: 100%
+  cursor: pointer
+  height: 42px
+  font-size: 30px
+  text-align: center
+
+
+#page-header
+  position: absolute
+  top: 0
+  z-index: 99
+  padding: 10px 36px
+  width: 100%
+  border: none
+  font-size: 18px
+  transition: all 0.2s ease-in-out
+
+  .toggle-menu
+    display: none
+    padding-top: 0.6rem
+    color: $light-grey
+    cursor: pointer
+    transition: all 0.2s ease-in-out
+
+    &:hover
+      color: $white
+
+    .menu-icon-first, 
+    .menu-icon-second,
+    .menu-icon-third 
+      width: 18px
+      height: 3px
+      background-color: #eee
+      margin: 2px 0
+      transition: 0.4s
+    
+    &.close
+      /* 旋转第一条横线 */
+      .menu-icon-first 
+        -webkit-transform: rotate(45deg) translate(4px, 3px)
+        transform: rotate(45deg) translate(4px, 3px)
+
+      /* 隐藏第二条横线 */
+      .menu-icon-second 
+        opacity: 0
+
+      /* 旋转第三条横线 */
+      .menu-icon-third 
+        -webkit-transform: rotate(-45deg) translate(4px, -4px)
+        transform: rotate(-45deg) translate(4px, -4px)
+
+
+
+
+
+
+  a
+    color: $light-grey
+    text-decoration: none
+
+    &:hover
+      color: $white
+
+  .site-page
+    position: relative
+    margin-left: 0.6rem
+    padding-bottom: 0.3rem
+    text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3)
+    font-size: 0.7rem
+    cursor: pointer
+
+    &::after
+      position: absolute
+      bottom: 0
+      left: 0
+      z-index: -1
+      width: 0
+      height: 3px
+      background-color: lighten($theme-color, 30%)
+      content: ""
+      transition: all 0.3s ease-in-out
+
+    &:hover
+      &::after
+        width: 100%
+
+  &.fixed
+    position: fixed
+    top: -60px
+    z-index: 101
+    background: alpha($white, 0.8)
+    box-shadow: 0 5px 6px -5px alpha($grey, 0.6)
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out
+
+    &.open-sidebar
+      .site-page
+        display: none
+        opacity: 0
+
+    a,
+    #site-name
+      color: $light-black
+      text-shadow: none
+    
+    .menu-icon-first, 
+    .menu-icon-second,
+    .menu-icon-third
+      background-color: $light-black
+      text-shadow: none
+
+
+      &a,#site-name
+        &:hover
+          color: $light-blue
+
+  &.visible
+    transform: translate3d(0, 100%, 0)
+
+  #site-name
+    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
+    font-weight: bold
+    cursor: pointer
+
+@media screen and (min-width: $sm)
+  #site-title
+    font-size: 2rem
+
+  #site-sub-title
+    font-size: 1.2rem
+
+@media screen and (max-width: $sm)
+
+  #page-header
+    padding: 10px 0.8rem
+
+    .toggle-menu
+      display: block
+
+    .menus
+      position: absolute
+      top: 3rem
+      right: 0.8rem
+      display: none
+      width: 8rem
+      background: alpha($white, 0.9)
+      cursor: pointer
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.27)
+
+      a
+        display: block !important
+        opacity: 1 !important
+        margin-left: 0
+        padding-top: 0.3rem
+        padding-bottom: 0.3rem
+        padding-left: 0.6rem
+        color: $font-black
+        text-shadow: none
+        font-size: 0.8rem
+        z-index: 0
+
+        &:hover
+          color: $light-blue
+
+    .search 
+      right: 0.5rem
+
+      span
+        display none
+    
+    &.fixed.open-sidebar 
+      .search
+        display: inline-block;
+        opacity: 1;
+
+
+#page-header .site-page
+  margin-left: 1rem

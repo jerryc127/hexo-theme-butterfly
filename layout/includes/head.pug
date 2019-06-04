@@ -1,0 +1,115 @@
+- var without_index = url.replace('index.html', '')
+- var without_html = without_index.replace('.html', '')
+
+meta(http-equiv="x-dns-prefetch-control" content="on")
+if theme.canonical
+  link(rel="canonical" href=without_html)
+
+if theme.twitter_meta
+  meta(name="twitter:card" content="summary_large_image")
+  meta(name="twitter:title" content=pageTitle_no_include_blog_name)
+  meta(name="twitter:description" content=pageDescription)
+  meta(name="twitter:image" content= page.cover|| theme.avatar)
+
+if theme.Open_Graph_meta
+  if is_post()
+    meta(property="og:type" content="article")
+  else
+    meta(property="og:type" content="website")
+
+  meta(property="og:title" content=pageTitle_no_include_blog_name)
+  meta(property="og:url" content=without_html)
+  meta(property="og:site_name" content=config.title)
+  meta(property="og:description" content=pageDescription)
+  meta(property="og:image" content= page.cover|| theme.avatar)
+
+if theme.disable_baidu_transformation
+  meta(http-equiv="Cache-Control" content="no-transform")
+  meta(http-equiv="Cache-Control" content="no-siteapp")
+
+if is_post()
+  if(page.prev)
+    link(rel="prev" title=page.prev.title href=url_for(page.prev.permalink) )
+  if(page.next)
+    link(rel="next" title=page.next.title  href=url_for(page.next.permalink) )
+
+
+if theme.algolia_search.enable
+  link(rel="dns-prefetch" href="https://cdn.jsdelivr.net")
+  link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css")
+  script(src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js" defer)
+
+if (theme.gitment && theme.gitment.enable)
+  link(rel="dns-prefetch" href="https://unpkg.com")
+  link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitment/style/default.min.css")
+  script(src="https://cdn.jsdelivr.net/npm/gitment/dist/gitment.browser.min.js")
+  script(src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js")
+if (theme.gitalk && theme.gitalk.enable)
+  link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css")
+  if(theme.gitalk.js)
+    script(src=theme.gitalk.js)
+  else
+    script(src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js")
+  script(src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js")
+
+//- if (theme.pwa && theme.pwa.enable)
+//-   link(rel="manifest" href=theme.pwa.manifest)
+
+if (theme.pwa && theme.pwa.enable)
+  link(rel="manifest" href=theme.pwa.manifest)
+  if(theme.pwa.theme_color) 
+    meta(name="theme-color" content=theme.pwa.theme_color)
+  if(theme.pwa.theme_color) 
+    meta(name="msapplication-TileColor" content=theme.pwa.theme_color)
+  if(theme.pwa.apple_touch_icon) 
+    link(rel="apple-touch-icon" sizes="180x180" href=theme.pwa.apple_touch_icon)
+  if(theme.pwa.favicon_32_32) 
+    link(rel="icon" type="image/png" sizes="32x32" href=theme.pwa.favicon_32_32)
+  if(theme.pwa.favicon_16_16)
+    link(rel="icon" type="image/png" sizes="16x16" href=theme.pwa.favicon_16_16)
+  if(theme.pwa.mask_icon)
+    link(rel="mask-icon" href=theme.pwa.mask_icon color="#5bbad5")
+  if(theme.pwa.shortcut_icon)
+    link(rel="shortcut icon", href=theme.pwa.shortcut_icon)
+
+
+if theme.baidu_analytics
+  link(rel="dns-prefetch" href="https://hm.baidu.com")
+  script.
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?!{theme.baidu_analytics}";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+if theme.google_analytics
+  link(rel="dns-prefetch" href="https://www.google-analytics.com")
+  script.
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '!{theme.google_analytics}', 'auto');
+    ga('send', 'pageview');
+
+if theme.google_site_verification
+  meta(name="google-site-verification" content=theme.google_site_verification)
+
+if theme.bing_site_verification
+  meta(name="msvalidate.01" content=theme.bing_site_verification)
+
+if theme.baidu_site_verification
+  meta(name="baidu-site-verification" content=theme.baidu_site_verification)
+
+if theme.qihu_site_verification
+  meta(name="360-site-verification" content=theme.qihu_site_verification)
+
+
+if (is_archive())
+  - var preload_img = theme.archive_img ||theme.top_img || config.top_img 
+  link(rel="preload" href=preload_img  as="image" )
+else if (!is_post())
+  - var preload_img = page.top_img||theme.top_img || config.top_img
+  link(rel="preload" href=preload_img  as="image" )
