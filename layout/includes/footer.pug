@@ -12,16 +12,11 @@
         span Hexo
       span.footer-separator |
       span= _p('footer.theme') + ' '
-      a(href='https://github.com/Molunerfinn/hexo-theme-melody')
-        span Melody
-  //- if theme.runtimeshow.enable
-  //-   script(src=url_for('js/runtimeshow.js'))
-  //-   div#span_dt_dt
+      a(href='https://github.com/jerryc127/hexo-theme-butterfly')
+        span Butterfly
   if theme.footer_custom_text
     .footer_custom_text!=`${theme.footer_custom_text}`   
   if theme.ICP.enable
     .icp
       a(href=theme.ICP.url)
         span=theme.ICP.text
-  //- if theme.busuanzi.enable
-  //-   include ./count/busuanzi.pug

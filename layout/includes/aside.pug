@@ -108,14 +108,19 @@
       .webinfo_item
         .webinfo_article_name= _p('aside.card_webinfo.article_name') + " :"
         .webinfo_article_count= site.posts.length
-      .webinfo_item
-        .webinfo_runtime_name= _p('aside.card_webinfo.runtime_name') + " :"
-        #webinfo_runtime_count.webinfo_runtime_count
-        script(src=url_for('js/runtimeshow.js'))       
-      .webinfo_item       
-        .webinfo_site_uv_name= _p('aside.card_webinfo.site_uv_name') + " :"
-        .webinfo_site_uv_count#busuanzi_value_site_uv
-      .webinfo_item
-        .webinfo_site_name= _p('aside.card_webinfo.site_pv_name') + " :"
-        .webinfo_site_pv_count#busuanzi_value_site_pv
+      
+      if theme.runtimeshow.enable
+        .webinfo_item
+          .webinfo_runtime_name= _p('aside.card_webinfo.runtime_name') + " :"
+          #webinfo_runtime_count.webinfo_runtime_count
+          script#runtionshow(src=url_for('js/runtimeshow.js') start_date=theme.runtimeshow.start_date)       
+      
+      if theme.busuanzi.site_uv 
+        .webinfo_item       
+          .webinfo_site_uv_name= _p('aside.card_webinfo.site_uv_name') + " :"
+          .webinfo_site_uv_count#busuanzi_value_site_uv
+      if theme.busuanzi.site_pv
+        .webinfo_item
+          .webinfo_site_name= _p('aside.card_webinfo.site_pv_name') + " :"
+          .webinfo_site_pv_count#busuanzi_value_site_pv
 

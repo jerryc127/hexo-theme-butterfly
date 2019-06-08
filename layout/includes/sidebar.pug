@@ -1,4 +1,7 @@
-#sidebar
+
+- var sidebar_class = theme.auto_open_sidebar.enable === true ? 'auto_open' : ''
+
+#sidebar(class=sidebar_class)
   - const showToc = is_post() && page.toc != false && theme.toc.enable
   -
     let tocNumber

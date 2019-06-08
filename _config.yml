@@ -170,6 +170,10 @@ toc:
   enable: true
   number: true
 
+# auto open the sidebar in 'post'
+auto_open_sidebar:
+  enable: true
+
 post_copyright:
   enable: true
   license: CC BY-NC-SA 4.0
@@ -255,20 +259,9 @@ ICP:
 
 # busuanzi count for PV / UV in site
 busuanzi:
-  # count values only if the other configs are false
-  enable: true
-  # custom uv span for the whole site
   site_uv: true
-  site_uv_header: <i class="fa fa-user"></i>
-  site_uv_footer:
-  # custom pv span for the whole site
   site_pv: true
-  site_pv_header: <i class="fa fa-eye"></i>
-  site_pv_footer:
-  # custom pv span for one page only
-  page_pv: false
-  page_pv_header: <i class="fa fa-file-o"></i>
-  page_pv_footer:
+  page_pv: true
 
 
 
@@ -329,6 +322,7 @@ translate:
 
 runtimeshow:
   enable: true
+  start_date: 6/7/2018 00:00:00
 
 
 nightshift:

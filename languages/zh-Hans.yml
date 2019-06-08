@@ -26,6 +26,7 @@ post:
   updated: 更新于
   wordcount: 字数总计
   min2read: '阅读时长: %s 分钟'
+  page_pv: 阅读量
   copyright:
     author: 文章作者
     link: 文章链接

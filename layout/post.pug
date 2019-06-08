@@ -49,7 +49,11 @@ block top_img
               span= _p('post.wordcount') + ': '
               span.word-count= wordcount(page.content)
               span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))  
+              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
+              if theme.busuanzi.page_pv
+                span.post-meta__separator |
+                span= _p('post.page_pv') + ': '
+                span#busuanzi_value_page_pv
             
   else
     div#top-container.plain
@@ -61,10 +65,16 @@ block content
       #post-title.plain= page.title || _p('no_title')
       #post-meta
         if (theme.post_meta.date_type)
-          //- - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[= _p('created_date') + " "+ date(page['date'], config.date_format)]
-          span.post-meta__separator |
-          time.post-meta__update #[i.fa.fa-history(aria-hidden="true")] #[= _p('update_date') + " "+ date(page['updated'], config.date_format)]
+          if (theme.post_meta.date_type === 'both')
+            time.post-meta__date
+              i.fa.fa-calendar(aria-hidden="true")
+              =' '+_p('post.created')+' '+date(page.date, config.date_format)
+              span.post-meta__separator |
+              i.fa.fa-history(aria-hidden="true")
+              =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
+          else
+            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
+            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
         
         if (theme.post_meta.categories && page.categories.data.length > 0)
           if (theme.post_meta.date_type)
