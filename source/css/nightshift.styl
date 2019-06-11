@@ -6,6 +6,9 @@
     background: #2d3035 !important
     box-shadow: -0.25rem 0 0.25rem #2d3035 !important
 
+    &::-webkit-scrollbar-thumb
+      background: lighten(#2d3035,5)
+
   if hexo-config("local_search") && hexo-config("local_search.enable")
     #local-search
       background: #2d3035  
@@ -96,6 +99,9 @@
           &:after,.copy-notice
               background: rgb(27, 38, 59) 
       
+      &::-webkit-scrollbar-thumb
+        background: lighten(#1B2631,10)
+      
   .copy-notice
       background: rgb(27, 38, 59) 
 
@@ -119,7 +125,8 @@
 
   .translate_chn_to_cht,
   .nightshift,
-  #to_comment
+  #to_comment,
+  #readmode
       background-color: #2d3035 !important
 
   img
@@ -188,10 +195,10 @@
       filter: brightness(0.6)
     img
       filter: brightness(1)
-
-      
+     
+  &::-webkit-scrollbar-thumb
+    background: lighten(#2d3035,5)
   
-
 @media screen and (max-width: 768px)
   .night-mode
     color: #99a9bf 

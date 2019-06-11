@@ -25,14 +25,12 @@ $(function () {
           }, 200);
         }
       })
-    }
-    else
+    } else
       $("#toggle-sidebar").css("display", "none")
-  }
-  else {
+  } else {
     $('#toggle-sidebar').css('opacity', '1')
   }
- 
+
 
   //-------------------------------------------------------------------------------------------------------
   //sidebar
@@ -83,8 +81,7 @@ $(function () {
   //-----------------------------------------------------------------------------------------------------
   // 首页fullpage添加
   // 添加class 
-  if (/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
-  } else {
+  if (/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {} else {
     $('.full_page').css('background-attachment', 'fixed')
   }
 
@@ -144,11 +141,10 @@ $(function () {
       noButton: 'Cancel',
       callback: $.noop
     }, opts || {});
-  
+
     $.fancybox.open({
       type: 'html',
-      src:
-        '<div class="fc-content">' +
+      src: '<div class="fc-content">' +
         '<h3>' + opts.title + '</h3>' +
         '<p>' + opts.message + '</p>' +
         '<p class="tright">' +
@@ -159,8 +155,7 @@ $(function () {
         animationDuration: 350,
         animationEffect: 'material',
         modal: true,
-        baseTpl:
-          '<div class="fancybox-container fc-container" role="dialog" tabindex="-1">' +
+        baseTpl: '<div class="fancybox-container fc-container" role="dialog" tabindex="-1">' +
           '<div class="fancybox-bg"></div>' +
           '<div class="fancybox-inner">' +
           '<div class="fancybox-stage"></div>' +
@@ -169,7 +164,7 @@ $(function () {
       }
     });
   }
-  
+
   $('#bookmark-it').click(
     function () {
       if (window.sidebar && window.sidebar.addPanel) { // Mozilla Firefox Bookmark
@@ -183,8 +178,7 @@ $(function () {
         // alert('按 ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL') + ' + D 鍵將本頁加入書籤.');
         $.fancyConfirm({
           title: "添加書籤？",
-          message:
-            '按 ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL') + ' + D 鍵將本頁加入書籤.',
+          message: '按 ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL') + ' + D 鍵將本頁加入書籤.',
           okButton: "OK",
         });
 
@@ -292,7 +286,7 @@ $(function () {
       galleryItem.index(this)
     );
     return false;
-    
+
   });
 
   //--------------------------------------------------------------------------------------------------------
@@ -507,12 +501,41 @@ $(function () {
   }
 
   //代碼框雙擊全屏
-    $('figure').on('dblclick', function(e) {
-      if (e.target !== this)
-          return;
-      $(this).toggleClass('code_full_page');
-      $('body').toggleClass('code_body');
-    });
-  
+  $('figure').on('dblclick', function (e) {
+    if (e.target !== this)
+      return;
+    $(this).toggleClass('code_full_page');
+    $('body').toggleClass('code_body');
+  });
 
+
+  //閲讀模式
+  $("#readmode").click(function () {
+
+    if (Cookies.get("night-mode") == "night") {
+      $('body').toggleClass('night-mode');
+      $('body').toggleClass('read-mode');
+      $('#font_plus,#font_minus').toggleClass('is_visible');
+
+    }
+     else {
+      $('body').toggleClass('read-mode');
+      $('#font_plus,#font_minus').toggleClass('is_visible');
+    }
+
+  });
+
+  
+ //閲讀模式下字體調整
+  $("#font_plus").click(function () {
+    var font_size_record = parseFloat($('body').css('font-size'))     
+    $('body').css('font-size',font_size_record + 1)    
+    }
+  );
+
+  $("#font_minus").click(function () {
+    var font_size_record = parseFloat($('body').css('font-size'))     
+    $('body').css('font-size',font_size_record - 1)    
+    }
+  );
 });

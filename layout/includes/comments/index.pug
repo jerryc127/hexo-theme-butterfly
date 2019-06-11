@@ -1,17 +1,40 @@
-hr
-#post-comment
-  .comment_headling
-    i.fa.fa-comments.fa-fw(aria-hidden="true")
-    =" "
-    span= _p('comment')
-   
-  if theme.disqus.enable
+if theme.disqus.enable
+  hr
+  #post-comment
+    .comment_headling
+      i.fa.fa-comments.fa-fw(aria-hidden="true")
+      =" "
+      span= _p('comment')
     include ./disqus.pug
-  else if theme.laibili && theme.laibili.enable
+else if theme.laibili && theme.laibili.enable
+  hr
+  #post-comment
+    .comment_headling
+      i.fa.fa-comments.fa-fw(aria-hidden="true")
+      =" "
+      span= _p('comment')
     include ./laibili.pug
-  else if theme.gitment && theme.gitment.enable
+else if theme.gitment && theme.gitment.enable
+  hr
+  #post-comment
+    .comment_headling
+      i.fa.fa-comments.fa-fw(aria-hidden="true")
+      =" "
+      span= _p('comment')
     include ./gitment.pug
-  else if theme.gitalk && theme.gitalk.enable
+else if theme.gitalk && theme.gitalk.enable
+  hr
+  #post-comment
+    .comment_headling
+      i.fa.fa-comments.fa-fw(aria-hidden="true")
+      =" "
+      span= _p('comment')
     include ./gitalk.pug
-  else if theme.valine && theme.valine.enable
+else if theme.valine && theme.valine.enable
+  hr
+  #post-comment
+    .comment_headling
+      i.fa.fa-comments.fa-fw(aria-hidden="true")
+      =" "
+      span= _p('comment')
     include ./valine.pug

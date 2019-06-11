@@ -1,0 +1,113 @@
+.read-mode
+  background: $pale-yellow
+  padding: 0 !important
+
+  #sidebar,
+  #toggle-sidebar
+    display: none
+
+  #top-container
+    background-image: none !important
+    height: 14rem
+    background-color: $pale-yellow
+
+    a
+      color: #4c4948
+
+
+    &:before
+      opacity: 0
+    
+    #site-name,
+    .site-page
+      text-shadow: none
+      color: #4c4948
+    
+    #post-info
+      text-align: center
+      padding: 0
+      color: #4c4948
+    
+    #post-title,
+    #post-meta
+      text-shadow: none
+    
+    #page-header
+      &.fixed
+        background: none
+        box-shadow: none
+
+        &.open-sidebar
+          .site-page
+            display: inline-block
+            opacity: 1
+      
+      .toggle-menu 
+        .menu-icon-first,
+        .menu-icon-second,
+        .menu-icon-third
+          background-color: #4c4948
+
+  .layout_post
+    box-shadow: none
+    background: $pale-yellow
+
+    &:hover
+      box-shadow: none
+    
+    .article-container 
+      pre,
+      .highlight
+        background: darken($pale-yellow,5);
+      
+      .highlight
+        &:after
+          background: darken($pale-yellow,10);
+        table 
+          &:after
+            background: darken($pale-yellow,10);
+  
+  
+  blockquote
+    border-left: 0.2rem solid #d6dbdf
+    background-color: rgba(102,128,153,.05)
+  
+  #rightside
+    #to_comment,#nightshift
+      display: none
+    
+  canvas
+    display: none !important
+  
+  footer,
+  #post-comment,
+  hr,
+  .relatedPosts,
+  #pagination,
+  .post-reward,
+  .tag_share,
+  .post-copyright
+    display: none
+  
+  &::-webkit-scrollbar-thumb
+    background: darken($pale-yellow,15)
+
+  *::-webkit-scrollbar-thumb
+    background: darken($pale-yellow,15)
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+    

@@ -1,4 +1,8 @@
 section#rightside.rightside
+  if theme.readmode.enable && is_post()
+    i#readmode.fa.fa-book  
+  i#font_plus.fa.fa-plus
+  i#font_minus.fa.fa-minus
   if page.comments !== false && !is_home() && !is_archive()
     i#to_comment.fa.fa-comments-o 
   if theme.translate && theme.translate.enable

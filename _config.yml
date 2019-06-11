@@ -1,82 +1,70 @@
+--- # ---------------
 # Theme color for customize
 # Notice: color value must in double quotes like "#000" or may cause error!
 # ---------------
 # theme_color:
 #   enable: true
-#   main: "#7A7FF1"
-#   paginator: "#7A7FF1"
+#   main: "#49B1F5"
+#   paginator: "#00C4B6"
 #   button_hover: "#FF7242"
-#   text_selection: "#69c46d"
+#   text_selection: "#00C4B6"
 #   link_color: "#858585"
 #   hr_color: "#A4D8FA"
+#   tag_start_color: "#A4D8FA"
+#   tag_end_color: "#1B9EF3"
 
 # Main menu navigation
-# format: xxx: /xxx/||icon
-# ---------------
 menu:
-  Home: /||fa fa-home
-  Archives: /archives/||fa fa-archive
-  Tags: /tags/||fa fa-tags
-  Categories: /categories/||fa fa-folder-open
-  Link: /link/||fa fa-link
-  About: /about/||fa fa-heart
-#   #XXX: /xxx
-
+  Home: /
+  Archives: /archives
+  Tags: /tags
+  Categories: /categories
+  #XXX: /xxx
 
 # Favicon
-# use my-favicon.ico to avoid duplicate favicon of melody theme
 # ---------------
-favicon: /img/favicon.png
+favicon: /melody-favicon.ico
 
 # PWA
 # See https://github.com/JLHwung/hexo-offline
 # ---------------
-# pwa:
-#   enable: true
-#   manifest: /img/pwa/manifest.json
-#   theme_color: "#fff"
-#   apple_touch_icon: /img/pwa/apple-touch-icon.png
-#   favicon_32_32: /img/pwa/32.png
-#   favicon_16_16: /img/pwa/16.png
-#   mask_icon: /img/pwa/safari-pinned-tab.svg
-#   shortcut_icon: /img/favicon.ico
-
+pwa:
+  enable: false
+  manifest: /manifest.json
+  # If you don't want to trouble, just ignore the following things
+  # See https://realfavicongenerator.net/
+  # theme_color: "#49B1F5"
+  # apple_touch_icon: /apple-touch-icon.png
+  # favicon_32_32: /favicon-32x32.png
+  # favicon_16_16: /favicon-16x16.png
+  # mask_icon: /safari-pinned-tab.svg
 
 # Highlight theme
 # ---------------
-highlight_theme: light
+highlight_theme: default
 
-code_word_wrap: false
+# code_word_wrap: true or false
 
 # Nav settings
-# formal: 
-#   icon: link
+# see the icon_name in fontawesome website.
+# And you need to add the `fa` or `fab` prefix by your self.
 # ---------------
-social:
-  fa fa-github: https://github.com/jerryc127
-  fa fa-rss: /atom.xml
+#social:
+#icon_name fa: url
+#icon_name fab: url
 
 # Algolia search
 # ---------------
 algolia_search:
-  enable: flase
+  enable: false
   hits:
-    per_page: 6
-
-  labels:
-    input_placeholder: Search for Posts
-    hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
-    hits_stats: "${hits} results found in ${time} ms"
-
+    per_page: 10
 
 # Local search
 # Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/third-party-support?id=local-search
 # ---------------
 local_search:
-  enable: true
-  labels:
-    input_placeholder: Search for Posts
-    hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
+  enable: false
 
 # MathJax
 # Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/third-party-support?id=mathjax
@@ -90,77 +78,57 @@ mathjax:
 katex:
   enable: false
   cdn:
-    css: https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css  
+    css: https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css
   hide_scrollbar: true
-
 
 
 # Analysis
 # ---------------
-# baidu_analytics: 
+baidu_analytics:
 
-#Google Analytics
 google_analytics:
 
-
+# Tencent_analytics ID
+tencent_analytics:
 
 # stylesheets loaded in the <head>
 # ---------------
 stylesheets:
   - /css/index.css
-
-# scripts loaded in the end of the body
-# ---------------
+  # scripts loaded in the end of the body
+  # ---------------
 scripts:
   - /js/utils.js
-  - /js/main.js
-  - /js/baidupush.js
+  - /js/fancybox.js
+  - /js/sidebar.js
+  - /js/copy.js
+  - /js/transition.js
+  - /js/scroll.js
+  - /js/head.js
 
-
-# cdn for third-party library
-# ---------------
+  # cdn for third-party library
+  # ---------------
 cdn:
   css:
     fontawesome: https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
-    # fontawesomeV5: https://use.fontawesome.com/releases/v5.8.1/css/all.css
-    googlefont: https://fonts.googleapis.com/css?family=Titillium+Web
-    fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css
+    # fontawesomeV5: https://use.fontawesome.com/releases/v5.3.1/css/all.css
   js:
+    anime: https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js
     jquery: https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js
     fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js
-    js-cookies: https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js
-    lozy: https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js
-
+    velocity: https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js
+    velocity-ui: https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js
 
 # Post info settings
 # ---------------
-# avatar: /img/avatar.png
-avatar: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/avatar.png
+avatar:
 
-# the banner image of index
-# if the banner of another page not setting,it will show the top_img
-top_img: https://i.loli.net/2019/05/22/5ce53eb6dc82757840.jpg
-
-#the banner image of post
-# if the post not set the post cover and post top image, it will show it
-post_img: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/post.png
-
-# the default cover of the post
-default_cover: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png
-
-# the banner image of archive page
-archive_img: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/archive.jpg
-
-# if the photo link cannot connect,it will show that
-lodding_bg:
-  flink: /img/friend_404.gif
-  post_page: /img/404.jpg
-
+top_img: true # false or url of img
 
 post_meta:
-  date_type: both # or updated 文章日期是创建日或者更新日
-  categories: true # or false 是否显示分类
-  tags: true # or false 是否显示标签
+  date_type: created # created or updated
+  categories: true
+  tags: true
 
 # Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/additional-package-support?id=word-counting
 wordcount:
@@ -168,11 +136,7 @@ wordcount:
 
 toc:
   enable: true
-  number: true
-
-# auto open the sidebar in 'post'
-auto_open_sidebar:
-  enable: true
+  # number: true
 
 post_copyright:
   enable: true
@@ -180,196 +144,113 @@ post_copyright:
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 # Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/theme-config?id=auto-excerpt
-auto_excerpt:
-  enable: true
-  length: 150
+# auto_excerpt:
+#   enable: false
+#   length: 150
 
+
+# QR_code:
+# - itemlist:
+#     img:
+#     text:
 
 # adv:
-  # enable: false
-  # info: 
+# enable: false
+# info:
 
 # Share System
 # ---------------
 addThis:
   enable: false
-  pubid:
+  #pubid:
 
-sharejs:
-  enable: true
-  sites: facebook,twitter,wechat,weibo,qq
-
-addtoany:
-  enable: false
+# sharejs:
+# enable: false
+# disabled_sites:
 
 # Comments System
 # ---------------
 disqus:
   enable: false
-  shortname: 
-  count: true 
+  #shortname:
+  #count:
 
 # laibili:
-  # enable: false
-  # uid:
+# enable: false
+# uid:
 
 # gitment
-  # enable: false
-  # owner: 
-  # repo: 
-  # client_id: 
-  # client_secret: 
+# enable: false
+# owner:
+# repo:
+# client_id:
+# client_secret:
 
 # gitalk:
 #   enable: false
-#   client_id: 
-#   client_secret: 
+#   client_id:
+#   client_secret:
 #   repo:
 #   owner:
 #   admin:
-####   Using this js for redirect to gitalk container after login
-####   See https://github.com/gitalk/gitalk/issues/125
-#   js: https://cdn.jsdelivr.net/gh/upupming/gitalk@36368e5dffd049e956cdbbd751ff96c28d8255cf/dist/gitalk.min.js
 
 # valine comment system. https://valine.js.org
-valine:
-  enable: false # if you want use valine,please set this value is ture
-  appId:   # leancloud application app id
-  appKey:   # leancloud application app key
-  notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
-  verify: false # valine verify code (true/false)
-  pageSize: 10 # comment list page size
-  avatar: monsterid # gravatar style https://valine.js.org/#/avatar
-  lang: en # i18n: zh-cn/en
-  placeholder: Please leave your footprints # valine comment input placeholder(like: Please leave your footprints )
-  guest_info: nick,mail,link #valine comment header inf
+# valine:
+#   enable: false # if you want use valine,please set this value is ture
+#   appId:  # leancloud application app id
+#   appKey:  # leancloud application app key
+#   notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
+#   verify: false # valine verify code (true/false)
+#   pageSize: 10 # comment list page size
+#   avatar: mm # gravatar style https://valine.js.org/#/avatar
+#   lang: zh-cn # i18n: zh-cn/en
+#   placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
+#   guest_info: nick,mail,link #valine comment header inf
 
 # Footer Settings
 # ---------------
-since: 2018
+since: 2013
 
-footer_custom_text:
-
-footer_copyright:
-  enable: true
+# footer_custom_text:
 
 ICP:
   enable: false
-  # text: 
+  #text:
 
 # busuanzi count for PV / UV in site
 busuanzi:
+  # count values only if the other configs are false
+  enable: true
+  # custom uv span for the whole site
   site_uv: true
+  site_uv_header: <i class="fa fa-user"></i>
+  site_uv_footer:
+  # custom pv span for the whole site
   site_pv: true
+  site_pv_header: <i class="fa fa-eye"></i>
+  site_pv_footer:
+  # custom pv span for one page only
   page_pv: true
+  page_pv_header: <i class="fa fa-file-o"></i>
+  page_pv_footer:
 
-
+# Sidebar Settings
+# ---------------
+#links_title: Links
+#links:
+#Name: url
 
 # Follow Me Button
-follow:
-  enable: true
+# follow:
+#   enable: true
+#   url: ''
+#   text: ''
 
-
-# Google Webmaster tools verification setting
-# See: https://www.google.com/webmasters/
-google_site_verification:
-
-# Bing Webmaster tools verification setting
-# See: https://www.bing.com/webmaster/
-bing_site_verification:
-
-# Yandex Webmaster tools verification setting
-# See: https://webmaster.yandex.ru/
-#yandex_site_verification:
-
-# Baidu Webmaster tools verification setting
-# See: https://ziyuan.baidu.com/site/
-baidu_site_verification:
-
-# 360 Webmaster tools verification setting
-# see http://zhanzhang.so.com/
-qihu_site_verification:
-
-Flink:
-  headline: 友情鏈接
-  info_headline: 我的Blog資料
-  name: Blog 名字： JerryC
-  address: Blog 地址： https://jerryc.me/
-  avatar: Blog 頭像： https://jerryc.me/img/avatar.png
-  info: Blog 簡介： 今日事,今日畢
-  comment: 如果需要交換友鏈,請留言
-
-
-## friendlink
-
-flinks: 
-  [
-  {'name': '夢魘小棧',
-  'link': 'https://blog.ihoey.com',
-  'avatar': 'https://cdn.dode.top/avatar.png',
-  'descr': '心，若沒有棲息的地方，到哪裏都是流浪......'},
-  {'name': '冰峯博客',
-   'link':'https://www.ad-s.cn/',
-   'avatar': 'https://secure.gravatar.com/avatar/4074cd3e035c6e5796f6c263ef8ef0b8?s=56&d=wavatar&r=g',
-   'descr': '男人就應該保持冷靜，沸騰的水只會被蒸發掉。'}
-  ]
-   
-
-## chinese traditional to Simplified
-translate:
-  enable: true
-
-
-runtimeshow:
-  enable: true
-  start_date: 6/7/2018 00:00:00
-
-
-nightshift:
-  enable: true
-
-
-activate_power_mode:
+# Ads
+# ---------------
+# Google Adsense
+google_adsense:
   enable: false
-
-
-
-announcement:
-  content: 感謝訪問本站，若喜歡請收藏 ^_^
-
-reward:
-  enable: true
-  QR_code:
-    - itemlist:
-        img: /img/wechat.jpg
-        text: 微信
-    - itemlist:
-        img: /img/alipay.jpg
-        text: 支付寶
-
-related_post:
-  enable: true
-
-
-# canvas_ribbon
-# See: https://github.com/hustcc/ribbon.js
-canvas_ribbon:
-  enable: false
-  size: 150
-  alpha: 0.6
-  zIndex: -1
-  click_to_change: false
-
-
-canvas_ribbon_piao:
-  enable: true
-
-
-# 避免重复网址分散seo
-canonical: true
-
-# 禁止百度转码
-disable_baidu_transformation: true
-
-twitter_meta: true
-Open_Graph_meta: true
+  js: //pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
+  client: ca-pub-...........
+  enable_page_level_ads: true
