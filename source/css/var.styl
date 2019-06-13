@@ -7,6 +7,9 @@ $theme-meta-color = #858585
 $theme-link-color = #99a9bf
 $theme-hr-color = #A4D8FA
 $theme-read-mode-bg-color = #FAF9DE
+$font-family= Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
+$code-font = consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace, Helvetica Neue For Number
+
 
 if hexo-config("theme_color") && hexo-config("theme_color.enable")
   $theme-color = convert(hexo-config("theme_color.main")) || #49B1F5
@@ -18,12 +21,16 @@ if hexo-config("theme_color") && hexo-config("theme_color.enable")
   $theme-hr-color = convert(hexo-config("theme_color.hr_color")) || #A4D8FA
   $theme-read-mode-bg-color = convert(hexo-config("theme_color.read-mode-bg_color")) || #FAF9DE
 
+if hexo-config("font") && hexo-config("font.enable")
+  $font-family = convert(hexo-config("font.font-family")) || 'Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif'
+  $code-font = convert(hexo-config("font.code-font")) || 'consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace, Helvetica Neue For Number'
+
 // Global Variables
 $font-size = 14px
 $font-color = #1F2D3D
 $rem = 20px
-$font-family = Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, "Microsoft JhengHei","Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
-$code-font = consolas, Menlo, "PingFang SC", "Microsoft JhengHei","Microsoft YaHei", monospace, Helvetica Neue For Number
+$font-family = $font-family
+$code-font = $code-font
 $text-line-height = 2
 $sm = 768px
 $bg = 1024px

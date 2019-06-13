@@ -25,14 +25,13 @@ post:
   created: Created
   updated: Updated
   wordcount: Word count
-  min2read: 'Reading time: %s min'
+  min2read: "Reading time: %s min"
   page_pv: Post View
   copyright:
     author: Author
     link: Link
     copyright_notice: Copyright Notice
     copyright_content: 'All articles in this blog are licensed under <a href="%s">%s</a> unless stating additionally.'
-
 
 search: Search
 algolia_search:
@@ -57,7 +56,7 @@ aside:
   tags: Tags
   categories: Categories
   card_announcement: Announcement
-  card_categories:  Categories
+  card_categories: Categories
   card_tags: Tags
   card_archives: Archives
   card_recent_post: Recent Post
@@ -71,3 +70,15 @@ aside:
 
 donate: Donate
 share: Share
+
+bookmark:
+  title: Bookmark
+  message_prev: Press
+  message_next: to bookmark this page
+
+rightside:
+  readmode_title: Read Mode
+  font_plus_title: Increase font size
+  font_minus_title: Decrease font size
+  translate_title: Traditional Chinese and Simplified Chinese Conversion
+  night_mode_title: Dark Mode

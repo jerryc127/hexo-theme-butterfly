@@ -52,8 +52,7 @@ if (theme.gitalk && theme.gitalk.enable)
     script(src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js")
   script(src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js")
 
-//- if (theme.pwa && theme.pwa.enable)
-//-   link(rel="manifest" href=theme.pwa.manifest)
+
 
 if (theme.pwa && theme.pwa.enable)
   link(rel="manifest" href=theme.pwa.manifest)
@@ -69,8 +68,6 @@ if (theme.pwa && theme.pwa.enable)
     link(rel="icon" type="image/png" sizes="16x16" href=theme.pwa.favicon_16_16)
   if(theme.pwa.mask_icon)
     link(rel="mask-icon" href=theme.pwa.mask_icon color="#5bbad5")
-  if(theme.pwa.shortcut_icon)
-    link(rel="shortcut icon", href=theme.pwa.shortcut_icon)
 
 
 if theme.baidu_analytics

@@ -24,8 +24,10 @@ hexo.extend.helper.register('related_posts', function(currentPost, allPosts){
   var result = '<div class="relatedPosts_headling"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>&nbsp;相關文章</span></div><div class="relatedPosts_list">';
   relatedPosts = relatedPosts.sort(compare('weight'));
   for (var i = 0; i < Math.min(relatedPosts.length, 6); i++) {
+
+    var cover = relatedPosts[i].cover || hexo.theme.config.default_cover || data.melody.default_cover
     result += '<div class="relatedPosts_item"><a href="/' + relatedPosts[i].path + '">';
-    result += '<img class="relatedPosts_cover lozad" data-src="' + relatedPosts[i].cover + '">';
+    result += '<img class="relatedPosts_cover lozad" data-src="' + cover + '">';
     result += '<div class="relatedPosts_title">' + relatedPosts[i].title + '</div>';
     result += '</a></div>'  
   };

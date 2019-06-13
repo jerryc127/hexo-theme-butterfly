@@ -19,6 +19,8 @@ git clone https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
 theme: Butterfly
 ```
 
+>如果你没有pug以及stylus的渲染器，请下载安装： npm install hexo-renderer-jade hexo-renderer-stylus --save or yarn add hexo-renderer-jade hexo-renderer-stylus
+
 ## 文档
 可查看[这里](https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans/#%E7%89%B9%E6%80%A7)
 
@@ -36,6 +38,7 @@ comments:
 reward:
 description:
 top_img: 
+cover: (封面)
 ---
 ```
 

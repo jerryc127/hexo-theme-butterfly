@@ -10,40 +10,6 @@ if (theme.local_search && theme.local_search.enable)
   script(async src=url_for('/js/search/local-search.js'))
 
 
-if theme.translate && theme.translate.enable
-  script(src=url_for('/js/tw_cn.js'))
-  script.
-    $(document).ready(function() { 
-      initializeChineseConversion();
-    });
-    function simplifyTextInPage(simplified) {
-      if (simplified) {
-        $(document.body).t2s();
-        $('#translateLink').addClass('simplified');
-        $('#translateLink').text('繁');
-      } else {
-        $(document.body).s2t();
-        $('#translateLink').removeClass('simplified');
-        $('#translateLink').text('簡');
-      }
-    }
-    function initializeChineseConversion() {
-      var simplified = +Cookies.get('simplified');
-      // ?lang=zh-Hans, ?lang=zh-Hant
-      var scriptCode = /[?&;]lang=[^&;]*(Han[st])/i.exec(window.location.search);
-      if (scriptCode) {
-        simplified = +(scriptCode[1].match(/Hans/i) != null);
-        Cookies.set('simplified', simplified, {expires: 7, path: '/'});
-      }
-      simplifyTextInPage(simplified);
-      $('#translateLink').click(function() {
-        simplified = +!simplified;
-        Cookies.set('simplified', simplified, {expires: 7, path: '/'});
-        simplifyTextInPage(simplified);
-        $(this).blur();
-      });
-    }
-
 if theme.nightshift.enable
   script(src=url_for('js/nightshift.js'))
 
@@ -60,39 +26,24 @@ if theme.activate_power_mode.enable
     POWERMODE.shake = true; // turn off shake
     document.body.addEventListener('input', POWERMODE);
 
+if theme.translate && theme.translate.enable
+  script(src=url_for('/js/tw_cn.js'))
+  script.
+    translateInitilization()
 
 
-
-
-//- script(src="https://unpkg.com/aos@next/dist/aos.js")
-//- script.
-//-     $(".recent-post-item,.card_widget,#archive,.tag-cloud,#tag,.category-content,#category,#page,.flink").attr("data-aos","slide-up");
-//-     AOS.init();
-
-
-script(src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module")
-
-//- if is_post()
-//-   script(src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9")
-//-   script.
-//-     var typed = new Typed("#typed", {
-//-     stringsElement: '#post-title-effects',
-//-     typeSpeed: 150,
-//-     loop: true,
-//-     backSpeed: 100
-//-     });
-
-if is_home()
-  script(src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9")
+if is_home() && theme.subtitle.enable
+  script(src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9")    
   script.
     var typed = new Typed(".subtitle", {
-    strings: ["今日事,今日畢", "Never put off till tomorrow what you can do today"],
+    strings: ['!{theme.subtitle.sub1}','!{theme.subtitle.sub2}'],
     startDelay: 300,
     typeSpeed: 100,
     loop: true,
     backSpeed: 50
     });
-  
+
+if is_home()  
   script.
     //首頁fullpage
     function alignContent() {
@@ -130,3 +81,4 @@ if is_home()
 
 
 script(async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")
+script(src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module")

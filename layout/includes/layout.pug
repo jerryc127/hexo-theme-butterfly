@@ -32,7 +32,7 @@ html(lang=config.language)
     meta(name="author" content=pageAuthor)
     meta(name="copyright" content=pageCopyright)
     meta(name ="format-detection" content="telephone=no")
-    //- !=favicon_tag(config.favicon || theme.favicon || '/favicon.ico')
+    !=favicon_tag(config.favicon || theme.favicon || '/favicon.ico')
     if theme.stylesheets !== undefined && theme.stylesheets.length > 0
       each url in theme.stylesheets
         link(rel='stylesheet', href=url_for(url))

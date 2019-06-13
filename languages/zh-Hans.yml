@@ -25,7 +25,7 @@ post:
   created: 发表于
   updated: 更新于
   wordcount: 字数总计
-  min2read: '阅读时长: %s 分钟'
+  min2read: "阅读时长: %s 分钟"
   page_pv: 阅读量
   copyright:
     author: 文章作者
@@ -69,6 +69,16 @@ aside:
     site_uv_name: 本站访客数
     site_pv_name: 本站总访问量
 
-
 donate: 打赏
 share: 分享
+bookmark:
+  title: 添加书签
+  message_prev: 按
+  message_next: 键将本页加入书签
+
+rightside:
+  readmode_title: 阅读模式
+  font_plus_title: 放大字体
+  font_minus_title: 缩小字体
+  translate_title: 简繁转换
+  night_mode_title: 夜间模式

@@ -27,7 +27,7 @@ menu:
 # Favicon
 # use my-favicon.ico to avoid duplicate favicon of melody theme
 # ---------------
-favicon: /img/favicon.png
+favicon: /img/favicon.ico
 
 # PWA
 # See https://github.com/JLHwung/hexo-offline
@@ -46,6 +46,7 @@ favicon: /img/favicon.png
 # Highlight theme
 # ---------------
 highlight_theme: light
+highlight_copy: true
 
 code_word_wrap: false
 
@@ -74,7 +75,7 @@ algolia_search:
 # Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/third-party-support?id=local-search
 # ---------------
 local_search:
-  enable: true
+  enable: false
   labels:
     input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
@@ -234,7 +235,7 @@ disqus:
 
 # valine comment system. https://valine.js.org
 valine:
-  enable: false # if you want use valine,please set this value is ture
+  enable: false # if you want use valine,please set this value is true
   appId:   # leancloud application app id
   appKey:   # leancloud application app key
   notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
@@ -305,21 +306,16 @@ Flink:
 
 flinks: 
   [
-  {'name': '夢魘小棧',
-  'link': 'https://blog.ihoey.com',
-  'avatar': 'https://cdn.dode.top/avatar.png',
-  'descr': '心，若沒有棲息的地方，到哪裏都是流浪......'},
-  {'name': '冰峯博客',
-   'link':'https://www.ad-s.cn/',
-   'avatar': 'https://secure.gravatar.com/avatar/4074cd3e035c6e5796f6c263ef8ef0b8?s=56&d=wavatar&r=g',
-   'descr': '男人就應該保持冷靜，沸騰的水只會被蒸發掉。'}
+  {'name': 'JerryC',
+  'link': 'https://jerryc.me/',
+  'avatar': 'https://jerryc.me/img/avatar.png',
+  'descr': '今日事,今日畢'},
+  {'name': 'molunerfinn',
+   'link':'https://molunerfinn.com',
+   'avatar': 'https://blog-1251750343.cos.ap-beijing.myqcloud.com/blog/avatar.jpeg',
+   'descr': 'For MElody'}
   ]
    
-
-## chinese traditional to Simplified
-translate:
-  enable: true
-
 
 runtimeshow:
   enable: true
@@ -366,15 +362,54 @@ canvas_ribbon_piao:
   enable: true
 
 
-# 避免重复网址分散seo
+# 避免重複網址分散seo
 canonical: true
 
-# 禁止百度转码
+# 禁止百度轉碼
 disable_baidu_transformation: true
 
 twitter_meta: true
 Open_Graph_meta: true
 
-
+#閲讀模式
 readmode:
   enable: true
+
+font:
+  enable: false
+  font-family: Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB,"Microsoft JhengHei", "MicrMicrosoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
+  code-font: consolas, Menlo, "PingFang SC", "Microsoft JhengHei","Microsoft YaHei", monospace, Helvetica Neue For Number
+
+# 主頁subtitle
+subtitle: 
+  enable: true
+  sub1: 今日事,今日畢
+  sub2: Never put off till tomorrow what you can do today
+
+#側邊欄顯示設置
+aside:
+  card_author: true
+  card_announcement: true
+  card_recent_post: true
+  card_categories: true
+  card_tags: true
+  card_archives: true
+  card_webinfo: true
+
+
+## chinese traditional to Simplified
+translate:
+  enable: true
+  # 默認按鈕顯示文字
+  default: 簡
+  #网站默认语言，1: 繁體中文, 2: 简体中文
+  defaultEncoding: 1
+  #延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+  translateDelay: 0
+  #博客网址
+  cookieDomain: "https://jerryc.me/"
+  #當文字是簡體時，按鈕顯示的文字
+  msgToTraditionalChinese: "繁"
+  #當文字是繁體時，按鈕顯示的文字
+  msgToSimplifiedChinese: "简"
+  

@@ -86,13 +86,7 @@ $(function () {
   }
 
   //---------------------------------------------------------------------------------------------------------
-  //側邊欄comment
-  $("#to_comment").on("click", function () {
-
-    scrollTo('#post-comment')
-
-  });
-
+  
   $(".scroll-down").on("click", function () {
 
     scrollTo('#content-outer')
@@ -177,8 +171,8 @@ $(function () {
       } else { // webkit - safari/chrome
         // alert('按 ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL') + ' + D 鍵將本頁加入書籤.');
         $.fancyConfirm({
-          title: "添加書籤？",
-          message: '按 ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL') + ' + D 鍵將本頁加入書籤.',
+          title: GLOBAL_CONFIG.bookmark.title + '?',
+          message: GLOBAL_CONFIG.bookmark.message_prev + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL') + '+ D ' + GLOBAL_CONFIG.bookmark.message_next + '.',
           okButton: "OK",
         });
 
@@ -188,55 +182,64 @@ $(function () {
   //-------------------------------------------------------------------------------------------------------
   //代码copy
   // Add copy icon
-  // $('figure.highlight').wrap('<div class="code-area-wrap"></div>')
-  // var $copyIcon = $('<i class="fa fa-clipboard" aria-hidden="true"></i>')
-  // var $notice = $('<div class="copy-notice"></div>')
-  // $('.code-area-wrap').prepend($copyIcon)
-  // $('.code-area-wrap').prepend($notice)
-  // // copy function
-  // function copy(text, ctx) {
-  //   if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
-  //     try {
-  //       document.execCommand('copy') // Security exception may be thrown by some browsers.
-  //       $(ctx).prev('.copy-notice')
-  //         .text(GLOBAL_CONFIG.copy.success)
-  //         .velocity({
-  //           translateX: -30,
-  //           opacity: 1
-  //         }, {
-  //           loop: 1,
-  //           duration: 750,
-  //           easing: 'easeOutQuint'
-  //         })
-  //     } catch (ex) {
-  //       $(ctx).prev('.copy-notice')
-  //         .text(GLOBAL_CONFIG.copy.error)
-  //         .velocity({
-  //           translateX: -30,
-  //           opacity: 1
-  //         }, {
-  //           loop: 1,
-  //           duration: 750,
-  //           easing: 'easeOutQuint'
-  //         })
-  //       return false
-  //     }
-  //   } else {
-  //     $(ctx).prev('.copy-notice').text(GLOBAL_CONFIG.copy.noSupport)
-  //   }
-  // }
-  // // click events
-  // $('.code-area-wrap .fa-clipboard').on('click', function () {
-  //   var selection = window.getSelection()
-  //   var range = document.createRange()
-  //   range.selectNodeContents($(this).siblings('figure').find('.code pre')[0])
-  //   selection.removeAllRanges()
-  //   selection.addRange(range)
-  //   var text = selection.toString()
-  //   copy(text, this)
-  //   selection.removeAllRanges()
-  // })
 
+  var highlight_copy = GLOBAL_CONFIG.highlight_copy
+  if (highlight_copy == 'true') {
+    $('figure.highlight').wrap('<div class="code-area-wrap"></div>')
+    var $copyIcon = $('<i class="fa fa-clipboard" aria-hidden="true"></i>')
+    var $notice = $('<div class="copy-notice"></div>')
+    $('.code-area-wrap').prepend($copyIcon)
+    $('.code-area-wrap').prepend($notice)
+    // copy function
+    function copy(text, ctx) {
+      if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
+        try {
+          document.execCommand('copy') // Security exception may be thrown by some browsers.
+          $(ctx).prev('.copy-notice')
+            .text(GLOBAL_CONFIG.copy.success)
+            .animate({
+              opacity: 1,
+              right: 30
+            }, 450, function () {
+              setTimeout(function () {
+                $(ctx).prev('.copy-notice').animate({
+                  opacity: 0,
+                  right: 0
+                }, 650)
+              }, 400)
+            })
+        } catch (ex) {
+          $(ctx).prev('.copy-notice')
+            .text(GLOBAL_CONFIG.copy.error)
+            .animate({
+              opacity: 1,
+              right: 30
+            }, 650, function () {
+              setTimeout(function () {
+                $(ctx).prev('.copy-notice').animate({
+                  opacity: 0,
+                  right: 0
+                }, 650)
+              }, 400)
+            })
+          return false
+        }
+      } else {
+        $(ctx).prev('.copy-notice').text(GLOBAL_CONFIG.copy.noSupport)
+      }
+    }
+    // click events
+    $('.code-area-wrap .fa-clipboard').on('click', function () {
+      var selection = window.getSelection()
+      var range = document.createRange()
+      range.selectNodeContents($(this).siblings('figure').find('.code pre')[0])
+      selection.removeAllRanges()
+      selection.addRange(range)
+      var text = selection.toString()
+      copy(text, this)
+      selection.removeAllRanges()
+    })
+  }
   //---------------------------------------------------------------------------------------------------
   //fancybox
   var imgList = $(".recent-post-info  img");
@@ -517,25 +520,22 @@ $(function () {
       $('body').toggleClass('read-mode');
       $('#font_plus,#font_minus').toggleClass('is_visible');
 
-    }
-     else {
+    } else {
       $('body').toggleClass('read-mode');
       $('#font_plus,#font_minus').toggleClass('is_visible');
     }
 
   });
 
-  
- //閲讀模式下字體調整
+
+  //閲讀模式下字體調整
   $("#font_plus").click(function () {
-    var font_size_record = parseFloat($('body').css('font-size'))     
-    $('body').css('font-size',font_size_record + 1)    
-    }
-  );
+    var font_size_record = parseFloat($('body').css('font-size'))
+    $('body').css('font-size', font_size_record + 1)
+  });
 
   $("#font_minus").click(function () {
-    var font_size_record = parseFloat($('body').css('font-size'))     
-    $('body').css('font-size',font_size_record - 1)    
-    }
-  );
+    var font_size_record = parseFloat($('body').css('font-size'))
+    $('body').css('font-size', font_size_record - 1)
+  });
 });

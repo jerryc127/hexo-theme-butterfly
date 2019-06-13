@@ -26,14 +26,39 @@
       }
     })
   }
+
+  if (theme.translate && theme.translate.enable){
+    var defaultEncoding;
+    translate = JSON.stringify({
+      defaultEncoding: theme.translate.defaultEncoding,
+      translateDelay: theme.translate.translateDelay,
+      cookieDomain: theme.translate.cookieDomain,
+      msgToTraditionalChinese: theme.translate.msgToTraditionalChinese,
+      msgToSimplifiedChinese: theme.translate.msgToSimplifiedChinese
+    })
+  }
+
+
+
+
+
 script.
   var GLOBAL_CONFIG = { 
     root: '!{config.root}',
     algolia: !{algolia},
     localSearch: !{localSearch},
+    translate: !{translate},
+    highlight_copy: '!{theme.highlight_copy}',
     copy: {
       success: '!{_p("copy.success")}',
       error: '!{_p("copy.error")}',
       noSupport: '!{_p("copy.noSupport")}'
+    },
+    bookmark: {
+      title: '!{_p("bookmark.title")}',
+      message_prev: '!{_p("bookmark.message_prev")}',
+      message_next: '!{_p("bookmark.message_next")}'
     }
-  } 
+    
+  }
+

@@ -1,0 +1,236 @@
+if hexo-config("nightshift") && hexo-config("nightshift.enable")
+  .night-mode 
+    footer
+      background: #2d3035
+
+    #sidebar
+      background: #2d3035 !important
+      box-shadow: -0.25rem 0 0.25rem #2d3035 !important
+
+      &::-webkit-scrollbar-thumb
+        background: lighten(#2d3035,5)
+
+    if hexo-config("local_search") && hexo-config("local_search.enable")
+      #local-search
+        background: #2d3035  
+        .local-search-box--input  
+          background: #2d3035
+          color: #99a9bf
+            
+        .search-result-title
+          color: #99a9bf
+    if hexo-config("algolia_search.enable")
+      #algolia-search
+        background: #2d3035
+        .ais-search-box--input
+          background: #2d3035
+          color: #99a9bf
+
+        #algolia-search-results
+          .algolia-hit-item-link
+            color: #99a9bf !important
+        
+    h1, h2, h3, h4, h5, h6
+      color: #99a9bf
+
+    .article-container code
+      background: #616a6b 
+      color: #99a9bf 
+
+    // 評論
+    #vcomment
+      * 
+        color: #99a9bf !important
+      
+      .vsys
+        background: rgb(97, 106, 107) !important
+
+      .vbtn
+        background: rgb(45, 48, 53) !important      
+        color: #99a9bf !important
+          
+    .recent-post-item .article-title
+        color: #99a9bf
+
+    #page-header
+        &.fixed
+            background: #2d3035
+            box-shadow: 0 5px 6px -5px rgba(133,133,133,0) 
+
+            a, 
+            .toggle-menu, 
+            #site-name 
+                color: #99a9bf 
+                
+    blockquote
+        border-left: 0.2rem solid #7A5353 
+        color: #99a9bf
+
+    hr
+        background: 0
+        border: 2px dashed #616A6B
+        &:before
+            color: #99a9bf
+
+    .post-meta__tags
+        background: 0
+        border: 1px solid #99a9bf
+        color: #99a9bf
+
+
+    .post-copyright
+      border: 1px solid #99a9bf
+
+      *
+          color: #99a9bf
+
+    .article-container .highlight
+        background-color: #1B2631 
+        .code pre
+            background-color: #1B2631 
+
+        .gutter pre
+            background: #1C2833 
+
+
+        &:after
+            background: rgb(27, 38, 59) 
+        
+        table
+            &:after,.copy-notice
+                background: rgb(27, 38, 59) 
+        
+        &::-webkit-scrollbar-thumb
+          background: lighten(#1B2631,10)
+        
+    .copy-notice
+        background: rgb(27, 38, 59) 
+
+    .post-cards,.md-links-item
+        // background: #2d3035
+        a
+            color: #99a9bf
+
+    .aplayer
+        color: #000000 
+        filter: brightness(0.6)
+
+    .article-sort-item__title
+        color: #99a9bf
+
+    .category-list
+        a
+            color: #99a9bf
+
+
+
+    .translate_chn_to_cht,
+    .nightshift,
+    #readmode
+        background-color: #2d3035 !important
+
+    img
+        filter: brightness(0.6)
+
+    .layout_post
+        background:#2d3035
+    
+    canvas
+      display: none !important
+
+    #aside_content
+      .card_widget
+        background:#2d3035 !important
+      .headline,
+      .length_num,
+      .aside_post_title,
+      .aside_category_list_link,
+      .archive-list-link,
+      .social-icon
+        color: #99a9bf !important
+      
+      #bookmark-it
+        background: #616a6b !important
+    
+    #archive,
+    .tag-cloud,
+    #tag,
+    .category-content,
+    #category,
+    #page,
+    .flink
+      background:#2d3035
+
+    #nav,
+    #top-container
+      &::before
+        content: ""
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        background-color: rgba(0,0,0,.6)
+
+    .layout_page
+      .post-meta__date,
+      .article-meta__separator,
+      .article-meta__categories,
+      i
+        color: #99a9bf
+
+    #site-info .blogtitle, 
+    span.subtitle,
+    #post-info .posttitle,
+    #post-info #post-meta,
+    #site-social-icons i,
+    #top-container a
+      color: rgba(238,238,238,.6)
+
+    //打賞 分享
+    .post-reward
+      .reward-buttom
+        background-color: #616a6b
+      .post_share
+        filter: brightness(0.6)
+      img
+        filter: brightness(1)
+      
+    &::-webkit-scrollbar-thumb
+      background: lighten(#2d3035,5)
+    
+  @media screen and (max-width: 768px)
+    .night-mode
+      color: #99a9bf 
+      background-color: rgb(45, 48, 53)
+
+      #page-header
+        .menus 
+          a
+            color: #99a9bf 
+            background: #2d3035
+        &.fixed
+          .menu-icon-first,
+          .menu-icon-second,
+          .menu-icon-third
+            background-color: #99a9bf;
+
+
+  @media screen and (min-width: 768px)
+    .night-mode
+      color: #99a9bf 
+      background-color: #2d3032
+        
+      .recent-post-item
+          background: #2d3035 !important
+
+
+
+    
+
+
+
+
+
+
+

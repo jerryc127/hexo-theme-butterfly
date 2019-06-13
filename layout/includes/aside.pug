@@ -1,125 +1,132 @@
-.card_widget.card-author
-  .card-content
-    .post_data
-      .data-item.text-center
-        img.lozad(data-src=theme.avatar || url_for('/img/avatar.png') onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
-        p.author-info__name.text-center= config.author
-        p.author-info__description.text-center= config.description
-
-    .post_data.data_config
-      if site.posts.length
+if theme.aside.card_author
+  .card_widget.card-author
+    .card-content
+      .post_data
         .data-item.text-center
-          .data_link
-            a(href=url_for(config.archive_dir) + '/')
-              p.headline= _p('aside.articles') 
-              p.length_num= site.posts.length
+          img.lozad(data-src=theme.avatar || url_for('/img/avatar.png') onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
+          p.author-info__name.text-center= config.author
+          p.author-info__description.text-center= config.description
 
-      if site.tags.length
-        .data-item.text-center       
-          .data_link
-            a(href=url_for(config.tag_dir) + '/' )
-              p.headline= _p('aside.tags')
-              p.length_num= site.tags.length
-
-      if site.categories.length
-        .data-item.text-center      
-          .data_link
-            a(href=url_for(config.category_dir) + '/')
-              p.headline= _p('aside.categories') 
-              p.length_num= site.categories.length
-
-    .post_data.text-center
-      a#bookmark-it.data-item.bookmark.bookmarke--primary.bookmark--animated(href="javascript:;" title= _p('aside.card_bookmark') )=  _p('aside.card_bookmark') || 'Follow Me'
-      
-   
-   
-    if(theme.social)
       .post_data.data_config
-        #aside-social-icons 
-          each url, icon in theme.social
-            a.social-icon.data-item(href=url target="_blank")
-              i(class=icon)
+        if site.posts.length
+          .data-item.text-center
+            .data_link
+              a(href=url_for(config.archive_dir) + '/')
+                p.headline= _p('aside.articles') 
+                p.length_num= site.posts.length
 
-.card_widget.card-announcement
-  .card-content
-    .item_headline
-      i.fa.fa-bullhorn.card-announcement-animation(aria-hidden="true")
-      span= _p('aside.card_announcement')
-    .announcement_content= theme.announcement.content
+        if site.tags.length
+          .data-item.text-center       
+            .data_link
+              a(href=url_for(config.tag_dir) + '/' )
+                p.headline= _p('aside.tags')
+                p.length_num= site.tags.length
 
-.card_widget.card-recent-post
-  .card-content
-    .item_headline
-      i.fa.fa-history(aria-hidden="true")
-      span= _p('aside.card_recent_post')
-    .aside_recent_item
-      - site.posts.sort('date', -1).limit(5).each(function(article){
-        .aside_recent_post
-          - var link = article.link || article.path
-            a(href=url_for(link))
-              - var post_cover = article.cover
-              - var default_post_cover = theme.default_cover
-              .aside_post_cover
-                if (post_cover)
-                  img.aside_post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
-                else
-                  img.aside_post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
-              div#aside_title
-                .aside_post_title(href=url_for(link) title=article.title || _p('no_title'))= article.title || _p('no_title')
-                if (theme.post_meta.date_type)
-                  - var date_type = theme.post_meta.date_type == 'updated' ? 'updated' : 'date'
-                  time.aside_post_meta.post-meta__date #[=date(article[date_type], config.date_format)]
+        if site.categories.length
+          .data-item.text-center      
+            .data_link
+              a(href=url_for(config.category_dir) + '/')
+                p.headline= _p('aside.categories') 
+                p.length_num= site.categories.length
+
+      .post_data.text-center
+        a#bookmark-it.data-item.bookmark.bookmarke--primary.bookmark--animated(href="javascript:;" title= _p('aside.card_bookmark') )=  _p('aside.card_bookmark') || 'Follow Me'
+        
     
-      - })
+    
+      if(theme.social)
+        .post_data.data_config
+          #aside-social-icons 
+            each url, icon in theme.social
+              a.social-icon.data-item(href=url target="_blank")
+                i(class=icon)
+
+if theme.aside.card_announcement
+  .card_widget.card-announcement
+    .card-content
+      .item_headline
+        i.fa.fa-bullhorn.card-announcement-animation(aria-hidden="true")
+        span= _p('aside.card_announcement')
+      .announcement_content= theme.announcement.content
+
+if theme.aside.card_recent_post
+  .card_widget.card-recent-post
+    .card-content
+      .item_headline
+        i.fa.fa-history(aria-hidden="true")
+        span= _p('aside.card_recent_post')
+      .aside_recent_item
+        - site.posts.sort('date', -1).limit(5).each(function(article){
+          .aside_recent_post
+            - var link = article.link || article.path
+              a(href=url_for(link))
+                - var post_cover = article.cover
+                - var default_post_cover = theme.default_cover
+                .aside_post_cover
+                  if (post_cover)
+                    img.aside_post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+                  else
+                    img.aside_post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+                div#aside_title
+                  .aside_post_title(href=url_for(link) title=article.title || _p('no_title'))= article.title || _p('no_title')
+                  if (theme.post_meta.date_type)
+                    - var date_type = theme.post_meta.date_type == 'updated' ? 'updated' : 'date'
+                    time.aside_post_meta.post-meta__date #[=date(article[date_type], config.date_format)]
       
-.card_widget.card-categories
-  .card-content
-    .item_headline
-      i.fa.fa-folder-open(aria-hidden="true")
-      span= _p('aside.card_categories')
-    ul.aside_category_item
-      - site.categories.sort('name').each(function(category){
-        li.aside_category_list
-          a.aside_category_list_link(href='/' + `${category.path}`)
-            span.aside_category_list_name= category.name
-            span.aside_category_list_length= category.length
-      - })
+        - })
 
-.card_widget.card-tags
-  .card-content
-    .item_headline
-      i.fa.fa-tags(aria-hidden="true")
-      span= _p('aside.card_tags')
-    .card-tag-cloud!= tagcloud({min_font: 16, max_font: 24, amount: 200, color: true, start_color: '#999', end_color: '#000'})
+if theme.aside.card_categories   
+  .card_widget.card-categories
+    .card-content
+      .item_headline
+        i.fa.fa-folder-open(aria-hidden="true")
+        span= _p('aside.card_categories')
+      ul.aside_category_item
+        - site.categories.sort('name').each(function(category){
+          li.aside_category_list
+            a.aside_category_list_link(href='/' + `${category.path}`)
+              span.aside_category_list_name= category.name
+              span.aside_category_list_length= category.length
+        - })
 
-.card_widget.card-archives
-  .card-content
-    .item_headline
-      i.fa.fa-archive(aria-hidden="true")
-      span= _p('aside.card_archives')
-    div.archives_item!= list_archives({type:'monthly',format: 'YYYY年MM月'})
+if theme.aside.card_tags
+  .card_widget.card-tags
+    .card-content
+      .item_headline
+        i.fa.fa-tags(aria-hidden="true")
+        span= _p('aside.card_tags')
+      .card-tag-cloud!= tagcloud({min_font: 16, max_font: 24, amount: 200, color: true, start_color: '#999', end_color: '#000'})
 
-.card_widget.card-webinfo
-  .card-content
-    .item_headline
-        i.fa.fa-line-chart(aria-hidden="true")
-        span= _p('aside.card_webinfo.headline')
-    .webinfo
-      .webinfo_item
-        .webinfo_article_name= _p('aside.card_webinfo.article_name') + " :"
-        .webinfo_article_count= site.posts.length      
-      if theme.runtimeshow.enable
+if theme.aside.card_archives
+  .card_widget.card-archives
+    .card-content
+      .item_headline
+        i.fa.fa-archive(aria-hidden="true")
+        span= _p('aside.card_archives')
+      div.archives_item!= list_archives({type:'monthly',format: 'YYYY年MM月'})
+
+if theme.aside.card_webinfo
+  .card_widget.card-webinfo
+    .card-content
+      .item_headline
+          i.fa.fa-line-chart(aria-hidden="true")
+          span= _p('aside.card_webinfo.headline')
+      .webinfo
         .webinfo_item
-          .webinfo_runtime_name= _p('aside.card_webinfo.runtime_name') + " :"
-          #webinfo_runtime_count.webinfo_runtime_count
-          script#runtionshow(src=url_for('js/runtimeshow.js') start_date=theme.runtimeshow.start_date)       
-      
-      if theme.busuanzi.site_uv 
-        .webinfo_item       
-          .webinfo_site_uv_name= _p('aside.card_webinfo.site_uv_name') + " :"
-          .webinfo_site_uv_count#busuanzi_value_site_uv
-      if theme.busuanzi.site_pv
-        .webinfo_item
-          .webinfo_site_name= _p('aside.card_webinfo.site_pv_name') + " :"
-          .webinfo_site_pv_count#busuanzi_value_site_pv
+          .webinfo_article_name= _p('aside.card_webinfo.article_name') + " :"
+          .webinfo_article_count= site.posts.length      
+        if theme.runtimeshow.enable
+          .webinfo_item
+            .webinfo_runtime_name= _p('aside.card_webinfo.runtime_name') + " :"
+            #webinfo_runtime_count.webinfo_runtime_count
+            script#runtionshow(src=url_for('js/runtimeshow.js') start_date=theme.runtimeshow.start_date)       
+        
+        if theme.busuanzi.site_uv 
+          .webinfo_item       
+            .webinfo_site_uv_name= _p('aside.card_webinfo.site_uv_name') + " :"
+            .webinfo_site_uv_count#busuanzi_value_site_uv
+        if theme.busuanzi.site_pv
+          .webinfo_item
+            .webinfo_site_name= _p('aside.card_webinfo.site_pv_name') + " :"
+            .webinfo_site_pv_count#busuanzi_value_site_pv
 
