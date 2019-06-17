@@ -12,7 +12,7 @@
 git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
 ```
 
-如果想要安裝比較新的dev分支，可以
+如果想要安装比较新的dev分支，可以
 
 ```
 git clone -b div https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
