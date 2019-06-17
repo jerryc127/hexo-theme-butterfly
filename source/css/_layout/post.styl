@@ -1,16 +1,6 @@
 #post-title
   font-size: 1.4rem
 
-  &.plain
-    margin-bottom: 0.3rem
-    border-bottom: 1px solid $light-grey
-    cursor: pointer
-    transition: all 0.2s ease-in-out
-
-    &:hover
-      border-bottom: 1px solid $light-blue
-      color: $light-blue
-
 #post
   overflow: hidden
 
@@ -46,16 +36,6 @@
     opacity: 0.5;
     background-color: #394245;
     background-image: linear-gradient(234deg, #394245 0%, #000 100%);
-
-  &.no-bg
-    $bg-svg += ""
-    background-color: $light-blue
-    background-image: url($bg-svg) !important
-    background-size: auto
-
-  &.plain
-    margin-bottom: 1rem
-    height: 56px
 
   a
     color: $light-grey
@@ -229,8 +209,6 @@ img
     a
       word-break: break-word
 
-.post-adv
-  margin: 1rem 0
 
 @media screen and (max-width: $sm)
   .layout

@@ -25,7 +25,6 @@ menu:
 
 
 # Favicon
-# use my-favicon.ico to avoid duplicate favicon of melody theme
 # ---------------
 favicon: /img/favicon.ico
 
@@ -72,7 +71,7 @@ algolia_search:
 
 
 # Local search
-# Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/third-party-support?id=local-search
+# Please see doc for more details: https://jerryc.me/posts/21cfbf15/#本地搜索
 # ---------------
 local_search:
   enable: false
@@ -81,7 +80,7 @@ local_search:
     hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
 
 # MathJax
-# Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/third-party-support?id=mathjax
+# Please see doc for more details: https://jerryc.me/posts/21cfbf15/#MathJax
 # ---------------
 mathjax:
   enable: false
@@ -105,7 +104,6 @@ katex:
 google_analytics:
 
 
-
 # stylesheets loaded in the <head>
 # ---------------
 stylesheets:
@@ -116,8 +114,6 @@ stylesheets:
 scripts:
   - /js/utils.js
   - /js/main.js
-  - /js/baidupush.js
-
 
 # cdn for third-party library
 # ---------------
@@ -160,11 +156,11 @@ lodding_bg:
 
 
 post_meta:
-  date_type: both # or updated 文章日期是创建日或者更新日
+  date_type: both # or created or updated 文章日期是创建日或者更新日或都显示
   categories: true # or false 是否显示分类
   tags: true # or false 是否显示标签
 
-# Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/additional-package-support?id=word-counting
+# Please see doc for more details: https://jerryc.me/posts/21cfbf15/#字数统计
 wordcount:
   enable: false
 
@@ -181,15 +177,10 @@ post_copyright:
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
-# Please see doc for more details: https://molunerfinn.com/hexo-theme-melody-doc/#/theme-config?id=auto-excerpt
 auto_excerpt:
   enable: true
   length: 150
 
-
-# adv:
-  # enable: false
-  # info: 
 
 # Share System
 # ---------------
@@ -201,16 +192,24 @@ sharejs:
   enable: true
   sites: facebook,twitter,wechat,weibo,qq
 
+# https://www.addtoany.com/
 addtoany:
   enable: false
+  item:
+    - facebook
+    - twitter
+    - wechat
+    - sina_weibo
+    - facebook_messenger
+    - email
+    - copy_link
 
 # Comments System
 # ---------------
 disqus:
   enable: false
   shortname: 
-  count: true 
-
+  
 # laibili:
   # enable: false
   # uid:
@@ -242,7 +241,7 @@ valine:
   verify: false # valine verify code (true/false)
   pageSize: 10 # comment list page size
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
-  lang: en # i18n: zh-cn/en
+  lang: en # i18n: zh-cn/en/tw
   placeholder: Please leave your footprints # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header inf
 
@@ -257,7 +256,8 @@ footer_copyright:
 
 ICP:
   enable: false
-  # text: 
+  url: 
+  text:
 
 # busuanzi count for PV / UV in site
 busuanzi:
@@ -266,10 +266,6 @@ busuanzi:
   page_pv: true
 
 
-
-# Follow Me Button
-follow:
-  enable: true
 
 
 # Google Webmaster tools verification setting
@@ -301,21 +297,7 @@ Flink:
   info: Blog 簡介： 今日事,今日畢
   comment: 如果需要交換友鏈,請留言
 
-
-## friendlink
-
-flinks: 
-  [
-  {'name': 'JerryC',
-  'link': 'https://jerryc.me/',
-  'avatar': 'https://jerryc.me/img/avatar.png',
-  'descr': '今日事,今日畢'},
-  {'name': 'molunerfinn',
-   'link':'https://molunerfinn.com',
-   'avatar': 'https://blog-1251750343.cos.ap-beijing.myqcloud.com/blog/avatar.jpeg',
-   'descr': 'For MElody'}
-  ]
-   
+ 
 
 runtimeshow:
   enable: true
@@ -346,7 +328,7 @@ reward:
 
 related_post:
   enable: true
-
+  limit: 6 # 顯示推薦文章數目
 
 # canvas_ribbon
 # See: https://github.com/hustcc/ribbon.js
@@ -412,4 +394,12 @@ translate:
   msgToTraditionalChinese: "繁"
   #當文字是繁體時，按鈕顯示的文字
   msgToSimplifiedChinese: "简"
-  
+
+
+# 鼠標點擊效果
+fireworks:
+  enable: false
+
+#百度推送
+baidu_push:
+  enable: false

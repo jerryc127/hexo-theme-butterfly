@@ -26,7 +26,7 @@
       }
     })
   }
-
+  var translate = 'undefined';
   if (theme.translate && theme.translate.enable){
     var defaultEncoding;
     translate = JSON.stringify({
@@ -58,7 +58,9 @@ script.
       title: '!{_p("bookmark.title")}',
       message_prev: '!{_p("bookmark.message_prev")}',
       message_next: '!{_p("bookmark.message_next")}'
-    }
+    },
+    runtime_unit: '!{_p("runtime_unit")}'
+  
     
   }
 

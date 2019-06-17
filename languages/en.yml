@@ -50,6 +50,7 @@ pagination:
   next: Next Post
 
 comment: Comment
+relatedPosts_headline: Recommend
 
 aside:
   articles: Articles
@@ -81,3 +82,5 @@ rightside:
   font_minus_title: Decrease font size
   translate_title: Traditional Chinese and Simplified Chinese Conversion
   night_mode_title: Dark Mode
+
+runtime_unit: days

@@ -1,0 +1,133 @@
+.flink
+  .md-links 
+    min-height: calc(100% - 120px - 5pc - 6em)
+    text-align: center
+    overflow: auto
+    padding: 0
+    margin: 0 auto
+
+    a 
+      color: #333
+      text-decoration: none
+  
+    li 
+      width: calc(100%/3 - 14px)
+      float: left
+      list-style: none
+    
+  .md-links-item 
+    height: 90px
+    line-height: 17px
+    margin: 20px 7px
+    padding: 0px 0px
+    transition: box-shadow 0.25s
+    text-overflow: ellipsis
+    overflow: hidden
+    border-radius: 8px
+    -webkit-transform: perspective(1px) translateZ(0)
+    transform: perspective(1px) translateZ(0)
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0)
+    position: relative
+    -webkit-transition-property: color
+    transition-property: color
+    -webkit-transition-duration: 0.3s
+    transition-duration: 0.3s                      
+    
+    img 
+      float: left
+      border-radius: 35px
+      margin: 11px 10px
+      width: 70px
+      height: 70px
+      border: 0px solid #eaeefb       
+  
+    &:hover 
+      img
+        filter: unqoute("progid:DXImageTransform.Microsoft.BasicImage(rotation=3)")
+        -moz-transform: rotate(540deg)
+        -o-transform: rotate(540deg)
+        -webkit-transform: rotate(540deg)
+        transform: rotate(540deg)
+    
+    &:before
+      content: ""
+      position: absolute
+      z-index: -1
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background: $light-blue !important
+      -webkit-transform: scale(0)
+      transform: scale(0)
+      -webkit-transition-property: transform
+      transition-property: transform
+      -webkit-transition-duration: 0.3s
+      transition-duration: 0.3s
+      -webkit-transition-timing-function: ease-out
+      transition-timing-function: ease-out
+
+  .md-links-item:hover, 
+  .md-links-item:focus, 
+  .md-links-item:active 
+    color: white
+
+  .md-links-item:hover:before, 
+  .md-links-item:focus:before, 
+  .md-links-item:active:before 
+      -webkit-transform: scale(1)
+      transform: scale(1)
+  
+  .md-links-item a:hover
+    cursor: pointer
+  
+  .md-links-title 
+      padding-top: 16px
+      padding-right: 10px
+      font-size: 20px
+      font-weight: bold
+      height:40px
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+
+  .post-cards 
+      margin-top: 5px
+      min-height: 100px
+      padding: 15px
+      border-radius: 15px
+  
+  .comment-word
+      font-weight:bold
+      font-size:1.7em
+  
+  .md-links-des
+      padding: 16px 10px  
+      font-size:13px 
+      overflow: hidden
+      height:50px
+      white-space: nowrap
+      text-overflow: ellipsis
+
+@media screen and (max-width:1100px)
+  .flink
+    .post-cards 
+      position: relative
+      margin: -20px -16px 0
+      border-radius: 18px
+      padding: 16px
+    
+    .md-links 
+      li 
+        width: calc(100%/2 - 14px)   
+
+
+
+@media screen and (max-width:600px)
+  .flink
+    .md-links 
+      li 
+        width: calc(100%/1 - 14px) 
+
+
+

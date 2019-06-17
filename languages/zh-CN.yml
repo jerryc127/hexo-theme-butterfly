@@ -51,6 +51,7 @@ pagination:
   next: 下一篇
 
 comment: 评论
+relatedPosts_headline: 相关推荐
 
 aside:
   articles: 文章
@@ -82,3 +83,5 @@ rightside:
   font_minus_title: 缩小字体
   translate_title: 简繁转换
   night_mode_title: 夜间模式
+
+runtime_unit: 天

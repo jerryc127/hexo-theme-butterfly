@@ -54,6 +54,6 @@ each article , index in page.posts.data
         .more_setting
           a.more.more--border.more--primary.more--animated(href=url_for(link) + '#more' style="margin-top: 14px")= _p('read_more')
       else
-        .content!= post_description
+        .content!= article.description
 
     

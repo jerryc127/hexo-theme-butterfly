@@ -82,6 +82,7 @@ a.article-meta__categories
   text-transform: uppercase
   overflow: hidden
   z-index: 1
+  background-color: $light-blue
 
   &:focus {
     outline: none
@@ -89,16 +90,12 @@ a.article-meta__categories
 }
 
 .more--primary {
-  color: lightslategray
+  color: $white
 }
 
 .more--animated {
   transition-property: color
   transition-duration: 0.5s
-
-  &.more--border.more--primary {
-    border: 1px solid lightslategray
-  }
 
   &:before {
     content: ""
@@ -107,7 +104,7 @@ a.article-meta__categories
     left: 0
     right: 0
     bottom: 0
-    background: lightslategray
+    background: $ruby
     transform: scaleX(0)
     transform-origin: 0 50%
     transition-property: transform

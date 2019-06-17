@@ -2,7 +2,7 @@
 @require "theme"
 @require "diff"
 
-languages = "js" "javascript" "python" "ruby" "xml" "html" "css" "perl" "sql" "coffeescript" "java" "scala" "kotlin" "c" "c\+\+" "go" "less" "sass" "scss" "stylus" "styl" "typescript" "ts" "bash" "yml" "gradle" "groovy" "ejs" "swig"
+languages = "js" "javascript" "python" "ruby" "xml" "html" "css" "perl" "sql" "coffeescript" "java" "scala" "kotlin" "c" "c\+\+" "go" "less" "sass" "scss" "stylus" "styl" "typescript" "ts" "bash" "yml" "yaml" "gradle" "groovy" "ejs" "swig" "markdown"
 wordWrap = !hexo-config("rootConfig.highlight.line_number") && hexo-config("code_word_wrap")
 
 loopForLanguages()
@@ -39,7 +39,7 @@ blockquote
   padding: 0.1rem 0.8rem
   border-left: 0.2rem solid $blockquote-padding-color
   color: $blockquote-color
-  background-color: $blockquote-background-color
+  background-color: lighten($blockquote-padding-color,33)
 
 .article-container
   pre,

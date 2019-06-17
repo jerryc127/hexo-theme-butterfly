@@ -56,6 +56,7 @@ pagination:
   next: 下一篇
 
 comment: 評論
+relatedPosts_headline: 相關推薦
 
 aside:
   articles: 文章
@@ -87,3 +88,5 @@ rightside:
   font_minus_title: 縮小字體
   translate_title: 簡繁轉換
   night_mode_title: 夜間模式
+
+runtime_unit: 天

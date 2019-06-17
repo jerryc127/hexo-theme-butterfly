@@ -21,19 +21,17 @@ hexo.extend.helper.register('related_posts', function(currentPost, allPosts){
       });
   });
   if (relatedPosts.length == 0) {return ''};
-  var result = '<div class="relatedPosts_headling"><i class="fa fa-thumbs-up" aria-hidden="true"></i><span>&nbsp;相關文章</span></div><div class="relatedPosts_list">';
+  var result = "";
+  var limit_num = hexo.theme.config.related_post.limit || 6
   relatedPosts = relatedPosts.sort(compare('weight'));
-  for (var i = 0; i < Math.min(relatedPosts.length, 6); i++) {
-
-    var cover = relatedPosts[i].cover || hexo.theme.config.default_cover || data.melody.default_cover
-    result += '<div class="relatedPosts_item"><a href="/' + relatedPosts[i].path + '">';
+  for (var i = 0; i < Math.min(relatedPosts.length, limit_num); i++) {
+ 
+    var cover = relatedPosts[i].cover|| hexo.theme.config.default_cover|| data.butterfly.default_cover 
+    result += '<div class="relatedPosts_item"><a href="/' + relatedPosts[i].path + '" title="' + relatedPosts[i].title +'">';
     result += '<img class="relatedPosts_cover lozad" data-src="' + cover + '">';
     result += '<div class="relatedPosts_title">' + relatedPosts[i].title + '</div>';
     result += '</a></div>'  
-  };
-  result += '</div>';
-  result += '<div class="clear_both"></div>';
-  // console.log(relatedPosts);
+  };  // console.log(relatedPosts);
   return result;
 });
 hexo.extend.helper.register('echo', function(path){

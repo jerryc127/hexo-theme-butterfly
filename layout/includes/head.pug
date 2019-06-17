@@ -104,9 +104,10 @@ if theme.qihu_site_verification
   meta(name="360-site-verification" content=theme.qihu_site_verification)
 
 
-if (is_archive())
-  - var preload_img = theme.archive_img ||theme.top_img || config.top_img 
+- var preload_archive_img = theme.archive_img ||theme.top_img || config.top_img
+- var preload_img = page.top_img || theme.top_img || config.top_img
+
+if (is_archive() && preload_archive_img) 
   link(rel="preload" href=preload_img  as="image" )
-else if (!is_post())
-  - var preload_img = page.top_img||theme.top_img || config.top_img
+else if (!is_post() && preload_img)
   link(rel="preload" href=preload_img  as="image" )

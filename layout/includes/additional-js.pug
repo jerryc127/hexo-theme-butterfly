@@ -9,6 +9,9 @@ if (theme.katex && theme.katex.enable)
 if (theme.local_search && theme.local_search.enable)
   script(async src=url_for('/js/search/local-search.js'))
 
+if theme.fireworks && theme.fireworks.enable
+  script(src='https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js')
+  script(src=url_for('/js/third-party/fireworks.js'))
 
 if theme.nightshift.enable
   script(src=url_for('js/nightshift.js'))
@@ -18,6 +21,9 @@ if (theme.canvas_ribbon && theme.canvas_ribbon.enable)
 
 if (theme.canvas_ribbon_piao && theme.canvas_ribbon_piao.enable)
   include ./third-party/canvas-ribbon-piao.pug
+
+if theme.baidu_push && theme.baidu_push.enable
+  script(src=url_for('js/baidupush.js')) 
 
 if theme.activate_power_mode.enable
   script(src=url_for('js/activate-power-mode.js'))
@@ -79,6 +85,7 @@ if is_home()
       }
     })
 
-
-script(async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")
+if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
+  script(async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")
+  
 script(src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module")
