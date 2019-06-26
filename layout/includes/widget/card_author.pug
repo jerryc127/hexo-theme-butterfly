@@ -1,0 +1,41 @@
+.card_widget.card-author
+  .card-content
+    .post_data
+      .data-item.text-center
+        img.lozad(data-src=theme.avatar || url_for('/img/avatar.png') onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
+        p.author-info__name.text-center= config.author
+        p.author-info__description.text-center= config.description
+
+    .post_data.data_config
+      if site.posts.length
+        .data-item.text-center
+          .data_link
+            a(href=url_for(config.archive_dir) + '/')
+              p.headline= _p('aside.articles') 
+              p.length_num= site.posts.length
+
+      if site.tags.length
+        .data-item.text-center       
+          .data_link
+            a(href=url_for(config.tag_dir) + '/' )
+              p.headline= _p('aside.tags')
+              p.length_num= site.tags.length
+
+      if site.categories.length
+        .data-item.text-center      
+          .data_link
+            a(href=url_for(config.category_dir) + '/')
+              p.headline= _p('aside.categories') 
+              p.length_num= site.categories.length
+
+    .post_data.text-center
+      a#bookmark-it.data-item.bookmark.bookmarke--primary.bookmark--animated(href="javascript:;" title= _p('aside.card_bookmark') )=  _p('aside.card_bookmark') || 'Follow Me'
+      
+  
+  
+    if(theme.social)
+      .post_data.data_config
+        #aside-social-icons 
+          each url, icon in theme.social
+            a.social-icon.data-item(href=url target="_blank")
+              i(class=icon)

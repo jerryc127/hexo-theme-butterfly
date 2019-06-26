@@ -1,5 +1,7 @@
 - var without_index = url.replace('index.html', '')
 - var without_html = without_index.replace('.html', '')
+- var photo_check = page.cover || theme.avatar
+- var photo_link = url_check (photo_check) ? photo_check : config.url + photo_check
 
 meta(http-equiv="x-dns-prefetch-control" content="on")
 if theme.canonical
@@ -9,7 +11,7 @@ if theme.twitter_meta
   meta(name="twitter:card" content="summary_large_image")
   meta(name="twitter:title" content=pageTitle_no_include_blog_name)
   meta(name="twitter:description" content=pageDescription)
-  meta(name="twitter:image" content= page.cover|| theme.avatar)
+  meta(name="twitter:image" content=photo_link)
 
 if theme.Open_Graph_meta
   if is_post()
@@ -21,7 +23,7 @@ if theme.Open_Graph_meta
   meta(property="og:url" content=without_html)
   meta(property="og:site_name" content=config.title)
   meta(property="og:description" content=pageDescription)
-  meta(property="og:image" content= page.cover|| theme.avatar)
+  meta(property="og:image" content=photo_link)
 
 if theme.disable_baidu_transformation
   meta(http-equiv="Cache-Control" content="no-transform")
@@ -108,6 +110,6 @@ if theme.qihu_site_verification
 - var preload_img = page.top_img || theme.top_img || config.top_img
 
 if (is_archive() && preload_archive_img) 
-  link(rel="preload" href=preload_img  as="image" )
+  link(rel="preload" href=url_for(preload_img)  as="image" )
 else if (!is_post() && preload_img)
-  link(rel="preload" href=preload_img  as="image" )
+  link(rel="preload" href=url_for(preload_img)  as="image" )

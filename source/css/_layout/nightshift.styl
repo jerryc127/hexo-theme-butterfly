@@ -199,6 +199,9 @@ if hexo-config("nightshift") && hexo-config("nightshift.enable")
       
     &::-webkit-scrollbar-thumb
       background: lighten(#2d3035,5)
+
+    .more
+      background-color: #616a6b
     
   @media screen and (max-width: 768px)
     .night-mode
@@ -206,15 +209,14 @@ if hexo-config("nightshift") && hexo-config("nightshift.enable")
       background-color: rgb(45, 48, 53)
 
       #page-header
-        .menus 
-          a
-            color: #99a9bf 
-            background: #2d3035
-        &.fixed
-          .menu-icon-first,
-          .menu-icon-second,
-          .menu-icon-third
-            background-color: #99a9bf;
+        .menus
+          background: #2d3035
+        a
+          color: #99a9bf !important        
+        .menu-icon-first,
+        .menu-icon-second,
+        .menu-icon-third
+          background-color: #99a9bf !important
 
 
   @media screen and (min-width: 768px)

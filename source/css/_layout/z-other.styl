@@ -277,6 +277,8 @@ footer
   position: absolute
   color: #fff
 
+.is_hidden
+  overflow: hidden
 @keyframes pulse{
 
   0%,to{
@@ -350,3 +352,24 @@ footer
   80%{transform:scale(.98)}
   100%{transform:scale(1)}}
 
+
+
+@keyframes menu_open{
+  0% {
+    transform: scale(0)
+  }
+  100% {
+    transform: scale(1)
+  }  
+  }
+
+@keyframes menu_close{
+0% {
+  transform: scale(1)
+  display: block
+}
+100% {
+  transform: scale(0)
+  display: none
+}
+}

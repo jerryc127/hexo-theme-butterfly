@@ -223,6 +223,13 @@
     list-style: none
     margin-bottom: -3px
     margin-block-start: 0.2rem
+  
+  .aside_category_item.child
+    margin-bottom: -3px
+    margin-block-start: 0rem
+
+    .aside_category_list
+      margin-left: -50px
 
   .aside_category_list,.archive-list-item
     margin-left: -40px
@@ -234,6 +241,18 @@
     a
       text-decoration: none
       color: #4c4948
+  
+  .aside_category_list_name,.archive-list-link
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    flex: auto
+
+  .aside_category_list_link,.archive-list-item
+    display: flex
+  
+
+
 
   .aside_category_list_length,.archive-list-count
     float: right 
@@ -267,14 +286,11 @@
 
 
 @keyframes announ_animation{
-
   0%,to{
     color: #4c4948
-
 }
   50%{
     color: #FF0000
-
     }
     }
 

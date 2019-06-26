@@ -1,0 +1,6 @@
+.card_widget.card-archives
+  .card-content
+    .item_headline
+      i.fa.fa-archive(aria-hidden="true")
+      span= _p('aside.card_archives')
+    div.archives_item!= list_archives({type:'monthly',format: 'YYYY年MM月'})

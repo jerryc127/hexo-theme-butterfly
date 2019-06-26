@@ -31,9 +31,11 @@
         color: $white
 
 #site-info
-  position: absolute
+  // position: absolute
   width: 100%
-  top: 43%
+  // top: 43%
+  padding-top: 43%
+  padding-bottom: 43%
 
 #site-title,
 #site-sub-title
@@ -102,7 +104,36 @@
       .menu-icon-third 
         -webkit-transform: rotate(-45deg) translate(4px, -4px)
         transform: rotate(-45deg) translate(4px, -4px)
+  
+  .menus  
+    .mobile_author_icon
+      display: none
+      padding: 3rem 1.5rem 0
+      text-align: center
+  
+      img
+        height: 120px
+        width: 120px
+        display: inline-block
+        vertical-align: top
+        border-radius: 70px
+        -webkit-transition: all .3s
+        -moz-transition: all .3s
+        -o-transition: all .3s
+        -ms-transition: all .3s
+        transition: all .3s
 
+    hr         
+      margin: 1rem auto
+      display: none
+    
+    &.menu_open
+      display: block
+      animation: menu_open .3s
+
+    &.menu_close
+      animation: menu_close .3s
+      display: block
 
 
 
@@ -122,6 +153,7 @@
     text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3)
     font-size: 0.7rem
     cursor: pointer
+    margin-left: 1rem
 
     &::after
       position: absolute
@@ -191,29 +223,46 @@
       display: block
 
     .menus
-      position: absolute
-      top: 3rem
-      right: 0.8rem
-      display: none
-      width: 8rem
-      background: alpha($white, 0.9)
+      position: fixed
+      top: 0
+      right: 0
+      width: 100%
+      height 101vh
+      background: $white
       cursor: pointer
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.27)
+      z-index: -1
+      overflow: auto
+      display: none
 
       a
-        display: block !important
+        display: inline-block !important
         opacity: 1 !important
-        margin-left: 0
-        padding-top: 0.3rem
-        padding-bottom: 0.3rem
-        padding-left: 0.6rem
+        // margin-left: 0
+        // padding-top: 0.3rem
+        // padding-bottom: 0.3rem
+        // padding-left: 0.6rem
+        margin: 0
+        padding: .5rem 1rem
         color: $font-black
         text-shadow: none
         font-size: 0.8rem
         z-index: 0
 
+
         &:hover
           color: $light-blue
+      
+      .mobile_author_icon
+        display: block
+     
+      .menus_item 
+          padding: 0 .5rem
+          margin-bottom: 4rem
+          text-align: center 
+              
+      hr
+        display: block 
 
     .search 
       right: 0.5rem
@@ -225,7 +274,3 @@
       .search
         display: inline-block;
         opacity: 1;
-
-
-#page-header .site-page
-  margin-left: 1rem

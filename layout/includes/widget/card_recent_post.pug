@@ -1,0 +1,24 @@
+.card_widget.card-recent-post
+  .card-content
+    .item_headline
+      i.fa.fa-history(aria-hidden="true")
+      span= _p('aside.card_recent_post')
+    .aside_recent_item
+      - site.posts.sort('date', -1).limit(5).each(function(article){
+        .aside_recent_post
+          - var link = article.link || article.path
+            a(href=url_for(link))
+              - var post_cover = article.cover
+              - var default_post_cover = theme.default_cover
+              .aside_post_cover
+                if (post_cover)
+                  img.aside_post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+                else
+                  img.aside_post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+              div#aside_title
+                .aside_post_title(href=url_for(link) title=article.title || _p('no_title'))= article.title || _p('no_title')
+                if (theme.post_meta.date_type)
+                  - var date_type = theme.post_meta.date_type == 'updated' ? 'updated' : 'date'
+                  time.aside_post_meta.post-meta__date #[=date(article[date_type], config.date_format)]
+    
+      - })

@@ -465,7 +465,10 @@ translate:
 ```yaml
 runtimeshow:
   enable: true
-  start_date: 6/7/2018 00:00:00  ##网页开通时间
+  start_date: 6/7/2018 00:00:00  
+  ##网页开通时间
+  #格式: 月/日/年 时间
+  #也可以写成 年/月/日 时间
 ```
 
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/hexo-theme-butterfly-doc-runtime.png)

@@ -1,0 +1,6 @@
+.card_widget.card-tags
+  .card-content
+    .item_headline
+      i.fa.fa-tags(aria-hidden="true")
+      span= _p('aside.card_tags')
+    .card-tag-cloud!= tagcloud({min_font: 16, max_font: 24, amount: 200, color: true, start_color: '#999', end_color: '#000'})

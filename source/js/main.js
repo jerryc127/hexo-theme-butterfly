@@ -1,5 +1,5 @@
 $(function () {
-  if ($('#sidebar').hasClass('auto_open')) {
+  if ($('#sidebar').hasClass('auto_open') ) {
     if ($(".sidebar-toc__content").children().length > 0) {
       $(".layout_post").animate({}, function () {
         {
@@ -309,30 +309,72 @@ $(function () {
   //---------------------------------------------------------------------------------------------------------
   /** head点击*/
   $('.toggle-menu').on('click', function () {
-    if (!$('.menus').is(':visible')) {
+
+    if ($(".toggle-menu").hasClass("open")) {
       $(".toggle-menu").removeClass("open").addClass("close");
-      $('.menus').slideDown(300)
+      $("#page-header #site-name,#page-header .search").css({'color':'#3b3a3a','text-shadow': 'none'})
+      $(".toggle-menu *").css({ 'background-color': '#3b3a3a', 'text-shadow': 'none' });
+      $('body').addClass("is_hidden");
+      $('.menus').addClass("menu_open");
     } else {
       $(".toggle-menu").removeClass("close").addClass("open");
-      $('.menus').slideUp(200)
+      $("#page-header #site-name,#page-header .search").css({ 'color': '', 'text-shadow': '' });
+      $(".toggle-menu *").css({ 'background-color': '', 'text-shadow': '' });
+      $('body').removeClass("is_hidden");
+      $('.menus').removeClass("menu_open").addClass('menu_close');
+      setTimeout(function () {
+        $('.menus').removeClass("menu_close")
+        
+      }, 300)
     }
   })
 
-  $(document).on('click touchstart', function (e) {
-    var flag = $('.menus')[0].contains(e.target) || $('.toggle-menu')[0].contains(e.target)
-    if (!flag && $('.toggle-menu').is(':visible')) {
-      $(".toggle-menu").removeClass("close").addClass("open");
-      $('.menus').slideUp(200)
-    }
-  })
-
+  const fixScroll = (scrollEl) => {
+    let startY
+    scrollEl.addEventListener('touchstart', function (event) {
+      // 如果多於1根手指點擊屏幕,則不處理
+      if (event.targetTouches.length > 1) {
+        return
+      }
+      // 儲存手指的初始位置
+      startY = event.targetTouches[0].clientY
+    }, false)
+    scrollEl.addEventListener('touchmove', function (event) {
+      if (event.targetTouches.length > 1) {
+        return
+      }
+      // 判斷手指滑動方向, y大於0時向下滑動, 小於0時向上滑動
+      const y = event.targetTouches[0].clientY - startY
+      // 如果到頂時繼續向下拉
+      if (scrollEl.scrollTop <= 0 && y > 0) {
+        // 重置滾動距離為最小值
+        scrollEl.scrollTop = 0
+        // 阻止滾動
+        event.preventDefault()
+      }
+      // 如果到底時繼續上滑  
+      const maxScrollTop = scrollEl.scrollHeight - scrollEl.clientHeight
+      if (maxScrollTop - scrollEl.scrollTop <= 0 && y < 0) {
+        scrollEl.scrollTop = maxScrollTop
+        event.preventDefault()
+      }
+    }, {
+      passive: false
+    })
+  }
+  const scrollEl = document.querySelector(".menus");
+  fixScroll(scrollEl)
+  
 
   $(window).on('resize', function (e) {
     if (!$('.toggle-menu').is(':visible')) {
-      if (!$('.menus').is(':visible')) {
-        $(".toggle-menu").removeClass("open").addClass("close");
-        $('.menus').slideDown(300)
-      }
+      if ($(".toggle-menu").hasClass("close")) {
+      $(".toggle-menu").removeClass("close").addClass("open");
+      $("#page-header #site-name,#page-header .search").css({ 'color': '', 'text-shadow': '' });
+      $(".toggle-menu *").css({ 'background-color': '', 'text-shadow': '' });
+      $('body').removeClass("is_hidden");
+        $('.menus').removeClass("menu_open");
+    }     
     }
   })
 
@@ -351,52 +393,55 @@ $(function () {
       findHeadPosition(currentTop)
     }
     var isUp = scrollDirection(currentTop)
-    if (currentTop > 56) {
-      if (isUp) {
-        $('#page-header').hasClass('visible') ? $('#page-header').removeClass('visible') : console.log()
+
+    if($(".toggle-menu").hasClass("open")){
+      if (currentTop > 56) {
+        
+        if (isUp) {
+          $('#page-header').hasClass('visible') ? $('#page-header').removeClass('visible') : console.log()
+        } else {
+          $('#page-header').hasClass('visible') ? console.log() : $('#page-header').addClass('visible')
+        }
+        $('#page-header').addClass('fixed')
+        if ($('#go-up').css('opacity') === '0') {
+
+          $('#go-up').animate({}, function () {
+            $('#go-up').css({
+              'opacity': '1',
+              'transform': 'translateX(-30px) rotateZ(360deg)'
+            })
+          })
+        }
+        if ($('#rightside').css('opacity') === '0') {
+
+          $('#rightside').animate({}, function () {
+            $('#rightside').css({
+              'opacity': '1',
+              'transform': 'translateX(-38px)'
+            })
+          })
+        }
+
+
       } else {
-        $('#page-header').hasClass('visible') ? console.log() : $('#page-header').addClass('visible')
-      }
-      $('#page-header').addClass('fixed')
-      if ($('#go-up').css('opacity') === '0') {
+        if (currentTop === 0) {
+          $('#page-header').removeClass('fixed').removeClass('visible')
+        }
 
         $('#go-up').animate({}, function () {
           $('#go-up').css({
-            'opacity': '1',
-            'transform': 'translateX(-30px) rotateZ(360deg)'
+            'opacity': '0',
+            'transform': 'translateX(0) rotateZ(180deg) '
           })
         })
-      }
-      if ($('#rightside').css('opacity') === '0') {
 
         $('#rightside').animate({}, function () {
           $('#rightside').css({
-            'opacity': '1',
-            'transform': 'translateX(-38px)'
+            'opacity': '0',
+            'transform': 'translateX(0)'
           })
         })
       }
-
-
-    } else {
-      if (currentTop === 0) {
-        $('#page-header').removeClass('fixed').removeClass('visible')
-      }
-
-      $('#go-up').animate({}, function () {
-        $('#go-up').css({
-          'opacity': '0',
-          'transform': 'translateX(0) rotateZ(180deg) '
-        })
-      })
-
-      $('#rightside').animate({}, function () {
-        $('#rightside').css({
-          'opacity': '0',
-          'transform': 'translateX(0)'
-        })
-      })
-
     }
   }, 50, 100))
 

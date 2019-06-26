@@ -1,7 +1,7 @@
 if theme.valine && theme.valine.enable
   #vcomment.vcomment
-  script(src='https://cdn1.lncld.net/static/js/3.0.4/av-min.js')
-  script(src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+  script(src='https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js')
+  script(src='https://cdn.jsdelivr.net/npm/valine@v1.3.6/dist/Valine.min.js')
   script.
     var notify = '#{ theme.valine.notify }' == true ? true : false;
     var verify = '#{ theme.valine.verify }' == true ? true : false;
