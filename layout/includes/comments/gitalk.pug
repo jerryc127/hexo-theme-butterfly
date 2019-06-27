@@ -1,13 +1,13 @@
-if theme.gitment && theme.gitment.enable
-  #gitment-container
+if theme.gitalk && theme.gitalk.enable
+  #gitalk-container
   script.
-    var gitment = new Gitment({
+    var gitalk = new Gitalk({
+      clientID: '!{theme.gitalk.client_id}',
+      clientSecret: '!{theme.gitalk.client_secret}',
+      repo: '!{theme.gitalk.repo}',
+      owner: '!{theme.gitalk.owner}',
+      admin: '!{theme.gitalk.admin}',
       id: md5(decodeURI(location.pathname)),
-      owner: '!{theme.gitment.owner}',
-      repo: '!{theme.gitment.repo}',
-      oauth: {
-        client_id: '!{theme.gitment.client_id}',
-        client_secret: '!{theme.gitment.client_secret}'
-      }
+      language: '!{lang}'
     })
-    gitment.render('gitment-container')
+    gitalk.render('gitalk-container')
