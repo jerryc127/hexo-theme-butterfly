@@ -16,7 +16,7 @@ git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes
 如果想要安裝比較新的dev分支，可以
 
 ```
-git clone -b div https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
 ```
 
 ### 應用主題
