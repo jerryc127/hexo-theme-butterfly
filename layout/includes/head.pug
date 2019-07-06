@@ -110,6 +110,6 @@ if theme.qihu_site_verification
 - var preload_img = page.top_img || theme.top_img || config.top_img
 
 if (is_archive() && preload_archive_img) 
-  link(rel="preload" href=url_for(preload_img)  as="image" )
+  link(rel="preload" href=url_for(preload_archive_img)  as="image" )
 else if (!is_post() && preload_img)
   link(rel="preload" href=url_for(preload_img)  as="image" )

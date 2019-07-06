@@ -26,12 +26,12 @@ hexo.extend.helper.register('related_posts', function(currentPost, allPosts){
   relatedPosts = relatedPosts.sort(compare('weight'));
   for (var i = 0; i < Math.min(relatedPosts.length, limit_num); i++) {
  
-    var cover = relatedPosts[i].cover|| hexo.theme.config.default_cover|| data.butterfly.default_cover 
-    result += '<div class="relatedPosts_item"><a href="/' + relatedPosts[i].path + '" title="' + relatedPosts[i].title +'">';
+    var cover = relatedPosts[i].cover|| random_cover()
+    result += '<div class="relatedPosts_item"><a href="' + hexo.theme.config.rootConfig.root + relatedPosts[i].path + '" title="' + relatedPosts[i].title +'">';
     result += '<img class="relatedPosts_cover lozad" data-src="' + cover + '">';
     result += '<div class="relatedPosts_title">' + relatedPosts[i].title + '</div>';
     result += '</a></div>'  
-  };  // console.log(relatedPosts);
+  }; 
   return result;
 });
 hexo.extend.helper.register('echo', function(path){
@@ -62,3 +62,15 @@ function compare (attr) {
   }
 }
 
+function random_cover() {
+  var post_cover;
+  var num;
+  if (!Array.isArray(hexo.theme.config.default_cover)) {
+    post_cover = hexo.theme.config.default_cover
+    return post_cover
+  } else {
+    num = Math.floor(Math.random() * (hexo.theme.config.default_cover.length));
+    post_cover = hexo.theme.config.default_cover[num];
+    return post_cover
+  }
+}

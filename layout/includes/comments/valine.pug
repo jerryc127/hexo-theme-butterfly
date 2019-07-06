@@ -10,50 +10,7 @@ if theme.valine && theme.valine.enable
     });
     guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
 
-    var localeName = 'tw',
-    localeMode = {
-        head: {
-            nick: '暱稱(必填)',
-            mail: '郵箱(必填,可以收到回復提醒)',
-            link: '網址(選填)',
-        },
-        tips: {
-            comments: '評論',
-            sofa: '快來做第一個評論的人吧~',
-            busy: '還在提交中，請稍候...',
-            again: '這麼簡單也能錯，也是沒誰了.'
-        },
-        ctrl: {
-            reply: '回覆',
-            ok: '好的',
-            sure: '確認',
-            cancel: '取消',
-            confirm: '確認',
-            continue: '繼續',
-            more: '查看更多...',
-            try: '再試試?',
-            preview: '預覽',
-            emoji: '表情'
-        },
-        error: {
-            99: '初始化失敗，請檢查init中的`el`元素.',
-            100: '初始化失敗，請檢查你的AppId和AppKey.',
-            401: '未經授權的操作，請檢查你的AppId和AppKey.',
-            403: '訪問被api域名白名單拒絕，請檢查你的安全域名設置.',
-        },
-        timeago: {
-            seconds: '秒前',
-            minutes: '分鐘前',
-            hours: '小時前',
-            days: '天前',
-            now: '剛剛'
-        }
-    };
-
-    window.valine = new Valine();
-    valine.installLocale(localeName,localeMode);
-
-    valine.init({
+    window.valine = new Valine({
       el:'#vcomment',
       notify:notify,
       verify:verify,

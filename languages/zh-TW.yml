@@ -21,14 +21,11 @@ sticky: 置頂
 no_title: 無題
 archives: 時間軸
 read_more: 閲讀更多
-created_date: 發表於
-update_date: 更新於
 
 post:
   created: 發表於
   updated: 更新於
   wordcount: 字數總計
-  commentcount: 評論數
   min2read: "閲讀時長: %s 分鐘"
   page_pv: 閲讀量
   copyright:

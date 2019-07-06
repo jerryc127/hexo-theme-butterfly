@@ -9,7 +9,7 @@
           - var link = article.link || article.path
             a(href=url_for(link))
               - var post_cover = article.cover
-              - var default_post_cover = theme.default_cover
+              - var default_post_cover = random_cover()
               .aside_post_cover
                 if (post_cover)
                   img.aside_post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))

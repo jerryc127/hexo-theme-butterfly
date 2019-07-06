@@ -57,7 +57,7 @@ if is_home()
         e[i].style.height = n + "px";
         $("#site-info").each(function () {
           var x = $(this).height();
-          $(this).css({"padding-top": (n-x)/2 , "padding-bottom":(n-x)/2 })
+          $(this).css("top", (n-x)/2)       
         })
     }
 

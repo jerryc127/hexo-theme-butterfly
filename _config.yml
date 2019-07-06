@@ -276,10 +276,6 @@ google_site_verification:
 # See: https://www.bing.com/webmaster/
 bing_site_verification:
 
-# Yandex Webmaster tools verification setting
-# See: https://webmaster.yandex.ru/
-#yandex_site_verification:
-
 # Baidu Webmaster tools verification setting
 # See: https://ziyuan.baidu.com/site/
 baidu_site_verification:
