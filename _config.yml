@@ -121,7 +121,6 @@ cdn:
   css:
     fontawesome: https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
     # fontawesomeV5: https://use.fontawesome.com/releases/v5.8.1/css/all.css
-    googlefont: https://fonts.googleapis.com/css?family=Titillium+Web
     fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css
   js:
     jquery: https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js
@@ -241,7 +240,7 @@ valine:
   verify: false # valine verify code (true/false)
   pageSize: 10 # comment list page size
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
-  lang: en # i18n: zh-cn/en/tw
+  lang: en # i18n: zh-cn/en
   placeholder: Please leave your footprints # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header inf
 
@@ -329,7 +328,7 @@ related_post:
 # canvas_ribbon
 # See: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: false
+  enable: true
   size: 150
   alpha: 0.6
   zIndex: -1
@@ -337,7 +336,7 @@ canvas_ribbon:
 
 
 canvas_ribbon_piao:
-  enable: true
+  enable: false
 
 
 # 避免重複網址分散seo
@@ -353,11 +352,18 @@ Open_Graph_meta: true
 readmode:
   enable: true
 
+#全局字體
 font:
   enable: false
   font-family: Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB,"Microsoft JhengHei", "MicrMicrosoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
   code-font: consolas, Menlo, "PingFang SC", "Microsoft JhengHei","Microsoft YaHei", monospace, Helvetica Neue For Number
 
+#網站名字字體
+#左上角網站名字 主頁居中網站名字
+blog_title_font:
+  #字體鏈接
+  font_link: https://fonts.googleapis.com/css?family=Titillium+Web
+  font-family: Titillium Web, PingFang SC, Hiragino Sans GB, "Microsoft JhengHei", "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
 
 #水平分隔綫
 hr:
@@ -387,13 +393,13 @@ aside:
 translate:
   enable: true
   # 默認按鈕顯示文字
-  default: 簡
+  default: 繁
   #网站默认语言，1: 繁體中文, 2: 简体中文
-  defaultEncoding: 1
+  defaultEncoding: 2
   #延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
   translateDelay: 0
   #博客网址
-  cookieDomain: "https://jerryc.me/"
+  cookieDomain: "https://xxx/"
   #當文字是簡體時，按鈕顯示的文字
   msgToTraditionalChinese: "繁"
   #當文字是繁體時，按鈕顯示的文字
@@ -407,3 +413,8 @@ fireworks:
 #百度推送
 baidu_push:
   enable: false
+
+#https://instant.page/
+#prefetch預加載
+instantpage:
+  enable: true

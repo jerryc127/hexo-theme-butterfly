@@ -7,12 +7,15 @@
 - if (is_year()) pageTitle += ': ' + page.year
 - var pageTitle_saved  //- 暫時存儲pageTitle
 - var pageTitle_no_include_blog_name //- 存儲pageTitle， 不帶 " | "，meta用
+- var home_subtitle_true //有subtitle
 //- home時顯示config.title (JerryC)，其他顯示 pageTitle。meta用
 - is_home() ? pageTitle_no_include_blog_name = config.title : pageTitle_no_include_blog_name = pageTitle
 //- 暫時存儲pageTitle
 - pageTitle ? pageTitle_saved = pageTitle + ' | ' + config.title : pageTitle_saved = config.title
+//- 是否有 config.subtitle 是各自显示
+- config.subtitle ? home_subtitle_true = ' - ' + config.subtitle : home_subtitle_true = ''
 //- home時pageTitle顯示 JerryC - subtitle，其他顯示 pageTitle | JerryC
-- is_home() ? pageTitle = config.title + ' - ' + config.subtitle : pageTitle = pageTitle_saved
+- is_home() ? pageTitle = config.title + home_subtitle_true : pageTitle = pageTitle_saved
 
 - var pageDescription = page.description || page.title || config.description || ''
 - var pageKeywords = (config.keywords || []).join(',')

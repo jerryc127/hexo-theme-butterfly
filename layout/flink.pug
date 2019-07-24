@@ -6,7 +6,7 @@
         each item in i.link_list
           li.md-links-item
             a(href=item.link  title=item.name target="_blank")
-              img.lozad(data-src=item.avatar alt=item.name onerror=`onerror=null;src='${theme.lodding_bg.flink}'` height="72px")
+              img.lozad(data-src=item.avatar onerror=`onerror=null;src='${theme.lodding_bg.flink}'` height="72px")
               div(class="md-links-title")= item.name 
                 <br/>
               div(class="md-links-des")=item.descr

@@ -87,5 +87,6 @@ if is_home()
 
 if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
   script(async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")
-  
-script(src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module")
+
+if theme.instantpage.enable
+  script(src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module")

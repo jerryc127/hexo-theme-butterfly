@@ -113,3 +113,6 @@ if (is_archive() && preload_archive_img)
   link(rel="preload" href=url_for(preload_archive_img)  as="image" )
 else if (!is_post() && preload_img)
   link(rel="preload" href=url_for(preload_img)  as="image" )
+
+if theme.blog_title_font.font_link
+  link(rel='stylesheet', href=url_for(theme.blog_title_font.font_link))

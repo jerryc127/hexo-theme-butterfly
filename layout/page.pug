@@ -6,7 +6,7 @@ block content
       .tag-cloud__title= _p('page.tag')
         |  - 
         span.tag-cloud__amount= site.tags.length
-      .tag-cloud-tags!= tagcloud({min_font: 20, max_font: 43, amount: 200, color: true, start_color: '#A4D8FA', end_color: '#0790E8'})
+      .tag-cloud-tags!= tags(site.tags)
       if page.comments !== false
         include includes/comments/index.pug
     #aside_content.aside_content
