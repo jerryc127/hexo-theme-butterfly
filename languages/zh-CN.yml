@@ -52,7 +52,6 @@ pagination:
   next: 下一篇
 
 comment: 评论
-relatedPosts_headline: 相关推荐
 
 aside:
   articles: 文章

@@ -71,6 +71,6 @@ block content
   include includes/pagination.pug
   
   if theme.related_post && theme.related_post.enable
-    include includes/related-posts.pug
+    != related_posts(page,site.posts)
   if page.comments !== false
     include includes/comments/index.pug

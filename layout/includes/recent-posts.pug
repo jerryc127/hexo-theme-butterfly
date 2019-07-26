@@ -3,25 +3,25 @@ each article , index in page.posts.data
     - var link = article.link || article.path
       if index%2 == 0
         .post_cover.is_left
-          a(href=url_for(link))
+          a(href=url_for(link) title=article.title || _p('no_title'))
             - var post_cover = article.cover
             - var default_post_cover = random_cover()
             if (post_cover)
-              img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+              img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
             else
-              img.post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+              img.post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
       else
         .post_cover.is_right
-          a(href=url_for(link))
+          a(href=url_for(link) title=article.title || _p('no_title'))
             - var post_cover = article.cover
             - var default_post_cover = random_cover()
             if (post_cover)
-              img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+              img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
             else
-              img.post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+              img.post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
 
     .recent-post-info   
-      a.article-title(href=url_for(link) title=article.title || _p('no_title'))= article.title || _p('no_title')
+      a.article-title(href=url_for(link) title= article.title || _p('no_title'))= article.title || _p('no_title')
       if (article.top)
         span.article-meta
           i.fa.fa-thumb-tack.article-meta__icon.sticky

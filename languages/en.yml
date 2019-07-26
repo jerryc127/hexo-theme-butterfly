@@ -51,7 +51,6 @@ pagination:
   next: Next Post
 
 comment: Comment
-relatedPosts_headline: Recommend
 
 aside:
   articles: Articles
