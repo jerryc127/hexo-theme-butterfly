@@ -285,6 +285,7 @@ $(function () {
       $(".toggle-menu *").css({ 'background-color': '#3b3a3a', 'text-shadow': 'none' });
       $('body').addClass("is_hidden");
       $('.menus').addClass("menu_open");
+      fixbg_menu();
     } else {
       $(".toggle-menu").removeClass("close").addClass("open");
       $("#page-header #site-name,#page-header .search").css({ 'color': '', 'text-shadow': '' });
@@ -298,41 +299,44 @@ $(function () {
     }
   })
 
-  const fixScroll = (scrollEl) => {
-    let startY
-    scrollEl.addEventListener('touchstart', function (event) {
-      // 如果多於1根手指點擊屏幕,則不處理
-      if (event.targetTouches.length > 1) {
-        return
-      }
-      // 儲存手指的初始位置
-      startY = event.targetTouches[0].clientY
-    }, false)
-    scrollEl.addEventListener('touchmove', function (event) {
-      if (event.targetTouches.length > 1) {
-        return
-      }
-      // 判斷手指滑動方向, y大於0時向下滑動, 小於0時向上滑動
-      const y = event.targetTouches[0].clientY - startY
-      // 如果到頂時繼續向下拉
-      if (scrollEl.scrollTop <= 0 && y > 0) {
-        // 重置滾動距離為最小值
-        scrollEl.scrollTop = 0
-        // 阻止滾動
-        event.preventDefault()
-      }
-      // 如果到底時繼續上滑  
-      const maxScrollTop = scrollEl.scrollHeight - scrollEl.clientHeight
-      if (maxScrollTop - scrollEl.scrollTop <= 0 && y < 0) {
-        scrollEl.scrollTop = maxScrollTop
-        event.preventDefault()
-      }
-    }, {
-      passive: false
-    })
+  function fixbg_menu() {
+    const fixScroll = (scrollEl) => {
+      let startY
+      scrollEl.addEventListener('touchstart', function (event) {
+        // 如果多於1根手指點擊屏幕,則不處理
+        if (event.targetTouches.length > 1) {
+          return
+        }
+        // 儲存手指的初始位置
+        startY = event.targetTouches[0].clientY
+      }, false)
+      scrollEl.addEventListener('touchmove', function (event) {
+        if (event.targetTouches.length > 1) {
+          return
+        }
+        // 判斷手指滑動方向, y大於0時向下滑動, 小於0時向上滑動
+        const y = event.targetTouches[0].clientY - startY
+        // 如果到頂時繼續向下拉
+        if (scrollEl.scrollTop <= 0 && y > 0) {
+          // 重置滾動距離為最小值
+          scrollEl.scrollTop = 0
+          // 阻止滾動
+          event.preventDefault()
+        }
+        // 如果到底時繼續上滑  
+        const maxScrollTop = scrollEl.scrollHeight - scrollEl.clientHeight
+        if (maxScrollTop - scrollEl.scrollTop <= 0 && y < 0) {
+          scrollEl.scrollTop = maxScrollTop
+          event.preventDefault()
+        }
+      }, {
+          passive: false
+        })
+    }
+    const scrollEl = document.querySelector(".menus");
+    fixScroll(scrollEl)
   }
-  const scrollEl = document.querySelector(".menus");
-  fixScroll(scrollEl)
+
   
 
   $(window).on('resize', function (e) {
@@ -342,7 +346,7 @@ $(function () {
       $("#page-header #site-name,#page-header .search").css({ 'color': '', 'text-shadow': '' });
       $(".toggle-menu *").css({ 'background-color': '', 'text-shadow': '' });
       $('body').removeClass("is_hidden");
-        $('.menus').removeClass("menu_open");
+      $('.menus').removeClass("menu_open");
     }     
     }
   })
@@ -515,6 +519,18 @@ $(function () {
         // Hide their respective list of subsections
         .find('.toc-child').hide()
     }
+
+    if ($('.toc-link').hasClass('active')){
+      var active_position = $(".active").offset().top;
+      var sidebar_scrolltop = $("#sidebar").scrollTop();
+      if (active_position > (top + $(window).height() - 50)) {             
+        $("#sidebar").scrollTop(sidebar_scrolltop + 100);
+      } else if (active_position < top + 50)
+      {
+        $("#sidebar").scrollTop(sidebar_scrolltop - 100);
+        }
+    }
+
   }
 
   //代碼框雙擊全屏
