@@ -34,10 +34,12 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   }
     
   relatedPosts = relatedPosts.sort(compare('weight'));
+  var lazy_src = hexo.theme.config.lazyload.enable ? lazy_src = 'data-src' : lazy_src = 'src'
+  var lazy_class = hexo.theme.config.lazyload.enable ? lazy_class  = 'lozad' : lazy_class  = ''
 
   if (relatedPosts.length > 0) {
     result += '<div class="relatedPosts">'
-    result += '<div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span>' + headline_lang + '</span></div>'
+    result += '<div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span>' + ' ' + headline_lang + '</span></div>'
     result += '<div class="relatedPosts_list">'
   
   for (var i = 0; i < Math.min(relatedPosts.length, limit_num); i++) {
@@ -45,7 +47,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
     var cover = relatedPosts[i].cover || random_cover()
 
     result += '<div class="relatedPosts_item"><a href="' + hexo.theme.config.rootConfig.root + relatedPosts[i].path + '" title="' + relatedPosts[i].title + '">';
-    result += '<img class="relatedPosts_cover lozad" data-src="' + cover + '">';
+    result += '<img class="relatedPosts_cover '+ lazy_class + '"' + lazy_src + '="' + cover + '">';
     result += '<div class="relatedPosts_title">' + relatedPosts[i].title + '</div>';
     result += '</a></div>'
     };

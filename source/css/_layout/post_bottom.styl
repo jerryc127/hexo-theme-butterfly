@@ -1,0 +1,57 @@
+#post_bottom
+  position: fixed
+  bottom: -50px
+  background: alpha($white, 0.8)
+  width: 100%
+  border: none
+  box-shadow: 0 -5px 6px -5px alpha($grey, 0.6)
+  display: none
+  transition: all .2s
+  cursor: pointer
+
+  &.toc_mobile_show
+    bottom: 0
+
+  #to_comment,#mobile_toc
+    width: 50%
+    text-align: center
+    font-size: 18px
+    padding: 7px 0
+    display: inline-block
+    color: $light-black
+
+  a
+    text-decoration: none
+    color: $light-black
+
+  #toc_mobile 
+    box-shadow: 0 0 4px alpha($grey, 0.6)
+    background: $white
+    width: 50%
+    height: 70%
+    position: fixed
+    bottom: 65px
+    right: 10px
+    overflow: scroll
+    padding: 15px 10px
+    font-size: 15px
+    border-radius: 10px
+    display: none
+
+    ol,li
+      list-style: none
+      padding: 0 0 0 5px
+      margin: 0
+    
+    a
+      &:hover
+        color: $light-blue
+
+  .toc_mobile_headline 
+      text-align: center
+      font-size: 18px
+      font-weight: bold
+
+@media screen and (max-width:768px)
+  #post_bottom
+    display: block

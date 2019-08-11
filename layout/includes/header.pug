@@ -9,7 +9,7 @@
     
   span.pull-right.menus
     .mobile_author_icon
-      img.lozad(data-src=theme.avatar || url_for('/img/avatar.png') onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
+      img.lozad(src=theme.avatar || url_for('/img/avatar.png') onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
       .mobile_author-info__description= config.description
     hr
     .menus_item

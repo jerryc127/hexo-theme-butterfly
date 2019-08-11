@@ -12,7 +12,6 @@
     transition: all .3s
     background: #fff
     margin-top: 20px
-    margin-left: 15px
     overflow: hidden
 
     &:hover
@@ -303,6 +302,14 @@
     width: 100% !important
   
   .card_widget
-    margin-left: 0 !important
+    margin-left: 0 
+    margin-right: 0 
 
 
+@media screen and (min-width: 900px) 
+  #aside_content    
+    .card_widget
+        if hexo-config("aside.position") == "right"
+          margin-left: 15px
+        else 
+          margin-right: 15px

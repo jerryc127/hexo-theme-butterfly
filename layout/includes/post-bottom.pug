@@ -1,0 +1,8 @@
+#post_bottom
+  #post_bottom_items
+    a#to_comment(href="#post-comment")
+      i.scroll_to_comment.fa.fa-comments
+    i#mobile_toc.fa.fa-list
+    #toc_mobile
+      .toc_mobile_headline= _p('sidebar.catalog')
+      !=toc(page.content,{"class":"toc_mobile_items"})

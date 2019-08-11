@@ -108,7 +108,6 @@ if hexo-config("nightshift") && hexo-config("nightshift.enable")
         background: rgb(27, 38, 59) 
 
     .post-cards,.md-links-item
-        // background: #2d3035
         a
             color: #99a9bf
 
@@ -202,7 +201,20 @@ if hexo-config("nightshift") && hexo-config("nightshift.enable")
 
     .more
       background-color: #616a6b
-    
+
+    #post_bottom
+      background: #2d3035
+      box-shadow: 0 -5px 6px -5px rgba(133,133,133,0)
+
+      i
+        color: #99a9bf !important
+      
+      #toc_mobile
+        background: #2d3035
+
+        a
+          color: #99a9bf !important
+
   @media screen and (max-width: 768px)
     .night-mode
       color: #99a9bf 

@@ -2,19 +2,19 @@
 @require "theme"
 @require "diff"
 
-languages = "js" "javascript" "python" "ruby" "xml" "html" "css" "perl" "sql" "coffeescript" "java" "scala" "kotlin" "c" "c\+\+" "go" "less" "sass" "scss" "stylus" "styl" "typescript" "ts" "bash" "yml" "yaml" "gradle" "groovy" "ejs" "swig" "markdown"
+// languages = "js" "javascript" "python" "ruby" "xml" "html" "css" "perl" "sql" "coffeescript" "java" "scala" "kotlin" "c" "c\+\+" "go" "less" "sass" "scss" "stylus" "styl" "typescript" "ts" "bash" "yml" "yaml" "gradle" "groovy" "ejs" "swig" "markdown"
 wordWrap = !hexo-config("rootConfig.highlight.line_number") && hexo-config("code_word_wrap")
 
-loopForLanguages()
-  for lang in languages
-    .article-container
-      figure.highlight
-        &{"." + lang}
-          table
-            &:before
-              content: lang
+// loopForLanguages()
+//   for lang in languages
+//     .article-container
+//       figure.highlight
+//         &{"." + lang}
+//           table
+//             &:before
+//               content: lang
 
-loopForLanguages()
+// loopForLanguages()
 
 // Placeholder: $code-block
 $code-block
@@ -110,7 +110,7 @@ blockquote
         padding: 0 0.7rem
         width: 5rem
         color: $highlight-foreground
-        content: "Code"
+        content: attr(data-content)
         font-weight: bold
         font-size: 0.8rem
         line-height: 1.4rem
