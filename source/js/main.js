@@ -418,12 +418,12 @@ $(function () {
     }
 
     if ( $(window).width() <= 768 &&  $('#post_bottom').hasClass('toc_mobile_show') ){
-      $('#rightside,#go-up').css('bottom', '80px')
-      $('#rightside,#go-up').css('bottom', '70px')
+      $('#rightside').css('bottom', '110px')
+      $('#go-up').css('bottom', '70px')
   
     } else {
-      $('#rightside,#go-up').css('bottom', '30px')
-      $('#rightside,#go-up').css('bottom', '20px')
+      $('#rightside').css('bottom', '60px')
+      $('#go-up').css('bottom', '20px')
     }
 
   }, 50, 100))
