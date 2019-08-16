@@ -17,4 +17,4 @@ hexo.extend.filter.register('after_post_render', data => {
   });
 
   data.content = $.html();
-}, 0);
+}, 100);
