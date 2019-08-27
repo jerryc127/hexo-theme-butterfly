@@ -14,11 +14,14 @@
 # Main menu navigation
 # format: xxx: /xxx/||icon
 # ---------------
+
 menu:
   Home: /||fa fa-home
   Archives: /archives/||fa fa-archive
-  Tags: /tags/||fa fa-tags
+  #Tags: /tags/||fa fa-tags
   Categories: /categories/||fa fa-folder-open
+  Gallery: /gallery/||fa fa-camera
+  FM: /FM/||fas fa-headphones
   Link: /link/||fa fa-link
   About: /about/||fa fa-heart
 #   #XXX: /xxx
@@ -54,9 +57,14 @@ code_word_wrap: false
 #   icon: link
 # ---------------
 social:
-  fa fa-github: https://github.com/jerryc127
-  fa fa-rss: /atom.xml
-
+  fab fa-github: https://github.com/uzizkp
+  fab iconfont icon-zhihu4: https://www.zhihu.com/people/zhang-kuang-pu-98/
+  #fab fa-instagram: https://www.instagram.com/zkpjy/
+  #fab fa-youtube: https://www.youtube.com/channel/UCgVC2OmxLvrnmRfCYQnjCnw/featured?view_as=public 
+  fab iconfont icon-bilibili-s: https://space.bilibili.com/109909977
+  #fas fa-book: https://www.douban.com/people/43103367/?dt_dapp=1 
+  #far fa-envelope: mailto:kp.zhang@icloud.com
+  #fab iconfont icon-douban1: https://www.douban.com/people/twilight0518/
 # Algolia search
 # ---------------
 algolia_search:
@@ -70,11 +78,12 @@ algolia_search:
     hits_stats: "${hits} results found in ${time} ms"
 
 
+
 # Local search
 # Please see doc for more details: https://jerryc.me/posts/21cfbf15/#本地搜索
 # ---------------
 local_search:
-  enable: false
+  enable: ture
   labels:
     input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
@@ -120,7 +129,8 @@ scripts:
 cdn:
   css:
     fontawesome: https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
-    # fontawesomeV5: https://use.fontawesome.com/releases/v5.8.1/css/all.css
+    fontawesomeV5: https://use.fontawesome.com/releases/v5.8.1/css/all.css
+    #iconfontyyy: https://at.alicdn.com/t/font_1473319176_4914331.css
     fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css
   js:
     jquery: https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js
@@ -129,12 +139,19 @@ cdn:
 
 # Post info settings
 # ---------------
-# avatar: /img/avatar.png
-avatar: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/avatar.png
+avatar: /img/avatar.png
+#avatar: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/avatar.png
 
 # the banner image of index
 # if the banner of another page not setting,it will show the top_img
-top_img: https://i.loli.net/2019/05/22/5ce53eb6dc82757840.jpg
+# top_img: https://i.loli.net/2019/05/22/5ce53eb6dc82757840.jpg
+#top_img: https://i.loli.net/2019/08/24/TCSl2tGWbxrpsHk.gif
+#top_img: /img/top_img.jpg
+#top_img: https://i.loli.net/2019/08/24/VyxwnKbe9MGOCsl.gif
+#吉他黑白
+top_img: https://i.loli.net/2019/08/24/UdiXmyM7nZKl8WP.jpg
+#落日男孩
+#top_img: https://i.loli.net/2019/08/24/ZiNPOoChDESX7Vd.jpg
 
 #the banner image of post
 # if the post not set the post cover and post top image, it will show it
@@ -231,20 +248,20 @@ disqus:
 
 # valine comment system. https://valine.js.org
 valine:
-  enable: false # if you want use valine,please set this value is true
-  appId:   # leancloud application app id
-  appKey:   # leancloud application app key
+  enable: true # if you want use valine,please set this value is true
+  appId: M3YqgWTeiFytYUv2VNcGWJ2s-MdYXbMMI # leancloud application app id
+  appKey: h2QhEpEOgmc6DE9uN2Qfmj6c  # leancloud application app key
   notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
   verify: false # valine verify code (true/false)
   pageSize: 10 # comment list page size
-  avatar: monsterid # gravatar style https://valine.js.org/#/avatar
+  avatar: robohash # gravatar style https://valine.js.org/#/avatar
   lang: en # i18n: zh-cn/en
   placeholder: Please leave your footprints # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header inf
 
 # Footer Settings
 # ---------------
-since: 2018
+since: 2019
 
 footer_custom_text:
 
@@ -267,8 +284,7 @@ busuanzi:
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
-google_site_verification:
-
+google_site_verification: LJlScwYZAXxKRO5cZzNZbaWEwAgQD3NS2SP0AyWe8dw
 # Bing Webmaster tools verification setting
 # See: https://www.bing.com/webmaster/
 bing_site_verification:
@@ -282,15 +298,12 @@ baidu_site_verification:
 qihu_site_verification:
 
 Flink:
-  headline: 友情鏈接
-  info_headline: 我的Blog資料
-  name: Blog 名字： JerryC
-  address: Blog 地址： https://jerryc.me/
-  avatar: Blog 頭像： https://jerryc.me/img/avatar.png
+  info_headline: 
+  name: Blog 名字： Zkpeace
+  address: Blog 地址： https://zkpeace.com/
+  avatar: Blog 頭像： https://zkpeace.me/img/avatar.png
   info: Blog 簡介： 今日事,今日畢
-  comment: 如果需要交換友鏈,請留言
-
- 
+  comment: 交换友链，请留言,格式如上
 
 runtimeshow:
   enable: true
@@ -302,7 +315,7 @@ nightshift:
 
 
 activate_power_mode:
-  enable: false
+  enable: true
 
 
 
@@ -318,6 +331,9 @@ reward:
     - itemlist:
         img: /img/alipay.jpg
         text: 支付寶
+    - itemlist:
+        img: /img/PayPal.jpg
+        text: Paypal
 
 related_post:
   enable: true
@@ -326,7 +342,7 @@ related_post:
 # canvas_ribbon
 # See: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: true
+  enable: false
   size: 150
   alpha: 0.6
   zIndex: -1
@@ -334,7 +350,7 @@ canvas_ribbon:
 
 
 canvas_ribbon_piao:
-  enable: false
+  enable: true
 
 
 # 避免重複網址分散seo
@@ -374,17 +390,17 @@ hr:
 subtitle: 
   enable: true
   sub1: 今日事,今日畢
-  sub2: Never put off till tomorrow what you can do today  #如果有符號 ' ，記得前面加上 \ 
+  sub2: ein Mann\, ein Wort  #如果有符號 ' ，記得前面加上 \ 
 
 #側邊欄顯示設置
 aside:
   position: right # left or right
   card_author: true
   card_announcement: true
-  card_recent_post: true
-  card_categories: true
+  card_recent_post: false
+  card_categories: false
   card_tags: true
-  card_archives: true
+  card_archives: false
   card_webinfo: true
 
 
@@ -407,11 +423,11 @@ translate:
 
 # 鼠標點擊效果
 fireworks:
-  enable: false
+  enable: true
 
 #百度推送
 baidu_push:
-  enable: false
+  enable: true
 
 #https://instant.page/
 #prefetch預加載
