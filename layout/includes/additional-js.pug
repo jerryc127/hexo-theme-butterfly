@@ -90,3 +90,9 @@ if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
 
 if theme.instantpage.enable
   script(src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module")
+
+if theme.lazyload.enable
+  script(src=url_for(theme.lazyload.script))
+  script. 
+    const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+    observer.observe();

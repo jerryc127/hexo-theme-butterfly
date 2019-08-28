@@ -126,8 +126,6 @@ cdn:
     jquery: https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js
     fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js
     js-cookies: https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js
-    lozy: https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js
-
 
 # Post info settings
 # ---------------
@@ -376,10 +374,11 @@ hr:
 subtitle: 
   enable: true
   sub1: 今日事,今日畢
-  sub2: Never put off till tomorrow what you can do today
+  sub2: Never put off till tomorrow what you can do today  #如果有符號 ' ，記得前面加上 \ 
 
 #側邊欄顯示設置
 aside:
+  position: right # left or right
   card_author: true
   card_announcement: true
   card_recent_post: true
@@ -418,3 +417,22 @@ baidu_push:
 #prefetch預加載
 instantpage:
   enable: true
+
+note:
+  # Note tag style values:
+  #  - simple    bs-callout old alert style. Default.
+  #  - modern    bs-callout new (v2-v3) alert style.
+  #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
+  #  - disabled  disable all CSS styles import of note tag.
+  style: simple
+  icons: true
+  border_radius: 3
+  # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
+  # Offset also applied to label tag variables. This option can work with disabled note tag.
+  light_bg_offset: 0
+
+
+#圖片懶加載
+lazyload:
+  enable: true
+  script: https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js

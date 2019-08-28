@@ -1,5 +1,5 @@
 $(function () {
-  if ($('#sidebar').hasClass('auto_open') ) {
+  if ($('#sidebar').hasClass('auto_open')) {
     if ($(".sidebar-toc__content").children().length > 0) {
       $(".layout_post").animate({}, function () {
         {
@@ -81,7 +81,7 @@ $(function () {
   //-----------------------------------------------------------------------------------------------------
   // 首页fullpage添加
   // 添加class 
-  if (/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {} else {
+  if (/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) { } else {
     $('.full_page').css('background-attachment', 'fixed')
   }
 
@@ -215,15 +215,18 @@ $(function () {
   if (imgList.length === 0) {
     imgList = $("#post-content img").not('.no-fancybox');
   }
-  
+
   for (var i = 0; i < imgList.length; i++) {
+    var lazyload_src = imgList[i].src ? imgList[i].src : imgList.eq(i).attr("data-src")
+    
     var $a = $(
       '<a href="' +
-        imgList[i].src +
+      lazyload_src +
         '" data-fancybox="group" data-caption="' +
         imgList[i].alt +
         '" class="fancybox"></a>'
     )
+
     var alt = imgList[i].alt
     var $wrap = $(imgList[i]).wrap($a)
     if (alt) {
@@ -261,27 +264,13 @@ $(function () {
 
   });
 
-  //--------------------------------------------------------------------------------------------------------
-  //lazy懶加載
-  //把img的src删除，添加data-src,用于lozad.js
-  var $img = $("#post img");
-  $img.addClass("lozad");
-  $img.each(function () {
-    var src_link = $(this).attr("src");
-    $(this).attr("data-src", src_link);
-    $(this).removeAttr("src");
-  })
-
-  const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-  observer.observe();
-
   //---------------------------------------------------------------------------------------------------------
   /** head点击*/
   $('.toggle-menu').on('click', function () {
 
     if ($(".toggle-menu").hasClass("open")) {
       $(".toggle-menu").removeClass("open").addClass("close");
-      $("#page-header #site-name,#page-header .search").css({'color':'#3b3a3a','text-shadow': 'none'})
+      $("#page-header #site-name,#page-header .search").css({ 'color': '#3b3a3a', 'text-shadow': 'none' })
       $(".toggle-menu *").css({ 'background-color': '#3b3a3a', 'text-shadow': 'none' });
       $('body').addClass("is_hidden");
       $('.menus').addClass("menu_open");
@@ -342,14 +331,16 @@ $(function () {
   $(window).on('resize', function (e) {
     if (!$('.toggle-menu').is(':visible')) {
       if ($(".toggle-menu").hasClass("close")) {
-      $(".toggle-menu").removeClass("close").addClass("open");
-      $("#page-header #site-name,#page-header .search").css({ 'color': '', 'text-shadow': '' });
-      $(".toggle-menu *").css({ 'background-color': '', 'text-shadow': '' });
-      $('body').removeClass("is_hidden");
-      $('.menus').removeClass("menu_open");
-    }     
+        $(".toggle-menu").removeClass("close").addClass("open");
+        $("#page-header #site-name,#page-header .search").css({ 'color': '', 'text-shadow': '' });
+        $(".toggle-menu *").css({ 'background-color': '', 'text-shadow': '' });
+        $('body').removeClass("is_hidden");
+        $('.menus').removeClass("menu_open");
+      }
     }
-  })
+  } )   
+
+ 
 
   //---------------------------------------------------------------------------------------------------------
   /** scroll 滚动 toc*/
@@ -367,13 +358,19 @@ $(function () {
     }
     var isUp = scrollDirection(currentTop)
 
-    if($(".toggle-menu").hasClass("open")){
+    if ($(".toggle-menu").hasClass("open")) {
       if (currentTop > 56) {
         
         if (isUp) {
           $('#page-header').hasClass('visible') ? $('#page-header').removeClass('visible') : console.log()
+          $('#post_bottom').removeClass('toc_mobile_show')
+          $('#toc_mobile').hasClass('is_visible') ? $('#toc_mobile').removeClass('is_visible') : console.log()
+
         } else {
           $('#page-header').hasClass('visible') ? console.log() : $('#page-header').addClass('visible')
+          $('#post_bottom').addClass('toc_mobile_show')
+          $('#toc_mobile').hasClass('is_visible') ? $('#toc_mobile').removeClass('is_visible') : console.log()
+
         }
         $('#page-header').addClass('fixed')
         if ($('#go-up').css('opacity') === '0') {
@@ -399,6 +396,8 @@ $(function () {
       } else {
         if (currentTop === 0) {
           $('#page-header').removeClass('fixed').removeClass('visible')
+          $('#post_bottom').removeClass('toc_mobile_show')
+
         }
 
         $('#go-up').animate({}, function () {
@@ -414,8 +413,19 @@ $(function () {
             'transform': 'translateX(0)'
           })
         })
+
       }
     }
+
+    if ( $(window).width() <= 768 &&  $('#post_bottom').hasClass('toc_mobile_show') ){
+      $('#rightside').css('bottom', '110px')
+      $('#go-up').css('bottom', '70px')
+  
+    } else {
+      $('#rightside').css('bottom', '60px')
+      $('#go-up').css('bottom', '20px')
+    }
+
   }, 50, 100))
 
   // go up smooth scroll
@@ -424,9 +434,9 @@ $(function () {
   })
 
   // head scroll
-  $('#post-content').find('h1,h2,h3,h4,h5,h6').on('click', function (e) {
-    scrollToHead('#' + $(this).attr('id'))
-  })
+  // $('#post-content').find('h1,h2,h3,h4,h5,h6').on('click', function (e) {
+  //   scrollToHead('#' + $(this).attr('id'))
+  // })
 
   // head scroll
   $('.toc-link').on('click', function (e) {
@@ -520,15 +530,14 @@ $(function () {
         .find('.toc-child').hide()
     }
 
-    if ($('.toc-link').hasClass('active')){
+    if ($('.toc-link').hasClass('active')) {
       var active_position = $(".active").offset().top;
       var sidebar_scrolltop = $("#sidebar").scrollTop();
-      if (active_position > (top + $(window).height() - 50)) {             
+      if (active_position > (top + $(window).height() - 50)) {
         $("#sidebar").scrollTop(sidebar_scrolltop + 100);
-      } else if (active_position < top + 50)
-      {
+      } else if (active_position < top + 50) {
         $("#sidebar").scrollTop(sidebar_scrolltop - 100);
-        }
+      }
     }
 
   }
@@ -568,4 +577,27 @@ $(function () {
     var font_size_record = parseFloat($('body').css('font-size'))
     $('body').css('font-size', font_size_record - 1)
   });
+
+
+  $('#mobile_toc').on('click', function () {
+    $("#toc_mobile").toggleClass('is_visible')
+  })
+ 
+  //代碼框語言識別
+  $('figure').each(function () {   
+    var lang_name_index;
+    var lang_name;
+    lang_name_index = lang_name = $(this).attr('class').split(' ')[1];
+    if (lang_name_index == 'js')
+      lang_name = 'javascript'
+    if (lang_name_index == 'md')
+      lang_name = 'markdown'
+    if (lang_name_index == 'plain')
+      lang_name = 'code' 
+    if (lang_name_index == 'py')
+      lang_name = 'python'
+        
+    $('figure.' + lang_name_index + ' table').attr('data-content', lang_name);
+  })
+
 });

@@ -12,9 +12,15 @@
               - var default_post_cover = random_cover()
               .aside_post_cover
                 if (post_cover)
-                  img.aside_post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+                  if theme.lazyload.enable
+                    img.aside_post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+                  else
+                    img.aside_post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
                 else
-                  img.aside_post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+                  if theme.lazyload.enable
+                    img.aside_post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+                  else
+                    img.aside_post_bg(src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
               div#aside_title
                 .aside_post_title(href=url_for(link) title=article.title || _p('no_title'))= article.title || _p('no_title')
                 if (theme.post_meta.date_type)

@@ -66,14 +66,12 @@ html(lang=config.language)
             div!= body
           else
             block content
-    //- - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img || true
-    //- - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    //- - var footer_bg_class= bg_img ? 'footer-bg' : ''
-    //- footer(style=bg_img class=footer_bg_class)
     footer
       include ./footer.pug
     i.fa.fa-arrow-up#go-up(aria-hidden="true")
     include ./rightside.pug
+    if (is_post())
+      include ./post-bottom.pug
     each item in theme.cdn.js
       if item !== undefined
         script(src=url_for(item))

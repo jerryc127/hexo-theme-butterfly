@@ -1,12 +1,10 @@
 #recent-posts
+  width: 75%
+
   .recent-post-item 
     padding: 0
     box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06)
     border-radius: 8px
-    -webkit-transition: all 0.3s
-    -moz-transition: all 0.3s
-    -o-transition: all 0.3s
-    -ms-transition: all 0.3s
     transition: all 0.3s
     background: #fff
     margin-top: 20px
@@ -33,9 +31,6 @@
     width: 45%
     height: 280px
     overflow: hidden
-
-    
-    
 
   img.post_bg
     border: 0
@@ -130,8 +125,6 @@ a.article-meta__categories
   align-items: flex-start
   padding: 0 15px
 
-#recent-posts
-    width: 75%
 
 #page,.category-content,.flink
   padding: 40px 44px 44px
@@ -155,12 +148,18 @@ a.article-meta__categories
   #site-title
     font-family: PingFang SC, Hiragino Sans GB, "Microsoft JhengHei", "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
 
-@media screen and (max-width: 900px) 
-    #page,.category-content,#archive,.tag-cloud,.flink,#tag,#category
-      width: 100% !important
+@media screen and (min-width: 900px) 
+  if hexo-config("aside.position") == "left"
+    #recent-posts
+      order: 2
     
-    // .recent-post-info 
-    //   padding: 40px 30px 20px
+    #page,.category-content,#archive,.tag-cloud,.flink,#tag,#category
+      order: 2
+
+
+@media screen and (max-width: 900px) 
+  #page,.category-content,#archive,.tag-cloud,.flink,#tag,#category
+      width: 100% !important
 
 
 @media screen and (max-width:768px) 
@@ -209,15 +208,7 @@ a.article-meta__categories
   
   #aside_content
     display: none !important
-    // .card_widget
-    //   box-shadow: none
-    //   border-radius: 0
-    //   border-top: 1px dashed #a4d8fa
 
-    //   &:hover
-    //     box-shadow: none
-
-  
   .category-lists
     padding: 0
 
@@ -282,14 +273,9 @@ footer
 @keyframes pulse{
 
   0%,to{
-    // -ms-filter:"alpha(opacity=40)"
-    // filter:alpha(opacity=40)
     opacity:.4
     top:0}
   50%{
-    // -ms-filter:none
-    // -webkit-filter:none
-    // filter:none
     opacity:1
     top:-16px}
     }
