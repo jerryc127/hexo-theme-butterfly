@@ -103,11 +103,23 @@
         -webkit-transform: rotate(-45deg) translate(4px, -4px)
         transform: rotate(-45deg) translate(4px, -4px)
   
+  .menu_mask
+    position: fixed
+    top: 0
+    bottom: 0
+    width: 100%
+    height: 110vh
+    left: 0
+    right: 0
+    background: alpha($black,0.7)
+    display: none
+  
   .menus  
     .mobile_author_icon
       display: none
-      padding: 3rem 1.5rem 0
+      padding: 1.3rem 1.5rem 0
       text-align: center
+
   
       img
         height: 120px
@@ -115,24 +127,35 @@
         display: inline-block
         vertical-align: top
         border-radius: 70px
-        -webkit-transition: all .3s
-        -moz-transition: all .3s
-        -o-transition: all .3s
-        -ms-transition: all .3s
         transition: all .3s
 
+    .mobile_post_data
+      display: flex
+      justify-content: center
+      padding: .6rem .5rem 0
+      display: none
+
+      .mobile_data_item
+        flex: 1
+
+      .mobile_data_link 
+        a
+          text-decoration: none
+
+        .length_num 
+          font-size: .9rem
+          color: #000
+
+        .headline 
+          display: block
+          font-size: 0.7rem
+          // letter-spacing: .5px
+          text-transform: uppercase
+          color:#4c4948
+      
     hr         
       margin: 1rem auto
       display: none
-    
-    &.menu_open
-      display: block
-      animation: menu_open .3s
-
-    &.menu_close
-      animation: menu_close .3s
-      display: block
-
 
   a
     color: $light-grey
@@ -210,7 +233,6 @@
     font-size: 1.2rem
 
 @media screen and (max-width: $sm)
-
   #page-header
     padding: 10px 0.8rem
 
@@ -220,41 +242,49 @@
     .menus
       position: fixed
       top: 0
-      right: 0
-      width: 100%
+      right: -250px
+      width: 250px
       height 101vh
       background: $white
       cursor: pointer
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.27)
-      z-index: -1
-      overflow: auto
+      z-index: 1
+      overflow-y: scroll
       display: none
+          
+      .mobile_post_data
+        display: flex
 
-      a
-        display: inline-block !important
-        opacity: 1 !important
-        // margin-left: 0
-        // padding-top: 0.3rem
-        // padding-bottom: 0.3rem
-        // padding-left: 0.6rem
-        margin: 0
-        padding: .5rem 1rem
-        color: $font-black
-        text-shadow: none
-        font-size: 0.8rem
-        z-index: 0
+      .menus_item
+        a
+          display: block !important
+          opacity: 1 !important
+          margin: 0
+          padding: .3rem 1.5rem
+          color: $font-black
+          text-shadow: none
+          font-size: 0.8rem
+          z-index: 0
+          text-overflow: ellipsis
+          overflow: hidden
+          white-space: nowrap  
+          
+        i
+          width: 30%
+          text-align: left 
 
+        span
+          width 70%
 
-        &:hover
-          color: $light-blue
-      
+          &:hover
+            color: $light-blue
+        
       .mobile_author_icon
         display: block
      
       .menus_item 
           padding: 0 .5rem
-          margin-bottom: 4rem
-          text-align: center 
+          margin-bottom: 5rem                              
               
       hr
         display: block 
@@ -267,5 +297,5 @@
     
     &.fixed.open-sidebar 
       .search
-        display: inline-block;
-        opacity: 1;
+        display: inline-block
+        opacity: 1

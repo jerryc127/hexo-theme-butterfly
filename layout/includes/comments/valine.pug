@@ -2,8 +2,8 @@ if theme.valine && theme.valine.enable
   #vcomment.vcomment
   script(src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
   script.
-    var notify = '#{ theme.valine.notify }' == true ? true : false;
-    var verify = '#{ theme.valine.verify }' == true ? true : false;
+    var notify = #{ theme.valine.notify } == true ? true : false;
+    var verify = #{ theme.valine.verify } == true ? true : false;
     var GUEST_INFO = ['nick','mail','link'];
     var guest_info = '#{ theme.valine.guest_info }'.split(',').filter(function(item){
       return GUEST_INFO.indexOf(item) > -1

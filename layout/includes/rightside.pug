@@ -1,4 +1,7 @@
 section#rightside.rightside
+  if is_post()
+    a#to_comment(href="#post-comment")
+      i.scroll_to_comment.fa.fa-comments
   if theme.readmode.enable && is_post()
     i#readmode.fa.fa-book(title=_p('rightside.readmode_title')) 
   i#font_plus.fa.fa-plus(title=_p('rightside.font_plus_title'))

@@ -71,53 +71,6 @@ a.article-meta__categories
   overflow: hidden
   height: 90px
 
-.more {
-  position: relative
-  letter-spacing: 1.2px
-  text-transform: uppercase
-  overflow: hidden
-  z-index: 1
-  background-color: $light-blue
-
-  &:focus {
-    outline: none
-  }
-}
-
-.more--primary {
-  color: $white
-}
-
-.more--animated {
-  transition-property: color
-  transition-duration: 0.5s
-
-  &:before {
-    content: ""
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    background: $ruby
-    transform: scaleX(0)
-    transform-origin: 0 50%
-    transition-property: transform
-    transition-duration: 0.5s
-    transition-timing-function: ease-out
-    z-index: -1
-  }
-
-  &:hover {
-    color: white
-
-    &:before {
-      transform: scaleX(1)
-      transition-timing-function: cubic-bezier(0.45, 1.64, 0.47, 0.66)
-    }
-  }
-}
-
 .layout_page
   display: flex 
   margin: 0 auto
@@ -220,9 +173,6 @@ a.article-meta__categories
 
   #recent-posts #pagination
     margin-bottom: 0
-
-  .more_setting
-    display: block !important
 
   #nav #site-social-icons
     display: block
@@ -337,25 +287,3 @@ footer
   50%{transform:scale(1)}
   80%{transform:scale(.98)}
   100%{transform:scale(1)}}
-
-
-
-@keyframes menu_open{
-  0% {
-    transform: scale(0)
-  }
-  100% {
-    transform: scale(1)
-  }  
-  }
-
-@keyframes menu_close{
-0% {
-  transform: scale(1)
-  display: block
-}
-100% {
-  transform: scale(0)
-  display: none
-}
-}

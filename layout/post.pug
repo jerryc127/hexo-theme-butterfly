@@ -45,7 +45,7 @@ block top_img
 block content
   article#post(class="")
     #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
+  if (theme.post_copyright && theme.post_copyright.enable && page.copyright != false)
     .post-copyright
       .post-copyright__author
         span.post-copyright-meta= _p('post.copyright.author') + ": "

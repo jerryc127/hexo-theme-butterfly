@@ -13,6 +13,8 @@ $site-name-font = "Titillium Web", Lato,PingFang SC, Hiragino Sans GB, "Microsof
 //hr icon
 $hr-icon = '\f0c4'
 $hr-icon-top = -10px
+$title-prefix-icon = '\f0c1'
+$title-prefix-icon-color = #F47466
 
 if hexo-config("theme_color") && hexo-config("theme_color.enable")
   $theme-color = convert(hexo-config("theme_color.main")) || #49B1F5
@@ -35,6 +37,10 @@ if hexo-config("blog_title_font.font-family")
 if hexo-config("hr") && hexo-config("hr.enable")
   $hr-icon = hexo-config("hr.icon") || '\f0c4'
   $hr-icon-top = convert(hexo-config("hr.icon-top")) || -10px
+
+if hexo-config("post_beautify.enable")
+  $title-prefix-icon = hexo-config("post_beautify.title-prefix-icon") || '\f0c1'
+  $title-prefix-icon-color= convert(hexo-config("post_beautify.title-prefix-icon-color")) || #F47466
 
 
 // Global Variables

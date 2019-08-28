@@ -160,6 +160,10 @@ table
     color: #fff
     border-color: #fff
 
+    &:hover
+      background-color: darken($light-blue, 40)
+
+
   textarea 
     font-size: 0.7rem
     background: url(/img/comment_bg.png) 100% 100% no-repeat
@@ -181,11 +185,8 @@ table
   .vnum 
     font-size: 1.1rem
 
-  .vnick
-    font-size: 100%
-
   .vsys
-    font-size: 70%
+    font-size: 80%
   
   .vtime
     font-size: .65rem
@@ -194,12 +195,18 @@ table
     font-size: 100%
   
   .vat
-    font-size: .7125rem;
-    color: $cyan;
-    border: 1px solid $cyan;
-    padding: 0 .8rem;
-    border-radius: 5px;
+    font-size: .7125rem
+    color: $cyan
+    border: 1px solid $cyan
+    padding: 0 .8rem
+    border-radius: 5px
+
+    &:hover
+      background-color: alpha($cyan,0.5)
   
+  code, pre
+    font-size: 98%
+    font-family: $code-font
 
 #site-title, #site-sub-title, 
 #site-name,
@@ -216,7 +223,8 @@ table
   opacity: 0
   transition: all .2s
 
-  #readmode,#font_plus,#font_minus
+
+  #readmode,#font_plus,#font_minus,#to_comment
     width: 30px
     height: 30px
     background-color: $light-blue
@@ -228,6 +236,9 @@ table
     margin-bottom: 2px
     cursor: pointer
     text-decoration: none
+
+  #to_comment
+    display: none
   
   #font_minus,#font_plus
     display: none
@@ -343,6 +354,9 @@ table
 
 .is_visible
   display: block !important
+
+.is_invisible
+  display: none !important
 
 .fireworks
   position: fixed

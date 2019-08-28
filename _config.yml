@@ -436,3 +436,9 @@ note:
 lazyload:
   enable: true
   script: https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js
+
+# 美化post頁顯示
+post_beautify:
+  enable: false
+  title-prefix-icon: '\f0c1'
+  title-prefix-icon-color: "#F47466"
