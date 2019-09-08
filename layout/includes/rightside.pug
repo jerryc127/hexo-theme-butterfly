@@ -1,5 +1,5 @@
 section#rightside.rightside
-  if is_post()
+  if is_post() && page.comments !== false
     a#to_comment(href="#post-comment")
       i.scroll_to_comment.fa.fa-comments
   if theme.readmode.enable && is_post()
@@ -9,4 +9,5 @@ section#rightside.rightside
   if theme.translate && theme.translate.enable
     a#translateLink.translate_chn_to_cht(href="javascript:translatePage();" title=_p('rightside.translate_title'))= theme.translate.default
   if theme.nightshift.enable
-    i#nightshift.fa.fa-moon-o.nightshift(title=_p('rightside.night_mode_title'))
+    - var display_mode = theme.display_mode == 'night'? 'fa fa-sun-o' : 'fa fa-moon-o'
+    i#nightshift.nightshift(class=display_mode title=_p('rightside.night_mode_title'))

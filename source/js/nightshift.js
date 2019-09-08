@@ -11,6 +11,10 @@ $(function () {
   }
 
   function changeReadModel() {
+
+    if (Cookies.get("night-mode") == null)
+      return
+  
     if (Cookies.get("night-mode") == "night") {
       $("body").addClass("night-mode");
       $("#nightshift").removeClass("fa-moon-o").addClass("fa-sun-o");

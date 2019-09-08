@@ -8,6 +8,7 @@
   display: none
   transition: all .2s
   cursor: pointer
+  z-index: 100
 
   &.toc_mobile_show
     bottom: 0
@@ -30,7 +31,7 @@
     width: 50%
     height: 70%
     position: fixed
-    bottom: 65px
+    bottom: 60px
     right: 10px
     overflow: scroll
     padding: 15px 10px
@@ -51,6 +52,18 @@
       text-align: center
       font-size: 18px
       font-weight: bold
+  
+  &.no_comment_show
+    #mobile_toc
+      width: 100%
+      padding: 16px 0
+
+    #toc_mobile
+      right: 25%
+
+  &.no_toc_show
+    #mobile_to_comment
+      width: 100%
 
 @media screen and (max-width:768px)
   #post_bottom

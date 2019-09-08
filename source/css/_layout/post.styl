@@ -285,6 +285,31 @@ img
   &:hover
     color: darken($highlight-aqua, 20%)
 
+.code_lang
+  position: absolute
+  font-weight: bold;
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+  color: $highlight-foreground
+  left: 30px
+  z-index: 1
+  cursor: pointer
+
+.code-expand
+  position: absolute
+  top: 0
+  color: $highlight-foreground
+  padding: 7px 10px
+  z-index: 1
+  cursor: pointer
+  transition: all .3s
+  transform: rotate(0deg)
+
+.code-closed
+  transform: rotate(-90deg) !important
+  transition: all .3s
+
+
 .copy-notice
   position: absolute
   top: 0
@@ -351,8 +376,6 @@ img
 @media screen and (min-width: $md)
   .layout
     width: $content-large-width
-
-
         
 .katex-wrap
   overflow: auto
