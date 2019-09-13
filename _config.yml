@@ -222,6 +222,7 @@ disqus:
   # client_secret: 
 
 # gitalk:
+#   language:   # en , zh-CN , zh-TW
 #   enable: false
 #   client_id: 
 #   client_secret: 
