@@ -8,6 +8,6 @@ if theme.gitalk && theme.gitalk.enable
       owner: '!{theme.gitalk.owner}',
       admin: '!{theme.gitalk.admin}',
       id: md5(decodeURI(location.pathname)),
-      language: '!{lang}'
+      language: '!{theme.gitalk.language}'
     })
     gitalk.render('gitalk-container')
