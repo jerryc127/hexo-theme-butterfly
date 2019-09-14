@@ -62,8 +62,6 @@ each article , index in page.posts.data
         - let expert = content.substring(0, theme.auto_excerpt.length) 
         - content.length > theme.auto_excerpt.length ? expert += ' ...' : ''
         .content!= expert
-        .more_setting
-          a.more.more--border.more--primary.more--animated(href=url_for(link) + '#more' style="margin-top: 14px")= _p('read_more')
       else
         .content!= article.description
 

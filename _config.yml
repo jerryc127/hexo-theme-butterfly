@@ -3,13 +3,15 @@
 # ---------------
 # theme_color:
 #   enable: true
-#   main: "#7A7FF1"
-#   paginator: "#7A7FF1"
+#   main: "#49B1F5"
+#   paginator: "#00c4b6"
 #   button_hover: "#FF7242"
-#   text_selection: "#69c46d"
-#   link_color: "#858585"
+#   text_selection: "#00c4b6"
+#   link_color: "#99a9bf"
+#   meta_color: '#858585'
 #   hr_color: "#A4D8FA"
 #   read-mode-bg_color: '#FAF9DE'
+#   inline-code-color: '#F47466'
 
 # Main menu navigation
 # format: xxx: /xxx/||icon
@@ -45,11 +47,13 @@ favicon: /img/favicon.ico
 # Highlight theme
 # ---------------
 highlight_theme: light
-highlight_copy: true
+highlight_copy: false #代碼複製按鈕
+highlight_lang: true #代碼語言顯示
+highlight_shrink: false #代碼框不展開，需點擊 '>' 打開
 
 code_word_wrap: false
 
-# Nav settings
+# social settings
 # formal: 
 #   icon: link
 # ---------------
@@ -57,6 +61,7 @@ social:
   fa fa-github: https://github.com/jerryc127
   fa fa-rss: /atom.xml
 
+####    search    ####
 # Algolia search
 # ---------------
 algolia_search:
@@ -68,7 +73,6 @@ algolia_search:
     input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
     hits_stats: "${hits} results found in ${time} ms"
-
 
 # Local search
 # Please see doc for more details: https://jerryc.me/posts/21cfbf15/#本地搜索
@@ -95,8 +99,7 @@ katex:
   hide_scrollbar: true
 
 
-
-# Analysis
+####   Analysis    ####
 # ---------------
 # baidu_analytics: 
 
@@ -151,7 +154,6 @@ lodding_bg:
   flink: /img/friend_404.gif
   post_page: /img/404.jpg
 
-
 post_meta:
   date_type: both # or created or updated 文章日期是创建日或者更新日或都显示
   categories: true # or false 是否显示分类
@@ -174,13 +176,14 @@ post_copyright:
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
+# 自動節選
 auto_excerpt:
   enable: true
   length: 150
 
 
-# Share System
-# ---------------
+####    Share System    ####
+# -----------------------------------------
 addThis:
   enable: false
   pubid:
@@ -201,8 +204,8 @@ addtoany:
     - email
     - copy_link
 
-# Comments System
-# ---------------
+####   Comments System    ####
+# ------------------------------------
 disqus:
   enable: false
   shortname: 
@@ -242,8 +245,8 @@ valine:
   placeholder: Please leave your footprints # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header inf
 
-# Footer Settings
-# ---------------
+#####     Footer Settings    ####
+# ------------------------------------
 since: 2018
 
 footer_custom_text:
@@ -256,15 +259,8 @@ ICP:
   url: 
   text:
 
-# busuanzi count for PV / UV in site
-busuanzi:
-  site_uv: true
-  site_pv: true
-  page_pv: true
 
-
-
-
+####    站長驗證    ####
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
 google_site_verification:
@@ -281,6 +277,8 @@ baidu_site_verification:
 # see http://zhanzhang.so.com/
 qihu_site_verification:
 
+
+# 友情鏈接界面設置 
 Flink:
   headline: 友情鏈接
   info_headline: 我的Blog資料
@@ -290,25 +288,7 @@ Flink:
   info: Blog 簡介： 今日事,今日畢
   comment: 如果需要交換友鏈,請留言
 
- 
-
-runtimeshow:
-  enable: true
-  start_date: 6/7/2018 00:00:00
-
-
-nightshift:
-  enable: true
-
-
-activate_power_mode:
-  enable: false
-
-
-
-announcement:
-  content: 感謝訪問本站，若喜歡請收藏 ^_^
-
+# 打賞按鈕
 reward:
   enable: true
   QR_code:
@@ -319,64 +299,101 @@ reward:
         img: /img/alipay.jpg
         text: 支付寶
 
+# 推薦文章
 related_post:
   enable: true
   limit: 6 # 顯示推薦文章數目
 
-# canvas_ribbon
+####    美化/效果    ####
+#--------------------------------
+
+# 設置網站背景
+# 可設置圖片 或者 顔色
+# 圖片格式 background: url(http://xxxxxx.com/xxx.jpg)
+# 顔色 background: '#49B202'
+# 留空 顯示白色
+background:
+
+# footer是否顯示圖片背景(與top_img一致)
+footer_bg: false
+
+
+# canvas_ribbon 禁止彩帶背景
 # See: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
-  enable: true
+  enable: false
   size: 150
   alpha: 0.6
   zIndex: -1
   click_to_change: false
 
-
+# 動態彩帶
 canvas_ribbon_piao:
   enable: false
 
+# canvas_nest
+# https://github.com/hustcc/canvas-nest.js
+canvas_nest:
+  enable: false
+  color: '0,0,255' #color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+  opacity: 0.7 # the opacity of line (0~1), default: 0.5.
+  zIndex: -1 # z-index property of the background, default: -1.
+  count: 99 # the number of lines, default: 99.
+  script: https://cdn.jsdelivr.net/gh/jerryc127/CDN/js/canvas-nest.js # or /js/third-party/canvas-nest.js
 
-# 避免重複網址分散seo
-canonical: true
+# 打字效果
+activate_power_mode:
+  enable: false
 
-# 禁止百度轉碼
-disable_baidu_transformation: true
+# 鼠標點擊效果
+fireworks:
+  enable: false
 
-twitter_meta: true
-Open_Graph_meta: true
+# 頭像會一直轉圈
+avatar_effect: false
 
-#閲讀模式
-readmode:
-  enable: true
+# 網站顯示模式
+# day 默認模式
+# night 黑暗模式（不建議）
+display_mode: day
 
-#全局字體
+# 美化post頁顯示
+post_beautify:
+  enable: false
+  title-prefix-icon: '\f0c1'
+  title-prefix-icon-color: "#F47466"
+
+# 全局字體
 font:
   enable: false
   font-family: Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB,"Microsoft JhengHei", "MicrMicrosoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
   code-font: consolas, Menlo, "PingFang SC", "Microsoft JhengHei","Microsoft YaHei", monospace, Helvetica Neue For Number
 
-#網站名字字體
-#左上角網站名字 主頁居中網站名字
-blog_title_font:
-  #字體鏈接
-  font_link: https://fonts.googleapis.com/css?family=Titillium+Web
+# 網站名字字體
+# 左上角網站名字 主頁居中網站名字
+blog_title_font: 
+  font_link: https://fonts.googleapis.com/css?family=Titillium+Web #字體鏈接
   font-family: Titillium Web, PingFang SC, Hiragino Sans GB, "Microsoft JhengHei", "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
 
-#水平分隔綫
+# 水平分隔綫
 hr:
   enable: false
-  #fontawesome上圖標的Unicode
-  icon: '\f21c'
+  icon: '\f21c' #fontawesome上圖標的Unicode
   icon-top: -20px
 
 # 主頁subtitle
+# 打字效果
 subtitle: 
   enable: true
   sub1: 今日事,今日畢
   sub2: Never put off till tomorrow what you can do today  #如果有符號 ' ，記得前面加上 \ 
 
-#側邊欄顯示設置
+
+
+
+####    側邊欄    ####
+#-------------------------------------
+# 側邊欄顯示設置
 aside:
   position: right # left or right
   card_author: true
@@ -387,8 +404,28 @@ aside:
   card_archives: true
   card_webinfo: true
 
+# 網站公告
+announcement:
+  content: 感謝訪問本站，若喜歡請收藏 ^_^
 
-## chinese traditional to Simplified
+# busuanzi count for PV / UV in site
+# 訪問人數
+busuanzi:
+  site_uv: true
+  site_pv: true
+  page_pv: true
+
+# 網頁開通時間
+# 格式: 月/日/年 時間
+# 也可以寫成 年/月/日 時間
+runtimeshow:
+  enable: true
+  start_date: 6/7/2018 00:00:00
+
+
+####   右下角按鈕  ####
+#----------------------------------------------
+# 簡繁轉換
 translate:
   enable: true
   # 默認按鈕顯示文字
@@ -404,20 +441,29 @@ translate:
   #當文字是繁體時，按鈕顯示的文字
   msgToSimplifiedChinese: "简"
 
+# 夜間模式
+nightshift:
+  enable: true
 
-# 鼠標點擊效果
-fireworks:
-  enable: false
+#閲讀模式
+readmode:
+  enable: true
+
+
+####    other     ####
+#------------------------------------------------
 
 #百度推送
 baidu_push:
   enable: false
 
-#https://instant.page/
-#prefetch預加載
+# https://instant.page/
+# prefetch預加載
 instantpage:
   enable: true
 
+# Note (Bootstrap Callout)
+# https://muse.theme-next.org/docs/tag-plugins/note
 note:
   # Note tag style values:
   #  - simple    bs-callout old alert style. Default.
@@ -431,8 +477,21 @@ note:
   # Offset also applied to label tag variables. This option can work with disabled note tag.
   light_bg_offset: 0
 
-
-#圖片懶加載
+# 圖片懶加載
 lazyload:
   enable: true
   script: https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js
+
+# 避免重複網址分散seo
+canonical: true
+
+# 禁止百度轉碼
+disable_baidu_transformation: true
+
+# twitter分享自動帶上樣式
+# https://i.loli.net/2019/09/08/qm3RfvUCKbct1Wz.png
+twitter_meta: true
+
+# facebook QQ 等 分享自動帶上樣式
+# https://i.loli.net/2019/09/08/2wbFJEKloisRvhj.png
+Open_Graph_meta: true

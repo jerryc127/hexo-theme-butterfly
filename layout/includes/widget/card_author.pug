@@ -2,7 +2,7 @@
   .card-content
     .post_data
       .data-item.text-center
-        img.lozad(src=theme.avatar || url_for('/img/avatar.png') onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
+        img.lozad.avatar_img(src=theme.avatar || url_for('/img/avatar.png') onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
         p.author-info__name.text-center= config.author
         p.author-info__description.text-center= config.description
 

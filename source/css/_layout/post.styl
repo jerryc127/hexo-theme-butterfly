@@ -1,3 +1,18 @@
+if hexo-config("post_beautify.enable")
+  headStyle(fontsize)
+    padding-left: unit(fontsize + 0.3, "rem")
+  
+    code 
+      font-size: unit(fontsize, "rem")
+
+    &:before
+      top: calc(50% - unit(fontsize / 2 - 0.05, "rem"))
+      font-size: unit(fontsize, "rem")
+
+    &:hover
+      padding-left: unit(fontsize + 0.2, "rem")
+
+
 #post-title
   font-size: 1.4rem
 
@@ -100,22 +115,130 @@
 #post-content
   margin-bottom: 1rem
 
-  ol,
-  ul
-    margin-top: 0.4rem
-    counter-reset: li
+  if hexo-config("post_beautify.enable")
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+      cursor: pointer
+      transition: all 0.2s ease-out
 
-    p
-      margin: 0
+      &:before
+        position: absolute
+        top: calc(50% - 0.35rem)
+        left: 0
+        color: $title-prefix-icon-color
+        content: $title-prefix-icon
+        font: normal normal normal 14px / 1 FontAwesome
+        font-size: 0.8rem
+        transition: all 0.2s ease-out
+
+      &:hover
+        padding-left: 1.1rem
+
+        &:before
+          color: $light-blue
+
+    h1
+      headStyle(1)
+
+    h2
+      headStyle(0.9)
+
+    h3
+      headStyle(0.8)
+
+    h4
+      headStyle(0.7)
+
+    h5
+      headStyle(0.6)
+
+    h6
+      headStyle(0.6)
 
     ol,
     ul
-      padding-left: 0.5rem
+      margin-top: 0.4rem
+      padding: 0 0 0 0.8rem
+      list-style: none
+      counter-reset: li
 
-    li
-      position: relative
-      margin: 0.3rem 0
-      padding-left: 0.3rem
+      p
+        margin: 0
+
+      ol,
+      ul
+        padding-left: 0.5rem
+
+      li
+        position: relative
+        margin: 0.2rem 0
+        padding: 0.1rem 0.5rem 0.1rem 1.5rem
+
+        &:hover
+          &:before
+            transform: rotate(360deg)
+
+        &:before
+          position: absolute
+          top: 0
+          left: 0
+          background: $light-blue
+          color: $white
+          cursor: pointer
+          transition: all 0.3s ease-out
+
+    ol
+      > li
+        &:before
+          margin-top: 0.2rem
+          width: w = 1.2rem
+          height: h = w
+          border-radius: 0.5 * w
+          content: counter(li)
+          counter-increment: li
+          text-align: center
+          font-size: 0.6rem
+          line-height: h
+
+    ul
+      > li
+        &:hover
+          &:before
+            border-color: $ruby
+
+        &:before
+          $w = 0.3rem
+          top: 10px
+          margin-left: 0.45rem
+          width: w = $w
+          height: h = w
+          border: 0.5 * w solid $light-blue
+          border-radius: w
+          background: $white
+          content: ""
+          line-height: h
+
+  else
+    ol,
+    ul
+      margin-top: 0.4rem
+      counter-reset: li
+
+      p
+        margin: 0
+
+      ol,
+      ul
+        padding-left: 0.5rem
+
+      li
+        position: relative
+        margin: 0.3rem 0
+        padding-left: 0.3rem
 
 a
   color: $a-link-color
@@ -161,6 +284,31 @@ img
 
   &:hover
     color: darken($highlight-aqua, 20%)
+
+.code_lang
+  position: absolute
+  font-weight: bold;
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+  color: $highlight-foreground
+  left: 30px
+  z-index: 1
+  cursor: pointer
+
+.code-expand
+  position: absolute
+  top: 0
+  color: $highlight-foreground
+  padding: 7px 10px
+  z-index: 1
+  cursor: pointer
+  transition: all .3s
+  transform: rotate(0deg)
+
+.code-closed
+  transform: rotate(-90deg) !important
+  transition: all .3s
+
 
 .copy-notice
   position: absolute
@@ -228,8 +376,6 @@ img
 @media screen and (min-width: $md)
   .layout
     width: $content-large-width
-
-
         
 .katex-wrap
   overflow: auto

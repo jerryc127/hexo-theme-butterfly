@@ -7,12 +7,15 @@ $theme-meta-color = #858585
 $theme-link-color = #99a9bf
 $theme-hr-color = #A4D8FA
 $theme-read-mode-bg-color = #FAF9DE
+$inline-code-color = #F47466
 $font-family= Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
 $code-font = consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace, Helvetica Neue For Number
 $site-name-font = "Titillium Web", Lato,PingFang SC, Hiragino Sans GB, "Microsoft JhengHei", "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
 //hr icon
 $hr-icon = '\f0c4'
 $hr-icon-top = -10px
+$title-prefix-icon = '\f0c1'
+$title-prefix-icon-color = #F47466
 
 if hexo-config("theme_color") && hexo-config("theme_color.enable")
   $theme-color = convert(hexo-config("theme_color.main")) || #49B1F5
@@ -23,6 +26,7 @@ if hexo-config("theme_color") && hexo-config("theme_color.enable")
   $theme-meta-color = convert(hexo-config("theme_color.meta_color")) || #858585
   $theme-hr-color = convert(hexo-config("theme_color.hr_color")) || #A4D8FA
   $theme-read-mode-bg-color = convert(hexo-config("theme_color.read-mode-bg_color")) || #FAF9DE
+  $inline-code-color = convert(hexo-config("theme_color.inline-code-color")) || #F47466
 
 if hexo-config("font") && hexo-config("font.enable")
   $font-family = convert(hexo-config("font.font-family")) || 'Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif'
@@ -35,6 +39,10 @@ if hexo-config("blog_title_font.font-family")
 if hexo-config("hr") && hexo-config("hr.enable")
   $hr-icon = hexo-config("hr.icon") || '\f0c4'
   $hr-icon-top = convert(hexo-config("hr.icon-top")) || -10px
+
+if hexo-config("post_beautify.enable")
+  $title-prefix-icon = hexo-config("post_beautify.title-prefix-icon") || '\f0c1'
+  $title-prefix-icon-color= convert(hexo-config("post_beautify.title-prefix-icon-color")) || #F47466
 
 
 // Global Variables
@@ -54,6 +62,7 @@ $sidebar-icon-left = $sidebar-icon-top - 4px
 $sidebar-icon-size = 16px
 $go-up-bottom = $sidebar-icon-top
 $go-up-right = -($sidebar-icon-left)
+$web-bg = convert(hexo-config("background"))
 // Global color & SVG
 $pale-blue = $theme-hr-color
 $light-blue = $theme-color
@@ -88,7 +97,7 @@ $selection = $theme-text-selection-color
 // code
 $code-font-size = $font-size
 $code-font-family = $font-family
-$code-foreground = $font-color
+$code-foreground = $inline-code-color
 $code-background = rgba(27, 31, 35, 0.05)
 $line-height-code-block = 20px
 $blockquote-color = #6a737d

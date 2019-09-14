@@ -35,7 +35,7 @@ if hexo-config("readmode") && hexo-config("readmode.enable")
       
       #page-header
         &.fixed
-          background: none
+          background: alpha(darken($pale-yellow,5),0.5)
           box-shadow: none
 
           &.open-sidebar
@@ -99,6 +99,29 @@ if hexo-config("readmode") && hexo-config("readmode.enable")
     .copy-notice
       background: darken($pale-yellow,10)
     
+    .toc_mobile_show
+      background: alpha(darken($pale-yellow,5),0.5) !important
+      box-shadow: none !important
+      
+      #post_bottom_items
+        #mobile_to_comment
+          display: none 
+        #mobile_toc
+          width: 100%
+          padding: 16px 0
+        #toc_mobile
+          right: 25%
+          background: darken($pale-yellow,5)
+
+
+  @media screen and (min-width: 768px)
+    .read-mode
+      .menus_item_child
+        background-color: darken($pale-yellow,5) !important
+
+        &:before
+          border-color: transparent transparent darken($pale-yellow,5) !important
+
 
 
 
