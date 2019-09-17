@@ -16,5 +16,9 @@
         span.progress-notice= _p('sidebar.have_read')
         span.progress-num 0
         span.progress-percentage %
-        div.sidebar-toc__progress-bar
-      div.sidebar-toc__content!=toc(page.content, {list_number: tocNumber})
+        div.sidebar-toc__progress-bar      
+      if (page.encrypt == true)
+        div.sidebar-toc__content.toc-div-class(style="display:none")!=toc(page.origin, {list_number: tocNumber})
+      else 
+        div.sidebar-toc__content!=toc(page.content, {list_number: tocNumber})
+      

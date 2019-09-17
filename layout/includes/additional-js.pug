@@ -22,6 +22,9 @@ if (theme.canvas_ribbon && theme.canvas_ribbon.enable)
 if (theme.canvas_ribbon_piao && theme.canvas_ribbon_piao.enable)
   include ./third-party/canvas-ribbon-piao.pug
 
+if (theme.canvas_nest && theme.canvas_nest.enable)
+  include ./third-party/canvas-nest.pug 
+
 if theme.baidu_push && theme.baidu_push.enable
   script(src=url_for('js/baidupush.js')) 
 

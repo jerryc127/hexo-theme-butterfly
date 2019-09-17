@@ -7,7 +7,7 @@ $(function () {
       $('.search-dialog').css({
         'display': 'block',
         'animation': 'titlescale 0.5s'
-      })
+      }),300
     })
           $('#local-search-input input').focus()
   

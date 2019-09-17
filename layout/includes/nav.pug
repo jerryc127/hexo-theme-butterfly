@@ -7,7 +7,8 @@ else
 
 
 if is_home()
-  nav#nav.full_page(style=bg_img)
+  nav#nav.full_page
+    .nav_bg(style=bg_img)
     include ./header.pug
     #site-info
       #site-title
@@ -25,7 +26,8 @@ if is_home()
       i.fa.fa-angle-down.scroll-down-effects
 
 else
-  nav#nav.bg_local(style=bg_img)
+  nav#nav.not_index_bg
+    .nav_bg(style=bg_img)
     include ./header.pug
     #page_site-info
       #site-title

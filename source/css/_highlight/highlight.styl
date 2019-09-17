@@ -2,21 +2,8 @@
 @require "theme"
 @require "diff"
 
-// languages = "js" "javascript" "python" "ruby" "xml" "html" "css" "perl" "sql" "coffeescript" "java" "scala" "kotlin" "c" "c\+\+" "go" "less" "sass" "scss" "stylus" "styl" "typescript" "ts" "bash" "yml" "yaml" "gradle" "groovy" "ejs" "swig" "markdown"
 wordWrap = !hexo-config("rootConfig.highlight.line_number") && hexo-config("code_word_wrap")
 
-// loopForLanguages()
-//   for lang in languages
-//     .article-container
-//       figure.highlight
-//         &{"." + lang}
-//           table
-//             &:before
-//               content: lang
-
-// loopForLanguages()
-
-// Placeholder: $code-block
 $code-block
   overflow: auto
   margin: 1rem 0
@@ -102,18 +89,8 @@ blockquote
       width: auto
       border: none
 
-      &:before
-        position: absolute
-        z-index: 1
-        display: inline-block
-        margin-top: -1.4rem
-        padding: 0 0.7rem
-        width: 5rem
-        color: $highlight-foreground
-        content: attr(data-content)
-        font-weight: bold
-        font-size: 0.8rem
-        line-height: 1.4rem
+      if hexo-config('highlight_shrink') == true
+        display: none
 
       &:after
         position: absolute
