@@ -44,8 +44,8 @@
               span=' '+label
         else
           .menus_item
-            a.site-page
-              i.fa-fw(class=label.split('||')[1] aria-hidden="true")
+            a.site-page(href=label.split('||')[1])
+              i.fa-fw(class=label.split('||')[2] aria-hidden="true")
               span=' '+label.split('||')[0]
               i.fa.fa-chevron-down.menus-expand(aria-hidden="true")
             ul.menus_item_child
