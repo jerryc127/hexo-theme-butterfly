@@ -42,10 +42,10 @@ if theme.translate && theme.translate.enable
 
 
 if is_home() && theme.subtitle.enable
-  script(src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9")    
+  script(src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9")
   script.
     var typed = new Typed(".subtitle", {
-    strings: ['!{theme.subtitle.sub1}','!{theme.subtitle.sub2}'],
+    strings: '!{theme.subtitle.sub}'.split(","),
     startDelay: 300,
     typeSpeed: 100,
     loop: true,
@@ -56,7 +56,7 @@ if is_home()
   script.
     //首頁fullpage
     function alignContent() {
-      for (var n = $(window).height(), e = document.querySelectorAll(".full_page"), i = 0; i < e.length; i++) 
+      for (var n = $(window).height()/!{theme.homepage.ratio}, e = document.querySelectorAll(".full_page"), i = 0; i < e.length; i++)
         e[i].style.height = n + "px";
         $("#site-info").each(function () {
           var x = $(this).height();

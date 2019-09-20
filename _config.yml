@@ -23,7 +23,10 @@ menu:
   Categories: /categories/||fa fa-folder-open
   Link: /link/||fa fa-link
   About: /about/||fa fa-heart
-#   #XXX: /xxx
+  #二级菜单写法
+  Menu||/menu/||fa fa-bars:
+    - subMenu1||/subMenu1/||fa fa-bars
+    - subMenu2||/subMenu2/||fa fa-bars
 
 
 # Favicon
@@ -154,6 +157,10 @@ lodding_bg:
   flink: /img/friend_404.gif
   post_page: /img/404.jpg
 
+# 首页背景图片屏占比，1：100%，2：50%，1.5：75%
+homepage:
+  ratio: 1
+
 post_meta:
   date_type: both # or created or updated 文章日期是创建日或者更新日或都显示
   categories: true # or false 是否显示分类
@@ -254,8 +261,10 @@ footer_custom_text:
 footer_copyright:
   enable: true
 
+#ICP备案信息尾部显示，pic为图标地址
 ICP:
   enable: false
+  pic: /img/icp.png
   url: 
   text:
 
@@ -382,11 +391,12 @@ hr:
   icon-top: -20px
 
 # 主頁subtitle
-# 打字效果
+# 打字效果(如果有逗号“，”，请使用转义字符 &#44;)
 subtitle: 
   enable: true
-  sub1: 今日事,今日畢
-  sub2: Never put off till tomorrow what you can do today  #如果有符號 ' ，記得前面加上 \ 
+  sub:
+    - 今日事 &#44; 今日畢   #逗号“，”，请使用转义字符 &#44;
+    - Never put off till tomorrow what you can do today  #如果有符號 ' ，記得前面加上 \
 
 
 
