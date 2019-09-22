@@ -19,8 +19,4 @@
   if theme.ICP.enable
     .icp
       a(href=theme.ICP.url)
-        if theme.lazyload.enable
-          img.lozad(data-src=`${theme.ICP.pic}` onerror=`onerror=null;src='${theme.lodding_bg.flink}'` style="height: 30px; vertical-align: bottom;")
-        else
-          img(src=`${theme.ICP.pic}` onerror=`onerror=null;src='${theme.lodding_bg.flink}'` style="height: 30px; vertical-align: bottom;" )
         span=theme.ICP.text
