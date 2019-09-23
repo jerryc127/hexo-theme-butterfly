@@ -1,0 +1,46 @@
+#mobile-sidebar
+  #menu_mask
+  #mobile-sidebar-menus
+    .mobile_author_icon
+      img.lozad.avatar_img(src=url_for(theme.avatar) onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
+    .mobile_post_data
+      if site.posts.length
+        .mobile_data_item.is_center
+          .mobile_data_link
+            a(href=url_for(config.archive_dir) + '/')
+              .headline= _p('aside.articles') 
+              .length_num= site.posts.length
+
+      if site.tags.length
+        .mobile_data_item.is_center       
+          .mobile_data_link
+            a(href=url_for(config.tag_dir) + '/' )
+              .headline= _p('aside.tags')
+              .length_num= site.tags.length
+
+      if site.categories.length
+        .mobile_data_item.is_center      
+          .mobile_data_link
+            a(href=url_for(config.category_dir) + '/')
+              .headline= _p('aside.categories') 
+              .length_num= site.categories.length
+    hr
+    .menus_items
+      include menu_item.pug
+
+
+  
+  - const showToc = is_post() && page.toc != false && theme.toc.enable
+  -
+    let tocNumber
+    if (page.toc_number !== undefined) tocNumber = page.toc_number
+    else if (theme.toc.number !== undefined) tocNumber = theme.toc.number
+    else tocNumber = true
+  -
+  if (showToc)
+    #mobile-sidebar-toc
+      .toc_mobile_headline= _p('sidebar.catalog')
+      if (page.encrypt == true)
+        .toc-div-class(style="display:none")!=toc(page.origin,{"class":"toc_mobile_items",list_number:tocNumber})
+      else 
+        !=toc(page.content,{"class":"toc_mobile_items",list_number:tocNumber})

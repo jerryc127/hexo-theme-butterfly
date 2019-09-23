@@ -1,11 +1,19 @@
 extends includes/layout.pug
 
 block content
-  include ./includes/mixins/article-sort.pug
-  #category
-    .article-sort-title= _p('page.category') + ' - ' + page.category
-    +articleSort(page.posts)
-    include includes/pagination.pug
-  #aside_content.aside_content
-    include includes/aside.pug
-  
+  if theme.category_ui == 'index'
+    include ./includes/mixins/UI.pug
+    #recent-posts.recent-posts.category_ui   
+      +UI_NEW(page.posts)
+      include includes/pagination.pug
+    #aside_content.aside_content
+      include includes/aside.pug
+  else
+    include ./includes/mixins/article-sort.pug
+    #category
+      .article-sort-title= _p('page.category') + ' - ' + page.category
+      +articleSort(page.posts)
+      include includes/pagination.pug
+    #aside_content.aside_content
+      include includes/aside.pug
+    

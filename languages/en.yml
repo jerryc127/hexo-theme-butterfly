@@ -81,5 +81,15 @@ rightside:
   font_minus_title: Decrease font size
   translate_title: Traditional Chinese and Simplified Chinese Conversion
   night_mode_title: Dark Mode
+  back_to_top: Back to top
+  toc: Table of Contents
+  scroll_to_comment: Scroll to comment
+  setting: Setting
 
 runtime_unit: days
+
+copy_copyright:
+  author: Author
+  link: Link
+  source: Source
+  info: Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.

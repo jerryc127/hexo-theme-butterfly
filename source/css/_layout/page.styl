@@ -125,20 +125,25 @@ galleryItemStyle(w, h)
       color: $light-blue !important
 
 .tag-cloud
-  padding: 1.5rem 1rem 2rem
-  text-align: center
+  padding: 40px 44px 44px
 
   a
     display: inline-block
     margin: 0 0.4rem
     text-decoration: none
     cursor: pointer
+    transition: all .3s
 
     &:hover
       color: $ruby !important
+      transform: scale(1.1)
 
   &__title
     font-size: 1.8rem
+    text-align: center
+
+  &-tags
+    text-align: center
 
 #tag,
 #category,
@@ -186,7 +191,7 @@ galleryItemStyle(w, h)
 
   &-item
     position: relative
-    margin-bottom: 1rem
+    margin: 0 0 1rem 0.5rem
     transition: all 0.2s ease-in-out
 
     &:hover
@@ -196,8 +201,8 @@ galleryItemStyle(w, h)
     &:before
       $w = 0.3rem
       position: absolute
-      top: 0.48rem
-      left: calc(-1rem - 7px)
+      top: 1.8rem
+      left: calc(-1rem - 17px)
       width: w = $w
       height: h = w
       border: 0.5 * w solid $light-blue
@@ -217,19 +222,56 @@ galleryItemStyle(w, h)
       &:before
         top: 0.7rem
         border-color: $ruby
-
+    
     &__time
-      position: absolute
-      top: 0.1rem
       color: $a-link-color
+      font-size: 0.7rem
+      padding-left: 0.4rem
 
     &__title
-      display: block
-      margin-left: 5rem
       color: $font-black
+      font-size: 0.75rem
+      height: 60px
+      overflow: hidden
+      display: -webkit-box
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+      transition: all .3s
+
+      &:hover
+        color: $light-blue
+        transform: translateX(20px)
+    
+    &__img
+      img
+        height: 100%
+        width: 100%
+        object-fit: cover
+        padding: 0
+        transition: all .6s
+      
+        &:hover
+          transform: scale(1.1)
+
+    &__post
       text-decoration: none
-      font-size: 0.8rem
       cursor: pointer
+
+      &:hover
+        color: $a-link-color
+
+  &-img
+    height: 80px
+    width: 80px
+    display: inline-block
+    overflow: hidden
+  
+  &-post
+    display: inline-block
+    top: 0
+    position: absolute
+    margin-left: 1rem
+
 
 .category-lists
   padding: 1rem 0 1.5rem

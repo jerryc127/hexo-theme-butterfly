@@ -44,7 +44,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   
   for (var i = 0; i < Math.min(relatedPosts.length, limit_num); i++) {
  
-    var cover = relatedPosts[i].cover || random_cover()
+    var cover = relatedPosts[i].cover
 
     result += '<div class="relatedPosts_item"><a href="' + hexo.theme.config.rootConfig.root + relatedPosts[i].path + '" title="' + relatedPosts[i].title + '">';
     result += '<img class="relatedPosts_cover '+ lazy_class + '"' + lazy_src + '="' + cover + '">';
@@ -82,18 +82,5 @@ function compare (attr) {
       var val1 = a[attr];
       var val2 = b[attr];
       return val2 - val1;
-  }
-}
-
-function random_cover() {
-  var post_cover;
-  var num;
-  if (!Array.isArray(hexo.theme.config.default_cover)) {
-    post_cover = hexo.theme.config.default_cover
-    return post_cover
-  } else {
-    num = Math.floor(Math.random() * (hexo.theme.config.default_cover.length));
-    post_cover = hexo.theme.config.default_cover[num];
-    return post_cover
   }
 }

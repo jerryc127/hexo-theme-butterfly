@@ -45,48 +45,12 @@ if is_home() && theme.subtitle.enable
   script(src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9")    
   script.
     var typed = new Typed(".subtitle", {
-    strings: ['!{theme.subtitle.sub1}','!{theme.subtitle.sub2}'],
+    strings: '!{theme.subtitle.sub}'.split(","),
     startDelay: 300,
     typeSpeed: 100,
     loop: true,
     backSpeed: 50
     });
-
-if is_home()  
-  script.
-    //首頁fullpage
-    function alignContent() {
-      for (var n = $(window).height(), e = document.querySelectorAll(".full_page"), i = 0; i < e.length; i++) 
-        e[i].style.height = n + "px";
-        $("#site-info").each(function () {
-          var x = $(this).height();
-          $(this).css("top", (n-x)/2)       
-        })
-    }
-
-    function recent_post_padding() {
-      $(".recent-post-info").each(function () {
-        var k = $(".recent-post-item").height();
-        var e = $(this).height();
-        $(this).css({"padding-top": (k-e)/2 , "padding-bottom": (k-e)/2 })
-      })   
-    }
-
-    alignContent();
-
-    //recent-post-item垂直置中
-    if ($(window).width() > 768) {    
-      recent_post_padding();
-    }
-     
-    $(window).bind("resize", function () {
-
-      alignContent()
-
-      if ($(window).width() > 768) {    
-        recent_post_padding();     
-      }
-    })
 
 if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
   script(async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js")
@@ -99,3 +63,21 @@ if theme.lazyload.enable
   script. 
     const observer = lozad(); // lazy loads elements with default selector as '.lozad'
     observer.observe();
+
+if is_home() && !theme.index_top_img_height && !theme.index_site_info_top
+  script.
+    //首頁fullpage
+    function alignContent() {
+      for (var n = $(window).height(), e = document.querySelectorAll(".full_page"), i = 0; i < e.length; i++) 
+        e[i].style.height = n + "px";
+        $("#site-info").each(function () {
+          var x = $(this).height();
+          $(this).css("top", (n-x)/2)       
+        })
+    }
+    alignContent();
+    
+    $(window).bind("resize", function () {
+      alignContent()
+    })
+

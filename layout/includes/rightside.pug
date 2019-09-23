@@ -1,13 +1,20 @@
 section#rightside.rightside
-  if is_post() && page.comments !== false
-    a#to_comment(href="#post-comment")
-      i.scroll_to_comment.fa.fa-comments
-  if theme.readmode.enable && is_post()
-    i#readmode.fa.fa-book(title=_p('rightside.readmode_title')) 
-  i#font_plus.fa.fa-plus(title=_p('rightside.font_plus_title'))
-  i#font_minus.fa.fa-minus(title=_p('rightside.font_minus_title'))
-  if theme.translate && theme.translate.enable
-    a#translateLink.translate_chn_to_cht(href="javascript:translatePage();" title=_p('rightside.translate_title'))= theme.translate.default
-  if theme.nightshift.enable
-    - var display_mode = theme.display_mode == 'night'? 'fa fa-sun-o' : 'fa fa-moon-o'
-    i#nightshift.nightshift(class=display_mode title=_p('rightside.night_mode_title'))
+  #rightside-config-hide
+    if theme.readmode.enable && is_post()
+      i#readmode.fa.fa-book(title=_p('rightside.readmode_title'))
+    i#font_plus.fa.fa-plus(title=_p('rightside.font_plus_title'))
+    i#font_minus.fa.fa-minus(title=_p('rightside.font_minus_title'))
+    if theme.translate && theme.translate.enable
+      a#translateLink.translate_chn_to_cht(href="javascript:translatePage();" title=_p('rightside.translate_title'))= theme.translate.default
+    if theme.nightshift && theme.nightshift.enable
+      - var display_mode = theme.display_mode == 'night'? 'fa fa-sun-o' : 'fa fa-moon-o'
+      i#nightshift.nightshift(class=display_mode title=_p('rightside.night_mode_title'))
+  #rightside-config-show
+    #rightside_config(title=_p("rightside.setting"))
+      i.fa.fa-cog(aria-hidden="true")
+    if is_post() && page.comments !== false
+      a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
+        i.scroll_to_comment.fa.fa-comments   
+    if is_post() && page.toc != false && theme.toc.enable
+      i#mobile-toc-button.fa.fa-list-ul.close(title=_p("rightside.toc") aria-hidden="true")
+    i.fa.fa-arrow-up#go-up(title=_p("rightside.back_to_top") aria-hidden="true")

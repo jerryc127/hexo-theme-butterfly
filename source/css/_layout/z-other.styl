@@ -41,35 +41,33 @@
     padding: 0
     margin: 0
     object-fit: cover
-  
 
     &:hover
       transform:scale(1.1)
   
   #pagination
     margin-top: 2rem
+  
+  .recent-post-info 
+    padding: 50px 40px
+    display: inline-block
+    width: 55%
+    overflow hidden
 
 
-.recent-post-info 
-  padding: 50px 40px
-  display: inline-block
-  width: 55%
-  overflow hidden
+  a.article-meta__categories
+    text-decoration: none
+    color: #858585
 
+    &:hover
+      color: #49b1f5 !important
 
-a.article-meta__categories
-  text-decoration: none
-  color: #858585
-
-  &:hover
-    color: #49b1f5 !important
-
-.content
-  display: -webkit-box
-  -webkit-line-clamp: 3
-  -webkit-box-orient: vertical
-  overflow: hidden
-  height: 90px
+  .content
+    display: -webkit-box
+    -webkit-line-clamp: 3
+    -webkit-box-orient: vertical
+    overflow: hidden
+    height: 90px
 
 .layout_page
   display: flex 
@@ -93,19 +91,14 @@ a.article-meta__categories
 .card_widget,#archive,.tag-cloud,#tag,.category-content,#category,#page,.flink
 
   &:hover 
-    -webkit-box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
     box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
 
 
 
 @media screen and (min-width: 900px) 
   if hexo-config("aside.position") == "left"
-    #recent-posts
+    #recent-posts,#page,.category-content,#archive,.tag-cloud,.flink,#tag,#category
       order: 2
-    
-    #page,.category-content,#archive,.tag-cloud,.flink,#tag,#category
-      order: 2
-
 
 @media screen and (max-width: 900px) 
   #page,.category-content,#archive,.tag-cloud,.flink,#tag,#category
@@ -121,9 +114,9 @@ a.article-meta__categories
     border-radius: 8px
 
   .post_cover 
-      width: 100% !important
-      height: 230px !important
-      border-radius: 8px !important
+    width: 100% !important
+    height: 230px !important
+    border-radius: 8px !important
            
   .recent-post-item,#page,.tag-cloud,.flink
     margin-top: 1px
@@ -164,12 +157,13 @@ a.article-meta__categories
   .category-lists
     padding: 0
   
-  .recent-post-info 
-    padding: 20px 10px !important
-    width: 100%
+  #recent-posts
+    .recent-post-info 
+      padding: 20px 10px !important
+      width: 100%
 
-  #recent-posts #pagination
-    margin-bottom: 0
+    #pagination
+      margin-bottom: 0
 
   #nav 
     #site-social-icons
@@ -202,17 +196,20 @@ footer
   animation: main 1s
 
 #nav,
-#top-container
+#top-container,
+#page-header
   animation: header 1s
 
 #site-title
   animation: titlescale 1s
 
-canvas,#web_bg
+canvas,
+#web_bg
   animation: to_show 4s
 
 .card-announcement-animation
-  animation: announ_animation 1.5s infinite
+  animation: announ_animation .8s linear infinite
+  color: #FF0000
 
 .scroll-down-effects
   animation: scroll-down-effect 1.5s infinite
@@ -222,8 +219,11 @@ if hexo-config("avatar_effect") == true
     animation: avatar_turn_around 2s linear infinite
 
 .reward-main
-  animation: donate_effcet .3s .1s ease both;
+  animation: donate_effcet .3s .1s ease both
 
+.rightside-in
+  animation: rightside_in_animate .3s
+  display: block !important
 
 @keyframes scroll-down-effect
   0%
@@ -287,3 +287,16 @@ if hexo-config("avatar_effect") == true
   100%
     opacity: 1
     transform: translateY(0)
+
+@keyframes announ_animation
+  0%,to
+    transform: scale(1)
+  50%
+    transform: scale(1.2)
+
+@keyframes rightside_in_animate
+  0%    
+    transform: translateX(28px)
+  100%
+    transform: translateX(0)
+

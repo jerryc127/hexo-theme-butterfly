@@ -1,65 +1,13 @@
-#page-header
-  span.pull-left 
-    a#site-name.blog_title(href=url_for('/')) #[=config.title]
-  //- i.fa.fa-bars.toggle-menu.pull-right(aria-hidden="true")
-  .open.toggle-menu.pull-right
-    .menu-icon-first
-    .menu-icon-second
-    .menu-icon-third
-  
-  .menu_mask
-  
-  span.pull-right.menus
-    .mobile_author_icon
-      img.lozad.avatar_img(src=theme.avatar || url_for('/img/avatar.png') onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
-    .mobile_post_data
-      if site.posts.length
-        .mobile_data_item.text-center
-          .mobile_data_link
-            a(href=url_for(config.archive_dir) + '/')
-              .headline= _p('aside.articles') 
-              .length_num= site.posts.length
-
-      if site.tags.length
-        .mobile_data_item.text-center       
-          .mobile_data_link
-            a(href=url_for(config.tag_dir) + '/' )
-              .headline= _p('aside.tags')
-              .length_num= site.tags.length
-
-      if site.categories.length
-        .mobile_data_item.text-center      
-          .mobile_data_link
-            a(href=url_for(config.category_dir) + '/')
-              .headline= _p('aside.categories') 
-              .length_num= site.categories.length
-
-    hr
-    .menus_items
-      each value, label in theme.menu
-        if !Array.isArray(value)
-          .menus_item
-            a.site-page(href=value.split('||')[0])
-              i.fa-fw(class=value.split('||')[1])
-              span=' '+label
-        else
-          .menus_item
-            a.site-page
-              i.fa-fw(class=label.split('||')[1] aria-hidden="true")
-              span=' '+label.split('||')[0]
-              i.fa.fa-chevron-down.menus-expand(aria-hidden="true")
-            ul.menus_item_child
-              each i in value
-                li
-                  a.site-page(href=i.split('||')[1])
-                    i.fa-fw(class=i.split('||')[2])
-                    span=' '+i.split('||')[0]
-
-
-      script.
-        document.body.addEventListener('touchstart', function(){ });
-  span.pull-right
-    if (theme.algolia_search.enable || theme.local_search && theme.local_search.enable)
-        a.site-page.social-icon.search
-          i.fa.fa-search.fa-fw
-          span=' '+_p('search')
+#header  
+  #page-header
+    span#blog_name.pull-left
+      a#site-name.blog_title(href=url_for('/')) #[=config.title]
+    i.fa.fa-bars.fa-fw.toggle-menu.pull-right.close(aria-hidden="true")
+    span.pull-right.menus
+      .menus_items
+        include menu_item.pug
+    span#search_button.pull-right
+      if (theme.algolia_search.enable || theme.local_search && theme.local_search.enable)
+          a.site-page.social-icon.search
+            i.fa.fa-search.fa-fw
+            span=' '+_p('search')

@@ -385,14 +385,13 @@ img
       
 
 // 文章字體
-#post-content p {
+#post-content p
   font-size: 1.1em
-}
 
-#post-content ol, #post-content ul {
+
+#post-content ol,
+#post-content ul 
   font-size: 1em
-}
-
 
 
 @media screen and (max-width: 1024px)
@@ -400,32 +399,20 @@ img
     margin: 0 15px
     width: auto
 
-
-
-
 .layout_post 
   padding: 50px
-  -webkit-box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06)
   box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06)
   border-radius: 8px
-  -webkit-transition: all 0.3s
-  -moz-transition: all 0.3s
-  -o-transition: all 0.3s
-  -ms-transition: all 0.3s
   transition: all 0.3s
   background: #fff
   margin-top: 40px
   margin-bottom: 40px
 
   &:hover 
-    -webkit-box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
     box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
   
   img
-    margin:0 auto
     display:block
-
-
 
   .tag_share
     display: block
@@ -455,4 +442,35 @@ img
   #post
     a
       text-decoration: none
-      color: $light-blue  
+      color: $light-blue
+    
+    h1
+      margin: 0.8rem 0
+    
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+      margin: 1rem 0 0.5rem 0
+    
+    img
+      margin: 0 auto 0.8rem 
+        
+    blockquote,
+    p
+      margin: 0 0 0.8rem 0
+      
+
+    table,.note
+      margin: 0.8rem 0
+    
+    figure
+      margin: 0.8rem 0
+
+      table
+        margin: 0
+    
+    blockquote
+      p
+        margin: 0.5rem 0

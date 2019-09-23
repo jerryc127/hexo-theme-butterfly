@@ -1,6 +1,6 @@
 - var without_index = url.replace('index.html', '')
 - var without_html = without_index.replace('.html', '')
-- var photo_check = page.cover || theme.avatar
+- var photo_check = is_post() ? page.cover || theme.avatar : theme.avatar
 - var photo_link = url_check (photo_check) ? photo_check : config.url + photo_check
 
 meta(http-equiv="x-dns-prefetch-control" content="on")
@@ -107,10 +107,16 @@ if theme.qihu_site_verification
 
 
 - var preload_archive_img = theme.archive_img ||theme.top_img || config.top_img
+- var preload_tag_img = theme.tag_img ||theme.top_img || config.top_img
+- var preload_category_img = theme.category_img ||theme.top_img || config.top_img
 - var preload_img = page.top_img || theme.top_img || config.top_img
 
 if (is_archive() && preload_archive_img) 
   link(rel="preload" href=url_for(preload_archive_img)  as="image" )
+else if (is_tag() && preload_tag_img) 
+  link(rel="preload" href=url_for(preload_tag_img)  as="image" )
+else if (is_category() && preload_category_img) 
+  link(rel="preload" href=url_for(preload_category_img)  as="image" )
 else if (!is_post() && preload_img)
   link(rel="preload" href=url_for(preload_img)  as="image" )
 

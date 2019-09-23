@@ -24,13 +24,10 @@
     text-overflow: ellipsis
     overflow: hidden
     border-radius: 8px
-    -webkit-transform: perspective(1px) translateZ(0)
     transform: perspective(1px) translateZ(0)
     box-shadow: 0 0 1px rgba(0, 0, 0, 0)
     position: relative
-    -webkit-transition-property: color
     transition-property: color
-    -webkit-transition-duration: 0.3s
     transition-duration: 0.3s                      
     
     img 
@@ -44,9 +41,6 @@
     &:hover 
       img
         filter: unqoute("progid:DXImageTransform.Microsoft.BasicImage(rotation=3)")
-        -moz-transform: rotate(540deg)
-        -o-transform: rotate(540deg)
-        -webkit-transform: rotate(540deg)
         transform: rotate(540deg)
     
     &:before
@@ -58,13 +52,9 @@
       right: 0
       bottom: 0
       background: $light-blue !important
-      -webkit-transform: scale(0)
       transform: scale(0)
-      -webkit-transition-property: transform
       transition-property: transform
-      -webkit-transition-duration: 0.3s
       transition-duration: 0.3s
-      -webkit-transition-timing-function: ease-out
       transition-timing-function: ease-out
 
   .md-links-item:hover, 
@@ -94,7 +84,7 @@
   .post-cards 
       margin-top: 5px
       min-height: 100px
-      padding: 15px
+      padding: 0 15px
       border-radius: 15px
   
   .comment-word
@@ -120,8 +110,6 @@
     .md-links 
       li 
         width: calc(100%/2 - 14px)   
-
-
 
 @media screen and (max-width:600px)
   .flink

@@ -28,7 +28,6 @@
   }
   var translate = 'undefined';
   if (theme.translate && theme.translate.enable){
-    var defaultEncoding;
     translate = JSON.stringify({
       defaultEncoding: theme.translate.defaultEncoding,
       translateDelay: theme.translate.translateDelay,
@@ -38,7 +37,19 @@
     })
   }
 
+  var copyright = 'undefined' ;
+  if (theme.copy.enable && theme.copy.copyright){
+    copyright = JSON.stringify({      
+      languages: {
+      author: _p("copy_copyright.author") + ': ' + config.author,
+      link: _p("copy_copyright.link") + ': ' + without_html,
+      source: _p("copy_copyright.source") + ': ' + config.title,
+      info: _p("copy_copyright.info")
+      }
+    })
+  }
 
+  var copy_copyright_js = theme.copy.enable && theme.copy.copyright
 
 
 
@@ -61,8 +72,9 @@ script.
       message_prev: '!{_p("bookmark.message_prev")}',
       message_next: '!{_p("bookmark.message_next")}'
     },
-    runtime_unit: '!{_p("runtime_unit")}'
-  
+    runtime_unit: '!{_p("runtime_unit")}',
+    copyright: !{copyright},
+    copy_copyright_js: !{copy_copyright_js}
     
   }
 

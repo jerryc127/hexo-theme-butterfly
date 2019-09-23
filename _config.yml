@@ -1,29 +1,20 @@
-# Theme color for customize
-# Notice: color value must in double quotes like "#000" or may cause error!
-# ---------------
-# theme_color:
-#   enable: true
-#   main: "#49B1F5"
-#   paginator: "#00c4b6"
-#   button_hover: "#FF7242"
-#   text_selection: "#00c4b6"
-#   link_color: "#99a9bf"
-#   meta_color: '#858585'
-#   hr_color: "#A4D8FA"
-#   read-mode-bg_color: '#FAF9DE'
-#   inline-code-color: '#F47466'
 
 # Main menu navigation
-# format: xxx: /xxx/||icon
 # ---------------
+# format: xxx: 連結 || icon
+# sub-menu
+# xxx || icon:
+#   xxx || 連結 || icon
 menu:
-  Home: /||fa fa-home
-  Archives: /archives/||fa fa-archive
-  Tags: /tags/||fa fa-tags
-  Categories: /categories/||fa fa-folder-open
-  Link: /link/||fa fa-link
-  About: /about/||fa fa-heart
-#   #XXX: /xxx
+  Home: / || fa fa-home
+  Archives: /archives/ || fa fa-archive
+  Tags: /tags/ || fa fa-tags
+  Categories: /categories/ || fa fa-folder-open
+  Link: /link/ || fa fa-link
+  About: /about/ || fa fa-heart
+  List||fa fa-list:
+    - Music || /music/ || fa fa-music
+    - Movie || /movies/ || fa fa-film
 
 
 # Favicon
@@ -52,6 +43,13 @@ highlight_lang: true #代碼語言顯示
 highlight_shrink: false #代碼框不展開，需點擊 '>' 打開
 
 code_word_wrap: false
+
+# copy setting
+# 是否禁止複製（如果禁止，highlight_copy的功能將無效)
+# copyright 複製的内容後面加上版權信息
+copy:
+  enable: false  # true 開啓 / false 禁止
+  copyright: false
 
 # social settings
 # formal: 
@@ -149,6 +147,12 @@ default_cover: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg
 # the banner image of archive page
 archive_img: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/archive.jpg
 
+# the banner image of tag page
+tag_img: https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/tag-bg.png
+
+# the banner image of category page
+category_img: https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/category-bg
+
 # if the photo link cannot connect,it will show that
 lodding_bg:
   flink: /img/friend_404.gif
@@ -228,6 +232,7 @@ disqus:
 #   repo:
 #   owner:
 #   admin:
+#   language:   # en , zh-CN , zh-TW
 ####   Using this js for redirect to gitalk container after login
 ####   See https://github.com/gitalk/gitalk/issues/125
 #   js: https://cdn.jsdelivr.net/gh/upupming/gitalk@36368e5dffd049e956cdbbd751ff96c28d8255cf/dist/gitalk.min.js
@@ -243,7 +248,8 @@ valine:
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
   lang: en # i18n: zh-cn/en
   placeholder: Please leave your footprints # valine comment input placeholder(like: Please leave your footprints )
-  guest_info: nick,mail,link #valine comment header inf
+  guest_info: nick,mail,link #valine comment header info
+  bg: /img/comment_bg.png  # valine background
 
 #####     Footer Settings    ####
 # ------------------------------------
@@ -257,7 +263,8 @@ footer_copyright:
 ICP:
   enable: false
   url: 
-  text:
+  text: 
+  icon: /img/icp.png
 
 
 ####    站長驗證    ####
@@ -306,6 +313,35 @@ related_post:
 
 ####    美化/效果    ####
 #--------------------------------
+
+# Theme color for customize
+# Notice: color value must in double quotes like "#000" or may cause error!
+# ---------------
+# theme_color:
+#   enable: true
+#   main: "#49B1F5"
+#   paginator: "#00c4b6"
+#   button_hover: "#FF7242"
+#   text_selection: "#00c4b6"
+#   link_color: "#99a9bf"
+#   meta_color: '#858585'
+#   hr_color: "#A4D8FA"
+#   read-mode-bg_color: '#FAF9DE'
+#   inline-code-color: '#F47466'
+
+# 主頁設置
+# 默認top_img全屏，site_info在中間
+# 使用默認, 都無需填寫（建議默認）
+index_site_info_top:   #主頁標題距離頂部距離  例如 300px/300em/300rem/10%
+index_top_img_height:  #主頁top_img高度 例如 300px/300em/300rem  不能使用百分比
+
+
+# category和tag頁的UI設置
+# index 值代表 UI將與首頁的UI一樣
+# 默認跟archives頁面UI一樣
+category_ui:  # 留空或index
+tag_ui:  # 留空或index
+
 
 # 設置網站背景
 # 可設置圖片 或者 顔色
@@ -366,14 +402,14 @@ post_beautify:
 # 全局字體
 font:
   enable: false
-  font-family: Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB,"Microsoft JhengHei", "MicrMicrosoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
-  code-font: consolas, Menlo, "PingFang SC", "Microsoft JhengHei","Microsoft YaHei", monospace, Helvetica Neue For Number
+  font-family: Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, MicrMicrosoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
+  code-font: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace, Helvetica Neue For Number
 
 # 網站名字字體
 # 左上角網站名字 主頁居中網站名字
 blog_title_font: 
   font_link: https://fonts.googleapis.com/css?family=Titillium+Web #字體鏈接
-  font-family: Titillium Web, PingFang SC, Hiragino Sans GB, "Microsoft JhengHei", "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
+  font-family: Titillium Web, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
 
 # 水平分隔綫
 hr:
@@ -383,11 +419,12 @@ hr:
 
 # 主頁subtitle
 # 打字效果
+# (如果有英文逗號' , '，請使用轉義字符 &#44;)
 subtitle: 
   enable: true
-  sub1: 今日事,今日畢
-  sub2: Never put off till tomorrow what you can do today  #如果有符號 ' ，記得前面加上 \ 
-
+  sub:
+    - 今日事&#44;今日畢
+    - Never put off till tomorrow what you can do today
 
 
 

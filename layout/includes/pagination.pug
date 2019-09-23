@@ -14,7 +14,7 @@ else
     if(page.prev)
       if(page.next)
         .prev-post.pull-left
-          - var pagination_cover = page.prev.cover || random_cover()
+          - var pagination_cover = page.prev.cover
           a(href=url_for(page.prev.path))
             if theme.lazyload.enable
               img.prev_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
@@ -26,7 +26,7 @@ else
               span=page.prev.title
       else
         .prev-post.pull-full
-          - var pagination_cover = page.prev.cover || random_cover()
+          - var pagination_cover = page.prev.cover
           a(href=url_for(page.prev.path))
             if theme.lazyload.enable
               img.prev_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
@@ -39,7 +39,7 @@ else
     if(page.next)
       if(page.prev)
         .next-post.pull-right
-          - var pagination_cover = page.next.cover || random_cover()
+          - var pagination_cover = page.next.cover
           a(href=url_for(page.next.path))
             if theme.lazyload.enable
               img.next_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
@@ -50,7 +50,7 @@ else
               span=page.next.title 
       else
         .next-post.pull-full
-          - var pagination_cover = page.next.cover || random_cover()
+          - var pagination_cover = page.next.cover
           a(href=url_for(page.next.path))
             if theme.lazyload.enable
               img.next_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)

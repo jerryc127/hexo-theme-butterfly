@@ -13,6 +13,12 @@ body
   font-family: $font-family
   line-height: $text-line-height
 
+  if !hexo-config('copy.enable')
+    user-select: none
+    -moz-user-select: none
+    -webkit-user-select: none
+    -ms-user-select: none
+
 *::-webkit-scrollbar
   width: 8px
   height: 8px
@@ -71,19 +77,6 @@ h6
   transition: all 0.2s
   opacity: 0
 
-#go-up
-  position: fixed
-  right: $go-up-right
-  bottom: $go-up-bottom
-  font-size: $sidebar-icon-size
-  opacity: 0
-  cursor: pointer
-  transition: all .2s
-
-.fancybox-caption
-  text-align: center
-
-
 hr
   position: relative
   margin: 2rem auto
@@ -141,85 +134,6 @@ table
   background: $selection
   color: $pale-grey
 
-.text-center
-  text-align: center
-.pull-left
-  float: left
-
-.pull-right
-  float: right
-
-@media screen and (max-width: $bg)
-  i#toggle-sidebar,
-  #sidebar
-    display: none
-
-  body
-    padding-left: 0 !important
-
-
-
-// valine 
-#vcomment
-  font-size: inherit
-  
-  input 
-    font-size: 0.65rem
-
-  button 
-    font-size: .7rem
-    padding: .3rem 1rem
-    background-color: $light-blue
-    color: #fff
-    border-color: #fff
-
-    &:hover
-      background-color: darken($light-blue, 40)
-
-
-  textarea 
-    font-size: 0.7rem
-    background: url(/img/comment_bg.png) 100% 100% no-repeat
-
-  .info
-    display: none
-  
-  .vimg
-    border: 0
-
-    &:hover
-      -moz-transform: rotate(540deg)
-      -o-transform: rotate(540deg)
-      -webkit-transform: rotate(540deg)
-      transform: rotate(540deg)
-  .vcount
-    font-size: 0.775rem
-
-  .vnum 
-    font-size: 1.1rem
-
-  .vsys
-    font-size: 80%
-  
-  .vtime
-    font-size: .65rem
-  
-  .vcontent
-    font-size: 100%
-  
-  .vat
-    font-size: .7125rem
-    color: $cyan
-    border: 1px solid $cyan
-    padding: 0 .8rem
-    border-radius: 5px
-
-    &:hover
-      background-color: alpha($cyan,0.5)
-  
-  code, pre
-    font-size: 98%
-    font-family: $code-font
 
 .full_page #site-title, 
 .full_page #site-sub-title, 
@@ -228,140 +142,14 @@ table
 #aside_content .author-info__description
   font-family: $site-name-font
 
-
-
-#rightside 
-  right: -38px
-  position: fixed
-  bottom: 60px
-  opacity: 0
-  transition: all .2s
-
-
-  #readmode,#font_plus,#font_minus,#to_comment
-    width: 30px
-    height: 30px
-    background-color: $light-blue
-    color: #e3e8ee
-    text-align: center
-    line-height: 29px
-    font-size: 16px
-    display: block
-    margin-bottom: 2px
-    cursor: pointer
-    text-decoration: none
-
-  #to_comment
-    display: none
-  
-  #font_minus,#font_plus
-    display: none
-
-  .translate_chn_to_cht
-    width: 30px
-    height: 30px
-    background-color: $light-blue
-    color: #e3e8ee
-    text-align: center
-    line-height: 29px
-    font-size: 16px
-    display: block
-    margin-bottom: 2px
-    cursor: pointer
-    text-decoration: none
-
-  .nightshift
-    width: 30px
-    height: 30px
-    background-color: $light-blue
-    color: #e3e8ee
-    text-align: center
-    font-size: 17px
-    display: block
-    margin-bottom: 2px
-    cursor: pointer
-    padding-top: 6px
-
-
-  a
-    &:hover  
-      color: white
-    &:after    
-      color: white
-
-  
-
-.comment_headling
-  font-size: 20px
-  font-weight: 700
-  margin-bottom: 10px
-
-
-// bookmark 樣式
-.fc-container .fancybox-bg 
-  background: #eee
-
-
-.fancybox-is-open.fc-container .fancybox-bg 
-  opacity: 0.95
-
-
-.fc-content 
-  margin: 20px
-  max-width: 550px
-  padding: 50px
-  box-shadow: 10px 10px 60px -25px
-  border-radius: 4px
-
-
-.fc-content h3 
-  margin-top: 0
-  font-size: 1.6em
-  letter-spacing: normal
-
-
-.fc-content p 
-  color: #666
-  line-height: 1.5
-
-
-.fc-content p:last-child 
-  margin-bottom: 0
-
-
-/* Custom animation */
-.fancybox-fx-material.fancybox-slide--previous,
-.fancybox-fx-material.fancybox-slide--next 
-  transform: translateY(-60px) scale(1.1)
-  opacity: 0
-
-
-.fancybox-fx-material.fancybox-slide--current 
-  opacity: 1
-  transform: translateY(0) scale(1)
-
-
-.bookmark-ok
-  background: #FF6666
-  border-width: 0
-  color: #fff
-  text-decoration: none
-  padding: 7px 20px
-  line-height: 1.5
-  border-radius: 20px
-  text-transform: uppercase
-  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif
-  font-size: 80%
-  font-weight: 700
-  margin: 5px 5px 5px 0
-  display: inline-block
-  cursor: pointer
-  outline: none
-  transition: all .2s ease-in-out
-  user-select: none
-
-.tright
+.is_right
   text-align: right 
+
+.is_left
+  text-align: left
+
+.is_center
+  text-align: center
 
 .is_visible
   display: block !important
@@ -372,12 +160,28 @@ table
 .is_hidden
   overflow: hidden
 
+.pull-left
+  float: left
+
+.pull-right
+  float: right
+
 .fireworks
   position: fixed
   z-index: -1
   pointer-events: none
 
-
 // 去掉加載黑框
 img[src=""],img:not([src])
   opacity: 0
+
+#body-wrap
+  transition: all .3s
+
+@media screen and (max-width: $bg)
+  i#toggle-sidebar,
+  #sidebar
+    display: none
+
+  body
+    padding-left: 0 !important

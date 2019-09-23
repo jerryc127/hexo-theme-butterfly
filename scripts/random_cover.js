@@ -1,4 +1,9 @@
-hexo.extend.helper.register('random_cover', function () {
+hexo.extend.filter.register('before_post_render', function(data){
+  data.cover = data.cover || random_cover()
+  return data;
+});
+
+var random_cover = function () {
   var cover;
   var num;
   if (!Array.isArray(hexo.theme.config.default_cover)) {
@@ -10,4 +15,4 @@ hexo.extend.helper.register('random_cover', function () {
     return cover
   }
 
-})
+}

@@ -82,5 +82,15 @@ rightside:
   font_minus_title: 缩小字体
   translate_title: 简繁转换
   night_mode_title: 夜间模式
+  back_to_top: 回到顶部
+  toc: 目录
+  scroll_to_comment: 直达评论
+  setting: 设置
 
 runtime_unit: 天
+
+copy_copyright:
+  author: 作者
+  link: 链接
+  source: 来源
+  info: 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

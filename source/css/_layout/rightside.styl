@@ -1,0 +1,64 @@
+#rightside 
+  right: -38px
+  position: fixed
+  bottom: 40px
+  transition: all .3s
+  opacity 0
+
+  #rightside-config-hide
+    transition: all .3s
+    display none
+
+  #readmode,
+  #font_plus,
+  #font_minus,
+  #to_comment,
+  .nightshift,
+  #mobile-toc-button,
+  #go-up,
+  #rightside_config
+    width: 30px
+    height: 30px
+    background-color: $light-blue
+    color: $white
+    text-align: center
+    line-height: 29px
+    font-size: 16px
+    display: block
+    margin-bottom: 2px
+    cursor: pointer
+    text-decoration: none
+
+    &:hover  
+      background-color: $ruby 
+  
+  #rightside_config
+    i
+      animation: avatar_turn_around 2s linear infinite
+
+  .translate_chn_to_cht
+    width: 30px
+    height: 30px
+    background-color: $light-blue
+    color: $white
+    text-align: center
+    line-height: 29px
+    font-size: 16px
+    display: block
+    margin-bottom: 2px
+    cursor: pointer
+    text-decoration: none
+
+    &:hover  
+      background-color: $ruby 
+  
+  #mobile-toc-button
+    display: none
+
+
+@media screen and (max-width: $bg)
+  #rightside 
+    #mobile-toc-button
+      display: block
+  
+

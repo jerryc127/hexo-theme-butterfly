@@ -5,32 +5,18 @@ each article , index in page.posts.data
         .post_cover.is_left
           a(href=url_for(link) title=article.title || _p('no_title'))
             - var post_cover = article.cover
-            - var default_post_cover = random_cover()
-            if (post_cover)
-              if theme.lazyload.enable
-                img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
-              else
-                img.post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+            if theme.lazyload.enable
+              img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
             else
-              if theme.lazyload.enable
-                img.post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
-              else
-                img.post_bg(src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+              img.post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
       else
         .post_cover.is_right
           a(href=url_for(link) title=article.title || _p('no_title'))
             - var post_cover = article.cover
-            - var default_post_cover = random_cover()
-            if (post_cover)
-              if theme.lazyload.enable
-                img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
-              else
-                img.post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)            
+            if theme.lazyload.enable
+              img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
             else
-              if theme.lazyload.enable
-                img.post_bg.lozad(data-src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
-              else
-                img.post_bg(src=`${default_post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+              img.post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)            
     .recent-post-info   
       a.article-title(href=url_for(link) title= article.title || _p('no_title'))= article.title || _p('no_title')
       if (article.top)
@@ -49,14 +35,6 @@ each article , index in page.posts.data
             a(href=url_for(item.path)).article-meta__categories #[=item.name]
             if (index < article.categories.data.length - 1)
                 i.fa.fa-angle-right(aria-hidden="true")
-      //- if (theme.post_meta.tags && article.tags.data.length > 0)
-      //-   span.article-meta.tags
-      //-     span.article-meta__separator |
-      //-     each item, index in article.tags.data
-      //-       i.fa.fa-tag.article-meta__icon(aria-hidden="true")
-      //-       a(href=url_for(item.path)).article-meta__tags #[=item.name]
-      //-       if (index < article.tags.data.length - 1)
-      //-         span.article-meta__link -
       if theme.auto_excerpt && theme.auto_excerpt.enable
         - const content = strip_html(article.content)
         - let expert = content.substring(0, theme.auto_excerpt.length) 

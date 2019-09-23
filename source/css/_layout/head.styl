@@ -3,7 +3,7 @@
   margin-bottom: 1rem
 
   &.full_page
-    height: 100vh
+    height: $index_top_img_height
   
   .nav_bg
     width: 100%
@@ -15,7 +15,6 @@
 
   &.not_index_bg
     height: 20rem
-
 
   #site-social-icons
     margin: 0 auto
@@ -36,7 +35,7 @@
 #site-info
   position: absolute
   width: 100%
-  top: 43%
+  top: $index_site_info_top
 
 #site-title,
 #site-sub-title
@@ -68,8 +67,10 @@
 
   .scroll-down-effects
     position: absolute
-    color: #fff
+    color: $white
 
+#header
+  position: relative
 
 #page-header
   position: absolute
@@ -79,137 +80,23 @@
   width: 100%
   border: none
   font-size: 18px
-  transition: all 0.2s ease-in-out
+  transition: all .3s
 
   .toggle-menu
     display: none
     padding-top: 0.6rem
     color: $light-grey
     cursor: pointer
-    transition: all 0.2s ease-in-out
 
     &:hover
       color: $white
-
-    .menu-icon-first, 
-    .menu-icon-second,
-    .menu-icon-third 
-      width: 18px
-      height: 3px
-      background-color: #eee
-      margin: 2px 0
-      transition: 0.4s
-    
-    &.close
-      /* 旋转第一条横线 */
-      .menu-icon-first 
-        -webkit-transform: rotate(45deg) translate(4px, 3px)
-        transform: rotate(45deg) translate(4px, 3px)
-
-      /* 隐藏第二条横线 */
-      .menu-icon-second 
-        opacity: 0
-
-      /* 旋转第三条横线 */
-      .menu-icon-third 
-        -webkit-transform: rotate(-45deg) translate(4px, -4px)
-        transform: rotate(-45deg) translate(4px, -4px)
   
-  .menu_mask
-    position: fixed
-    top: 0
-    bottom: 0
-    width: 100%
-    height: 110vh
-    left: 0
-    right: 0
-    background: alpha($black,0.7)
-    display: none
-  
-  .menus  
-    .mobile_author_icon
-      display: none
-      padding: 1.3rem 1.5rem 0
-      text-align: center
-
-  
-      img
-        height: 120px
-        width: 120px
-        display: inline-block
-        vertical-align: top
-        border-radius: 70px
-        transition: all .3s
-
-    .mobile_post_data
-      display: flex
-      justify-content: center
-      padding: .6rem .5rem 0
-      display: none
-
-      .mobile_data_item
-        flex: 1
-
-      .mobile_data_link 
-        a
-          text-decoration: none
-
-        .length_num 
-          font-size: .9rem
-          color: #000
-
-        .headline 
-          display: block
-          font-size: 0.7rem
-          // letter-spacing: .5px
-          text-transform: uppercase
-          color:#4c4948
-
-    .menus-expand
-      position: absolute
-      width: 30px !important
-      height: 30px
-      right: 0
-      padding: 6px
-      display: none
-      transform: rotate(0deg)
-      transition: all .3s
-    
-      &.menus-closed
-        transform: rotate(180deg) !important
-        transition: all .3s
-      
-    hr         
-      margin: 1rem auto
-      display: none
-
   a
     color: $light-grey
     text-decoration: none
 
     &:hover
       color: $white
-
-  .site-page
-    position: relative
-    padding-bottom: 0.3rem
-    text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3)
-    font-size: 0.7rem
-    cursor: pointer
-    &::after
-      position: absolute
-      bottom: 0
-      left: 0
-      z-index: -1
-      width: 0
-      height: 3px
-      background-color: lighten($theme-color, 30%)
-      content: ""
-      transition: all 0.3s ease-in-out
-
-    &:hover
-      &::after
-        width: 100%
 
   &.fixed
     position: fixed
@@ -225,50 +112,49 @@
         opacity: 0
 
     a,
-    #site-name
+    #site-name,
+    .toggle-menu
       color: $light-black
       text-shadow: none
-    
-    .menu-icon-first, 
-    .menu-icon-second,
-    .menu-icon-third
-      background-color: $light-black
-      text-shadow: none
 
-
-      &a,#site-name
-        &:hover
-          color: $light-blue
+      &:hover
+        color: $light-blue       
 
   &.visible
     transform: translate3d(0, 100%, 0)
+    transition: all .3s
+
+    .menus_item_child
+      background-color: $white !important
+
+      &:before
+        border-color: transparent transparent $white !important
 
   #site-name
     text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
     font-weight: bold
     cursor: pointer
 
-@media screen and (min-width: $sm)  
-  #site-title
-    font-size: 2rem
+  .menus_item
+    display: inline-block
+    padding: 0 0 0 0.7rem
 
-  #site-sub-title
-    font-size: 1.2rem
-
-  #page-header    
-    .menus_item
-      display: inline-block
-      padding: 0 0.5rem
-
-      &:hover,&:focus
-        .menus_item_child
-          display: block
+    &:hover,&:focus
+      .menus_item_child
+        display: block
+      
+      .menus-expand
+        transform: rotate(180deg) !important
+    
+    .menus-expand
+      padding: 4px        
+      transform: rotate(0deg)
+      transition: all .3s
 
     .menus_item_child
       position: absolute
       background-color: alpha($white, 0.8)
       padding: 8px 10px
-      width: fit-content
       border-radius: 5px
       box-shadow: 0 5px 20px -4px rgba(0,0,0,.5)
       display: none
@@ -285,95 +171,63 @@
         border-style: solid
         border-color: transparent transparent alpha($white, 0.8)
 
-    .menus_item_child li
-      list-style: none
-      text-align: center
+      li
+        list-style: none
+        text-align: center
 
-      a
-        color: #3b3a3a;
-        text-shadow: none;
+        a
+          color: #3b3a3a
+          text-shadow: none
 
-    &.fixed.visible
-      .menus_item_child
-        background-color: #ffffff
+.site-page
+  position: relative
+  padding-bottom: 0.3rem
+  text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3)
+  font-size: 0.7rem
+  cursor: pointer
 
-        &:before
-          border-color: transparent transparent #ffffff
+  &::after
+    position: absolute
+    bottom: 0
+    left: 0
+    z-index: -1
+    width: 0
+    height: 3px
+    background-color: lighten($theme-color, 30%)
+    content: ""
+    transition: all 0.3s ease-in-out
+
+  &:hover
+    &::after
+      width: 100%
+
+
+@media screen and (min-width: $sm)  
+  #site-title
+    font-size: 2rem
+
+  #site-sub-title
+    font-size: 1.2rem
+
 
 @media screen and (max-width: $sm)
   #page-header
     padding: 10px 0.8rem
 
+    .menus
+      display: none
+
     .toggle-menu
       display: block
 
-    .menus
-      position: fixed
-      top: 0
-      right: -250px
-      width: 250px
-      height 101vh
-      background: $white
-      cursor: pointer
-      box-shadow: 0 0 4px rgba(0, 0, 0, 0.27)
-      z-index: 1
-      overflow-y: scroll
-      display: none
-          
-      .mobile_post_data
-        display: flex
-
-      .menus_items
-        a
-          display: block !important
-          opacity: 1 !important
-          margin: 0
-          padding: .3rem 1.5rem
-          color: $font-black
-          text-shadow: none
-          font-size: 0.8rem
-          z-index: 0
-          text-overflow: ellipsis
-          overflow: hidden
-          white-space: nowrap  
-          
-        i
-          width: 30%
-          text-align: left 
-
-        span
-          width 70%
-
-          &:hover
-            color: $light-blue
-
-        .menus-expand
-          display: inline-block
-        
-        .menus_item_child
-          list-style: none
-          margin: 0
-        
-      .mobile_author_icon
-        display: block
-     
-      .menus_items 
-          padding: 0 .5rem
-          margin-bottom: 5rem                              
-              
-      hr
-        display: block 
-
     .search 
-      right: 0.5rem
-
       span
         display none
-    
-    &.fixed.open-sidebar 
-      .search
-        display: inline-block
-        opacity: 1
-
-
-
+  
+@media screen and (max-width: $bg)
+  #page-header
+    &.fixed
+      &.open-sidebar
+        .site-page
+          display: inline-block
+          opacity: 1

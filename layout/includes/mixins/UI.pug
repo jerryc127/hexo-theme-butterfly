@@ -1,0 +1,41 @@
+mixin UI_NEW(posts)
+  - posts.each(function(article,index){
+    .recent-post-item.article-container
+      - var link = article.link || article.path
+        if index%2 == 0
+          .post_cover.is_left
+            a(href=url_for(link) title=article.title || _p('no_title'))
+              - var post_cover = article.cover
+              if theme.lazyload.enable
+                img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+              else
+                img.post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+        else
+          .post_cover.is_right
+            a(href=url_for(link) title=article.title || _p('no_title'))
+              - var post_cover = article.cover
+              if theme.lazyload.enable
+                img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+              else
+                img.post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)            
+      .recent-post-info   
+        a.article-title(href=url_for(link) title= article.title || _p('no_title'))= article.title || _p('no_title')
+        if (theme.post_meta.date_type)
+          - var date_type = theme.post_meta.date_type == 'updated' ? 'updated' : 'date'
+          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(article[date_type], config.date_format)]
+        if (theme.post_meta.categories && article.categories.data.length > 0)
+          span.article-meta
+            span.article-meta__separator |
+            each item, index in article.categories.data
+              i.fa.fa-inbox.article-meta__icon(aria-hidden="true")
+              a(href=url_for(item.path)).article-meta__categories #[=item.name]
+              if (index < article.categories.data.length - 1)
+                  i.fa.fa-angle-right(aria-hidden="true")
+        if theme.auto_excerpt && theme.auto_excerpt.enable
+          - const content = strip_html(article.content)
+          - let expert = content.substring(0, theme.auto_excerpt.length) 
+          - content.length > theme.auto_excerpt.length ? expert += ' ...' : ''
+          .content!= expert
+        else
+          .content!= article.description
+  - })

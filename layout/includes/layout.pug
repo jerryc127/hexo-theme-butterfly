@@ -16,9 +16,10 @@
 - config.subtitle ? home_subtitle_true = ' - ' + config.subtitle : home_subtitle_true = ''
 //- home時pageTitle顯示 JerryC - subtitle，其他顯示 pageTitle | JerryC
 - is_home() ? pageTitle = config.title + home_subtitle_true : pageTitle = pageTitle_saved
+//- 判断keywords
 
 - var pageDescription = page.description || page.title || config.description || ''
-- var pageKeywords = (config.keywords || []).join(',')
+- var pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
 - if (page.tags && page.tags.data) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
 - var pageAuthor = config.email ? config.author + ',' + config.email : config.author
 - var pageCopyright = config.copyright || config.author
@@ -49,35 +50,35 @@ html(lang=config.language)
   body(class=body_class)
     if theme.fireworks && theme.fireworks.enable
       canvas.fireworks
-    if theme.background
-      #web_bg
-    if (is_post() && page.toc != false && theme.toc.enable)
-      i.fa.fa-arrow-right#toggle-sidebar(aria-hidden="true")
-      include ./sidebar.pug
-    if (!is_post())
-      include ./nav.pug
-    #content-outer
-      block top_img
+    include ./header.pug
+    include ./mobile-sidebar.pug
+    #body-wrap
+      if theme.background
+        #web_bg
+      if (is_post() && page.toc != false && theme.toc.enable)      
+        i.fa.fa-arrow-right#toggle-sidebar(aria-hidden="true")      
+        include ./sidebar.pug
       if (!is_post())
-        #content-inner.layout_page
-          if body
-            div!= body
-          else
-            block content
-      else
-        #content-inner.layout.layout_post    
-          if body
-            div!= body
-          else
-            block content
-    
-    - var footer_bg = theme.footer_bg == false ? '' : bg_img
-    footer(style=footer_bg)
-      include ./footer.pug
-    i.fa.fa-arrow-up#go-up(aria-hidden="true")
+        include ./nav.pug
+      #content-outer
+        block top_img
+        if (!is_post())
+          #content-inner.layout_page
+            if body
+              div!= body
+            else
+              block content
+        else
+          #content-inner.layout.layout_post    
+            if body
+              div!= body
+            else
+              block content
+      
+      - var footer_bg = theme.footer_bg == false ? '' : bg_img
+      footer(style=footer_bg)
+        include ./footer.pug    
     include ./rightside.pug
-    if (is_post())
-      include ./post-bottom.pug
     each item in theme.cdn.js
       if item !== undefined
         script(src=url_for(item))

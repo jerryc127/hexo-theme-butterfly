@@ -5,17 +5,12 @@
     -webkit-box-shadow: 0 4px 8px 6px rgba(7,17,27,.06)
     box-shadow: 0 4px 8px 6px rgba(7,17,27,.06)
     border-radius: 8px
-    -webkit-transition: all .3s
-    -moz-transition: all .3s
-    -o-transition: all .3s
-    -ms-transition: all .3s
     transition: all .3s
     background: #fff
     margin-top: 20px
     overflow: hidden
 
     &:hover
-      -webkit-box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
       box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
 
   .card-author
@@ -28,10 +23,8 @@
       transition: all .3s
 
       &:hover
-        -moz-transform: rotate(540deg)
-        -o-transform: rotate(540deg)
-        -webkit-transform: rotate(540deg)
         transform: rotate(540deg)
+
     .author-info
       &__name
         font-size: 1.1rem
@@ -54,10 +47,9 @@
       .headline 
         display: block
         font-size: 0.7rem
-        // letter-spacing: 1px
         margin-bottom: -21px
         text-transform: uppercase
-        color:#4c4948
+        color:$font-black
 
     #aside-social-icons
       margin: 0.5rem auto -0.7rem
@@ -66,8 +58,7 @@
 
       .social-icon 
         margin: 0 0.5rem
-        color: #4c4948
-        /* text-shadow: 0.1rem 0.1rem 0.2rem rgba(0,0,0,0.15) */
+        color: $font-black
         font-size: 1rem
         cursor: pointer
       
@@ -75,16 +66,10 @@
         transition: all 0.3s
         
         &:hover
-          -moz-transform: rotate(540deg)
-          -o-transform: rotate(540deg)
-          -webkit-transform: rotate(540deg)
           transform: rotate(540deg)
-        
 
-    a#bookmark-it
-      display: inline-block
+    #bookmark-it
       margin-top: .2rem
-      padding: 0 1rem
       height: 1.6rem
       background: $light-blue
       color: #fff
@@ -94,6 +79,9 @@
       text-transform: uppercase
       z-index: 1
 
+      span
+        padding-left: 10px
+
     .toggle_change--primary,.bookmark--primary 
       color: $ruby
     
@@ -101,7 +89,7 @@
       transition-property: color
       transition-duration: 1s
 
-      &:before {
+      &:before
         content: ""
         position: absolute
         top: 0
@@ -115,18 +103,13 @@
         transition-duration: 0.5s
         transition-timing-function: ease-out
         z-index: -1
-      }
-
-      &:hover {
+      
+      &:hover 
         color: white
 
-        &:before {
+        &:before 
           transform: scaleX(1)
           transition-timing-function: cubic-bezier(0.45, 1.64, 0.47, 0.66)
-        }
-      }
-      
-
 
   .card-content 
     padding: 1rem 1.2rem
@@ -139,7 +122,6 @@
     align-items: center
     flex-basis: auto
     justify-content: center
-
 
   .item_headline 
     font-size: 0.8rem
@@ -170,39 +152,41 @@
       &::after
         width: 100%
 
-
-
   .aside_recent_item 
       margin: 10px 0 -15px 0
     
     .aside_recent_post 
       a
         text-decoration: none
-        color: #4c4948
+        color: $font-black
 
     .aside_recent_post
       margin-bottom: 10px
       width: 100%
 
     .aside_post_cover
-      height: 70px
-      width: 70px
+      height: 66px
+      width: 66px
       float: left
+      overflow: hidden
+
     .aside_post_bg
       object-fit: cover
       width: 100%
       height: 100%
       max-width: 100%
+      padding: 0
+      transition: all .6s
 
       &:hover
         box-shadow: none
+        transform: scale(1.1)
     
-    #aside_title
-      padding-top: 4px
-    
+    #aside_title    
       .aside_post_meta
         font-size: 0.6rem
-        padding-left: 5px
+        padding-left: 10px
+        color: #99a9bf
 
       .aside_post_title
         line-height: 1rem
@@ -210,13 +194,11 @@
         -webkit-line-clamp: 2
         -webkit-box-orient: vertical
         overflow: hidden
-        height: 41px
-        padding-left: 5px
+        height: 40px
+        padding-left: 10px
 
         &:hover
           color: $light-blue !important
-
-
 
   .aside_category_item,.archive-list
     list-style: none
@@ -232,14 +214,14 @@
 
   .aside_category_list,.archive-list-item
     margin-left: -40px
-    padding: 0.2rem 1rem
 
     &:hover
       background-color: $light-blue
       color: #363636
     a
       text-decoration: none
-      color: #4c4948
+      color: $font-black
+      padding: 0.2rem 1rem
   
   .aside_category_list_name,.archive-list-link
     white-space: nowrap
@@ -250,9 +232,6 @@
   .aside_category_list_link,.archive-list-item
     display: flex
   
-
-
-
   .aside_category_list_length,.archive-list-count
     float: right 
   
@@ -280,16 +259,60 @@
           float: right
           display: inline-block
 
+// bookmark 樣式
+.fc-container .fancybox-bg 
+  background: #eee
 
-@keyframes announ_animation{
-  0%,to{
-    color: #4c4948
-}
-  50%{
-    color: #FF0000
-    }
-    }
+.fancybox-is-open.fc-container .fancybox-bg 
+  opacity: 0.95
 
+.fc-content 
+  margin: 20px
+  max-width: 550px
+  padding: 50px
+  box-shadow: 10px 10px 60px -25px
+  border-radius: 4px
+
+.fc-content h3 
+  margin-top: 0
+  font-size: 1.6em
+  letter-spacing: normal
+
+.fc-content p 
+  color: #666
+  line-height: 1.5
+
+.fc-content p:last-child 
+  margin-bottom: 0
+
+/* Custom animation */
+.fancybox-fx-material.fancybox-slide--previous,
+.fancybox-fx-material.fancybox-slide--next 
+  transform: translateY(-60px) scale(1.1)
+  opacity: 0
+
+.fancybox-fx-material.fancybox-slide--current 
+  opacity: 1
+  transform: translateY(0) scale(1)
+
+.bookmark-ok
+  background: #FF6666
+  border-width: 0
+  color: #fff
+  text-decoration: none
+  padding: 7px 20px
+  line-height: 1.5
+  border-radius: 20px
+  text-transform: uppercase
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif
+  font-size: 80%
+  font-weight: 700
+  margin: 5px 5px 5px 0
+  display: inline-block
+  cursor: pointer
+  outline: none
+  transition: all .2s ease-in-out
+  user-select: none
 
 @media screen and (max-width: 900px) 
   .layout_page
