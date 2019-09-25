@@ -354,7 +354,7 @@ background:
 footer_bg: false
 
 
-# canvas_ribbon 禁止彩帶背景
+# canvas_ribbon  靜止彩帶背景
 # See: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
   enable: false
