@@ -3,19 +3,19 @@ mixin UI_NEW(posts)
     .recent-post-item.article-container
       - var link = article.link || article.path
         if index%2 == 0
-          .post_cover.is_left
+          .post_cover.pull_left.left_radius
             a(href=url_for(link) title=article.title || _p('no_title'))
               - var post_cover = article.cover
               if theme.lazyload.enable
-                img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+                img.post_bg.lazyload(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
               else
                 img.post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
         else
-          .post_cover.is_right
+          .post_cover.pull_right.right_radius
             a(href=url_for(link) title=article.title || _p('no_title'))
               - var post_cover = article.cover
               if theme.lazyload.enable
-                img.post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+                img.post_bg.lazyload(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
               else
                 img.post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)            
       .recent-post-info   

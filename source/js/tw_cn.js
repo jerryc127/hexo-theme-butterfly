@@ -1,4 +1,5 @@
 var translate = GLOBAL_CONFIG.translate
+var Snackbar_tl = GLOBAL_CONFIG.Snackbar
 
 var defaultEncoding = translate.defaultEncoding; // 网站默认语言，1: 繁體中文, 2: 简体中文
 var translateDelay = translate.translateDelay; //延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
@@ -10,6 +11,8 @@ var currentEncoding = defaultEncoding;
 var targetEncodingCookie = "targetEncoding" + cookieDomain.replace(/\./g, "");
 var targetEncoding = (Cookies.get(targetEncodingCookie) == null ? defaultEncoding: Cookies.get(targetEncodingCookie));
 var translateButtonObject;
+var is_Snackbar = GLOBAL_CONFIG.Snackbar !== undefined ? true : false
+
 function translateText(txt) {
     if (txt == "" || txt == null) return "";
     if (currentEncoding == 1 && targetEncoding == 2) return Simplized(txt);
@@ -39,6 +42,7 @@ function translatePage() {
             path: '/'
           });
         translateBody()
+        if (is_Snackbar) snackbarShow(Snackbar_tl.cht_to_chs)  
     } else if (targetEncoding == 2) {
         currentEncoding = 2;
         targetEncoding = 1;
@@ -48,6 +52,7 @@ function translatePage() {
             path: '/'
           });
         translateBody()
+        if (is_Snackbar) snackbarShow(Snackbar_tl.chs_to_cht)
     }
 }
 function JTPYStr() {

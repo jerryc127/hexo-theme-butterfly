@@ -7,7 +7,7 @@
           li.md-links-item
             a(href=item.link  title=item.name target="_blank")
               if theme.lazyload.enable
-                img.lozad(data-src=item.avatar onerror=`onerror=null;src='${theme.lodding_bg.flink}'` height="72px")
+                img.lazyload(data-src=item.avatar onerror=`onerror=null;src='${theme.lodding_bg.flink}'` height="72px")
               else
                 img(src=item.avatar onerror=`onerror=null;src='${theme.lodding_bg.flink}'` height="72px")
               div(class="md-links-title")= item.name 

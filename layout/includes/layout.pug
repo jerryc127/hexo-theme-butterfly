@@ -23,11 +23,9 @@
 - if (page.tags && page.tags.data) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
 - var pageAuthor = config.email ? config.author + ',' + config.email : config.author
 - var pageCopyright = config.copyright || config.author
-- var body_class = theme.display_mode == 'night' ? 'night-mode' : ''
-
 
 doctype html
-html(lang=config.language)
+html(lang=config.language data-theme=theme.display_mode)
   head
     meta(charset='UTF-8')
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
@@ -39,22 +37,18 @@ html(lang=config.language)
     meta(name="copyright" content=pageCopyright)
     meta(name ="format-detection" content="telephone=no")
     !=favicon_tag(config.favicon || theme.favicon || '/favicon.ico')
-    if theme.stylesheets !== undefined && theme.stylesheets.length > 0
-      each url in theme.stylesheets
-        link(rel='stylesheet', href=url_for(url))
-    each item in theme.cdn.css
-      if item !== undefined
-        link(rel='stylesheet', href=item)
     include ./head.pug
     include ./config.pug
-  body(class=body_class)
+  body
     if theme.fireworks && theme.fireworks.enable
       canvas.fireworks
     include ./header.pug
     include ./mobile-sidebar.pug
     #body-wrap
       if theme.background
-        #web_bg
+        - var source = theme.background
+        - var is_photo = source.substring(3,0) === 'url' ? 'photo':'color'
+        #web_bg(data-type=is_photo)
       if (is_post() && page.toc != false && theme.toc.enable)      
         i.fa.fa-arrow-right#toggle-sidebar(aria-hidden="true")      
         include ./sidebar.pug
@@ -76,16 +70,11 @@ html(lang=config.language)
               block content
       
       - var footer_bg = theme.footer_bg == false ? '' : bg_img
-      footer(style=footer_bg)
+      footer#footer(style=footer_bg)
         include ./footer.pug    
     include ./rightside.pug
-    each item in theme.cdn.js
-      if item !== undefined
-        script(src=url_for(item))
-    if theme.scripts !== undefined && theme.scripts.length > 0
-      //- scripts list from config.yml
-      each url in theme.scripts
-        script(src=url_for(url))
+    each item in theme.CDN_USE.js
+      script(src=url_for(item))
     include ./additional-js.pug
     include ./search/index.pug
     

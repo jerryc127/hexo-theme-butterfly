@@ -2,7 +2,7 @@
   .card-content
     .post_data
       .data-item.is_center
-        img.lozad.avatar_img(src=url_for(theme.avatar) onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
+        img.lazyload.avatar_img(src=url_for(theme.avatar) onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
         p.author-info__name.is_center= config.author
         p.author-info__description.is_center= config.description
 
@@ -29,7 +29,7 @@
               p.length_num= site.categories.length
 
     .post_data.is_center
-      a#bookmark-it.data-item.bookmark.bookmarke--primary.bookmark--animated(href="javascript:;" title= _p('aside.card_bookmark') )
+      a#bookmark-it.data-item.bookmark.bookmarke--primary.bookmark--animated(href="javascript:;" title= _p('aside.card_bookmark') target="_self")
         i.fa.fa-bookmark(aria-hidden="true")
         span= _p('aside.card_bookmark') || 'Follow Me'
       

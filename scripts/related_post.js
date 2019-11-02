@@ -35,7 +35,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
     
   relatedPosts = relatedPosts.sort(compare('weight'));
   var lazy_src = hexo.theme.config.lazyload.enable ? lazy_src = 'data-src' : lazy_src = 'src'
-  var lazy_class = hexo.theme.config.lazyload.enable ? lazy_class  = 'lozad' : lazy_class  = ''
+  var lazy_class = hexo.theme.config.lazyload.enable ? lazy_class  = 'lazyload' : lazy_class  = ''
 
   if (relatedPosts.length > 0) {
     result += '<div class="relatedPosts">'

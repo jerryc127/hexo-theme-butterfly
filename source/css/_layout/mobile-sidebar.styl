@@ -23,8 +23,9 @@
     z-index: 103
     overflow-y: scroll
     display: block
-    transition: all .3s
-    display: none
+    transition: transform .3s
+    opacity: 0
+    will-change: transform
 
   #mobile-sidebar-menus
     .mobile_author_icon
@@ -110,11 +111,11 @@
         margin: 0
                             
   #mobile-sidebar-toc
-    padding: 15px 10px
+    padding: 1rem 0.5rem 5rem 0.3rem
 
     ol,li
       list-style: none
-      padding: 0 0 0 5px
+      padding: 0 0 0 8px
       margin: 0
     
 
@@ -144,14 +145,22 @@
     transform: translate3d(-288px, 0, 0) !important
 
 .open-mobile-menus
+  padding-left: 0 !important
+
   #mobile-sidebar
     #mobile-sidebar-menus
       transform: translateX(-254px)
+      opacity: 1
+
+// pc界面打開mobile-menus需關閉sidebar
+  #sidebar
+    left: -300px !important
 
 .open-mobile-toc
   #mobile-sidebar
     #mobile-sidebar-toc
       transform: translateX(-254px)
+      opacity: 1
 
 @media screen and (max-width: $sm)
   #mobile-sidebar-menus
@@ -160,5 +169,6 @@
 @media screen and (max-width: $bg)
   #mobile-sidebar-toc
     display: block !important
+
 
 

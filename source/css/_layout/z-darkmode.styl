@@ -1,0 +1,300 @@
+[data-theme="dark"] 
+  body
+    color: #99a9bf 
+    background-color: #2d3032
+
+    &::-webkit-scrollbar-thumb
+      background: lighten(#2d3035,5)
+
+  #sidebar
+    background: #2d3035
+    box-shadow: -0.25rem 0 0.25rem #2d3035
+
+    &::-webkit-scrollbar-thumb
+      background: lighten(#2d3035,5)
+
+  if hexo-config("local_search") && hexo-config("local_search.enable")
+    #local-search
+      background: #2d3035  
+      .local-search-box--input  
+        background: #2d3035
+        color: #99a9bf
+          
+      .search-result-title
+        color: #99a9bf
+  if hexo-config("algolia_search.enable")
+    #algolia-search
+      background: #2d3035
+      .ais-search-box--input
+        background: #2d3035
+        color: #99a9bf
+
+      #algolia-search-results
+        .algolia-hit-item-link
+          color: #99a9bf
+
+  .article-container code
+    background: #616a6b 
+    color: #99a9bf
+  
+  if hexo-config('valine') && hexo-config('valine.enable')
+    // 評論
+    #vcomment
+      p,a,textarea,.vemoji-btn,.vpreview-btn,input,path,.vcount,.vnum,.vtime,.vsys,.vsys,.vnick
+        color: #99a9bf !important
+      
+      .vsys
+        background: rgb(97, 106, 107) !important
+
+      .vbtn
+        background: rgb(45, 48, 53) !important      
+        color: #99a9bf !important
+        border: 1px solid #99a9bf
+      
+      .vwrap
+        border: 1px solid #99a9bf
+      
+      input
+        border-bottom: 1px dashed #616a6b
+      
+      .vh
+        border-bottom: 1px dashed  #616a6b
+      
+      pre
+        background-color: #2d3035
+        border: 1px solid #99a9bf
+      
+      .vcontent.expand:before
+        background: linear-gradient(180deg,hsla(0, 0%, 0%, 0),hsl(218, 8%, 19%))
+
+      .vcontent.expand:after
+        background: hsla(204, 5%, 22%, 1)
+        
+  .recent-posts
+    .recent-post-item
+      background: #2d3032 !important
+    
+    .article-title
+      color: #99a9bf !important
+      
+  #page-header
+    &.fixed
+      background: #2d3035
+      box-shadow: 0 5px 6px -5px rgba(133,133,133,0) 
+
+      a, 
+      .toggle-menu, 
+      #site-name 
+          color: #99a9bf 
+              
+  blockquote
+    color: #99a9bf
+    background-color: lighten(#2d3035,10)
+
+  hr
+      background: 0
+      border: 2px dashed #616A6B
+      &:before
+          color: #99a9bf
+
+  .post-meta__tags
+    background: 0
+    border: 1px solid #99a9bf
+    color: #99a9bf
+
+  .post-copyright
+    border: 1px solid #99a9bf
+
+    *
+      color: #99a9bf
+  
+  .article-container pre
+    background-color: lighten(#2d3035, 2)
+
+  .article-container .highlight:not(.js-file-line-container)
+    background-color: lighten(#2d3035, 2) 
+    .code pre
+      background-color: lighten(#2d3035, 2)  
+
+    .gutter pre
+      background: lighten(#2d3035, 3) 
+
+    &:after
+      background: lighten(#2d3035, 3) 
+    
+    table
+      &:after,.copy-notice
+        background: lighten(#2d3035, 3)  
+    
+    &::-webkit-scrollbar-thumb
+      background: lighten(#2d3035, 8) 
+      
+  .copy-notice
+    background: lighten(#2d3035, 3)  
+
+  .aplayer
+    color: #000000 
+    filter: brightness(0.6)
+
+  .translate_chn_to_cht,
+  .darkmode,
+  #readmode,
+  #to_comment,
+  #font_plus,
+  #font_minus,
+  #rightside_config,
+  #go-up,
+  #mobile-toc-button
+    background-color: lighten(#2d3035,10) !important
+    color: #99a9bf !important
+
+    &:hover
+      background: lighten(#2d3035,20) !important
+  
+  .md-links-item:before,
+  .aside_category_list:hover,
+  .archive-list-item:hover,
+  #bookmark-it,
+  .reward-button,
+  .reward-all,
+  .note
+    background-color: lighten(#2d3035,10) !important
+
+  img,iframe,.gist
+    filter: brightness(0.7)
+
+  #aside_content
+    .card_widget
+      background:#2d3035 !important
+    .headline,
+    .length_num,
+    .aside_post_title,
+    .aside_category_list_link,
+    .archive-list-link,
+    .social-icon
+      color: #99a9bf !important
+  
+  #archive,
+  .tag-cloud,
+  #tag,
+  .category-content,
+  #category,
+  #page,
+  .flink,
+  .layout_post,
+  #footer-wrap
+    background:#2d3035
+
+  #nav,
+  #top-container,
+  #footer
+    &::before
+      content: ""
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      background-color: rgba(0,0,0,0.7)
+
+  #nav span,
+  #nav i,
+  #page-header a,
+  #page-header .toggle-menu,
+  #top-container #post-meta,
+  #top-container a,
+  .posttitle,
+  #footer-wrap,
+  #footer-wrap a   
+    color: lighten(#99a9bf,10)
+
+  .recent-posts .post-meta__date,
+  .recent-posts .article-meta,
+  .recent-posts .article-meta__categories,
+  h1, h2, h3, h4, h5, h6,
+  .prev_info,
+  .next_info,
+  .post-reward .reward-button,
+  .fa-clipboard,
+  .gutter pre,
+  #bookmark-it,
+  .copy-notice,
+  .md-links-item a,
+  .category-list-link
+    color: #99a9bf !important
+
+  .article-sort-item__title
+    color: #99a9bf
+    &:hover
+      color: #49b1f5
+
+  //打賞 分享
+  .post-reward      
+    .reward-all:after
+      border-top: 13px solid lighten(#2d3035,10) !important
+    
+
+  #web_bg[data-type=color]
+    background: #2d3032
+
+  #web_bg[data-type=photo]:before
+    content: ""
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background-color: rgba(0,0,0,0.8)
+
+  #hbe-security
+    label
+      color: #99a9bf !important
+    input
+      background-color: #616a6b
+
+
+  #mobile-sidebar
+    #mobile-sidebar-menus
+      background: #2d3035
+
+      .headline
+        color: #99a9bf !important
+      
+      .length_num
+        color: darken(#99a9bf,10) !important
+      a
+        color: #99a9bf !important
+
+    #mobile-sidebar-toc
+      background: #2d3035
+      a
+        color: #99a9bf !important
+
+  #page-header 
+    .menus_item_child
+      background-color: #2d3035 !important
+
+      &:before
+        border-color: transparent transparent #2d3035 !important
+
+      li
+        a
+          color: #99a9bf
+  
+  .bookmark--animated:before
+    background: lighten(#2d3035,20) !important
+
+    
+
+
+
+
+
+    
+
+
+
+
+
+
+

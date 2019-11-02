@@ -1,35 +1,19 @@
-if theme.disqus && theme.disqus.enable
+- var d = theme.disqus && theme.disqus.enable
+- var l = theme.laibili && theme.laibili.enable
+- var gt = theme.gitalk && theme.gitalk.enable
+- var v = theme.valine && theme.valine.enable
+
+if d || l || gt || v
   hr
   #post-comment
     .comment_headling
       i.fa.fa-comments.fa-fw(aria-hidden="true")
       span= ' ' + _p('comment')
-    include ./disqus.pug
-else if theme.laibili && theme.laibili.enable
-  hr
-  #post-comment
-    .comment_headling
-      i.fa.fa-comments.fa-fw(aria-hidden="true")
-      span= ' ' + _p('comment')
-    include ./laibili.pug
-else if theme.gitment && theme.gitment.enable
-  hr
-  #post-comment
-    .comment_headling
-      i.fa.fa-comments.fa-fw(aria-hidden="true")
-      span= ' ' +  _p('comment')
-    include ./gitment.pug
-else if theme.gitalk && theme.gitalk.enable
-  hr
-  #post-comment
-    .comment_headling
-      i.fa.fa-comments.fa-fw(aria-hidden="true")
-      span= ' ' +  _p('comment')
-    include ./gitalk.pug
-else if theme.valine && theme.valine.enable
-  hr
-  #post-comment
-    .comment_headling
-      i.fa.fa-comments.fa-fw(aria-hidden="true")
-      span= ' ' +  _p('comment')
-    include ./valine.pug
+    if d
+      include ./disqus.pug
+    else if l
+      include ./laibili.pug
+    else if gt
+      include ./gitalk.pug
+    else if v
+      include ./valine.pug

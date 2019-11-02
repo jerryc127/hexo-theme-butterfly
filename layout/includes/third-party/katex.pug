@@ -1,6 +1,6 @@
 link(rel="stylesheet" type="text/css" href=theme.katex.cdn.css)
-script(src='https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js')
-link(rel="stylesheet" type="text/css" href='https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css')
+script(src=url_for(theme.CDN.katex_copytex))
+link(rel="stylesheet" type="text/css" href=theme.CDN.katex_copytex_css)
 script.
   $(function () {
     $('span.katex-display').wrap('<div class="katex-wrap"></div>')

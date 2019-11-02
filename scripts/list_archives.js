@@ -100,7 +100,7 @@ hexo.extend.helper.register('list_archives', function (options = {}) {
 
     if (data.length > limit) {
       result += `<li class="${className}-list-item">`;
-      result += `<a class="${className}-list-link is_center" href="${archiveDir}" >`;
+      result += `<a class="${className}-list-link is_center" href="` + '/' + `${archiveDir}" >`;
       result += more_button;
       result += '</a>';
       result += '</li>';

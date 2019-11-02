@@ -4,23 +4,29 @@
  * Version: v1.0.1
  * GitHub: https://github.com/hustcc/ribbon.js
  **/
-// changed by Molunerfinn
+
 !(function () {
+
+  var script = document.getElementById('ribbon');
+  var mb = script.getAttribute("mobile");  
+  if (mb == 'false' && (/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))) {
+    return;
+  }
+
+  config = {
+    z: attr(script, 'zIndex', -1), // z-index
+    a: attr(script, 'alpha', 0.6), // alpha
+    s: attr(script, 'size', 90), // size
+    c: attr(script, 'data-click', true) // click-to-change
+  }
+
+
   function attr (node, attr, default_value) {
     if (default_value === true) {
       return node.getAttribute(attr) || default_value
     }
     return Number(node.getAttribute(attr)) || default_value
   }
-
-  // get user config
-  var script = document.getElementById('ribbon'),
-    config = {
-      z: attr(script, 'zIndex', -1), // z-index
-      a: attr(script, 'alpha', 0.6), // alpha
-      s: attr(script, 'size', 90), // size
-      c: attr(script, 'data-click', true) // click-to-change
-    }
 
   var canvas = document.createElement('canvas'),
     g2d = canvas.getContext('2d'),

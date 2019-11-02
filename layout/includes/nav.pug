@@ -1,11 +1,3 @@
-if is_archive()
-  - var top_img = theme.archive_img ||theme.top_img || config.top_img
-else if is_tag()
-  - var top_img = theme.tag_img ||theme.top_img || config.top_img
-else if is_category()
-  - var top_img = theme.category_img ||theme.top_img || config.top_img
-else
-  - var top_img = page.top_img||theme.top_img || config.top_img
 
 - var bg_img = top_img && top_img !== true ? `background-image: url(${top_img})` : ''
 

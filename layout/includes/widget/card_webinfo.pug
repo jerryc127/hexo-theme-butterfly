@@ -11,7 +11,7 @@
         .webinfo_item
           .webinfo_runtime_name= _p('aside.card_webinfo.runtime_name') + " :"
           #webinfo_runtime_count.webinfo_runtime_count
-          script#runtionshow(src=url_for('js/runtimeshow.js') start_date=theme.runtimeshow.start_date)       
+          script#runtionshow(src=url_for(theme.CDN.runtimeshow) start_date=theme.runtimeshow.start_date)       
       
       if theme.busuanzi.site_uv 
         .webinfo_item       

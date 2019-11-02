@@ -14,11 +14,11 @@ else
   nav#pagination.pagination_post
     if(page.prev)
       if(page.next)
-        .prev-post.pull-left
+        .prev-post.pull_left
           - var pagination_cover = page.prev.cover
           a(href=url_for(page.prev.path))
             if theme.lazyload.enable
-              img.prev_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
+              img.prev_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
             else
               img.prev_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
 
@@ -30,7 +30,7 @@ else
           - var pagination_cover = page.prev.cover
           a(href=url_for(page.prev.path))
             if theme.lazyload.enable
-              img.prev_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+              img.prev_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
             else
               img.prev_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
             .label=_p('pagination.prev')
@@ -39,11 +39,11 @@ else
           
     if(page.next)
       if(page.prev)
-        .next-post.pull-right
+        .next-post.pull_right
           - var pagination_cover = page.next.cover
           a(href=url_for(page.next.path))
             if theme.lazyload.enable
-              img.next_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+              img.next_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
             else
               img.next_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)            
             .label=_p('pagination.next')
@@ -54,7 +54,7 @@ else
           - var pagination_cover = page.next.cover
           a(href=url_for(page.next.path))
             if theme.lazyload.enable
-              img.next_cover.lozad(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+              img.next_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
             else
               img.next_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
             .label=_p('pagination.next')

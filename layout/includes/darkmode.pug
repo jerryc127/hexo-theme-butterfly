@@ -1,0 +1,48 @@
+script.
+  const autoChangeMode = '#{theme.autoChangeMode}'
+  var t = Cookies.get("theme");
+  if (autoChangeMode == '1'){
+  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      now = new Date();
+      hour = now.getHours();
+      isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+ 
+  } else if (autoChangeMode == '2'){
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode() 
+  } else {
+    if ( t == 'dark' ) activateDarkMode()
+    else if ( t == 'light') activateLightMode()
+  }
+
+  function activateDarkMode(){
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null){
+      document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+    }
+  }
+  function activateLightMode(){
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+    }
+  }
+

@@ -11,7 +11,7 @@
               - var post_cover = article.cover
               .aside_post_cover
                 if theme.lazyload.enable
-                  img.aside_post_bg.lozad(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
+                  img.aside_post_bg.lazyload(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
                 else
                   img.aside_post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` title=article.title || _p('no_title'))
               div#aside_title

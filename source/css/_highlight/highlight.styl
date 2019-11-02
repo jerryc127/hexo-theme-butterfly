@@ -28,6 +28,17 @@ blockquote
   color: $blockquote-color
   background-color: lighten($blockquote-padding-color,33)
 
+  p
+    margin: 0 !important
+    padding: 0.5rem 0
+
+  footer
+    padding: 0 0 0.5rem 0
+    cite 
+      &:before
+        content: "—"
+        padding: 0 .3em
+
 .article-container
   pre,
   code
@@ -49,11 +60,7 @@ blockquote
       color: $highlight-foreground
       text-shadow: none
 
-  .highlight
-    @extend $code-block
-    position: relative
-    border-radius: 1px
-
+  figure.highlight
     &:after
       position: absolute
       top: 0
@@ -62,6 +69,11 @@ blockquote
       height: 1.4rem
       background: darken($highlight-background, 5)
       content: ""
+
+  .highlight
+    @extend $code-block
+    position: relative
+    border-radius: 1px
 
     pre
       margin: 0

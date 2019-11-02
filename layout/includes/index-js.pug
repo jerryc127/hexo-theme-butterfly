@@ -1,0 +1,113 @@
+script.
+  if (/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {} else {
+    $('.full_page .nav_bg').css('background-attachment', 'fixed');
+  }
+
+
+if theme.subtitle.enable
+  script(src=url_for(theme.CDN.typed))
+  - var source = theme.subtitle.source
+
+  if source == '1' || source == '2'
+    script(src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js")
+
+  if source == '1'
+    script.
+      fetch('https://api.ooopn.com/ciba/api.php',)
+      .then(function (res){
+        return res.json();
+      })
+      .then(function (data) {
+        var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+        var both = sub.unshift(data['ciba-en'],data.ciba)
+        var typed = new Typed(".subtitle", {
+        strings: sub,
+        startDelay: 300,
+        typeSpeed: 100,
+        loop: true,
+        backSpeed: 50
+        });
+      })
+      .catch(function (err) {
+        console.error(err);
+      })
+  else if source == '2'
+    script.
+      fetch('https://v1.hitokoto.cn')
+      .then(function (res){
+        return res.json();
+      })
+      .then(function (data) {
+        var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+        var both = sub.unshift(data.hitokoto)  
+        var typed = new Typed(".subtitle", {
+        strings: sub,
+        startDelay: 300,
+        typeSpeed: 100,
+        loop: true,
+        backSpeed: 50
+        });
+      })
+      .catch(function (err) {
+        console.error(err);
+      })
+  else if source == "3"
+    script(type="text/javascript" src="http://yijuzhan.com/api/word.php?m=js")
+    script.
+      var con = str[0];
+      var author = "出自 " + str[1];
+      var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+      var both = sub.unshift(con,author)
+      var typed = new Typed(".subtitle", {
+      strings: sub,
+      startDelay: 300,
+      typeSpeed: 100,
+      loop: true,
+      backSpeed: 50
+      });
+  else if source == '4'
+    script(type="text/javascript" src="https://sdk.jinrishici.com/v2/browser/jinrishici.js")
+    script.
+      jinrishici.load(function(result) {
+        var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+        var content = result.data.content;
+        var both = sub.unshift(content)
+        var typed = new Typed(".subtitle", {
+        strings: sub,
+        startDelay: 300,
+        typeSpeed: 100,
+        loop: true,
+        backSpeed: 50
+      });
+      })
+     
+  else
+    script.
+      var typed = new Typed(".subtitle", {
+      strings: '!{theme.subtitle.sub}'.split(","),
+      startDelay: 300,
+      typeSpeed: 100,
+      loop: true,
+      backSpeed: 50
+      });
+
+if !theme.index_top_img_height && !theme.index_site_info_top
+  script.
+    //首頁fullpage
+    function alignContent() {
+      for (var n = $(window).height(), e = document.querySelectorAll(".full_page"), i = 0; i < e.length; i++) 
+        e[i].style.height = n + "px";
+        $("#site-info").each(function () {
+          var x = $(this).height();
+          $(this).css("top", (n-x)/2)       
+        })
+    }
+    alignContent();
+    
+    $(window).bind("resize", function () {
+      alignContent()
+    })
+
+
+

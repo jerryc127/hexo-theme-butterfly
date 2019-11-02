@@ -72,13 +72,17 @@ if hexo-config("post_beautify.enable")
     width: 100%
     color: $light-grey
     text-align: left
-    padding-left: 8%
+    padding: 0 8%
     position: absolute
     bottom: 1.5rem
 
   #post-title
     text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
     font-size: 1.5rem
+    margin-bottom: 0.4rem
+
+    .posttitle
+      line-height: 1.5
 
   i.fa.fa-angle-right
     margin: 0 0.3rem 0 0.2rem
@@ -108,12 +112,8 @@ if hexo-config("post_beautify.enable")
       background: $light-blue
       color: $white
 
-.layout
-  margin: 0 auto
-  max-width: 1000px
 
 #post-content
-  margin-bottom: 1rem
 
   if hexo-config("post_beautify.enable")
     h1,
@@ -321,7 +321,7 @@ img
 
 .post-copyright
   position: relative
-  margin-bottom: 0.4rem
+  margin: 1rem 0 0.5rem 0
   padding: 0.5rem 0.8rem
   border: 1px solid $light-grey
   transition: box-shadow 0.3s ease-in-out
@@ -359,13 +359,7 @@ img
 
 
 @media screen and (max-width: $sm)
-  .layout
-    margin: 0 30px
-    width: auto
-
   #top-container
-    // background-attachment: local
-
     #post-title
       font-size: 1rem
 
@@ -374,7 +368,7 @@ img
 
 
 @media screen and (min-width: $md)
-  .layout
+  .layout_post
     width: $content-large-width
         
 .katex-wrap
@@ -394,10 +388,6 @@ img
   font-size: 1em
 
 
-@media screen and (max-width: 1024px)
-  .layout 
-    margin: 0 15px
-    width: auto
 
 .layout_post 
   padding: 50px
@@ -405,8 +395,8 @@ img
   border-radius: 8px
   transition: all 0.3s
   background: #fff
-  margin-top: 40px
-  margin-bottom: 40px
+  margin: 40px auto
+  max-width: 1000px
 
   &:hover 
     box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
@@ -444,15 +434,13 @@ img
       text-decoration: none
       color: $light-blue
     
-    h1
-      margin: 0.8rem 0
-    
+    h1,
     h2,
     h3,
     h4,
     h5,
     h6
-      margin: 1rem 0 0.5rem 0
+      margin: 1rem 0 0.8rem 0
     
     img
       margin: 0 auto 0.8rem 
@@ -460,17 +448,20 @@ img
     blockquote,
     p
       margin: 0 0 0.8rem 0
-      
 
-    table,.note
-      margin: 0.8rem 0
-    
-    figure
-      margin: 0.8rem 0
+    iframe,.note
+      margin: 0 0 0.8rem 0
 
-      table
-        margin: 0
-    
-    blockquote
-      p
-        margin: 0.5rem 0
+.layout_post,
+.layout_page
+  opacity: 1
+
+@media screen and (max-width: 1024px)
+  .layout_post
+    margin: 0 15px
+    width: auto
+
+@media screen and (max-width:768px)
+  .layout_post
+    padding: 1.8rem 1rem
+    margin: 30px 5px

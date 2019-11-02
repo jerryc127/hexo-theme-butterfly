@@ -73,8 +73,7 @@ donate: 打赏
 share: 分享
 bookmark:
   title: 添加书签
-  message_prev: 按
-  message_next: 键将本页加入书签
+
 
 rightside:
   readmode_title: 阅读模式
@@ -94,3 +93,12 @@ copy_copyright:
   link: 链接
   source: 来源
   info: 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+Snackbar:
+  bookmark:
+    message_prev: 按
+    message_next: 键将本页加入书签
+  chs_to_cht: 你已切换为繁体
+  cht_to_chs: 你已切换为简体
+  day_to_night: 你已切换为深色模式
+  night_to_day: 你已切换为浅色模式

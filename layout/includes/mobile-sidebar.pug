@@ -2,7 +2,7 @@
   #menu_mask
   #mobile-sidebar-menus
     .mobile_author_icon
-      img.lozad.avatar_img(src=url_for(theme.avatar) onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
+      img.lazyload.avatar_img(src=url_for(theme.avatar) onerror=`onerror=null;src='${theme.lodding_bg.flink}'`)
     .mobile_post_data
       if site.posts.length
         .mobile_data_item.is_center

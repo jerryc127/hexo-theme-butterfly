@@ -1,90 +1,78 @@
-galleryItemStyle(w, h)
-  .gallery
-    &-item
-      width: w
-      height: unit(h, "rem")
+.layout_page
+  display: flex 
+  margin: 0 auto
+  max-width: 1200px
+  align-items: flex-start
+  padding: 0 15px
 
-      &__title
-        transform: translate3d(0, unit(h, "rem"), 0)
+//index
+#recent-posts
+  width: 75%
 
-      &:hover
-        .gallery-item__title
-          transform: translate3d(0, unit(h - 1.5, "rem"), 0)
+  .recent-post-item 
+    padding: 0
+    box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06)
+    border-radius: 8px
+    transition: all 0.3s
+    background: #fff
+    margin-top: 20px
+    height: 280px
 
-.recent-post-item
+    &:hover 
+      -webkit-box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
+      box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
+
+      img.post_bg
+        transform:scale(1.1)
+   
+  .left_radius
+    border-top-left-radius: 8px
+    border-bottom-left-radius: 8px
+
+  .right_radius
+    border-top-right-radius: 8px
+    border-bottom-right-radius: 8px
+
+  .post_cover
+    width: 45%
+    height: 280px
+    overflow: hidden
+
+  .post_bg
+    border: 0
+    transition: all .6s
+    display: block
+    width: 100%
+    height: 100%
+    padding: 0
+    margin: 0
+    object-fit: cover
+
+    &:hover
+      transform:scale(1.1)
+  
+  .recent-post-info 
+    padding: 50px 40px
+    display: inline-block
+    width: 55%
+    overflow hidden
+
+
+  a.article-meta__categories
+    text-decoration: none
+    color: #858585
+
+    &:hover
+      color: #49b1f5 !important
+
   .content
+    display: -webkit-box
+    -webkit-line-clamp: 3
+    -webkit-box-orient: vertical
+    overflow: hidden
+    height: 90px
     margin-top: 0.5rem
-
-    p
-      word-break: break-word
-
-
-    ol,
-    ul
-      margin-top: 0.4rem
-      padding: 0 0 0 0.8rem
-      list-style: none
-      counter-reset: li
-
-      p
-        margin: 0
-
-      ol,
-      ul
-        padding-left: 0.5rem
-
-      li
-        position: relative
-        margin: 0.2rem 0
-        padding: 0.1rem 0.5rem 0.1rem 1.5rem
-
-        &:hover
-          &:before
-            transform: rotate(360deg)
-
-        &:before
-          position: absolute
-          top: 0
-          left: 0
-          background: $light-blue
-          color: $white
-          cursor: pointer
-          transition: all 0.3s ease-out
-
-    ol
-      li
-        &:before
-          margin-top: 0.2rem
-          width: w = 1.2rem
-          height: h = w
-          border-radius: 0.5 * w
-          content: counter(li)
-          counter-increment: li
-          text-align: center
-          font-size: 0.6rem
-          line-height: h
-
-    ul
-      li
-        &:hover
-          &:before
-            border-color: $ruby
-
-        &:before
-          $w = 0.3rem
-          top: 10px
-          margin-left: 0.45rem
-          width: w = $w
-          height: h = w
-          border: 0.5 * w solid $light-blue
-          border-radius: w
-          background: $white
-          content: ""
-          line-height: h
-
-  .article-type
-    margin-left: 0.3rem
-    color: $grey
+    word-break: break-word
 
   .article-meta
     color: $grey
@@ -121,7 +109,6 @@ galleryItemStyle(w, h)
     word-wrap: break-word
 
     &:hover
-      // border-bottom: 1px solid $light-blue
       color: $light-blue !important
 
 .tag-cloud
@@ -149,6 +136,30 @@ galleryItemStyle(w, h)
 #category,
 #archive
   padding: 3rem 3rem 3rem
+
+#page,
+.category-content,
+.flink
+  padding: 40px 44px 44px
+
+
+#page,
+.category-content,
+#archive,
+.tag-cloud,
+.flink,
+#tag,
+#category
+  box-shadow: 0 4px 8px 6px rgba(7,17,27,.06)
+  border-radius: 8px
+  transition: all .3s
+  background: #fff
+  margin-top: 20px
+  width: 75%
+
+  &:hover
+    box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
+
 
 .article-sort
   padding-left: 1rem
@@ -296,48 +307,50 @@ galleryItemStyle(w, h)
     &:after
       content: ")"
 
-.gallery
-  &-item
-    position: relative
-    display: inline-block
-    overflow: hidden
-    margin: 0.4rem
-    width: 6rem
-    height: 6rem
-    background-position: 50% 50%
-    background-size: cover
-    background-repeat: no-repeat
-    cursor: pointer
-    transition: all 0.2s ease-in-out
-
-    &__title
-      position: absolute
-      overflow: hidden
-      padding: 0 0.4rem
-      width: 100%
-      height: 1.5rem
-      background: rgba(0, 0, 0, 0.5)
-      color: $pale-blue
-      text-align: center
-      text-overflow: ellipsis
-      white-space: nowrap
-      line-height: 1.5rem
-      transition: 0.2s ease-in-out
-      transform: translate3d(0, 6rem, 0)
-
-    &:hover
-      .gallery-item__title
-        transform: translate3d(0, 4.5rem, 0)
-
 @media screen and (max-width: $sm)
-  .recent-post-item
-    .article-title
-      font-size: 1rem
+  .layout_page
+    padding: 0 5px !important
+   
+  #page,
+  .category-content,
+  #archive,
+  .tag-cloud,
+  .flink,
+  #tag,
+  #category
+    padding: 1.8rem 1.3rem
+    margin-top: 10px
+ 
+  .category-lists
+    padding: 0
+  
+  #recent-posts    
+    .recent-post-item
+      height: auto !important
 
-    .article-meta.tags
-      display: none
+      .post_cover 
+        width: 100% 
+        height: 230px 
+        border-radius: 8px 8px 0 0
 
-  galleryItemStyle(calc(50% - 22px), 6)
+      .recent-post-info 
+        padding: 30px 25px 18px!important
+        width: 100%
+              
+        .article-title
+          font-size: 1rem
+        
+        .article-meta.tags
+          display: none
 
-@media screen and (min-width: $md)
-  galleryItemStyle(8rem, 8)
+      &:first-child
+        margin-top: 10px
+
+@media screen and (min-width: 900px) 
+  if hexo-config("aside.position") == "left"
+    #recent-posts,#page,.category-content,#archive,.tag-cloud,.flink,#tag,#category
+      order: 2
+
+@media screen and (max-width: 900px) 
+  #page,.category-content,#archive,.tag-cloud,.flink,#tag,#category
+      width: 100% !important

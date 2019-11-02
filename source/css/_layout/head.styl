@@ -81,6 +81,7 @@
   border: none
   font-size: 18px
   transition: all .3s
+  opacity: 0
 
   .toggle-menu
     display: none
@@ -108,8 +109,7 @@
 
     &.open-sidebar
       .site-page
-        display: none
-        opacity: 0
+        visibility: hidden
 
     a,
     #site-name,
@@ -154,12 +154,13 @@
     .menus_item_child
       position: absolute
       background-color: alpha($white, 0.8)
-      padding: 8px 10px
       border-radius: 5px
       box-shadow: 0 5px 20px -4px rgba(0,0,0,.5)
       display: none
       opacity: 1
       animation: sub_menus .3s .1s ease both
+      padding: 0
+      margin-top: 10px
 
       &:before
         content: ""
@@ -174,10 +175,23 @@
       li
         list-style: none
         text-align: center
+        padding: 0px 10px
+        
+        &:first-child
+          padding: 6px 10px 0
 
+        &:last-child
+          padding: 0px 10px 6px 
+
+        &:hover
+          a,i 
+            color: $theme-color
+        
         a
           color: #3b3a3a
           text-shadow: none
+#search_button
+  padding: 0 0 0 0.7rem
 
 .site-page
   position: relative
@@ -186,6 +200,7 @@
   font-size: 0.7rem
   cursor: pointer
 
+#page-header .menus_item > .site-page
   &::after
     position: absolute
     bottom: 0
@@ -213,16 +228,28 @@
 @media screen and (max-width: $sm)
   #page-header
     padding: 10px 0.8rem
-
-    .menus
-      display: none
-
-    .toggle-menu
+  
+  #nav 
+    #site-social-icons
       display: block
 
-    .search 
-      span
-        display none
+    &.not_index_bg
+      height: 14rem
+
+    #page_site-info
+      top: 7rem
+  
+  #top-container
+    height: 14rem
+
+    #post-info
+      bottom: 1rem
+      padding: 0 5%
+  
+    .mobile_hidden
+      display: none
+
+
   
 @media screen and (max-width: $bg)
   #page-header

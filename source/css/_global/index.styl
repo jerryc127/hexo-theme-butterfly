@@ -19,6 +19,13 @@ body
     -webkit-user-select: none
     -ms-user-select: none
 
+#body-wrap
+  position relative
+  flex: 1 auto
+  display: flex
+  flex-direction: column
+  transition: all .3s
+
 *::-webkit-scrollbar
   width: 8px
   height: 8px
@@ -160,10 +167,10 @@ table
 .is_hidden
   overflow: hidden
 
-.pull-left
+.pull_left
   float: left
 
-.pull-right
+.pull_right
   float: right
 
 .fireworks
@@ -171,12 +178,9 @@ table
   z-index: -1
   pointer-events: none
 
-// 去掉加載黑框
-img[src=""],img:not([src])
-  opacity: 0
 
-#body-wrap
-  transition: all .3s
+.fireworks
+  z-index: 99999
 
 @media screen and (max-width: $bg)
   i#toggle-sidebar,
@@ -185,3 +189,184 @@ img[src=""],img:not([src])
 
   body
     padding-left: 0 !important
+
+
+// 懶加載
+.lazyload,
+.lazyloading 
+	opacity: 0
+
+.lazyloaded 
+	opacity: 1
+	transition: opacity 0.3s
+
+img[src=""],img:not([src])
+  opacity: 0
+
+.justified-gallery
+  img 
+    opacity 0
+  .fancybox 
+    width: auto
+    text-align: inherit    
+  .img-alt
+    display: none
+
+.medium-zoom-image--opened
+  margin: 0 !important
+  z-index: 99999 !important
+
+.medium-zoom-overlay
+  z-index: 99999 !important
+
+// hexo tag video
+.video-container
+  position: relative
+  padding-top: 56.25%
+  height: 0
+  overflow: hidden
+  margin-bottom: 0.8rem
+
+  iframe
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    margin-top: 0
+
+
+.layout_page,
+.layout_post,
+#footer
+  animation: main 1s
+
+#nav,
+#top-container
+  animation: header 1s
+
+#site-title
+  animation: titlescale 1s
+
+canvas,
+#web_bg
+  animation: to_show 4s
+
+.card-announcement-animation
+  animation: announ_animation .8s linear infinite
+  color: #FF0000
+
+.scroll-down-effects
+  animation: scroll-down-effect 1.5s infinite
+
+if hexo-config("avatar_effect") == true
+  .avatar_img
+    animation: avatar_turn_around 2s linear infinite
+
+.reward-main
+  animation: donate_effcet .3s .1s ease both
+
+#rightside-config-hide
+  animation: rightside_in_animate .3s
+
+@keyframes scroll-down-effect
+  0%
+    opacity: 0.4
+    top: 0
+  50%
+    opacity: 1
+    top: -16px
+  100%
+    opacity: 0.4
+    top: 0
+    
+@keyframes header 
+  0% 
+    opacity: 0
+    transform: translateY(-50px)
+  100% 
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes headerNoOpacity
+  0% 
+    transform: translateY(-50px)
+  100% 
+    transform: translateY(0)
+
+@keyframes main
+  0% 
+    opacity: 0
+    transform: translateY(50px)
+  100% 
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes titlescale
+  0%
+    opacity: 0
+    transform: scale(0.7)
+  100% 
+    opacity: 1
+    transform: scale(1)
+
+@keyframes search_close
+  0%
+    opacity: 1
+    transform: scale(1)
+  100% 
+    opacity: 0
+    transform: scale(0.7)
+
+@keyframes to_show
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+ 
+@keyframes avatar_turn_around
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
+
+@keyframes sub_menus
+  0%
+    opacity: 0
+    transform: translateY(10px)
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes donate_effcet
+  0%
+    opacity: 0
+    transform: translateY(-20px)
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes announ_animation
+  0%,to
+    transform: scale(1)
+  50%
+    transform: scale(1.2)
+
+@keyframes rightside_in_animate
+  0%    
+    transform: translateX(28px)
+  100%
+    transform: translateX(0)
+
+@keyframes rightside_out_animate
+  0%    
+    transform: translateX(0)
+  100%
+    transform: translateX(28px)
+
+@keyframes right_to_left
+  0%    
+    transform: translateX(100px)
+  100%
+    transform: translateX(0)
+  

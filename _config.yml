@@ -1,4 +1,3 @@
-
 # Main menu navigation
 # ---------------
 # format: xxx: 連結 || icon
@@ -16,7 +15,6 @@ menu:
     - Music || /music/ || fa fa-music
     - Movie || /movies/ || fa fa-film
 
-
 # Favicon
 # ---------------
 favicon: /img/favicon.ico
@@ -32,8 +30,6 @@ favicon: /img/favicon.ico
 #   favicon_32_32: /img/pwa/32.png
 #   favicon_16_16: /img/pwa/16.png
 #   mask_icon: /img/pwa/safari-pinned-tab.svg
-#   shortcut_icon: /img/favicon.ico
-
 
 # Highlight theme
 # ---------------
@@ -48,15 +44,16 @@ code_word_wrap: false
 # 是否禁止複製（如果禁止，highlight_copy的功能將無效)
 # copyright 複製的内容後面加上版權信息
 copy:
-  enable: false  # true 開啓 / false 禁止
+  enable: true # true 開啓 / false 禁止
   copyright: false
 
 # social settings
-# formal: 
+# formal:
 #   icon: link
 # ---------------
 social:
   fa fa-github: https://github.com/jerryc127
+  fa fa-envelope: mailto:xxxxxxxx@gmail.com
   fa fa-rss: /atom.xml
 
 ####    search    ####
@@ -86,47 +83,20 @@ local_search:
 # ---------------
 mathjax:
   enable: false
-  cdn: https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 # KaTeX
 # ---------------
 katex:
   enable: false
-  cdn:
-    css: https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css  
   hide_scrollbar: true
-
 
 ####   Analysis    ####
 # ---------------
-# baidu_analytics: 
+# baidu_analytics:
 
 #Google Analytics
 google_analytics:
 
-
-# stylesheets loaded in the <head>
-# ---------------
-stylesheets:
-  - /css/index.css
-
-# scripts loaded in the end of the body
-# ---------------
-scripts:
-  - /js/utils.js
-  - /js/main.js
-
-# cdn for third-party library
-# ---------------
-cdn:
-  css:
-    fontawesome: https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
-    # fontawesomeV5: https://use.fontawesome.com/releases/v5.8.1/css/all.css
-    fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css
-  js:
-    jquery: https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js
-    fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js
-    js-cookies: https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js
 
 # Post info settings
 # ---------------
@@ -134,12 +104,15 @@ cdn:
 avatar: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/avatar.png
 
 # the banner image of index
-# if the banner of another page not setting,it will show the top_img
 top_img: https://i.loli.net/2019/05/22/5ce53eb6dc82757840.jpg
+# 以下鏈接是動態壁紙，每次刷新會更換
+# https://source.unsplash.com/collection/collectionid/1600x900
+# https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture
+# https://api.dujin.org/bing/1920.php
+# https://api.dujin.org/bing/1366.php
 
-#the banner image of post
-# if the post not set the post cover and post top image, it will show it
-post_img: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/Photo/post.png
+# if the banner of page not setting,it will show the top_img
+default_top_img: https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/top_img_index.jpg
 
 # the default cover of the post
 default_cover: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png
@@ -152,6 +125,9 @@ tag_img: https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/tag-bg.png
 
 # the banner image of category page
 category_img: https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/category-bg
+
+# 如果你有使用hexo-douban去生成movie界面，可配置這個
+movies_img: https://cdn.jsdelivr.net/gh/jerryc127/CDN/Photo/movie.jpg
 
 # if the photo link cannot connect,it will show that
 lodding_bg:
@@ -185,7 +161,6 @@ auto_excerpt:
   enable: true
   length: 150
 
-
 ####    Share System    ####
 # -----------------------------------------
 addThis:
@@ -212,23 +187,16 @@ addtoany:
 # ------------------------------------
 disqus:
   enable: false
-  shortname: 
-  
-# laibili:
-  # enable: false
-  # uid:
+  shortname:
 
-# gitment
-  # enable: false
-  # owner: 
-  # repo: 
-  # client_id: 
-  # client_secret: 
+# laibili:
+# enable: false
+# uid:
 
 # gitalk:
 #   enable: false
-#   client_id: 
-#   client_secret: 
+#   client_id:
+#   client_secret:
 #   repo:
 #   owner:
 #   admin:
@@ -240,8 +208,8 @@ disqus:
 # valine comment system. https://valine.js.org
 valine:
   enable: false # if you want use valine,please set this value is true
-  appId:   # leancloud application app id
-  appKey:   # leancloud application app key
+  appId: # leancloud application app id
+  appKey: # leancloud application app key
   notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
   verify: false # valine verify code (true/false)
   pageSize: 10 # comment list page size
@@ -249,7 +217,7 @@ valine:
   lang: en # i18n: zh-cn/en
   placeholder: Please leave your footprints # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header info
-  bg: /img/comment_bg.png  # valine background
+  bg: /img/comment_bg.png # valine background
 
 #####     Footer Settings    ####
 # ------------------------------------
@@ -262,10 +230,9 @@ footer_copyright:
 
 ICP:
   enable: false
-  url: 
-  text: 
+  url:
+  text:
   icon: /img/icp.png
-
 
 ####    站長驗證    ####
 # Google Webmaster tools verification setting
@@ -284,8 +251,7 @@ baidu_site_verification:
 # see http://zhanzhang.so.com/
 qihu_site_verification:
 
-
-# 友情鏈接界面設置 
+# 友情鏈接界面設置
 Flink:
   headline: 友情鏈接
   info_headline: 我的Blog資料
@@ -332,16 +298,14 @@ related_post:
 # 主頁設置
 # 默認top_img全屏，site_info在中間
 # 使用默認, 都無需填寫（建議默認）
-index_site_info_top:   #主頁標題距離頂部距離  例如 300px/300em/300rem/10%
-index_top_img_height:  #主頁top_img高度 例如 300px/300em/300rem  不能使用百分比
-
+index_site_info_top: #主頁標題距離頂部距離  例如 300px/300em/300rem/10%
+index_top_img_height: #主頁top_img高度 例如 300px/300em/300rem  不能使用百分比
 
 # category和tag頁的UI設置
 # index 值代表 UI將與首頁的UI一樣
 # 默認跟archives頁面UI一樣
-category_ui:  # 留空或index
-tag_ui:  # 留空或index
-
+category_ui: # 留空或index
+tag_ui: # 留空或index
 
 # 設置網站背景
 # 可設置圖片 或者 顔色
@@ -353,8 +317,9 @@ background:
 # footer是否顯示圖片背景(與top_img一致)
 footer_bg: false
 
-
-# canvas_ribbon  靜止彩帶背景
+# 背景特效
+# 避免卡頓，建議只開啓一個
+# canvas_ribbon 禁止彩帶背景
 # See: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
   enable: false
@@ -362,10 +327,12 @@ canvas_ribbon:
   alpha: 0.6
   zIndex: -1
   click_to_change: false
+  mobile: false # false 手機端不顯示 true 手機端顯示
 
 # 動態彩帶
 canvas_ribbon_piao:
   enable: false
+  mobile: false # false 手機端不顯示 true 手機端顯示
 
 # canvas_nest
 # https://github.com/hustcc/canvas-nest.js
@@ -375,23 +342,47 @@ canvas_nest:
   opacity: 0.7 # the opacity of line (0~1), default: 0.5.
   zIndex: -1 # z-index property of the background, default: -1.
   count: 99 # the number of lines, default: 99.
-  script: https://cdn.jsdelivr.net/gh/jerryc127/CDN/js/canvas-nest.js # or /js/third-party/canvas-nest.js
+  mobile: false # false 手機端不顯示 true 手機端顯示
 
 # 打字效果
 activate_power_mode:
   enable: false
 
 # 鼠標點擊效果
+# 避免卡頓，建議只開啓一個
+# 點擊烟火特效
 fireworks:
   enable: false
+
+# 點擊出現愛心
+click_heart:
+  enable: false
+
+# 點擊出現文字，文字可自行修改
+ClickShowText:
+  enable: false
+  text: 
+    - 富强
+    - 民主
+    - 文明
+    - 和谐
+    - 自由
+    - 平等
+    - 公正
+    - 法治
+    - 爱国
+    - 敬业
+    - 诚信
+    - 友善
+  fontSize: 15px
 
 # 頭像會一直轉圈
 avatar_effect: false
 
 # 網站顯示模式
-# day 默認模式
-# night 黑暗模式（不建議）
-display_mode: day
+# light 默認模式
+# dark 黑暗模式（不建議）
+display_mode: light
 
 # 美化post頁顯示
 post_beautify:
@@ -407,7 +398,7 @@ font:
 
 # 網站名字字體
 # 左上角網站名字 主頁居中網站名字
-blog_title_font: 
+blog_title_font:
   font_link: https://fonts.googleapis.com/css?family=Titillium+Web #字體鏈接
   font-family: Titillium Web, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
 
@@ -419,13 +410,20 @@ hr:
 
 # 主頁subtitle
 # 打字效果
-# (如果有英文逗號' , '，請使用轉義字符 &#44;)
 subtitle: 
   enable: true
+  # source調用第三方服務
+  # source: false 關閉調用 
+  # source: 1  調用金山詞霸的每日一句（簡體）
+  # source: 2  調用一言网的一句話（簡體） #https://hitokoto.cn/
+  # source: 3  調用一句网（簡體） http://yijuzhan.com/
+  # source: 4  調用今日詩詞（簡體） https://www.jinrishici.com/
+  # subtitle 會先顯示 source , 再顯示 sub 的内容
+  source: false
+  # (如果有英文逗號' , '，請使用轉義字符 &#44;)
   sub:
     - 今日事&#44;今日畢
     - Never put off till tomorrow what you can do today
-
 
 
 ####    側邊欄    ####
@@ -459,7 +457,6 @@ runtimeshow:
   enable: true
   start_date: 6/7/2018 00:00:00
 
-
 ####   右下角按鈕  ####
 #----------------------------------------------
 # 簡繁轉換
@@ -478,17 +475,38 @@ translate:
   #當文字是繁體時，按鈕顯示的文字
   msgToSimplifiedChinese: "简"
 
-# 夜間模式
-nightshift:
-  enable: true
-
 #閲讀模式
 readmode:
   enable: true
 
+# 夜間模式
+darkmode:
+  enable: true
+
+# 自動切換 dark mode和 light mode
+# autoChangeMode: 1  跟隨系統而變化，不支持的瀏覽器/系統將按照時間晚上6點到早上6點之間切換為 dark mode
+# autoChangeMode: 2  只按照時間晚上6點到早上6點之間切換為 dark mode
+# autoChangeMode: false 取消自動切換
+autoChangeMode: false
 
 ####    other     ####
 #------------------------------------------------
+
+# 圖片大圖查看模式
+# 默認為 fancybox http://fancyapps.com/fancybox/3/
+# 可以選擇改爲 medium_zoom https://github.com/francoischalifour/medium-zoom
+medium_zoom:
+  enable: false
+
+# Snackbar 彈窗
+# https://github.com/polonel/SnackBar
+# position 彈窗位置
+# 可選 top-left / top-center / top-right / bottom-left / bottom-center / bottom-right
+snackbar:
+  enable: false
+  position: bottom-left
+  bg_light: '#49b1f5' #light mode時彈窗背景
+  bg_dark: '#2d3035' #dark mode時彈窗背景
 
 #百度推送
 baidu_push:
@@ -507,7 +525,7 @@ note:
   #  - modern    bs-callout new (v2-v3) alert style.
   #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
   #  - disabled  disable all CSS styles import of note tag.
-  style: simple
+  style: flat
   icons: true
   border_radius: 3
   # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
@@ -515,9 +533,9 @@ note:
   light_bg_offset: 0
 
 # 圖片懶加載
+# https://github.com/aFarkas/lazysizes
 lazyload:
   enable: true
-  script: https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js
 
 # 避免重複網址分散seo
 canonical: true
@@ -532,3 +550,76 @@ twitter_meta: true
 # facebook QQ 等 分享自動帶上樣式
 # https://i.loli.net/2019/09/08/2wbFJEKloisRvhj.png
 Open_Graph_meta: true
+
+
+# CDN
+# 網站必須
+# 可根據需要自行添加js/css
+CDN_USE:
+  css:
+    - /css/index.css
+    - https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
+    # - https://use.fontawesome.com/releases/v5.8.1/css/all.css #fontawesomeV5_css
+
+  js:
+    - https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js  #/js/third-party/jquery.min.js
+    - /js/utils.js
+    - /js/main.js
+
+
+# CDN
+# 非必要不要修改
+CDN:
+  #comments
+  blueimp-md5: https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js
+  gitalk: https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js
+  gitalk_css: https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css
+  valine: https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js
+
+  # share
+  addtoany: https://static.addtoany.com/menu/page.js
+  sharejs: https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js
+  sharejs_css: https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css
+
+  #search
+  algolia_search: https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js
+  algolia_search_css: https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css
+  algolia_js: /js/search/algolia.js
+  local_search: /js/search/local-search.js
+
+  mathjax: https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  katex: https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css
+  katex_copytex: https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js
+  katex_copytex_css: https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css
+
+  #不蒜子計數器
+  busuanzi: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
+
+  # 背景特效
+  canvas_ribbon: /js/third-party/canvas-ribbon.js # https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@latest/js/canvas-ribbon.js
+  canvas_ribbon_piao: /js/third-party/piao.js # https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@latest/js/piao.js
+  canvas_nest: /js/third-party/canvas-nest.js  # https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@latest/js/canvas-nest.js 
+
+  lazyload: https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js
+  instantpage: https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js
+
+  typed: https://cdn.jsdelivr.net/npm/typed.js
+  js_cookies: https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js
+
+  fancybox_css: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css
+  fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js  #/js/third-party/jquery.fancybox.min.js
+  medium_zoom: https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js
+
+  snackbar_css: https://cdn.jsdelivr.net/npm/node-snackbar@0.1.15/dist/snackbar.min.css
+  snackbar: https://cdn.jsdelivr.net/npm/node-snackbar@0.1.15/dist/snackbar.min.js
+
+  #鼠标点击特效
+  anime: https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js  #/js/third-party/anime.min.js
+  activate_power_mode: /js/third-party/activate-power-mode.js # https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@latest/js/activate-power-mode.js
+  fireworks: /js/third-party/fireworks.js # https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@latest/js/fireworks.js
+  click_heart: /js/third-party/click_heart.js # https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@latest/js/click_heart.js
+  ClickShowText: /js/third-party/ClickShowText.js # https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@latest/js/ClickShowText.js
+
+  translate: /js/tw_cn.js
+  runtimeshow: js/runtimeshow.js
+

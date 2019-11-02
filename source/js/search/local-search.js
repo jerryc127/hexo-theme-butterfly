@@ -5,8 +5,7 @@ $(function () {
     $('body').css('overflow', 'hidden')
     $('.search-dialog').animate({}, function () {
       $('.search-dialog').css({
-        'display': 'block',
-        'animation': 'titlescale 0.5s'
+        'display': 'block'
       }),300
     })
           $('#local-search-input input').focus()
@@ -27,12 +26,22 @@ $(function () {
   })
 
   var closeSearch = function () {
-    $('body').css('overflow', 'auto')
-    $('.search-dialog').animate({}, function () {
-      $('.search-dialog').css({
-        'display': 'none'
-      })
+    $('body').css('width', '')
+    $('body').css('overflow', '')
+    $('.search-dialog').css({
+      'animation': 'search_close .5s'
     })
+
+    $('.search-dialog').animate({}, function () {
+
+      setTimeout(function () {
+        $('.search-dialog').css({
+          'animation': '',
+          'display': 'none'
+        })
+      },500)
+    })
+
     $('.search-mask').fadeOut();
   }
   $('.search-mask, .search-close-button').on('click', closeSearch)

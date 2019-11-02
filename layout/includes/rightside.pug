@@ -5,14 +5,14 @@ section#rightside.rightside
     i#font_plus.fa.fa-plus(title=_p('rightside.font_plus_title'))
     i#font_minus.fa.fa-minus(title=_p('rightside.font_minus_title'))
     if theme.translate && theme.translate.enable
-      a#translateLink.translate_chn_to_cht(href="javascript:translatePage();" title=_p('rightside.translate_title'))= theme.translate.default
-    if theme.nightshift && theme.nightshift.enable
-      - var display_mode = theme.display_mode == 'night'? 'fa fa-sun-o' : 'fa fa-moon-o'
-      i#nightshift.nightshift(class=display_mode title=_p('rightside.night_mode_title'))
+      a#translateLink.translate_chn_to_cht(href="javascript:translatePage();" title=_p('rightside.translate_title') target="_self")= theme.translate.default
+    if theme.darkmode && theme.darkmode.enable
+      - var display_mode = theme.display_mode == 'dark' ? 'fa fa-sun-o' : 'fa fa-moon-o'
+      i#darkmode.darkmode(class=display_mode title=_p('rightside.night_mode_title'))
   #rightside-config-show
     #rightside_config(title=_p("rightside.setting"))
       i.fa.fa-cog(aria-hidden="true")
-    if is_post() && page.comments !== false
+    if is_post() && page.comments !== false && (d || l || gt || v)
       a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
         i.scroll_to_comment.fa.fa-comments   
     if is_post() && page.toc != false && theme.toc.enable

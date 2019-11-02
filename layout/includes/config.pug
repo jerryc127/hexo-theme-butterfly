@@ -49,9 +49,34 @@
     })
   }
 
-  var copy_copyright_js = theme.copy.enable && theme.copy.copyright
+  var copy_copyright_js = theme.copy.enable && theme.copy.copyright;
 
+  var ClickShowText = 'undefined';
+  if (theme.ClickShowText && theme.ClickShowText.enable) {
+    ClickShowText = JSON.stringify({
+    text: theme.ClickShowText.text.join(","),
+      fontSize: theme.ClickShowText.fontSize
+    })
+  }
 
+  
+  var Snackbar = 'undefined';
+  if (theme.snackbar && theme.snackbar.enable) {
+  Snackbar = JSON.stringify({      
+    bookmark: {
+      title: _p("Snackbar.bookmark.title"),
+      message_prev: _p("Snackbar.bookmark.message_prev"),
+      message_next: _p("Snackbar.bookmark.message_next")
+    },
+    chs_to_cht: _p("Snackbar.chs_to_cht"),
+    cht_to_chs: _p("Snackbar.cht_to_chs"),
+    day_to_night: _p("Snackbar.day_to_night"),
+    night_to_day: _p("Snackbar.night_to_day"),
+    bgLight: theme.snackbar.bg_light,
+    bgDark: theme.snackbar.bg_dark,
+    position: theme.snackbar.position,
+    })
+  }
 
 script.
   var GLOBAL_CONFIG = { 
@@ -68,13 +93,16 @@ script.
       noSupport: '!{_p("copy.noSupport")}'
     },
     bookmark: {
-      title: '!{_p("bookmark.title")}',
-      message_prev: '!{_p("bookmark.message_prev")}',
-      message_next: '!{_p("bookmark.message_next")}'
+      title: '!{_p("Snackbar.bookmark.title")}',
+      message_prev: '!{_p("Snackbar.bookmark.message_prev")}',
+      message_next: '!{_p("Snackbar.bookmark.message_next")}'
     },
     runtime_unit: '!{_p("runtime_unit")}',
     copyright: !{copyright},
-    copy_copyright_js: !{copy_copyright_js}
+    copy_copyright_js: !{copy_copyright_js},
+    ClickShowText: !{ClickShowText},
+    medium_zoom: '!{theme.medium_zoom.enable}',
+    Snackbar: !{Snackbar}
     
   }
 

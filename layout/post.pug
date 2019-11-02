@@ -1,12 +1,12 @@
 extends includes/layout.pug
 
 block top_img
-  - var top_img =  page.top_img || page.cover || theme.post_meta.top_img || theme.post_img || theme.top_img || config.top_img
+  - var top_img =  page.top_img || page.cover || theme.post_meta.top_img || theme.default_top_img
   - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
   div#top-container(style=bg_img)
     #post-info
       #post-title
-          .posttitle=page.title || _p('no_title')
+          .posttitle= page.title || _p('no_title')
       #post-meta
         if (theme.post_meta.date_type)
           if (theme.post_meta.date_type === 'both')
@@ -31,13 +31,16 @@ block top_img
                 i.fa.fa-angle-right(aria-hidden="true")
         .post-meta-wordcount
           if (theme.wordcount && theme.wordcount.enable)
+            i.fa.fa-file-word-o.post-meta__icon(aria-hidden="true")
             span= _p('post.wordcount') + ': '
             span.word-count= wordcount(page.content)
             span.post-meta__separator |
+            i.fa.fa-clock-o.post-meta__icon(aria-hidden="true")
             span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
           if (theme.wordcount && theme.wordcount.enable && theme.busuanzi.page_pv)
             span.post-meta__separator |
-          if theme.busuanzi.page_pv           
+          if theme.busuanzi.page_pv
+            i.fa.fa-eye.post-meta__icon(aria-hidden="true")        
             span= _p('post.page_pv') + ': '
             span#busuanzi_value_page_pv
 

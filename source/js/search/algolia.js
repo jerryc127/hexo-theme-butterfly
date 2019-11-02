@@ -5,8 +5,7 @@ $(function () {
 
     $('.search-dialog').animate({}, function () {
       $('.search-dialog').css({
-        'display': 'block',
-        'animation': 'titlescale 0.5s'
+        'display': 'block'
       }),300
     })
 
@@ -22,12 +21,20 @@ $(function () {
   })
 
   var closeSearch = function () {
-    $('body').css('overflow', 'auto')
+    $('body').css('width', '')
+    $('body').css('overflow', '')
+    $('.search-dialog').css({
+      'animation': 'search_close .5s'
+    })
 
     $('.search-dialog').animate({}, function () {
-      $('.search-dialog').css({
-        'display': 'none'
-      })
+
+      setTimeout(function () {
+        $('.search-dialog').css({
+          'animation': '',
+          'display': 'none'
+        })
+      },500)
     })
 
     $('.search-mask').fadeOut();
@@ -102,7 +109,7 @@ $(function () {
           return (
             '<hr>' +
             stats +
-            '<span class="algolia-logo pull-right">' +
+            '<span class="algolia-logo pull_right">' +
             '  <img src="' + GLOBAL_CONFIG.root + 'img/algolia.svg" alt="Algolia" />' +
             '</span>'
           )
