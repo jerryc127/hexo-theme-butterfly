@@ -7,14 +7,13 @@ $(function () {
    */
   const ph_width = $("#page-header").width()
   const search_width = $('#search_button').outerWidth()
+  const blogName_width = $('#blog_name').width()
   var mw = 0;
   for (var i = 0; i < $('#page-header .menus_item').length; i++) {
     mw = mw + $('#page-header .menus_item').eq(i).outerWidth()
   }
 
-  if ($('#page-header').height() > 37 || window.innerWidth < 7) {
-    header_adjust()
-  }
+  $('#page-header').height() > 45 ? header_adjust() : ''
 
   function header_adjust() {
     $("#page-header .toggle-menu").addClass("is_visible")
@@ -34,11 +33,11 @@ $(function () {
   function is_adjust(n) {
     var t;
     if (n == '1') {
-      t = $('#blog_name').width() + search_width + mw > $("#page-header").width() - 300 ? true : false
+      t = blogName_width  + search_width + mw > $("#page-header").width() - 300 ? true : false
     } else if (n == '2') {
-      t = $('#blog_name').width() + search_width + mw > $("#page-header").width() ? true : false
+      t = blogName_width  + search_width + mw > $("#page-header").width() ? true : false
     } else if (n == "3") {
-      t = $('#blog_name').width() + search_width + mw > $("#page-header").width() ? true : false
+      t = blogName_width  + search_width + mw > $("#page-header").width() ? true : false
     }
     if (t) {
       header_adjust()
