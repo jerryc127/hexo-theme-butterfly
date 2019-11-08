@@ -428,6 +428,9 @@ subtitle:
 
 ####    側邊欄    ####
 #-------------------------------------
+# 手機頁面（ 顯示寬度 < 768px ）是否顯示aside内容
+aside_mobile: true
+
 # 側邊欄顯示設置
 aside:
   position: right # left or right

@@ -273,3 +273,9 @@
           margin-left: 15px
         else 
           margin-right: 15px
+
+if hexo-config('aside_mobile') == false
+  @media screen and (max-width: $sm)
+    #aside_content
+        display: none
+

@@ -41,16 +41,14 @@ if hexo-config("post_beautify.enable")
   height: 19rem
 
   &:before
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    content: '';
-    width: 100%;
-    height: 100%;
-    opacity: 0.5;
-    background-color: #394245;
-    background-image: linear-gradient(234deg, #394245 0%, #000 100%);
+    position: absolute
+    top: 0
+    left: 0
+    display: block
+    content: ''
+    width: 100%
+    height: 100%
+    background-color: alpha($dark-black,0.5)
 
   a
     color: $light-grey
@@ -464,4 +462,4 @@ img
 @media screen and (max-width:768px)
   .layout_post
     padding: 1.8rem 1rem
-    margin: 30px 5px
+    margin: 0px 5px

@@ -70,7 +70,8 @@ html(lang=config.language data-theme=theme.display_mode)
               block content
       
       - var footer_bg = theme.footer_bg == false ? '' : bg_img
-      footer#footer(style=footer_bg)
+      - var is_bg = theme.footer_bg == false ? 'color' : 'photo'
+      footer#footer(style=footer_bg data-type=is_bg)
         include ./footer.pug    
     include ./rightside.pug
     each item in theme.CDN_USE.js

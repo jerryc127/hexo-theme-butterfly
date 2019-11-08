@@ -181,13 +181,11 @@
   #category,
   #page,
   .flink,
-  .layout_post,
-  #footer-wrap
-    background:#2d3035
+  .layout_post
+    background: #2d3035
 
   #nav,
-  #top-container,
-  #footer
+  #top-container
     &::before
       content: ""
       position: absolute
@@ -195,7 +193,7 @@
       bottom: 0
       left: 0
       right: 0
-      background-color: rgba(0,0,0,0.7)
+      background-color: alpha($dark-black,0.7)
 
   #nav span,
   #nav i,
@@ -234,23 +232,19 @@
       border-top: 13px solid lighten(#2d3035,10) !important
     
 
-  #web_bg[data-type=color]
+  #web_bg[data-type=color],
+  #footer[data-type=color]
     background: #2d3032
 
-  #web_bg[data-type=photo]:before
-    content: ""
-    position: absolute
-    top: 0
-    bottom: 0
-    left: 0
-    right: 0
-    background-color: rgba(0,0,0,0.8)
+  #web_bg[data-type=photo]:before,
+  #footer[data-type=photo]:before
+    background-color: alpha($dark-black,0.7)
 
-  #hbe-security
-    label
+  #hexo-blog-encrypt
+    label,input
       color: #99a9bf !important
     input
-      background-color: #616a6b
+      background-color: #2d3035
 
 
   #mobile-sidebar
@@ -283,6 +277,15 @@
   
   .bookmark--animated:before
     background: lighten(#2d3035,20) !important
+  
+  if hexo-config('gitalk') && hexo-config('gitalk.enable')
+    #gitalk-container
+      .gt-header-textarea
+        background-color: #2d3035 !important
+        color: #99a9bf
+        border: 1px solid #99a9bf
+      .gt-comment-content
+        filter: brightness(0.7)
 
     
 
