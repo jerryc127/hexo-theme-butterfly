@@ -33,7 +33,7 @@ favicon: /img/favicon.ico
 
 # Highlight theme
 # ---------------
-highlight_theme: light
+highlight_theme: light # default, light, darker, pale night, ocean
 highlight_copy: false #代碼複製按鈕
 highlight_lang: true #代碼語言顯示
 highlight_shrink: false #代碼框不展開，需點擊 '>' 打開
