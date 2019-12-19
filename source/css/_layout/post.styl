@@ -1,119 +1,81 @@
-if hexo-config("post_beautify.enable")
+if hexo-config('post_beautify.enable')
   headStyle(fontsize)
-    padding-left: unit(fontsize + 0.3, "rem")
-  
-    code 
-      font-size: unit(fontsize, "rem")
+    padding-left: unit(fontsize + .3, 'rem')
+
+    code
+      font-size: unit(fontsize, 'rem')
 
     &:before
-      top: calc(50% - unit(fontsize / 2 - 0.05, "rem"))
-      font-size: unit(fontsize, "rem")
+      top: calc(50% - unit(fontsize / 2 - .05, 'rem'))
+      font-size: unit(fontsize, 'rem')
 
     &:hover
-      padding-left: unit(fontsize + 0.2, "rem")
-
-
-#post-title
-  font-size: 1.4rem
-
-#post
-  overflow: hidden
-
-  &-meta
-    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
-
-  #post-meta
-    color: $grey
-
-    a
-      text-decoration: none
-
-    i.fa.fa-comment-o
-      margin-right: 0.2rem
+      padding-left: unit(fontsize + .2, 'rem')
 
 #top-container
   position: relative
   margin-bottom: 1rem
+  height: 19rem
   background-color: $light-blue
   background-attachment: local
   background-position: center
   background-size: cover
-  height: 19rem
 
   &:before
     position: absolute
     top: 0
     left: 0
     display: block
-    content: ''
     width: 100%
     height: 100%
-    background-color: alpha($dark-black,0.5)
+    background-color: alpha($dark-black, .5)
+    content: ''
 
   a
     color: $light-grey
     text-decoration: none
-    transition: all 0.3s ease-out
+    transition: all .3s ease-out
 
     &:hover
-      color: $white
+      text-decoration: underline
 
-  #top-img
-    padding: 0
-    border: none
-
-  #site-name
-    font-weight: bold
-    cursor: pointer
-
-  #post-info
+  & > #post-info
+    position: absolute
+    bottom: 1.5rem
+    padding: 0 8%
     width: 100%
     color: $light-grey
     text-align: left
-    padding: 0 8%
-    position: absolute
-    bottom: 1.5rem
 
-  #post-title
-    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
-    font-size: 1.5rem
-    margin-bottom: 0.4rem
+    #post-title
+      margin-bottom: .4rem
+      font-size: 1.5rem
 
-    .posttitle
-      line-height: 1.5
+      .posttitle
+        display: -webkit-box
+        overflow: hidden
+        line-height: 1.5
+        -webkit-line-clamp: 3
+        -webkit-box-orient: vertical
 
-  i.fa.fa-angle-right
-    margin: 0 0.3rem 0 0.2rem
+    #post-meta
+      .word-count,
+      #busuanzi_value_page_pv,
+      .comment-count
+        padding-left: .2rem
 
-.post-meta
-  &__separator
-    margin: 0 0.3rem
+      .post-meta
+        &__separator
+          margin: 0 .3rem
 
-  &__icon
-    margin-right: 0.2rem
+        &__icon
+          margin-right: .2rem
 
-  &__tags
-    display: inline-block
-    width: fit-content
-    margin: 0.4rem 0.4rem 0.4rem 0
-    padding: 0rem 0.6rem
-    border: 1px solid $light-blue
-    border-radius: 0.6rem
-    background: $white
-    color: $light-blue
-    text-decoration: none
-    font-size: 12px
-    cursor: pointer
-    transition: all 0.2s ease-in-out
-
-    &:hover
-      background: $light-blue
-      color: $white
-
+        &-pv-cv
+          display: inline-block
 
 #post-content
-
-  if hexo-config("post_beautify.enable")
+  if hexo-config('post_beautify.enable')
     h1,
     h2,
     h3,
@@ -121,17 +83,17 @@ if hexo-config("post_beautify.enable")
     h5,
     h6
       cursor: pointer
-      transition: all 0.2s ease-out
+      transition: all .2s ease-out
 
       &:before
         position: absolute
-        top: calc(50% - 0.35rem)
+        top: calc(50% - .35rem)
         left: 0
         color: $title-prefix-icon-color
         content: $title-prefix-icon
         font: normal normal normal 14px / 1 FontAwesome
-        font-size: 0.8rem
-        transition: all 0.2s ease-out
+        font-size: .8rem
+        transition: all .2s ease-out
 
       &:hover
         padding-left: 1.1rem
@@ -143,38 +105,38 @@ if hexo-config("post_beautify.enable")
       headStyle(1)
 
     h2
-      headStyle(0.9)
+      headStyle(.9)
 
     h3
-      headStyle(0.8)
+      headStyle(.8)
 
     h4
-      headStyle(0.7)
+      headStyle(.7)
 
     h5
-      headStyle(0.6)
+      headStyle(.6)
 
     h6
-      headStyle(0.6)
+      headStyle(.6)
 
     ol,
     ul
-      margin-top: 0.4rem
-      padding: 0 0 0 0.8rem
+      margin-top: .4rem
+      padding: 0 0 0 .8rem
       list-style: none
       counter-reset: li
 
       p
-        margin: 0
+        margin: 0 0 .5rem
 
       ol,
       ul
-        padding-left: 0.5rem
+        padding-left: .5rem
 
       li
         position: relative
-        margin: 0.2rem 0
-        padding: 0.1rem 0.5rem 0.1rem 1.5rem
+        margin: .2rem 0
+        padding: .1rem .5rem .1rem 1.5rem
 
         &:hover
           &:before
@@ -187,19 +149,19 @@ if hexo-config("post_beautify.enable")
           background: $light-blue
           color: $white
           cursor: pointer
-          transition: all 0.3s ease-out
+          transition: all .3s ease-out
 
     ol
       > li
         &:before
-          margin-top: 0.2rem
+          margin-top: .2rem
           width: w = 1.2rem
           height: h = w
-          border-radius: 0.5 * w
+          border-radius: .5 * w
           content: counter(li)
           counter-increment: li
           text-align: center
-          font-size: 0.6rem
+          font-size: .6rem
           line-height: h
 
     ul
@@ -209,38 +171,37 @@ if hexo-config("post_beautify.enable")
             border-color: $ruby
 
         &:before
-          $w = 0.3rem
+          $w = .3rem
           top: 10px
-          margin-left: 0.45rem
+          margin-left: .45rem
           width: w = $w
           height: h = w
-          border: 0.5 * w solid $light-blue
+          border: .5 * w solid $light-blue
           border-radius: w
           background: $white
-          content: ""
+          content: ''
           line-height: h
-
   else
     ol,
     ul
-      margin-top: 0.4rem
+      margin-top: .4rem
       counter-reset: li
 
       p
-        margin: 0
+        margin: 0 0 .5rem
 
       ol,
       ul
-        padding-left: 0.5rem
+        padding-left: .5rem
 
       li
         position: relative
-        margin: 0.3rem 0
-        padding-left: 0.3rem
+        margin: .3rem 0
+        padding-left: .3rem
 
 a
   color: $a-link-color
-  transition: all 0.2s
+  transition: all .2s
 
   &:hover
     color: $light-blue
@@ -260,206 +221,209 @@ a.fancybox
   text-align: center
   text-decoration: none
 
+p
+  margin: 0 0 .8rem
+
 img
-  padding: $img-border-padding
   max-width: 100%
-  transition: all 0.2s
+  transition: all .2s
 
-  &:hover
-    box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5)
-
-.code-area-wrap
-  position: relative
-
-.fa-clipboard
-  position: absolute
-  top: 0.4rem
-  right: 10px
-  z-index: 1
-  color: $highlight-aqua
-  cursor: pointer
-  transition: color 0.2s
-
-  &:hover
-    color: darken($highlight-aqua, 20%)
-
-.code_lang
-  position: absolute
-  font-weight: bold;
-  font-size: 0.8rem;
-  line-height: 1.4rem;
-  color: $highlight-foreground
-  left: 30px
-  z-index: 1
-  cursor: pointer
-
-.code-expand
-  position: absolute
-  top: 0
-  color: $highlight-foreground
-  padding: 7px 10px
-  z-index: 1
-  cursor: pointer
-  transition: all .3s
-  transform: rotate(0deg)
-
-.code-closed
-  transform: rotate(-90deg) !important
-  transition: all .3s
-
-
-.copy-notice
-  position: absolute
-  top: 0
-  right: 0
-  z-index: 1
-  background: darken($highlight-background, 5)
-  color: $highlight-aqua
-  opacity: 0
-
-.post-copyright
-  position: relative
-  margin: 1rem 0 0.5rem 0
-  padding: 0.5rem 0.8rem
-  border: 1px solid $light-grey
-  transition: box-shadow 0.3s ease-in-out
-
-  &:before
+// highlight
+.highlight-tools
+  .code-expand
     position: absolute
-    top: t = 0.5rem
-    right: t
-    width: w = 0.8rem
-    height: w
-    border-radius: w
-    background: $light-blue
-    content: ""
+    top: 0
+    z-index: 1
+    padding: 7px 10px
+    color: $highlight-foreground
+    cursor: pointer
+    transition: all .3s
+    transform: rotate(0)
 
-  &:after
+    & + .code_lang
+      left: 30px
+
+    &.code-closed
+      transition: all .3s
+      transform: rotate(-90deg) !important
+
+  .code_lang
     position: absolute
-    top: t = 0.7rem
-    right: t
-    width: w = 0.4rem
-    height: w
-    border-radius: w
-    background: $white
-    content: ""
-
-  &:hover
-    box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5)
-
-  &-meta
-    color: $light-blue
+    left: 15px
+    z-index: 1
+    color: $highlight-foreground
+    text-transform: capitalize
     font-weight: bold
+    font-size: .8rem
+    line-height: 1.4rem
+    cursor: pointer
 
-  &-info
-    a
-      word-break: break-word
+  .copy-notice
+    position: absolute
+    top: 0
+    right: 0
+    z-index: 1
+    background: darken($highlight-background, 5)
+    color: $highlight-aqua
+    opacity: 0
 
+  .fa-clipboard
+    position: absolute
+    top: .4rem
+    right: 10px
+    z-index: 1
+    color: $highlight-aqua
+    cursor: pointer
+    transition: color .2s
 
-@media screen and (max-width: $sm)
-  #top-container
-    #post-title
-      font-size: 1rem
-
-  #post-title
-    font-size: 1.1rem
-
+    &:hover
+      color: darken($highlight-aqua, 20%)
 
 @media screen and (min-width: $md)
   .layout_post
     width: $content-large-width
-        
+
 .katex-wrap
   overflow: auto
-  if hexo-config("katex") && hexo-config("katex.hide_scrollbar")
+
+  if hexo-config('katex') && hexo-config('katex.hide_scrollbar')
     &::-webkit-scrollbar
       display: none
-      
 
-// 文章字體
-#post-content p
-  font-size: 1.1em
-
-
-#post-content ol,
-#post-content ul 
-  font-size: 1em
-
-
-
-.layout_post 
-  padding: 50px
-  box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06)
-  border-radius: 8px
-  transition: all 0.3s
-  background: #fff
+.layout_post
   margin: 40px auto
+  padding: 50px
   max-width: 1000px
+  border-radius: 8px
+  background: #fff
+  box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
+  transition: all .3s
 
-  &:hover 
-    box-shadow: 0 4px 12px 12px rgba(7,17,27,0.15)
-  
+  &:hover
+    box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
+
   img
-    display:block
-
-  .tag_share
     display: block
 
-    .post-meta__tag-list
-      display: inline-block
+  & >.tag_share
+    .post-meta
+      &__tag-list
+        display: inline-block
+
+      &__tags
+        display: inline-block
+        margin: .4rem .4rem .4rem 0
+        padding: 0 .6rem
+        width: fit-content
+        border: 1px solid $light-blue
+        border-radius: .6rem
+        background: $white
+        color: $light-blue
+        text-decoration: none
+        font-size: 12px
+        cursor: pointer
+        transition: all .2s ease-in-out
+
+        &:hover
+          background: $light-blue
+          color: $white
 
     .post_share
-      width: fit-content;
-      display: inline-block;
-      float: right;
-      margin: 0.4rem 0
+      display: inline-block
+      float: right
+      margin: .4rem 0
+      width: fit-content
 
       .social-share
         font-size: 12px
 
-      .social-share .social-share-icon
-        width: 26px;
-        height: 26px;
-        font-size: 15px;
-        line-height: 25px;
+        .social-share-icon
+          margin: 0 4px
+          width: 26px
+          height: 26px
+          font-size: 15px
+          line-height: 25px
 
-      .social-share a
-        margin: 0 4px;
-    
+  & > .post-copyright
+    position: relative
+    margin: 2rem 0 .5rem
+    padding: .5rem .8rem
+    border: 1px solid $light-grey
+    transition: box-shadow .3s ease-in-out
+
+    &:before
+      position: absolute
+      top: t = .5rem
+      right: t
+      width: w = .8rem
+      height: w
+      border-radius: w
+      background: $light-blue
+      content: ''
+
+    &:after
+      position: absolute
+      top: t = .7rem
+      right: t
+      width: w = .4rem
+      height: w
+      border-radius: w
+      background: $white
+      content: ''
+
+    &:hover
+      box-shadow: 0 0 8px 0 rgba(232, 237, 250, .6), 0 2px 4px 0 rgba(232, 237, 250, .5)
+
+    .post-copyright
+      &-meta
+        color: $light-blue
+        font-weight: bold
+
+      &-info
+        padding-left: .3rem
+
+        a
+          word-break: break-word
 
   #post
     a
-      text-decoration: none
       color: $light-blue
-    
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6
-      margin: 1rem 0 0.8rem 0
-    
+      text-decoration: none
+
+      &:hover
+        text-decoration: underline
+
     img
-      margin: 0 auto 0.8rem 
-        
-    blockquote,
-    p
-      margin: 0 0 0.8rem 0
-
-    iframe,.note
-      margin: 0 0 0.8rem 0
-
-.layout_post,
-.layout_page
-  opacity: 1
+      margin: .8rem auto
 
 @media screen and (max-width: 1024px)
   .layout_post
     margin: 0 15px
     width: auto
 
-@media screen and (max-width:768px)
+@media screen and (max-width: $sm)
   .layout_post
+    margin: 0 5px
     padding: 1.8rem 1rem
-    margin: 0px 5px
+
+  #top-container
+    height: 18rem
+
+    & > #post-info
+      bottom: 1rem
+      padding: 0 5%
+
+      & > #post-title
+        font-size: 1.2rem
+
+      & > #post-meta
+        font-size: 90%
+
+        & > span
+          display: none
+
+        .post-meta-pv-cv
+          display: block
+
+          .post-meta__separator:first-child
+            display: none

@@ -4,10 +4,8 @@ html
 
 body
   position: relative
-  display: flex
-  flex-direction: column
   min-height: 100%
-  background: #fff
+  background: $white
   color: $font-black
   font-size: $font-size
   font-family: $font-family
@@ -20,11 +18,11 @@ body
     -ms-user-select: none
 
 #body-wrap
-  position relative
-  flex: 1 auto
+  position: relative
   display: flex
+  flex: 1 auto
   flex-direction: column
-  transition: all .3s
+  transition: all .5s
 
 *::-webkit-scrollbar
   width: 8px
@@ -36,18 +34,16 @@ body
 *::-webkit-scrollbar-track
   background-color: transparent
 
-
 #web_bg
-  background: $web-bg
-  height: 100%
-  width: 100%
-  background-size: cover
   position: fixed
   z-index: -999
+  width: 100%
+  height: 100%
+  background: $web-bg
   background-attachment: local
-  background-repeat: no-repeat
   background-position: center
-  
+  background-size: cover
+  background-repeat: no-repeat
 
 h1,
 h2,
@@ -56,11 +52,11 @@ h4,
 h5,
 h6
   position: relative
-  margin: 0.2rem 0
+  margin: 1rem 0 .7rem
   color: lighten($font-color, 15%)
   font-weight: bold
 
-  code  
+  code
     font-size: inherit !important
 
 #content-outer
@@ -69,20 +65,15 @@ h6
 *
   box-sizing: border-box
 
-#content-inner
-  .img-alt
-    text-decoration: none
-    color: $a-link-color
-
 #toggle-sidebar
   position: fixed
   bottom: $sidebar-icon-top
   left: $sidebar-icon-left
   z-index: 100
   font-size: $sidebar-icon-size
-  cursor: pointer
-  transition: all 0.2s
   opacity: 0
+  cursor: pointer
+  transition: all .2s
 
 hr
   position: relative
@@ -106,9 +97,12 @@ hr
     font-size: 20px
     transition: all 1s ease-in-out
 
+iframe
+  margin: 0 0 1rem
+
 // collapse/expand beautify
 details
-  padding: 0.3rem
+  padding: .3rem
   border: 2px solid darken($light-grey, 10%)
 
   summary
@@ -117,13 +111,14 @@ details
 // set <caption> of <figure> to center-align
 // use class="not-code" to avoid conflicts because code also use <figure> tag
 .not-code
-  margin: 0.5em
-  padding: 0.5em
+  margin: .5em
+  padding: .5em
   border: thin silver solid
   text-align: center
 
 table
   overflow: auto
+  margin: 0 0 1rem
   width: 100%
   border-spacing: 0
   border-collapse: collapse
@@ -133,7 +128,7 @@ table
 
   th,
   td
-    padding: 0.3rem 0.6rem
+    padding: .3rem .6rem
     border: 1px solid darken($light-grey, 10%)
     vertical-align: top
 
@@ -141,21 +136,21 @@ table
   background: $selection
   color: $pale-grey
 
-
-.full_page #site-title, 
-.full_page #site-sub-title, 
+// 字體
+.full_page #site-title,
+.full_page #site-sub-title,
 #site-name,
 #aside_content .author-info__name,
 #aside_content .author-info__description
   font-family: $site-name-font
 
 .is_right
-  text-align: right 
+  text-align: right
 
 .is_left
   text-align: left
 
-.is_center
+.is-center
   text-align: center
 
 .is_visible
@@ -173,50 +168,61 @@ table
 .pull_right
   float: right
 
+// button hover
+.button--primary
+  color: $ruby
+
+.button--animated
+  transition-duration: 1s
+  transition-property: color
+
+  &:before
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: -1
+    background: $ruby
+    content: ''
+    transition-timing-function: ease-out
+    transition-duration: .5s
+    transition-property: transform
+    transform: scaleX(0)
+    transform-origin: 0 50%
+
+  &:hover
+    &:before
+      transition-timing-function: cubic-bezier(.45, 1.64, .47, .66)
+      transform: scaleX(1)
+
+// third-party
 .fireworks
   position: fixed
   z-index: -1
+  z-index: 99999
   pointer-events: none
 
-
-.fireworks
-  z-index: 99999
-
-@media screen and (max-width: $bg)
-  i#toggle-sidebar,
-  #sidebar
-    display: none
-
-  body
-    padding-left: 0 !important
-
-
-// 懶加載
-.lazyload,
-.lazyloading 
-	opacity: 0
-
-.lazyloaded 
-	opacity: 1
-	transition: opacity 0.3s
-
-img[src=""],img:not([src])
+img[src=''],
+img:not([src])
   opacity: 0
 
 .justified-gallery
   margin: 1rem 0
-  
-  img 
-    opacity 0
-  .fancybox 
+
+  img
+    opacity: 0
+
+  .fancybox
     width: auto
-    text-align: inherit    
+    text-align: inherit
+
   .img-alt
     display: none
 
 .medium-zoom-image--opened
-  margin: 0 !important
   z-index: 99999 !important
+  margin: 0 !important
 
 .medium-zoom-overlay
   z-index: 99999 !important
@@ -224,19 +230,18 @@ img[src=""],img:not([src])
 // hexo tag video
 .video-container
   position: relative
+  overflow: hidden
+  margin-bottom: .8rem
   padding-top: 56.25%
   height: 0
-  overflow: hidden
-  margin-bottom: 0.8rem
 
   iframe
     position: absolute
     top: 0
     left: 0
+    margin-top: 0
     width: 100%
     height: 100%
-    margin-top: 0
-
 
 .layout_page,
 .layout_post,
@@ -255,60 +260,63 @@ canvas,
   animation: to_show 4s
 
 .card-announcement-animation
-  animation: announ_animation .8s linear infinite
   color: #FF0000
+  animation: announ_animation .8s linear infinite
 
 .scroll-down-effects
   animation: scroll-down-effect 1.5s infinite
 
-if hexo-config("avatar_effect") == true
-  .avatar_img
+if hexo-config('avatar_effect') == true
+  .avatar-img
     animation: avatar_turn_around 2s linear infinite
 
 .reward-main
   animation: donate_effcet .3s .1s ease both
 
-#rightside-config-hide
-  animation: rightside_in_animate .3s
-
 @keyframes scroll-down-effect
   0%
-    opacity: 0.4
     top: 0
+    opacity: .4
+
   50%
-    opacity: 1
     top: -16px
+    opacity: 1
+
   100%
-    opacity: 0.4
     top: 0
-    
-@keyframes header 
-  0% 
+    opacity: .4
+
+@keyframes header
+  0%
     opacity: 0
     transform: translateY(-50px)
-  100% 
+
+  100%
     opacity: 1
     transform: translateY(0)
 
 @keyframes headerNoOpacity
-  0% 
+  0%
     transform: translateY(-50px)
-  100% 
+
+  100%
     transform: translateY(0)
 
 @keyframes main
-  0% 
+  0%
     opacity: 0
     transform: translateY(50px)
-  100% 
+
+  100%
     opacity: 1
     transform: translateY(0)
 
 @keyframes titlescale
   0%
     opacity: 0
-    transform: scale(0.7)
-  100% 
+    transform: scale(.7)
+
+  100%
     opacity: 1
     transform: scale(1)
 
@@ -316,19 +324,22 @@ if hexo-config("avatar_effect") == true
   0%
     opacity: 1
     transform: scale(1)
-  100% 
+
+  100%
     opacity: 0
-    transform: scale(0.7)
+    transform: scale(.7)
 
 @keyframes to_show
   0%
     opacity: 0
+
   100%
     opacity: 1
- 
+
 @keyframes avatar_turn_around
   from
-    transform: rotate(0deg)
+    transform: rotate(0)
+
   to
     transform: rotate(360deg)
 
@@ -336,6 +347,7 @@ if hexo-config("avatar_effect") == true
   0%
     opacity: 0
     transform: translateY(10px)
+
   100%
     opacity: 1
     transform: translateY(0)
@@ -344,31 +356,23 @@ if hexo-config("avatar_effect") == true
   0%
     opacity: 0
     transform: translateY(-20px)
+
   100%
     opacity: 1
     transform: translateY(0)
 
 @keyframes announ_animation
-  0%,to
+  0%,
+  to
     transform: scale(1)
+
   50%
     transform: scale(1.2)
 
-@keyframes rightside_in_animate
-  0%    
-    transform: translateX(28px)
-  100%
-    transform: translateX(0)
+@media screen and (max-width: $bg)
+  i#toggle-sidebar,
+  #sidebar
+    display: none
 
-@keyframes rightside_out_animate
-  0%    
-    transform: translateX(0)
-  100%
-    transform: translateX(28px)
-
-@keyframes right_to_left
-  0%    
-    transform: translateX(100px)
-  100%
-    transform: translateX(0)
-  
+  body
+    padding-left: 0 !important

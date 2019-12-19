@@ -1,9 +1,3 @@
-script.
-  if (/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {} else {
-    $('.full_page .nav_bg').css('background-attachment', 'fixed');
-  }
-
-
 if theme.subtitle.enable
   script(src=url_for(theme.CDN.typed))
   - var source = theme.subtitle.source
@@ -67,7 +61,7 @@ if theme.subtitle.enable
       backSpeed: 50
       });
   else if source == '4'
-    script(type="text/javascript" src="https://sdk.jinrishici.com/v2/browser/jinrishici.js")
+    script(type="text/javascript" src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8")
     script.
       jinrishici.load(function(result) {
         var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
@@ -91,23 +85,6 @@ if theme.subtitle.enable
       loop: true,
       backSpeed: 50
       });
-
-if !theme.index_top_img_height && !theme.index_site_info_top
-  script.
-    //首頁fullpage
-    function alignContent() {
-      for (var n = $(window).height(), e = document.querySelectorAll(".full_page"), i = 0; i < e.length; i++) 
-        e[i].style.height = n + "px";
-        $("#site-info").each(function () {
-          var x = $(this).height();
-          $(this).css("top", (n-x)/2)       
-        })
-    }
-    alignContent();
-    
-    $(window).bind("resize", function () {
-      alignContent()
-    })
 
 
 

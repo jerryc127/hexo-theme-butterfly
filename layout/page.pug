@@ -11,14 +11,14 @@ block content
       if page.comments !== false
         include includes/comments/index.pug
     #aside_content.aside_content
-      include includes/aside.pug
+      include includes/widget/index.pug
 
   else if page.type === 'link'
     include flink.pug
       if page.comments !== false
         include includes/comments/index.pug
     #aside_content.aside_content
-      include includes/aside.pug
+      include includes/widget/index.pug
   else if page.type === 'categories'    
     #post-content.category-content
       .category-lists
@@ -29,7 +29,7 @@ block content
       if page.comments !== false
         include includes/comments/index.pug
     #aside_content.aside_content
-      include includes/aside.pug
+      include includes/widget/index.pug
   else
     article#page
       h1= page.title
@@ -38,4 +38,4 @@ block content
       if page.comments !== false
         include includes/comments/index.pug
     #aside_content.aside_content
-      include includes/aside.pug
+      include includes/widget/index.pug

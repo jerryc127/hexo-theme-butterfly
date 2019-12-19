@@ -7,16 +7,15 @@
           li.md-links-item
             a(href=item.link  title=item.name target="_blank")
               if theme.lazyload.enable
-                img.lazyload(data-src=item.avatar onerror=`onerror=null;src='${theme.lodding_bg.flink}'` height="72px")
+                img.lazyload(data-src=item.avatar onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
               else
-                img(src=item.avatar onerror=`onerror=null;src='${theme.lodding_bg.flink}'` height="72px")
-              div(class="md-links-title")= item.name 
-                <br/>
-              div(class="md-links-des")=item.descr
+                img(src=item.avatar onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
+              .md-links-title= item.name 
+              .md-links-des= item.descr
 
   hr
   div 
-    p(style="font-size:15px;font-weight:bold")= theme.Flink.info_headline
+    h2= theme.Flink.info_headline
     ul
       li= theme.Flink.name
       li= theme.Flink.address

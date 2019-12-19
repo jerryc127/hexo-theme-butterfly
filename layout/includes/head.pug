@@ -13,71 +13,36 @@ else if !is_post()
 
 - var without_index = url.replace('index.html', '')
 - var without_html = without_index.replace('.html', '')
-- var photo_check = is_post() ? page.cover || theme.avatar : theme.avatar
-- var photo_link = url_check (photo_check) ? photo_check : config.url + photo_check
 
 //- 預解析
-link(rel="preconnect" href="//cdn.jsdelivr.net")
+include ./head/dns_prefetch.pug
 
 //- PWA
 if (theme.pwa && theme.pwa.enable)
-  link(rel="manifest" href=theme.pwa.manifest)
-  if(theme.pwa.theme_color) 
-    meta(name="theme-color" content=theme.pwa.theme_color)
-  if(theme.pwa.theme_color) 
-    meta(name="msapplication-TileColor" content=theme.pwa.theme_color)
-  if(theme.pwa.apple_touch_icon) 
-    link(rel="apple-touch-icon" sizes="180x180" href=theme.pwa.apple_touch_icon)
-  if(theme.pwa.favicon_32_32) 
-    link(rel="icon" type="image/png" sizes="32x32" href=theme.pwa.favicon_32_32)
-  if(theme.pwa.favicon_16_16)
-    link(rel="icon" type="image/png" sizes="16x16" href=theme.pwa.favicon_16_16)
-  if(theme.pwa.mask_icon)
-    link(rel="mask-icon" href=theme.pwa.mask_icon color="#5bbad5")
+  include ./head/pwa.pug
 
 //- 網站驗證
-if theme.google_site_verification
-  meta(name="google-site-verification" content=theme.google_site_verification)
-
-if theme.bing_site_verification
-  meta(name="msvalidate.01" content=theme.bing_site_verification)
-
-if theme.baidu_site_verification
-  meta(name="baidu-site-verification" content=theme.baidu_site_verification)
-
-if theme.qihu_site_verification
-  meta(name="360-site-verification" content=theme.qihu_site_verification)
-
-//- twitter meta
-if theme.twitter_meta
-  meta(name="twitter:card" content="summary_large_image")
-  meta(name="twitter:title" content=pageTitle_no_include_blog_name)
-  meta(name="twitter:description" content=pageDescription)
-  meta(name="twitter:image" content=photo_link)
+include ./head/site_verification.pug
 
 //- Open_Graph
-if theme.Open_Graph_meta
-  - var contentType = is_post() ? 'article' : 'website'
-  meta(property="og:type" content=contentType)
-  meta(property="og:title" content=pageTitle_no_include_blog_name)
-  meta(property="og:url" content=without_html)
-  meta(property="og:site_name" content=config.title)
-  meta(property="og:description" content=pageDescription)
-  meta(property="og:image" content=photo_link)
+include ./head/Open_Graph.pug
 
 if theme.disable_baidu_transformation
   meta(http-equiv="Cache-Control" content="no-transform")
   meta(http-equiv="Cache-Control" content="no-siteapp")
 
+if page.hide == true
+  meta(name="robots" content="noindex")
+
 script(src=url_for(theme.CDN.js_cookies))
 
 if (theme.darkmode && theme.darkmode.enable) || theme.autoChangeMode !== false
-  include ./darkmode
+  include ./head/darkmode.pug
 
 each item in theme.CDN_USE.css
   link(rel='stylesheet', href=url_for(item))
 
-if (theme.medium_zoom && !theme.medium_zoom.enable)
+if (theme.fancybox && theme.fancybox.enable)
   link(rel='stylesheet', href=url_for(theme.CDN.fancybox_css))
 
 if (theme.snackbar && theme.snackbar.enable)
@@ -98,30 +63,14 @@ if theme.algolia_search.enable
 
 if (theme.gitalk && theme.gitalk.enable)
   link(rel="stylesheet" type="text/css" href=url_for(theme.CDN.gitalk_css))
-  script(src=url_for(theme.CDN.gitalk))
-  script(src=url_for(theme.CDN.blueimp_md5))
+  script(src=url_for(theme.CDN.gitalk) defer)
+  script(src=url_for(theme.CDN.blueimp_md5) defer)
 
-if theme.baidu_analytics
-  link(rel="dns-prefetch" href="https://hm.baidu.com")
-  script.
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?!{theme.baidu_analytics}";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
+//- google_adsense
+include ./head/google_adsense.pug
 
-if theme.google_analytics
-  link(rel="dns-prefetch" href="https://www.google-analytics.com")
-  script.
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', '!{theme.google_analytics}', 'auto');
-    ga('send', 'pageview');
+//- analytics
+include ./head/analytics.pug
 
 if !is_post()
   link(rel="preload" href=url_for(top_img)  as="image" )

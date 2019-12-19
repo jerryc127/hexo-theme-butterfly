@@ -1,24 +1,25 @@
 each article , index in page.posts.data
   .recent-post-item.article-container
     - var link = article.link || article.path
+    - var title = article.title || _p('no_title')
       if index%2 == 0
-        .post_cover.pull_left.left_radius
-          a(href=url_for(link) title=article.title || _p('no_title'))
+        .post_cover.left_radius
+          a(href=url_for(link) title=title)
             - var post_cover = article.cover
             if theme.lazyload.enable
-              img.post_bg.lazyload(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+              img.post_bg.lazyload(data-src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` alt=title)
             else
-              img.post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+              img.post_bg(src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` alt=title)
       else
-        .post_cover.pull_right.right_radius
-          a(href=url_for(link) title=article.title || _p('no_title'))
+        .post_cover.right_radius
+          a(href=url_for(link) title=title)
             - var post_cover = article.cover
             if theme.lazyload.enable
-              img.post_bg.lazyload(data-src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+              img.post_bg.lazyload(data-src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` alt=title)
             else
-              img.post_bg(src=`${post_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)            
+              img.post_bg(src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` alt=title)            
     .recent-post-info   
-      a.article-title(href=url_for(link) title= article.title || _p('no_title'))= article.title || _p('no_title')
+      a.article-title(href=url_for(link) title=title)= title
       if (article.top)
         span.article-meta
           i.fa.fa-thumb-tack.article-meta__icon.sticky

@@ -2,65 +2,67 @@
   margin-top: 1rem
 
 .comment_headling
-  font-size: 20px
-  font-weight: 700
   margin-bottom: 10px
+  font-weight: 700
+  font-size: 20px
 
-// valine 
+// valine
 #vcomment
   font-size: inherit
-  
-  input 
-    font-size: 0.65rem
 
-  button 
-    font-size: .7rem
+  input
+    font-size: .65rem
+
+  button
     padding: .3rem 1rem
+    border-color: #fff
     background-color: $light-blue
     color: #fff
-    border-color: #fff
+    font-size: .7rem
 
     &:hover
       background-color: darken($light-blue, 40)
 
-  textarea 
-    font-size: 0.7rem
-    if hexo-config("valine.bg")
-      background: url(convert(hexo-config("valine.bg"))) 100% 100% no-repeat
+  textarea
+    font-size: .7rem
+
+    if hexo-config('valine.bg')
+      background: url(convert(hexo-config('valine.bg'))) 100% 100% no-repeat
 
   .info
     display: none
-  
+
   .vimg
     border: 0
 
     &:hover
       transform: rotate(540deg)
-  .vcount
-    font-size: 0.775rem
 
-  .vnum 
+  .vcount
+    font-size: .775rem
+
+  .vnum
     font-size: 1.1rem
 
   .vsys
     font-size: 80%
-  
+
   .vtime
     font-size: .65rem
-  
+
   .vcontent
     font-size: 100%
-  
+
   .vat
-    font-size: .7125rem
-    color: $cyan
-    border: 1px solid $cyan
     padding: 0 .8rem
+    border: 1px solid $cyan
     border-radius: 5px
+    color: $cyan
+    font-size: .7125rem
 
     &:hover
-      background-color: alpha($cyan,0.5)
-  
-  code, pre
-    font-size: 98%
+      background-color: alpha($cyan, .5)
 
+  code,
+  pre
+    font-size: 98%

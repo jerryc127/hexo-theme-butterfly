@@ -27,6 +27,7 @@ post:
   wordcount: Word count
   min2read: "Reading time: %s min"
   page_pv: Post View
+  comments: comments
   copyright:
     author: Author
     link: Link

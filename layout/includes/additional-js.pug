@@ -1,18 +1,10 @@
 if (theme.medium_zoom && theme.medium_zoom.enable)
   script(src=url_for(theme.CDN.medium_zoom))
-else
+
+if (theme.fancybox && theme.fancybox.enable)
   script(src=url_for(theme.CDN.fancybox))
 
-if (theme.algolia_search.enable)
-  script(async src=url_for(theme.CDN.algolia_js))
-if (theme.mathjax && theme.mathjax.enable)
-  if(!is_tag() && !is_category() && !is_archive() && !is_home())
-    include ./third-party/mathjax.pug
-if (theme.katex && theme.katex.enable)
-  if(!is_tag() && !is_category() && !is_archive() && !is_home())
-    include ./third-party/katex.pug
-if (theme.local_search && theme.local_search.enable)
-  script(async src=url_for(theme.CDN.local_search))
+include ./math/index.pug 
 
 if theme.fireworks && theme.fireworks.enable
   script(src=url_for(theme.CDN.anime))
@@ -30,20 +22,17 @@ if (theme.canvas_ribbon_piao && theme.canvas_ribbon_piao.enable)
 if (theme.canvas_nest && theme.canvas_nest.enable)
   include ./third-party/canvas-nest.pug 
 
-if theme.baidu_push && theme.baidu_push.enable
-  script(src=url_for('js/baidupush.js')) 
-
 if theme.activate_power_mode.enable
+  - var colorful = theme.activate_power_mode.colorful == false ? false : true
+  - var shake = theme.activate_power_mode.shake == false ? false : true
   script(src=url_for(theme.CDN.activate_power_mode))
   script.
-    POWERMODE.colorful = true; // make power mode colorful
-    POWERMODE.shake = true; // turn off shake
+    POWERMODE.colorful = !{colorful};
+    POWERMODE.shake = !{shake}; 
     document.body.addEventListener('input', POWERMODE);
 
 if theme.translate && theme.translate.enable
   script(src=url_for(theme.CDN.translate))
-  script.
-    translateInitilization()
 
 if is_home()
   include index-js.pug

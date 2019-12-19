@@ -1,11 +1,11 @@
 .post-reward
-  a.reward-button
+  a.reward-button.button--primary.button--animated 
     i.fa.fa-qrcode
     = ' ' + _p('donate')
     .reward-main
       ul.reward-all
         each item in theme.reward.QR_code
           li.reward-item
-            img.lazyload.post-qr-code__img(src=(item.itemlist||item).img)
+            img.lazyload.post-qr-code__img(src=url_for((item.itemlist||item).img) alt=(item.itemlist||item).text)
             .post-qr-code__desc=(item.itemlist||item).text
 

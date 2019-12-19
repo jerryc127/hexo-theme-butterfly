@@ -1,8 +1,8 @@
 .category-content
   ol,
   ul
-    margin-top: 0.4rem
-    padding: 0 0 0 0.8rem
+    margin-top: .4rem
+    padding: 0 0 0 .8rem
     list-style: none
     counter-reset: li
 
@@ -11,12 +11,12 @@
 
     ol,
     ul
-      padding-left: 0.5rem
+      padding-left: .5rem
 
     li
       position: relative
-      margin: 0.3rem 0
-      padding: 0.1rem 0.5rem 0.1rem 1.5rem !important
+      margin: .3rem 0
+      padding: .1rem .5rem .1rem 1.5rem !important
 
       &:hover
         &:before
@@ -29,19 +29,19 @@
         background: $light-blue
         color: $white
         cursor: pointer
-        transition: all 0.3s ease-out
+        transition: all .3s ease-out
 
   ol
     li
       &:before
-        margin-top: 0.2rem
+        margin-top: .2rem
         width: w = 1.2rem
         height: h = w
-        border-radius: 0.5 * w
+        border-radius: .5 * w
         content: counter(li)
         counter-increment: li
         text-align: center
-        font-size: 0.6rem
+        font-size: .6rem
         line-height: h
 
   ul
@@ -51,13 +51,13 @@
           border-color: $ruby
 
       &:before
-        $w = 0.3rem
+        $w = .3rem
         top: 10px
-        margin-left: 0.45rem
+        margin-left: .45rem
         width: w = $w
         height: h = w
-        border: 0.5 * w solid $light-blue
+        border: .5 * w solid $light-blue
         border-radius: w
         background: $white
-        content: ""
+        content: ''
         line-height: h

@@ -1,63 +1,61 @@
-#rightside 
-  right: -38px
+#rightside
   position: fixed
+  right: -38px
   bottom: 40px
-  transition: all .3s
-  opacity 0
+  opacity: 0
+  transition: all .5s
 
   #rightside-config-hide
-    display none
+    transform: translate(35px, 0)
 
-  #readmode,
-  #font_plus,
-  #font_minus,
-  #to_comment,
-  .darkmode,
-  #mobile-toc-button,
-  #go-up,
-  #rightside_config
-    width: 30px
-    height: 30px
-    background-color: $light-blue
-    color: $white
-    text-align: center
-    line-height: 29px
-    font-size: 16px
-    display: block
-    margin-bottom: 2px
-    cursor: pointer
-    text-decoration: none
+  .rightside-in
+    transform: translate(0, 0) !important
+    animation: rightsideIn .3s
 
-    &:hover  
-      background-color: $ruby 
-  
+  .rightside-out
+    animation: rightsideOut .3s
+
+  & > div
+    & > i,
+    & > a,
+    & > div
+      display: block
+      margin-bottom: 2px
+      width: 30px
+      height: 30px
+      background-color: $light-blue
+      color: $white
+      text-align: center
+      text-decoration: none
+      font-size: 16px
+      line-height: 29px
+      cursor: pointer
+
+      &:hover
+        background-color: $ruby
+
   #rightside_config
     i
       animation: avatar_turn_around 2s linear infinite
 
-  .translate_chn_to_cht
-    width: 30px
-    height: 30px
-    background-color: $light-blue
-    color: $white
-    text-align: center
-    line-height: 29px
-    font-size: 16px
-    display: block
-    margin-bottom: 2px
-    cursor: pointer
-    text-decoration: none
-
-    &:hover  
-      background-color: $ruby 
-  
   #mobile-toc-button
     display: none
 
-
 @media screen and (max-width: $bg)
-  #rightside 
+  #rightside
     #mobile-toc-button
       display: block
-  
 
+@keyframes rightsideIn
+  0%
+    transform: translate(30px, 0)
+
+  100%
+    transform: translate(0, 0)
+
+@keyframes rightsideOut
+  0%
+    transform: translate(0, 0)
+
+  100%
+    transform: translate(30px, 0)

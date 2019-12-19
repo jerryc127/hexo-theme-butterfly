@@ -9,7 +9,7 @@ mixin articleSort(posts)
       .article-sort-item
         .article-sort-img
           a.article-sort-item__img(href=url_for(article.path))
-            img(src=article.cover)
+            img(src=article.cover alt=article.title || 'No Title')
         .article-sort-post
           a.article-sort-item__post(href=url_for(article.path))
             i.fa.fa-clock-o(aria-hidden="true")

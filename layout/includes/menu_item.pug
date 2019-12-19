@@ -1,7 +1,7 @@
 each value, label in theme.menu
   if !Array.isArray(value)
     .menus_item
-      a.site-page(href=trim(value.split('||')[0]))
+      a.site-page(href=url_for(trim(value.split('||')[0])))
         i.fa-fw(class=trim(value.split('||')[1]))
         span=' '+label
   else
@@ -13,6 +13,6 @@ each value, label in theme.menu
       ul.menus_item_child
         each i in value
           li
-            a.site-page(href=trim(i.split('||')[1]))
+            a.site-page(href=url_for(trim(i.split('||')[1])))
               i.fa-fw(class=trim(i.split('||')[2]))
               span=' '+trim(i.split('||')[0])

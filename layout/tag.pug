@@ -7,7 +7,7 @@ block content
       +UI_NEW(page.posts)
       include includes/pagination.pug
     #aside_content.aside_content
-      include includes/aside.pug
+      include includes/widget/index.pug
   else
     include ./includes/mixins/article-sort.pug
     #tag
@@ -15,4 +15,4 @@ block content
       +articleSort(page.posts)
       include includes/pagination.pug
     #aside_content.aside_content
-      include includes/aside.pug
+      include includes/widget/index.pug

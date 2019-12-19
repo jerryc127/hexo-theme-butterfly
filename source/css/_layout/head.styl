@@ -1,31 +1,30 @@
 #nav
   position: relative
   margin-bottom: 1rem
+  width: 100%
+  background-color: $light-blue
+  background-attachment: local
+  background-position: center
+  background-size: cover
 
   &.full_page
+    display: flex
+    align-items: center
     height: $index_top_img_height
-  
-  .nav_bg
-    width: 100%
-    height: 100%
-    background-color: $light-blue
-    background-position: center
-    background-size: cover
-    background-attachment: local
 
   &.not_index_bg
     height: 20rem
 
   #site-social-icons
+    display: none
     margin: 0 auto
     width: 15rem
     text-align: center
-    display: none
 
     .social-icon
-      margin: 0 0.5rem
+      margin: 0 .5rem
       color: $light-grey
-      text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
+      text-shadow: .1rem .1rem .2rem rgba(0, 0, 0, .15)
       font-size: .9rem
       cursor: pointer
 
@@ -35,13 +34,12 @@
 #site-info
   position: absolute
   width: 100%
-  top: $index_site_info_top
 
 #site-title,
 #site-sub-title
   color: $light-grey
   text-align: center
-  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
+  text-shadow: .1rem .1rem .2rem rgba(0, 0, 0, .15)
   line-height: 1.5
 
 #site-title
@@ -49,7 +47,7 @@
   font-size: 1.3rem
 
 #site-sub-title
-  font-size: 0.8rem
+  font-size: .8rem
 
 #page_site-info
   position: absolute
@@ -60,16 +58,16 @@
   position: absolute
   bottom: 0
   width: 100%
-  cursor: pointer
   height: 42px
-  font-size: 30px
   text-align: center
+  font-size: 30px
+  cursor: pointer
 
   .scroll-down-effects
     position: absolute
     color: $white
 
-#header
+header
   position: relative
 
 #page-header
@@ -78,20 +76,23 @@
   z-index: 99
   padding: 10px 36px
   width: 100%
+  height: 58px
   border: none
   font-size: 18px
-  transition: all .3s
   opacity: 0
+  transition: all .5s
 
   .toggle-menu
     display: none
-    padding-top: 0.6rem
-    color: $light-grey
-    cursor: pointer
+    padding: .1rem 0 0 .3rem
 
     &:hover
       color: $white
-  
+
+    &.is_visible
+      .site-page
+        font-size: inherit
+
   a
     color: $light-grey
     text-decoration: none
@@ -103,9 +104,9 @@
     position: fixed
     top: -60px
     z-index: 101
-    background: alpha($white, 0.8)
-    box-shadow: 0 5px 6px -5px alpha($grey, 0.6)
-    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out
+    background: alpha($white, .8)
+    box-shadow: 0 5px 6px -5px alpha($grey, .6)
+    transition: transform .2s ease-in-out, opacity .2s ease-in-out
 
     &.open-sidebar
       .site-page
@@ -118,118 +119,106 @@
       text-shadow: none
 
       &:hover
-        color: $light-blue       
+        color: $light-blue
 
   &.visible
+    transition: all .5s
     transform: translate3d(0, 100%, 0)
-    transition: all .3s
 
     .menus_item_child
       background-color: $white !important
 
-      &:before
-        border-color: transparent transparent $white !important
-
   #site-name
-    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15)
+    text-shadow: .1rem .1rem .2rem rgba(0, 0, 0, .15)
     font-weight: bold
     cursor: pointer
 
   .menus_item
+    position: relative
     display: inline-block
-    padding: 0 0 0 0.7rem
+    padding: 0 0 0 .7rem
 
-    &:hover,&:focus
+    &:hover
       .menus_item_child
         display: block
-      
+
       .menus-expand
         transform: rotate(180deg) !important
-    
+
     .menus-expand
-      padding: 4px        
-      transform: rotate(0deg)
+      padding: 4px
       transition: all .3s
+      transform: rotate(0)
+
+    & > a
+      &:after
+        position: absolute
+        bottom: 0
+        left: 0
+        z-index: -1
+        width: 0
+        height: 3px
+        background-color: lighten($theme-color, 30%)
+        content: ''
+        transition: all .3s ease-in-out
+
+      &:hover
+        &::after
+          width: 100%
 
     .menus_item_child
       position: absolute
-      background-color: alpha($white, 0.8)
-      border-radius: 5px
-      box-shadow: 0 5px 20px -4px rgba(0,0,0,.5)
+      right: 0
       display: none
-      opacity: 1
-      animation: sub_menus .3s .1s ease both
+      margin-top: 8px
       padding: 0
-      margin-top: 10px
+      width: max-content
+      background-color: alpha($white, .8)
+      box-shadow: 0 5px 20px -4px rgba(0, 0, 0, .5)
+      animation: sub_menus .3s .1s ease both
 
       &:before
-        content: ""
         position: absolute
-        top: -20px
-        left: 50%
-        margin-left: -10px
-        border-width: 10px
-        border-style: solid
-        border-color: transparent transparent alpha($white, 0.8)
+        top: -8px
+        left: 0
+        width: 100%
+        height: 20px
+        content: ''
 
       li
+        padding: 1px 10px
         list-style: none
         text-align: center
-        padding: 0px 10px
-        
-        &:first-child
-          padding: 6px 10px 0
-
-        &:last-child
-          padding: 0px 10px 6px 
 
         &:hover
-          a,i 
-            color: $theme-color
-        
+          background: $theme-color
+
         a
           color: #3b3a3a
           text-shadow: none
-#search_button
-  padding: 0 0 0 0.7rem
 
-.site-page
-  position: relative
-  padding-bottom: 0.3rem
-  text-shadow: 0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.3)
-  font-size: 0.7rem
-  cursor: pointer
+  #search_button
+    padding: 0 0 0 .7rem
 
-#page-header .menus_item > .site-page
-  &::after
-    position: absolute
-    bottom: 0
-    left: 0
-    z-index: -1
-    width: 0
-    height: 3px
-    background-color: lighten($theme-color, 30%)
-    content: ""
-    transition: all 0.3s ease-in-out
+  .site-page
+    position: relative
+    padding-bottom: .3rem
+    text-shadow: .05rem .05rem .1rem rgba(0, 0, 0, .3)
+    font-size: .7rem
+    cursor: pointer
 
-  &:hover
-    &::after
-      width: 100%
-
-
-@media screen and (min-width: $sm)  
+@media screen and (min-width: $sm)
   #site-title
     font-size: 2rem
 
   #site-sub-title
     font-size: 1.2rem
 
-
 @media screen and (max-width: $sm)
   #page-header
-    padding: 10px 0.8rem
-  
-  #nav 
+    padding: 10px .8rem
+
+  #nav
     #site-social-icons
       display: block
 
@@ -238,19 +227,7 @@
 
     #page_site-info
       top: 7rem
-  
-  #top-container
-    height: 14rem
 
-    #post-info
-      bottom: 1rem
-      padding: 0 5%
-  
-    .mobile_hidden
-      display: none
-
-
-  
 @media screen and (max-width: $bg)
   #page-header
     &.fixed

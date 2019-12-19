@@ -27,6 +27,7 @@ post:
   wordcount: 字數總計
   min2read: "閲讀時長: %s 分鐘"
   page_pv: 閲讀量
+  comments: 評論數
   copyright:
     author: 文章作者
     link: 文章鏈接

@@ -27,6 +27,7 @@ post:
   wordcount: 字数总计
   min2read: "阅读时长: %s 分钟"
   page_pv: 阅读量
+  comments: 评论数
   copyright:
     author: 文章作者
     link: 文章链接

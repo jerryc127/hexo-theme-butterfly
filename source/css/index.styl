@@ -1,18 +1,16 @@
-@import "nib"
-@import "_third-party/normalize.min.css"
+@import 'nib'
+@import '_third-party/normalize.min.css'
 // project
-@import "var"
-@import "_global"
-@import "_highlight/highlight"
-@import "_layout/*"
- 
+@import 'var'
+@import '_global'
+@import '_highlight/highlight'
+@import '_layout/*'
+
 // search
-if hexo-config("algolia_search.enable")
-  @import "_search/index"
-  @import "_search/algolia"
+if hexo-config('algolia_search.enable')
+  @import '_search/index'
+  @import '_search/algolia'
 
-if hexo-config("local_search") && hexo-config("local_search.enable")
-  @import "_search/index"
-  @import "_search/local-search"
-
-
+if hexo-config('local_search') && hexo-config('local_search.enable')
+  @import '_search/index'
+  @import '_search/local-search'

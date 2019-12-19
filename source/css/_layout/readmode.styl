@@ -1,117 +1,93 @@
-if hexo-config("readmode") && hexo-config("readmode.enable")
+if hexo-config('readmode') && hexo-config('readmode.enable')
   .read-mode
-    background: $pale-yellow
     padding: 0 !important
-
-    #sidebar,
-    #toggle-sidebar
-      display: none
+    background: $pale-yellow
 
     #page-header
       #site-name,
-      .site-page,
-      .toggle-menu
-        text-shadow: none
+      .site-page
         color: $font-black
-      
-      .menus_item_child
-        background-color: darken($pale-yellow,5) !important
+        text-shadow: none
 
-        &:before
-          border-color: transparent transparent darken($pale-yellow,5) !important
+      .menus_item_child
+        background-color: darken($pale-yellow, 3) !important
+
+        & > li
+          &:hover
+            background-color: darken($pale-yellow, 10) !important
 
     #top-container
-      background-image: none !important
       height: 14rem
       background-color: $pale-yellow
+      background-image: none !important
 
       a
         color: $font-black
 
       &:before
         opacity: 0
-     
-      #post-info
-        text-align: center
+
+      & > #post-info
         padding: 0
         color: $font-black
-      
-      #post-title,
-      #post-meta
-        text-shadow: none
-      
+        text-align: center
+
     #page-header
       &.fixed
-        background: alpha(darken($pale-yellow,5),0.5)
+        background: alpha(darken($pale-yellow, 5), .5)
         box-shadow: none
 
         &.open-sidebar
           .site-page
-            display: inline-block
-            opacity: 1
-        
+            visibility: visible
 
     .layout_post
-      box-shadow: none
       background: $pale-yellow
+      box-shadow: none
 
       &:hover
         box-shadow: none
-      
-      .article-container 
+
+      .article-container
         pre,
-        .highlight
-          background: darken($pale-yellow,5);
-        
-        .highlight
-          &:after
-            background: darken($pale-yellow,10);
-          table 
-            &:after
-              background: darken($pale-yellow,10);
-    
-    
+        .highlight:not(.js-file-line-container)
+          background: darken($pale-yellow, 5)
+
+    .highlight
+      display: block !important
+
     blockquote
-      border-left: 0.2rem solid #d6dbdf
-      background-color: rgba(102,128,153,.05)
-    
+      border-left: .2rem solid #d6dbdf
+      background-color: rgba(102, 128, 153, .05)
+
     #rightside
       #darkmode
         display: none
-      
-    canvas
+
+    & > canvas
       display: none !important
-    
+
+    .code-area-wrap > .highlight-tools,
+    #sidebar,
+    #toggle-sidebar,
     #footer,
-    #post-comment,
-    hr,
-    .relatedPosts,
-    #pagination,
-    .post-reward,
-    .tag_share,
-    .post-copyright
+    .layout_post > div,
+    .layout_post > hr,
+    .layout_post > nav
       display: none
-    
+
+    hr
+      border: 2px dashed #d6dbdf
+      background: transparent
+
+      &:before
+        color: darken(#d6dbdf, 10)
+
     &::-webkit-scrollbar-thumb
-      background: darken($pale-yellow,15)
+      background: darken($pale-yellow, 10)
 
     *::-webkit-scrollbar-thumb
-      background: darken($pale-yellow,15)
-    
-    .copy-notice
-      background: darken($pale-yellow,10)
+      background: darken($pale-yellow, 10)
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-      
+    #web_bg
+      background: none

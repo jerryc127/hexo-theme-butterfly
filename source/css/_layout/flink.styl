@@ -1,122 +1,91 @@
 .flink
-  .md-links 
-    min-height: calc(100% - 120px - 5pc - 6em)
-    text-align: center
-    overflow: auto
-    padding: 0
-    margin: 0 auto
+  .post-cards
+    margin: -10px 10px 0
 
-    a 
-      color: #333
-      text-decoration: none
-  
-    li 
-      width: calc(100%/3 - 14px)
-      float: left
-      list-style: none
-    
-  .md-links-item 
-    height: 90px
-    line-height: 17px
-    margin: 20px 7px
-    padding: 0px 0px
-    transition: box-shadow 0.25s
-    text-overflow: ellipsis
-    overflow: hidden
-    border-radius: 8px
-    transform: perspective(1px) translateZ(0)
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0)
-    position: relative
-    transition-property: color
-    transition-duration: 0.3s                      
-    
-    img 
-      float: left
-      border-radius: 35px
-      margin: 11px 10px
-      width: 70px
-      height: 70px
-      border: 0px solid #eaeefb      
-      transition: all .3s 
-  
-    &:hover 
-      img
-        filter: unqoute("progid:DXImageTransform.Microsoft.BasicImage(rotation=3)")
-        transform: rotate(540deg)
-    
-    &:before
-      content: ""
-      position: absolute
-      z-index: -1
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
-      background: $light-blue !important
-      transform: scale(0)
-      transition-property: transform
-      transition-duration: 0.3s
-      transition-timing-function: ease-out
+    .md-links
+      overflow: auto
+      margin: 0 auto
+      padding: 0
+      text-align: center
 
-  .md-links-item:hover, 
-  .md-links-item:focus, 
-  .md-links-item:active 
-    color: white
+      & > .md-links-item
+        position: relative
+        float: left
+        overflow: hidden
+        margin: 20px 7px
+        padding: 0
+        width: calc(100% / 3 - 14px)
+        height: 90px
+        border-radius: 8px
+        list-style: none
+        line-height: 17px
+        transform: perspective(1px) translateZ(0)
 
-  .md-links-item:hover:before, 
-  .md-links-item:focus:before, 
-  .md-links-item:active:before 
-      -webkit-transform: scale(1)
-      transform: scale(1)
-  
-  .md-links-item a:hover
-    cursor: pointer
-  
-  .md-links-title 
-      padding-top: 16px
-      padding-right: 10px
-      font-size: 20px
-      font-weight: bold
-      height:40px
-      overflow: hidden
-      white-space: nowrap
-      text-overflow: ellipsis
+        &:hover
+          img
+            transform: rotate(540deg)
 
-  .post-cards 
-      margin-top: 5px
-      min-height: 100px
-      padding: 0 15px
-      border-radius: 15px
-  
+        &:before
+          position: absolute
+          top: 0
+          right: 0
+          bottom: 0
+          left: 0
+          z-index: -1
+          background: $light-blue
+          content: ''
+          transition-timing-function: ease-out
+          transition-duration: .3s
+          transition-property: transform
+          transform: scale(0)
+
+        &:hover:before,
+        &:focus:before,
+        &:active:before
+          transform: scale(1)
+
+        a
+          color: #333
+          text-decoration: none
+
+          img
+            float: left
+            margin: 11px 10px
+            padding: 4px
+            width: 70px
+            height: 70px
+            border-radius: 35px
+            transition: all .3s
+
+          .md-links-title
+            overflow: hidden
+            padding: 16px 10px 0 0
+            height: 40px
+            text-overflow: ellipsis
+            white-space: nowrap
+            font-weight: bold
+            font-size: 20px
+
+          .md-links-des
+            overflow: hidden
+            padding: 16px 10px
+            height: 50px
+            text-overflow: ellipsis
+            white-space: nowrap
+            font-size: 13px
+
   .comment-word
-      font-weight:bold
-      font-size:1.7em
-  
-  .md-links-des
-      padding: 16px 10px  
-      font-size:13px 
-      overflow: hidden
-      height:50px
-      white-space: nowrap
-      text-overflow: ellipsis
+    font-weight: bold
+    font-size: 1.7em
 
-@media screen and (max-width:1100px)
+@media screen and (max-width: 1100px)
   .flink
-    .post-cards 
-      position: relative
-      margin: -20px -16px 0
-      border-radius: 18px
-      padding: 16px
-    
-    .md-links 
-      li 
-        width: calc(100%/2 - 14px)   
+    .md-links
+      .md-links-item
+        width: calc(50% - 14px) !important
 
-@media screen and (max-width:600px)
+@media screen and (max-width: 600px)
   .flink
-    .md-links 
-      li 
-        width: calc(100%/1 - 14px) 
-
-
-
+    .md-links
+      .md-links-item
+        width: calc(100% - 14px) !important

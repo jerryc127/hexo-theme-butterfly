@@ -5,12 +5,13 @@
 
   .pagination
     text-align: center
+
   .space
     color: $a-link-color
 
   .page-number
     display: inline-block
-    margin: 0 0.2rem
+    margin: 0 .2rem
     min-width: w = 1.2rem
     height: w
     text-align: center
@@ -25,90 +26,76 @@
   img.prev_cover,
   img.next_cover
     position: absolute
-    padding: 0
     top: 0
     left: 0
+    padding: 0
     width: 100%
     height: 100%
-    opacity: .4
     background-size: cover
-    transition: all 0.6s;
-    object-fit: cover
+    opacity: .4
+    transition: all .6s
     pointer-events: none
+    object-fit: cover
 
-  .prev_info
-    position: absolute
-    z-index: 100
-    font-weight: 400
-    width: 70%
-    color: #fff
-    overflow: hidden
-    white-space: nowrap
-    -o-text-overflow: ellipsis
-    text-overflow: ellipsis
-    display: block
-    bottom: 50px
-
+  .prev_info,
   .next_info
     position: absolute
-    z-index: 100
-    font-weight: 400
-    width: 70%
-    color: #fff
-    overflow: hidden
-    white-space: nowrap
-    -o-text-overflow: ellipsis
-    text-overflow: ellipsis
-    display: block
-    right: 40px
     bottom: 50px
+    z-index: 100
+    display: block
+    overflow: hidden
+    width: 70%
+    color: $white
+    text-overflow: ellipsis
+    white-space: nowrap
+    font-weight: 400
+
+  .next_info
+    right: 40px
     text-align: right
 
   .pull-full
     width: 100% !important
 
-  .prev-post .label
-    position: absolute
-    top: 50px 
-    z-index: 100
-    font-size: 13px
-    display: block
-    text-transform: uppercase
-    color: rgba(255,255,255,.7)
-
+  .prev-post .label,
   .next-post .label
     position: absolute
     top: 50px
-    right: 40px
     z-index: 100
     display: block
+    color: alpha($white, .9)
     text-transform: uppercase
-    color: rgba(255,255,255,.7)
+    font-size: 90%
 
-  .prev-post, .next-post
-    width: 50%
+  .next-post .label
+    right: 40px
+
+  .prev-post,
+  .next-post
     float: left
+    width: 50%
 
     a
-      width: 100%
-      height: 150px
-      padding: 55px 40px
-      text-align: left
       position: relative
       display: block
       float: left
       overflow: hidden
+      padding: 55px 40px
+      width: 100%
+      height: 150px
+      text-align: left
 
     &:hover
-      img.prev_cover, img.next_cover
+      img.prev_cover,
+      img.next_cover
         opacity: .8
-        transform:scale(1.1)
+        transform: scale(1.1)
 
-
-@media screen and (max-width:768px) 
-  .prev-post, .next-post
-    width: 100% !important
-
-.pagination_post
+  &.pagination_post
     margin: 2rem 0 !important
-    background: #000
+    background: $dark-black
+
+@media screen and (max-width: 768px)
+  .prev-post,
+  .next-post
+    width: 100% !important

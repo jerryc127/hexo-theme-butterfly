@@ -8,6 +8,13 @@ if theme.gitalk && theme.gitalk.enable
       owner: '!{theme.gitalk.owner}',
       admin: '!{theme.gitalk.admin}',
       id: md5(decodeURI(location.pathname)),
-      language: '!{theme.gitalk.language}'
+      language: '!{theme.gitalk.language}',
+      updateCountCallback: commentCount
     })
     gitalk.render('gitalk-container')
+
+    function commentCount(n){
+      document.getElementsByClassName('gitalk-comment-count')[0].innerHTML= n
+    }
+
+

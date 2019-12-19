@@ -2,8 +2,9 @@ section#rightside.rightside
   #rightside-config-hide
     if theme.readmode.enable && is_post()
       i#readmode.fa.fa-book(title=_p('rightside.readmode_title'))
-    i#font_plus.fa.fa-plus(title=_p('rightside.font_plus_title'))
-    i#font_minus.fa.fa-minus(title=_p('rightside.font_minus_title'))
+    if is_post()
+      i#font_plus.fa.fa-plus(title=_p('rightside.font_plus_title'))
+      i#font_minus.fa.fa-minus(title=_p('rightside.font_minus_title'))
     if theme.translate && theme.translate.enable
       a#translateLink.translate_chn_to_cht(href="javascript:translatePage();" title=_p('rightside.translate_title') target="_self")= theme.translate.default
     if theme.darkmode && theme.darkmode.enable
