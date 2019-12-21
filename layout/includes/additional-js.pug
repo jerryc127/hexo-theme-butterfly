@@ -1,3 +1,6 @@
+if theme.translate && theme.translate.enable
+  script(src=url_for(theme.CDN.translate))
+
 if (theme.medium_zoom && theme.medium_zoom.enable)
   script(src=url_for(theme.CDN.medium_zoom))
 
@@ -31,12 +34,6 @@ if theme.activate_power_mode.enable
     POWERMODE.shake = !{shake}; 
     document.body.addEventListener('input', POWERMODE);
 
-if theme.translate && theme.translate.enable
-  script(src=url_for(theme.CDN.translate))
-
-if is_home()
-  include index-js.pug
-
 if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
   script(async src=url_for(theme.CDN.busuanzi))
 
@@ -52,3 +49,6 @@ if theme.click_heart && theme.click_heart.enable
 
 if theme.ClickShowText && theme.ClickShowText.enable
   script(src=url_for(theme.CDN.ClickShowText))
+
+if is_home()
+  include index-js.pug

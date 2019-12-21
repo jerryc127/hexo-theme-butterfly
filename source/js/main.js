@@ -258,7 +258,7 @@ $(function () {
       buttons: ['slideShow', 'fullScreen', 'thumbs', 'close']
     })
   } else if (isMediumZoom) {
-    const zoom = mediumZoom(document.querySelectorAll('.mediumZoom'))
+    const zoom = mediumZoom(document.querySelectorAll(':not(a)>img'))
     zoom.on('open', event => {
       const photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
       zoom.update({

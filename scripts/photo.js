@@ -27,10 +27,6 @@ hexo.extend.filter.register('after_post_render', data => {
 
   }
   if (theme.medium_zoom.enable) {
-    images.each((i, o) => {
-      $(o).addClass('mediumZoom')
-    })
-   
     var imgList = $(".justified-gallery img")  
     if (imgList.length) {
       imgList.each((i, o) => {
