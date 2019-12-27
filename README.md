@@ -13,6 +13,18 @@ JerryC:  https://jerryc.me/
 
 Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) theme.
 
+> If you update to hexo 4.2.0，it will be something's wrong
+>
+> ```
+> Error: Cannot find module 'cheerio'
+> ```
+>
+> please install cheerio
+>
+> ```
+> npm install cheerio --save
+> ```
+
 ## Installation
 
 Stable branch:

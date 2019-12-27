@@ -63,8 +63,8 @@ if theme.algolia_search.enable
 
 if (theme.gitalk && theme.gitalk.enable)
   link(rel="stylesheet" type="text/css" href=url_for(theme.CDN.gitalk_css))
-  script(src=url_for(theme.CDN.gitalk) defer)
-  script(src=url_for(theme.CDN.blueimp_md5) defer)
+  script(src=url_for(theme.CDN.gitalk))
+  script(src=url_for(theme.CDN.blueimp_md5))
 
 //- google_adsense
 include ./head/google_adsense.pug

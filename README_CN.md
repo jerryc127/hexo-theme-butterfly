@@ -9,8 +9,19 @@ Demo:  https://demo.jerryc.me/
 
 JerryC:  https://jerryc.me/
 
-
 一款基於[hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody)修改的主題
+
+> 如果升級到hexo 4.2.0 ，會出現報錯
+>
+> ```
+> Error: Cannot find module 'cheerio'
+> ```
+>
+> 請在博客根目錄安裝cheerio
+>
+> ```
+> npm install cheerio --save
+> ```
 
 ## 安裝
 
