@@ -1,9 +1,10 @@
 - var d = theme.disqus && theme.disqus.enable
+- var dj = theme.disqusjs && theme.disqusjs.enable
 - var l = theme.laibili && theme.laibili.enable
 - var gt = theme.gitalk && theme.gitalk.enable
 - var v = theme.valine && theme.valine.enable
 
-if d || l || gt || v
+if d || dj || l || gt || v
   hr
   #post-comment
     .comment_headling
@@ -11,6 +12,8 @@ if d || l || gt || v
       span= ' ' + _p('comment')
     if d
       include ./disqus.pug
+    else if dj
+      include ./disqusjs.pug
     else if l
       include ./laibili.pug
     else if gt
