@@ -178,16 +178,22 @@ addtoany:
 
 ####   Comments System    ####
 # ------------------------------------
-
-# Disqus.js 版评论系统，应对大陆长城的折中方案，兼容原版：https://github.com/SukkaW/DisqusJS 
-# API 申请地址：https://disqus.com/api/applications/
+# Disqus 官方版評論系統
 disqus:
-  enable: false #开启改为 true
+  enable: false
+  shortname:
+  count: false # top_img顯示評論數
+
+# Disqus.js 版評論系統，應對大陸長城的折中方案，兼容原版：https://github.com/SukkaW/DisqusJS 
+# API 申請地址：https://disqus.com/api/applications/
+# 與 disqus 共用樣式
+disqusjs:
+  enable: false #開啓改爲 true
   shortname: 
   siteName: 
   apikey: 
-  api: https://disqus.skk.moe/disqus/ #一般情况无需要修改
-  count: true # top_img顯示評論數
+  api: https://disqus.skk.moe/disqus/ #一般情況下無需修改 API 地址
+  count: false # top_img顯示評論數
 
 laibili:
   enable: false
