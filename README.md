@@ -22,7 +22,7 @@ Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) t
 > please install cheerio
 >
 > ```
-> npm install cheerio --save
+> npm install cheerio@0.22.0 --save
 > ```
 
 ## Installation

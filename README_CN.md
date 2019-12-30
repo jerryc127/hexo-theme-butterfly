@@ -20,7 +20,7 @@ JerryC:  https://jerryc.me/
 > 請在博客根目錄安裝cheerio
 >
 > ```
-> npm install cheerio --save
+> npm install cheerio@0.22.0 --save
 > ```
 
 ## 安裝
