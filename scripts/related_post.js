@@ -1,9 +1,4 @@
-const moment = require('moment-timezone');
-const {
-  isMoment
-} = moment;
-
-
+const moment = require('moment');
 
 hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   var relatedPosts = [];
@@ -16,7 +11,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
           cover: post.cover,
           weight: 1,
           updated: post.updated,
-          created: post.created
+          created: post.date
         };
         var index = findItem(relatedPosts, 'path', post.path);
         if (index != -1) {
@@ -64,9 +59,9 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
       result += '<div class="relatedPosts_item"><a href="' + hexoConfig.root + relatedPosts[i].path + '" title="' + relatedPosts[i].title + '">';
       result += '<img class="relatedPosts_cover ' + lazy_class + '"' + lazy_src + '="' + cover + '">';
       if (date_type == 'created') {
-        result += '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>' + ' ' + dateHelper(relatedPosts[i].created) + '</div>'
+        result += '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>' + ' ' + date(relatedPosts[i].created) + '</div>'
       } else {
-        result += '<div class="relatedPosts_main"><div class="relatedPosts_date"><i class="fa fa-history fa-fw" aria-hidden="true"></i>' + ' ' + dateHelper(relatedPosts[i].updated) + '</div>'
+        result += '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-history fa-fw" aria-hidden="true"></i>' + ' ' + date(relatedPosts[i].updated) + '</div>'
       }
       result += '<div class="relatedPosts_title">' + relatedPosts[i].title + '</div>';
       result += '</div></a></div>'
@@ -76,9 +71,6 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
     return result;
 
   }
-});
-hexo.extend.helper.register('echo', function (path) {
-  return path;
 });
 
 function isTagRelated(tagName, TBDtags) {
@@ -108,14 +100,8 @@ function compare(attr) {
   }
 }
 
-function dateHelper(date) {
-  const moment = getMoment(date, hexo.theme.config.rootConfig.language);
-  return moment.format(hexo.theme.config.rootConfig.date_format);
-}
-
-function getMoment(date, lang) {
-  if (date == null) date = moment();
-  if (!isMoment(date)) date = moment(isDate(date) ? date : new Date(date));
-  if (lang) date = date.locale(lang);
-  return date;
+function date(date) {
+  var config = hexo.theme.config.rootConfig
+  moment.locale(config.language)
+  return moment(date).format(config.date_format)
 }
