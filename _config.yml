@@ -208,6 +208,8 @@ gitalk:
   admin:
   language: # en , zh-CN , zh-TW
   count: false # top_img顯示評論數
+  createIssueManually: false
+  distractionFreeMode: false
 
 # valine comment system. https://valine.js.org
 valine:
