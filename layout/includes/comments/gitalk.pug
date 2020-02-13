@@ -1,6 +1,8 @@
 if theme.gitalk && theme.gitalk.enable
   #gitalk-container
   script.
+    var createIssueManually = #{ theme.gitalk.createIssueManually } == true ? true : false;
+    var distractionFreeMode = #{ theme.gitalk.distractionFreeMode } == true ? true : false;
     var gitalk = new Gitalk({
       clientID: '!{theme.gitalk.client_id}',
       clientSecret: '!{theme.gitalk.client_secret}',
@@ -8,6 +10,8 @@ if theme.gitalk && theme.gitalk.enable
       owner: '!{theme.gitalk.owner}',
       admin: '!{theme.gitalk.admin}',
       id: md5(decodeURI(location.pathname)),
+      createIssueManually: createIssueManually,
+      distractionFreeMode: distractionFreeMode,
       language: '!{theme.gitalk.language}',
       updateCountCallback: commentCount
     })
