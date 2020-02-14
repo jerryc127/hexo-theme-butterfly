@@ -182,6 +182,7 @@ addtoany:
 disqus:
   enable: false
   shortname:
+  url:         # 例： https://<username>.github.io (注意:最後不要加slash符號)
   count: false # top_img顯示評論數
 
 # Disqus.js 版評論系統，應對大陸長城的折中方案，兼容原版：https://github.com/SukkaW/DisqusJS 
