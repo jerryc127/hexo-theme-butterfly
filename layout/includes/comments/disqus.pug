@@ -2,7 +2,7 @@ if theme.disqus && theme.disqus.enable
   #disqus_thread
   script.
     var disqus_config = function () {
-      this.page.url = '!{ theme.disqus.url }/!{ page.path }';
+      this.page.url = '!{ page.permalink }';
       this.page.identifier = '/!{ page.path }';
     };
     (function() {
