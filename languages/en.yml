@@ -99,5 +99,5 @@ Snackbar:
     message_next: to bookmark this page
   chs_to_cht: Traditional Chinese Activated Manually
   cht_to_chs: Simplified Chinese Activated Manually
-  day_to_night: Light Mode Activated Manually
-  night_to_day: Dark Mode Activated Manually
+  day_to_night: Dark Mode Activated Manually
+  night_to_day: Light Mode Activated Manually
