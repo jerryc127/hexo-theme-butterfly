@@ -6,6 +6,7 @@
 <a href="https://nodejs.org/"><img alt="node.js" src="https://img.shields.io/badge/node.js-8.0+-blur"/></a>
 
 Demo:  https://demo.jerryc.me/
+
 JerryC:  https://jerryc.me/
 
 Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) theme.

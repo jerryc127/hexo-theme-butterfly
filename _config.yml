@@ -244,19 +244,12 @@ gitalk:
   repo:
   owner:
   admin:
-<<<<<<< HEAD
   language: zh-CN # en , zh-CN , zh-TW
   perPage: 10 # Pagination size, with maximum 100.
   distractionFreeMode: false # Facebook-like distraction free mode.
   pagerDirection: last # Comment sorting direction, available values are last and first.
   createIssueManually: false # Gitalk will create a corresponding github issue for your every single page automatically
   count: true # top_img顯示評論數
-=======
-  language: # en , zh-CN , zh-TW
-  count: false # top_img顯示評論數
-  createIssueManually: false
-  distractionFreeMode: false
->>>>>>> c40db692bfcb921b55976b6308b7d5d84f988113
 
 # valine comment system. https://valine.js.org
 valine:
