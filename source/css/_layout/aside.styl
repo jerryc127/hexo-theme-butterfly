@@ -1,11 +1,13 @@
 #aside_content
   width: 25%
 
+  .card-widget:not(:first-child)
+    margin-top: 1rem
+
   .card-widget
     overflow: hidden
-    margin-top: 20px
     border-radius: 8px
-    background: $white
+    background: $card-bg
     box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
     transition: all .3s
 
@@ -15,11 +17,9 @@
   .card-info
     img
       display: inline-block
-      padding: 5px
-      width: 120px
-      height: 120px
+      width: 110px
+      height: 110px
       border-radius: 70px
-      vertical-align: top
       transition: all .3s
 
       &:hover
@@ -34,21 +34,18 @@
         margin-top: -.3rem
 
     .card-info-data
-      display: flex
       padding: .7rem 0
 
       & > .card-info-data-item
-        flex: 1 1
-        min-width: 0
+        display: inline-block
+        width: 33.3%
 
         a
-          text-decoration: none
-
           .headline
             display: block
             overflow: hidden
             color: $font-black
-            text-transform: uppercase
+            // text-transform: uppercase
             text-overflow: ellipsis
             white-space: nowrap
             font-size: .7rem
@@ -77,8 +74,7 @@
       z-index: 1
       display: block
       background-color: $light-blue
-      color: $white
-      text-decoration: none
+      color: $button-color
       text-transform: uppercase
       line-height: 1.6rem
 
@@ -96,7 +92,6 @@
 
   .card-tag-cloud
     a
-      text-decoration: none
       word-break: keep-all
 
       &:hover
@@ -111,7 +106,6 @@
 
         & > a
           color: $font-black
-          text-decoration: none
 
           .aside-post-cover
             float: left
@@ -134,7 +128,7 @@
           .aside-post-title
             .aside-post_meta
               padding-left: 10px
-              color: $theme-link-color
+              color: $theme-meta-color
               font-size: .6rem
 
             .aside-post_title
@@ -148,6 +142,10 @@
 
               &:hover
                 color: $light-blue !important
+
+            &.no-aside-cover
+              .aside-post_title
+                height: auto
 
   .card-archives ul.archive-list,
   .card-categories ul.aside-category-item
@@ -164,19 +162,23 @@
     &:hover
       padding: .2rem .85rem
       background-color: $light-blue
-      color: #363636
 
     a
-      display: flex
       color: $font-black
-      text-decoration: none
 
       span
+        display: inline-block
+        overflow: hidden
+        vertical-align: bottom
+        text-overflow: ellipsis
+        white-space: nowrap
+
         &:first-child
-          flex: auto
-          overflow: hidden
-          text-overflow: ellipsis
-          white-space: nowrap
+          width: 80%
+
+        &:last-child
+          width: 20%
+          text-align: right
 
   .card-categories
     .aside-category-item
@@ -211,6 +213,10 @@
   #aside_content
     width: 100% !important
 
+  #aside_content
+    .card-widget:first-child
+      margin-top: 1rem
+
 @media screen and (min-width: 900px)
   #aside_content
     .card-widget
@@ -219,7 +225,7 @@
       else
         margin-right: 15px
 
-if hexo-config('aside_mobile') == false
+if hexo-config('aside.mobile') == false
   @media screen and (max-width: $sm)
     #aside_content
       display: none

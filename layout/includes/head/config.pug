@@ -76,12 +76,14 @@
     })
   }
 
+  var highlightCopy = theme.highlight_copy
+  var highlightLang = theme.highlight_lang
+  var highlightShrink  = theme.highlight_shrink
   var runtime = theme.runtimeshow.enable
   var fancybox = theme.fancybox.enable
   var medium_zoom = theme.medium_zoom.enable
   var baiduPush = theme.baidu_push && theme.baidu_push.enable
-  var isHome = is_home() ? true : false
-  var isPost = is_post() ? true : false
+  var isFontAwesomeV5 = theme.fontawesome_v5 && theme.fontawesome_v5.enable
 
 
 script.
@@ -108,8 +110,10 @@ script.
     fancybox: !{fancybox},
     Snackbar: !{Snackbar},
     baiduPush: !{baiduPush},
-    isHome: !{isHome},
-    isPost: !{isPost}
+    highlightCopy: !{highlightCopy},
+    highlightLang: !{highlightLang},
+    highlightShrink: !{highlightShrink},
+    isFontAwesomeV5: !{isFontAwesomeV5}
     
   }
 

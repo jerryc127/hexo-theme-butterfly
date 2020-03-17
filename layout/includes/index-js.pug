@@ -1,90 +1,116 @@
 if theme.subtitle.enable
-  script(src=url_for(theme.CDN.typed))
-  - var source = theme.subtitle.source
+  - let source = theme.subtitle.source
+  - let subtitleEffect = theme.subtitle.effect
 
-  if source == '1' || source == '2'
-    script(src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js")
-    script(src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js")
+  if subtitleEffect
+    script(src=url_for(theme.CDN.typed))
 
   if source == '1'
     script.
+      let subtitleEffect = !{subtitleEffect}
       fetch('https://api.ooopn.com/ciba/api.php',)
       .then(function (res){
         return res.json();
       })
       .then(function (data) {
-        var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
-        var both = sub.unshift(data['ciba-en'],data.ciba)
-        var typed = new Typed(".subtitle", {
-        strings: sub,
-        startDelay: 300,
-        typeSpeed: 100,
-        loop: true,
-        backSpeed: 50
-        });
+        if (subtitleEffect){
+          let sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+          let both = sub.unshift(data['ciba-en'],data.ciba)
+          let typed = new Typed("#subtitle", {
+            strings: sub,
+            startDelay: 300,
+            typeSpeed: 150,
+            loop: !{theme.subtitle.loop},
+            backSpeed: 50
+          });
+        }else{
+          document.getElementById("subtitle").innerHTML = data['ciba-en']
+        }
       })
       .catch(function (err) {
         console.error(err);
       })
+
   else if source == '2'
     script.
+      let subtitleEffect = !{subtitleEffect}
       fetch('https://v1.hitokoto.cn')
       .then(function (res){
         return res.json();
       })
       .then(function (data) {
-        var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
-        var both = sub.unshift(data.hitokoto)  
-        var typed = new Typed(".subtitle", {
-        strings: sub,
-        startDelay: 300,
-        typeSpeed: 100,
-        loop: true,
-        backSpeed: 50
-        });
+        if (subtitleEffect){
+          let from = '出自 ' + data.from
+          let sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+          let both = sub.unshift(data.hitokoto,from)  
+          let typed = new Typed("#subtitle", {
+            strings: sub,
+            startDelay: 300,
+            typeSpeed: 150,
+            loop: !{theme.subtitle.loop},
+            backSpeed: 50
+          });
+        }else{
+          document.getElementById("subtitle").innerHTML = data.hitokoto        
+        }
       })
       .catch(function (err) {
         console.error(err);
       })
+
   else if source == "3"
     script(type="text/javascript" src="http://yijuzhan.com/api/word.php?m=js")
     script.
-      var con = str[0];
-      var author = "出自 " + str[1];
-      var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
-      var both = sub.unshift(con,author)
-      var typed = new Typed(".subtitle", {
-      strings: sub,
-      startDelay: 300,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50
-      });
+      let subtitleEffect = !{subtitleEffect}
+      let con = str[0];
+      if (subtitleEffect){
+        let from = "出自 " + str[1];
+        let sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+        let both = sub.unshift(con,from)
+        let typed = new Typed("#subtitle", {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: !{theme.subtitle.loop},
+          backSpeed: 50
+        });
+      }else{
+        document.getElementById("subtitle").innerHTML = con
+      }
+
   else if source == '4'
     script(type="text/javascript" src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8")
     script.
+      let subtitleEffect = !{subtitleEffect}
       jinrishici.load(function(result) {
-        var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
-        var content = result.data.content;
-        var both = sub.unshift(content)
-        var typed = new Typed(".subtitle", {
-        strings: sub,
-        startDelay: 300,
-        typeSpeed: 100,
-        loop: true,
-        backSpeed: 50
-      });
+        if (subtitleEffect){
+          let sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+          let content = result.data.content;
+          let both = sub.unshift(content)
+          let typed = new Typed("#subtitle", {
+            strings: sub,
+            startDelay: 300,
+            typeSpeed: 150,
+            loop: !{theme.subtitle.loop},
+            backSpeed: 50
+          });
+        }else{
+          document.getElementById("subtitle").innerHTML = result.data.content        
+        }
       })
-     
+
   else
+    - var subtitle = theme.subtitle.sub[0]
     script.
-      var typed = new Typed(".subtitle", {
-      strings: '!{theme.subtitle.sub}'.split(","),
-      startDelay: 300,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50
-      });
-
-
-
+      let subtitleEffect = !{subtitleEffect}
+      if (subtitleEffect){ 
+        let typed = new Typed("#subtitle", {
+          strings: '!{theme.subtitle.sub}'.split(","),
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: !{theme.subtitle.loop},
+          backSpeed: 50
+        })
+      }else{
+        document.getElementById("subtitle").innerHTML = '!{subtitle}'
+        }

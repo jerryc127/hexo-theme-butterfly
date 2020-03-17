@@ -19,7 +19,6 @@ page:
 
 sticky: 置顶
 no_title: 无题
-archives: 时间轴
 
 post:
   created: 发表于
@@ -32,7 +31,9 @@ post:
     author: 文章作者
     link: 文章链接
     copyright_notice: 版权声明
-    copyright_content: '本博客所有文章除特别声明外，均采用 <a href="%s">%s</a> 许可协议。转载请注明来自 <a href="%s">%s</a>！'
+    copyright_content: '本博客所有文章除特别声明外，均采用
+      <a href="%s" target="_blank">%s</a> 许可协议。转载请注明来自 <a href="%s" target="_blank">%s</a>！'
+  recommend: 相关推荐
 
 search: 搜索
 algolia_search:
@@ -75,7 +76,6 @@ share: 分享
 bookmark:
   title: 添加书签
 
-
 rightside:
   readmode_title: 阅读模式
   font_plus_title: 放大字体
@@ -103,3 +103,5 @@ Snackbar:
   cht_to_chs: 你已切换为简体
   day_to_night: 你已切换为深色模式
   night_to_day: 你已切换为浅色模式
+
+error_title: 页面没有找到

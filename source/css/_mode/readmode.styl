@@ -1,0 +1,147 @@
+if hexo-config('readmode') && hexo-config('readmode.enable')
+  [data-theme='light']
+    .read-mode
+      background: #fff
+
+      #nav.post-bg
+        a
+          color: $font-black !important
+
+      #article-container
+        pre,
+        .highlight:not(.js-file-line-container)
+          background: #f7f7f7 !important
+
+        code
+          color: #4c4948
+
+        blockquote
+          border-left: .2rem solid #ddd
+          background-color: transparent
+
+        ol,
+        li
+          &:before
+            background: transparent
+            color: #4c4948
+
+        ul
+          >li
+            &:before
+              border: .2rem solid #90a4ae
+
+        hr
+          border: 2px dashed #d6dbdf
+          background: transparent
+
+          &:before
+            color: darken(#d6dbdf, 10)
+
+        .hide-button
+          background: darken(#d6dbdf, 10) !important
+
+        .note
+          border: 2px solid #eee
+          border-left-color: transparent
+          background-color: transparent
+
+      #mobile-sidebar-menus,
+      #rightside i,
+      #rightside a,
+      #rightside #rightside_config
+        background: darken(#d6dbdf, 10) !important
+
+  [data-theme='dark']
+    .read-mode
+      background: #0d0d0d
+
+      #article-container
+        code
+          color: rgba(255, 255, 255, .6)
+
+        blockquote
+          border-left: .2rem solid rgba(255, 255, 255, .6)
+          background-color: transparent
+
+        ol,
+        li
+          &:before
+            background: transparent
+            color: rgba(255, 255, 255, .6)
+
+        ul
+          >li
+            &:before
+              border: .15rem solid rgba(255, 255, 255, .6)
+
+        .note
+          border: 2px solid rgba(255, 255, 255, .6)
+          border-left-color: transparent
+          filter: none
+          background-color: transparent
+          color: rgba(255, 255, 255, .6)
+
+        .hide-button
+          background: #1f1f1f !important
+
+  .read-mode
+    #body-wrap
+      padding-left: 0 !important
+
+    #nav.post-bg
+      background-color: transparent
+      background-image: none !important
+
+      a
+        text-shadow: none !important
+
+      &:before
+        opacity: 0
+
+      & > #post-info
+        padding: 0
+        color: $font-black
+        text-align: center
+
+    .layout_post
+      > #post
+        background: transparent
+        box-shadow: none
+
+        &:hover
+          box-shadow: none
+
+    .highlight
+      display: block !important
+
+    #rightside
+      #darkmode
+        display: none
+
+    & > canvas
+      display: none !important
+
+    .code-area-wrap > .highlight-tools,
+    #footer,
+    #post > *:not(:first-child),
+    #to_comment,
+    #sidebar,
+    #toggle-sidebar,
+    #mobile-toc-button,
+    #page-header
+      display: none !important
+
+    #web_bg
+      background: none
+
+    #article-container
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6
+        padding: 0
+
+        &:before
+          content: ''

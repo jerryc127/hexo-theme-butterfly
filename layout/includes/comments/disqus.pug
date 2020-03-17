@@ -1,13 +1,23 @@
-if theme.disqus && theme.disqus.enable
-  #disqus_thread
-  script.
-    var unused = null;
-    var disqus_config = function () {
-      this.page.url = '!{ page.permalink }';
-      this.page.identifier = '!{ page.path }';
-      this.page.title = '!{ page.title }';
-    }
+#disqus_thread
+script.
+  var disqus_config = function () {
+    this.page.url = '!{ page.permalink }';
+    this.page.identifier = '!{ page.path }';
+    this.page.title = '!{ page.title }';
+  };
+  (function() { 
     var d = document, s = d.createElement('script');
-    s.src = "https://" + '!{theme.disqus.shortname}' +".disqus.com/embed.js";
-    s.setAttribute('data-timestamp', '' + +new Date());
+    s.src = 'https://!{theme.disqus.shortname}.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
     (d.head || d.body).appendChild(s);
+  })();
+
+script.
+  function getDisqusCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://!{theme.disqus.shortname}.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+
+  window.addEventListener('load', getDisqusCount, false);

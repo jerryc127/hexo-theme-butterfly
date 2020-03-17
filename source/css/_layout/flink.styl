@@ -1,11 +1,9 @@
-.flink
+.flink#article-container
   .post-cards
     margin: -10px 10px 0
 
     .md-links
       overflow: auto
-      margin: 0 auto
-      padding: 0
       text-align: center
 
       & > .md-links-item
@@ -13,11 +11,9 @@
         float: left
         overflow: hidden
         margin: 20px 7px
-        padding: 0
-        width: calc(100% / 3 - 14px)
+        width: calc(100% / 3 - 15px)
         height: 90px
         border-radius: 8px
-        list-style: none
         line-height: 17px
         transform: perspective(1px) translateZ(0)
 
@@ -45,15 +41,14 @@
           transform: scale(1)
 
         a
-          color: #333
+          color: $font-color
           text-decoration: none
 
           img
             float: left
-            margin: 11px 10px
-            padding: 4px
-            width: 70px
-            height: 70px
+            margin: 13px 0 0 10px
+            width: 65px
+            height: 65px
             border-radius: 35px
             transition: all .3s
 
@@ -74,18 +69,14 @@
             white-space: nowrap
             font-size: 13px
 
-  .comment-word
-    font-weight: bold
-    font-size: 1.7em
-
 @media screen and (max-width: 1100px)
   .flink
     .md-links
       .md-links-item
-        width: calc(50% - 14px) !important
+        width: calc(50% - 15px) !important
 
 @media screen and (max-width: 600px)
   .flink
     .md-links
       .md-links-item
-        width: calc(100% - 14px) !important
+        width: calc(100% - 15px) !important

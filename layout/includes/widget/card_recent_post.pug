@@ -8,17 +8,20 @@
         .aside-recent-post
           - var link = article.link || article.path
           - var title = article.title || _p('no_title')
+          - var no_cover = article.cover === false || !theme.cover.aside_enable ? 'no-aside-cover' : ''
+          - var post_cover = article.cover
+
             a(href=url_for(link))
-              - var post_cover = article.cover
-              .aside-post-cover
-                if theme.lazyload.enable
-                  img.aside-post-bg.lazyload(data-src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` title=title alt=title)
-                else
-                  img.aside-post-bg(src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` title=title alt=title)
-              .aside-post-title
+              if post_cover && theme.cover.aside_enable
+                .aside-post-cover
+                  if theme.lazyload.enable
+                    img.aside-post-bg.lazyload(data-src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` title=title alt=title)
+                  else
+                    img.aside-post-bg(src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` title=title alt=title)
+              .aside-post-title(class=no_cover)
                 .aside-post_title(href=url_for(link) title=article.title || _p('no_title'))= article.title || _p('no_title')
-                if (theme.post_meta.date_type)
-                  - var date_type = theme.post_meta.date_type == 'updated' ? 'updated' : 'date'
+                if (theme.post_meta.page.date_type)
+                  - var date_type = theme.post_meta.page.date_type == 'updated' ? 'updated' : 'date'
                   time.aside-post_meta.post-meta__date #[=date(article[date_type], config.date_format)]
     
       - })

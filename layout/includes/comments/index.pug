@@ -3,8 +3,10 @@
 - var l = theme.laibili && theme.laibili.enable
 - var gt = theme.gitalk && theme.gitalk.enable
 - var v = theme.valine && theme.valine.enable
+- var u = theme.utterances && theme.utterances.enable
+- var isComment = d || dj || l || gt || v || u
 
-if d || dj || l || gt || v
+if isComment
   hr
   #post-comment
     .comment_headling
@@ -20,3 +22,5 @@ if d || dj || l || gt || v
       include ./gitalk.pug
     else if v
       include ./valine.pug
+    else if u
+      include ./utterances.pug

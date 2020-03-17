@@ -26,12 +26,10 @@ if (theme.canvas_nest && theme.canvas_nest.enable)
   include ./third-party/canvas-nest.pug 
 
 if theme.activate_power_mode.enable
-  - var colorful = theme.activate_power_mode.colorful == false ? false : true
-  - var shake = theme.activate_power_mode.shake == false ? false : true
   script(src=url_for(theme.CDN.activate_power_mode))
   script.
-    POWERMODE.colorful = !{colorful};
-    POWERMODE.shake = !{shake}; 
+    POWERMODE.colorful = #{theme.activate_power_mode.colorful};
+    POWERMODE.shake = #{theme.activate_power_mode.shake};
     document.body.addEventListener('input', POWERMODE);
 
 if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
@@ -49,6 +47,19 @@ if theme.click_heart && theme.click_heart.enable
 
 if theme.ClickShowText && theme.ClickShowText.enable
   script(src=url_for(theme.CDN.ClickShowText))
+
+if theme.pangu && theme.pangu.enable
+  include ./third-party/pangu.pug
+
+//- search
+if theme.algolia_search && theme.algolia_search.enable
+  script(src=url_for(theme.CDN.algolia_js))
+else if theme.local_search && theme.local_search.enable
+  script(src=url_for(theme.CDN.local_search))
+
+//- mermaid
+if theme.mermaid.enable
+  include ./math/mermaid.pug
 
 if is_home()
   include index-js.pug

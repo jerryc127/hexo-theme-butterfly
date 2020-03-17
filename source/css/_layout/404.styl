@@ -1,0 +1,44 @@
+if hexo-config('error_404.enable')
+  #nav.error-no-found
+    display: flex
+    flex-direction: column
+    justify-content: center
+    height: 100vh
+
+    &:before
+      width: 100%
+      height: 100%
+      background-color: alpha($dark-black, .5)
+      content: ''
+
+    #error_info
+      position: absolute
+      padding: 0 4rem
+      width: 100%
+      letter-spacing: 3px
+      line-height: 1
+
+      #error_title,
+      #error_subtitle
+        margin: 0
+        padding: 0
+        color: $light-grey
+        letter-spacing: 5px
+        font-family: $site-name-font
+
+      #error_title
+        font-size: 10rem
+
+      #error_subtitle
+        font-size: 2rem
+
+  @media screen and (max-width: $sm)
+    #nav.error-no-found
+      #error_info
+        padding: 0 2rem
+
+        #error_title
+          font-size: 7rem !important
+
+        #error_subtitle
+          font-size: 1rem !important

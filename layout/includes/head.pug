@@ -1,31 +1,31 @@
-if is_home()
-  - var top_img = theme.index_img || theme.default_top_img
-else if is_archive()
-  - var top_img = theme.archive_img || theme.default_top_img
-else if is_tag()
-  - var top_img = theme.tag_img || theme.default_top_img
-else if is_category()
-  - var top_img = theme.category_img || theme.default_top_img
-else if is_current('/movies/', [strict])
-  - var top_img = theme.movies_img || theme.default_top_img
-else if !is_post()
-  - var top_img = page.top_img || theme.default_top_img
+- var pageTitle = page.title || config.title || ''
+- if (is_archive()) pageTitle = _p('page.archives')
+- if (is_tag()) pageTitle = _p('page.tag') + ': ' + page.tag
+- if (is_category()) pageTitle = _p('page.category') + ': ' + page.category
+- if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
+- if (is_year()) pageTitle += ': ' + page.year
+- var isSubtitle = config.subtitle ? ' - ' + config.subtitle : ''
+- var tabTitle = is_home() || !pageTitle ? config.title + isSubtitle : pageTitle + ' | ' + config.title
+- pageTitle ? '' : pageTitle = config.title || ''
 
-- var without_index = url.replace('index.html', '')
-- var without_html = without_index.replace('.html', '')
+- var pageDescription = page.description || page.title || config.description
+- var pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
+- if (page.tags && page.tags.data) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
+- var pageAuthor = config.email ? config.author + ',' + config.email : config.author
+- var pageCopyright = config.copyright || config.author
+- var without_html = url.replace('index.html', '')
 
-//- 預解析
-include ./head/dns_prefetch.pug
-
-//- PWA
-if (theme.pwa && theme.pwa.enable)
-  include ./head/pwa.pug
-
-//- 網站驗證
-include ./head/site_verification.pug
-
-//- Open_Graph
-include ./head/Open_Graph.pug
+meta(charset='UTF-8')
+meta(http-equiv="X-UA-Compatible" content="IE=edge")
+meta(name="viewport" content="width=device-width,initial-scale=1")
+title= tabTitle
+meta(name="description" content=pageDescription)
+if pageKeywords
+  meta(name="keywords" content=pageKeywords)
+meta(name="author" content=pageAuthor)
+meta(name="copyright" content=pageCopyright)
+meta(name ="format-detection" content="telephone=no")
+!=favicon_tag(theme.favicon || config.favicon)
 
 if theme.disable_baidu_transformation
   meta(http-equiv="Cache-Control" content="no-transform")
@@ -34,13 +34,34 @@ if theme.disable_baidu_transformation
 if page.hide == true
   meta(name="robots" content="noindex")
 
+if theme.douban.meta && (is_current('/movies/', [strict]) || is_current('/books/', [strict]) || is_current('/games/', [strict]))
+  meta(name="referrer" content="no-referrer")
+
+//- 預解析
+!=partial('includes/head/dns_prefetch', {}, {cache:theme.fragment_cache})
+
+//- 網站驗證
+!=partial('includes/head/site_verification', {}, {cache:theme.fragment_cache})
+
+//- Open_Graph
+include ./head/Open_Graph.pug
+
+//- PWA
+if (theme.pwa && theme.pwa.enable)
+  !=partial('includes/head/pwa', {}, {cache:theme.fragment_cache})
+
 script(src=url_for(theme.CDN.js_cookies))
 
-if (theme.darkmode && theme.darkmode.enable) || theme.autoChangeMode !== false
-  include ./head/darkmode.pug
+if theme.darkmode.enable
+  !=partial('includes/head/darkmode', {}, {cache:theme.fragment_cache})
 
 each item in theme.CDN_USE.css
   link(rel='stylesheet', href=url_for(item))
+
+if theme.fontawesome_v5 && theme.fontawesome_v5.enable
+  link(rel='stylesheet', href=url_for(theme.CDN.fontawesome_v5))
+else
+  link(rel='stylesheet', href=url_for(theme.CDN.fontawesome_v4))
 
 if (theme.fancybox && theme.fancybox.enable)
   link(rel='stylesheet', href=url_for(theme.CDN.fancybox_css))
@@ -61,19 +82,18 @@ if theme.algolia_search.enable
   link(rel="stylesheet" type="text/css" href=url_for(theme.CDN.algolia_search_css))
   script(src=url_for(theme.CDN.algolia_search) defer)
 
-if (theme.gitalk && theme.gitalk.enable)
-  link(rel="stylesheet" type="text/css" href=url_for(theme.CDN.gitalk_css))
-  script(src=url_for(theme.CDN.gitalk))
-  script(src=url_for(theme.CDN.blueimp_md5))
+//- comment css
+include ./head/comment.pug
 
 //- google_adsense
-include ./head/google_adsense.pug
+!=partial('includes/head/google_adsense', {}, {cache:theme.fragment_cache})
 
 //- analytics
-include ./head/analytics.pug
-
-if !is_post()
-  link(rel="preload" href=url_for(top_img)  as="image" )
+!=partial('includes/head/analytics', {}, {cache:theme.fragment_cache})
 
 if theme.blog_title_font.font_link
   link(rel='stylesheet', href=url_for(theme.blog_title_font.font_link))
+
+//- global config
+!=partial('includes/head/config', {}, {cache:theme.fragment_cache})
+include ./head/config_site.pug

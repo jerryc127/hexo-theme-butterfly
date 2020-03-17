@@ -1,0 +1,87 @@
+doctype html
+html(lang=config.language data-theme=theme.display_mode)
+  head
+    - var pageTitle = _p('error_title') 
+    - var tabTitle = pageTitle + ' | ' + config.title
+    - var pageDescription = page.description || page.title || config.description
+    - var pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
+    - var pageAuthor = config.email ? config.author + ',' + config.email : config.author
+    - var pageCopyright = config.copyright || config.author
+    - var without_html = url.replace('index.html', '')
+    - var top_img = theme.error_404.background || theme.default_top_img
+    - var bg_img = `background-image: url(${top_img})`
+
+
+    meta(charset='UTF-8')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5")
+    title= tabTitle
+    meta(name="description" content=pageDescription)
+    if pageKeywords
+      meta(name="keywords" content=pageKeywords)
+    meta(name="author" content=pageAuthor)
+    meta(name="copyright" content=pageCopyright)
+    meta(name ="format-detection" content="telephone=no")
+    !=favicon_tag(theme.favicon || config.favicon)
+    //- 預解析
+    include includes/head/dns_prefetch.pug
+    //- 網站驗證
+    include includes/head/site_verification.pug
+    //- Open_Graph
+    include includes/head/Open_Graph.pug
+    //- PWA
+    if (theme.pwa && theme.pwa.enable)
+      include includes/head/pwa
+      
+    script(src=url_for(theme.CDN.js_cookies))
+
+    if theme.darkmode.enable
+      include includes/head/darkmode.pug
+
+    each item in theme.CDN_USE.css
+      link(rel='stylesheet', href=url_for(item))
+
+    if theme.fontawesome_v5 && theme.fontawesome_v5.enable
+      link(rel='stylesheet', href=url_for(theme.CDN.fontawesome_v5))
+    else
+      link(rel='stylesheet', href=url_for(theme.CDN.fontawesome_v4))
+
+    if (theme.snackbar && theme.snackbar.enable)
+      link(rel='stylesheet', href=url_for(theme.CDN.snackbar_css))
+
+    if theme.canonical
+      link(rel="canonical" href=without_html)
+
+    if theme.algolia_search.enable
+      link(rel="stylesheet" type="text/css" href=url_for(theme.CDN.algolia_search_css))
+      script(src=url_for(theme.CDN.algolia_search) defer)
+
+    //- google_adsense
+    include includes/head/google_adsense.pug
+
+    //- analytics
+    include includes/head/analytics.pug
+
+    if theme.blog_title_font.font_link
+      link(rel='stylesheet', href=url_for(theme.blog_title_font.font_link))
+
+    include includes/head/config.pug
+    include includes/head/config_site.pug
+ 
+  body
+    if theme.fireworks && theme.fireworks.enable
+      canvas.fireworks
+    nav#nav.error-no-found(style=bg_img)
+      include includes/header/header.pug
+      #error_info.is-center
+        h1#error_title= '404'
+        #error_subtitle= theme.error_404.subtitle   
+    include includes/mobile-sidebar/index.pug
+    include includes/rightside.pug
+    each item in theme.CDN_USE.js
+      script(src=url_for(item))
+    include includes/additional-js.pug
+    include includes/search/index.pug
+    
+
+    

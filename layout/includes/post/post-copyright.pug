@@ -1,0 +1,13 @@
+if (theme.post_copyright && theme.post_copyright.enable && page.copyright != false)
+  .post-copyright
+    .post-copyright__author
+      span.post-copyright-meta= _p('post.copyright.author') + ": "
+      span.post-copyright-info
+        a(href=`mailto:${config.email}`) #[=config.author]
+    .post-copyright__type
+      span.post-copyright-meta= _p('post.copyright.link') + ": "
+      span.post-copyright-info
+        a(href=url_for(page.permalink))= theme.post_copyright.decode ? decodeURI(page.permalink) : page.permalink
+    .post-copyright__notice
+      span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
+      span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)

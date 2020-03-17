@@ -27,7 +27,7 @@
         top: 0
         left: 0
         background: $light-blue
-        color: $white
+        color: $card-bg
         cursor: pointer
         transition: all .3s ease-out
 
@@ -48,7 +48,7 @@
     li
       &:hover
         &:before
-          border-color: $ruby
+          border-color: $theme-button-hover-color
 
       &:before
         $w = .3rem
@@ -58,6 +58,6 @@
         height: h = w
         border: .5 * w solid $light-blue
         border-radius: w
-        background: $white
+        background: transparent
         content: ''
         line-height: h

@@ -1,74 +1,61 @@
 .relatedPosts
-  margin: 0 auto
   margin-top: 1rem
-  padding: 0
-  width: 100%
 
-.relatedPosts_item
-  position: relative
-  float: left
-  overflow: hidden
-  margin: 5px
-  width: calc(100% / 3 - 10px)
-  height: 200px
-  background: $dark-black
+  .relatedPosts_headline
+    margin-bottom: 5px
+    font-weight: 700
+    font-size: 20px
 
-  &:hover
-    .relatedPosts_cover
-      opacity: .8
-      transform: scale(1.1)
-
-  a
-    text-decoration: none
-
-.relatedPosts_cover
-  position: absolute
-  display: block
-  margin: 0
-  padding: 0
-  width: 100%
-  height: 100%
-  border: 0
-  opacity: .4
-  transition: all .6s
-  object-fit: cover
-
-.relatedPosts_main
-  position: relative
-  display: flex
-  flex-direction: column
-  justify-content: center
-  margin: 0
-  padding: 0 1rem
-  height: 100%
-  color: $white
-
-  .relatedPosts_date
-    display: block
-    color: alpha($white, .9)
-    font-size: 90%
-
-  .relatedPosts_title
-    display: -webkit-box
+  .relatedPosts_item
+    position: relative
+    float: left
     overflow: hidden
-    max-height: 60px
-    -webkit-line-clamp: 2
-    -webkit-box-orient: vertical
+    margin: 5px
+    width: calc(100% / 3 - 10px)
+    height: 200px
+    background: $dark-black
 
-.relatedPosts_headline
-  margin-bottom: 5px
-  font-weight: 700
-  font-size: 20px
+    &:hover
+      .relatedPosts_cover
+        opacity: .8
+        transform: scale(1.1)
 
-.clear_both
-  clear: both
+  .relatedPosts_cover
+    width: 100%
+    height: 100%
+    opacity: .4
+    transition: all .6s
+    object-fit: cover
+
+  .relatedPosts_main
+    position: absolute
+    top: 50%
+    padding: 0 1rem
+    width: 100%
+    color: $white
+    transform: translate(0, -50%)
+
+    .relatedPosts_date
+      color: $light-grey
+      font-size: 90%
+
+    .relatedPosts_title
+      display: -webkit-box
+      overflow: hidden
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+
+  .clear_both
+    clear: both
 
 @media screen and (max-width: 768px)
-  .relatedPosts_item
-    margin: 2px
-    width: calc(100% / 2 - 4px)
-    height: 150px
+  .relatedPosts
+    .relatedPosts_item
+      margin: 2px
+      width: calc(100% / 2 - 4px)
+      height: 150px
 
 @media screen and (max-width: 480px)
-  .relatedPosts_item
-    width: calc(100% - 4px)
+  .relatedPosts
+    .relatedPosts_item
+      width: calc(100% - 4px)

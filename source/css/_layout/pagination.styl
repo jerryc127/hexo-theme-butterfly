@@ -6,9 +6,6 @@
   .pagination
     text-align: center
 
-  .space
-    color: $a-link-color
-
   .page-number
     display: inline-block
     margin: 0 .2rem
@@ -19,71 +16,56 @@
     cursor: pointer
 
     &.current
-      background: $cyan
-      color: $white
+      background: $theme-paginator-color
+      color: $button-color
       cursor: default
 
   img.prev_cover,
   img.next_cover
     position: absolute
-    top: 0
-    left: 0
-    padding: 0
     width: 100%
     height: 100%
-    background-size: cover
     opacity: .4
     transition: all .6s
-    pointer-events: none
     object-fit: cover
+
+  .pagination-info
+    position: absolute
+    top: 50%
+    padding: 1rem 2rem
+    width: 100%
+    transform: translate(0, -50%)
 
   .prev_info,
   .next_info
-    position: absolute
-    bottom: 50px
-    z-index: 100
-    display: block
     overflow: hidden
-    width: 70%
-    color: $white
+    color: $button-color
     text-overflow: ellipsis
     white-space: nowrap
-    font-weight: 400
+    font-weight: 500
 
-  .next_info
-    right: 40px
-    text-align: right
+  .next-post
+    .pagination-info
+      text-align: right
 
   .pull-full
     width: 100% !important
 
   .prev-post .label,
   .next-post .label
-    position: absolute
-    top: 50px
-    z-index: 100
-    display: block
     color: alpha($white, .9)
     text-transform: uppercase
     font-size: 90%
 
-  .next-post .label
-    right: 40px
-
   .prev-post,
   .next-post
-    float: left
     width: 50%
 
     a
       position: relative
       display: block
-      float: left
       overflow: hidden
-      padding: 55px 40px
-      width: 100%
       height: 150px
-      text-align: left
 
     &:hover
       img.prev_cover,

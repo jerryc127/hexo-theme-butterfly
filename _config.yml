@@ -42,9 +42,9 @@ code_word_wrap: false
 
 # copy setting
 # 是否禁止複製（如果禁止，highlight_copy的功能將無效)
-# copyright 複製的内容後面加上版權信息
+# copyright 複製的內容後面加上版權信息
 copy:
-  enable: true # true 開啓 / false 禁止
+  enable: true # true 開啟 / false 禁止
   copyright: false
 
 # social settings
@@ -96,43 +96,79 @@ katex:
   per_page: false
   hide_scrollbar: true
 
+# mermaid
+# see https://github.com/knsv/mermaid
+# -------------------------------
+mermaid:
+  enable: false
+  # built-in themes: default/forest/dark/neutral
+  theme: default
+
 # Post info settings
 # ---------------
-avatar: /img/avatar.png
+avatar:
+  img: /img/avatar.png
+  effect: false # 頭像會一直轉圈
 
 # the banner image of index
-index_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg
+index_img:
 
 # if the banner of page not setting,it will show the top_img
-default_top_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg
-
-# the default cover of the post
-default_cover: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png
+default_top_img: /img/index.jpg
 
 # the banner image of archive page
-archive_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/archive.jpg
+archive_img:
 
 # the banner image of tag page
-tag_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/tag.png
+# tag page, look like https://xxxxxxxxx.com/tags/butterfly
+tag_img:
 
 # the banner image of category page
-category_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/category.jpg
+# category page, look like https://xxxxxxxxx.com/categories/butterfly
+category_img:
 
-# 如果你有使用hexo-douban去生成movie界面，可配置這個
-movies_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/movie.jpg
+# 如果你有使用hexo-douban，可配置這個
+# douban:
+#   meta: false
+#   movies_img:
+#   books_img:
+#   games_img:
+
+cover:
+  # 是否顯示文章封面
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  # 封面顯示的位置
+  # 三個值可配置 left , right , both
+  position: both
+  # 當沒有設置cover時，默認的封面顯示
+  default_cover:
+    - /img/post.jpg
 
 # if the photo link cannot connect,it will show that
 lodding_bg:
-  flink: /img/friend_404.gif #404后圖片
-  post_page: /img/404.jpg #404后圖片
+  flink: /img/friend_404.gif #404後圖片
+  post_page: /img/404.jpg #404後圖片
 #  post: /img/loading.gif ##加載動畫
 
-post_meta:
-  date_type: both # or created or updated 文章日期是创建日或者更新日或都显示
-  categories: true # or false 是否显示分类
-  tags: true # or false 是否显示标签
+# A simple 404 page
+error_404:
+  enable: false
+  subtitle: "Page Not Found"
+  background:
 
-# Please see doc for more details: https://jerryc.me/posts/21cfbf15/#字数统计
+post_meta:
+  page:
+    date_type: created # created or updated or both 主頁文章日期是創建日或者更新日或都顯示
+    categories: true # true or false 主頁是否顯示分類
+    tags: false # true or false 主頁是否顯示標籤
+  post:
+    date_type: both # created or updated or both 文章頁日期是創建日或者更新日或都顯示
+    categories: true # true or false 文章頁是否顯示分類
+    tags: true # true or false 文章頁是否顯示標籤
+
+# Please see doc for more details: https://jerryc.me/posts/21cfbf15/#字數統計
 wordcount:
   enable: false
 
@@ -146,6 +182,7 @@ auto_open_sidebar:
 
 post_copyright:
   enable: true
+  decode: false
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
@@ -178,22 +215,23 @@ addtoany:
 
 ####   Comments System    ####
 # ------------------------------------
-# Disqus 官方版評論系統
 disqus:
   enable: false
   shortname:
   count: false # top_img顯示評論數
 
-# Disqus.js 版評論系統，應對大陸長城的折中方案，兼容原版：https://github.com/SukkaW/DisqusJS 
+# Disqus.js版評論系統，應對大陸長城的折中方案，兼容原版：https://github.com/SukkaW/DisqusJS
 # API 申請地址：https://disqus.com/api/applications/
 # 與 disqus 共用樣式
 disqusjs:
-  enable: false #開啓改爲 true
-  shortname: 
-  siteName: 
-  apikey: 
+  enable: false
+  shortname:
+  siteName:
+  apikey:
   api: https://disqus.skk.moe/disqus/ #一般情況下無需修改 API 地址
-  count: false # top_img顯示評論數
+  admin:
+  adminLabel:
+  count: true # top_img顯示評論數
 
 laibili:
   enable: false
@@ -206,8 +244,12 @@ gitalk:
   repo:
   owner:
   admin:
-  language: # en , zh-CN , zh-TW
-  count: false # top_img顯示評論數
+  language: zh-CN # en , zh-CN , zh-TW
+  perPage: 10 # Pagination size, with maximum 100.
+  distractionFreeMode: false # Facebook-like distraction free mode.
+  pagerDirection: last # Comment sorting direction, available values are last and first.
+  createIssueManually: false # Gitalk will create a corresponding github issue for your every single page automatically
+  count: true # top_img顯示評論數
 
 # valine comment system. https://valine.js.org
 valine:
@@ -221,12 +263,25 @@ valine:
   lang: en # i18n: zh-cn/en
   placeholder: Please leave your footprints # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header info
+  recordIP: false # Record reviewer IP
+  serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
   bg: /img/comment_bg.png # valine background
-  count: false # top_img顯示評論數
+  count: true # top_img顯示評論數
+
+# utterances
+# https://utteranc.es/
+utterances:
+  enable: false
+  repo:
+  # 可選 pathname/url/title/og:title
+  issue_term: pathname
+  # 可選 github-light/github-dark/github-dark-orange/icy-dark/dark-blue/photon-dark
+  light_theme: github-light
+  dark_theme: photon-dark
 
 #####     Footer Settings    ####
 # ------------------------------------
-since: 2019
+since: 2020
 
 footer_custom_text:
 
@@ -275,16 +330,6 @@ baidu_site_verification:
 # see http://zhanzhang.so.com/
 qihu_site_verification:
 
-# 友情鏈接界面設置
-Flink:
-  headline: 友情鏈接
-  info_headline: 我的Blog資料
-  name: Blog 名字： JerryC
-  address: Blog 地址： https://jerryc.me/
-  avatar: Blog 頭像： https://jerryc.me/img/avatar.png
-  info: Blog 簡介： 今日事,今日畢
-  comment: 如果需要交換友鏈,請留言
-
 # 打賞按鈕
 reward:
   enable: true
@@ -300,7 +345,7 @@ reward:
 related_post:
   enable: true
   limit: 6 # 顯示推薦文章數目
-  date_type: created # or created or updated 文章日期顯示创建日或者更新日
+  date_type: created # or created or updated 文章日期顯示創建日或者更新日
 
 ####    美化/效果    ####
 #--------------------------------
@@ -315,20 +360,19 @@ related_post:
 #   button_hover: "#FF7242"
 #   text_selection: "#00c4b6"
 #   link_color: "#99a9bf"
-#   meta_color: '#858585'
+#   meta_color: "#858585"
 #   hr_color: "#A4D8FA"
-#   read-mode-bg_color: '#FAF9DE'
-#   inline-code-color: '#F47466'
+#   code_foreground: "#F47466"
+#   code_background: "rgba(27, 31, 35, .05)"
+#   toc_color: "#00c4b6"
+#   blockquote_padding_color: "#49b1f5"
+#   blockquote_background_color: "#49b1f5"
 
 # 主頁設置
 # 默認top_img全屏，site_info在中間
 # 使用默認, 都無需填寫（建議默認）
-index_top_img_height: #主頁top_img高度 例如 300px/300em/300rem  不能使用百分比
-
-# 主頁文章COVER顯示位置
-# 三個值可配置 left , right , both
-# left(全部圖片顯示在左邊)，right(全部圖片顯示在右邊)，both(左右左右順序顯示)
-index_post_cover: both
+index_site_info_top: # 主頁標題距離頂部距離  例如 300px/300em/300rem/10%
+index_top_img_height: # 主頁top_img高度 例如 300px/300em/300rem  不能使用百分比
 
 # category和tag頁的UI設置
 # index 值代表 UI將與首頁的UI一樣
@@ -347,7 +391,7 @@ background:
 footer_bg: false
 
 # 背景特效
-# 避免卡頓，建議只開啓一個
+# 避免卡頓，建議只開啟一個
 # canvas_ribbon 禁止彩帶背景
 # See: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
@@ -380,8 +424,8 @@ activate_power_mode:
   shake: true # 抖動特效
 
 # 鼠標點擊效果
-# 避免卡頓，建議只開啓一個
-# 點擊烟火特效
+# 避免卡頓，建議只開啟一個
+# 點擊煙火特效
 fireworks:
   enable: false
 
@@ -393,30 +437,17 @@ click_heart:
 ClickShowText:
   enable: false
   text:
-    - 富强
-    - 民主
-    - 文明
-    - 和谐
-    - 自由
-    - 平等
-    - 公正
-    - 法治
-    - 爱国
-    - 敬业
-    - 诚信
-    - 友善
+    - 本人
+    - 超帥
   fontSize: 15px
-
-# 頭像會一直轉圈
-avatar_effect: false
 
 # 網站顯示模式
 # light 默認模式
 # dark 黑暗模式（不建議）
 display_mode: light
 
-# 美化post頁顯示
-post_beautify:
+# 美化頁面顯示
+beautify:
   enable: false
   title-prefix-icon: '\f0c1'
   title-prefix-icon-color: "#F47466"
@@ -440,29 +471,37 @@ hr:
   icon-top: -20px
 
 # 主頁subtitle
-# 打字效果
 subtitle:
   enable: true
+  # 打字效果
+  effect: true
+  # 循環或者只打字一次
+  loop: false
   # source調用第三方服務
   # source: false 關閉調用
   # source: 1  調用金山詞霸的每日一句（簡體）
-  # source: 2  調用一言网的一句話（簡體） #https://hitokoto.cn/
-  # source: 3  調用一句网（簡體） http://yijuzhan.com/
+  # source: 2  調用一言網的一句話（簡體） #https://hitokoto.cn/
+  # source: 3  調用一句網（簡體） http://yijuzhan.com/
   # source: 4  調用今日詩詞（簡體） https://www.jinrishici.com/
-  # subtitle 會先顯示 source , 再顯示 sub 的内容
+  # subtitle 會先顯示 source , 再顯示 sub 的內容
   source: false
   # (如果有英文逗號' , '，請使用轉義字符 &#44;)
+  # 如果關閉打字效果，subtitle只會顯示sub的第一行文字
   sub:
     - 今日事&#44;今日畢
     - Never put off till tomorrow what you can do today
 
+# fontawesome圖標
+# 默認使用的是 fontawesome v4版本的圖標
+fontawesome_v5:
+  enable: false
+
 ####    側邊欄    ####
 #-------------------------------------
-# 手機頁面（ 顯示寬度 < 768px ）是否顯示aside内容
-aside_mobile: true
-
 # 側邊欄顯示設置
 aside:
+  enable: true
+  mobile: true # 手機頁面（ 顯示寬度 < 768px ）是否顯示aside內容
   position: right # left or right
   card_author: true
   card_announcement: true
@@ -497,30 +536,31 @@ translate:
   enable: true
   # 默認按鈕顯示文字
   default: 繁
-  #网站默认语言，1: 繁體中文, 2: 简体中文
+  #網站默認語言，1: 繁體中文, 2: 簡體中文
   defaultEncoding: 2
-  #延迟时间,若不在前, 要设定延迟翻译时间, 如100表示100ms,默认为0
+  #延遲時間,若不在前, 要設定延遲翻譯時間, 如100表示100ms,默認為0
   translateDelay: 0
-  #博客网址
+  #博客網址
   cookieDomain: "https://xxx/"
   #當文字是簡體時，按鈕顯示的文字
   msgToTraditionalChinese: "繁"
   #當文字是繁體時，按鈕顯示的文字
-  msgToSimplifiedChinese: "简"
+  msgToSimplifiedChinese: "簡"
 
 #閲讀模式
 readmode:
   enable: true
 
-# 夜間模式
+# dark mode
 darkmode:
   enable: true
-
-# 自動切換 dark mode和 light mode
-# autoChangeMode: 1  跟隨系統而變化，不支持的瀏覽器/系統將按照時間晚上6點到早上6點之間切換為 dark mode
-# autoChangeMode: 2  只按照時間晚上6點到早上6點之間切換為 dark mode
-# autoChangeMode: false 取消自動切換
-autoChangeMode: false
+  # dark mode和 light mode切換按鈕
+  button: true
+  # 自動切換 dark mode和 light mode
+  # autoChangeMode: 1  跟隨系統而變化，不支持的瀏覽器/系統將按照時間晚上6點到早上6點之間切換為 dark mode
+  # autoChangeMode: 2  只按照時間晚上6點到早上6點之間切換為 dark mode
+  # autoChangeMode: false 取消自動切換
+  autoChangeMode: 1
 
 ####    other     ####
 #------------------------------------------------
@@ -556,6 +596,12 @@ baidu_push:
 instantpage:
   enable: true
 
+# https://github.com/vinta/pangu.js
+# 中英文之間添加空格
+pangu:
+  enable: false
+  field: page # page/post
+
 # Note (Bootstrap Callout)
 # https://muse.theme-next.org/docs/tag-plugins/note
 note:
@@ -590,14 +636,15 @@ twitter_meta: true
 # https://i.loli.net/2019/09/08/2wbFJEKloisRvhj.png
 Open_Graph_meta: true
 
+# 開啟hexo自帶的緩存，加快生成速度
+fragment_cache: true
+
 # CDN
 # 網站必須
 # 可根據需要自行添加js/css
 CDN_USE:
   css:
     - /css/index.css
-    - https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
-    # - https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css #fontawesomeV5_css
 
   js:
     - https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js #/js/third-party/jquery.min.js
@@ -607,52 +654,65 @@ CDN_USE:
 # CDN
 # 非必要不要修改
 CDN:
-  #comments
-  blueimp_md5: https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js
+  # comments
+  blueimp_md5: https://cdn.jsdelivr.net/npm/blueimp-md5/js/md5.min.js
   gitalk: https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js
   gitalk_css: https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css
   valine: https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js
+  disqusjs: https://cdn.jsdelivr.net/npm/disqusjs@1.2/dist/disqus.js
+  disqusjs_css: https://cdn.jsdelivr.net/npm/disqusjs@1.2/dist/disqusjs.css
+  utterances: https://utteranc.es/client.js
 
   # share
   addtoany: https://static.addtoany.com/menu/page.js
   sharejs: https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js
   sharejs_css: https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css
 
-  #search
+  # search
+  local_search: /js/search/local-search.js
+  algolia_js: /js/search/algolia.js
   algolia_search: https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js
   algolia_search_css: https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css
 
+  # math
   mathjax: https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
   katex: https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css
   katex_copytex: https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js
   katex_copytex_css: https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css
+  mermaid: https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
 
-  #不蒜子計數器
+  # count
   busuanzi: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
 
-  # 背景特效
-  canvas_ribbon: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-ribbon.js
-  canvas_ribbon_piao: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/piao.js
-  canvas_nest: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js
+  # background effect
+  canvas_ribbon: /js/third-party/canvas-ribbon.js
+  canvas_ribbon_piao: /js/third-party/piao.js
+  canvas_nest: /js/third-party/canvas-nest.js
 
   lazyload: https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js
   instantpage: https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js
-
   typed: https://cdn.jsdelivr.net/npm/typed.js
   js_cookies: https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js
+  pangu: https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js
 
+  # photo
   fancybox_css: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css
   fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js
   medium_zoom: https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js
 
+  # snackbar
   snackbar_css: https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css
   snackbar: https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js
 
-  #鼠标点击特效
+  # 鼠標點擊特效
   anime: https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js
-  activate_power_mode: https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js
-  fireworks: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/fireworks.js
-  click_heart: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js
-  ClickShowText: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/ClickShowText.js
+  activate_power_mode: /js/third-party/activate-power-mode.js
+  fireworks: /js/third-party/fireworks.js
+  click_heart: /js/third-party/click_heart.js
+  ClickShowText: /js/third-party/ClickShowText.js
+
+  # fontawesome
+  fontawesome_v4: https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
+  fontawesome_v5: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
 
   translate: /js/tw_cn.js

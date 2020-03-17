@@ -1,30 +1,20 @@
-.flink
-  each i in site.data.link
-    h1= i.class_name
-    .post-cards
-      ul.md-links
-        each item in i.link_list
-          li.md-links-item
-            a(href=item.link  title=item.name target="_blank")
-              if theme.lazyload.enable
-                img.lazyload(data-src=item.avatar onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
-              else
-                img(src=item.avatar onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
-              .md-links-title= item.name 
-              .md-links-des= item.descr
-
-  hr
-  div 
-    h2= theme.Flink.info_headline
-    ul
-      li= theme.Flink.name
-      li= theme.Flink.address
-      li= theme.Flink.avatar 
-      li= theme.Flink.info
-
-  hr
-  .comment_int
-    p.comment-word= theme.Flink.comment
-
+#page
+  .flink#article-container
+    each i in site.data.link
+      h2= i.class_name
+      .post-cards
+        .md-links
+          each item in i.link_list
+            .md-links-item
+              a(href=item.link  title=item.name target="_blank")
+                if theme.lazyload.enable
+                  img.lazyload(data-src=item.avatar onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
+                else
+                  img(src=item.avatar onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
+                .md-links-title= item.name 
+                .md-links-des= item.descr
+    != page.content
+  if page.comments !== false
+    include includes/comments/index.pug
 
 

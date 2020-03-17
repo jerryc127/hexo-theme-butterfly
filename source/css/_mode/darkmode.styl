@@ -1,4 +1,4 @@
-if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hexo-config('autoChangeMode') == '2'
+if hexo-config('darkmode.enable')
   [data-theme='dark']
     body
       background-color: darken(#121212, 2)
@@ -20,21 +20,16 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
       background-color: alpha($dark-black, .7)
       content: ''
 
-    #archive,
-    .tag-cloud,
-    #tag,
-    .category-content,
-    #category,
-    #page,
-    .flink,
-    .layout_post
-      background: #121212
+    #nav,
+    .layout_post > #post,
+    .layout_page > div:first-child:not(.recent-posts)
+      background-color: #121212
 
     #sidebar
       background: #121212
       box-shadow: -.25rem 0 .25rem #121212
 
-    .article-container code
+    #article-container code
       background: #2c2c2c
 
     .recent-posts
@@ -46,7 +41,7 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
 
     #page-header
       &.fixed
-        background: #121212
+        background: alpha(#121212, .8)
         box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0)
 
         .toggle-menu,
@@ -65,14 +60,14 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
             color: alpha(#FFFFFF, .6)
 
     // 代碼框
-    .article-container pre,
-    .article-container pre code
+    #article-container pre,
+    #article-container pre code
       background-color: lighten(#121212, 2)
 
     .highlight-tools
       background: lighten(#121212, 3)
 
-    .article-container .highlight:not(.js-file-line-container)
+    #article-container .highlight:not(.js-file-line-container)
       background-color: lighten(#121212, 2)
 
       .code pre,
@@ -97,9 +92,8 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
       &:before
         color: alpha(#FFFFFF, .6)
 
-    .layout_post >.tag_share .post-meta__tags
+    .layout_post .tag_share .post-meta__tags
       border: 1px solid alpha(#FFFFFF, .6)
-      background: 0
       color: alpha(#FFFFFF, .6)
 
       &:hover
@@ -118,7 +112,7 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
     // 音樂播放器
     .aplayer
       filter: brightness(.7)
-      color: #000000
+      color: $dark-black
 
     // 右下角按鈕
     #rightside
@@ -150,7 +144,7 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
       background-color: lighten(#121212, 10) !important
 
     img,
-    iframe,
+    iframe:not(.utterances-frame),
     .gist
       filter: brightness(.7)
 
@@ -171,9 +165,8 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
       background: lighten(#121212, 20) !important
 
     // 頭部
-    #nav,
-    #top-container
-      &::before
+    #nav
+      &:before
         position: absolute
         top: 0
         right: 0
@@ -186,11 +179,11 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
     #nav i,
     #page-header a,
     #page-header .toggle-menu,
-    #top-container #post-meta,
-    #top-container a,
+    #post-meta,
+    #post-meta a,
     #footer-wrap,
     #footer-wrap a
-      color: alpha(#FFFFFF, .6)
+      color: alpha(#FFFFFF, .6) !important
 
     .posttitle,
     h1,
@@ -203,7 +196,7 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
 
     .recent-posts .post-meta__date,
     .recent-posts .article-meta,
-    .recent-posts .article-meta__categories,
+    .recent-posts a,
     .post-reward .reward-button,
     .fa-clipboard,
     .gutter pre,
@@ -238,12 +231,6 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
 
         .length_num
           color: alpha(#FFFFFF, .8) !important
-
-        a
-          color: alpha(#FFFFFF, .6) !important
-
-      #mobile-sidebar-toc
-        background: #121212
 
         a
           color: alpha(#FFFFFF, .6) !important
@@ -301,10 +288,14 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
         .vsys
           background: rgb(97, 106, 107) !important
 
-        .vbtn
+        .vbtn,
+        .vat
           border: 1px solid alpha(#FFFFFF, .6)
-          background: rgb(45, 48, 53) !important
+          background: lighten(#121212, 5) !important
           color: alpha(#FFFFFF, .6) !important
+
+          &:hover
+            background: lighten(#121212, 20) !important
 
         .vwrap
           border: 1px solid alpha(#FFFFFF, .6)
@@ -354,3 +345,26 @@ if hexo-config('darkmode.enable') || hexo-config('autoChangeMode') == '1' || hex
         #algolia-search-results
           .algolia-hit-item-link
             color: alpha(#FFFFFF, .6)
+
+    if hexo-config('disqusjs.enable')
+      #disqus_thread
+        #dsqjs
+          .dsqjs-tab-active,
+          .dsqjs-no-comment
+            color: alpha(#FFFFFF, .6)
+
+          .dsqjs-order-label
+            background-color: lighten(#121212, 5)
+
+          .dsqjs-post-body
+            color: alpha(#FFFFFF, .6)
+
+            code,
+            pre
+              background: #2c2c2c
+
+            blockquote
+              color: alpha(#FFFFFF, .6)
+
+    .mermaid
+      filter: brightness(.7)

@@ -1,184 +1,144 @@
-// Theme Global Color
-$theme-color = #49B1F5
-$theme-paginator-color = #00c4b6
-$theme-button-hover-color = #FF7242
-$theme-text-selection-color = #00c4b6
-$theme-meta-color = #858585
-$theme-link-color = #99a9bf
-$theme-hr-color = #A4D8FA
-$theme-read-mode-bg-color = #FAF9DE
-$inline-code-color = #F47466
-$font-family= Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
-$code-font = consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace, Helvetica Neue For Number
-$site-name-font = "Titillium Web", Lato,PingFang SC, Hiragino Sans GB, "Microsoft JhengHei", "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
-//hr icon
-$hr-icon = '\f0c4'
-$hr-icon-top = -10px
-$title-prefix-icon = '\f0c1'
-$title-prefix-icon-color = #F47466
+// color
+$bright-blue = #49B1F5
+$strong-cyan = #00c4b6
+$light-orange = #FF7242
+$light-red = #F47466
 
-if hexo-config("theme_color") && hexo-config("theme_color.enable")
-  $theme-color = convert(hexo-config("theme_color.main")) || #49B1F5
-  $theme-paginator-color = convert(hexo-config("theme_color.paginator")) || #00c4b6
-  $theme-button-hover-color = convert(hexo-config("theme_color.button_hover")) || #FF7242
-  $theme-text-selection-color = convert(hexo-config("theme_color.text_selection")) || #00c4b6
-  $theme-link-color = convert(hexo-config("theme_color.link_color")) || #99a9bf
-  $theme-meta-color = convert(hexo-config("theme_color.meta_color")) || #858585
-  $theme-hr-color = convert(hexo-config("theme_color.hr_color")) || #A4D8FA
-  $theme-read-mode-bg-color = convert(hexo-config("theme_color.read-mode-bg_color")) || #FAF9DE
-  $inline-code-color = convert(hexo-config("theme_color.inline-code-color")) || #F47466
+$themeColorEnable = hexo-config('theme_color') && hexo-config('theme_color.enable')
+$theme-color = $themeColorEnable ? convert(hexo-config('theme_color.main')) : $bright-blue
+$theme-paginator-color = $themeColorEnable ? convert(hexo-config('theme_color.paginator')) : $strong-cyan
+$theme-button-hover-color = $themeColorEnable ? convert(hexo-config('theme_color.button_hover')) : $light-orange
+$theme-text-selection-color = $themeColorEnable ? convert(hexo-config('theme_color.text_selection')) : $strong-cyan
+$theme-link-color = $themeColorEnable ? convert(hexo-config('theme_color.link_color')) : $bright-blue
+$theme-hr-color = $themeColorEnable ? convert(hexo-config('theme_color.hr_color')) : $bright-blue
+$code-foreground = $themeColorEnable ? convert(hexo-config('theme_color.code_foreground')) : $light-red
+$code-background = $themeColorEnable ? convert(hexo-config('theme_color.code_background')) : rgba(27, 31, 35, .05)
+$theme-toc-color = $themeColorEnable ? convert(hexo-config('theme_color.toc_color')) : $strong-cyan
 
-if hexo-config("font") && hexo-config("font.enable")
-  $font-family = convert(hexo-config("font.font-family")) || 'Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif'
-  $code-font = convert(hexo-config("font.code-font")) || 'consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace, Helvetica Neue For Number'
+// font
+$fontEnable = hexo-config('font') && hexo-config('font.enable')
+$font-family = $fontEnable ? convert(hexo-config('font.font-family')) : Lato, Helvetica Neue For Number, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, PingFang SC, Hiragino Sans GB, "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif
+$code-font = $fontEnable ? convert(hexo-config('font.code-font')) : consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace, Helvetica Neue For Number
+$site-name-font = convert(hexo-config('blog_title_font.font-family')) || '"Titillium Web",Lato,PingFang SC, Hiragino Sans GB, "Microsoft JhengHei", "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif'
 
-if hexo-config("blog_title_font.font-family")
-  $site-name-font = convert(hexo-config("blog_title_font.font-family")) || '"Titillium Web",Lato,PingFang SC, Hiragino Sans GB, "Microsoft JhengHei", "Microsoft YaHei", Helvetica Neue, Helvetica, Arial, sans-serif'
+//hr
+$hrEnable = hexo-config('hr') && hexo-config('hr.enable')
+$hr-icon = $hrEnable ? hexo-config('hr.icon') : '\f0c4'
+$hr-icon-top = $hrEnable ? convert(hexo-config('hr.icon-top')) : -10px
 
-
-if hexo-config("hr") && hexo-config("hr.enable")
-  $hr-icon = hexo-config("hr.icon") || '\f0c4'
-  $hr-icon-top = convert(hexo-config("hr.icon-top")) || -10px
-
-if hexo-config("post_beautify.enable")
-  $title-prefix-icon = hexo-config("post_beautify.title-prefix-icon") || '\f0c1'
-  $title-prefix-icon-color= convert(hexo-config("post_beautify.title-prefix-icon-color")) || #F47466
-
+//page beatutify 
+$beautifyEnable = hexo-config('beautify.enable')
+$title-prefix-icon = $beautifyEnable ? hexo-config('beautify.title-prefix-icon') : '\f0c1'
+$title-prefix-icon-color = $beautifyEnable ? convert(hexo-config('beautify.title-prefix-icon-color')) : $light-red
 
 // Global Variables
 $font-size = 14px
 $font-color = #1F2D3D
+$button-color = #fff
 $rem = 20px
-$font-family = $font-family
-$code-font = $code-font
-$site-name-font = $site-name-font
 $text-line-height = 2
 $sm = 768px
 $bg = 1024px
-$md = 1300px
-$lg = 1450px
+$web-bg = convert(hexo-config('background'))
+$index_top_img_height = convert(hexo-config('index_top_img_height')) || 100vh
+$index_site_info_top = convert(hexo-config('index_site_info_top')) || 43%
+// Global color & SVG
+$light-blue = $theme-color
+$dark-black = #000000
+$light-grey = #EEEEEE
+$grey = #858585
+$white = #FFFFFF
+$whitesmoke = #f5f5f5
+$font-black = #4C4948
+$card-bg = $white
+// code
+$code-font-family = $font-family
+$line-height-code-block = 20px
+$blockquote-color = #6a737d
+$blockquote-padding-color = $themeColorEnable ? convert(hexo-config('theme_color.blockquote_padding_color')) : #49B1F5
+$blockquote-background-color = $themeColorEnable ? alpha(convert(hexo-config('theme_color.blockquote_background_color')),.1) : alpha($blockquote-padding-color,.1)
+// page
+$body-bg = #fff
+$a-link-color = #99a9bf
+$sticky-color = $light-orange
+$theme-meta-color = $themeColorEnable ? convert(hexo-config('theme_color.meta_color')) : #858585
+// sidebar
 $sidebar-icon-top = 20px
 $sidebar-icon-left = $sidebar-icon-top - 4px
 $sidebar-icon-size = 16px
-$web-bg = convert(hexo-config("background"))
-$index_top_img_height = convert(hexo-config('index_top_img_height')) || 100vh
-// Global color & SVG
-$pale-blue = $theme-hr-color
-$light-blue = $theme-color
-$blue = #1B9EF3
-$dark-blue = #0790E8
-$orange = #F1BE48
-$pale-green = #B4E1C1
-$light-green = #69C282
-$green = #44B363
-$dark-green = #379F54
-$pale-cyan = #D1F4F2
-$light-cyan = #8CE4DE
-$cyan = $theme-paginator-color
-$pale-red = #F9b9b3
-$light-red = #F47466
-$red = #F15140
-$dark-red = #E63E2C
-$ruby = $theme-button-hover-color
-$light-black = #3B3A3A
-$black = #2E2E2E
-$dark-black = #000000
-$pale-grey = #F7F7F7
-$light-grey = #EEEEEE
-$grey = $theme-meta-color
-$pale-yellow = $theme-read-mode-bg-color
-$white = #FFFFFF
-$whitesmoke   = #f5f5f5;
-$dark-white = #F9F9F9
-$font-black = #4C4948
-$selection = $theme-text-selection-color
-
-// code
-$code-font-size = $font-size
-$code-font-family = $font-family
-$code-foreground = $inline-code-color
-$code-background = rgba(27, 31, 35, 0.05)
-$line-height-code-block = 20px
-$blockquote-color = #6a737d
-$blockquote-padding-color = $theme-color
-$blockquote-background-color = rgba(73, 177, 245,0.1)
-// page
-$content-width = 800px
-$content-large-width = 1000px
-$a-link-color = $theme-link-color
-$a-hover-color = #82AAFF
-$img-border-color = #eaeefb
-// sidebar
 $sidebar-width = 300px
 $sidebar-background = #f6f8fa
+$sidebar-active-color = #fff
+$mobile-sidebar-width = 250px
+// table
+$table-thead-bg = #99a9bf
+// reward
+$reward-pop-up-bg = #f5f5f5
+$reward-pop-up-color = #858585
+// search
+$search-bg = #f6f8fa
+$search-color = $theme-color
+//gallery
+$gallery-color = #fff
+// tag-hide
+$tag-hide-bg = $theme-color
+
+
 
 // Note colors
 // --------------------------------------------------
-hexo-config('note.light_bg_offset') is a 'unit' ? ($lbg = unit(hexo-config('note.light_bg_offset'),"%")) : ($lbg = 0);
-
+hexo-config('note.light_bg_offset') is a 'unit' ? ($lbg = unit(hexo-config('note.light_bg_offset'), '%')) : ($lbg = 0)
 // Default
-$note-default-border        = #777;
-$note-default-bg            = lighten(spin($note-default-border, 0), 94% + $lbg);
-$note-default-text          = $note-default-border;
-$note-default-icon          = "\f0a9";
-
-$note-modern-default-border = #e1e1e1;
-$note-modern-default-bg     = lighten(spin($note-modern-default-border, 10), 60% + ($lbg * 4));
-$note-modern-default-text   = #666;
-$note-modern-default-hover  = darken(spin($note-modern-default-text, -10), 32%);
-
+$note-default-border = #777
+$note-default-bg = lighten(spin($note-default-border, 0), 94% + $lbg)
+$note-default-text = $note-default-border
+$note-default-icon = '\f0a9'
+$note-modern-default-border = #e1e1e1
+$note-modern-default-bg = lighten(spin($note-modern-default-border, 10), 60% + ($lbg * 4))
+$note-modern-default-text = #666
+$note-modern-default-hover = darken(spin($note-modern-default-text, -10), 32%)
 // Primary
-$note-primary-border        = #6f42c1;
-$note-primary-bg            = lighten(spin($note-primary-border, 10), 92% + $lbg);
-$note-primary-text          = $note-primary-border;
-$note-primary-icon          = "\f055";
-
-$note-modern-primary-border = #e1c2ff;
-$note-modern-primary-bg     = lighten(spin($note-modern-primary-border, 10), 40% + ($lbg * 4));
-$note-modern-primary-text   = #6f42c1;
-$note-modern-primary-hover  = darken(spin($note-modern-primary-text, -10), 22%);
-
+$note-primary-border = #6f42c1
+$note-primary-bg = lighten(spin($note-primary-border, 10), 92% + $lbg)
+$note-primary-text = $note-primary-border
+$note-primary-icon = '\f055'
+$note-modern-primary-border = #e1c2ff
+$note-modern-primary-bg = lighten(spin($note-modern-primary-border, 10), 40% + ($lbg * 4))
+$note-modern-primary-text = #6f42c1
+$note-modern-primary-hover = darken(spin($note-modern-primary-text, -10), 22%)
 // Info
-$note-info-border           = #428bca;
-$note-info-bg               = lighten(spin($note-info-border, -10), 91% + $lbg);
-$note-info-text             = $note-info-border;
-$note-info-icon             = "\f05a";
-
-$note-modern-info-border    = #b3e5ef;
-$note-modern-info-bg        = lighten(spin($note-modern-info-border, 10), 50% + ($lbg * 4));
-$note-modern-info-text      = #31708f;
-$note-modern-info-hover     = darken(spin($note-modern-info-text, -10), 32%);
-
+$note-info-border = #428bca
+$note-info-bg = lighten(spin($note-info-border, -10), 91% + $lbg)
+$note-info-text = $note-info-border
+$note-info-icon = '\f05a'
+$note-modern-info-border = #b3e5ef
+$note-modern-info-bg = lighten(spin($note-modern-info-border, 10), 50% + ($lbg * 4))
+$note-modern-info-text = #31708f
+$note-modern-info-hover = darken(spin($note-modern-info-text, -10), 32%)
 // Success
-$note-success-border        = #5cb85c;
-$note-success-bg            = lighten(spin($note-success-border, 10), 90% + $lbg);
-$note-success-text          = $note-success-border;
-$note-success-icon          = "\f058";
-
-$note-modern-success-border = #d0e6be;
-$note-modern-success-bg     = lighten(spin($note-modern-success-border, 10), 40% + ($lbg * 4));
-$note-modern-success-text   = #3c763d;
-$note-modern-success-hover  = darken(spin($note-modern-success-text, -10), 27%);
-
+$note-success-border = #5cb85c
+$note-success-bg = lighten(spin($note-success-border, 10), 90% + $lbg)
+$note-success-text = $note-success-border
+$note-success-icon = '\f058'
+$note-modern-success-border = #d0e6be
+$note-modern-success-bg = lighten(spin($note-modern-success-border, 10), 40% + ($lbg * 4))
+$note-modern-success-text = #3c763d
+$note-modern-success-hover = darken(spin($note-modern-success-text, -10), 27%)
 // Warning
-$note-warning-border        = #f0ad4e;
-$note-warning-bg            = lighten(spin($note-warning-border, 10), 88% + $lbg);
-$note-warning-text          = $note-warning-border;
-$note-warning-icon          = "\f06a";
-
-$note-modern-warning-border = #fae4cd;
-$note-modern-warning-bg     = lighten(spin($note-modern-warning-border, 10), 43% + ($lbg * 4));
-$note-modern-warning-text   = #8a6d3b;
-$note-modern-warning-hover  = darken(spin($note-modern-warning-text, -10), 18%);
-
+$note-warning-border = #f0ad4e
+$note-warning-bg = lighten(spin($note-warning-border, 10), 88% + $lbg)
+$note-warning-text = $note-warning-border
+$note-warning-icon = '\f06a'
+$note-modern-warning-border = #fae4cd
+$note-modern-warning-bg = lighten(spin($note-modern-warning-border, 10), 43% + ($lbg * 4))
+$note-modern-warning-text = #8a6d3b
+$note-modern-warning-hover = darken(spin($note-modern-warning-text, -10), 18%)
 // Danger
-$note-danger-border         = #d9534f;
-$note-danger-bg             = lighten(spin($note-danger-border, -10), 92% + $lbg);
-$note-danger-text           = $note-danger-border;
-$note-danger-icon           = "\f056";
-
-$note-modern-danger-border  = #ebcdd2;
-$note-modern-danger-bg      = lighten(spin($note-modern-danger-border, 10), 35% + ($lbg * 4));
-$note-modern-danger-text    = #a94442;
-$note-modern-danger-hover   = darken(spin($note-modern-danger-text, -10), 22%);
-
+$note-danger-border = #d9534f
+$note-danger-bg = lighten(spin($note-danger-border, -10), 92% + $lbg)
+$note-danger-text = $note-danger-border
+$note-danger-icon = '\f056'
+$note-modern-danger-border = #ebcdd2
+$note-modern-danger-bg = lighten(spin($note-modern-danger-border, 10), 35% + ($lbg * 4))
+$note-modern-danger-text = #a94442
+$note-modern-danger-hover = darken(spin($note-modern-danger-text, -10), 22%)

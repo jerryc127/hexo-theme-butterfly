@@ -1,0 +1,8 @@
+if (theme.disqusjs && theme.disqusjs.enable && page.comments !== false && !is_tag() && !is_category() && !is_archive() && !is_home())
+  link(rel="stylesheet" type="text/css" href=url_for(theme.CDN.disqusjs_css))
+
+if (theme.gitalk && theme.gitalk.enable && page.comments !== false && !is_tag() && !is_category() && !is_archive() && !is_home())
+  link(rel="stylesheet" type="text/css" href=url_for(theme.CDN.gitalk_css))
+  script(src=url_for(theme.CDN.gitalk))
+  script(src=url_for(theme.CDN.blueimp_md5))
+

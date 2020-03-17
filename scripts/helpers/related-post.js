@@ -1,5 +1,3 @@
-const moment = require('moment');
-
 hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   var relatedPosts = [];
   currentPost.tags.forEach(function (tag) {
@@ -9,6 +7,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
           title: post.title,
           path: post.path,
           cover: post.cover,
+          randomcover: post.randomcover,
           weight: 1,
           updated: post.updated,
           created: post.date
@@ -32,17 +31,9 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   const config = hexo.theme.config;
 
   var limit_num = config.related_post.limit || 6
-  var lang = hexoConfig.language;
   var date_type = config.related_post.date_type || 'created'
-  var headline_lang;
-  if (lang === 'zh-CN') {
-    headline_lang = '相关推荐';
-  } else if (lang === 'zh-TW') {
-    headline_lang = '相關推薦';
-  } else {
-    headline_lang = 'Recommend';
-  }
-
+  var headline_lang = this._p('post.recommend')
+  
   relatedPosts = relatedPosts.sort(compare('weight'));
   var lazy_src = config.lazyload.enable ? lazy_src = 'data-src' : lazy_src = 'src'
   var lazy_class = config.lazyload.enable ? lazy_class = 'lazyload' : lazy_class = ''
@@ -53,15 +44,13 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
     result += '<div class="relatedPosts_list">'
 
     for (var i = 0; i < Math.min(relatedPosts.length, limit_num); i++) {
-
-      var cover = relatedPosts[i].cover
-
+      var cover = relatedPosts[i].cover === false ? relatedPosts[i].randomcover : relatedPosts[i].cover
       result += '<div class="relatedPosts_item"><a href="' + hexoConfig.root + relatedPosts[i].path + '" title="' + relatedPosts[i].title + '">';
       result += '<img class="relatedPosts_cover ' + lazy_class + '"' + lazy_src + '="' + cover + '">';
       if (date_type == 'created') {
-        result += '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>' + ' ' + date(relatedPosts[i].created) + '</div>'
+        result += '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>' + ' ' + this.date(relatedPosts[i].created,hexoConfig.date_format) + '</div>'
       } else {
-        result += '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-history fa-fw" aria-hidden="true"></i>' + ' ' + date(relatedPosts[i].updated) + '</div>'
+        result += '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-history fa-fw" aria-hidden="true"></i>' + ' ' + this.date(relatedPosts[i].updated,hexoConfig.date_format) + '</div>'
       }
       result += '<div class="relatedPosts_title">' + relatedPosts[i].title + '</div>';
       result += '</div></a></div>'
@@ -98,10 +87,4 @@ function compare(attr) {
     var val2 = b[attr];
     return val2 - val1;
   }
-}
-
-function date(date) {
-  var config = hexo.theme.config.rootConfig
-  moment.locale(config.language)
-  return moment(date).format(config.date_format)
 }

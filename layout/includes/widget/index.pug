@@ -1,21 +1,17 @@
-if theme.aside.card_author
-  include ./card_author.pug
-
-if theme.aside.card_announcement
-  include ./card_announcement.pug
-
-if theme.aside.card_recent_post
-  include ./card_recent_post.pug
-  
-if theme.aside.card_categories   
-  include ./card_categories.pug
-
-if theme.aside.card_tags
-  include ./card_tags.pug
-
-if theme.aside.card_archives
-  include ./card_archives.pug
-
-if theme.aside.card_webinfo
-  include ./card_webinfo.pug
-  
+if theme.aside.enable 
+  if page.aside !== false
+    #aside_content.aside_content
+      if theme.aside.card_author
+        !=partial('includes/widget/card_author', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_announcement
+        !=partial('includes/widget/card_announcement', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_recent_post
+        !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_categories
+        !=partial('includes/widget/card_categories', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_tags
+        !=partial('includes/widget/card_tags', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_archives
+        !=partial('includes/widget/card_archives', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_webinfo
+        !=partial('includes/widget/card_webinfo', {}, {cache:theme.fragment_cache})  

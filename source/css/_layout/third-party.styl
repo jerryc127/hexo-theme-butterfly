@@ -1,0 +1,88 @@
+if hexo-config('valine.enable')
+  // valine
+  #vcomment
+    button
+      padding: .3rem 1rem
+      border-color: $button-color
+      background-color: $light-blue
+      color: $button-color
+      font-size: .7rem
+
+      &:hover
+        background-color: $theme-button-hover-color
+
+    textarea
+      if hexo-config('valine.bg')
+        background: url(hexo-config('valine.bg')) 100% 100% no-repeat
+
+    .info
+      display: none
+
+    .vimg
+      border: 0
+
+      &:hover
+        transform: rotate(540deg)
+
+    .vat
+      padding: 0 .8rem
+      border: 1px solid $light-blue
+      border-radius: 5px
+      color: $light-blue
+      font-size: .7125rem
+
+      &:hover
+        background-color: $light-blue
+        color: $button-color
+
+if hexo-config('beautify.enable')
+  #article-container
+    .aplayer
+      ol,
+      ul
+        margin: 0
+        padding: 0
+
+        li
+          margin: 0
+          padding: 0 15px
+
+          &:before
+            content: none
+
+// third-party
+.fireworks
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 999999
+  pointer-events: none
+
+.medium-zoom-image--opened
+  z-index: 99999 !important
+  margin: 0 !important
+
+.medium-zoom-overlay
+  z-index: 99999 !important
+
+.mermaid
+  overflow: auto
+  margin: 0 0 1rem
+  background: $white
+  text-align: center
+  opacity: 0
+  transition: all .3s
+
+  &[data-processed]
+    opacity: 1
+
+.utterances
+  max-width: 100%
+
+#gitalk-container
+  .gt-meta
+    margin: 0 0 .8em
+    padding: .3rem 0 .8em
+
+.has-jax
+  overflow: auto

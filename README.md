@@ -1,29 +1,14 @@
 # hexo-theme-butterfly
 
-<a href="https://github.com/jerryc127/hexo-theme-butterfly/releases"><img alt="Version" src="https://img.shields.io/badge/release-2.1.0-blue"/></a>
+<a href="https://github.com/jerryc127/hexo-theme-butterfly/releases"><img alt="Version" src="https://img.shields.io/badge/release-2.2.0-blue"/></a>
 <a href="https://jerryc.me"><img alt="Author" src="https://img.shields.io/badge/author-JerryC-blur"/></a>
-<a href="https://hexo.io"><img alt="Hexo" src="https://img.shields.io/badge/hexo-3.0+-0e83c"/></a>
-<a href="https://nodejs.org/"><img alt="node.js" src="https://img.shields.io/badge/node.js-6.0-blur"/></a>
+<a href="https://hexo.io"><img alt="Hexo" src="https://img.shields.io/badge/hexo-4.0+-0e83c"/></a>
+<a href="https://nodejs.org/"><img alt="node.js" src="https://img.shields.io/badge/node.js-8.0+-blur"/></a>
 
-Demo:  https://demo.jerryc.me/ 
-
+Demo:  https://demo.jerryc.me/
 JerryC:  https://jerryc.me/
 
-
-
 Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) theme.
-
-> If you update to hexo 4.2.0，it will be something's wrong
->
-> ```
-> Error: Cannot find module 'cheerio'
-> ```
->
-> please install cheerio
->
-> ```
-> npm install cheerio@0.22.0 --save
-> ```
 
 ## Installation
 
@@ -51,7 +36,7 @@ git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/Bu
 
 ## Documentation
 
- Documentation is [here](https://jerryc.me/posts/21cfbf15). it supports `zh-TW`
+Find in [hexo-theme-butterfly docs](https://docs.jerryc.me) and [JerryC](https://jerryc.me/posts/21cfbf15). it supports `zh-TW`
 
 ## Screenshots
 

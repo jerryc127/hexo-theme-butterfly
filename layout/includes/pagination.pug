@@ -13,51 +13,27 @@ if(!is_post())
 else
   nav#pagination.pagination_post
     if(page.prev)
-      if(page.next)
-        .prev-post.pull_left
-          - var pagination_cover = page.prev.cover
-          a(href=url_for(page.prev.path))
-            if theme.lazyload.enable
-              img.prev_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
-            else
-              img.prev_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
-
+      - var hasPageNext = page.prev ? 'pull_left' : 'pull-full'
+      .prev-post(class=hasPageNext)
+        - var pagination_cover = page.prev.cover === false ? page.prev.randomcover : page.prev.cover
+        a(href=url_for(page.prev.path))
+          if theme.lazyload.enable
+            img.prev_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
+          else
+            img.prev_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
+          .pagination-info
             .label=_p('pagination.prev')
-            .prev_info
-              span=page.prev.title
-      else
-        .prev-post.pull-full
-          - var pagination_cover = page.prev.cover
-          a(href=url_for(page.prev.path))
-            if theme.lazyload.enable
-              img.prev_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
-            else
-              img.prev_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
-            .label=_p('pagination.prev')
-            .prev_info
-              span=page.prev.title
+            .prev_info=page.prev.title
           
     if(page.next)
-      if(page.prev)
-        .next-post.pull_right
-          - var pagination_cover = page.next.cover
-          a(href=url_for(page.next.path))
-            if theme.lazyload.enable
-              img.next_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
-            else
-              img.next_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)            
+      - var hasPagePrev = page.prev ? 'pull_right' : 'pull-full'
+      - var pagination_cover = page.next.cover == false ? page.next.randomcover : page.next.cover
+      .next-post(class=hasPagePrev)
+        a(href=url_for(page.next.path))
+          if theme.lazyload.enable
+            img.next_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+          else
+            img.next_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)                      
+          .pagination-info
             .label=_p('pagination.next')
-            .next_info
-              span=page.next.title 
-      else
-        .next-post.pull-full
-          - var pagination_cover = page.next.cover
-          a(href=url_for(page.next.path))
-            if theme.lazyload.enable
-              img.next_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
-            else
-              img.next_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
-            .label=_p('pagination.next')
-            .next_info
-              span=page.next.title      
-
+            .next_info=page.next.title 

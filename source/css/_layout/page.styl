@@ -2,22 +2,24 @@
   display: flex
   align-items: flex-start
   margin: 0 auto
-  padding: 0 15px
+  padding: 2rem 15px
   max-width: 1200px
 
 // index
 #recent-posts
   width: 75%
 
+  & > .recent-post-item:not(:first-child)
+    margin-top: 1rem
+
   & > .recent-post-item
     display: flex
     flex-direction: row
     align-items: center
-    margin-top: 20px
     padding: 0
     height: 280px
     border-radius: 8px
-    background: #fff
+    background: $card-bg
     box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
     transition: all .3s
 
@@ -27,20 +29,20 @@
       img.post_bg
         transform: scale(1.1)
 
-    if hexo-config('index_post_cover') == 'both'
+    if hexo-config('cover.position') == 'both'
       .left_radius
         border-radius: 8px 0 0 8px
 
       .right_radius
         order: 2
         border-radius: 0 8px 8px 0
-    else if hexo-config('index_post_cover') == 'left'
+    else if hexo-config('cover.position') == 'left'
       .left_radius
         border-radius: 8px 0 0 8px
 
       .right_radius
         border-radius: 8px 0 0 8px
-    else if hexo-config('index_post_cover') == 'right'
+    else if hexo-config('cover.position') == 'right'
       .left_radius
         order: 2
         border-radius: 0 8px 8px 0
@@ -53,6 +55,7 @@
       overflow: hidden
       width: 45%
       height: 280px
+      -webkit-mask-image: -webkit-radial-gradient(white, black)
 
       img.post_bg
         display: block
@@ -73,12 +76,14 @@
       padding: 0 40px
       width: 55%
 
+      &.no-cover
+        width: 100%
+
       & > .article-title
         display: -webkit-box
         overflow: hidden
         margin-bottom: .3rem
-        color: $black
-        text-decoration: none
+        color: $font-black
         text-overflow: ellipsis
         word-wrap: break-word
         font-size: 1.2rem
@@ -90,36 +95,41 @@
         &:hover
           color: $light-blue !important
 
-      & > time
-        color: $grey
+      & > .article-meta-wrap
+        font-size: 95%
 
-      & > .article-meta
-        color: $grey
+        & > time
+          color: $theme-meta-color
+
+        & > .article-meta
+          color: $theme-meta-color
 
         .sticky
-          color: $theme-button-hover-color
+          color: $sticky-color
 
         i
-          margin: 0 .2rem 0 .3rem
+          margin: 0 .2rem 0 0
 
-        .article-meta__separator
-          margin-left: .3rem
+        .article-meta__separator,
+        .article-meta__link
+          margin: 0 .3rem
 
         .fa-angle-right
-          margin: 0 0 0 .3rem
+          margin: 0 .3rem
 
-        a.article-meta__categories
-          color: #858585
-          text-decoration: none
+        a.article-meta__categories,
+        a.article-meta__tags
+          color: $theme-meta-color
 
           &:hover
-            color: #49b1f5 !important
+            color: $light-blue !important
+            text-decoration: underline
 
       & > .content
         display: -webkit-box
         overflow: hidden
-        margin-top: .5rem
-        height: 90px
+        margin-top: .3rem
+        height: 85px
         word-break: break-word
         -webkit-line-clamp: 3
         -webkit-box-orient: vertical
@@ -129,12 +139,11 @@
   a
     display: inline-block
     padding: 0 .4rem
-    text-decoration: none
     cursor: pointer
     transition: all .3s
 
     &:hover
-      color: $ruby !important
+      color: $theme-button-hover-color !important
       transform: scale(1.1)
 
   &__title
@@ -144,40 +153,29 @@
   &-tags
     text-align: center
 
-#tag,
-#category,
-#archive
-  padding: 3rem
-
-.tag-cloud,
-#page,
-.category-content,
-.flink
-  padding: 40px 44px 44px
-
-#page,
-.category-content,
-#archive,
-.tag-cloud,
-.flink,
-#tag,
-#category
-  margin-top: 20px
-  width: 75%
+.layout_post > #post,
+.layout_page > div:first-child:not(.recent-posts)
+  padding: 50px 40px
   border-radius: 8px
-  background: $white
+  background: $card-bg
   box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
   transition: all .3s
 
   &:hover
     box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
 
+.layout_page
+  & > div:first-child:not(.recent-posts)
+    width: 75%
+
 .article-sort
+  margin-left: .5rem
   padding-left: 1rem
-  border-left: 2px solid $pale-blue
+  border-left: 2px solid lighten($light-blue, 20)
 
   &-title
     position: relative
+    margin-left: .5rem
     padding-bottom: 1.2rem
     padding-left: 1rem
     font-size: 1.2rem
@@ -185,7 +183,7 @@
 
     &:hover
       &:before
-        border-color: $ruby
+        border-color: $theme-button-hover-color
 
     &:before
       position: absolute
@@ -196,7 +194,7 @@
       height: h = w
       border: .5 * w solid $light-blue
       border-radius: w
-      background: $white
+      background: $card-bg
       content: ''
       line-height: h
       transition: all .2s ease-in-out
@@ -208,17 +206,19 @@
       z-index: 0
       width: .1rem
       height: 1.3rem
-      background: $pale-blue
+      background: lighten($light-blue, 20)
       content: ''
 
   &-item
     position: relative
     margin: 0 0 1rem .5rem
+    width: 100%
+    height: 80px
     transition: all .2s ease-in-out
 
     &:hover
       &:before
-        border-color: $ruby
+        border-color: $theme-button-hover-color
 
     &:before
       $w = .3rem
@@ -229,12 +229,22 @@
       height: h = w
       border: .5 * w solid $light-blue
       border-radius: w
-      background: $white
+      background: $card-bg
       content: ''
       line-height: h
       transition: all .2s ease-in-out
 
+    &.no-article-cover
+      display: flex
+      flex-direction: column
+      justify-content: center
+
+      .article-sort-post
+        padding: 0
+        width: 100%
+
     &.year
+      height: auto
       font-size: 1rem
 
       &:hover
@@ -243,17 +253,15 @@
 
       &:before
         top: .7rem
-        border-color: $ruby
+        border-color: $theme-button-hover-color
 
     &__time
       padding-left: .4rem
-      color: $a-link-color
       font-size: .7rem
 
     &__title
       display: -webkit-box
       overflow: hidden
-      height: 60px
       color: $font-black
       font-size: .75rem
       transition: all .3s
@@ -276,23 +284,21 @@
           transform: scale(1.1)
 
     &__post
-      text-decoration: none
-      cursor: pointer
+      color: $theme-meta-color
 
       &:hover
-        color: $a-link-color
+        color: $theme-meta-color
 
   &-img
-    display: inline-block
+    float: left
     overflow: hidden
     width: 80px
     height: 80px
 
   &-post
-    position: absolute
-    top: 0
     display: inline-block
-    margin-left: 1rem
+    padding: 0 1rem
+    width: calc(100% - 80px)
 
 .category-lists
   padding: 1rem 0 1.5rem
@@ -304,12 +310,11 @@
 .category-list
   a
     color: $font-black
-    text-decoration: none
     cursor: pointer
 
   .category-list-count
     margin-left: .4rem
-    color: $a-link-color
+    color: $theme-meta-color
 
     &:before
       content: '('
@@ -317,19 +322,19 @@
     &:after
       content: ')'
 
+// 隱藏aside
+.hide-aside
+  max-width: 1000px
+
+  & > div
+    width: 100% !important
+
 @media screen and (max-width: $sm)
   .layout_page
-    padding: 0 5px !important
+    padding: 1rem 5px !important
 
-  #page,
-  .category-content,
-  #archive,
-  .tag-cloud,
-  .flink,
-  #tag,
-  #category
-    margin: 0
-    padding: 1.8rem 1.3rem
+    & > div:first-child:not(.recent-posts)
+      padding: 1.8rem .7rem
 
   .category-lists
     padding: 0
@@ -347,17 +352,17 @@
 
       .recent-post-info
         order: 2 !important
-        padding: 30px 25px 18px !important
+        padding: 1rem 1rem 1.5rem
         width: 100%
+
+        &.no-cover
+          padding: 1.5rem 1rem
 
         .article-title
           font-size: 1rem
 
-        .article-meta.tags
-          display: none
-
-      &:first-child
-        margin: 0
+        .content
+          height: auto
 
 @media screen and (min-width: 900px)
   if hexo-config('aside.position') == 'left'
@@ -366,17 +371,11 @@
     .category-content,
     #archive,
     .tag-cloud,
-    .flink,
     #tag,
     #category
       order: 2
 
 @media screen and (max-width: 900px)
-  #page,
-  .category-content,
-  #archive,
-  .tag-cloud,
-  .flink,
-  #tag,
-  #category
-    width: 100% !important
+  .layout_page
+    & > div:first-child:not(.recent-posts)
+      width: 100% !important

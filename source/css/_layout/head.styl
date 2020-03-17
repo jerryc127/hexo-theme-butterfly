@@ -1,21 +1,39 @@
 #nav
   position: relative
-  margin-bottom: 1rem
   width: 100%
   background-color: $light-blue
   background-attachment: local
-  background-position: center
+  background-position: center center
   background-size: cover
+  background-repeat: no-repeat
+  transition: all .5s
 
+  // index
   &.full_page
-    display: flex
-    align-items: center
     height: $index_top_img_height
 
-  &.not_index_bg
-    height: 20rem
+    #site-info
+      position: absolute
+      top: $index_site_info_top
+      padding: 0 .5rem
+      width: 100%
 
-  #site-social-icons
+  #site_title,
+  #site_subtitle,
+  #scroll_down .scroll-down-effects
+    color: $light-grey
+    text-align: center
+    text-shadow: .1rem .1rem .2rem rgba(0, 0, 0, .15)
+    line-height: 1.5
+
+  #site_title
+    margin: 0
+    font-size: 1.3rem
+
+  #site_subtitle
+    font-size: .8rem
+
+  #site_social_icons
     display: none
     margin: 0 auto
     width: 15rem
@@ -28,47 +46,83 @@
       font-size: .9rem
       cursor: pointer
 
-      &:hover
-        color: $white
-
-#site-info
-  position: absolute
-  width: 100%
-
-#site-title,
-#site-sub-title
-  color: $light-grey
-  text-align: center
-  text-shadow: .1rem .1rem .2rem rgba(0, 0, 0, .15)
-  line-height: 1.5
-
-#site-title
-  font-weight: bold
-  font-size: 1.3rem
-
-#site-sub-title
-  font-size: .8rem
-
-#page_site-info
-  position: absolute
-  top: 10rem
-  width: 100%
-
-.scroll-down
-  position: absolute
-  bottom: 0
-  width: 100%
-  height: 42px
-  text-align: center
-  font-size: 30px
-  cursor: pointer
-
-  .scroll-down-effects
+  #scroll_down
     position: absolute
-    color: $white
+    bottom: 0
+    width: 100%
+    cursor: pointer
 
-header
-  position: relative
+    .scroll-down-effects
+      position: relative
+      width: 100%
+      font-size: 30px
+
+  // page
+  &.not-index-bg
+    height: 20rem
+
+  #page_site-info
+    position: absolute
+    top: 10rem
+    padding: 0 .5rem
+    width: 100%
+
+  // post
+  &.post-bg
+    height: 20rem
+
+    &:before
+      position: absolute
+      top: 0
+      left: 0
+      display: block
+      width: 100%
+      height: 100%
+      background-color: alpha($dark-black, .5)
+      content: ''
+
+    #post-info
+      position: absolute
+      bottom: 1.5rem
+      padding: 0 8%
+      width: 100%
+      color: $light-grey
+      text-align: left
+
+      #post-title
+        margin-bottom: .4rem
+        font-size: 1.5rem
+
+        .posttitle
+          display: -webkit-box
+          overflow: hidden
+          line-height: 1.5
+          -webkit-line-clamp: 3
+          -webkit-box-orient: vertical
+
+      #post-meta
+        .word-count,
+        #busuanzi_value_page_pv,
+        .comment-count
+          padding-left: .2rem
+
+        .post-meta
+          &__separator
+            margin: 0 .3rem
+
+          &__icon
+            margin-right: .2rem
+
+          &-pv-cv
+            display: inline-block
+
+        a
+          color: $light-grey
+          transition: all .3s ease-out
+
+          &:hover
+            color: $light-blue
+            text-decoration: underline
 
 #page-header
   position: absolute
@@ -79,7 +133,6 @@ header
   height: 58px
   border: none
   font-size: 18px
-  opacity: 0
   transition: all .5s
 
   .toggle-menu
@@ -95,7 +148,6 @@ header
 
   a
     color: $light-grey
-    text-decoration: none
 
     &:hover
       color: $white
@@ -109,13 +161,14 @@ header
     transition: transform .2s ease-in-out, opacity .2s ease-in-out
 
     &.open-sidebar
-      .site-page
-        visibility: hidden
+      .menus,
+      #search_button
+        display: none
 
     a,
     #site-name,
     .toggle-menu
-      color: $light-black
+      color: $font-black
       text-shadow: none
 
       &:hover
@@ -129,7 +182,7 @@ header
       background-color: $white !important
 
   #site-name
-    text-shadow: .1rem .1rem .2rem rgba(0, 0, 0, .15)
+    text-shadow: .1rem .1rem .2rem rgba($dark-black, .15)
     font-weight: bold
     cursor: pointer
 
@@ -163,7 +216,7 @@ header
         transition: all .3s ease-in-out
 
       &:hover
-        &::after
+        &:after
           width: 100%
 
     .menus_item_child
@@ -174,7 +227,7 @@ header
       padding: 0
       width: max-content
       background-color: alpha($white, .8)
-      box-shadow: 0 5px 20px -4px rgba(0, 0, 0, .5)
+      box-shadow: 0 5px 20px -4px rgba($dark-black, .5)
       animation: sub_menus .3s .1s ease both
 
       &:before
@@ -194,7 +247,7 @@ header
           background: $theme-color
 
         a
-          color: #3b3a3a
+          color: $font-black
           text-shadow: none
 
   #search_button
@@ -203,34 +256,50 @@ header
   .site-page
     position: relative
     padding-bottom: .3rem
-    text-shadow: .05rem .05rem .1rem rgba(0, 0, 0, .3)
+    text-shadow: .05rem .05rem .1rem rgba($dark-black, .3)
     font-size: .7rem
     cursor: pointer
 
 @media screen and (min-width: $sm)
-  #site-title
-    font-size: 2rem
+  #nav
+    #site_title
+      font-size: 2rem
 
-  #site-sub-title
-    font-size: 1.2rem
+    #site_subtitle
+      font-size: 1.2rem
 
 @media screen and (max-width: $sm)
   #page-header
     padding: 10px .8rem
 
   #nav
-    #site-social-icons
+    #site_social_icons
       display: block
 
-    &.not_index_bg
+    &.not-index-bg
       height: 14rem
 
     #page_site-info
       top: 7rem
 
-@media screen and (max-width: $bg)
-  #page-header
-    &.fixed
-      &.open-sidebar
-        .site-page
-          visibility: visible
+    &.post-bg
+      height: 18rem
+
+      & > #post-info
+        bottom: 1rem
+        padding: 0 5%
+
+        & > #post-title
+          font-size: 1.2rem
+
+        & > #post-meta
+          font-size: 90%
+
+          & > span
+            display: none
+
+          .post-meta-pv-cv
+            display: block
+
+            .post-meta__separator:first-child
+              display: none

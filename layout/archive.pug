@@ -1,4 +1,3 @@
-
 extends includes/layout.pug
 
 block content
@@ -7,5 +6,3 @@ block content
     .article-sort-title= _p('page.articles') + ' - ' + site.posts.length
     +articleSort(page.posts)
     include includes/pagination.pug
-  #aside_content.aside_content
-    include includes/widget/index.pug

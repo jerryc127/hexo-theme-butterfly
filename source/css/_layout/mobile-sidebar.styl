@@ -7,23 +7,21 @@
     left: 0
     z-index: 102
     display: none
-    background: alpha($dark-black, .7)
+    background: alpha($dark-black, .8)
 
-  #mobile-sidebar-menus,
-  #mobile-sidebar-toc
+  #mobile-sidebar-menus
     position: fixed
     top: 0
-    right: -254px
+    right: -250px
     z-index: 103
     display: block
+    overflow: hidden
     overflow-y: scroll
     width: 250px
     height: 100%
-    background: $white
-    box-shadow: 0 0 4px alpha($dark-black, .27)
+    background: #f6f8fa
     transition: all .5s
 
-  #mobile-sidebar-menus
     & > .mobile_author_icon
       padding: 1.3rem 1.5rem 0
       text-align: center
@@ -31,33 +29,33 @@
       img
         display: inline-block
         padding: 0
-        width: 120px
-        height: 120px
+        width: 110px
+        height: 110px
         border-radius: 70px
-        vertical-align: top
         transition: all .3s
 
     .mobile_post_data
-      display: flex
-      justify-content: center
       padding: .6rem .5rem 0
 
       .mobile_data_item
-        flex: 1
+        display: inline-block
+        width: 33.3%
 
-      .mobile_data_link
-        a
-          text-decoration: none
+        .mobile_data_link
+          & > a > div
+            overflow: hidden
+            text-overflow: ellipsis
+            white-space: nowrap
 
-        .length_num
-          color: $dark-black
-          font-size: .9rem
+          .length_num
+            color: $dark-black
+            font-size: .9rem
 
-        .headline
-          display: block
-          color: $font-black
-          text-transform: uppercase
-          font-size: .7rem
+          .headline
+            display: block
+            color: $font-black
+            // text-transform: uppercase
+            font-size: .7rem
 
     hr
       margin: 1rem auto
@@ -74,7 +72,6 @@
         margin: 0
         padding: .3rem 1.5rem
         color: $font-black
-        text-decoration: none
         text-overflow: ellipsis
         text-shadow: none
         white-space: nowrap
@@ -107,24 +104,3 @@
       .menus_item_child
         margin: 0
         list-style: none
-
-  #mobile-sidebar-toc
-    padding: 1rem .5rem 5rem .3rem
-
-    ol,
-    li
-      margin: 0
-      padding: 0 0 0 8px
-      list-style: none
-
-    .toc_mobile_headline
-      text-align: center
-      font-weight: bold
-      font-size: 18px
-
-    .toc_mobile_items-link
-      color: $font-color
-      text-decoration: none
-
-      &:hover
-        color: $light-blue

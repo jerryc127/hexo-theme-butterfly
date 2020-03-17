@@ -1,85 +1,46 @@
-
-- var pageTitle = page.title || config.subtitle || ''
-- if (is_archive()) pageTitle = _p('page.archives')
-- if (is_tag()) pageTitle = _p('page.tag') + ': ' + page.tag
-- if (is_category()) pageTitle = _p('page.category') + ': ' + page.category
-- if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
-- if (is_year()) pageTitle += ': ' + page.year
-- var pageTitle_saved  //- 暫時存儲pageTitle
-- var pageTitle_no_include_blog_name //- 存儲pageTitle， 不帶 " | "，meta用
-- var home_subtitle_true //有subtitle
-//- home時顯示config.title (JerryC)，其他顯示 pageTitle。meta用
-- is_home() ? pageTitle_no_include_blog_name = config.title : pageTitle_no_include_blog_name = pageTitle
-//- 暫時存儲pageTitle
-- pageTitle ? pageTitle_saved = pageTitle + ' | ' + config.title : pageTitle_saved = config.title
-//- 是否有 config.subtitle 是各自显示
-- config.subtitle ? home_subtitle_true = ' - ' + config.subtitle : home_subtitle_true = ''
-//- home時pageTitle顯示 JerryC - subtitle，其他顯示 pageTitle | JerryC
-- is_home() ? pageTitle = config.title + home_subtitle_true : pageTitle = pageTitle_saved
-//- 判断keywords
-
-- var pageDescription = page.description || page.title || config.description
-- var pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
-- if (page.tags && page.tags.data) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
-- var pageAuthor = config.email ? config.author + ',' + config.email : config.author
-- var pageCopyright = config.copyright || config.author
+- var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
+- var autoOpenSidebar = theme.auto_open_sidebar.enable === true ? 'on' : ''
 
 doctype html
 html(lang=config.language data-theme=theme.display_mode)
   head
-    meta(charset='UTF-8')
-    meta(http-equiv="X-UA-Compatible" content="IE=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5")
-    title= pageTitle
-    meta(name="description" content=pageDescription)
-    if pageKeywords
-      meta(name="keywords" content=pageKeywords)
-    meta(name="author" content=pageAuthor)
-    meta(name="copyright" content=pageCopyright)
-    meta(name ="format-detection" content="telephone=no")
-    !=favicon_tag(config.favicon || theme.favicon || '/favicon.ico')
     include ./head.pug
-    include ./config.pug
   body
     if theme.fireworks && theme.fireworks.enable
       canvas.fireworks
-    //- !=partial('includes/header.pug', {}, {cache: true})
-    include ./header.pug
-    include ./mobile-sidebar.pug
+    !=partial('includes/mobile-sidebar/index', {}, {cache:theme.fragment_cache})
+    if (is_post() && page.toc != false && theme.toc.enable)      
+      i.fa.fa-arrow-right#toggle-sidebar(aria-hidden="true" class=autoOpenSidebar)      
+      include ./sidebar.pug
     #body-wrap
       if theme.background
-        - var source = theme.background
-        - var is_photo = source.substring(3,0) === 'url' ? 'photo':'color'
+        - var is_photo = theme.background.substring(3,0) === 'url' ? 'photo':'color'
         #web_bg(data-type=is_photo)
-      if (is_post() && page.toc != false && theme.toc.enable)      
-        i.fa.fa-arrow-right#toggle-sidebar(aria-hidden="true")      
-        include ./sidebar.pug
+      include ./header/index.pug
+
       if (!is_post())
-        include ./nav.pug
-      main#content-outer
-        block top_img
-        if (!is_post())
-          #content-inner.layout_page
-            if body
-              div!= body
-            else
-              block content
-        else
-          #content-inner.layout.layout_post    
-            if body
-              div!= body
-            else
-              block content
+        main#content-inner.layout_page(class=hideAside)
+          if body
+            div!= body
+          else
+            block content
+            include widget/index.pug
+      else
+        main#content-inner.layout_post
+          if body
+            div!= body
+          else
+            block content
       
       - var footer_bg = theme.footer_bg == false ? '' : bg_img
       - var is_bg = theme.footer_bg == false ? 'color' : 'photo'
       footer#footer(style=footer_bg data-type=is_bg)
-        include ./footer.pug    
+        !=partial('includes/footer', {}, {cache:theme.fragment_cache})
     include ./rightside.pug
+    !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
     each item in theme.CDN_USE.js
       script(src=url_for(item))
     include ./additional-js.pug
-    include ./search/index.pug
     
 
     

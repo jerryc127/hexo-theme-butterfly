@@ -57,7 +57,12 @@
         top: 13px
         left: 15px
         font-size: larger
-        font-family: 'FontAwesome'
+
+        if hexo-config('fontawesome_v5') && hexo-config('fontawesome_v5.enable')
+          font-weight: 600
+          font-family: 'Font Awesome 5 Free'
+        else
+          font-family: 'FontAwesome'
 
   &.default
     if ($note-style == 'flat')

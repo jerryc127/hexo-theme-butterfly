@@ -10,7 +10,6 @@ $code-block
   padding: 0
   background: $highlight-background
   color: $highlight-foreground
-  font-size: $code-font-size
   line-height: $line-height-code-block
 
   if wordWrap
@@ -28,7 +27,7 @@ blockquote
   margin: 0 0 1rem
   padding: .1rem .8rem
   border-left: .2rem solid $blockquote-padding-color
-  background-color: lighten($blockquote-padding-color, 33)
+  background-color: $blockquote-background-color
   color: $blockquote-color
 
   a
@@ -46,7 +45,7 @@ blockquote
         padding: 0 .3em
         content: '—'
 
-.article-container
+#article-container
   pre,
   code
     font-family: $code-font !important
@@ -56,7 +55,8 @@ blockquote
     background: $code-background
     color: $code-foreground
     word-wrap: break-word
-    font-size: $code-font-size
+    word-break: break-word
+    overflow-wrap: break-word
 
   pre
     @extend $code-block
@@ -68,7 +68,7 @@ blockquote
       color: $highlight-foreground
       text-shadow: none
 
-  .highlight
+  figure.highlight
     @extend $code-block
     position: relative
     border-radius: 1px
@@ -101,6 +101,7 @@ blockquote
 
     table
       position: relative
+      display: table
       margin: 0
       width: auto
       border: none
@@ -111,22 +112,10 @@ blockquote
 
     figcaption
       clearfix()
-      position: absolute
-      z-index: 1
-      margin-bottom: 1em
-      padding: .2rem 0 .2rem .7rem
-      width: 100%
-      height: 1.4em
+      padding: .3rem 0 .1rem .7rem
       color: $highlight-foreground
       font-size: 1em
       line-height: 1em
-
-      span
-        float: left
-        overflow: hidden
-        max-width: 100%
-        text-overflow: ellipsis
-        white-space: nowrap
 
       a
         float: right
@@ -135,15 +124,6 @@ blockquote
 
         &:hover
           border-bottom-color: $highlight-foreground
-
-      &+table
-        margin-top: 1.1rem
-
-        &:before
-          margin-top: -2.1rem
-
-        &:after
-          top: -2.1rem
 
     .gutter pre
       padding-right: .5rem
@@ -285,14 +265,12 @@ blockquote
 
 .highlight-tools
   position: relative
+  overflow: hidden
   width: 100%
   height: 1.4rem
   background: darken($highlight-background, 5)
   color: $highlight-foreground
   font-size: 14px
-
-  & + figure
-    margin: 0 !important
 
 .highlight-close
   height: 0 !important

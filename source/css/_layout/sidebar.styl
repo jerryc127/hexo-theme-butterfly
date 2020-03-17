@@ -1,16 +1,14 @@
 #sidebar
   position: fixed
   top: 0
-  left: -300px
+  left: -($sidebar-width)
   z-index: 10
-  overflow-y: auto
   padding: 1rem 0 2rem .5rem
   width: $sidebar-width
   height: 100%
   background: $sidebar-background
-  box-shadow: -.25rem 0 .25rem rgba(232, 237, 250, .6) inset
+  box-shadow: -.25rem 0 .25rem rgba($sidebar-background, .6) inset
   opacity: .9
-  transition: ease-in-out .4s
 
   .sidebar-toc
     ol,
@@ -24,25 +22,29 @@
     &__title
       padding-right: .5rem
       text-align: center
-      font-size: unit(.9 * $rem, 'px')
+      font-size: 1.3em
+
+    &__content
+      overflow-y: scroll
+      padding-bottom: 5rem
+      height: 90vh
 
     .toc-link
       display: block
       padding-left: .2rem
       border-right: 3px solid transparent
-      text-decoration: none
       transition: all .2s ease-in-out
 
       &.active
-        border-right-color: darken($cyan, 20%)
-        background: $cyan
-        color: $white
+        border-right-color: darken($theme-toc-color, 20%)
+        background: $theme-toc-color
+        color: $sidebar-active-color
 
     &__progress
       position: relative
-      margin-top: -.3rem
+      margin-bottom: .3rem
       padding-left: .6rem
-      color: $cyan
+      color: $theme-toc-color
 
       .progress-notice
         margin-right: .4rem
@@ -54,4 +56,19 @@
       &-bar
         width: 0
         height: 1px
-        background: $cyan
+        background: $theme-toc-color
+
+@media screen and (max-width: $bg)
+  i#toggle-sidebar
+    display: none
+
+  #sidebar
+    right: -($mobile-sidebar-width)
+    left: auto
+    z-index: 103
+    width: $mobile-sidebar-width
+    opacity: 1
+    transition: all .4s
+
+    .toc-child
+      display: block !important

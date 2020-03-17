@@ -2,25 +2,11 @@ extends includes/layout.pug
 
 block content
   if page.type === 'tags'
-    .tag-cloud
-      .tag-cloud__title= _p('page.tag')
-        |  - 
-        span.tag-cloud__amount= site.tags.length
-      .tag-cloud-tags
-        include includes/page_tag.pug
-      if page.comments !== false
-        include includes/comments/index.pug
-    #aside_content.aside_content
-      include includes/widget/index.pug
-
+    include page-tags.pug
   else if page.type === 'link'
     include flink.pug
-      if page.comments !== false
-        include includes/comments/index.pug
-    #aside_content.aside_content
-      include includes/widget/index.pug
   else if page.type === 'categories'    
-    #post-content.category-content
+    .category-content
       .category-lists
         .category__title= _p('page.category')
           |  - 
@@ -28,14 +14,8 @@ block content
         div!= list_categories()
       if page.comments !== false
         include includes/comments/index.pug
-    #aside_content.aside_content
-      include includes/widget/index.pug
   else
-    article#page
-      h1= page.title
-      .article-container!= page.content
-      include includes/pagination.pug
+    #page
+      #article-container!= page.content
       if page.comments !== false
         include includes/comments/index.pug
-    #aside_content.aside_content
-      include includes/widget/index.pug

@@ -15,11 +15,10 @@ page:
   articles: 文章總覽
   tag: 標籤
   category: 分類
-  archives: 時間軸
+  archives: 歸檔
 
 sticky: 置頂
 no_title: 無題
-archives: 時間軸
 
 post:
   created: 發表於
@@ -34,6 +33,7 @@ post:
     copyright_notice: 版權聲明
     copyright_content: '本博客所有文章除特別聲明外，均採用
       <a href="%s" target="_blank">%s</a> 許可協議。轉載請註明來自 <a href="%s" target="_blank">%s</a>！'
+  recommend: 相關推薦
 
 search: 搜索
 algolia_search:
@@ -76,7 +76,6 @@ share: 分享
 bookmark:
   title: 添加書籤
 
-
 rightside:
   readmode_title: 閲讀模式
   font_plus_title: 放大字體
@@ -104,5 +103,7 @@ Snackbar:
   cht_to_chs: 你已切換為簡體
   day_to_night: 你已切換為深色模式
   night_to_day: 你已切換為淺色模式
+
+error_title: 頁面沒有找到
 
 
