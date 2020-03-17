@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #gitalk-container
 script.
   var gitalk = new Gitalk({
@@ -15,6 +16,26 @@ script.
     updateCountCallback: commentCount
   })
   gitalk.render('gitalk-container')
+=======
+if theme.gitalk && theme.gitalk.enable
+  #gitalk-container
+  script.
+    var createIssueManually = #{ theme.gitalk.createIssueManually } == true ? true : false;
+    var distractionFreeMode = #{ theme.gitalk.distractionFreeMode } == true ? true : false;
+    var gitalk = new Gitalk({
+      clientID: '!{theme.gitalk.client_id}',
+      clientSecret: '!{theme.gitalk.client_secret}',
+      repo: '!{theme.gitalk.repo}',
+      owner: '!{theme.gitalk.owner}',
+      admin: '!{theme.gitalk.admin}',
+      id: md5(decodeURI(location.pathname)),
+      createIssueManually: createIssueManually,
+      distractionFreeMode: distractionFreeMode,
+      language: '!{theme.gitalk.language}',
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+>>>>>>> c40db692bfcb921b55976b6308b7d5d84f988113
 
   function commentCount(n){
     document.getElementsByClassName('gitalk-comment-count')[0].innerHTML= n
