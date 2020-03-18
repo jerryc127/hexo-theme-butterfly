@@ -34,7 +34,7 @@ if theme.disable_baidu_transformation
 if page.hide == true
   meta(name="robots" content="noindex")
 
-if theme.douban.meta && (is_current('/movies/', [strict]) || is_current('/books/', [strict]) || is_current('/games/', [strict]))
+if theme.douban && theme.douban.meta && (is_current('/movies/', [strict]) || is_current('/books/', [strict]) || is_current('/games/', [strict]))
   meta(name="referrer" content="no-referrer")
 
 //- 預解析
