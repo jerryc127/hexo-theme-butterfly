@@ -19,14 +19,17 @@ mixin UI_NEW(posts)
           if (theme.post_meta.page.date_type)
             if (theme.post_meta.page.date_type === 'both')
               time.post-meta__date
-                i.fa.fa-calendar.fa-fw(aria-hidden="true")
-                =date(page.date, config.date_format)
+                i.fa.fa-calendar(aria-hidden="true")
+                =date(article.date, config.date_format)
                 span.article-meta__separator |
-                i.fa.fa-history.fa-fw(aria-hidden="true")
-                =date(page.updated, config.date_format)
+                i.fa.fa-history(aria-hidden="true")
+                =date(article.updated, config.date_format)
             else
-              - var date_type = theme.post_meta.post.date_type === 'updated' ? 'updated' : 'date'
-              time.post-meta__date #[i.fa.fa-calendar.fa-fw(aria-hidden="true")]#[=date(page[date_type], config.date_format)]
+              - var date_type = theme.post_meta.page.date_type === 'updated' ? 'updated' : 'date'
+              - var date_icon = theme.post_meta.page.date_type === 'updated' ? 'fa-history' :'fa-calendar'
+              time.post-meta__date
+                i.fa(class=date_icon aria-hidden="true")
+                =date(article[date_type], config.date_format)
           if (theme.post_meta.page.categories && article.categories.data.length > 0)
             span.article-meta
               span.article-meta__separator |

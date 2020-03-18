@@ -34,8 +34,9 @@ if theme.disable_baidu_transformation
 if page.hide == true
   meta(name="robots" content="noindex")
 
-if theme.douban.meta && (is_current('/movies/', [strict]) || is_current('/books/', [strict]) || is_current('/games/', [strict]))
-  meta(name="referrer" content="no-referrer")
+if theme.douban
+  if theme.douban.meta && (is_current('/movies/', [strict]) || is_current('/books/', [strict]) || is_current('/games/', [strict]))
+    meta(name="referrer" content="no-referrer")
 
 //- 預解析
 !=partial('includes/head/dns_prefetch', {}, {cache:theme.fragment_cache})
