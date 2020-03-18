@@ -8,7 +8,7 @@ script.
     admin: ['!{theme.gitalk.admin}'],
     id: md5(decodeURI(location.pathname)),
     language: '!{theme.gitalk.language}',
-    perPage: '!{theme.gitalk.perPage}',
+    perPage: !{theme.gitalk.perPage},
     distractionFreeMode: !{theme.gitalk.distractionFreeMode},
     pagerDirection: '!{theme.gitalk.pagerDirection}',
     createIssueManually: !{theme.gitalk.createIssueManually},
@@ -17,7 +17,11 @@ script.
   gitalk.render('gitalk-container')
 
   function commentCount(n){
-    document.getElementsByClassName('gitalk-comment-count')[0].innerHTML= n
+    try {
+      document.getElementsByClassName('gitalk-comment-count')[0].innerHTML= n
+    } catch (e) {
+      return false
+    }
   }
 
 

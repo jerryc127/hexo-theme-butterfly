@@ -1,4 +1,4 @@
-if hexo-config('darkmode.enable')
+if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
   [data-theme='dark']
     body
       background-color: darken(#121212, 2)

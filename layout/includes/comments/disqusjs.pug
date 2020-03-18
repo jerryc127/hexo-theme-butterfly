@@ -13,11 +13,12 @@ script.
     adminLabel: '!{theme.disqusjs.adminLabel}'
   });
 
-script.
-  function getDisqusCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://!{theme.disqusjs.shortname}.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  window.addEventListener('load', getDisqusCount, false);
+if is_post() && theme.disqusjs.count
+  script.
+    function getDisqusCount() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://!{theme.disqusjs.shortname}.disqus.com/count.js';
+      s.id = 'dsq-count-scr';
+      (d.head || d.body).appendChild(s);
+    }
+    window.addEventListener('load', getDisqusCount, false);

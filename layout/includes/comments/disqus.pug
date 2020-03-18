@@ -12,12 +12,13 @@ script.
     (d.head || d.body).appendChild(s);
   })();
 
-script.
-  function getDisqusCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://!{theme.disqus.shortname}.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
+if is_post() && theme.disqus.count
+  script.
+    function getDisqusCount() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://!{theme.disqus.shortname}.disqus.com/count.js';
+      s.id = 'dsq-count-scr';
+      (d.head || d.body).appendChild(s);
+    }
 
-  window.addEventListener('load', getDisqusCount, false);
+    window.addEventListener('load', getDisqusCount, false);
