@@ -30,7 +30,7 @@ each article , index in page.posts.data
               =date(page.updated, config.date_format)
           else
             - var date_type = theme.post_meta.post.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar.fa-fw(aria-hidden="true")]#[=date(page[date_type], config.date_format)]
+            time.post-meta__date #[i.fa.fa-calendar.fa-fw(aria-hidden="true")]#[=date(article[date_type], config.date_format)]
         if (theme.post_meta.page.categories && article.categories.data.length > 0)
           span.article-meta
             span.article-meta__separator |
