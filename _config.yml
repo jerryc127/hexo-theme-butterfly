@@ -70,7 +70,7 @@ algolia_search:
     hits_stats: "${hits} results found in ${time} ms"
 
 # Local search
-# Please see doc for more details: https://jerryc.me/posts/21cfbf15/#本地搜索
+# Please see doc for more details: https://docs.jerryc.me/config.html#本地搜索
 # ---------------
 local_search:
   enable: false
@@ -79,7 +79,7 @@ local_search:
     hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
 
 # MathJax
-# Please see doc for more details: https://jerryc.me/posts/21cfbf15/#MathJax
+# Please see doc for more details: https://docs.jerryc.me/config.html#mathjax
 # ---------------
 mathjax:
   enable: false
@@ -168,9 +168,11 @@ post_meta:
     categories: true # true or false 文章頁是否顯示分類
     tags: true # true or false 文章頁是否顯示標籤
 
-# Please see doc for more details: https://jerryc.me/posts/21cfbf15/#字數統計
+# Please see doc for more details: https://docs.jerryc.me/config.html#字數統計
 wordcount:
-  enable: false
+  post_wordcount: true
+  min2read: true
+  total_wordcount: true
 
 toc:
   enable: true
@@ -312,6 +314,13 @@ google_adsense:
   js: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
   client:
   enable_page_level_ads: true
+
+# 廣告插入位置
+# 適用於開啓手動廣告的配置
+# ad:
+#   index:
+#   aside:
+#   post:
 
 ####    站長驗證    ####
 # Google Webmaster tools verification setting

@@ -68,6 +68,7 @@ aside:
     headline: 网站资讯
     article_name: 文章数目
     runtime_name: 已运行时间
+    site_wordcount: 本站总字数
     site_uv_name: 本站访客数
     site_pv_name: 本站总访问量
 

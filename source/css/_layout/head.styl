@@ -103,6 +103,10 @@
       #post-meta
         font-size: 95%
 
+        > .meta-secondline,
+        > .meta-thirdline
+          display inline
+
         .word-count,
         #busuanzi_value_page_pv,
         .comment-count
@@ -114,10 +118,7 @@
 
           &__icon
             margin-right: .2rem
-
-          &-pv-cv
-            display: inline-block
-
+                    
         a
           color: $light-grey
           transition: all .3s ease-out
@@ -297,11 +298,12 @@
         & > #post-meta
           font-size: 90%
 
-          & > span
+          .post-meta__categories
             display: none
-
-          .post-meta-pv-cv
+          
+          .meta-thirdline
             display: block
 
-            .post-meta__separator:first-child
-              display: none
+            .post-meta-pv-cv
+              .post-meta__separator:first-child
+                display: none

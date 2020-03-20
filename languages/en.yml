@@ -66,6 +66,7 @@ aside:
     headline: Info
     article_name: Article
     runtime_name: Run time
+    site_wordcount: Total Count
     site_uv_name: UV
     site_pv_name: PV
 

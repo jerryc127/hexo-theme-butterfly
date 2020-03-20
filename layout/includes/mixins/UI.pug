@@ -53,4 +53,9 @@ mixin UI_NEW(posts)
           .content!= expert
         else
           .content!= article.description
+    
+    if theme.ad && theme.ad.index
+      if (index + 1) % 3 == 0
+        .recent-post-item.ad_height!=theme.ad.index
+
   - })
