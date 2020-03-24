@@ -271,16 +271,16 @@ $(function () {
    * 代碼收縮
    */
   const $highlightTools = $('.highlight-tools')
-  if (isHighlightShrink === true) {
+  if (isHighlightShrink === 'true') {
     $highlightTools.append('<i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i>')
-  } else if (isHighlightShrink === false) {
+  } else if (isHighlightShrink === 'false') {
     $highlightTools.append('<i class="fa fa-angle-down code-expand" aria-hidden="true"></i>')
   }
 
   $(document).on('click', '.highlight-tools >.code-expand', function () {
     var $table = $(this).parent().next()
     if ($(this).hasClass('code-closed')) {
-      $table.css('display', '')
+      $table.css('display', 'block')
       $(this).removeClass('code-closed')
     } else {
       $table.css('display', 'none')
@@ -668,8 +668,7 @@ $(function () {
   var isFontAwesomeV5 = GLOBAL_CONFIG.isFontAwesomeV5
   var $darkModeButtom = $('#darkmode')
   if (typeof autoChangeMode !== 'undefined') {
-    if (Cookies.get('theme') === 'dark') changeLightIcon()
-    else changeDarkIcon()
+    document.documentElement.getAttribute('data-theme') === 'dark' ? changeLightIcon() : changeDarkIcon()
   }
 
   function changeLightIcon () {
