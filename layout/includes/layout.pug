@@ -1,5 +1,4 @@
 - var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
-- var autoOpenSidebar = theme.auto_open_sidebar.enable === true ? 'on' : ''
 
 doctype html
 html(lang=config.language data-theme=theme.display_mode)
@@ -8,10 +7,11 @@ html(lang=config.language data-theme=theme.display_mode)
   body
     if theme.fireworks && theme.fireworks.enable
       canvas.fireworks
+
     !=partial('includes/mobile-sidebar/index', {}, {cache:theme.fragment_cache})
-    if (is_post() && page.toc != false && theme.toc.enable)      
-      i.fa.fa-arrow-right#toggle-sidebar(aria-hidden="true" class=autoOpenSidebar)      
-      include ./sidebar.pug
+
+    include ./sidebar.pug
+
     #body-wrap
       if theme.background
         - var is_photo = theme.background.substring(3,0) === 'url' ? 'photo':'color'
@@ -36,10 +36,14 @@ html(lang=config.language data-theme=theme.display_mode)
       - var is_bg = theme.footer_bg == false ? 'color' : 'photo'
       footer#footer(style=footer_bg data-type=is_bg)
         !=partial('includes/footer', {}, {cache:theme.fragment_cache})
+
     include ./rightside.pug
+
     !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
+
     each item in theme.CDN_USE.js
       script(src=url_for(item))
+      
     include ./additional-js.pug
     
 

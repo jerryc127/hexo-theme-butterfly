@@ -1,12 +1,16 @@
-#sidebar
-  - const showToc = is_post() && page.toc != false && theme.toc.enable
-  -
-    let tocNumber
-    if (page.toc_number !== undefined) tocNumber = page.toc_number
-    else if (theme.toc.number !== undefined) tocNumber = theme.toc.number
-    else tocNumber = true
-  -
-  if(showToc)
+- let showToc = is_post() && page.toc !== false && theme.toc.enable && (toc(page.content) !== '' || page.encrypt == true )
+- let autoOpenSidebar = theme.auto_open_sidebar.enable === true ? 'on' : ''
+
+-
+  let tocNumber
+  if (page.toc_number !== undefined) tocNumber = page.toc_number
+  else if (theme.toc.number !== undefined) tocNumber = theme.toc.number
+  else tocNumber = true
+-
+
+if(showToc)
+  i.fa.fa-arrow-right#toggle-sidebar(aria-hidden="true" class=autoOpenSidebar)      
+  #sidebar
     .sidebar-toc
       div.sidebar-toc__title= _p('sidebar.catalog')
       div.sidebar-toc__progress
@@ -18,4 +22,4 @@
         div.sidebar-toc__content.toc-div-class(style="display:none")!=toc(page.origin, {list_number: tocNumber})
       else 
         div.sidebar-toc__content!=toc(page.content, {list_number: tocNumber})
-      
+        

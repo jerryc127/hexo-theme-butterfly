@@ -33,9 +33,7 @@ if theme.douban
         span#subtitle
       if(theme.social)
         #site_social_icons
-          each url, icon in theme.social
-            a.social-icon(href=url target="_blank")
-              i(class=icon aria-hidden="true")     
+          !=partial('includes/header/social', {}, {cache:theme.fragment_cache})
     #scroll_down
       i.fa.fa-angle-down.scroll-down-effects
   else if is_post()

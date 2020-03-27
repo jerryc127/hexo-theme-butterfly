@@ -1,22 +1,22 @@
 if theme.subtitle.enable
-  - let source = theme.subtitle.source
-  - let subtitleEffect = theme.subtitle.effect
+  - var source = theme.subtitle.source
+  - var subtitleEffect = theme.subtitle.effect
 
   if subtitleEffect
     script(src=url_for(theme.CDN.typed))
 
   if source == '1'
     script.
-      let subtitleEffect = !{subtitleEffect}
+      var subtitleEffect = !{subtitleEffect}
       fetch('https://api.ooopn.com/ciba/api.php',)
       .then(function (res){
         return res.json();
       })
       .then(function (data) {
         if (subtitleEffect){
-          let sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
-          let both = sub.unshift(data['ciba-en'],data.ciba)
-          let typed = new Typed("#subtitle", {
+          var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+          var both = sub.unshift(data['ciba-en'],data.ciba)
+          var typed = new Typed("#subtitle", {
             strings: sub,
             startDelay: 300,
             typeSpeed: 150,
@@ -33,17 +33,17 @@ if theme.subtitle.enable
 
   else if source == '2'
     script.
-      let subtitleEffect = !{subtitleEffect}
+      var subtitleEffect = !{subtitleEffect}
       fetch('https://v1.hitokoto.cn')
       .then(function (res){
         return res.json();
       })
       .then(function (data) {
         if (subtitleEffect){
-          let from = '出自 ' + data.from
-          let sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
-          let both = sub.unshift(data.hitokoto,from)  
-          let typed = new Typed("#subtitle", {
+          var from = '出自 ' + data.from
+          var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+          var both = sub.unshift(data.hitokoto,from)  
+          var typed = new Typed("#subtitle", {
             strings: sub,
             startDelay: 300,
             typeSpeed: 150,
@@ -61,13 +61,13 @@ if theme.subtitle.enable
   else if source == "3"
     script(type="text/javascript" src="http://yijuzhan.com/api/word.php?m=js")
     script.
-      let subtitleEffect = !{subtitleEffect}
-      let con = str[0];
+      var subtitleEffect = !{subtitleEffect}
+      var con = str[0];
       if (subtitleEffect){
-        let from = "出自 " + str[1];
-        let sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
-        let both = sub.unshift(con,from)
-        let typed = new Typed("#subtitle", {
+        var from = "出自 " + str[1];
+        var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+        var both = sub.unshift(con,from)
+        var typed = new Typed("#subtitle", {
           strings: sub,
           startDelay: 300,
           typeSpeed: 150,
@@ -81,13 +81,13 @@ if theme.subtitle.enable
   else if source == '4'
     script(type="text/javascript" src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8")
     script.
-      let subtitleEffect = !{subtitleEffect}
+      var subtitleEffect = !{subtitleEffect}
       jinrishici.load(function(result) {
         if (subtitleEffect){
-          let sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
-          let content = result.data.content;
-          let both = sub.unshift(content)
-          let typed = new Typed("#subtitle", {
+          var sub = '!{theme.subtitle.sub}'.length == 0  ? new Array() : '!{theme.subtitle.sub}'.split(",");
+          var content = result.data.content;
+          var both = sub.unshift(content)
+          var typed = new Typed("#subtitle", {
             strings: sub,
             startDelay: 300,
             typeSpeed: 150,
@@ -102,9 +102,9 @@ if theme.subtitle.enable
   else
     - var subtitle = theme.subtitle.sub[0]
     script.
-      let subtitleEffect = !{subtitleEffect}
+      var subtitleEffect = !{subtitleEffect}
       if (subtitleEffect){ 
-        let typed = new Typed("#subtitle", {
+        var typed = new Typed("#subtitle", {
           strings: '!{theme.subtitle.sub}'.split(","),
           startDelay: 300,
           typeSpeed: 150,

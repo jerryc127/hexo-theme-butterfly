@@ -1,16 +1,19 @@
-- var pageTitle = page.title || config.title || ''
+- var pageTitle
 - if (is_archive()) pageTitle = _p('page.archives')
-- if (is_tag()) pageTitle = _p('page.tag') + ': ' + page.tag
-- if (is_category()) pageTitle = _p('page.category') + ': ' + page.category
-- if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
-- if (is_year()) pageTitle += ': ' + page.year
+- else if (is_tag()) pageTitle = _p('page.tag') + ': ' + page.tag
+- else if (is_category()) pageTitle = _p('page.category') + ': ' + page.category
+- else if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
+- else if (is_year()) pageTitle += ': ' + page.year
+- else if (is_current('/404.html', [strict])) pageTitle = _p('error_title')
+- else pageTitle = page.title || config.title || ''
+
 - var isSubtitle = config.subtitle ? ' - ' + config.subtitle : ''
 - var tabTitle = is_home() || !pageTitle ? config.title + isSubtitle : pageTitle + ' | ' + config.title
-- pageTitle ? '' : pageTitle = config.title || ''
 
 - var pageDescription = page.description || page.title || config.description
-- var pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
+- var pageKeywords
 - if (page.tags && page.tags.data) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
+- else pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
 - var pageAuthor = config.email ? config.author + ',' + config.email : config.author
 - var pageCopyright = config.copyright || config.author
 - var without_html = url.replace('index.html', '')
@@ -97,4 +100,6 @@ if theme.blog_title_font.font_link
 
 //- global config
 !=partial('includes/head/config', {}, {cache:theme.fragment_cache})
+
 include ./head/config_site.pug
+include ./head/noscript.pug

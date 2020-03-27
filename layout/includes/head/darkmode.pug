@@ -1,20 +1,20 @@
 script.
-  const autoChangeMode = '#{theme.darkmode.autoChangeMode}'
+  var autoChangeMode = '#{theme.darkmode.autoChangeMode}'
   var t = Cookies.get("theme")
   if (autoChangeMode == '1'){
-    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
-    const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
-    const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
-    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+    var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+    var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+    var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
     if (t === undefined){
       if (isLightMode) activateLightMode()
       else if (isDarkMode) activateDarkMode()
       else if (isNotSpecified || hasNoSupport){
         console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
-        now = new Date();
-        hour = now.getHours();
-        isNight = hour < 6 || hour >= 18
+        var now = new Date()
+        var hour = now.getHours()
+        var isNight = hour < 6 || hour >= 18
         isNight ? activateDarkMode() : activateLightMode()
     }
     } else if (t == 'light') activateLightMode()

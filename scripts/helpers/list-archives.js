@@ -89,7 +89,7 @@ hexo.extend.helper.register("list_archives", function(options = {}) {
   }
 
   if (data.length > limit) {
-    result += `<li class="archive-list-item">`;
+    result += `<li class="archive-list-item is-center">`;
     result +=
       `<a class="archive-list-link-more" href="` +
       "/" +

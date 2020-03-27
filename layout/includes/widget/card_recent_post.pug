@@ -20,8 +20,6 @@
                     img.aside-post-bg(src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` title=title alt=title)
               .aside-post-title(class=no_cover)
                 .aside-post_title(href=url_for(link) title=article.title || _p('no_title'))= article.title || _p('no_title')
-                if (theme.post_meta.page.date_type)
-                  - var date_type = theme.post_meta.page.date_type == 'updated' ? 'updated' : 'date'
-                  time.aside-post_meta.post-meta__date #[=date(article[date_type], config.date_format)]
+                time.aside-post_meta.post-meta__date(title=_p('post.created') + ' ' + full_date(article.date)) #[=date(article.date, config.date_format)]
     
       - })

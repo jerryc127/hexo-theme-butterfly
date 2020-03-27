@@ -1,0 +1,4 @@
+each url, icon in theme.social
+  a.social-icon(href=trim(url.split('||')[0]) target="_blank" 
+  title=url.split('||')[1] === undefined ? '' : trim(url.split('||')[1]))
+    i(class=icon aria-hidden="true")

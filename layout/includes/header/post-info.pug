@@ -7,17 +7,19 @@
       if (theme.post_meta.post.date_type)
         if (theme.post_meta.post.date_type === 'both')
           time.post-meta__date
-            i.fa.fa-calendar(aria-hidden="true")
-            =' '+_p('post.created')+' '+date(page.date, config.date_format)
+            span.post-meta__date-created(title= _p('post.created')+' '+full_date(page.date))
+              i.fa.fa-calendar(aria-hidden="true")
+              =' '+_p('post.created')+' '+date(page.date, config.date_format)
             span.post-meta__separator |
-            i.fa.fa-history(aria-hidden="true")
-            =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
+            span.post-meta__date-updated(title= _p('post.updated')+' '+full_date(page.updated))
+              i.fa.fa-history(aria-hidden="true")
+              =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
         else
           - var data_type_update = theme.post_meta.post.date_type === 'updated'
           - var date_type = data_type_update ? 'updated' : 'date'
           - var date_icon = data_type_update ? 'fa-history' :'fa-calendar'
           - var data_info = data_type_update ? _p('post.updated') : _p('post.created')
-          time.post-meta__date
+          time.post-meta__date(title=data_info + ' ' + full_date(page[date_type]))
             i.fa(class=date_icon aria-hidden="true")
             =' ' + data_info + ' ' + date(page[date_type], config.date_format)
                 
@@ -33,7 +35,7 @@
               i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
 
     .meta-secondline  
-      - let postWordcount = theme.wordcount.post_wordcount || theme.wordcount.min2read
+      - let postWordcount = theme.wordcount.enable && (theme.wordcount.post_wordcount || theme.wordcount.min2read)
       if (postWordcount)
         span.post-meta-wordcount
           if theme.wordcount.post_wordcount

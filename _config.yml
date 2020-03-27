@@ -49,12 +49,12 @@ copy:
 
 # social settings
 # formal:
-#   icon: link
+#   icon: link || the description
 # ---------------
 social:
-  fa fa-github: https://github.com/jerryc127
-  fa fa-envelope: mailto:xxxxxxxx@gmail.com
-  fa fa-rss: /atom.xml
+  fa fa-github: https://github.com/jerryc127 || Github
+  fa fa-envelope: mailto:xxxxxxx@gmail.com || Email
+  fa fa-rss: /atom.xml || RSS
 
 ####    search    ####
 # Algolia search
@@ -170,6 +170,7 @@ post_meta:
 
 # Please see doc for more details: https://docs.jerryc.me/config.html#字數統計
 wordcount:
+  enable: false
   post_wordcount: true
   min2read: true
   total_wordcount: true
@@ -355,6 +356,10 @@ related_post:
   enable: true
   limit: 6 # 顯示推薦文章數目
   date_type: created # or created or updated 文章日期顯示創建日或者更新日
+
+# figcaption
+# 圖片描述文字
+photofigcaption: false
 
 ####    美化/效果    ####
 #--------------------------------

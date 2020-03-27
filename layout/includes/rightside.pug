@@ -18,6 +18,6 @@ section#rightside.rightside
     if is_post() && page.comments !== false && isComment
       a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
         i.scroll_to_comment.fa.fa-comments   
-    if is_post() && page.toc != false && theme.toc.enable
+    if is_post() && page.toc !== false && theme.toc.enable && (toc(page.content) !== '' || page.encrypt == true )
       i#mobile-toc-button.fa.fa-list-ul.close(title=_p("rightside.toc") aria-hidden="true")
     i.fa.fa-arrow-up#go-up(title=_p("rightside.back_to_top") aria-hidden="true")
