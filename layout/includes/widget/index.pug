@@ -7,6 +7,8 @@ if theme.aside.enable
         !=partial('includes/widget/card_announcement', {}, {cache:theme.fragment_cache})
       if theme.aside.card_recent_post
         !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})
+      if theme.ad && theme.ad.aside
+        !=partial('includes/widget/card_ad', {}, {cache:theme.fragment_cache})
       if theme.aside.card_categories
         !=partial('includes/widget/card_categories', {}, {cache:theme.fragment_cache})
       if theme.aside.card_tags

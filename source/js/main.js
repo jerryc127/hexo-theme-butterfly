@@ -1,37 +1,40 @@
 $(function () {
   const isSnackbar = GLOBAL_CONFIG.Snackbar !== undefined
-  const isTocContent = $('#sidebar .sidebar-toc__content').children().length > 0
   const $pageHead = $('#page-header')
   const $rightside = $('#rightside')
   const $body = $('body')
 
   /**
    * 當menu過多時，自動適配，避免UI錯亂
-   */
-  const searchWidth = $('#search_button').outerWidth() !== undefined ? $('#search_button').outerWidth() : 0
-  const blogNameWidth = $('#blog_name').width()
-
-  var mw = 0
-  var $menusItem = $pageHead.find('.menus_item')
-  for (var i = 0; i < $menusItem.length; i++) {
-    mw = mw + $menusItem.eq(i).outerWidth()
-  }
-
-  /**
-   * 傳入 1 sidebar打開時
+    * 傳入 1 sidebar打開時
    * 傳入 2 正常狀態下
-   * 傳入 3 resize時使用
    */
+  var blogNameWidth = $('#blog_name').width()
+  var menusWidth = $('.menus').width()
+  var sidebarWidth = $('#sidebar').width()
+
   function isAdjust (n) {
     var t
     if (n === 1) {
-      t = blogNameWidth + searchWidth + mw > $pageHead.width() - 300
+      t = blogNameWidth + menusWidth > $pageHead.width() - sidebarWidth - 20
     } else if (n === 2) {
-      t = blogNameWidth + searchWidth + mw > $pageHead.width()
+      t = blogNameWidth + menusWidth > $pageHead.width() - 20
     }
 
     if (t) headerAdjust()
     else headerAdjustBack()
+  }
+
+  function headerAdjust () {
+    $pageHead.find('.toggle-menu').addClass('is-visible-inline')
+    $pageHead.find('.menus_items').addClass('is_invisible')
+    $pageHead.find('#search_button span').addClass('is_invisible')
+  }
+
+  function headerAdjustBack () {
+    $pageHead.find('.toggle-menu').removeClass('is-visible-inline')
+    $pageHead.find('.menus_items').removeClass('is_invisible')
+    $pageHead.find('#search_button span').removeClass('is_invisible')
   }
 
   // 初始化header
@@ -39,22 +42,14 @@ $(function () {
     if (window.innerWidth < 768) headerAdjust()
     else isAdjust(2)
   }
+
   initAjust()
-
-  function headerAdjust () {
-    $pageHead.find('.toggle-menu').addClass('is_visible')
-    $pageHead.find('.menus').addClass('is_invisible')
-    $pageHead.find('#search_button span').addClass('is_invisible')
-  }
-
-  function headerAdjustBack () {
-    $pageHead.find('.toggle-menu').removeClass('is_visible')
-    $pageHead.find('.menus').removeClass('is_invisible')
-    $pageHead.find('#search_button span').removeClass('is_invisible')
-  }
+  $('#page-header').css({ opacity: '1', animation: 'headerNoOpacity 1s' })
 
   $(window).on('resize', function () {
-    if (!$pageHead.hasClass('open-sidebar')) {
+    if ($('#sidebar').hasClass('tocOpenPc') && $pageHead.hasClass('fixed')) {
+      isAdjust(1)
+    } else {
       initAjust()
     }
   })
@@ -72,21 +67,12 @@ $(function () {
   /**
    * 進入post頁sidebar處理
    */
-
-  var isSidebarOpen = $('#toggle-sidebar').hasClass('on') && isTocContent
-  var isPcSidebarOpen = false
-  if (window.innerWidth > 1024 && isSidebarOpen) {
-    setTimeout(function () {
-      openSidebar()
-    }, 400)
-  }
-
-  // 當toc爲空時，隱藏toc按鈕
-  if (isTocContent) {
-    $('#toggle-sidebar').css('opacity', '1')
-  } else {
-    $('#toggle-sidebar').css('display', 'none')
-    $('#mobile-toc-button').css('display', 'none')
+  if (GLOBAL_CONFIG_SITE.isPost) {
+    if (window.innerWidth > 1024 && $('#toggle-sidebar').hasClass('on')) {
+      setTimeout(function () {
+        openSidebar()
+      }, 400)
+    }
   }
 
   /**
@@ -94,9 +80,10 @@ $(function () {
    */
 
   function closeSidebar () {
-    isPcSidebarOpen = false
-    $pageHead.removeClass('open-sidebar')
     $('#sidebar').removeClass('tocOpenPc')
+    $('.menus').animate({
+      paddingRight: 0
+    }, 400)
     $('#body-wrap').animate({
       paddingLeft: 0
     }, 400)
@@ -114,9 +101,10 @@ $(function () {
   }
 
   function openSidebar () {
-    isPcSidebarOpen = true
-    $pageHead.addClass('open-sidebar')
     $('#sidebar').addClass('tocOpenPc')
+    $('.menus').animate({
+      paddingRight: 300
+    }, 400)
     $('#body-wrap').animate({
       paddingLeft: 300
     }, 400)
@@ -129,7 +117,8 @@ $(function () {
       opacity: '1'
     })
     var isAdjustTimeCount = window.setInterval(function () {
-      isAdjust(1)
+      if ($pageHead.hasClass('fixed')) isAdjust(1)
+      else isAdjust(2)
     }, 100)
     setTimeout(function () {
       clearInterval(isAdjustTimeCount)
@@ -165,7 +154,7 @@ $(function () {
       $toggleMenu.removeClass('close').addClass('open')
       $mobileSidevarMenus.css('transform', 'translate3d(-100%,0,0)')
       var $mobileSidevarMenusChild = $mobileSidevarMenus.children()
-      for (i = 0; i <= $mobileSidevarMenusChild.length; i++) {
+      for (let i = 0; i <= $mobileSidevarMenusChild.length; i++) {
         const duration = i / 5 + 0.2
         $mobileSidevarMenusChild.eq(i).css('animation', 'sidebarItem ' + duration + 's')
       }
@@ -221,9 +210,9 @@ $(function () {
   const mql = window.matchMedia('(max-width: 1024px)')
   mql.addListener(function (ev) {
     if (ev.matches) {
-      if (isPcSidebarOpen === true) closeSidebar()
+      if ($('#sidebar').hasClass('tocOpenPc')) closeSidebar()
     } else {
-      if ($('#toggle-sidebar').hasClass('on') && isTocContent) openSidebar()
+      if ($('#toggle-sidebar').hasClass('on')) openSidebar()
       if ($mobileTocButton.hasClass('open')) closeMobileSidebar('toc')
     }
   })
@@ -419,18 +408,16 @@ $(function () {
   } else if (isMediumZoom) {
     const zoom = mediumZoom(document.querySelectorAll('#article-container :not(a)>img'))
     zoom.on('open', function (event) {
-      const photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
+      var photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
       zoom.update({
         background: photoBg
       })
     })
   }
 
-  // 點擊toc，收起sidebar
-  // $('.toc-link').on('click', function () {
-  //   closeMobileSidebar('toc')
-  // })
-
+  /**
+   * 滾動處理
+   */
   var initTop = 0
   $(window).scroll(function (event) {
     var currentTop = $(this).scrollTop()
@@ -442,7 +429,6 @@ $(function () {
         if (!$pageHead.hasClass('visible')) $pageHead.addClass('visible')
       }
       $pageHead.addClass('fixed')
-
       if ($rightside.css('opacity') === '0') {
         $rightside.css({ opacity: '1', transform: 'translateX(-38px)' })
       }
@@ -450,7 +436,6 @@ $(function () {
       if (currentTop === 0) {
         $pageHead.removeClass('fixed').removeClass('visible')
       }
-
       $rightside.css({ opacity: '', transform: '' })
     }
   })
@@ -473,7 +458,7 @@ $(function () {
    *  toc
    */
 
-  if (GLOBAL_CONFIG_SITE.isPost && isTocContent) {
+  if (GLOBAL_CONFIG_SITE.isPost && GLOBAL_CONFIG_SITE.isSidebar) {
     $('.toc-child').hide()
 
     // main of scroll
@@ -647,7 +632,7 @@ $(function () {
       if (copyFont.length > 45) {
         textFont = copyFont + '\n' + '\n' + '\n' +
           copyright.languages.author + '\n' +
-          copyright.languages.link + '\n' +
+          copyright.languages.link + window.location.href + '\n' +
           copyright.languages.source + '\n' +
           copyright.languages.info
       } else {
@@ -751,4 +736,16 @@ $(function () {
       margins: 4
     })
   })
+
+  function addPhotoFigcaption () {
+    var images = $('#article-container img')
+    images.each(function (i, o) {
+      var $this = $(o)
+      if ($this.attr('alt')) {
+        var t = $('<div class="img-alt is-center">' + $this.attr('alt') + '</div>')
+        $this.after(t)
+      }
+    })
+  }
+  if (GLOBAL_CONFIG.isPhotoFigcaption) addPhotoFigcaption()
 })

@@ -19,15 +19,19 @@ mixin UI_NEW(posts)
           if (theme.post_meta.page.date_type)
             if (theme.post_meta.page.date_type === 'both')
               time.post-meta__date
-                i.fa.fa-calendar(aria-hidden="true")
-                =date(article.date, config.date_format)
+                span.post-meta__date-created(title=_p('post.created') + ' ' + full_date(article.date))
+                  i.fa.fa-calendar(aria-hidden="true")
+                  =date(article.date, config.date_format)
                 span.article-meta__separator |
-                i.fa.fa-history(aria-hidden="true")
-                =date(article.updated, config.date_format)
+                span.post-meta__date-updated(title=_p('post.updated') + ' ' + full_date(article.updated))
+                  i.fa.fa-history(aria-hidden="true")
+                  =date(article.updated, config.date_format)
             else
-              - var date_type = theme.post_meta.page.date_type === 'updated' ? 'updated' : 'date'
-              - var date_icon = theme.post_meta.page.date_type === 'updated' ? 'fa-history' :'fa-calendar'
-              time.post-meta__date
+              - var data_type_updated = theme.post_meta.page.date_type === 'updated'
+              - var date_type = data_type_updated ? 'updated' : 'date'
+              - var date_icon = data_type_updated ? 'fa-history' :'fa-calendar'
+              - var date_title = data_type_updated ? _p('post.updated') : _p('post.created')
+              time.post-meta__date(title=date_title + ' ' + full_date(article[date_type]))
                 i.fa(class=date_icon aria-hidden="true")
                 =date(article[date_type], config.date_format)
           if (theme.post_meta.page.categories && article.categories.data.length > 0)
@@ -53,4 +57,9 @@ mixin UI_NEW(posts)
           .content!= expert
         else
           .content!= article.description
+    
+    if theme.ad && theme.ad.index
+      if (index + 1) % 3 == 0
+        .recent-post-item.ad_height!=theme.ad.index
+
   - })

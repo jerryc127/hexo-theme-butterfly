@@ -1,6 +1,6 @@
 # hexo-theme-butterfly
 
-<a href="https://github.com/jerryc127/hexo-theme-butterfly/releases"><img alt="Version" src="https://img.shields.io/badge/release-2.2.0-blue"/></a>
+<a href="https://github.com/jerryc127/hexo-theme-butterfly/releases"><img alt="Version" src="https://img.shields.io/badge/release-2.2.5-blue"/></a>
 <a href="https://jerryc.me"><img alt="Author" src="https://img.shields.io/badge/author-JerryC-blur"/></a>
 <a href="https://hexo.io"><img alt="Hexo" src="https://img.shields.io/badge/hexo-4.0+-0e83c"/></a>
 <a href="https://nodejs.org/"><img alt="node.js" src="https://img.shields.io/badge/node.js-8.0+-blur"/></a>

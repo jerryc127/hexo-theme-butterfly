@@ -1,51 +1,65 @@
 #post-info
   #post-title
     .posttitle= page.title || _p('no_title')
+    
   #post-meta
-    if (theme.post_meta.post.date_type)
-      if (theme.post_meta.post.date_type === 'both')
-        time.post-meta__date
-          i.fa.fa-calendar(aria-hidden="true")
-          =' '+_p('post.created')+' '+date(page.date, config.date_format)
-          span.post-meta__separator |
-          i.fa.fa-history(aria-hidden="true")
-          =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-      else
-        - var data_type_update = theme.post_meta.post.date_type === 'updated'
-        - var date_type = data_type_update ? 'updated' : 'date'
-        - var date_icon = data_type_update ? 'fa-history' :'fa-calendar'
-        - var data_info = data_type_update ? _p('post.updated') : _p('post.created')
-        time.post-meta__date
-          i.fa(class=date_icon aria-hidden="true")
-          =' ' + data_info + ' ' + date(page[date_type], config.date_format)
-              
-    if (theme.post_meta.post.categories && page.categories.data.length > 0)
+    .meta-firstline
       if (theme.post_meta.post.date_type)
-        span.post-meta__separator |
-      span
-        each item, index in page.categories.data
-          i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-          a(href=url_for(item.path)).post-meta__categories #[=item.name]
-          if (index < page.categories.data.length - 1)
-            i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-    .post-meta-wordcount
-      if (theme.wordcount && theme.wordcount.enable)
-        - var wordCountIcon = theme.fontawesome_v5 && theme.fontawesome_v5.enable ? 'far fa-file-word' : 'fa fa-file-word-o'
-        i.post-meta__icon(class=wordCountIcon aria-hidden="true")
-        span= _p('post.wordcount') + ':'
-        span.word-count= wordcount(page.content)
-        span.post-meta__separator |
-        - var readCountIcon = theme.fontawesome_v5 && theme.fontawesome_v5.enable ? 'far fa-clock' : 'fa fa-clock-o'
-        i.post-meta__icon(class=readCountIcon aria-hidden="true")
-        span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-      .post-meta-pv-cv
-        if (theme.wordcount && theme.wordcount.enable && theme.busuanzi.page_pv)
+        if (theme.post_meta.post.date_type === 'both')
+          time.post-meta__date
+            span.post-meta__date-created(title= _p('post.created')+' '+full_date(page.date))
+              i.fa.fa-calendar(aria-hidden="true")
+              =' '+_p('post.created')+' '+date(page.date, config.date_format)
+            span.post-meta__separator |
+            span.post-meta__date-updated(title= _p('post.updated')+' '+full_date(page.updated))
+              i.fa.fa-history(aria-hidden="true")
+              =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
+        else
+          - var data_type_update = theme.post_meta.post.date_type === 'updated'
+          - var date_type = data_type_update ? 'updated' : 'date'
+          - var date_icon = data_type_update ? 'fa-history' :'fa-calendar'
+          - var data_info = data_type_update ? _p('post.updated') : _p('post.created')
+          time.post-meta__date(title=data_info + ' ' + full_date(page[date_type]))
+            i.fa(class=date_icon aria-hidden="true")
+            =' ' + data_info + ' ' + date(page[date_type], config.date_format)
+                
+      if (theme.post_meta.post.categories && page.categories.data.length > 0)
+        span.post-meta__categories
+          if (theme.post_meta.post.date_type)
+            span.post-meta__separator |
+
+          each item, index in page.categories.data
+            i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
+            a(href=url_for(item.path)).post-meta__categories #[=item.name]
+            if (index < page.categories.data.length - 1)
+              i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
+
+    .meta-secondline  
+      - let postWordcount = theme.wordcount.enable && (theme.wordcount.post_wordcount || theme.wordcount.min2read)
+      if (postWordcount)
+        span.post-meta-wordcount
+          if theme.wordcount.post_wordcount
+            - var wordCountIcon = theme.fontawesome_v5 && theme.fontawesome_v5.enable ? 'far fa-file-word' : 'fa fa-file-word-o'
+            i.post-meta__icon(class=wordCountIcon aria-hidden="true")
+            span= _p('post.wordcount') + ':'
+            span.word-count= wordcount(page.content)
+            if theme.wordcount.min2read
+              span.post-meta__separator |
+          if theme.wordcount.min2read
+            - var readCountIcon = theme.fontawesome_v5 && theme.fontawesome_v5.enable ? 'far fa-clock' : 'fa fa-clock-o'
+            i.post-meta__icon(class=readCountIcon aria-hidden="true")
+            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
+    
+    .meta-thirdline
+      span.post-meta-pv-cv
+        if (postWordcount && theme.busuanzi.page_pv)
           span.post-meta__separator |
         if theme.busuanzi.page_pv
           i.fa.fa-eye.post-meta__icon(aria-hidden="true") 
           span=_p('post.page_pv') + ':'
           span#busuanzi_value_page_pv
-        
+
+      span.post-meta-commentcount
         - var commentCount = theme.fontawesome_v5 && theme.fontawesome_v5.enable ? 'far fa-comments' : 'fa fa-comment-o'
         if ((theme.disqus && theme.disqus.enable && theme.disqus.count && page.comments !== false) || (theme.disqusjs && theme.disqusjs.enable && theme.disqusjs.count && page.comments !== false))
           if (theme.busuanzi && theme.busuanzi.page_pv)
@@ -54,14 +68,14 @@
           span= _p('post.comments') + ':'
           span.disqus-comment-count.comment-count
             a(href=full_url_for(page.path) + '#disqus_thread')
-        if (theme.valine && theme.valine.enable && theme.valine.count && page.comments !== false)
+        else if (theme.valine && theme.valine.enable && theme.valine.count && page.comments !== false)
           if (theme.busuanzi && theme.busuanzi.page_pv)
             span.post-meta__separator |
           i.post-meta__icon(class=commentCount aria-hidden="true")
           span= _p('post.comments') + ':'
           a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
             span.valine-comment-count.comment-count(data-xid=url_for(page.path) itemprop="commentCount")
-        if (theme.gitalk && theme.gitalk.enable && theme.gitalk.count && page.comments !== false)
+        else if (theme.gitalk && theme.gitalk.enable && theme.gitalk.count && page.comments !== false)
           if (theme.busuanzi && theme.busuanzi.page_pv)
             span.post-meta__separator |
           i.post-meta__icon(class=commentCount aria-hidden="true")

@@ -15,6 +15,6 @@ mixin articleSort(posts)
         .article-sort-post
           a.article-sort-item__post(href=url_for(article.path))
             i.fa.fa-clock-o(aria-hidden="true")
-            time.article-sort-item__time= date(article.date)
+            time.article-sort-item__time(title=_p('post.created') + ' ' + full_date(article.date))= date(article.date, config.date_format)
             .article-sort-item__title= article.title || 'No Title'
     - })

@@ -42,7 +42,7 @@
     copyright = JSON.stringify({      
       languages: {
       author: _p("copy_copyright.author") + ': ' + config.author,
-      link: _p("copy_copyright.link") + ': ' + without_html,
+      link: _p("copy_copyright.link") + ': ',
       source: _p("copy_copyright.source") + ': ' + config.title,
       info: _p("copy_copyright.info")
       }
@@ -62,7 +62,6 @@
   if (theme.snackbar && theme.snackbar.enable) {
   Snackbar = JSON.stringify({      
     bookmark: {
-      title: _p("Snackbar.bookmark.title"),
       message_prev: _p("Snackbar.bookmark.message_prev"),
       message_next: _p("Snackbar.bookmark.message_next")
     },
@@ -76,16 +75,6 @@
     })
   }
 
-  var highlightCopy = theme.highlight_copy
-  var highlightLang = theme.highlight_lang
-  var highlightShrink  = theme.highlight_shrink
-  var runtime = theme.runtimeshow.enable
-  var fancybox = theme.fancybox.enable
-  var medium_zoom = theme.medium_zoom.enable
-  var baiduPush = theme.baidu_push && theme.baidu_push.enable
-  var isFontAwesomeV5 = theme.fontawesome_v5 && theme.fontawesome_v5.enable
-
-
 script.
   var GLOBAL_CONFIG = { 
     root: '!{config.root}',
@@ -98,22 +87,22 @@ script.
       noSupport: '!{_p("copy.noSupport")}'
     },
     bookmark: {
-      title: '!{_p("Snackbar.bookmark.title")}',
       message_prev: '!{_p("Snackbar.bookmark.message_prev")}',
       message_next: '!{_p("Snackbar.bookmark.message_next")}'
     },
     runtime_unit: '!{_p("runtime_unit")}',
-    runtime: !{runtime},
+    runtime: !{theme.runtimeshow.enable},
     copyright: !{copyright},
     ClickShowText: !{ClickShowText},
-    medium_zoom: !{medium_zoom},
-    fancybox: !{fancybox},
+    medium_zoom: !{theme.medium_zoom.enable},
+    fancybox: !{theme.fancybox.enable},
     Snackbar: !{Snackbar},
-    baiduPush: !{baiduPush},
-    highlightCopy: !{highlightCopy},
-    highlightLang: !{highlightLang},
-    highlightShrink: '!{highlightShrink}',
-    isFontAwesomeV5: !{isFontAwesomeV5}
+    baiduPush: !{theme.baidu_push && theme.baidu_push.enable},
+    highlightCopy: !{theme.highlight_copy},
+    highlightLang: !{theme.highlight_lang},
+    highlightShrink: '!{theme.highlight_shrink}',
+    isFontAwesomeV5: !{theme.fontawesome_v5 && theme.fontawesome_v5.enable},
+    isPhotoFigcaption: !{theme.photofigcaption}
     
   }
 

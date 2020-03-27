@@ -103,6 +103,10 @@
       #post-meta
         font-size: 95%
 
+        > .meta-secondline,
+        > .meta-thirdline
+          display: inline
+
         .word-count,
         #busuanzi_value_page_pv,
         .comment-count
@@ -114,9 +118,6 @@
 
           &__icon
             margin-right: .2rem
-
-          &-pv-cv
-            display: inline-block
 
         a
           color: $light-grey
@@ -135,16 +136,22 @@
   height: 58px
   border: none
   font-size: 18px
+  opacity: 0
   transition: all .5s
+
+  &:not(.fixed)
+    .menus
+      padding-right: 0 !important
 
   .toggle-menu
     display: none
     padding: .1rem 0 0 .3rem
+    vertical-align: top
 
     &:hover
       color: $white
 
-    &.is_visible
+    &.is-visible-inline
       .site-page
         font-size: inherit
 
@@ -161,11 +168,6 @@
     background: alpha($white, .8)
     box-shadow: 0 5px 6px -5px alpha($grey, .6)
     transition: transform .2s ease-in-out, opacity .2s ease-in-out
-
-    &.open-sidebar
-      .menus,
-      #search_button
-        display: none
 
     a,
     #site-name,
@@ -188,71 +190,75 @@
     font-weight: bold
     cursor: pointer
 
-  .menus_item
-    position: relative
-    display: inline-block
-    padding: 0 0 0 .7rem
+  .menus_items
+    display: inline
 
-    &:hover
-      .menus_item_child
-        display: block
-
-      .menus-expand
-        transform: rotate(180deg) !important
-
-    .menus-expand
-      padding: 4px
-      transition: all .3s
-      transform: rotate(0)
-
-    & > a
-      &:after
-        position: absolute
-        bottom: 0
-        left: 0
-        z-index: -1
-        width: 0
-        height: 3px
-        background-color: lighten($theme-color, 30%)
-        content: ''
-        transition: all .3s ease-in-out
+    .menus_item
+      position: relative
+      display: inline-block
+      padding: 0 0 0 .7rem
 
       &:hover
+        .menus_item_child
+          display: block
+
+        .menus-expand
+          transform: rotate(180deg) !important
+
+      .menus-expand
+        padding: 4px
+        transition: all .3s
+        transform: rotate(0)
+
+      & > a
         &:after
-          width: 100%
-
-    .menus_item_child
-      position: absolute
-      right: 0
-      display: none
-      margin-top: 8px
-      padding: 0
-      width: max-content
-      background-color: alpha($white, .8)
-      box-shadow: 0 5px 20px -4px rgba($dark-black, .5)
-      animation: sub_menus .3s .1s ease both
-
-      &:before
-        position: absolute
-        top: -8px
-        left: 0
-        width: 100%
-        height: 20px
-        content: ''
-
-      li
-        padding: 1px 10px
-        list-style: none
-        text-align: center
+          position: absolute
+          bottom: 0
+          left: 0
+          z-index: -1
+          width: 0
+          height: 3px
+          background-color: lighten($theme-color, 30%)
+          content: ''
+          transition: all .3s ease-in-out
 
         &:hover
-          background: $theme-color
+          &:after
+            width: 100%
 
-        a
-          color: $font-black
-          text-shadow: none
+      .menus_item_child
+        position: absolute
+        right: 0
+        display: none
+        margin-top: 8px
+        padding: 0
+        width: max-content
+        background-color: alpha($white, .8)
+        box-shadow: 0 5px 20px -4px rgba($dark-black, .5)
+        animation: sub_menus .3s .1s ease both
+
+        &:before
+          position: absolute
+          top: -8px
+          left: 0
+          width: 100%
+          height: 20px
+          content: ''
+
+        li
+          padding: 1px 10px
+          list-style: none
+          text-align: center
+
+          &:hover
+            background: $theme-color
+
+          a
+            color: $font-black
+            text-shadow: none
 
   #search_button
+    display: inline
     padding: 0 0 0 .7rem
 
   .site-page
@@ -297,11 +303,12 @@
         & > #post-meta
           font-size: 90%
 
-          & > span
+          .post-meta__categories
             display: none
 
-          .post-meta-pv-cv
+          .meta-thirdline
             display: block
 
-            .post-meta__separator:first-child
-              display: none
+            .post-meta-pv-cv
+              .post-meta__separator:first-child
+                display: none

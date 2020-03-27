@@ -12,6 +12,10 @@
         .webinfo-item
           .webinfo-runtime-name= _p('aside.card_webinfo.runtime_name') + " :"
           #webinfo-runtime-count.webinfo-runtime-count(start_date=theme.runtimeshow.start_date)      
+      if theme.wordcount.enable && theme.wordcount.total_wordcount
+        .webinfo-item
+          .webinfo-site-wordcount-name=_p('aside.card_webinfo.site_wordcount') + " :"
+          .webinfo-site-wordcount=totalcount(site)
       if theme.busuanzi.site_uv 
         .webinfo-item       
           .webinfo-site-uv-name= _p('aside.card_webinfo.site_uv_name') + " :"

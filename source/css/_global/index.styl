@@ -62,7 +62,7 @@ h6
   left: $sidebar-icon-left
   z-index: 100
   font-size: $sidebar-icon-size
-  opacity: 0
+  // opacity: 0
   cursor: pointer
   transition: all .2s
 
@@ -143,6 +143,9 @@ table
 .is_visible
   display: block !important
 
+.is-visible-inline
+  display: inline-block !important
+
 .is_invisible
   display: none !important
 
@@ -186,6 +189,9 @@ table
 img[src=''],
 img:not([src])
   opacity: 0
+
+.img-alt
+  margin: -.5rem 0 .5rem
 
 // hexo tag video
 .video-container
@@ -236,6 +242,13 @@ img:not([src])
   font-weight: 700
   font-size: 20px
 
+.post-ad
+  margin: 2rem 0 !important
+
+.ad_height
+  display: block !important
+  height: auto !important
+
 #content-inner,
 #footer
   animation: main 1s
@@ -243,9 +256,8 @@ img:not([src])
 #nav
   animation: nav-effect 1s
 
-#page-header
-  animation: header-effect 1s
-
+// #page-header
+// animation: header-effect 1s
 #site_title,
 #site_subtitle
   animation: titlescale 1s
@@ -283,10 +295,10 @@ if hexo-config('avatar.effect') == true
     animation: tocsidebarRtoL .5s
 
   .sidebar-toc__progress
-    animation: tocsidebarRtoL .5s
+    animation: tocsidebarRtoL .7s
 
   .sidebar-toc__content
-    animation: tocsidebarRtoL .7s
+    animation: tocsidebarRtoL .9s
 
 @keyframes scroll-down-effect
   0%
@@ -314,9 +326,9 @@ if hexo-config('avatar.effect') == true
   0%
     opacity: 0
 
-  50%
+  60%
     opacity: 0
-    transform: translateY(-50px)
+    transform: translateY(-30px)
 
   100%
     opacity: 1

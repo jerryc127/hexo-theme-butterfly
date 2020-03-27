@@ -24,8 +24,8 @@ post:
   created: 發表於
   updated: 更新於
   wordcount: 字數總計
-  min2read: "閲讀時長: %s 分鐘"
-  page_pv: 閲讀量
+  min2read: "閱讀時長: %s 分鐘"
+  page_pv: 閱讀量
   comments: 評論數
   copyright:
     author: 文章作者
@@ -68,6 +68,7 @@ aside:
     headline: 網站資訊
     article_name: 文章數目
     runtime_name: 已運行時間
+    site_wordcount: 本站總字數
     site_uv_name: 本站訪客數
     site_pv_name: 本站總訪問量
 
@@ -77,7 +78,7 @@ bookmark:
   title: 添加書籤
 
 rightside:
-  readmode_title: 閲讀模式
+  readmode_title: 閱讀模式
   font_plus_title: 放大字體
   font_minus_title: 縮小字體
   translate_title: 簡繁轉換
