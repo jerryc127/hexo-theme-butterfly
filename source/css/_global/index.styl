@@ -243,11 +243,13 @@ img:not([src])
   font-size: 20px
 
 .post-ad
-  margin: 2rem 0 !important
+  margin: 2rem 0
+  overflow-x: scroll
 
 .ad_height
   display: block !important
   height: auto !important
+  overflow-x: scroll !important
 
 #content-inner,
 #footer
@@ -256,8 +258,6 @@ img:not([src])
 #nav
   animation: nav-effect 1s
 
-// #page-header
-// animation: header-effect 1s
 #site_title,
 #site_subtitle
   animation: titlescale 1s
@@ -292,13 +292,13 @@ if hexo-config('avatar.effect') == true
 
 .tocOpenMobile
   .sidebar-toc__title
-    animation: tocsidebarRtoL .5s
+    animation: tocsidebarRtoL .4s
 
   .sidebar-toc__progress
-    animation: tocsidebarRtoL .7s
+    animation: tocsidebarRtoL .6s
 
   .sidebar-toc__content
-    animation: tocsidebarRtoL .9s
+    animation: tocsidebarRtoL .7s
 
 @keyframes scroll-down-effect
   0%
@@ -317,18 +317,6 @@ if hexo-config('avatar.effect') == true
   0%
     opacity: 0
     transform: translateY(-50px)
-
-  100%
-    opacity: 1
-    transform: translateY(0)
-
-@keyframes header-effect
-  0%
-    opacity: 0
-
-  60%
-    opacity: 0
-    transform: translateY(-30px)
 
   100%
     opacity: 1

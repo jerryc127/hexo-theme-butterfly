@@ -41,10 +41,6 @@ html(lang=config.language data-theme=theme.display_mode)
 
     !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
 
-    each item in theme.CDN_USE.js
-      script(src=url_for(item))
-      
-    include ./additional-js.pug
-    
+    !=fragment_cache('my_js', function(){return my_html('js',theme.CDN_USE.js)})
 
-    
+    include ./additional-js.pug

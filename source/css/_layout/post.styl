@@ -338,3 +338,14 @@ img
 
     & > #post
       padding: 1.8rem .7rem
+
+// adjust the layout width in big screen
+@media screen and (min-width: $lr)
+  .layout_post
+    max-width: 1300px
+
+  .layout_page
+    max-width: 1500px
+
+    &.hide-aside
+      max-width: 1300px

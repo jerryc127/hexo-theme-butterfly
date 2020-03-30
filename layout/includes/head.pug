@@ -59,8 +59,7 @@ script(src=url_for(theme.CDN.js_cookies))
 if theme.darkmode.enable
   !=partial('includes/head/darkmode', {}, {cache:theme.fragment_cache})
 
-each item in theme.CDN_USE.css
-  link(rel='stylesheet', href=url_for(item))
+!=fragment_cache('my_css', function(){return my_html('css',theme.CDN_USE.css)})
 
 if theme.fontawesome_v5 && theme.fontawesome_v5.enable
   link(rel='stylesheet', href=url_for(theme.CDN.fontawesome_v5))
