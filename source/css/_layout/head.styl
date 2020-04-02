@@ -312,3 +312,8 @@
             .post-meta-pv-cv
               .post-meta__separator:first-child
                 display: none
+
+            if !hexo-config('busuanzi.page_pv')
+              .post-meta-commentcount
+                .post-meta__separator
+                  display: none

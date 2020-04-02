@@ -1,23 +1,34 @@
-hexo.extend.filter.register("before_post_render", function(data) {
-  if (data.cover == false) {
-    data.randomcover = random_cover();
-    return data;
-  }
-  data.cover = data.cover || random_cover();
-  return data;
-});
+/**
+ * Butterfly
+ * ramdom cover
+ */
 
-var random_cover = function() {
-  var cover;
-  var num;
-  if (!Array.isArray(hexo.theme.config.cover.default_cover)) {
-    cover = hexo.theme.config.cover.default_cover;
-    return cover;
-  } else {
-    num = Math.floor(
-      Math.random() * hexo.theme.config.cover.default_cover.length
-    );
-    cover = hexo.theme.config.cover.default_cover[num];
-    return cover;
+'use strict'
+
+hexo.extend.filter.register('before_post_render', function (data) {
+  if (data.cover === false) {
+    data.randomcover = randomCover()
+    return data
   }
-};
+  data.cover = data.cover || randomCover()
+  return data
+})
+
+var randomCover = function () {
+  var theme = hexo.theme.config
+  var cover
+  var num
+
+  if (theme.cover.default_cover) {
+    if (!Array.isArray(theme.cover.default_cover)) {
+      cover = theme.cover.default_cover
+      return cover
+    } else {
+      num = Math.floor(Math.random() * theme.cover.default_cover.length)
+      cover = theme.cover.default_cover[num]
+      return cover
+    }
+  } else {
+    return theme.default_top_img
+  }
+}

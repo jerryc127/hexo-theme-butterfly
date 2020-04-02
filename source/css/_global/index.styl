@@ -244,12 +244,10 @@ img:not([src])
 
 .post-ad
   margin: 2rem 0
-  overflow-x: scroll
 
 .ad_height
   display: block !important
   height: auto !important
-  overflow-x: scroll !important
 
 #content-inner,
 #footer
@@ -262,9 +260,12 @@ img:not([src])
 #site_subtitle
   animation: titlescale 1s
 
-canvas,
+canvas:not(#ribbon-canvas),
 #web_bg
   animation: to_show 4s
+
+#ribbon-canvas
+  animation: ribbon_to_show 4s
 
 .card-announcement-animation
   color: #FF0000
@@ -362,6 +363,13 @@ if hexo-config('avatar.effect') == true
 
   100%
     opacity: 1
+
+@keyframes ribbon_to_show
+  0%
+    opacity: 0
+
+  100%
+    opacity: hexo-config('canvas_ribbon.alpha')
 
 @keyframes avatar_turn_around
   from

@@ -17,7 +17,6 @@ html(lang=config.language data-theme=theme.display_mode)
         h1#error_title= '404'
         #error_subtitle= theme.error_404.subtitle
     include includes/rightside.pug
-    include includes/search/index.pug
-    each item in theme.CDN_USE.js
-      script(src=url_for(item))
+    !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
+    !=fragment_cache('my_js', function(){return my_html('js',theme.CDN_USE.js)})
     include includes/additional-js.pug

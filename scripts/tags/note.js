@@ -3,13 +3,13 @@
  * transplant from hexo-theme-next
  */
 
-'use strict';
+'use strict'
 
-function postNote(args, content) {
+function postNote (args, content) {
   return `<div class="note ${args.join(' ')}">
-            ${hexo.render.renderSync({text: content, engine: 'markdown'}).split('\n').join('')}
-          </div>`;
+            ${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}
+          </div>`
 }
 
-hexo.extend.tag.register('note', postNote, {ends: true});
-hexo.extend.tag.register('subnote', postNote, {ends: true});
+hexo.extend.tag.register('note', postNote, { ends: true })
+hexo.extend.tag.register('subnote', postNote, { ends: true })
