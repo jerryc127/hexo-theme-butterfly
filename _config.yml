@@ -67,7 +67,7 @@ algolia_search:
   labels:
     input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
-    hits_stats: "${hits} results found in ${time} ms"
+    hits_stats: '${hits} results found in ${time} ms'
 
 # Local search
 # Please see doc for more details: https://docs.jerryc.me/config.html#本地搜索
@@ -155,7 +155,7 @@ lodding_bg:
 # A simple 404 page
 error_404:
   enable: false
-  subtitle: "Page Not Found"
+  subtitle: 'Page Not Found'
   background:
 
 post_meta:
@@ -425,7 +425,7 @@ canvas_ribbon_piao:
 # https://github.com/hustcc/canvas-nest.js
 canvas_nest:
   enable: false
-  color: "0,0,255" #color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+  color: '0,0,255' #color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
   opacity: 0.7 # the opacity of line (0~1), default: 0.5.
   zIndex: -1 # z-index property of the background, default: -1.
   count: 99 # the number of lines, default: 99.
@@ -464,7 +464,7 @@ display_mode: light
 beautify:
   enable: false
   title-prefix-icon: '\f0c1'
-  title-prefix-icon-color: "#F47466"
+  title-prefix-icon-color: '#F47466'
 
 # 全局字體
 font:
@@ -518,16 +518,25 @@ aside:
   mobile: true # 手機頁面（ 顯示寬度 < 768px ）是否顯示aside內容
   position: right # left or right
   card_author: true
-  card_announcement: true
-  card_recent_post: true
-  card_categories: true
-  card_tags: true
-  card_archives: true
+  card_announcement:
+    enable: true
+    content: This is my Blog
+  card_recent_post:
+    enable: true
+    limit: 5 # if set 0 will show all
+  card_categories:
+    enable: true
+    limit: 8 # if set 0 will show all
+  card_tags:
+    enable: true
+    limit: 40 # if set 0 will show all
+  card_archives:
+    enable: true
+    type: monthly # yearly or monthly
+    format: MMMM YYYY # eg: YYYY年MM月
+    order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
+    limit: 8 # if set 0 will show all
   card_webinfo: true
-
-# 網站公告
-announcement:
-  content: 感謝訪問本站，若喜歡請收藏 ^_^
 
 # busuanzi count for PV / UV in site
 # 訪問人數
@@ -555,11 +564,11 @@ translate:
   #延遲時間,若不在前, 要設定延遲翻譯時間, 如100表示100ms,默認為0
   translateDelay: 0
   #博客網址
-  cookieDomain: "https://xxx/"
+  cookieDomain: 'https://xxx/'
   #當文字是簡體時，按鈕顯示的文字
-  msgToTraditionalChinese: "繁"
+  msgToTraditionalChinese: '繁'
   #當文字是繁體時，按鈕顯示的文字
-  msgToSimplifiedChinese: "簡"
+  msgToSimplifiedChinese: '簡'
 
 #閲讀模式
 readmode:
@@ -598,8 +607,8 @@ fancybox:
 snackbar:
   enable: false
   position: bottom-left
-  bg_light: "#49b1f5" #light mode時彈窗背景
-  bg_dark: "#2d3035" #dark mode時彈窗背景
+  bg_light: '#49b1f5' #light mode時彈窗背景
+  bg_dark: '#2d3035' #dark mode時彈窗背景
 
 #百度推送
 baidu_push:

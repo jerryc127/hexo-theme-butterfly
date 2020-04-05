@@ -138,7 +138,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
           border-top: 13px solid lighten(#121212, 10) !important
 
     .md-links-item:before,
-    .aside-category-list:hover,
+    .aside-category-list-item:hover,
     .archive-list-item:hover,
     #bookmark-it
       background-color: lighten(#121212, 10) !important
@@ -156,9 +156,11 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       .headline,
       .length_num,
       .aside-post_title,
-      .aside-category-list_link,
+      .aside-category-list-link,
       .archive-list-link,
-      .social-icon
+      .social-icon,
+      .aside-category-list-item-more,
+      .archive-list-link-more
         color: alpha(#FFFFFF, .6) !important
 
     .button--animated:before
