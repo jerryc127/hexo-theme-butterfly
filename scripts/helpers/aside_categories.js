@@ -18,7 +18,7 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
   const depth = options.depth ? parseInt(options.depth, 10) : 0
   const orderby = options.orderby || 'name'
   const order = options.order || 1
-  const tagDir = this.url_for(config.tag_dir)
+  const categoryDir = this.url_for(config.category_dir)
   const limit = options.limit === 0 ? categories.length : options.limit
   const buttonLabel = this._p('aside.more_button')
   const prepareQuery = parent => {
@@ -74,7 +74,7 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
     var moreHtml = ''
     if (categories.length <= limit) return ''
     moreHtml += '<li class="aside-category-list-item is-center">'
-    moreHtml += `<a class="aside-category-list-item-more" href="${tagDir}" >`
+    moreHtml += `<a class="aside-category-list-item-more" href="${categoryDir}" >`
     moreHtml += buttonLabel
     moreHtml += '</a></li>'
     return moreHtml
