@@ -270,60 +270,18 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
           fill: alpha(#FFFFFF, .6) !important
 
     if hexo-config('valine') && hexo-config('valine.enable')
-      // 評論
       #vcomment
-        p,
-        a,
-        textarea,
-        .vemoji-btn,
-        .vpreview-btn,
-        input,
-        path,
-        .vcount,
-        .vnum,
-        .vtime,
-        .vsys,
-        .vsys,
-        .vnick
-          color: alpha(#FFFFFF, .6) !important
-
         .vsys
-          background: rgb(97, 106, 107) !important
+          background: #2c2c2c !important
 
         .vbtn,
         .vat
           border: 1px solid alpha(#FFFFFF, .6)
-          background: lighten(#121212, 5) !important
+          background: #121212 !important
           color: alpha(#FFFFFF, .6) !important
 
           &:hover
             background: lighten(#121212, 20) !important
-
-        .vwrap
-          border: 1px solid alpha(#FFFFFF, .6)
-
-        input
-          border-bottom: 1px dashed #616a6b
-
-        .vh
-          border-bottom: 1px dashed #616a6b
-
-        pre
-          border: 1px solid alpha(#FFFFFF, .6)
-          background-color: #121212
-
-          code
-            background: transparent
-
-        code
-          background-color: #2c2c2c
-          color: alpha(#FFFFFF, .6)
-
-        .vcontent.expand:before
-          background: linear-gradient(180deg, hsla(0, 0, 0, 0), hsl(218, 8%, 19%))
-
-        .vcontent.expand:after
-          background: hsla(204, 5%, 22%, 1)
 
     if hexo-config('local_search') && hexo-config('local_search.enable')
       #local-search

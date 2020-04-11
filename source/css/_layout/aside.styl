@@ -16,14 +16,13 @@
 
   .card-info
     img
-      display: inline-block
       width: 110px
       height: 110px
       border-radius: 70px
-      transition: all .3s
+      transition: all .5s
 
       &:hover
-        transform: rotate(540deg)
+        transform: rotate(360deg)
 
     .author-info
       &__name
@@ -34,23 +33,24 @@
         margin-top: -.3rem
 
     .card-info-data
+      display: table
       padding: .7rem 0
+      width: 100%
+      table-layout: fixed
 
       & > .card-info-data-item
-        display: inline-block
-        width: 33.3%
+        display: table-cell
 
         a
           .headline
-            display: block
             overflow: hidden
             color: $font-black
-            // text-transform: uppercase
             text-overflow: ellipsis
             white-space: nowrap
             font-size: .7rem
 
           .length_num
+            margin-top: -.3rem
             color: $dark-black
             font-size: 1rem
 
@@ -75,7 +75,6 @@
       display: block
       background-color: $light-blue
       color: $button-color
-      text-transform: uppercase
       line-height: 1.6rem
 
       span

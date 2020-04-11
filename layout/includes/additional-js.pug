@@ -1,3 +1,7 @@
+script(src=url_for(theme.CDN.jquery))
+script(src=url_for(theme.CDN.utils))
+script(src=url_for(theme.CDN.main))
+
 if theme.translate && theme.translate.enable
   script(src=url_for(theme.CDN.translate))
 
@@ -63,3 +67,5 @@ if theme.mermaid.enable
 
 if is_home()
   include ./head/subtitle.pug
+
+!=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})

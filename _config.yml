@@ -259,15 +259,14 @@ valine:
   enable: false # if you want use valine,please set this value is true
   appId: # leancloud application app id
   appKey: # leancloud application app key
-  notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki
-  verify: false # valine verify code (true/false)
   pageSize: 10 # comment list page size
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
-  lang: en # i18n: zh-cn/en
+  lang: en # i18n: zh-CN/zh-TW/en/ja
   placeholder: Please leave your footprints # valine comment input placeholder(like: Please leave your footprints )
   guest_info: nick,mail,link #valine comment header info
   recordIP: false # Record reviewer IP
   serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
+  mathjax: false
   bg: /img/comment_bg.png # valine background
   count: true # top_img顯示評論數
 
@@ -493,8 +492,8 @@ subtitle:
   loop: false
   # source調用第三方服務
   # source: false 關閉調用
-  # source: 1  調用金山詞霸的每日一句（簡體）
-  # source: 2  調用一言網的一句話（簡體） #https://hitokoto.cn/
+  # source: 1  調用搏天api的隨機語錄（簡體） https://api.btstu.cn/
+  # source: 2  調用一言網的一句話（簡體） https://hitokoto.cn/
   # source: 3  調用一句網（簡體） http://yijuzhan.com/
   # source: 4  調用今日詩詞（簡體） https://www.jinrishici.com/
   # subtitle 會先顯示 source , 再顯示 sub 的內容
@@ -662,21 +661,23 @@ Open_Graph_meta: true
 # 開啟hexo自帶的緩存，加快生成速度
 fragment_cache: true
 
-# CDN
-# 網站必須
-# 可根據需要自行添加js/css
-CDN_USE:
-  css:
-    - /css/index.css
-
-  js:
-    - https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js #/js/third-party/jquery.min.js
-    - /js/utils.js
-    - /js/main.js
+# inject
+# 插入代码到头部</head>之前 和 尾部</body>之前
+inject:
+  head:
+    # - <link rel="stylesheet" href="xxxxx">
+  bottom:
+    # - <script src="xxxx"></script>
 
 # CDN
 # 非必要不要修改
 CDN:
+  # main
+  main_css: /css/index.css
+  jquery: https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js
+  main: /js/main.js
+  utils: /js/utils.js
+
   # comments
   blueimp_md5: https://cdn.jsdelivr.net/npm/blueimp-md5/js/md5.min.js
   gitalk: https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js
@@ -738,4 +739,5 @@ CDN:
   fontawesome_v4: https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css
   fontawesome_v5: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
 
+  # 簡繁轉換
   translate: /js/tw_cn.js

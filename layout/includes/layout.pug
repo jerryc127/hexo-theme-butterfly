@@ -38,9 +38,5 @@ html(lang=config.language data-theme=theme.display_mode)
         !=partial('includes/footer', {}, {cache:theme.fragment_cache})
 
     include ./rightside.pug
-
     !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
-
-    !=fragment_cache('my_js', function(){return my_html('js',theme.CDN_USE.js)})
-
     include ./additional-js.pug

@@ -1,5 +1,6 @@
 /**
  * Butterfly
+ * @example
  * hideInline
  * {% hideInline content,display,bg,color %}
  * content不能包含當引號，可用 &apos;

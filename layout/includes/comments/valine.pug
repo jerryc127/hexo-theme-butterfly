@@ -9,8 +9,6 @@ script.
 
   window.valine = new Valine({
     el:'#vcomment',
-    notify: #{theme.valine.notify},
-    verify: #{theme.valine.verify},
     appId: '#{theme.valine.appId}',
     appKey: '#{theme.valine.appKey}',
     placeholder: '#{theme.valine.placeholder}',
@@ -19,5 +17,6 @@ script.
     pageSize: '#{theme.valine.pageSize}',
     lang: '#{theme.valine.lang}',
     recordIP: #{theme.valine.recordIP},
-    serverURLs: '#{theme.valine.serverURLs}'
+    serverURLs: '#{theme.valine.serverURLs}',
+    mathjax: #{theme.valine.mathjax}
   });
