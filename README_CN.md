@@ -14,7 +14,7 @@ JerryC:  https://jerryc.me/
 
 ## 安裝
 
-在你的博客根目錄裡
+在你的博客根目錄裡安裝穩定版【推薦】
 
 ```
 git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly

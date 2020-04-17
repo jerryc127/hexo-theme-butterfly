@@ -39,25 +39,43 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       .article-title
         color: alpha(#FFFFFF, .8) !important
 
-    #page-header
-      &.fixed
-        background: alpha(#121212, .8)
-        box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0)
+    // 頭部
+    #nav
+      &:before
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        background-color: alpha($dark-black, .7)
+        content: ''
 
-        .toggle-menu,
-        #site-name,
+      & > #page-header
         a
-          color: alpha(#FFFFFF, .8)
+          color: alpha(#FFFFFF, .8) !important
 
-      .menus_item_child
-        background-color: lighten(#121212, 5) !important
+        &.fixed
+          background: alpha(#121212, .8)
+          box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0)
 
-        li
-          &:hover
-            background: lighten(#121212, 20)
-
+          .toggle-menu,
+          #site-name,
           a
-            color: alpha(#FFFFFF, .6)
+            color: alpha(#FFFFFF, .8)
+
+        .menus_item_child
+          background-color: lighten(#121212, 5) !important
+
+          li
+            &:hover
+              background: lighten(#121212, 20) !important
+
+            a
+              color: alpha(#FFFFFF, .8)
+
+      #site_subtitle
+        & > span
+          color: alpha(#FFFFFF, .6)
 
     // 代碼框
     #article-container pre,
@@ -109,6 +127,9 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       .post-copyright-info
         color: alpha(#FFFFFF, .6)
 
+      &:after
+        background: #121212
+
     // 音樂播放器
     .aplayer
       filter: brightness(.7)
@@ -120,11 +141,11 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         & > i,
         & > a,
         & > div
-          background-color: lighten(#121212, 5) !important
-          color: alpha(#FFFFFF, .6) !important
+          background-color: lighten(#121212, 5)
+          color: alpha(#FFFFFF, .6)
 
           &:hover
-            background: lighten(#121212, 20) !important
+            background: lighten(#121212, 20)
 
     // 打賞按鈕
     .post-reward
@@ -164,23 +185,8 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         color: alpha(#FFFFFF, .6) !important
 
     .button--animated:before
-      background: lighten(#121212, 20) !important
+      background: lighten(#121212, 20)
 
-    // 頭部
-    #nav
-      &:before
-        position: absolute
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
-        background-color: alpha($dark-black, .7)
-        content: ''
-
-    #nav span,
-    #nav i,
-    #page-header a,
-    #page-header .toggle-menu,
     #post-meta,
     #post-meta a,
     #footer-wrap,
@@ -217,11 +223,13 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       color: alpha(#FFFFFF, .8) !important
 
     // 時間軸界面
-    .article-sort-item__title
-      color: alpha(#FFFFFF, .6)
+    .article-sort
+      &-item__title
+        color: alpha(#FFFFFF, .6)
 
-      &:hover
-        color: #49b1f5
+      &-item:before,
+      &-title:before
+        background: #121212
 
     // 手機 MENU,TOC
     #mobile-sidebar
@@ -247,6 +255,10 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         filter: brightness(.7)
         color: #4c4948
 
+    // hide-tags
+    .hide-button
+      filter: brightness(.7)
+
     // 第三方
     // 插件 hexo-blog-encrypt
     #hexo-blog-encrypt
@@ -256,6 +268,9 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
 
       input
         background-color: #121212
+
+    .mermaid
+      filter: brightness(.7)
 
     if hexo-config('gitalk') && hexo-config('gitalk.enable')
       #gitalk-container
@@ -326,5 +341,12 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
             blockquote
               color: alpha(#FFFFFF, .6)
 
-    .mermaid
-      filter: brightness(.7)
+    if hexo-config('preloader')
+      #loading-box
+        .loading-left-bg,
+        .loading-right-bg,
+        .configure-core
+          background-color: darken(#121212, 2)
+
+        .loading-word
+          color: alpha(#FFFFFF, .6)

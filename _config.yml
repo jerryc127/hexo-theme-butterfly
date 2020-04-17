@@ -266,7 +266,6 @@ valine:
   guest_info: nick,mail,link #valine comment header info
   recordIP: false # Record reviewer IP
   serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-  mathjax: false
   bg: /img/comment_bg.png # valine background
   count: true # top_img顯示評論數
 
@@ -509,6 +508,9 @@ subtitle:
 fontawesome_v5:
   enable: false
 
+# 加載動畫 Loading Animation
+preloader: false
+
 ####    側邊欄    ####
 #-------------------------------------
 # 側邊欄顯示設置
@@ -516,7 +518,9 @@ aside:
   enable: true
   mobile: true # 手機頁面（ 顯示寬度 < 768px ）是否顯示aside內容
   position: right # left or right
-  card_author: true
+  card_author: 
+    enable: true
+    description:
   card_announcement:
     enable: true
     content: This is my Blog
@@ -529,6 +533,7 @@ aside:
   card_tags:
     enable: true
     limit: 40 # if set 0 will show all
+    color: false
   card_archives:
     enable: true
     type: monthly # yearly or monthly

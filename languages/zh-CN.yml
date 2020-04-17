@@ -107,3 +107,4 @@ Snackbar:
   night_to_day: 你已切换为浅色模式
 
 error_title: 页面没有找到
+loading: 加载中...

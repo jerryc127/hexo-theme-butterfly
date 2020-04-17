@@ -69,3 +69,6 @@ if is_home()
   include ./head/subtitle.pug
 
 !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
+
+if theme.preloader
+  !=partial('includes/loading/loading-js', {}, {cache:theme.fragment_cache})

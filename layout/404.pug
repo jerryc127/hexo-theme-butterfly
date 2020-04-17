@@ -6,6 +6,9 @@ html(lang=config.language data-theme=theme.display_mode)
   head
     include includes/head.pug
   body
+    if theme.preloader
+      !=partial('includes/loading/loading', {}, {cache:theme.fragment_cache})
+
     if theme.fireworks && theme.fireworks.enable
       canvas.fireworks
 

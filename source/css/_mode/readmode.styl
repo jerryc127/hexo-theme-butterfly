@@ -1,7 +1,9 @@
 if hexo-config('readmode') && hexo-config('readmode.enable')
   [data-theme='light']
+    $light-redmode-bg = #fff
+
     .read-mode
-      background: #fff
+      background: $light-redmode-bg
 
       #nav.post-bg
         a
@@ -17,12 +19,12 @@ if hexo-config('readmode') && hexo-config('readmode.enable')
 
         blockquote
           border-left: .2rem solid #ddd
-          background-color: transparent
+          background-color: $light-redmode-bg
 
         ol,
         li
           &:before
-            background: transparent
+            background: $light-redmode-bg
             color: #4c4948
 
         ul
@@ -32,27 +34,40 @@ if hexo-config('readmode') && hexo-config('readmode.enable')
 
         hr
           border: 2px dashed #d6dbdf
-          background: transparent
+          background: $light-redmode-bg
 
           &:before
             color: darken(#d6dbdf, 10)
 
+        .hide-toggle
+          border: 1px solid darken(#d6dbdf, 10) !important
+
         .hide-button
-          background: darken(#d6dbdf, 10) !important
+          background: $light-redmode-bg !important
+          color: #4c4948 !important
+
+        .hide-inline,
+        .hide-block
+          & >.hide-button
+            border: 1px solid darken(#d6dbdf, 10)
+
+          & > .button--animated:before
+            background: $light-redmode-bg
 
         .note
           border: 2px solid #eee
-          background-color: transparent
+          background-color: $light-redmode-bg
 
-      #mobile-sidebar-menus,
-      #rightside i,
+      #rightside i:not(.fa-cog),
       #rightside a,
       #rightside #rightside_config
-        background: darken(#d6dbdf, 10) !important
+        background: darken(#d6dbdf, 20) !important
 
   [data-theme='dark']
+    $dark-readmode-bg = #0d0d0d
+
     .read-mode
-      background: #0d0d0d
+      background: $dark-readmode-bg
 
       #article-container
         code
@@ -60,12 +75,12 @@ if hexo-config('readmode') && hexo-config('readmode.enable')
 
         blockquote
           border-left: .2rem solid rgba(255, 255, 255, .6)
-          background-color: transparent
+          background-color: $dark-readmode-bg
 
         ol,
         li
           &:before
-            background: transparent
+            background: $dark-readmode-bg
             color: rgba(255, 255, 255, .6)
 
         ul
@@ -73,14 +88,27 @@ if hexo-config('readmode') && hexo-config('readmode.enable')
             &:before
               border: .15rem solid rgba(255, 255, 255, .6)
 
+        .hide-toggle
+          border: 1px solid rgba(255, 255, 255, .6) !important
+
+        .hide-button
+          background: $dark-readmode-bg !important
+          filter: none
+          color: rgba(255, 255, 255, .6) !important
+
+        .hide-inline,
+        .hide-block
+          & >.hide-button
+            border: 1px solid rgba(255, 255, 255, .6)
+
+          & > .button--animated:before
+            background: $dark-readmode-bg !important
+
         .note
           border: 2px solid rgba(255, 255, 255, .6)
           filter: none
-          background-color: transparent
+          background-color: $dark-readmode-bg
           color: rgba(255, 255, 255, .6)
-
-        .hide-button
-          background: #1f1f1f !important
 
   .read-mode
     #body-wrap

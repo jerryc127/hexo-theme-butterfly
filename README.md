@@ -13,7 +13,7 @@ Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) t
 
 ## Installation
 
-Stable branch:
+Stable branch [recommend]:
 
 ```
 git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly

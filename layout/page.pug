@@ -2,7 +2,14 @@ extends includes/layout.pug
 
 block content
   if page.type === 'tags'
-    include page-tags.pug
+    .tag-cloud
+      .tag-cloud__title= _p('page.tag')
+        |  - 
+        span.tag-cloud__amount= site.tags.length
+      .tag-cloud-tags
+        !=cloudTags(site.tags,15,30,0)
+      if page.comments !== false
+        include includes/comments/index.pug
   else if page.type === 'link'
     include flink.pug
   else if page.type === 'categories'    
