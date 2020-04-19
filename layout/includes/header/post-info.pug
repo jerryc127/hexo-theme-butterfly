@@ -82,3 +82,10 @@
           span= _p('post.comments') + ':'
           a(href=url_for(page.path) + '#post-comment')
             span.gitalk-comment-count.comment-count
+        else if theme.facebook_comments.enable && theme.facebook_comments.count && page.comments !== false
+          if (postWordcount || theme.busuanzi.page_pv)
+            span.post-meta__separator |
+          i.post-meta__icon(class=commentCount aria-hidden="true")
+          span= _p('post.comments') + ':'
+          a.comment-count(href=url_for(page.path) + '#post-comment')
+            span.fb-comments-count(data-href=urlNoIndex())

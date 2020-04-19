@@ -42,3 +42,12 @@ hexo.extend.helper.register('cloudTags', function (source, minfontsize, maxfonts
   })
   return result
 })
+
+hexo.extend.helper.register('urlNoIndex', function () {
+  const { permalink } = hexo.config
+  let url = this.url.replace(/index\.html$/, '')
+  if (!permalink.endsWith('.html')) {
+    url = url.replace(/\.html$/, '')
+  }
+  return url
+})

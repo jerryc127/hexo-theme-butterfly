@@ -280,6 +280,17 @@ utterances:
   light_theme: github-light
   dark_theme: photon-dark
 
+# Facebook Comments Plugin
+# https://developers.facebook.com/docs/plugins/comments/
+facebook_comments:
+  enable: false
+  app_id:
+  user_id: # optional
+  pageSize: 10 # The number of comments to show
+  order_by: social # social/time/reverse_time
+  lang: en_US # Language en_US/zh_CN/zh_TW and so on
+  count: true
+
 #####     Footer Settings    ####
 # ------------------------------------
 since: 2020
@@ -518,7 +529,7 @@ aside:
   enable: true
   mobile: true # 手機頁面（ 顯示寬度 < 768px ）是否顯示aside內容
   position: right # left or right
-  card_author: 
+  card_author:
     enable: true
     description:
   card_announcement:
@@ -670,7 +681,7 @@ fragment_cache: true
 # 插入代码到头部</head>之前 和 尾部</body>之前
 inject:
   head:
-    # - <link rel="stylesheet" href="xxxxx">
+  # - <link rel="stylesheet" href="xxxxx">
   bottom:
     # - <script src="xxxx"></script>
 

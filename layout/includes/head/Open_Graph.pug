@@ -11,7 +11,7 @@ if theme.twitter_meta
 if theme.Open_Graph_meta
   meta(property="og:type" content=contentType)
   meta(property="og:title" content=pageTitle)
-  meta(property="og:url" content=without_html)
+  meta(property="og:url" content=urlNoIndex())
   meta(property="og:site_name" content=config.title)
   meta(property="og:description" content!=pageDescription)
   meta(property="og:image" content=full_url_for(page.cover || theme.avatar.img))

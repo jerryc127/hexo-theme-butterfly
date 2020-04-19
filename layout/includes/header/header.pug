@@ -8,8 +8,7 @@
         a.site-page.social-icon.search
           i.fa.fa-search.fa-fw
           span=' '+_p('search')
-    .menus_items
-      include ./menu_item.pug
+    !=fragment_cache('menus', function(){return partial('includes/header/menu_item')})
 
     span.toggle-menu.close
       a.site-page

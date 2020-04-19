@@ -4,7 +4,8 @@
 - var gt = theme.gitalk && theme.gitalk.enable
 - var v = theme.valine && theme.valine.enable
 - var u = theme.utterances && theme.utterances.enable
-- var isComment = d || dj || l || gt || v || u
+- var fb = theme.facebook_comments && theme.facebook_comments.enable
+- var isComment = d || dj || l || gt || v || u || fb
 
 if isComment
   hr
@@ -24,3 +25,5 @@ if isComment
       include ./valine.pug
     else if u
       include ./utterances.pug
+    else if fb
+      include ./facebook_comments.pug

@@ -17,7 +17,6 @@
 - else pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
 - var pageAuthor = config.email ? config.author + ',' + config.email : config.author
 - var pageCopyright = config.copyright || config.author
-- var without_html = url.replace('index.html', '')
 
 meta(charset='UTF-8')
 meta(http-equiv="X-UA-Compatible" content="IE=edge")
@@ -72,7 +71,7 @@ if (theme.snackbar && theme.snackbar.enable)
   link(rel='stylesheet', href=url_for(theme.CDN.snackbar_css))
 
 if theme.canonical
-  link(rel="canonical" href=without_html)
+  link(rel="canonical" href=urlNoIndex())
 
 if is_post()
   if(page.prev)
