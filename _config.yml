@@ -259,6 +259,8 @@ valine:
   enable: false # if you want use valine,please set this value is true
   appId: # leancloud application app id
   appKey: # leancloud application app key
+  notify: false # valine mail notify (true/false) Deprecated in v1.4.0+
+  verify: false # valine verify code (true/false) Deprecated in v1.4.0+
   pageSize: 10 # comment list page size
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
   lang: en # i18n: zh-CN/zh-TW/en/ja
@@ -266,6 +268,7 @@ valine:
   guest_info: nick,mail,link #valine comment header info
   recordIP: false # Record reviewer IP
   serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
+  emojiCDN: # emoji CDN 
   bg: /img/comment_bg.png # valine background
   count: true # top_img顯示評論數
 
