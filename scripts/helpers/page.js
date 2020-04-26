@@ -8,16 +8,16 @@
 
 'use strict'
 
-const { stripHTML } = require('hexo-util')
+const { stripHTML, escapeHTML } = require('hexo-util')
 
 hexo.extend.helper.register('page_description', function () {
   const { config, page } = this
   let description = page.description || page.content || page.title || config.description
 
   if (description) {
-    description = stripHTML(description).substring(0, 200)
+    description = escapeHTML(stripHTML(description).substring(0, 200)
       .trim()
-      .replace(/\n/g, ' ')
+    ).replace(/\n/g, ' ')
     return description
   }
 })
