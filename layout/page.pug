@@ -7,7 +7,7 @@ block content
         |  - 
         span.tag-cloud__amount= site.tags.length
       .tag-cloud-tags
-        !=cloudTags(site.tags,15,30,0)
+        !=cloudTags({source: site.tags, minfontsize: 15, maxfontsize: 30, limit: 0})
       if page.comments !== false
         include includes/comments/index.pug
   else if page.type === 'link'

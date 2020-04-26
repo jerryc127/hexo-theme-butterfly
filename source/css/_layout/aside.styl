@@ -147,20 +147,20 @@
               .aside-post_title
                 height: auto
 
-  .card-archives ul.archive-list,
-  .card-categories ul.aside-category-list
+  .card-archives ul.card-archive-list,
+  .card-categories ul.card-category-list
     margin: 0
     padding: .2rem 0 0
     list-style: none
 
-  .card-archives ul.archive-list > .archive-list-item,
-  .card-categories ul.aside-category-list > .aside-category-list-item
-    padding: .2rem 1rem
+  .card-archives ul.card-archive-list > .card-archive-list-item,
+  .card-categories ul.card-category-list > .card-category-list-item
+    padding: .15rem 1rem
     cursor: pointer
-    transition: all .3s
+    transition: all .5s
 
     &:hover
-      padding: .2rem .85rem
+      padding: .15rem .85rem
       background-color: $light-blue
 
     a
@@ -180,8 +180,18 @@
           width: 20%
           text-align: right
 
+    &.more
+      span
+        padding-right: .3rem
+        width: auto !important
+        transition: .5s
+
+      &:hover
+        span
+          padding-right: .6rem
+
   .card-categories
-    .aside-category-list
+    .card-category-list
       &.child
         padding: 0 0 0 1.2rem
 

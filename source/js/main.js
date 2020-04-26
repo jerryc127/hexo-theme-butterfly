@@ -363,6 +363,21 @@ $(function () {
   }
 
   /**
+ * PhotoFigcaption
+ */
+  function addPhotoFigcaption () {
+    var images = $('#article-container img')
+    images.each(function (i, o) {
+      var $this = $(o)
+      if ($this.attr('alt')) {
+        var t = $('<div class="img-alt is-center">' + $this.attr('alt') + '</div>')
+        $this.after(t)
+      }
+    })
+  }
+  if (GLOBAL_CONFIG.isPhotoFigcaption) addPhotoFigcaption()
+
+  /**
    * justified-gallery 圖庫排版
    */
   var $justifiedGallery = $('.justified-gallery')
@@ -518,8 +533,8 @@ $(function () {
     }
 
     var updateAnchor = function (anchor) {
-      if (window.history.replaceState && anchor !== window.location.hash) {
-        window.history.replaceState(undefined, undefined, anchor)
+      if (anchor !== window.location.hash) {
+        location.replace(window.location.href.split('#')[0] + anchor)
       }
     }
 
@@ -758,19 +773,4 @@ $(function () {
       }
     })
   }
-
-  /**
-   * PhotoFigcaption
-   */
-  function addPhotoFigcaption () {
-    var images = $('#article-container img')
-    images.each(function (i, o) {
-      var $this = $(o)
-      if ($this.attr('alt')) {
-        var t = $('<div class="img-alt is-center">' + $this.attr('alt') + '</div>')
-        $this.after(t)
-      }
-    })
-  }
-  if (GLOBAL_CONFIG.isPhotoFigcaption) addPhotoFigcaption()
 })

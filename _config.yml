@@ -221,7 +221,7 @@ addtoany:
 disqus:
   enable: false
   shortname:
-  count: false # top_img顯示評論數
+  count: false # dispaly comment count in top_img
 
 # Disqus.js版評論系統，應對大陸長城的折中方案，兼容原版：https://github.com/SukkaW/DisqusJS
 # API 申請地址：https://disqus.com/api/applications/
@@ -234,7 +234,7 @@ disqusjs:
   api: https://disqus.skk.moe/disqus/ #一般情況下無需修改 API 地址
   admin:
   adminLabel:
-  count: true # top_img顯示評論數
+  count: false # dispaly comment count in top_img
 
 laibili:
   enable: false
@@ -252,7 +252,7 @@ gitalk:
   distractionFreeMode: false # Facebook-like distraction free mode.
   pagerDirection: last # Comment sorting direction, available values are last and first.
   createIssueManually: false # Gitalk will create a corresponding github issue for your every single page automatically
-  count: true # top_img顯示評論數
+  count: false # dispaly comment count in top_img
 
 # valine comment system. https://valine.js.org
 valine:
@@ -268,9 +268,11 @@ valine:
   guest_info: nick,mail,link #valine comment header info
   recordIP: false # Record reviewer IP
   serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-  emojiCDN: # emoji CDN 
+  emojiCDN: # emoji CDN
+  enableQQ: false # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
+  requiredFields: nick,mail # required fields nick/mail/link
   bg: /img/comment_bg.png # valine background
-  count: true # top_img顯示評論數
+  count: false # dispaly comment count in top_img
 
 # utterances
 # https://utteranc.es/
@@ -292,7 +294,7 @@ facebook_comments:
   pageSize: 10 # The number of comments to show
   order_by: social # social/time/reverse_time
   lang: en_US # Language en_US/zh_CN/zh_TW and so on
-  count: true
+  count: false
 
 #####     Footer Settings    ####
 # ------------------------------------
@@ -463,8 +465,9 @@ click_heart:
 ClickShowText:
   enable: false
   text:
-    - 本人
-    - 超帥
+    - I
+    - LOVE
+    - YOU
   fontSize: 15px
 
 # 網站顯示模式

@@ -159,8 +159,8 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
           border-top: 13px solid lighten(#121212, 10) !important
 
     .md-links-item:before,
-    .aside-category-list-item:hover,
-    .archive-list-item:hover,
+    .card-category-list-item:hover,
+    .card-archive-list-item:hover,
     #bookmark-it
       background-color: lighten(#121212, 10) !important
 
@@ -177,11 +177,11 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       .headline,
       .length_num,
       .aside-post_title,
-      .aside-category-list-link,
-      .archive-list-link,
+      .card-category-list-link,
+      .card-archive-list-link,
       .social-icon,
-      .aside-category-list-item-more,
-      .archive-list-link-more
+      .card-category-list-link-more,
+      .card-archive-list-link-more
         color: alpha(#FFFFFF, .6) !important
 
     .button--animated:before
@@ -190,7 +190,8 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     #post-meta,
     #post-meta a,
     #footer-wrap,
-    #footer-wrap a
+    #footer-wrap a,
+    .img-alt
       color: alpha(#FFFFFF, .6) !important
 
     .posttitle,
@@ -286,9 +287,6 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
 
     if hexo-config('valine') && hexo-config('valine.enable')
       #vcomment
-        .vsys
-          background: #2c2c2c !important
-
         .vbtn,
         .vat
           border: 1px solid alpha(#FFFFFF, .6)

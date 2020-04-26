@@ -31,8 +31,13 @@ hexo.extend.helper.register('injectHtml', function (data) {
   return result
 })
 
-hexo.extend.helper.register('cloudTags', function (source, minfontsize, maxfontsize, limit) {
+hexo.extend.helper.register('cloudTags', function (options = {}) {
   const env = this
+  const source = options.source
+  const minfontsize = options.minfontsize
+  const maxfontsize = options.maxfontsize
+  const limit = options.limit || 8
+
   let result = ''
   const tagLimit = limit === 0 ? source.length : limit
   source.sort('name').limit(tagLimit).forEach(function (tags) {

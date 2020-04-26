@@ -67,7 +67,7 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
     return this.url_for(url)
   }
 
-  result += '<ul class="archive-list">'
+  result += '<ul class="card-archive-list">'
 
   const len = data.length
   const Judge = limit === 0 ? len : Math.min(len, limit)
@@ -75,23 +75,24 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
   for (let i = 0; i < Judge; i++) {
     const item = data[i]
 
-    result += '<li class="archive-list-item">'
+    result += '<li class="card-archive-list-item">'
 
-    result += `<a class="archive-list-link" href="${link(item)}">`
-    result += '<span class="archive-list-date">'
+    result += `<a class="card-archive-list-link" href="${link(item)}">`
+    result += '<span class="card-archive-list-date">'
     result += transform ? transform(item.name) : item.name
     result += '</span>'
 
     if (showCount) {
-      result += `<span class="archive-list-count">${item.count}</span>`
+      result += `<span class="card-archive-list-count">${item.count}</span>`
     }
     result += '</a>'
     result += '</li>'
   }
 
   if (len > Judge) {
-    result += '<li class="archive-list-item is-center">'
-    result += `<a class="archive-list-link-more" href="${this.url_for(archiveDir)}">${moreButton}</a></li>`
+    result += '<li class="card-archive-list-item more is-center">'
+    result += `<a class="card-archive-list-link-more" href="${this.url_for(archiveDir)}">
+              <span>${moreButton}</span><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>`
   }
   result += '</ul>'
   return result
