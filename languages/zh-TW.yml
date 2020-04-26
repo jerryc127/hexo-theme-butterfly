@@ -67,11 +67,7 @@ aside:
   card_webinfo:
     headline: 網站資訊
     article_name: 文章數目
-<<<<<<< HEAD
-    runtime_name: 已運行時間
-=======
     runtime_name: 已執行時間
->>>>>>> dev
     site_wordcount: 本站總字數
     site_uv_name: 本站訪客數
     site_pv_name: 本站總訪問量
@@ -84,13 +80,8 @@ bookmark:
 
 rightside:
   readmode_title: 閱讀模式
-<<<<<<< HEAD
-  font_plus_title: 放大字體
-  font_minus_title: 縮小字體
-=======
   font_plus_title: 放大字型
   font_minus_title: 縮小字型
->>>>>>> dev
   translate_title: 簡繁轉換
   night_mode_title: 夜間模式
   back_to_top: 回到頂部

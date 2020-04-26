@@ -41,17 +41,5 @@ html(lang=config.language data-theme=theme.display_mode)
         !=partial('includes/footer', {}, {cache:theme.fragment_cache})
 
     include ./rightside.pug
-
     !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
-<<<<<<< HEAD
-
-    each item in theme.CDN_USE.js
-      script(src=url_for(item))
-      
     include ./additional-js.pug
-    
-
-    
-=======
-    include ./additional-js.pug
->>>>>>> dev

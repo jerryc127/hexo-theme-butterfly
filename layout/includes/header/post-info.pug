@@ -69,22 +69,14 @@
           span.disqus-comment-count.comment-count
             a(href=full_url_for(page.path) + '#disqus_thread')
         else if (theme.valine && theme.valine.enable && theme.valine.count && page.comments !== false)
-<<<<<<< HEAD
-          if (theme.busuanzi && theme.busuanzi.page_pv)
-=======
           if (postWordcount || theme.busuanzi.page_pv)
->>>>>>> dev
             span.post-meta__separator |
           i.post-meta__icon(class=commentCount aria-hidden="true")
           span= _p('post.comments') + ':'
           a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
             span.valine-comment-count.comment-count(data-xid=url_for(page.path) itemprop="commentCount")
         else if (theme.gitalk && theme.gitalk.enable && theme.gitalk.count && page.comments !== false)
-<<<<<<< HEAD
-          if (theme.busuanzi && theme.busuanzi.page_pv)
-=======
           if (postWordcount || theme.busuanzi.page_pv)
->>>>>>> dev
             span.post-meta__separator |
           i.post-meta__icon(class=commentCount aria-hidden="true")
           span= _p('post.comments') + ':'

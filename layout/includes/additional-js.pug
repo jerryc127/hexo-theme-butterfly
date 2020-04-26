@@ -66,13 +66,9 @@ if theme.mermaid.enable
   include ./math/mermaid.pug
 
 if is_home()
-<<<<<<< HEAD
-  include ./head/subtitle.pug
-=======
   include ./head/subtitle.pug
 
 !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
 
 if theme.preloader
   !=partial('includes/loading/loading-js', {}, {cache:theme.fragment_cache})
->>>>>>> dev
