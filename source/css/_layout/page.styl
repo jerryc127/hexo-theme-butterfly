@@ -130,7 +130,7 @@
         display: -webkit-box
         overflow: hidden
         margin-top: .3rem
-        height: 85px
+        // height: 85px
         word-break: break-word
         -webkit-line-clamp: 3
         -webkit-box-orient: vertical
@@ -270,7 +270,7 @@
       -webkit-box-orient: vertical
 
       &:hover
-        color: $light-blue
+        color: $light-blue !important
         transform: translateX(20px)
 
     &__img
@@ -380,3 +380,9 @@
   .layout_page
     & > div:first-child:not(.recent-posts)
       width: 100% !important
+
+// ie10-ios11使用
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+  .recent-post-info
+    .content
+      height: 90px

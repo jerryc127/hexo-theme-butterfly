@@ -10,19 +10,25 @@
 - var isSubtitle = config.subtitle ? ' - ' + config.subtitle : ''
 - var tabTitle = is_home() || !pageTitle ? config.title + isSubtitle : pageTitle + ' | ' + config.title
 
+<<<<<<< HEAD
 - var pageDescription = page.description || page.title || config.description
 - var pageKeywords
 - if (page.tags && page.tags.data) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
+=======
+- var pageDescription = page_description()
+- var pageKeywords
+- if (page.keywords) pageKeywords = Array.isArray(page.keywords) ? (page.keywords).join(',') :  ([]).join(',') || page.keywords
+- else if (page.tags && page.tags.length) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
+>>>>>>> dev
 - else pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
 - var pageAuthor = config.email ? config.author + ',' + config.email : config.author
 - var pageCopyright = config.copyright || config.author
-- var without_html = url.replace('index.html', '')
 
 meta(charset='UTF-8')
 meta(http-equiv="X-UA-Compatible" content="IE=edge")
 meta(name="viewport" content="width=device-width,initial-scale=1")
 title= tabTitle
-meta(name="description" content=pageDescription)
+meta(name="description" content!=pageDescription)
 if pageKeywords
   meta(name="keywords" content=pageKeywords)
 meta(name="author" content=pageAuthor)
@@ -33,9 +39,6 @@ meta(name ="format-detection" content="telephone=no")
 if theme.disable_baidu_transformation
   meta(http-equiv="Cache-Control" content="no-transform")
   meta(http-equiv="Cache-Control" content="no-siteapp")
-
-if page.hide == true
-  meta(name="robots" content="noindex")
 
 if theme.douban
   if theme.douban.meta && (is_current('/movies/', [strict]) || is_current('/books/', [strict]) || is_current('/games/', [strict]))
@@ -59,8 +62,8 @@ script(src=url_for(theme.CDN.js_cookies))
 if theme.darkmode.enable
   !=partial('includes/head/darkmode', {}, {cache:theme.fragment_cache})
 
-each item in theme.CDN_USE.css
-  link(rel='stylesheet', href=url_for(item))
+//- main css
+link(rel='stylesheet', href=url_for(theme.CDN.main_css))
 
 if theme.fontawesome_v5 && theme.fontawesome_v5.enable
   link(rel='stylesheet', href=url_for(theme.CDN.fontawesome_v5))
@@ -74,7 +77,7 @@ if (theme.snackbar && theme.snackbar.enable)
   link(rel='stylesheet', href=url_for(theme.CDN.snackbar_css))
 
 if theme.canonical
-  link(rel="canonical" href=without_html)
+  link(rel="canonical" href=urlNoIndex())
 
 if is_post()
   if(page.prev)
@@ -103,3 +106,8 @@ if theme.blog_title_font.font_link
 
 include ./head/config_site.pug
 include ./head/noscript.pug
+<<<<<<< HEAD
+=======
+
+!=fragment_cache('injectHead', function(){return injectHtml(theme.inject.head)})
+>>>>>>> dev

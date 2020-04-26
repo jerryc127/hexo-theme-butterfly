@@ -23,5 +23,4 @@
             .headline= _p('aside.categories') 
             .length_num= site.categories.length
   hr
-  .menus_items
-    include ../header/menu_item.pug
+  !=fragment_cache('menus', function(){return partial('includes/header/menu_item')})

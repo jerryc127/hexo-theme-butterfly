@@ -48,10 +48,10 @@ function throttle (func, wait, options) {
   return throttled
 }
 
-function sidebarPaddingR() {
-  let innerWidth = window.innerWidth
-  let clientWidth = document.body.clientWidth
-  let paddingRight = innerWidth - clientWidth
+function sidebarPaddingR () {
+  var innerWidth = window.innerWidth
+  var clientWidth = document.body.clientWidth
+  var paddingRight = innerWidth - clientWidth
   if (innerWidth !== clientWidth) {
     $('body').css('padding-right', paddingRight)
   }
@@ -59,7 +59,7 @@ function sidebarPaddingR() {
 
 // iPadOS
 function isIpad () {
-  return navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1 
+  return navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1
 }
 
 function isTMobile () {

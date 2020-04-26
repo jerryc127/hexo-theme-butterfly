@@ -3,7 +3,7 @@
     .card-info-avatar.is-center
       img.avatar-img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt="avatar")
       .author-info__name= config.author
-      .author-info__description= config.description
+      .author-info__description= theme.aside.card_author.description || config.description
 
     .card-info-data
       if site.posts.length
@@ -31,4 +31,8 @@
   
     if(theme.social)
         .card-info-social-icons.is-center
+<<<<<<< HEAD
           include ../header/social.pug
+=======
+          !=fragment_cache('social', function(){return partial('includes/header/social')}) 
+>>>>>>> dev

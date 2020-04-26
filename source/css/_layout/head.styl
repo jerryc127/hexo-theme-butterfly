@@ -43,7 +43,7 @@
       margin: 0 .5rem
       color: $light-grey
       text-shadow: .1rem .1rem .2rem rgba(0, 0, 0, .15)
-      font-size: .9rem
+      font-size: 1rem
       cursor: pointer
 
   #scroll_down
@@ -246,14 +246,24 @@
           content: ''
 
         li
+<<<<<<< HEAD
           padding: 1px 10px
           list-style: none
           text-align: center
+=======
+          list-style: none
+>>>>>>> dev
 
           &:hover
             background: $theme-color
 
           a
+<<<<<<< HEAD
+=======
+            display: inline-block
+            padding: .3rem .7rem
+            width: 100%
+>>>>>>> dev
             color: $font-black
             text-shadow: none
 
@@ -311,4 +321,13 @@
 
             .post-meta-pv-cv
               .post-meta__separator:first-child
+<<<<<<< HEAD
                 display: none
+=======
+                display: none
+
+            if !hexo-config('busuanzi.page_pv')
+              .post-meta-commentcount
+                .post-meta__separator
+                  display: none
+>>>>>>> dev

@@ -16,14 +16,13 @@
 
   .card-info
     img
-      display: inline-block
       width: 110px
       height: 110px
       border-radius: 70px
-      transition: all .3s
+      transition: all .5s
 
       &:hover
-        transform: rotate(540deg)
+        transform: rotate(360deg)
 
     .author-info
       &__name
@@ -34,23 +33,24 @@
         margin-top: -.3rem
 
     .card-info-data
+      display: table
       padding: .7rem 0
+      width: 100%
+      table-layout: fixed
 
       & > .card-info-data-item
-        display: inline-block
-        width: 33.3%
+        display: table-cell
 
         a
           .headline
-            display: block
             overflow: hidden
             color: $font-black
-            // text-transform: uppercase
             text-overflow: ellipsis
             white-space: nowrap
             font-size: .7rem
 
           .length_num
+            margin-top: -.3rem
             color: $dark-black
             font-size: 1rem
 
@@ -75,7 +75,6 @@
       display: block
       background-color: $light-blue
       color: $button-color
-      text-transform: uppercase
       line-height: 1.6rem
 
       span
@@ -92,7 +91,8 @@
 
   .card-tag-cloud
     a
-      word-break: keep-all
+      display: inline-block
+      padding: 0 .1rem
 
       &:hover
         color: $light-blue !important
@@ -147,20 +147,20 @@
               .aside-post_title
                 height: auto
 
-  .card-archives ul.archive-list,
-  .card-categories ul.aside-category-item
+  .card-archives ul.card-archive-list,
+  .card-categories ul.card-category-list
     margin: 0
     padding: .2rem 0 0
     list-style: none
 
-  .card-archives ul.archive-list > .archive-list-item,
-  .card-categories ul.aside-category-item > .aside-category-list
-    padding: .2rem 1rem
+  .card-archives ul.card-archive-list > .card-archive-list-item,
+  .card-categories ul.card-category-list > .card-category-list-item
+    padding: .15rem 1rem
     cursor: pointer
-    transition: all .3s
+    transition: all .5s
 
     &:hover
-      padding: .2rem .85rem
+      padding: .15rem .85rem
       background-color: $light-blue
 
     a
@@ -180,8 +180,18 @@
           width: 20%
           text-align: right
 
+    &.more
+      span
+        padding-right: .3rem
+        width: auto !important
+        transition: .5s
+
+      &:hover
+        span
+          padding-right: .6rem
+
   .card-categories
-    .aside-category-item
+    .card-category-list
       &.child
         padding: 0 0 0 1.2rem
 

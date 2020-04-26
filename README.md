@@ -1,19 +1,21 @@
 # hexo-theme-butterfly
 
+<<<<<<< HEAD
 <a href="https://github.com/jerryc127/hexo-theme-butterfly/releases"><img alt="Version" src="https://img.shields.io/badge/release-2.2.5-blue"/></a>
+=======
+<a href="https://github.com/jerryc127/hexo-theme-butterfly/releases"><img alt="Version" src="https://img.shields.io/badge/release-2.3.0-blue"/></a>
+>>>>>>> dev
 <a href="https://jerryc.me"><img alt="Author" src="https://img.shields.io/badge/author-JerryC-blur"/></a>
 <a href="https://hexo.io"><img alt="Hexo" src="https://img.shields.io/badge/hexo-4.0+-0e83c"/></a>
 <a href="https://nodejs.org/"><img alt="node.js" src="https://img.shields.io/badge/node.js-8.0+-blur"/></a>
 
-Demo:  https://demo.jerryc.me/
-
-JerryC:  https://jerryc.me/
+Demo:  👍 [Butterfly](https://demo.jerryc.me/)  ||   🤞 [JerryC](https://jerryc.me/)
 
 Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) theme.
 
 ## Installation
 
-Stable branch:
+Stable branch [recommend]:
 
 ```
 git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly

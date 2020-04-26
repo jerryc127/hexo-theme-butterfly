@@ -3,8 +3,9 @@
     .item-headline
       i.fa.fa-history(aria-hidden="true")
       span= _p('aside.card_recent_post')
-    .aside-recent-item 
-      - site.posts.sort('date', -1).limit(5).each(function(article){
+    .aside-recent-item
+      - var postLimit = theme.aside.card_recent_post.limit === 0 ? site.posts.length : theme.aside.card_recent_post.limit || 5
+      - site.posts.sort('date', -1).limit(postLimit).each(function(article){
         .aside-recent-post
           - var link = article.link || article.path
           - var title = article.title || _p('no_title')

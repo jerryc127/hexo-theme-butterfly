@@ -6,6 +6,9 @@ html(lang=config.language data-theme=theme.display_mode)
   head
     include includes/head.pug
   body
+    if theme.preloader
+      !=partial('includes/loading/loading', {}, {cache:theme.fragment_cache})
+
     if theme.fireworks && theme.fireworks.enable
       canvas.fireworks
 
@@ -17,7 +20,11 @@ html(lang=config.language data-theme=theme.display_mode)
         h1#error_title= '404'
         #error_subtitle= theme.error_404.subtitle
     include includes/rightside.pug
+<<<<<<< HEAD
     include includes/search/index.pug
     each item in theme.CDN_USE.js
       script(src=url_for(item))
+=======
+    !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
+>>>>>>> dev
     include includes/additional-js.pug

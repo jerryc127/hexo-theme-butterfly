@@ -9,6 +9,9 @@ figure.gallery-group
   background: $dark-black
   -webkit-transform: translate3d(0, 0, 0)
 
+  @media screen and (max-width: 600px)
+    width: calc(100% - .4rem)
+
   &:hover
     img
       opacity: .4
@@ -106,7 +109,3 @@ figure.gallery-group
   .fancybox
     width: auto
     text-align: inherit
-
-@media screen and (max-width: 600px)
-  figure.gallery-group
-    width: calc(100% - .4rem)

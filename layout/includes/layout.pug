@@ -5,6 +5,9 @@ html(lang=config.language data-theme=theme.display_mode)
   head
     include ./head.pug
   body
+    if theme.preloader
+      !=partial('includes/loading/loading', {}, {cache:theme.fragment_cache})
+
     if theme.fireworks && theme.fireworks.enable
       canvas.fireworks
 
@@ -40,6 +43,7 @@ html(lang=config.language data-theme=theme.display_mode)
     include ./rightside.pug
 
     !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
+<<<<<<< HEAD
 
     each item in theme.CDN_USE.js
       script(src=url_for(item))
@@ -48,3 +52,6 @@ html(lang=config.language data-theme=theme.display_mode)
     
 
     
+=======
+    include ./additional-js.pug
+>>>>>>> dev
