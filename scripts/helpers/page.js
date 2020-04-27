@@ -36,7 +36,7 @@ hexo.extend.helper.register('cloudTags', function (options = {}) {
   const source = options.source
   const minfontsize = options.minfontsize
   const maxfontsize = options.maxfontsize
-  const limit = options.limit || 8
+  const limit = options.limit
 
   let result = ''
   const tagLimit = limit === 0 ? source.length : limit
