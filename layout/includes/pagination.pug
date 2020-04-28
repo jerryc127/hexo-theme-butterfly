@@ -18,9 +18,9 @@ else
         - var pagination_cover = page.prev.cover === false ? page.prev.randomcover : page.prev.cover
         a(href=url_for(page.prev.path))
           if theme.lazyload.enable
-            img.prev_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
+            img.prev_cover.lazyload(data-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'` )
           else
-            img.prev_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'` )
+            img.prev_cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'` )
           .pagination-info
             .label=_p('pagination.prev')
             .prev_info=page.prev.title
@@ -31,9 +31,9 @@ else
       .next-post(class=hasPagePrev)
         a(href=url_for(page.next.path))
           if theme.lazyload.enable
-            img.next_cover.lazyload(data-src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)
+            img.next_cover.lazyload(data-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'`)
           else
-            img.next_cover(src=`${pagination_cover}` onerror=`onerror=null;src='${theme.lodding_bg.post_page}'`)                      
+            img.next_cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'`)
           .pagination-info
             .label=_p('pagination.next')
             .next_info=page.next.title 

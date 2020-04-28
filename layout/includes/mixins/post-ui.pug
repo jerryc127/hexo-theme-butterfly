@@ -10,9 +10,9 @@ mixin postUI(posts)
         .post_cover(class=leftOrRight)
           a(href=url_for(link) title=title)      
             if theme.lazyload.enable
-              img.post_bg.lazyload(data-src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` alt=title)
+              img.post_bg.lazyload(data-src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` alt=title)
             else
-              img.post_bg(src=`${post_cover}` onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` alt=title)
+              img.post_bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` alt=title)
       .recent-post-info(class=no_cover)
         a.article-title(href=url_for(link) title=title)= title
         .article-meta-wrap

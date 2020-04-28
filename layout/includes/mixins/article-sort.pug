@@ -11,7 +11,7 @@ mixin articleSort(posts)
         if article.cover && theme.cover.archives_enable
           .article-sort-img
             a.article-sort-item__img(href=url_for(article.path))
-              img(src=`${article.cover}` alt=article.title || 'No Title' onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'`)
+              img(src=url_for(article.cover) alt=article.title || 'No Title' onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'`)
         .article-sort-post
           a.article-sort-item__post(href=url_for(article.path))
             i.fa.fa-clock-o(aria-hidden="true")

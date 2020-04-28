@@ -7,11 +7,11 @@
           .md-links
             each item in i.link_list
               .md-links-item
-                a(href=item.link  title=item.name target="_blank")
+                a(href=url_for(item.link)  title=item.name target="_blank")
                   if theme.lazyload.enable
-                    img.lazyload(data-src=item.avatar onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
+                    img.lazyload(data-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
                   else
-                    img(src=item.avatar onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
+                    img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
                   .md-links-title= item.name 
                   .md-links-des= item.descr
     != page.content
