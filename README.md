@@ -35,7 +35,15 @@ git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/Bu
 
 ## Documentation
 
-Find in [hexo-theme-butterfly docs](https://docs.jerryc.me) and [JerryC](https://jerryc.me/posts/21cfbf15). it supports `zh-TW`
+Find in [hexo-theme-butterfly docs](https://docs.jerryc.me) and [JerryC](https://jerryc.me/posts/21cfbf15). it supports `zh-TW` and `zh-CN`
+
+You can also join the Chat Group.
+
+[  💬 Join QQ Group [recommend]](https://jq.qq.com/?_wv=1027&k=5KI3Jqb)
+
+[  💬 Join Telegram Group](https://t.me/hexo_butterfly)
+
+
 
 ## Screenshots
 
