@@ -221,7 +221,11 @@ $(function () {
    * 首頁top_img底下的箭頭
    */
   $('#scroll_down').on('click', function () {
-    scrollTo('#content-inner')
+    scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
   })
 
   /**
