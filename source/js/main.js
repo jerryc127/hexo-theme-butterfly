@@ -532,11 +532,11 @@ $(function () {
       }, 100)
     }
 
-    var updateAnchor = function (anchor) {
-      if (anchor !== window.location.hash) {
-        location.replace(window.location.href.split('#')[0] + anchor)
-      }
-    }
+    // function updateAnchor (anchor) {
+    //   if (window.history.replaceState && anchor !== window.location.hash) {
+    //     window.history.replaceState(null, null, anchor)
+    //   }
+    // }
 
     // find head position & add active class
     // DOM Hierarchy:
@@ -565,7 +565,7 @@ $(function () {
 
       var currentActive = $('.toc-link.active')
       if (currentId && currentActive.attr('href') !== currentId) {
-        updateAnchor(currentId)
+        // updateAnchor(currentId)
 
         $('.toc-link').removeClass('active')
 
