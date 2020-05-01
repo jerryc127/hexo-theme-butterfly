@@ -15,8 +15,8 @@
             a(href=url_for(link))
               if post_cover && theme.cover.aside_enable
                 .aside-post-cover
-                  if theme.lazyload.enable
-                    img.aside-post-bg.lazyload(data-src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` title=title alt=title)
+                  if theme.lazyload
+                    img.aside-post-bg(data-src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` title=title alt=title)
                   else
                     img.aside-post-bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` title=title alt=title)
               .aside-post-title(class=no_cover)

@@ -42,8 +42,8 @@ if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
 if theme.instantpage.enable
   script(src=url_for(theme.CDN.instantpage) type="module")
 
-if theme.lazyload.enable
-  script(src=url_for(theme.CDN.lazyload) async="")
+if theme.lazyload
+  script(src=url_for(theme.CDN.lazyload))
 
 //- 鼠標特效
 if theme.click_heart && theme.click_heart.enable
