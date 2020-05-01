@@ -6,6 +6,6 @@
       ul.reward-all
         each item in theme.reward.QR_code
           li.reward-item
-            img.lazyload.post-qr-code__img(src=url_for((item.itemlist||item).img) alt=(item.itemlist||item).text)
+            img.post-qr-code__img(src=url_for((item.itemlist||item).img) alt=(item.itemlist||item).text)
             .post-qr-code__desc=(item.itemlist||item).text
 

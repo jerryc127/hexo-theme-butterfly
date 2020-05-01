@@ -17,8 +17,8 @@ else
       .prev-post(class=hasPageNext)
         - var pagination_cover = page.prev.cover === false ? page.prev.randomcover : page.prev.cover
         a(href=url_for(page.prev.path))
-          if theme.lazyload.enable
-            img.prev_cover.lazyload(data-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'` )
+          if theme.lazyload
+            img.prev_cover(data-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'` )
           else
             img.prev_cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'` )
           .pagination-info
@@ -30,8 +30,8 @@ else
       - var pagination_cover = page.next.cover == false ? page.next.randomcover : page.next.cover
       .next-post(class=hasPagePrev)
         a(href=url_for(page.next.path))
-          if theme.lazyload.enable
-            img.next_cover.lazyload(data-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'`)
+          if theme.lazyload
+            img.next_cover(data-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'`)
           else
             img.next_cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'`)
           .pagination-info

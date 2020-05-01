@@ -41,8 +41,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   var limitNum = config.related_post.limit || 6
   var dateType = config.related_post.date_type || 'created'
   var headlineLang = this._p('post.recommend')
-  var lazySrc = config.lazyload.enable ? 'data-src' : 'src'
-  var lazyClass = config.lazyload.enable ? 'lazyload' : ''
+  var lazySrc = config.lazyload ? 'data-src' : 'src'
 
   relatedPosts = relatedPosts.sort(compare('weight'))
 
@@ -68,9 +67,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
         relatedPosts[i].title +
         '">'
       result +=
-        '<img class="relatedPosts_cover ' +
-        lazyClass +
-        '"' +
+        '<img class="relatedPosts_cover" ' +
         lazySrc +
         '="' +
         cover +

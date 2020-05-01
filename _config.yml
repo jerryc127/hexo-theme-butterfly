@@ -15,10 +15,6 @@ menu:
     - Music || /music/ || fa fa-music
     - Movie || /movies/ || fa fa-film
 
-# Favicon
-# ---------------
-favicon: /img/favicon.ico
-
 # PWA
 # See https://github.com/JLHwung/hexo-offline
 # ---------------
@@ -104,6 +100,10 @@ mermaid:
   # built-in themes: default/forest/dark/neutral
   theme: default
 
+# Favicon
+# ---------------
+favicon: /img/favicon.png
+
 # Post info settings
 # ---------------
 avatar:
@@ -114,7 +114,7 @@ avatar:
 index_img:
 
 # if the banner of page not setting,it will show the top_img
-default_top_img: /img/index.jpg
+default_top_img: https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg
 
 # the banner image of archive page
 archive_img:
@@ -144,7 +144,7 @@ cover:
   position: both
   # 當沒有設置cover時，默認的封面顯示
   default_cover:
-    - /img/post.jpg
+    - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
 
 # if the photo link cannot connect,it will show that
 lodding_bg:
@@ -271,7 +271,7 @@ valine:
   emojiCDN: # emoji CDN
   enableQQ: false # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
   requiredFields: nick,mail # required fields nick/mail/link
-  bg: /img/comment_bg.png # valine background
+  bg: # valine background
   count: false # dispaly comment count in top_img
 
 # utterances
@@ -374,6 +374,10 @@ related_post:
 # figcaption
 # 圖片描述文字
 photofigcaption: false
+
+# anchor
+# when you scroll in post, the url will update according to header id.
+anchor: false
 
 ####    美化/效果    ####
 #--------------------------------
@@ -478,6 +482,7 @@ display_mode: light
 # 美化頁面顯示
 beautify:
   enable: false
+  field: post # site/post
   title-prefix-icon: '\f0c1'
   title-prefix-icon-color: '#F47466'
 
@@ -662,9 +667,8 @@ note:
   light_bg_offset: 0
 
 # 圖片懶加載
-# https://github.com/aFarkas/lazysizes
-lazyload:
-  enable: true
+# https://github.com/ApoorvSaxena/lozad.js
+lazyload: false
 
 # 避免重複網址分散seo
 canonical: true
@@ -735,7 +739,7 @@ CDN:
   canvas_ribbon_piao: /js/third-party/piao.js
   canvas_nest: /js/third-party/canvas-nest.js
 
-  lazyload: https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js
+  lazyload: https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js
   instantpage: https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js
   typed: https://cdn.jsdelivr.net/npm/typed.js
   js_cookies: https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js
