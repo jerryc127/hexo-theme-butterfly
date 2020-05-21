@@ -740,7 +740,7 @@ CDN:
   canvas_nest: /js/third-party/canvas-nest.js
 
   lazyload: https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js
-  instantpage: https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js
+  instantpage: https://cdn.jsdelivr.net/npm/instant.page@3/instantpage.min.js
   typed: https://cdn.jsdelivr.net/npm/typed.js
   js_cookies: https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js
   pangu: https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js
