@@ -1,6 +1,6 @@
 - var d = theme.disqus && theme.disqus.enable
 - var dj = theme.disqusjs && theme.disqusjs.enable
-- var l = theme.laibili && theme.laibili.enable
+- var l = theme.livere && theme.livere.enable
 - var gt = theme.gitalk && theme.gitalk.enable
 - var v = theme.valine && theme.valine.enable
 - var u = theme.utterances && theme.utterances.enable
@@ -11,14 +11,14 @@ if isComment
   hr
   #post-comment
     .comment_headling
-      i.fa.fa-comments.fa-fw(aria-hidden="true")
+      i.fas.fa-comments.fa-fw
       span= ' ' + _p('comment')
     if d
       include ./disqus.pug
     else if dj
       include ./disqusjs.pug
     else if l
-      include ./laibili.pug
+      include ./livere.pug
     else if gt
       include ./gitalk.pug
     else if v

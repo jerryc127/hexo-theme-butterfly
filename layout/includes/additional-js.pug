@@ -5,10 +5,10 @@ script(src=url_for(theme.CDN.main))
 if theme.translate && theme.translate.enable
   script(src=url_for(theme.CDN.translate))
 
-if (theme.medium_zoom && theme.medium_zoom.enable)
+if theme.medium_zoom
   script(src=url_for(theme.CDN.medium_zoom))
 
-if (theme.fancybox && theme.fancybox.enable)
+if theme.fancybox
   script(src=url_for(theme.CDN.fancybox))
 
 include ./math/index.pug 
@@ -39,14 +39,14 @@ if theme.activate_power_mode.enable
 if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
   script(async src=url_for(theme.CDN.busuanzi))
 
-if theme.instantpage.enable
-  script(src=url_for(theme.CDN.instantpage) type="module")
+if theme.instantpage
+  script(src=url_for(theme.CDN.instantpage) type="module" defer)
 
-if theme.lazyload
-  script(src=url_for(theme.CDN.lazyload))
+if theme.lazyload.enable
+  script(src=url_for(theme.CDN.lazyload) async)
 
 //- 鼠標特效
-if theme.click_heart && theme.click_heart.enable
+if theme.click_heart
   script(src=url_for(theme.CDN.click_heart))
 
 if theme.ClickShowText && theme.ClickShowText.enable
@@ -72,3 +72,5 @@ if is_home()
 
 if theme.preloader
   !=partial('includes/loading/loading-js', {}, {cache:theme.fragment_cache})
+
+!=partial('includes/chat/index', {}, {cache:theme.fragment_cache})

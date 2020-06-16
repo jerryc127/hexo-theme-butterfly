@@ -1,11 +1,12 @@
 .post-reward
-  a.reward-button.button--primary.button--animated 
-    i.fa.fa-qrcode
+  button.reward-button
+    i.fas.fa-qrcode
     = ' ' + _p('donate')
     .reward-main
       ul.reward-all
         each item in theme.reward.QR_code
+          - var clickTo = (item.itemlist||item).link ? (item.itemlist||item).link : (item.itemlist||item).img
           li.reward-item
-            img.post-qr-code__img(src=url_for((item.itemlist||item).img) alt=(item.itemlist||item).text)
+            img.post-qr-code__img(src=url_for((item.itemlist||item).img) alt=(item.itemlist||item).text onclick=`window.open('${url_for(clickTo)}')`)
             .post-qr-code__desc=(item.itemlist||item).text
 

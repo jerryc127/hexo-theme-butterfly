@@ -1,0 +1,71 @@
+#article-container
+  .tabs
+    position: relative
+    margin: 0 0 1rem
+    border: 1px solid $tab-border-color
+    border-top: none
+
+    > .nav-tabs
+      display: flex
+      flex-wrap: wrap
+      margin: 0
+      padding: 0
+      background: $tab-botton-bg
+
+      > .tab
+        margin: 0
+        padding: 0
+        list-style: none
+
+        @media screen and (max-width: 768px)
+          flex-grow: 1
+
+        a
+          display: block
+          padding: .5rem .8rem
+          outline: 0
+          border-top: 2px solid $tab-border-color
+          background: $tab-botton-bg
+          color: $font-color
+          text-align: center
+          transition: all .4s
+
+          &:hover
+            border-top: 2px solid $tab-button-hover-bg
+            background: $tab-button-hover-bg
+            text-decoration: none
+
+          i
+            width: 1.5em
+
+        &.active
+          a
+            border-top: 2px solid $tab-active-border-color
+            background: $card-bg
+            cursor: default
+
+    > .tab-contents
+      .tab-item-content
+        position: relative
+        display: none
+        padding: 1.8rem 1.2rem
+
+        @media screen and (max-width: 768px)
+          padding: 1.2rem .7rem
+
+        &.active
+          display: block
+          animation: tabshow .5s
+
+    .tab-to-top
+      position: relative
+      display: block
+      margin: 0 0 0 auto
+      color: $tab-to-top-color
+
+@keyframes tabshow
+  0%
+    transform: translateY(15px)
+
+  100%
+    transform: translateY(0)

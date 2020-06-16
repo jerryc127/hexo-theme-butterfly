@@ -1,4 +1,6 @@
 - var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
+- var pageHighlightShrinkSet = page.highlight_shrink !== undefined ? page.highlight_shrink : theme.highlight_shrink
+- var pageHighlightShrink = theme.highlight_shrink !== 'none' && pageHighlightShrinkSet ? 'code-close' : ''
 
 doctype html
 html(lang=config.language data-theme=theme.display_mode)
@@ -15,10 +17,11 @@ html(lang=config.language data-theme=theme.display_mode)
 
     include ./sidebar.pug
 
-    #body-wrap
+    #body-wrap(class=pageHighlightShrink)
       if theme.background
-        - var is_photo = theme.background.substring(3,0) === 'url' ? 'photo':'color'
+        - var is_photo = theme.background.startsWith('url') ? 'photo':'color'
         #web_bg(data-type=is_photo)
+
       include ./header/index.pug
 
       if (!is_post())

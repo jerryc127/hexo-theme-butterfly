@@ -57,231 +57,41 @@
         top: 13px
         left: 15px
         font-size: larger
+        @extend .fontawesomeIcon
 
-        if hexo-config('fontawesome_v5') && hexo-config('fontawesome_v5.enable')
-          font-weight: 600
-          font-family: 'Font Awesome 5 Free'
-        else
-          font-family: 'FontAwesome'
+  for $type in $note-types
+    &.{$type}
+      if ($note-style == 'flat')
+        background: lookup('$note-' + $type + '-bg')
 
-  &.default
-    if ($note-style == 'flat')
-      background-color: $note-default-bg
+      if ($note-style == 'modern')
+        border-color: lookup('$note-modern-' + $type + '-border')
+        background: lookup('$note-modern-' + $type + '-bg')
+        color: lookup('$note-modern-' + $type + '-text')
 
-    if ($note-style == 'modern')
-      border-color: $note-modern-default-border
-      background-color: $note-modern-default-bg
-      color: $note-modern-default-text
+        a,
+        span.exturl
+          &:not(.btn)
+            border-bottom: 1px solid lookup('$note-modern-' + $type + '-text')
+            color: lookup('$note-modern-' + $type + '-text')
 
-      a,
-      span.exturl
-        &:not(.btn)
-          border-bottom: 1px solid $note-modern-default-text
-          color: $note-modern-default-text
+            &:hover
+              border-bottom: 1px solid lookup('$note-modern-' + $type + '-hover')
+              color: lookup('$note-modern-' + $type + '-hover')
 
-          &:hover
-            border-bottom: 1px solid $note-modern-default-hover
-            color: $note-modern-default-hover
+      if ($note-style != 'modern')
+        border-left-color: lookup('$note-' + $type + '-border')
 
-    if ($note-style != 'modern')
-      border-left-color: $note-default-border
+        h2,
+        h3,
+        h4,
+        h5,
+        h6
+          color: lookup('$note-' + $type + '-text')
 
-      h2,
-      h3,
-      h4,
-      h5,
-      h6
-        color: $note-default-text
-
-    if $note-icons
-      &:not(.no-icon)
-        &::before
-          content: $note-default-icon
+      if $note-icons
+        &:not(.no-icon)::before
+          content: lookup('$note-' + $type + '-icon')
 
           if ($note-style != 'modern')
-            color: $note-default-text
-
-  &.primary
-    if ($note-style == 'flat')
-      background-color: $note-primary-bg
-
-    if ($note-style == 'modern')
-      border-color: $note-modern-primary-border
-      background-color: $note-modern-primary-bg
-      color: $note-modern-primary-text
-
-      a,
-      span.exturl
-        &:not(.btn)
-          border-bottom: 1px solid $note-modern-primary-text
-          color: $note-modern-primary-text
-
-          &:hover
-            border-bottom: 1px solid $note-modern-primary-hover
-            color: $note-modern-primary-hover
-
-    if ($note-style != 'modern')
-      border-left-color: $note-primary-border
-
-      h2,
-      h3,
-      h4,
-      h5,
-      h6
-        color: $note-primary-text
-
-    if $note-icons
-      &:not(.no-icon)
-        &::before
-          content: $note-primary-icon
-
-          if ($note-style != 'modern')
-            color: $note-primary-text
-
-  &.info
-    if ($note-style == 'flat')
-      background-color: $note-info-bg
-
-    if ($note-style == 'modern')
-      border-color: $note-modern-info-border
-      background-color: $note-modern-info-bg
-      color: $note-modern-info-text
-
-      a,
-      span.exturl
-        &:not(.btn)
-          border-bottom: 1px solid $note-modern-info-text
-          color: $note-modern-info-text
-
-          &:hover
-            border-bottom: 1px solid $note-modern-info-hover
-            color: $note-modern-info-hover
-
-    if ($note-style != 'modern')
-      border-left-color: $note-info-border
-
-      h2,
-      h3,
-      h4,
-      h5,
-      h6
-        color: $note-info-text
-
-    if $note-icons
-      &:not(.no-icon)
-        &::before
-          content: $note-info-icon
-
-          if ($note-style != 'modern')
-            color: $note-info-text
-
-  &.success
-    if ($note-style == 'flat')
-      background-color: $note-success-bg
-
-    if ($note-style == 'modern')
-      border-color: $note-modern-success-border
-      background-color: $note-modern-success-bg
-      color: $note-modern-success-text
-
-      a,
-      span.exturl
-        &:not(.btn)
-          border-bottom: 1px solid $note-modern-success-text
-          color: $note-modern-success-text
-
-          &:hover
-            border-bottom: 1px solid $note-modern-success-hover
-            color: $note-modern-success-hover
-
-    if ($note-style != 'modern')
-      border-left-color: $note-success-border
-
-      h2,
-      h3,
-      h4,
-      h5,
-      h6
-        color: $note-success-text
-
-    if $note-icons
-      &:not(.no-icon)
-        &::before
-          content: $note-success-icon
-
-          if ($note-style != 'modern')
-            color: $note-success-text
-
-  &.warning
-    if ($note-style == 'flat')
-      background-color: $note-warning-bg
-
-    if ($note-style == 'modern')
-      border-color: $note-modern-warning-border
-      background-color: $note-modern-warning-bg
-      color: $note-modern-warning-text
-
-      a,
-      span.exturl
-        &:not(.btn)
-          border-bottom: 1px solid $note-modern-warning-text
-          color: $note-modern-warning-text
-
-          &:hover
-            border-bottom: 1px solid $note-modern-warning-hover
-            color: $note-modern-warning-hover
-
-    if ($note-style != 'modern')
-      border-left-color: $note-warning-border
-
-      h2,
-      h3,
-      h4,
-      h5,
-      h6
-        color: $note-warning-text
-
-    if $note-icons
-      &:not(.no-icon)
-        &::before
-          content: $note-warning-icon
-
-          if ($note-style != 'modern')
-            color: $note-warning-text
-
-  &.danger
-    if ($note-style == 'flat')
-      background-color: $note-danger-bg
-
-    if ($note-style == 'modern')
-      border-color: $note-modern-danger-border
-      background-color: $note-modern-danger-bg
-      color: $note-modern-danger-text
-
-      a,
-      span.exturl
-        &:not(.btn)
-          border-bottom: 1px solid $note-modern-danger-text
-          color: $note-modern-danger-text
-
-          &:hover
-            border-bottom: 1px solid $note-modern-danger-hover
-            color: $note-modern-danger-hover
-
-    if ($note-style != 'modern')
-      border-left-color: $note-danger-border
-
-      h2,
-      h3,
-      h4,
-      h5,
-      h6
-        color: $note-danger-text
-
-    if $note-icons
-      &:not(.no-icon)
-        &::before
-          content: $note-danger-icon
-
-          if ($note-style != 'modern')
-            color: $note-danger-text
+            color: lookup('$note-' + $type + '-text')

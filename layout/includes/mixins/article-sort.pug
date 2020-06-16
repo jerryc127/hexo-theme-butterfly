@@ -11,10 +11,10 @@ mixin articleSort(posts)
         if article.cover && theme.cover.archives_enable
           .article-sort-img
             a.article-sort-item__img(href=url_for(article.path))
-              img(src=url_for(article.cover) alt=article.title || 'No Title' onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'`)
+              img(src=url_for(article.cover) alt=article.title || 'No Title' onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'`)
         .article-sort-post
           a.article-sort-item__post(href=url_for(article.path))
-            i.fa.fa-clock-o(aria-hidden="true")
+            i.far.fa-calendar-alt
             time.article-sort-item__time(title=_p('post.created') + ' ' + full_date(article.date))= date(article.date, config.date_format)
             .article-sort-item__title= article.title || 'No Title'
     - })

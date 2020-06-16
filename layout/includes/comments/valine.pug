@@ -15,14 +15,12 @@ script.
   }
 
   var guestInfo = requestSetting(['nick','mail','link'],'#{ theme.valine.guest_info }')
-  var requiredFields = requestSetting(['nick','mail','link'],'#{ theme.valine.requiredFields }')
+  var requiredFields = requestSetting(['nick','mail'],'#{ theme.valine.requiredFields }')
 
   window.valine = new Valine({
     el:'#vcomment',
     appId: '#{theme.valine.appId}',
     appKey: '#{theme.valine.appKey}',
-    notify: #{theme.valine.notify},
-    verify: #{theme.valine.verify},
     placeholder: '#{theme.valine.placeholder}',
     avatar: '#{theme.valine.avatar}',
     meta: guestInfo,

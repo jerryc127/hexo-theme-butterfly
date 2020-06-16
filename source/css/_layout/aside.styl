@@ -43,10 +43,8 @@
 
         a
           .headline
-            overflow: hidden
+            @extend .limit-one-line
             color: $font-black
-            text-overflow: ellipsis
-            white-space: nowrap
             font-size: .7rem
 
           .length_num
@@ -73,6 +71,7 @@
       position: relative
       z-index: 1
       display: block
+      width: 100%
       background-color: $light-blue
       color: $button-color
       line-height: 1.6rem
@@ -132,13 +131,11 @@
               font-size: .6rem
 
             .aside-post_title
-              display: -webkit-box
-              overflow: hidden
+              @extend .limit-more-line
               padding-left: 10px
               height: 40px
               line-height: 1rem
               -webkit-line-clamp: 2
-              -webkit-box-orient: vertical
 
               &:hover
                 color: $light-blue !important
@@ -155,23 +152,20 @@
 
   .card-archives ul.card-archive-list > .card-archive-list-item,
   .card-categories ul.card-category-list > .card-category-list-item
-    padding: .15rem 1rem
-    cursor: pointer
-    transition: all .5s
-
-    &:hover
-      padding: .15rem .85rem
-      background-color: $light-blue
-
     a
+      display: inline-block
+      padding: .15rem 1rem
+      width: 100%
       color: $font-black
+      transition: all .4s
+
+      &:hover
+        padding: .15rem .85rem
+        background-color: $light-blue
 
       span
         display: inline-block
-        overflow: hidden
         vertical-align: bottom
-        text-overflow: ellipsis
-        white-space: nowrap
 
         &:first-child
           width: 80%
@@ -193,7 +187,30 @@
   .card-categories
     .card-category-list
       &.child
-        padding: 0 0 0 1.2rem
+        padding: 0 0 0 1rem
+
+      > .parent
+        .card-category-list
+          &-name
+            width: 70% !important
+
+          &-count
+            width: 18%
+            text-align: right
+
+          &-icon
+            float: right
+            margin-right: -.35rem
+            padding: .35rem
+            transition: transform .3s
+            transform: rotate(0)
+
+            &.expand
+              transform: rotate(-90deg)
+
+        if hexo-config('aside.card_categories.expand') == false
+          + .child
+            display: none
 
   .card-webinfo
     .webinfo

@@ -1,12 +1,10 @@
 #mobile-sidebar
   #menu_mask
     position: fixed
-    top: 0
-    right: 0
-    bottom: 0
-    left: 0
     z-index: 102
     display: none
+    width: 100%
+    height: 100%
     background: alpha($dark-black, .8)
 
   #mobile-sidebar-menus
@@ -14,9 +12,7 @@
     top: 0
     right: -250px
     z-index: 103
-    display: block
-    overflow: hidden
-    overflow-y: scroll
+    overflow: hidden scroll
     width: 250px
     height: 100%
     background: #f6f8fa
@@ -46,9 +42,7 @@
 
         .mobile_data_link
           & > a > div
-            overflow: hidden
-            text-overflow: ellipsis
-            white-space: nowrap
+            @extend .limit-one-line
 
           .length_num
             color: $dark-black
@@ -66,41 +60,33 @@
       padding: 0 .5rem 2rem
 
       .site-page
+        @extend .limit-one-line
         position: relative
-        z-index: 0
         display: block
-        overflow: hidden
-        margin: 0
         padding: .3rem 1.5rem
         color: $font-black
-        text-overflow: ellipsis
-        text-shadow: none
-        white-space: nowrap
         font-size: .8rem
         cursor: pointer
 
-      i
-        width: 30%
-        text-align: left
+        i:first-child
+          width: 30%
+          text-align: left
 
-      span
-        width: 70%
+        span
+          width: 70%
 
-        &:hover
-          color: $light-blue
+          &:hover
+            color: $light-blue
 
       .menus-expand
         position: absolute
         right: 0
-        padding: 6px
-        width: 30px !important
-        height: 30px
+        padding: .4rem
         transition: all .3s
         transform: rotate(0)
 
         &.menus-closed
-          transition: all .3s
-          transform: rotate(180deg) !important
+          transform: rotate(90deg) !important
 
       .menus_item_child
         margin: 0

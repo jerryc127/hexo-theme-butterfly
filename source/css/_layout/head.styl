@@ -1,8 +1,8 @@
-#nav
+#page-header
   position: relative
   width: 100%
   background-color: $light-blue
-  background-attachment: local
+  background-attachment: scroll
   background-position: center center
   background-size: cover
   background-repeat: no-repeat
@@ -11,6 +11,7 @@
   // index
   &.full_page
     height: $index_top_img_height
+    background-attachment: fixed
 
     #site-info
       position: absolute
@@ -94,11 +95,9 @@
         font-size: 1.5rem
 
         .posttitle
-          display: -webkit-box
-          overflow: hidden
+          @extend .limit-more-line
           line-height: 1.5
           -webkit-line-clamp: 3
-          -webkit-box-orient: vertical
 
       #post-meta
         font-size: 95%
@@ -127,10 +126,17 @@
             color: $light-blue
             text-decoration: underline
 
-#page-header
+// css hack
+// all browser in ios and safari in all apple device
+_::-webkit-full-page-media,
+_:future,
+:root #page-header.full_page
+  background-attachment: scroll !important
+
+#nav
   position: absolute
   top: 0
-  z-index: 99
+  z-index: 90
   padding: 10px 36px
   width: 100%
   height: 58px
@@ -164,7 +170,7 @@
   &.fixed
     position: fixed
     top: -60px
-    z-index: 101
+    z-index: 91
     background: alpha($white, .8)
     box-shadow: 0 5px 6px -5px alpha($grey, .6)
     transition: transform .2s ease-in-out, opacity .2s ease-in-out
@@ -270,7 +276,7 @@
     cursor: pointer
 
 @media screen and (min-width: $sm)
-  #nav
+  #page-header
     #site_title
       font-size: 2rem
 
@@ -278,10 +284,10 @@
       font-size: 1.2rem
 
 @media screen and (max-width: $sm)
-  #page-header
+  #nav
     padding: 10px .8rem
 
-  #nav
+  #page-header
     #site_social_icons
       display: block
 

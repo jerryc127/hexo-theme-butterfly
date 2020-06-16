@@ -1,7 +1,7 @@
 -
   var options = {
-    prev_text: '<i class="fa fa-fw fa-chevron-left" aria-hidden="true"></i>',
-    next_text: '<i class="fa fa-fw fa-chevron-right" aria-hidden="true"></i>',
+    prev_text: '<i class="fas fa-chevron-left fa-fw"></i>',
+    next_text: '<i class="fas fa-chevron-right fa-fw"></i>',
     mid_size: 1,
     escape: false
   }
@@ -11,29 +11,29 @@ if(!is_post())
     div.pagination
       !=paginator(options)
 else
-  nav#pagination.pagination_post
+  nav#pagination.pagination-post
     if(page.prev)
-      - var hasPageNext = page.prev ? 'pull_left' : 'pull-full'
+      - var hasPageNext = page.next ? 'pull-left' : 'pull-full'
       .prev-post(class=hasPageNext)
         - var pagination_cover = page.prev.cover === false ? page.prev.randomcover : page.prev.cover
         a(href=url_for(page.prev.path))
-          if theme.lazyload
-            img.prev_cover(data-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'` )
+          if theme.lazyload.enable
+            img.prev-cover(data-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` )
           else
-            img.prev_cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'` )
+            img.prev-cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` )
           .pagination-info
             .label=_p('pagination.prev')
             .prev_info=page.prev.title
           
     if(page.next)
-      - var hasPagePrev = page.prev ? 'pull_right' : 'pull-full'
+      - var hasPagePrev = page.prev ? 'pull-right' : 'pull-full'
       - var pagination_cover = page.next.cover == false ? page.next.randomcover : page.next.cover
       .next-post(class=hasPagePrev)
         a(href=url_for(page.next.path))
-          if theme.lazyload
-            img.next_cover(data-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'`)
+          if theme.lazyload.enable
+            img.next-cover(data-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'`)
           else
-            img.next_cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.lodding_bg.post_page)}'`)
+            img.next-cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'`)
           .pagination-info
             .label=_p('pagination.next')
             .next_info=page.next.title 

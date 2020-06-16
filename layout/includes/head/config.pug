@@ -31,7 +31,6 @@
     translate = JSON.stringify({
       defaultEncoding: theme.translate.defaultEncoding,
       translateDelay: theme.translate.translateDelay,
-      cookieDomain: theme.translate.cookieDomain,
       msgToTraditionalChinese: theme.translate.msgToTraditionalChinese,
       msgToSimplifiedChinese: theme.translate.msgToSimplifiedChinese
     })
@@ -60,7 +59,7 @@
   
   var Snackbar = 'undefined';
   if (theme.snackbar && theme.snackbar.enable) {
-  Snackbar = JSON.stringify({      
+  Snackbar = JSON.stringify({
     bookmark: {
       message_prev: _p("Snackbar.bookmark.message_prev"),
       message_next: _p("Snackbar.bookmark.message_next")
@@ -94,17 +93,18 @@ script.
     runtime: !{theme.runtimeshow.enable},
     copyright: !{copyright},
     ClickShowText: !{ClickShowText},
-    medium_zoom: !{theme.medium_zoom.enable},
-    fancybox: !{theme.fancybox.enable},
+    medium_zoom: !{theme.medium_zoom},
+    fancybox: !{theme.fancybox},
     Snackbar: !{Snackbar},
-    baiduPush: !{theme.baidu_push && theme.baidu_push.enable},
+    justifiedGallery: {
+      js: '!{theme.CDN.justifiedGallery_js}',
+      css: '!{theme.CDN.justifiedGallery_css}'
+    },
+    baiduPush: !{theme.baidu_push},
     highlightCopy: !{theme.highlight_copy},
     highlightLang: !{theme.highlight_lang},
-    highlightShrink: '!{theme.highlight_shrink}',
-    isFontAwesomeV5: !{theme.fontawesome_v5 && theme.fontawesome_v5.enable},
     isPhotoFigcaption: !{theme.photofigcaption},
-    islazyload: !{theme.lazyload},
-    isanchor: !{theme.anchor}
-    
+    islazyload: !{theme.lazyload.enable},
+    isanchor: !{theme.anchor}    
   }
 

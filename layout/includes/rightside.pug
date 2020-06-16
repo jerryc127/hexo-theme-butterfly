@@ -1,23 +1,32 @@
 section#rightside.rightside
   #rightside-config-hide
-    if theme.readmode.enable && is_post()
-      i#readmode.fa.fa-book(title=_p('rightside.readmode_title'))
     if is_post()
-      i#font_plus.fa.fa-plus(title=_p('rightside.font_plus_title'))
-      i#font_minus.fa.fa-minus(title=_p('rightside.font_minus_title'))
+      if theme.readmode
+        button#readmode(title=_p('rightside.readmode_title'))
+          i.fas.fa-book-open
+      button#font_plus(title=_p('rightside.font_plus_title'))
+        i.fas.fa-plus
+      button#font_minus(title=_p('rightside.font_minus_title'))
+        i.fas.fa-minus
     if theme.translate && theme.translate.enable
-      a#translateLink.translate_chn_to_cht(href="javascript:translatePage();" title=_p('rightside.translate_title') target="_self")= theme.translate.default
+      button#translateLink.translate_chn_to_cht(title=_p('rightside.translate_title'))= theme.translate.default
     if theme.darkmode.enable && theme.darkmode.button
-      - var lightModeIcon = theme.fontawesome_v5 && theme.fontawesome_v5.enable ? 'far fa-sun' : 'fa fa-sun-o'
-      - var darkModeIcon = theme.fontawesome_v5 && theme.fontawesome_v5.enable ? 'far fa-moon' : 'fa fa-moon-o'
-      - var display_mode = theme.display_mode == 'dark' ? lightModeIcon : darkModeIcon
-      i#darkmode.darkmode(class=display_mode title=_p('rightside.night_mode_title'))
+      button#darkmode(title=_p('rightside.night_mode_title'))
+        i.fas.fa-adjust
   #rightside-config-show
-    #rightside_config(title=_p("rightside.setting"))
-      i.fa.fa-cog(aria-hidden="true")
+    button#rightside_config(title=_p("rightside.setting"))
+      i.fas.fa-cog
     if is_post() && page.comments !== false && isComment
       a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
-        i.scroll_to_comment.fa.fa-comments   
-    if is_post() && page.toc !== false && theme.toc.enable && (toc(page.content) !== '' || page.encrypt == true )
-      i#mobile-toc-button.fa.fa-list-ul.close(title=_p("rightside.toc") aria-hidden="true")
-    i.fa.fa-arrow-up#go-up(title=_p("rightside.back_to_top") aria-hidden="true")
+        i.scroll_to_comment.fas.fa-comments
+    if showToc
+      button#mobile-toc-button.close(title=_p("rightside.toc"))
+        i.fas.fa-list-ul
+    if theme.chat_btn && (theme.chatra.enable || theme.tidio.enable || theme.daovoice.enable || theme.gitter.enable)
+      button#chat_btn(title=_p("rightside.chat_btn"))
+        i.fas.fa-sms
+
+    button#go-up(title=_p("rightside.back_to_top"))
+      i.fas.fa-arrow-up
+
+

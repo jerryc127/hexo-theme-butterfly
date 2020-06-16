@@ -92,7 +92,7 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
   if (len > Judge) {
     result += '<li class="card-archive-list-item more is-center">'
     result += `<a class="card-archive-list-link-more" href="${this.url_for(archiveDir)}">
-              <span>${moreButton}</span><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>`
+              <span>${moreButton}</span><i class="fas fa-angle-right"  ></i></a></li>`
   }
   result += '</ul>'
   return result

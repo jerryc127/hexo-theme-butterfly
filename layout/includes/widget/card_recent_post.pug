@@ -1,7 +1,7 @@
 .card-widget.card-recent-post
   .card-content
     .item-headline
-      i.fa.fa-history(aria-hidden="true")
+      i.fas.fa-history
       span= _p('aside.card_recent_post')
     .aside-recent-item
       - var postLimit = theme.aside.card_recent_post.limit === 0 ? site.posts.length : theme.aside.card_recent_post.limit || 5
@@ -15,10 +15,10 @@
             a(href=url_for(link))
               if post_cover && theme.cover.aside_enable
                 .aside-post-cover
-                  if theme.lazyload
-                    img.aside-post-bg(data-src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` title=title alt=title)
+                  if theme.lazyload.enable
+                    img.aside-post-bg(data-src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` title=title alt=title)
                   else
-                    img.aside-post-bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.lodding_bg.post_page) + `'` title=title alt=title)
+                    img.aside-post-bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` title=title alt=title)
               .aside-post-title(class=no_cover)
                 .aside-post_title(href=url_for(link) title=article.title || _p('no_title'))= article.title || _p('no_title')
                 time.aside-post_meta.post-meta__date(title=_p('post.created') + ' ' + full_date(article.date)) #[=date(article.date, config.date_format)]

@@ -1,13 +1,5 @@
 - var contentType = is_post() ? 'article' : 'website'
 
-//- twitter meta
-if theme.twitter_meta
-  meta(name="twitter:card" content="summary")
-  meta(name="twitter:title" content=pageTitle)
-  meta(name="twitter:description" content!=pageDescription)
-  meta(name="twitter:image" content=full_url_for(page.cover || theme.avatar.img))
-
-//- Open_Graph
 if theme.Open_Graph_meta
   meta(property="og:type" content=contentType)
   meta(property="og:title" content=pageTitle)
@@ -17,3 +9,4 @@ if theme.Open_Graph_meta
   meta(property="og:image" content=full_url_for(page.cover || theme.avatar.img))
   meta(property="article:published_time" content=date_xml(page.date))
   meta(property="article:modified_time" content=date_xml(page.updated))
+  meta(name="twitter:card" content="summary")

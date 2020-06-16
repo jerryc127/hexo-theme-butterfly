@@ -1,15 +1,11 @@
-- let showToc = is_post() && page.toc !== false && theme.toc.enable && (toc(page.content) !== '' || page.encrypt == true )
-- let autoOpenSidebar = theme.auto_open_sidebar.enable === true ? 'on' : ''
-
 -
-  let tocNumber
-  if (page.toc_number !== undefined) tocNumber = page.toc_number
-  else if (theme.toc.number !== undefined) tocNumber = theme.toc.number
-  else tocNumber = true
+  let tocNumber = page.toc_number !== undefined ? page.toc_number : theme.toc.number
+  let autoOpenPostSet = page.auto_open == undefined ? theme.toc.auto_open : page.auto_open
+  let autoOpenSidebar = autoOpenPostSet ? 'on' : ''
 -
 
 if(showToc)
-  i.fa.fa-arrow-right#toggle-sidebar(aria-hidden="true" class=autoOpenSidebar)      
+  i.fas.fa-arrow-right#toggle-sidebar(class=autoOpenSidebar)
   #sidebar
     .sidebar-toc
       div.sidebar-toc__title= _p('sidebar.catalog')

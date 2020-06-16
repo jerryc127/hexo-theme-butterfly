@@ -1,6 +1,6 @@
 # hexo-theme-butterfly
 
-<a href="https://github.com/jerryc127/hexo-theme-butterfly/releases"><img alt="Version" src="https://img.shields.io/badge/release-2.3.5-blue"/></a>
+<a href="https://github.com/jerryc127/hexo-theme-butterfly/releases"><img alt="Version" src="https://img.shields.io/badge/release-3.0.0-blue"/></a>
 <a href="https://jerryc.me"><img alt="Author" src="https://img.shields.io/badge/author-JerryC-blur"/></a>
 <a href="https://hexo.io"><img alt="Hexo" src="https://img.shields.io/badge/hexo-4.0+-0e83c"/></a>
 <a href="https://nodejs.org/"><img alt="node.js" src="https://img.shields.io/badge/node.js-8.0+-blur"/></a>
@@ -14,33 +14,33 @@ Demo:  👍 [Butterfly](https://demo.jerryc.me/)  ||   🤞 [JerryC](https://jer
 在你的博客根目錄裡安裝穩定版【推薦】
 
 ```
-git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
 ```
 
 如果想要安裝比較新的dev分支，可以
 
 ```
-git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
 ```
 
 ## 應用主題
 修改hexo配置文件`_config.yml`，把主題改為`Butterfly`
 
 ```
-theme: Butterfly
+theme: butterfly
 ```
 
 >如果你沒有pug以及stylus的渲染器，請下載安裝： npm install hexo-renderer-pug hexo-renderer-stylus --save or yarn add hexo-renderer-pug hexo-renderer-stylus
 
 ## 文檔
 
-可查看[hexo-theme-butterfly docs](https://docs.jerryc.me) 和 [JerryC](https://jerryc.me/posts/21cfbf15)
+可查看[Butterfly Docs](https://demo.jerryc.me/posts/21cfbf15/)
 
 你也可以加入群組
 
-[  💬 QQ群 [推薦]](https://jq.qq.com/?_wv=1027&k=5KI3Jqb)
+[ 💬 QQ群 [推薦]](https://jq.qq.com/?_wv=1027&k=5KI3Jqb)
 
-[  💬Telegram群](https://t.me/hexo_butterfly)
+[ 💬 Telegram群](https://t.me/hexo_butterfly)
 
 ## 截圖
 
