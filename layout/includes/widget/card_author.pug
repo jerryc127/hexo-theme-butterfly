@@ -1,9 +1,9 @@
 .card-widget.card-info
   .card-content
     .card-info-avatar.is-center
-      img.avatar-img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt="avatar")
+      img.avatar-img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
       .author-info__name= config.author
-      .author-info__description= theme.aside.card_author.description || config.description
+      .author-info__description!= theme.aside.card_author.description || config.description
 
     .card-info-data
       if site.posts.length
@@ -25,8 +25,8 @@
             .length_num= site.categories.length
 
     .card-info-bookmark.is-center
-      a#bookmark-it.bookmark.button--primary.button--animated(href="javascript:;" title= _p('aside.card_bookmark') target="_self")
-        i.fa.fa-bookmark(aria-hidden="true")
+      button#bookmark-it.button--animated(title= _p('aside.card_bookmark'))
+        i.fas.fa-bookmark
         span= _p('aside.card_bookmark') || 'Follow Me'
   
     if(theme.social)

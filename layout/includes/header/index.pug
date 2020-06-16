@@ -24,8 +24,8 @@ if theme.douban
 - var isHomeClass = is_home() ? 'full_page' : 'not-index-bg'
 - is_post() ? isHomeClass = 'post-bg' : isHomeClass
 
-#nav(class=isHomeClass style=bg_img)
-  !=partial('includes/header/header', {}, {cache:theme.fragment_cache})
+header#page-header(class=isHomeClass style=bg_img)
+  !=partial('includes/header/nav', {}, {cache:theme.fragment_cache})
   if is_home()
     #site-info
       h1#site_title=site_title
@@ -35,7 +35,7 @@ if theme.douban
         #site_social_icons
           !=fragment_cache('social', function(){return partial('includes/header/social')})
     #scroll_down
-      i.fa.fa-angle-down.scroll-down-effects
+      i.fas.fa-angle-down.scroll-down-effects
   else if is_post()
     include ./post-info.pug 
   else

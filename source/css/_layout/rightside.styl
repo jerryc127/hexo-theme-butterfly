@@ -1,7 +1,7 @@
 #rightside
   position: fixed
   right: -38px
-  bottom: 40px
+  bottom: $rightside-bottom
   opacity: 0
   transition: all .5s
 
@@ -16,9 +16,8 @@
     animation: rightsideOut .3s
 
   & > div
-    & > i,
-    & > a,
-    & > div
+    & > button,
+    & > a
       display: block
       margin-bottom: 2px
       width: 30px
@@ -27,7 +26,6 @@
       color: $button-color
       text-align: center
       font-size: 16px
-      line-height: 29px
       cursor: pointer
 
       &:hover
@@ -40,9 +38,7 @@
   #mobile-toc-button
     display: none
 
-@media screen and (max-width: $bg)
-  #rightside
-    #mobile-toc-button
+    @media screen and (max-width: $bg)
       display: block
 
 @keyframes rightsideIn

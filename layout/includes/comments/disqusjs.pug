@@ -3,12 +3,13 @@ script(src=url_for(theme.CDN.disqusjs))
 script.
   var dsqjs = new DisqusJS({
     shortname: '!{theme.disqusjs.shortname}',
-    siteName: "!{theme.disqusjs.siteName}",
+    siteName: '!{theme.disqusjs.siteName}',
     identifier: '!{ page.path }',
     url: '!{ page.permalink }',
     title: '!{ page.title }',
     api: '!{theme.disqusjs.api}',
     apikey: '!{theme.disqusjs.apikey}',
+    nocomment: '!{theme.disqusjs.nocomment}',
     admin: '!{theme.disqusjs.admin}',
     adminLabel: '!{theme.disqusjs.adminLabel}'
   });

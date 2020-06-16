@@ -28,8 +28,8 @@ function hideInline (args) {
   if (color) group += `color: ${color}`
   group += '"'
 
-  return `<span class="hide-inline"><a class="hide-button button--primary button--animated" ${group}>${display}
-  </a><span class="hide-content">${content}</span></span>`
+  return `<span class="hide-inline"><button class="hide-button button--animated" ${group}>${display}
+  </button><span class="hide-content">${content}</span></span>`
 }
 
 function hideBlock (args, content) {
@@ -43,8 +43,8 @@ function hideBlock (args, content) {
   if (color) group += `color: ${color}`
   group += '"'
 
-  return `<div class="hide-block"><a class="hide-button button--primary button--animated" ${group}>${display}
-    </a><span class="hide-content">${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}</span></div>`
+  return `<div class="hide-block"><button class="hide-button button--animated" ${group}>${display}
+    </button><span class="hide-content">${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}</span></div>`
 }
 
 function hideToggle (args, content) {
@@ -62,7 +62,7 @@ function hideToggle (args, content) {
   if (color) group += `color: ${color}`
   group += '"'
 
-  return `<div class="hide-toggle" ${border}><div class="hide-button toggle-title" ${group}><i class="fa fa-caret-right fa-fw"></i><span>${display}</span></div>
+  return `<div class="hide-toggle" ${border}><div class="hide-button toggle-title" ${group}><i class="fas fa-caret-right fa-fw"></i><span>${display}</span></div>
     <div class="hide-content">${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}</div></div>`
 }
 

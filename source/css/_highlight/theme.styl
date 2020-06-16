@@ -13,17 +13,23 @@ if $highlight_theme == 'default'
   $highlight-aqua = #89DDFF
   $highlight-blue = #82AAFF
   $highlight-purple = #C792EA
+  $highlight-deletion = #BF42BF
+  $highlight-addition = #105EDE
   $highlight-gutter = {
-    color: #37474F,
+    color: alpha($highlight-foreground, .5),
     bg-color: $highlight-background
   }
+  $highlight-tools = {
+    color: alpha($highlight-foreground, .8),
+    bg-color: darken($highlight-background, 2)
+  }
 
-if $highlight_theme == 'darker'
+if $highlight_theme == 'darker' || ($highlight_theme == 'mac')
   $highlight-background = #212121
   $highlight-current-line = #282a2e
   $highlight-selection = #61616150
   $highlight-foreground = #EEFFFF
-  $highlight-comment = #4A4A4A
+  $highlight-comment = #969896
   $highlight-red = #FF5370
   $highlight-orange = #F78C6C
   $highlight-yellow = #FFCB6B
@@ -31,9 +37,15 @@ if $highlight_theme == 'darker'
   $highlight-aqua = #89DDFF
   $highlight-blue = #82AAFF
   $highlight-purple = #C792EA
+  $highlight-deletion = #BF42BF
+  $highlight-addition = #105EDE
   $highlight-gutter = {
-    color: #424242,
+    color: alpha($highlight-foreground, .5),
     bg-color: $highlight-background
+  }
+  $highlight-tools = {
+    color: alpha($highlight-foreground, .8),
+    bg-color: darken($highlight-background, 2)
   }
 
 if $highlight_theme == 'pale night'
@@ -49,9 +61,15 @@ if $highlight_theme == 'pale night'
   $highlight-aqua = #89DDFF
   $highlight-blue = #82AAFF
   $highlight-purple = #C792EA
+  $highlight-deletion = #BF42BF
+  $highlight-addition = #105EDE
   $highlight-gutter = {
-    color: #3A3F58,
+    color: alpha($highlight-foreground, .5),
     bg-color: $highlight-background
+  }
+  $highlight-tools = {
+    color: $highlight-foreground,
+    bg-color: darken($highlight-background, 2)
   }
 
 if $highlight_theme == 'ocean'
@@ -59,7 +77,7 @@ if $highlight_theme == 'ocean'
   $highlight-current-line = #000000
   $highlight-selection = #717CB450
   $highlight-foreground = #8F93A2
-  $highlight-comment = #464B5D
+  $highlight-comment = rgba(101, 115, 126, .8)
   $highlight-red = #FF5370
   $highlight-orange = #F78C6C
   $highlight-yellow = #FFCB6B
@@ -67,9 +85,15 @@ if $highlight_theme == 'ocean'
   $highlight-aqua = #89DDFF
   $highlight-blue = #82AAFF
   $highlight-purple = #C792EA
+  $highlight-deletion = #BF42BF
+  $highlight-addition = #105EDE
   $highlight-gutter = {
-    color: #3B3F5180,
+    color: alpha($highlight-foreground, .5),
     bg-color: $highlight-background
+  }
+  $highlight-tools = {
+    color: $highlight-foreground,
+    bg-color: darken($highlight-background, 2)
   }
 
 if $highlight_theme == 'light'
@@ -77,7 +101,7 @@ if $highlight_theme == 'light'
   $highlight-current-line = #00346e
   $highlight-selection = #80CBC440
   $highlight-foreground = #90A4AE
-  $highlight-comment = #90A4AE90
+  $highlight-comment = rgba(149, 165, 166, .8)
   $highlight-red = #E53935
   $highlight-orange = #F76D47
   $highlight-yellow = #FFB62C
@@ -85,7 +109,26 @@ if $highlight_theme == 'light'
   $highlight-aqua = #39ADB5
   $highlight-blue = #6182B8
   $highlight-purple = #7C4DFF
+  $highlight-deletion = #BF42BF
+  $highlight-addition = #105EDE
   $highlight-gutter = {
-    color: #CFD8DC,
+    color: alpha($highlight-foreground, .5),
     bg-color: $highlight-background
+  }
+  $highlight-tools = {
+    color: $highlight-foreground,
+    bg-color: darken($highlight-background, 5)
+  }
+
+if $highlight_theme == false
+  $highlight-background = #F6F8FA
+  $highlight-foreground = #90A4AE
+  $highlight-selection = #80CBC440
+  $highlight-gutter = {
+    color: alpha($highlight-foreground, .5),
+    bg-color: $highlight-background
+  }
+  $highlight-tools = {
+    color: $highlight-foreground,
+    bg-color: darken($highlight-background, 5)
   }

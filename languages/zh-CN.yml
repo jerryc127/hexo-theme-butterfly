@@ -24,7 +24,7 @@ post:
   created: 发表于
   updated: 更新于
   wordcount: 字数总计
-  min2read: "阅读时长: %s 分钟"
+  min2read: '阅读时长: %s 分钟'
   page_pv: 阅读量
   comments: 评论数
   copyright:
@@ -38,14 +38,14 @@ post:
 search: 搜索
 algolia_search:
   input_placeholder: 搜索文章
-  hits_empty: "找不到您查询的内容:${query}"
-  hits_stats: "找到 ${hits} 条结果，用时 ${time} 毫秒"
+  hits_empty: '找不到您查询的内容:${query}'
+  hits_stats: '找到 ${hits} 条结果，用时 ${time} 毫秒'
 
 local_search:
   label: 本地搜索
   input_placeholder: 搜索文章
-  hits_empty: "找不到您查询的内容:${query}"
-  powered: "提供支持"
+  hits_empty: '找不到您查询的内容:${query}'
+  powered: '提供支持'
   by: 由
 
 pagination:
@@ -83,7 +83,7 @@ rightside:
   font_plus_title: 放大字体
   font_minus_title: 缩小字体
   translate_title: 简繁转换
-  night_mode_title: 夜间模式
+  night_mode_title: 浅色和深色模式转换
   back_to_top: 回到顶部
   toc: 目录
   scroll_to_comment: 直达评论
@@ -108,3 +108,7 @@ Snackbar:
 
 error_title: 页面没有找到
 loading: 加载中...
+
+error404:
+  error_title: 页面没有找到
+  back_button: 回到主页

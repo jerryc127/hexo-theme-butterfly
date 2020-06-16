@@ -2,8 +2,8 @@ if site.categories.length
   .card-widget.card-categories
       .card-content
         .item-headline
-          i.fa.fa-folder-open(aria-hidden="true")
+          i.fas.fa-folder-open
           span= _p('aside.card_categories')
-        !=aside_categories({ limit: theme.aside.card_categories.limit === 0 ? 0 : theme.aside.card_categories.limit || 8 })
+        !=aside_categories({ limit: theme.aside.card_categories.limit === 0 ? 0 : theme.aside.card_categories.limit || 8 , expand: theme.aside.card_categories.expand })
 
   

@@ -20,7 +20,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       background-color: alpha($dark-black, .7)
       content: ''
 
-    #nav,
+    #page-header,
     .layout_post > #post,
     .layout_page > div:first-child:not(.recent-posts)
       background-color: #121212
@@ -40,7 +40,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         color: alpha(#FFFFFF, .8) !important
 
     // 頭部
-    #nav
+    #page-header
       &:before
         position: absolute
         top: 0
@@ -50,7 +50,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         background-color: alpha($dark-black, .7)
         content: ''
 
-      & > #page-header
+      & > #nav
         a
           color: alpha(#FFFFFF, .8) !important
 
@@ -78,26 +78,25 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
           color: alpha(#FFFFFF, .6)
 
     // 代碼框
-    #article-container pre,
-    #article-container pre code
-      background-color: lighten(#121212, 2)
+    #article-container
+      pre,
+      .highlight:not(.js-file-line-container)
+        background-color: lighten(#121212, 2) !important
+        color: alpha(#FFFFFF, .6) !important
+
+      figure.highlight
+        .line:before
+          color: alpha(#FFFFFF, .6) !important
+
+        .gutter pre
+          background-color: lighten(#121212, 2) !important
+
+        .hljs
+          background-color: lighten(#121212, 2) !important
 
     .highlight-tools
-      background: lighten(#121212, 3)
-
-    #article-container .highlight:not(.js-file-line-container)
-      background-color: lighten(#121212, 2)
-
-      .code pre,
-      .gutter pre
-        background-color: lighten(#121212, 2)
-
-      table
-        .copy-notice
-          background: lighten(#121212, 3)
-
-    .copy-notice
-      background: lighten(#121212, 3)
+      background: lighten(#121212, 3) !important
+      color: #90a4ae !important
 
     blockquote
       background-color: lighten(#121212, 10)
@@ -138,9 +137,8 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     // 右下角按鈕
     #rightside
       & > div
-        & > i,
-        & > a,
-        & > div
+        & > button,
+        & > a
           background-color: lighten(#121212, 5)
           color: alpha(#FFFFFF, .6)
 
@@ -158,15 +156,17 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         &:after
           border-top: 13px solid lighten(#121212, 10) !important
 
-    .md-links-item:before,
-    .card-category-list-item:hover,
-    .card-archive-list-item:hover,
+    .flink-list-item:before,
+    .card-category-list-item a:hover,
+    .card-archive-list-item a:hover,
     #bookmark-it
       background-color: lighten(#121212, 10) !important
 
     img,
-    iframe:not(.utterances-frame),
     .gist
+      filter: brightness(.7)
+
+    #article-container iframe
       filter: brightness(.7)
 
     // 側邊欄
@@ -207,11 +207,11 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     .recent-posts .article-meta,
     .recent-posts a,
     .post-reward .reward-button,
-    .fa-clipboard,
+    .copy-button,
     .gutter pre,
     #bookmark-it,
     .copy-notice,
-    .md-links-item a,
+    .flink-list-item a,
     .category-list-link,
     .relatedPosts_date,
     .prev-post .label,
@@ -246,6 +246,24 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         a
           color: alpha(#FFFFFF, .6) !important
 
+    // error 404
+    #error-wrap
+      .error-content
+        background: #121212
+
+        .error-img
+          filter: brightness(.7)
+
+        .error-info
+          .error_title
+            color: alpha(#FFFFFF, .8)
+
+          .error_subtitle
+            color: alpha(#FFFFFF, .6)
+
+          a
+            background: #2c2c2c
+
     // note
     if hexo-config('note.style') == 'modern'
       .note
@@ -257,8 +275,33 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         color: #4c4948
 
     // hide-tags
-    .hide-button
-      filter: brightness(.7)
+    .hide-button,
+    .btn-beautify
+      filter: brightness(.8)
+
+    // tabs
+    #article-container
+      .tabs
+        border: 2px solid #2c2c2c
+        border-top: none
+
+        > .nav-tabs
+          background: #2c2c2c
+
+          a
+            border-top: 2px solid #2c2c2c
+            background: #2c2c2c
+            color: alpha(#FFFFFF, .6)
+
+          .tab:not(.active)
+            a
+              &:hover
+                border-top: 2px solid lighten(#121212, 20)
+                background: lighten(#121212, 20)
+
+          .active
+            a
+              background: #121212
 
     // 第三方
     // 插件 hexo-blog-encrypt

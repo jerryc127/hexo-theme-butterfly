@@ -15,7 +15,7 @@ if theme.subtitle.enable
           })
           .then(function (data) {
             if (subtitleEffect) {
-              var sub = '!{theme.subtitle.sub}'.length == 0 ? new Array() : '!{theme.subtitle.sub}'.split(',')
+              var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
               var both = sub.unshift(data.text)
               var typed = new Typed('#subtitle', {
                 strings: sub,
@@ -45,7 +45,7 @@ if theme.subtitle.enable
           .then(function (data) {
             if (subtitleEffect) {
               var from = '出自 ' + data.from
-              var sub = '!{theme.subtitle.sub}'.length == 0 ? new Array() : '!{theme.subtitle.sub}'.split(',')
+              var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
               var both = sub.unshift(data.hitokoto, from)
               var typed = new Typed('#subtitle', {
                 strings: sub,
@@ -72,7 +72,7 @@ if theme.subtitle.enable
           var con = str[0]
           if (subtitleEffect) {
             var from = '出自 ' + str[1]
-            var sub = '!{theme.subtitle.sub}'.length == 0 ? new Array() : '!{theme.subtitle.sub}'.split(',')
+            var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
             var both = sub.unshift(con, from)
             var typed = new Typed('#subtitle', {
               strings: sub,
@@ -95,7 +95,7 @@ if theme.subtitle.enable
             var subtitleEffect = !{ subtitleEffect }
             jinrishici.load(function (result) {
               if (subtitleEffect) {
-                var sub = '!{theme.subtitle.sub}'.length == 0 ? new Array() : '!{theme.subtitle.sub}'.split(',')
+                var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
                 var content = result.data.content
                 var both = sub.unshift(content)
                 var typed = new Typed('#subtitle', {
@@ -119,7 +119,7 @@ if theme.subtitle.enable
       var subtitleEffect = !{subtitleEffect}
       if (subtitleEffect) { 
         var typed = new Typed("#subtitle", {
-          strings: '!{theme.subtitle.sub}'.split(","),
+          strings: "!{theme.subtitle.sub}".split(","),
           startDelay: 300,
           typeSpeed: 150,
           loop: !{theme.subtitle.loop},

@@ -41,14 +41,14 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   var limitNum = config.related_post.limit || 6
   var dateType = config.related_post.date_type || 'created'
   var headlineLang = this._p('post.recommend')
-  var lazySrc = config.lazyload ? 'data-src' : 'src'
+  var lazySrc = config.lazyload.enable ? 'data-src' : 'src'
 
   relatedPosts = relatedPosts.sort(compare('weight'))
 
   if (relatedPosts.length > 0) {
     result += '<div class="relatedPosts">'
     result +=
-      '<div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span>' +
+      '<div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span>' +
       ' ' +
       headlineLang +
       '</span></div>'
@@ -74,13 +74,13 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
         '">'
       if (dateType === 'created') {
         result +=
-          '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>' +
+          '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i>' +
           ' ' +
           this.date(relatedPosts[i].created, hexoConfig.date_format) +
           '</div>'
       } else {
         result +=
-          '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-history fa-fw" aria-hidden="true"></i>' +
+          '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fas fa-history fa-fw"></i>' +
           ' ' +
           this.date(relatedPosts[i].updated, hexoConfig.date_format) +
           '</div>'
@@ -90,7 +90,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
       result += '</div></a></div>'
     }
 
-    result += '</div><div class="clear_both"></div></div>'
+    result += '</div></div>'
     return result
   }
 })

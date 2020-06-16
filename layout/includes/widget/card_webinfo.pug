@@ -1,8 +1,7 @@
-- var webinfoIcon = theme.fontawesome_v5 && theme.fontawesome_v5.enable ? 'fas fa-chart-line' : 'fa fa-line-chart'
 .card-widget.card-webinfo
   .card-content
     .item-headline
-        i(class=webinfoIcon aria-hidden="true")
+        i.fas.fa-chart-line
         span= _p('aside.card_webinfo.headline')
     .webinfo
       .webinfo-item
@@ -11,7 +10,7 @@
       if theme.runtimeshow.enable
         .webinfo-item
           .webinfo-runtime-name= _p('aside.card_webinfo.runtime_name') + " :"
-          #webinfo-runtime-count.webinfo-runtime-count(start_date=theme.runtimeshow.start_date)      
+          #webinfo-runtime-count.webinfo-runtime-count(publish_date=theme.runtimeshow.publish_date)      
       if theme.wordcount.enable && theme.wordcount.total_wordcount
         .webinfo-item
           .webinfo-site-wordcount-name=_p('aside.card_webinfo.site_wordcount') + " :"

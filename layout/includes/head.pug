@@ -4,7 +4,7 @@
 - else if (is_category()) pageTitle = _p('page.category') + ': ' + page.category
 - else if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
 - else if (is_year()) pageTitle += ': ' + page.year
-- else if (is_current('/404.html', [strict])) pageTitle = _p('error_title')
+- else if (is_current('/404.html', [strict])) pageTitle = _p('error404.error_title')
 - else pageTitle = page.title || config.title || ''
 
 - var isSubtitle = config.subtitle ? ' - ' + config.subtitle : ''
@@ -29,6 +29,7 @@ meta(name="author" content=pageAuthor)
 meta(name="copyright" content=pageCopyright)
 meta(name ="format-detection" content="telephone=no")
 !=favicon_tag(theme.favicon || config.favicon)
+link(rel="canonical" href=urlNoIndex())
 
 if theme.disable_baidu_transformation
   meta(http-equiv="Cache-Control" content="no-transform")
@@ -39,7 +40,7 @@ if theme.douban
     meta(name="referrer" content="no-referrer")
 
 //- 預解析
-!=partial('includes/head/dns_prefetch', {}, {cache:theme.fragment_cache})
+!=partial('includes/head/preconnect', {}, {cache:theme.fragment_cache})
 
 //- 網站驗證
 !=partial('includes/head/site_verification', {}, {cache:theme.fragment_cache})
@@ -51,27 +52,18 @@ include ./head/Open_Graph.pug
 if (theme.pwa && theme.pwa.enable)
   !=partial('includes/head/pwa', {}, {cache:theme.fragment_cache})
 
-script(src=url_for(theme.CDN.js_cookies))
-
 if theme.darkmode.enable
   !=partial('includes/head/darkmode', {}, {cache:theme.fragment_cache})
 
 //- main css
 link(rel='stylesheet', href=url_for(theme.CDN.main_css))
+link(rel='stylesheet', href=url_for(theme.CDN.fontawesome))
 
-if theme.fontawesome_v5 && theme.fontawesome_v5.enable
-  link(rel='stylesheet', href=url_for(theme.CDN.fontawesome_v5))
-else
-  link(rel='stylesheet', href=url_for(theme.CDN.fontawesome_v4))
-
-if (theme.fancybox && theme.fancybox.enable)
+if theme.fancybox
   link(rel='stylesheet', href=url_for(theme.CDN.fancybox_css))
 
 if (theme.snackbar && theme.snackbar.enable)
   link(rel='stylesheet', href=url_for(theme.CDN.snackbar_css))
-
-if theme.canonical
-  link(rel="canonical" href=urlNoIndex())
 
 if is_post()
   if(page.prev)
@@ -92,8 +84,9 @@ include ./head/comment.pug
 //- analytics
 !=partial('includes/head/analytics', {}, {cache:theme.fragment_cache})
 
+//- font
 if theme.blog_title_font.font_link
-  link(rel='stylesheet', href=url_for(theme.blog_title_font.font_link))
+  link(rel='stylesheet' href=url_for(theme.blog_title_font.font_link))
 
 //- global config
 !=partial('includes/head/config', {}, {cache:theme.fragment_cache})
@@ -102,3 +95,6 @@ include ./head/config_site.pug
 include ./head/noscript.pug
 
 !=fragment_cache('injectHead', function(){return injectHtml(theme.inject.head)})
+
+if page.aplayer
+  include ./head/aplayer.pug

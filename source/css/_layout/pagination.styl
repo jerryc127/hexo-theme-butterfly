@@ -20,8 +20,8 @@
       color: $button-color
       cursor: default
 
-  img.prev_cover,
-  img.next_cover
+  img.prev-cover,
+  img.next-cover
     position: absolute
     width: 100%
     height: 100%
@@ -38,10 +38,8 @@
 
   .prev_info,
   .next_info
-    overflow: hidden
+    @extend .limit-one-line
     color: $button-color
-    text-overflow: ellipsis
-    white-space: nowrap
     font-weight: 500
 
   .next-post
@@ -68,12 +66,12 @@
       height: 150px
 
     &:hover
-      img.prev_cover,
-      img.next_cover
+      img.prev-cover,
+      img.next-cover
         opacity: .8
         transform: scale(1.1)
 
-  &.pagination_post
+  &.pagination-post
     margin: 2rem 0 !important
     background: $dark-black
 

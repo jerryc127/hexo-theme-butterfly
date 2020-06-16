@@ -24,7 +24,7 @@ post:
   created: 發表於
   updated: 更新於
   wordcount: 字數總計
-  min2read: "閱讀時長: %s 分鐘"
+  min2read: '閱讀時長: %s 分鐘'
   page_pv: 閱讀量
   comments: 評論數
   copyright:
@@ -38,14 +38,14 @@ post:
 search: 搜尋
 algolia_search:
   input_placeholder: 搜尋文章
-  hits_empty: "找不到您查詢的內容:${query}"
-  hits_stats: "找到 ${hits} 條結果，用時 ${time} 毫秒"
+  hits_empty: '找不到您查詢的內容:${query}'
+  hits_stats: '找到 ${hits} 條結果，用時 ${time} 毫秒'
 
 local_search:
   label: 本地搜尋
   input_placeholder: 搜尋文章
-  hits_empty: "找不到您查詢的內容:${query}"
-  powered: "提供支援"
+  hits_empty: '找不到您查詢的內容:${query}'
+  powered: '提供支援'
   by: 由
 
 pagination:
@@ -83,7 +83,7 @@ rightside:
   font_plus_title: 放大字型
   font_minus_title: 縮小字型
   translate_title: 簡繁轉換
-  night_mode_title: 夜間模式
+  night_mode_title: 淺色和深色模式轉換
   back_to_top: 回到頂部
   toc: 目錄
   scroll_to_comment: 直達評論
@@ -106,6 +106,8 @@ Snackbar:
   day_to_night: 你已切換為深色模式
   night_to_day: 你已切換為淺色模式
 
-error_title: 頁面沒有找到
 loading: 載入中...
 
+error404:
+  error_title: 頁面沒有找到
+  back_button: 回到主頁

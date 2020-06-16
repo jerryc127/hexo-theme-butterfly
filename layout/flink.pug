@@ -2,18 +2,20 @@
   .flink#article-container
     if site.data.link
       each i in site.data.link
-        h2= i.class_name
-        .post-cards
-          .md-links
-            each item in i.link_list
-              .md-links-item
-                a(href=url_for(item.link)  title=item.name target="_blank")
-                  if theme.lazyload
-                    img(data-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
-                  else
-                    img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
-                  .md-links-title= item.name 
-                  .md-links-des= item.descr
+        if i.class_name
+          h2!= i.class_name
+        if i.class_desc
+          .flink-desc!=i.class_desc
+        .flink-list
+          each item in i.link_list
+            .flink-list-item
+              a(href=url_for(item.link)  title=item.name target="_blank")
+                if theme.lazyload.enable
+                  img(data-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                else
+                  img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                .flink-item-name= item.name 
+                .flink-item-desc= item.descr
     != page.content
   if page.comments !== false
     include includes/comments/index.pug

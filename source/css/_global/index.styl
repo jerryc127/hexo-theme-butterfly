@@ -14,9 +14,6 @@ body
 
   if !hexo-config('copy.enable')
     user-select: none
-    -moz-user-select: none
-    -webkit-user-select: none
-    -ms-user-select: none
 
 *::-webkit-scrollbar
   width: 8px
@@ -62,49 +59,39 @@ h6
   left: $sidebar-icon-left
   z-index: 100
   font-size: $sidebar-icon-size
-  // opacity: 0
   cursor: pointer
   transition: all .2s
 
 hr
   position: relative
   margin: 2rem auto
-  width: calc(100% - 4px)
   border: 2px dashed lighten($theme-hr-color, 50%)
 
-  &:hover
+  if hexo-config('hr_icon.enable')
+    width: calc(100% - 4px)
+
+    &:hover
+      &:before
+        left: calc(95% - 20px)
+
     &:before
-      left: calc(95% - 20px)
+      position: absolute
+      top: $hr-icon-top
+      left: 5%
+      z-index: 1
+      color: lighten($theme-hr-color, 30%)
+      content: $hr-icon
+      font-size: 20px
+      line-height: 1
+      transition: all 1s ease-in-out
+      @extend .fontawesomeIcon
 
-  &:before
-    position: absolute
-    top: $hr-icon-top
-    left: 5%
-    z-index: 1
-    color: $theme-hr-color
-    content: $hr-icon
-    font-style: normal
-    font-variant: normal
-    font-size: 20px
-    line-height: 1
-    transition: all 1s ease-in-out
-    text-rendering: auto
-    -webkit-font-smoothing: antialiased
-
-    if hexo-config('fontawesome_v5') && hexo-config('fontawesome_v5.enable')
-      font-weight: 600
-      font-family: 'Font Awesome 5 Free'
-    else
-      font-weight: normal
-      font-family: FontAwesome
-
-iframe
+.table-wrap
+  overflow-x: scroll
   margin: 0 0 1rem
 
 table
-  display: block
-  overflow: auto
-  margin: 0 0 1rem
+  display: table
   width: 100%
   border-spacing: 0
   border-collapse: collapse
@@ -123,18 +110,26 @@ table
   background: $theme-text-selection-color
   color: #F7F7F7
 
+button
+  margin: 0
+  padding: 0
+  outline: 0
+  border: none
+  background: none
+  cursor: pointer
+
 // font
-#nav #site_title,
-#nav #site_subtitle,
+#page-header #site_title,
+#page-header #site_subtitle,
 #site-name,
 #aside_content .author-info__name,
 #aside_content .author-info__description
   font-family: $site-name-font
 
-.is_right
+.is-right
   text-align: right
 
-.is_left
+.is-left
   text-align: left
 
 .is-center
@@ -146,21 +141,20 @@ table
 .is-visible-inline
   display: inline-block !important
 
-.is_invisible
+.is-invisible
   display: none !important
 
-.is_hidden
+.is-hidden
   overflow: hidden
 
-.pull_left
+.copy-true
+  user-select: all
+
+.pull-left
   float: left
 
-.pull_right
+.pull-right
   float: right
-
-// button hover
-.button--primary
-  color: $theme-button-hover-color
 
 .button--animated
   transition-duration: 1s
@@ -197,22 +191,6 @@ img:not([src])
   &:hover
     text-decoration: none !important
 
-// hexo tag video
-.video-container
-  position: relative
-  overflow: hidden
-  margin-bottom: .8rem
-  padding-top: 56.25%
-  height: 0
-
-  iframe
-    position: absolute
-    top: 0
-    left: 0
-    margin-top: 0
-    width: 100%
-    height: 100%
-
 .comment_headling
   margin-bottom: 10px
   font-weight: 700
@@ -225,12 +203,13 @@ img:not([src])
   display: block !important
   height: auto !important
 
+// animation
 #content-inner,
 #footer
   animation: main 1s
 
-#nav
-  animation: nav-effect 1s
+#page-header
+  animation: header-effect 1s
 
 #site_title,
 #site_subtitle
@@ -290,7 +269,7 @@ if hexo-config('avatar.effect') == true
     top: 0
     opacity: .4
 
-@keyframes nav-effect
+@keyframes header-effect
   0%
     opacity: 0
     transform: translateY(-50px)
