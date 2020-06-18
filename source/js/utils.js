@@ -117,7 +117,7 @@ function snackbarShow (text, showAction, duration) {
   })
 }
 
-var Cookies = {
+const Cookies = {
   get: function (name) {
     const value = `; ${document.cookie}`
     const parts = value.split(`; ${name}=`)
@@ -143,11 +143,3 @@ if (GLOBAL_CONFIG.islazyload) {
     threshold: 0
   }
 }
-
-window.debounce = debounce
-
-window.throttle = throttle
-
-window.isMobile = isMobile
-
-window.loadScript = loadScript
