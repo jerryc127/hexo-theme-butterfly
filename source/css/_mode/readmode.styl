@@ -143,12 +143,6 @@ if hexo-config('readmode')
         .tabs
           border: 2px solid rgba(255, 255, 255, .6)
 
-          > .nav-tabs
-            filter: none
-
-            a
-              color: rgba(255, 255, 255, .6)
-
   .read-mode
     #body-wrap
       padding-left: 0 !important
@@ -236,7 +230,7 @@ if hexo-config('readmode')
           > .tab
             border-bottom: 0
 
-            a
+            button
               border-top: none !important
               background: transparent
 
@@ -244,7 +238,7 @@ if hexo-config('readmode')
                 background: none !important
 
             &.active
-              a
+              button
                 text-decoration: underline
 
         > .tab-contents .tab-item-content.active
