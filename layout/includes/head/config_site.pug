@@ -1,10 +1,10 @@
 -
   let isHighlightShrink
   if (theme.highlight_shrink == 'none') isHighlightShrink = 'undefined'
-  else if (page.highlight_shrink !== undefined) isHighlightShrink = page.highlight_shrink
+  else if (page.highlight_shrink !== null && page.toc !== undefined ) isHighlightShrink = page.highlight_shrink
   else isHighlightShrink = theme.highlight_shrink
 
-  const pageToc = page.toc !== undefined ? page.toc : theme.toc.enable
+  const pageToc = page.toc !== null && page.toc !== undefined ? page.toc : theme.toc.enable
   const showToc = is_post() && pageToc && (toc(page.content) !== '' || page.encrypt == true )
 -
 

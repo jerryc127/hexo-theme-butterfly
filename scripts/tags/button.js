@@ -21,8 +21,7 @@ function btn (args) {
   icon = icon.trim()
   option = option.trim()
 
-  return `<a class="btn-beautify button--animated ${option}" href="${urlFor(url)}" title="${text}">
-  ${icon.length > 0 ? `<i class="${icon} fa-fw"></i>` : ''} ${text} </a>`
+  return `<a class="btn-beautify button--animated ${option}" href="${urlFor(url)}" title="${text}">${icon.length > 0 ? `<i class="${icon} fa-fw"></i>` : ''} ${text} </a>`
 }
 
 hexo.extend.tag.register('btn', btn, { ends: false })
