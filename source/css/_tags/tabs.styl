@@ -20,26 +20,25 @@
         @media screen and (max-width: 768px)
           flex-grow: 1
 
-        a
+        button
           display: block
-          padding: .5rem .8rem
-          outline: 0
+          padding: .5rem 1rem
           border-top: 2px solid $tab-border-color
           background: $tab-botton-bg
           color: $font-color
-          text-align: center
+          width 100%
+          line-height: 2
           transition: all .4s
 
           &:hover
             border-top: 2px solid $tab-button-hover-bg
             background: $tab-button-hover-bg
-            text-decoration: none
 
           i
             width: 1.5em
 
         &.active
-          a
+          button
             border-top: 2px solid $tab-active-border-color
             background: $card-bg
             cursor: default
