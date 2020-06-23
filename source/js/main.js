@@ -356,7 +356,7 @@ $(function () {
  * PhotoFigcaption
  */
   function addPhotoFigcaption () {
-    var images = $('#article-container img')
+    const images = $('#article-container img').not('.justified-gallery img')
     images.each(function (i, o) {
       var $this = $(o)
       if ($this.attr('alt')) {
