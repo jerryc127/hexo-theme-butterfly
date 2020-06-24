@@ -1,9 +1,11 @@
-if hexo-config('readmode') && hexo-config('readmode.enable')
+if hexo-config('readmode')
   [data-theme='light']
-    .read-mode
-      background: #fff
+    $light-redmode-bg = #fff
 
-      #nav.post-bg
+    .read-mode
+      background: $light-redmode-bg
+
+      #page-header.post-bg
         a
           color: $font-black !important
 
@@ -12,17 +14,27 @@ if hexo-config('readmode') && hexo-config('readmode.enable')
         .highlight:not(.js-file-line-container)
           background: #f7f7f7 !important
 
+          *
+            color: $font-black !important
+
+        figure.highlight
+          .line:before
+            color: $font-black !important
+
+          .hljs
+            background: #f7f7f7 !important
+
         code
           color: #4c4948
 
         blockquote
           border-left: .2rem solid #ddd
-          background-color: transparent
+          background-color: $light-redmode-bg
 
         ol,
         li
           &:before
-            background: transparent
+            background: $light-redmode-bg
             color: #4c4948
 
         ul
@@ -32,41 +44,66 @@ if hexo-config('readmode') && hexo-config('readmode.enable')
 
         hr
           border: 2px dashed #d6dbdf
-          background: transparent
+          background: $light-redmode-bg
 
           &:before
             color: darken(#d6dbdf, 10)
 
-        .hide-button
-          background: darken(#d6dbdf, 10) !important
+        .hide-toggle
+          border: 1px solid darken(#d6dbdf, 10) !important
+
+        .hide-button,
+        .btn-beautify
+          background: $light-redmode-bg !important
+          color: #4c4948 !important
+
+        .btn-beautify
+          border: 1px solid darken(#d6dbdf, 10)
+
+          &.button--animated:before
+            background: $light-redmode-bg
+
+        .hide-inline,
+        .hide-block
+          & >.hide-button
+            border: 1px solid darken(#d6dbdf, 10)
+
+          & > .button--animated:before
+            background: $light-redmode-bg
 
         .note
           border: 2px solid #eee
-          border-left-color: transparent
-          background-color: transparent
+          background-color: $light-redmode-bg
 
-      #mobile-sidebar-menus,
-      #rightside i,
-      #rightside a,
-      #rightside #rightside_config
-        background: darken(#d6dbdf, 10) !important
+        .tabs
+          border: 1px solid darken(#d6dbdf, 10)
+
+      #rightside button
+        background: darken(#d6dbdf, 20) !important
 
   [data-theme='dark']
+    $dark-readmode-bg = #0d0d0d
+
     .read-mode
-      background: #0d0d0d
+      background: $dark-readmode-bg
 
       #article-container
+        pre,
+        .highlight:not(.js-file-line-container)
+          *
+            color: rgba(255, 255, 255, .6) !important
+
         code
           color: rgba(255, 255, 255, .6)
 
         blockquote
           border-left: .2rem solid rgba(255, 255, 255, .6)
-          background-color: transparent
+          background-color: $dark-readmode-bg
 
         ol,
         li
           &:before
-            background: transparent
+            background: $dark-readmode-bg
             color: rgba(255, 255, 255, .6)
 
         ul
@@ -74,21 +111,43 @@ if hexo-config('readmode') && hexo-config('readmode.enable')
             &:before
               border: .15rem solid rgba(255, 255, 255, .6)
 
+        .hide-toggle
+          border: 1px solid rgba(255, 255, 255, .6) !important
+
+        .hide-button,
+        .btn-beautify
+          background: $dark-readmode-bg !important
+          filter: none
+          color: rgba(255, 255, 255, .6) !important
+
+        .btn-beautify
+          border: 1px solid rgba(255, 255, 255, .6)
+
+          &.button--animated:before
+            background: $dark-readmode-bg !important
+
+        .hide-inline,
+        .hide-block
+          & >.hide-button
+            border: 1px solid rgba(255, 255, 255, .6)
+
+          & > .button--animated:before
+            background: $dark-readmode-bg !important
+
         .note
           border: 2px solid rgba(255, 255, 255, .6)
-          border-left-color: transparent
           filter: none
-          background-color: transparent
+          background-color: $dark-readmode-bg
           color: rgba(255, 255, 255, .6)
 
-        .hide-button
-          background: #1f1f1f !important
+        .tabs
+          border: 2px solid rgba(255, 255, 255, .6)
 
   .read-mode
     #body-wrap
       padding-left: 0 !important
 
-    #nav.post-bg
+    #page-header.post-bg
       background-color: transparent
       background-image: none !important
 
@@ -111,28 +170,37 @@ if hexo-config('readmode') && hexo-config('readmode.enable')
         &:hover
           box-shadow: none
 
-    .highlight
-      display: block !important
+    figure.highlight
+      border-radius: 0 !important
+      box-shadow: none !important
 
-    #rightside
-      #darkmode
-        display: none
+      & > :not(.highlight-tools)
+        display: block !important
 
     & > canvas
       display: none !important
 
-    .code-area-wrap > .highlight-tools,
+    .highlight-tools,
     #footer,
     #post > *:not(:first-child),
     #to_comment,
     #sidebar,
     #toggle-sidebar,
     #mobile-toc-button,
-    #page-header
+    #nav
       display: none !important
 
     #web_bg
       background: none
+
+    if !hexo-config('chat_btn')
+      #chatra,
+      #tidio-chat-code,
+      #tidio-chat,
+      #daodream-container,
+      .gitter-chat-embed,
+      .gitter-open-chat-button
+        display: none !important
 
     #article-container
       h1,
@@ -145,3 +213,33 @@ if hexo-config('readmode') && hexo-config('readmode.enable')
 
         &:before
           content: ''
+
+        &:hover
+          padding: 0
+
+      ul,
+      li,
+      ol
+        &:hover:before
+          transform: none !important
+
+      .tabs
+        > .nav-tabs
+          background: transparent
+
+          > .tab
+            border-bottom: 0
+
+            button
+              border-top: none !important
+              background: transparent
+
+              &:hover
+                background: none !important
+
+            &.active
+              button
+                text-decoration: underline
+
+        > .tab-contents .tab-item-content.active
+          animation: none

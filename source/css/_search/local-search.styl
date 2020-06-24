@@ -18,7 +18,8 @@
 
   .local-search__hit-item
     position: relative
-    padding-left: 1.5rem
+    padding-left: 1.3rem
+    line-height: 1.7
 
     &:hover
       &:before
@@ -27,7 +28,7 @@
     &:before
       $w = .3rem
       position: absolute
-      top: .4rem
+      top: .3rem
       left: 0
       width: w = $w
       height: h = w
@@ -41,11 +42,20 @@
     a
       display: block
       color: $font-black
+      font-weight: 600
       font-size: 14px
       cursor: pointer
 
       &:hover
         color: $search-color
+
+    .search-result
+      margin: 0 0 .4rem
+      word-break: break-all
+
+    .search-keyword
+      color: $search-keyword-highlight
+      font-weight: bold
 
   .local-search-stats__hr
     display: none !important

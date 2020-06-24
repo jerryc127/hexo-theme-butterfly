@@ -1,0 +1,97 @@
+.note
+  $note-icons = hexo-config('note.icons')
+  $note-style = hexo-config('note.style')
+  position: relative
+  margin: 0 0 1rem
+  padding: 15px
+
+  if ($note-style == 'simple')
+    border: 1px solid $light-grey
+    border-left-width: 5px
+
+  if ($note-style == 'modern')
+    border: 1px solid transparent
+    background-color: $whitesmoke
+
+  if ($note-style == 'flat')
+    border: initial
+    border-left: 5px solid $light-grey
+    background-color: lighten($light-grey, 65%)
+
+  if hexo-config('note.border_radius') is a 'unit'
+    border-radius: unit(hexo-config('note.border_radius'), px)
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    if $note-icons
+      margin-top: 3px
+    else
+      margin-top: 0
+
+    margin-bottom: 0
+    padding-top: 0 !important
+    border-bottom: initial
+
+  p,
+  ul,
+  ol,
+  table,
+  pre,
+  blockquote,
+  img
+    &:first-child
+      margin-top: 0 !important
+
+    &:last-child
+      margin-bottom: 0 !important
+
+  if $note-icons
+    &:not(.no-icon)
+      padding-left: 45px
+
+      &::before
+        position: absolute
+        top: 13px
+        left: 15px
+        font-size: larger
+        @extend .fontawesomeIcon
+
+  for $type in $note-types
+    &.{$type}
+      if ($note-style == 'flat')
+        background: lookup('$note-' + $type + '-bg')
+
+      if ($note-style == 'modern')
+        border-color: lookup('$note-modern-' + $type + '-border')
+        background: lookup('$note-modern-' + $type + '-bg')
+        color: lookup('$note-modern-' + $type + '-text')
+
+        a,
+        span.exturl
+          &:not(.btn)
+            border-bottom: 1px solid lookup('$note-modern-' + $type + '-text')
+            color: lookup('$note-modern-' + $type + '-text')
+
+            &:hover
+              border-bottom: 1px solid lookup('$note-modern-' + $type + '-hover')
+              color: lookup('$note-modern-' + $type + '-hover')
+
+      if ($note-style != 'modern')
+        border-left-color: lookup('$note-' + $type + '-border')
+
+        h2,
+        h3,
+        h4,
+        h5,
+        h6
+          color: lookup('$note-' + $type + '-text')
+
+      if $note-icons
+        &:not(.no-icon)::before
+          content: lookup('$note-' + $type + '-icon')
+
+          if ($note-style != 'modern')
+            color: lookup('$note-' + $type + '-text')

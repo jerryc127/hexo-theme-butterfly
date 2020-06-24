@@ -16,14 +16,13 @@
 
   .card-info
     img
-      display: inline-block
       width: 110px
       height: 110px
       border-radius: 70px
-      transition: all .3s
+      transition: all .5s
 
       &:hover
-        transform: rotate(540deg)
+        transform: rotate(360deg)
 
     .author-info
       &__name
@@ -34,23 +33,22 @@
         margin-top: -.3rem
 
     .card-info-data
+      display: table
       padding: .7rem 0
+      width: 100%
+      table-layout: fixed
 
       & > .card-info-data-item
-        display: inline-block
-        width: 33.3%
+        display: table-cell
 
         a
           .headline
-            display: block
-            overflow: hidden
+            @extend .limit-one-line
             color: $font-black
-            // text-transform: uppercase
-            text-overflow: ellipsis
-            white-space: nowrap
             font-size: .7rem
 
           .length_num
+            margin-top: -.3rem
             color: $dark-black
             font-size: 1rem
 
@@ -73,9 +71,9 @@
       position: relative
       z-index: 1
       display: block
+      width: 100%
       background-color: $light-blue
       color: $button-color
-      text-transform: uppercase
       line-height: 1.6rem
 
       span
@@ -92,7 +90,8 @@
 
   .card-tag-cloud
     a
-      word-break: keep-all
+      display: inline-block
+      padding: 0 .1rem
 
       &:hover
         color: $light-blue !important
@@ -132,13 +131,11 @@
               font-size: .6rem
 
             .aside-post_title
-              display: -webkit-box
-              overflow: hidden
+              @extend .limit-more-line
               padding-left: 10px
               height: 40px
               line-height: 1rem
               -webkit-line-clamp: 2
-              -webkit-box-orient: vertical
 
               &:hover
                 color: $light-blue !important
@@ -147,31 +144,28 @@
               .aside-post_title
                 height: auto
 
-  .card-archives ul.archive-list,
-  .card-categories ul.aside-category-item
+  .card-archives ul.card-archive-list,
+  .card-categories ul.card-category-list
     margin: 0
     padding: .2rem 0 0
     list-style: none
 
-  .card-archives ul.archive-list > .archive-list-item,
-  .card-categories ul.aside-category-item > .aside-category-list
-    padding: .2rem 1rem
-    cursor: pointer
-    transition: all .3s
-
-    &:hover
-      padding: .2rem .85rem
-      background-color: $light-blue
-
+  .card-archives ul.card-archive-list > .card-archive-list-item,
+  .card-categories ul.card-category-list > .card-category-list-item
     a
+      display: inline-block
+      padding: .15rem 1rem
+      width: 100%
       color: $font-black
+      transition: all .4s
+
+      &:hover
+        padding: .15rem .85rem
+        background-color: $light-blue
 
       span
         display: inline-block
-        overflow: hidden
         vertical-align: bottom
-        text-overflow: ellipsis
-        white-space: nowrap
 
         &:first-child
           width: 80%
@@ -180,14 +174,43 @@
           width: 20%
           text-align: right
 
-  .card-categories
-    .aside-category-item
-      &.child
-        padding: 0 0 0 1.2rem
+    &.more
+      span
+        padding-right: .3rem
+        width: auto !important
+        transition: .5s
 
-  .card-archives
-    .archive-list-link-more
-      justify-content: center
+      &:hover
+        span
+          padding-right: .6rem
+
+  .card-categories
+    .card-category-list
+      &.child
+        padding: 0 0 0 1rem
+
+      > .parent
+        .card-category-list
+          &-name
+            width: 70% !important
+
+          &-count
+            width: 18%
+            text-align: right
+
+          &-icon
+            float: right
+            margin-right: -.35rem
+            padding: .35rem
+            transition: transform .3s
+            transform: rotate(0)
+
+            &.expand
+              transform: rotate(-90deg)
+
+        if hexo-config('aside.card_categories.expand') == false
+          + .child
+            display: none
 
   .card-webinfo
     .webinfo

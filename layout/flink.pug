@@ -1,18 +1,21 @@
 #page
   .flink#article-container
-    each i in site.data.link
-      h2= i.class_name
-      .post-cards
-        .md-links
+    if site.data.link
+      each i in site.data.link
+        if i.class_name
+          h2!= i.class_name
+        if i.class_desc
+          .flink-desc!=i.class_desc
+        .flink-list
           each item in i.link_list
-            .md-links-item
-              a(href=item.link  title=item.name target="_blank")
+            .flink-list-item
+              a(href=url_for(item.link)  title=item.name target="_blank")
                 if theme.lazyload.enable
-                  img.lazyload(data-src=item.avatar onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
+                  img(data-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
                 else
-                  img(src=item.avatar onerror=`this.onerror=null;this.src='` + url_for(theme.lodding_bg.flink) + `'` alt=item.name )
-                .md-links-title= item.name 
-                .md-links-des= item.descr
+                  img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                .flink-item-name= item.name 
+                .flink-item-desc= item.descr
     != page.content
   if page.comments !== false
     include includes/comments/index.pug

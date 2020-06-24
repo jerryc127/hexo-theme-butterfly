@@ -14,9 +14,6 @@ body
 
   if !hexo-config('copy.enable')
     user-select: none
-    -moz-user-select: none
-    -webkit-user-select: none
-    -ms-user-select: none
 
 *::-webkit-scrollbar
   width: 8px
@@ -62,49 +59,39 @@ h6
   left: $sidebar-icon-left
   z-index: 100
   font-size: $sidebar-icon-size
-  opacity: 0
   cursor: pointer
   transition: all .2s
 
 hr
   position: relative
   margin: 2rem auto
-  width: calc(100% - 4px)
   border: 2px dashed lighten($theme-hr-color, 50%)
 
-  &:hover
+  if hexo-config('hr_icon.enable')
+    width: calc(100% - 4px)
+
+    &:hover
+      &:before
+        left: calc(95% - 20px)
+
     &:before
-      left: calc(95% - 20px)
+      position: absolute
+      top: $hr-icon-top
+      left: 5%
+      z-index: 1
+      color: lighten($theme-hr-color, 30%)
+      content: $hr-icon
+      font-size: 20px
+      line-height: 1
+      transition: all 1s ease-in-out
+      @extend .fontawesomeIcon
 
-  &:before
-    position: absolute
-    top: $hr-icon-top
-    left: 5%
-    z-index: 1
-    color: $theme-hr-color
-    content: $hr-icon
-    font-style: normal
-    font-variant: normal
-    font-size: 20px
-    line-height: 1
-    transition: all 1s ease-in-out
-    text-rendering: auto
-    -webkit-font-smoothing: antialiased
-
-    if hexo-config('fontawesome_v5') && hexo-config('fontawesome_v5.enable')
-      font-weight: 600
-      font-family: 'Font Awesome 5 Free'
-    else
-      font-weight: normal
-      font-family: FontAwesome
-
-iframe
+.table-wrap
+  overflow-x: scroll
   margin: 0 0 1rem
 
 table
-  display: block
-  overflow: auto
-  margin: 0 0 1rem
+  display: table
   width: 100%
   border-spacing: 0
   border-collapse: collapse
@@ -123,18 +110,26 @@ table
   background: $theme-text-selection-color
   color: #F7F7F7
 
+button
+  margin: 0
+  padding: 0
+  outline: 0
+  border: none
+  background: none
+  cursor: pointer
+
 // font
-#nav #site_title,
-#nav #site_subtitle,
+#page-header #site_title,
+#page-header #site_subtitle,
 #site-name,
 #aside_content .author-info__name,
 #aside_content .author-info__description
   font-family: $site-name-font
 
-.is_right
+.is-right
   text-align: right
 
-.is_left
+.is-left
   text-align: left
 
 .is-center
@@ -143,21 +138,23 @@ table
 .is_visible
   display: block !important
 
-.is_invisible
+.is-visible-inline
+  display: inline-block !important
+
+.is-invisible
   display: none !important
 
-.is_hidden
+.is-hidden
   overflow: hidden
 
-.pull_left
+.copy-true
+  user-select: all
+
+.pull-left
   float: left
 
-.pull_right
+.pull-right
   float: right
-
-// button hover
-.button--primary
-  color: $theme-button-hover-color
 
 .button--animated
   transition-duration: 1s
@@ -187,49 +184,12 @@ img[src=''],
 img:not([src])
   opacity: 0
 
-// hexo tag video
-.video-container
-  position: relative
-  overflow: hidden
-  margin-bottom: .8rem
-  padding-top: 56.25%
-  height: 0
+.img-alt
+  margin: -.5rem 0 .5rem
+  color: $font-black
 
-  iframe
-    position: absolute
-    top: 0
-    left: 0
-    margin-top: 0
-    width: 100%
-    height: 100%
-
-// tag-hide
-.hide-inline,
-.hide-block
-  & > .hide-button
-    position: relative
-    z-index: 1
-    display: inline-block
-    padding: 0 1rem
-    background: $tag-hide-bg
-    text-align: center
-    cursor: pointer
-
-    &:hover
-      text-decoration: none !important
-
-  & > .hide-content
-    display: none
-
-.hide-inline
-  & > .hide-button
-    margin: 0 .3rem
-
-  & > .hide-content
-    margin: 0 .3rem
-
-.hide-block
-  margin: 0 0 .8rem
+  &:hover
+    text-decoration: none !important
 
 .comment_headling
   margin-bottom: 10px
@@ -237,18 +197,16 @@ img:not([src])
   font-size: 20px
 
 .post-ad
-  margin: 2rem 0 !important
+  margin: 2rem 0
 
 .ad_height
-  height: auto !important
   display: block !important
+  height: auto !important
 
+// animation
 #content-inner,
 #footer
   animation: main 1s
-
-#nav
-  animation: nav-effect 1s
 
 #page-header
   animation: header-effect 1s
@@ -257,9 +215,12 @@ img:not([src])
 #site_subtitle
   animation: titlescale 1s
 
-canvas,
+canvas:not(#ribbon-canvas),
 #web_bg
   animation: to_show 4s
+
+#ribbon-canvas
+  animation: ribbon_to_show 4s
 
 .card-announcement-animation
   color: #FF0000
@@ -287,10 +248,10 @@ if hexo-config('avatar.effect') == true
 
 .tocOpenMobile
   .sidebar-toc__title
-    animation: tocsidebarRtoL .5s
+    animation: tocsidebarRtoL .4s
 
   .sidebar-toc__progress
-    animation: tocsidebarRtoL .5s
+    animation: tocsidebarRtoL .6s
 
   .sidebar-toc__content
     animation: tocsidebarRtoL .7s
@@ -308,20 +269,8 @@ if hexo-config('avatar.effect') == true
     top: 0
     opacity: .4
 
-@keyframes nav-effect
-  0%
-    opacity: 0
-    transform: translateY(-50px)
-
-  100%
-    opacity: 1
-    transform: translateY(0)
-
 @keyframes header-effect
   0%
-    opacity: 0
-
-  50%
     opacity: 0
     transform: translateY(-50px)
 
@@ -369,6 +318,13 @@ if hexo-config('avatar.effect') == true
 
   100%
     opacity: 1
+
+@keyframes ribbon_to_show
+  0%
+    opacity: 0
+
+  100%
+    opacity: hexo-config('canvas_ribbon.alpha')
 
 @keyframes avatar_turn_around
   from

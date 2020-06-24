@@ -2,6 +2,8 @@
  * Note: configs in _data/butterfly.yml will replace configs in hexo.theme.config.
  */
 
+'use strict'
+
 hexo.on('generateBefore', function () {
   const rootConfig = hexo.config
   if (hexo.locals.get) {

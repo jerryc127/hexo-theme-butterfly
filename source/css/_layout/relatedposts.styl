@@ -8,17 +8,26 @@
 
   .relatedPosts_item
     position: relative
-    float: left
+    display: inline-block
     overflow: hidden
-    margin: 5px
-    width: calc(100% / 3 - 10px)
+    margin: 3px
+    width: calc(33.333% - 6px)
     height: 200px
     background: $dark-black
+    vertical-align: bottom
 
     &:hover
       .relatedPosts_cover
         opacity: .8
         transform: scale(1.1)
+
+    @media screen and (max-width: 768px)
+      margin: 2px
+      width: calc(50% - 4px)
+      height: 150px
+
+    @media screen and (max-width: 480px)
+      width: calc(100% - 4px)
 
   .relatedPosts_cover
     width: 100%
@@ -40,22 +49,5 @@
       font-size: 90%
 
     .relatedPosts_title
-      display: -webkit-box
-      overflow: hidden
+      @extend .limit-more-line
       -webkit-line-clamp: 2
-      -webkit-box-orient: vertical
-
-  .clear_both
-    clear: both
-
-@media screen and (max-width: 768px)
-  .relatedPosts
-    .relatedPosts_item
-      margin: 2px
-      width: calc(100% / 2 - 4px)
-      height: 150px
-
-@media screen and (max-width: 480px)
-  .relatedPosts
-    .relatedPosts_item
-      width: calc(100% - 4px)

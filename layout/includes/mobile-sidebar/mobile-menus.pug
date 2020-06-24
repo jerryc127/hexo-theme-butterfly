@@ -1,6 +1,6 @@
 #mobile-sidebar-menus
   .mobile_author_icon
-    img.avatar-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.lodding_bg.flink}'` alt="avatar")
+    img.avatar-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
   .mobile_post_data
     if site.posts.length
       .mobile_data_item.is-center
@@ -23,5 +23,4 @@
             .headline= _p('aside.categories') 
             .length_num= site.categories.length
   hr
-  .menus_items
-    include ../header/menu_item.pug
+  !=fragment_cache('menus', function(){return partial('includes/header/menu_item')})

@@ -1,0 +1,48 @@
+// tag-hide
+.hide-inline,
+.hide-block
+  & > .hide-button
+    position: relative
+    z-index: 1
+    display: inline-block
+    padding: .3rem 1rem
+    background: $tag-hide-bg
+    color: $white !important
+
+    &.open
+      display: none
+
+  & > .hide-content
+    display: none
+
+.hide-inline
+  & > .hide-button
+    margin: 0 .3rem
+
+  & > .hide-content
+    margin: 0 .3rem
+
+.hide-block
+  margin: 0 0 .8rem
+
+.hide-toggle
+  margin-bottom: 1rem
+  border: 1px solid $tag-hide-toggle-bg
+
+  & > .hide-button
+    padding: .3rem .5rem
+    background: $tag-hide-toggle-bg
+    color: $font-color
+    cursor: pointer
+
+    & > i
+      font-size: 1.2em
+      transition: all .3s
+
+    &.open
+      i
+        transform: rotate(90deg)
+
+  & > .hide-content
+    display: none
+    margin: 1.5rem 1.2rem

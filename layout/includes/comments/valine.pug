@@ -1,23 +1,35 @@
+- let emojiMaps = '""'
+if site.data.valine
+  - emojiMaps = JSON.stringify(site.data.valine)
+
 #vcomment.vcomment
 script(src=url_for(theme.CDN.valine))
 script.
-  var GUEST_INFO = ['nick','mail','link'];
-  var guest_info = '#{ theme.valine.guest_info }'.split(',').filter(function(item){
-    return GUEST_INFO.indexOf(item) > -1
-  });
-  guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'#{ theme.valine.guest_info }')
+  var requiredFields = requestSetting(['nick','mail'],'#{ theme.valine.requiredFields }')
 
   window.valine = new Valine({
     el:'#vcomment',
-    notify: #{theme.valine.notify},
-    verify: #{theme.valine.verify},
     appId: '#{theme.valine.appId}',
     appKey: '#{theme.valine.appKey}',
     placeholder: '#{theme.valine.placeholder}',
     avatar: '#{theme.valine.avatar}',
-    meta: guest_info,
+    meta: guestInfo,
     pageSize: '#{theme.valine.pageSize}',
     lang: '#{theme.valine.lang}',
     recordIP: #{theme.valine.recordIP},
-    serverURLs: '#{theme.valine.serverURLs}'
+    serverURLs: '#{theme.valine.serverURLs}',
+    emojiCDN: '#{theme.valine.emojiCDN}',
+    emojiMaps: !{emojiMaps},
+    enableQQ: #{theme.valine.enableQQ},
+    requiredFields: requiredFields
   });

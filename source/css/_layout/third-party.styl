@@ -1,28 +1,25 @@
 if hexo-config('valine.enable')
-  // valine
   #vcomment
     button
-      padding: .3rem 1rem
+      padding: .3rem .8rem
       border-color: $button-color
       background-color: $light-blue
       color: $button-color
       font-size: .7rem
+      transition: all .3s
 
       &:hover
         background-color: $theme-button-hover-color
 
-    textarea
-      if hexo-config('valine.bg')
+    if hexo-config('valine.bg')
+      textarea
         background: url(hexo-config('valine.bg')) 100% 100% no-repeat
 
-    .info
-      display: none
-
     .vimg
-      border: 0
+      transition: all .3s
 
       &:hover
-        transform: rotate(540deg)
+        transform: rotate(360deg)
 
     .vat
       padding: 0 .8rem
@@ -30,6 +27,7 @@ if hexo-config('valine.enable')
       border-radius: 5px
       color: $light-blue
       font-size: .7125rem
+      transition: all .3s
 
       &:hover
         background-color: $light-blue
@@ -51,11 +49,12 @@ if hexo-config('beautify.enable')
             content: none
 
 // third-party
+// fireworks
 .fireworks
   position: fixed
   top: 0
   left: 0
-  z-index: 999999
+  z-index: $fireworks-zIndex
   pointer-events: none
 
 .medium-zoom-image--opened
@@ -86,3 +85,8 @@ if hexo-config('beautify.enable')
 
 .has-jax
   overflow: auto
+
+//aplayer
+#article-container
+  .aplayer
+    margin: 0 0 1rem

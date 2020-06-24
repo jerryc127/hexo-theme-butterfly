@@ -1,0 +1,78 @@
+mixin postUI(posts)
+  each article , index in page.posts.data
+    .recent-post-item
+      - var link = article.link || article.path
+      - var title = article.title || _p('no_title')
+      - var leftOrRight = index%2 == 0 ? 'left_radius' : 'right_radius'
+      - var post_cover = article.cover
+      - var no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
+      if post_cover && theme.cover.index_enable
+        .post_cover(class=leftOrRight)
+          a(href=url_for(link) title=title)      
+            if theme.lazyload.enable
+              img.post_bg(data-src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` alt=title)
+            else
+              img.post_bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` alt=title)
+      .recent-post-info(class=no_cover)
+        a.article-title(href=url_for(link) title=title)= title
+        .article-meta-wrap
+          if (is_home() && (article.top || article.sticky > 0))
+            span.article-meta
+              i.fas.fa-thumbtack.article-meta__icon.sticky
+              span.sticky= _p('sticky')
+              span.article-meta__separator |
+          if (theme.post_meta.page.date_type)
+            if (theme.post_meta.page.date_type === 'both')
+              time.post-meta__date
+                span.post-meta__date-created(title=_p('post.created') + ' ' + full_date(article.date))
+                  i.far.fa-calendar-alt
+                  =date(article.date, config.date_format)
+                span.article-meta__separator |
+                span.post-meta__date-updated(title=_p('post.updated') + ' ' + full_date(article.updated))
+                  i.fas.fa-history
+                  =date(article.updated, config.date_format)
+            else
+              - var data_type_updated = theme.post_meta.page.date_type === 'updated'
+              - var date_type = data_type_updated ? 'updated' : 'date'
+              - var date_icon = data_type_updated ? 'fas fa-history' :'far fa-calendar-alt'
+              - var date_title = data_type_updated ? _p('post.updated') : _p('post.created')
+              time.post-meta__date(title=date_title + ' ' + full_date(article[date_type]))
+                i(class=date_icon)
+                =date(article[date_type], config.date_format)
+          if (theme.post_meta.page.categories && article.categories.data.length > 0)
+            span.article-meta
+              span.article-meta__separator |
+              i.fas.fa-inbox.article-meta__icon
+              each item, index in article.categories.data
+                a(href=url_for(item.path)).article-meta__categories #[=item.name]
+                if (index < article.categories.data.length - 1)
+                  i.fas.fa-angle-right
+          if (theme.post_meta.page.tags && article.tags.data.length > 0)
+            span.article-meta.tags
+              span.article-meta__separator |
+              i.fas.fa-tag.article-meta__icon
+              each item, index in article.tags.data
+                a(href=url_for(item.path)).article-meta__tags #[=item.name]
+                if (index < article.tags.data.length - 1)
+                  span.article-meta__link #[='•']
+
+        //- Display the article introduction on homepage
+        if theme.index_post_content.method == 1
+          .content!= article.description
+        else if theme.index_post_content.method == 2
+          if article.description
+            .content!= article.description
+          else
+            - const content = strip_html(article.content)
+            - let expert = content.substring(0, theme.index_post_content.length) 
+            - content.length > theme.index_post_content.length ? expert += ' ...' : ''
+            .content!= expert
+        else
+          - const content = strip_html(article.content)
+          - let expert = content.substring(0, theme.index_post_content.length) 
+          - content.length > theme.index_post_content.length ? expert += ' ...' : ''
+          .content!= expert
+
+    if theme.ad && theme.ad.index
+      if (index + 1) % 3 == 0
+        .recent-post-item.ad_height!=theme.ad.index

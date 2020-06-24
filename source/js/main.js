@@ -1,37 +1,40 @@
 $(function () {
   const isSnackbar = GLOBAL_CONFIG.Snackbar !== undefined
-  const isTocContent = $('#sidebar .sidebar-toc__content').children().length > 0
-  const $pageHead = $('#page-header')
+  const $nav = $('#nav')
   const $rightside = $('#rightside')
   const $body = $('body')
 
   /**
    * 當menu過多時，自動適配，避免UI錯亂
-   */
-  const searchWidth = $('#search_button').outerWidth() !== undefined ? $('#search_button').outerWidth() : 0
-  const blogNameWidth = $('#blog_name').width()
-
-  var mw = 0
-  var $menusItem = $pageHead.find('.menus_item')
-  for (var i = 0; i < $menusItem.length; i++) {
-    mw = mw + $menusItem.eq(i).outerWidth()
-  }
-
-  /**
-   * 傳入 1 sidebar打開時
+    * 傳入 1 sidebar打開時
    * 傳入 2 正常狀態下
-   * 傳入 3 resize時使用
    */
+  var blogNameWidth = $('#blog_name').width()
+  var menusWidth = $('.menus').width()
+  var sidebarWidth = $('#sidebar').width()
+
   function isAdjust (n) {
     var t
     if (n === 1) {
-      t = blogNameWidth + searchWidth + mw > $pageHead.width() - 300
+      t = blogNameWidth + menusWidth > $nav.width() - sidebarWidth - 20
     } else if (n === 2) {
-      t = blogNameWidth + searchWidth + mw > $pageHead.width()
+      t = blogNameWidth + menusWidth > $nav.width() - 20
     }
 
     if (t) headerAdjust()
     else headerAdjustBack()
+  }
+
+  function headerAdjust () {
+    $nav.find('.toggle-menu').addClass('is-visible-inline')
+    $nav.find('.menus_items').addClass('is-invisible')
+    $nav.find('#search_button span').addClass('is-invisible')
+  }
+
+  function headerAdjustBack () {
+    $nav.find('.toggle-menu').removeClass('is-visible-inline')
+    $nav.find('.menus_items').removeClass('is-invisible')
+    $nav.find('#search_button span').removeClass('is-invisible')
   }
 
   // 初始化header
@@ -39,54 +42,27 @@ $(function () {
     if (window.innerWidth < 768) headerAdjust()
     else isAdjust(2)
   }
+
   initAjust()
-
-  function headerAdjust () {
-    $pageHead.find('.toggle-menu').addClass('is_visible')
-    $pageHead.find('.menus').addClass('is_invisible')
-    $pageHead.find('#search_button span').addClass('is_invisible')
-  }
-
-  function headerAdjustBack () {
-    $pageHead.find('.toggle-menu').removeClass('is_visible')
-    $pageHead.find('.menus').removeClass('is_invisible')
-    $pageHead.find('#search_button span').removeClass('is_invisible')
-  }
+  $('#nav').css({ opacity: '1', animation: 'headerNoOpacity 1s' })
 
   $(window).on('resize', function () {
-    if (!$pageHead.hasClass('open-sidebar')) {
+    if ($('#sidebar').hasClass('tocOpenPc') && $nav.hasClass('fixed')) {
+      isAdjust(1)
+    } else {
       initAjust()
     }
   })
 
   /**
-   * windows時 設置主頁top_img 為 fixed
-   */
-  if (GLOBAL_CONFIG_SITE.isHome) {
-    var isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)
-    if (!isSafari && isDesktop()) {
-      $('#nav').css('background-attachment', 'fixed')
-    }
-  }
-
-  /**
    * 進入post頁sidebar處理
    */
-
-  var isSidebarOpen = $('#toggle-sidebar').hasClass('on') && isTocContent
-  var isPcSidebarOpen = false
-  if (window.innerWidth > 1024 && isSidebarOpen) {
-    setTimeout(function () {
-      openSidebar()
-    }, 400)
-  }
-
-  // 當toc爲空時，隱藏toc按鈕
-  if (isTocContent) {
-    $('#toggle-sidebar').css('opacity', '1')
-  } else {
-    $('#toggle-sidebar').css('display', 'none')
-    $('#mobile-toc-button').css('display', 'none')
+  if (GLOBAL_CONFIG_SITE.isPost) {
+    if (window.innerWidth > 1024 && $('#toggle-sidebar').hasClass('on')) {
+      setTimeout(function () {
+        openSidebar()
+      }, 400)
+    }
   }
 
   /**
@@ -94,9 +70,10 @@ $(function () {
    */
 
   function closeSidebar () {
-    isPcSidebarOpen = false
-    $pageHead.removeClass('open-sidebar')
     $('#sidebar').removeClass('tocOpenPc')
+    $('.menus').animate({
+      paddingRight: 0
+    }, 400)
     $('#body-wrap').animate({
       paddingLeft: 0
     }, 400)
@@ -114,9 +91,10 @@ $(function () {
   }
 
   function openSidebar () {
-    isPcSidebarOpen = true
-    $pageHead.addClass('open-sidebar')
     $('#sidebar').addClass('tocOpenPc')
+    $('.menus').animate({
+      paddingRight: 300
+    }, 400)
     $('#body-wrap').animate({
       paddingLeft: 300
     }, 400)
@@ -129,7 +107,8 @@ $(function () {
       opacity: '1'
     })
     var isAdjustTimeCount = window.setInterval(function () {
-      isAdjust(1)
+      if ($nav.hasClass('fixed')) isAdjust(1)
+      else isAdjust(2)
     }, 100)
     setTimeout(function () {
       clearInterval(isAdjustTimeCount)
@@ -165,7 +144,7 @@ $(function () {
       $toggleMenu.removeClass('close').addClass('open')
       $mobileSidevarMenus.css('transform', 'translate3d(-100%,0,0)')
       var $mobileSidevarMenusChild = $mobileSidevarMenus.children()
-      for (i = 0; i <= $mobileSidevarMenusChild.length; i++) {
+      for (let i = 0; i <= $mobileSidevarMenusChild.length; i++) {
         const duration = i / 5 + 0.2
         $mobileSidevarMenusChild.eq(i).css('animation', 'sidebarItem ' + duration + 's')
       }
@@ -221,9 +200,9 @@ $(function () {
   const mql = window.matchMedia('(max-width: 1024px)')
   mql.addListener(function (ev) {
     if (ev.matches) {
-      if (isPcSidebarOpen === true) closeSidebar()
+      if ($('#sidebar').hasClass('tocOpenPc')) closeSidebar()
     } else {
-      if ($('#toggle-sidebar').hasClass('on') && isTocContent) openSidebar()
+      if ($('#toggle-sidebar').hasClass('on')) openSidebar()
       if ($mobileTocButton.hasClass('open')) closeMobileSidebar('toc')
     }
   })
@@ -232,7 +211,7 @@ $(function () {
    * 首頁top_img底下的箭頭
    */
   $('#scroll_down').on('click', function () {
-    scrollTo('#content-inner')
+    scrollToDest('#content-inner')
   })
 
   /**
@@ -258,122 +237,143 @@ $(function () {
 
   /**
    * 代碼
+   * 只適用於Hexo默認的代碼渲染
    */
-  const isHighlightCopy = GLOBAL_CONFIG.highlightCopy
-  const isHighlightLang = GLOBAL_CONFIG.highlightLang
-  const isHighlightShrink = GLOBAL_CONFIG.highlightShrink
   const $figureHighlight = $('figure.highlight')
-  if (isHighlightCopy || isHighlightLang || isHighlightShrink !== 'none') {
-    $figureHighlight.wrap('<div class="code-area-wrap"></div>').before('<div class="highlight-tools"></div>')
-  }
 
-  /**
+  if ($figureHighlight.length) {
+    const isHighlightCopy = GLOBAL_CONFIG.highlightCopy
+    const isHighlightLang = GLOBAL_CONFIG.highlightLang
+    const isHighlightShrink = GLOBAL_CONFIG_SITE.isHighlightShrink
+
+    if (isHighlightCopy || isHighlightLang || isHighlightShrink !== undefined) {
+      $figureHighlight.prepend('<div class="highlight-tools"></div>')
+    }
+
+    /**
    * 代碼收縮
    */
-  const $highlightTools = $('.highlight-tools')
-  if (isHighlightShrink === true) {
-    $highlightTools.append('<i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i>')
-  } else if (isHighlightShrink === false) {
-    $highlightTools.append('<i class="fa fa-angle-down code-expand" aria-hidden="true"></i>')
-  }
-
-  $(document).on('click', '.highlight-tools >.code-expand', function () {
-    var $table = $(this).parent().next()
-    if ($(this).hasClass('code-closed')) {
-      $table.css('display', '')
-      $(this).removeClass('code-closed')
-    } else {
-      $table.css('display', 'none')
-      $(this).addClass('code-closed')
+    const $highlightTools = $('.highlight-tools')
+    if (isHighlightShrink === true) {
+      $highlightTools.append('<i class="fas fa-angle-down code-expand code-closed"></i>')
+    } else if (isHighlightShrink === false) {
+      $highlightTools.append('<i class="fas fa-angle-down code-expand"></i>')
     }
-  })
 
-  /**
-    * 代碼語言
-  */
-  if (isHighlightLang) {
-    var langNameIndex, langName
-    $figureHighlight.each(function () {
-      langNameIndex = langName = $(this).attr('class').split(' ')[1]
-      if (langNameIndex === "plain" || langNameIndex === undefined)
-        langName = "Code";
-      $(this).prev().append('<div class="code-lang">' + langName + '</div>')
-    })
-  }
-  /**
-   * 代碼copy
-   * copy function
-   */
-  if (isHighlightCopy) {
-    $highlightTools.append('<div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i>')
-    var copy = function (text, ctx) {
-      if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
-        try {
-          document.execCommand('copy') // Security exception may be thrown by some browsers.
-          if (isSnackbar) {
-            snackbarShow(GLOBAL_CONFIG.copy.success)
-          } else {
-            $(ctx).prev('.copy-notice')
-              .text(GLOBAL_CONFIG.copy.success)
-              .animate({
-                opacity: 1,
-                right: 30
-              }, 450, function () {
-                setTimeout(function () {
-                  $(ctx).prev('.copy-notice').animate({
-                    opacity: 0,
-                    right: 0
-                  }, 650)
-                }, 400)
-              })
-          }
-        } catch (ex) {
-          if (isSnackbar) {
-            snackbarShow(GLOBAL_CONFIG.copy.success)
-          } else {
-            $(ctx).prev('.copy-notice')
-              .text(GLOBAL_CONFIG.copy.error)
-              .animate({
-                opacity: 1,
-                right: 30
-              }, 650, function () {
-                setTimeout(function () {
-                  $(ctx).prev('.copy-notice').animate({
-                    opacity: 0,
-                    right: 0
-                  }, 650)
-                }, 400)
-              })
-            return false
-          }
-        }
+    $(document).on('click', '.highlight-tools >.code-expand', function () {
+      var $hideItem = $(this).parent().nextAll()
+      if ($(this).hasClass('code-closed')) {
+        $hideItem.css('display', 'block')
+        $(this).removeClass('code-closed')
       } else {
-        if (isSnackbar) {
-          snackbarShow(GLOBAL_CONFIG.copy.noSupport)
+        $hideItem.css('display', 'none')
+        $(this).addClass('code-closed')
+      }
+    })
+
+    /**
+    * 代碼語言
+    */
+    if (isHighlightLang) {
+      var langNameIndex, langName
+      $figureHighlight.each(function () {
+        langNameIndex = langName = $(this).attr('class').split(' ')[1]
+        if (langNameIndex === 'plain' || langNameIndex === undefined) langName = 'Code'
+        $(this).find('.highlight-tools').append('<div class="code-lang">' + langName + '</div>')
+      })
+    }
+
+    /**
+    * 代碼copy
+    * copy function
+    */
+    if (isHighlightCopy) {
+      $highlightTools.append('<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>')
+      var copy = function (text, ctx) {
+        if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
+          try {
+            document.execCommand('copy') // Security exception may be thrown by some browsers.
+            if (isSnackbar) {
+              snackbarShow(GLOBAL_CONFIG.copy.success)
+            } else {
+              $(ctx).prev('.copy-notice')
+                .text(GLOBAL_CONFIG.copy.success)
+                .animate({
+                  opacity: 1
+                }, 450, function () {
+                  setTimeout(function () {
+                    $(ctx).prev('.copy-notice').animate({
+                      opacity: 0
+                    }, 650)
+                  }, 400)
+                })
+            }
+          } catch (ex) {
+            if (isSnackbar) {
+              snackbarShow(GLOBAL_CONFIG.copy.success)
+            } else {
+              $(ctx).prev('.copy-notice')
+                .text(GLOBAL_CONFIG.copy.error)
+                .animate({
+                  opacity: 1
+                }, 650, function () {
+                  setTimeout(function () {
+                    $(ctx).prev('.copy-notice').animate({
+                      opacity: 0
+                    }, 650)
+                  }, 400)
+                })
+              return false
+            }
+          }
         } else {
-          $(ctx).prev('.copy-notice').text(GLOBAL_CONFIG.copy.noSupport)
+          if (isSnackbar) {
+            snackbarShow(GLOBAL_CONFIG.copy.noSupport)
+          } else {
+            $(ctx).prev('.copy-notice').text(GLOBAL_CONFIG.copy.noSupport)
+          }
         }
       }
-    }
 
-    // click events
-    $(document).on('click', '.highlight-tools>.fa-clipboard', function () {
-      var selection = window.getSelection()
-      var range = document.createRange()
-      range.selectNodeContents($(this).parent().next().find('.code pre')[0])
-      selection.removeAllRanges()
-      selection.addRange(range)
-      var text = selection.toString()
-      copy(text, this)
-      selection.removeAllRanges()
+      // click events
+      $(document).on('click', '.highlight-tools>.copy-button', function () {
+        var $buttonParent = $(this).parents('figure.highlight')
+        $buttonParent.addClass('copy-true')
+        var selection = window.getSelection()
+        var range = document.createRange()
+        range.selectNodeContents($buttonParent.find('table .code pre')[0])
+        selection.removeAllRanges()
+        selection.addRange(range)
+        var text = selection.toString()
+        copy(text, this)
+        selection.removeAllRanges()
+        $buttonParent.removeClass('copy-true')
+      })
+    }
+  }
+
+  /**
+ * PhotoFigcaption
+ */
+  function addPhotoFigcaption () {
+    const images = $('#article-container img').not('.justified-gallery img')
+    images.each(function (i, o) {
+      var $this = $(o)
+      if ($this.attr('alt')) {
+        var t = $('<div class="img-alt is-center">' + $this.attr('alt') + '</div>')
+        $this.after(t)
+      }
     })
   }
+  if (GLOBAL_CONFIG.isPhotoFigcaption) addPhotoFigcaption()
 
   /**
    * justified-gallery 圖庫排版
    */
   var $justifiedGallery = $('.justified-gallery')
+  var isJustifiedGallery = false
   if ($justifiedGallery.length) {
+    isJustifiedGallery = true
     var $imgList = $justifiedGallery.find('img')
     $imgList.unwrap()
     if ($imgList.length) {
@@ -382,13 +382,21 @@ $(function () {
         $(o).wrap('<div></div>')
       })
     }
-    $('head').append('<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css">')
-    loadScript('https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js', function () {
-      $justifiedGallery.not($('.hide-content .justified-gallery')).justifiedGallery({
-        rowHeight: 220,
-        margins: 4
-      })
+    $('head').append(`<link rel="stylesheet" type="text/css" href="${GLOBAL_CONFIG.justifiedGallery.css}">`)
+    loadScript(`${GLOBAL_CONFIG.justifiedGallery.js}`, function () {
+      initJustifiedGallery($justifiedGallery)
     })
+
+    var initJustifiedGallery = function (selector) {
+      selector.each(function (i, o) {
+        if ($(this).is(':visible')) {
+          $(this).justifiedGallery({
+            rowHeight: 220,
+            margins: 4
+          })
+        }
+      })
+    }
   }
 
   /**
@@ -401,13 +409,7 @@ $(function () {
     var images = $('#article-container img:not(.gallery-group-img)').not($('a>img'))
     images.each(function (i, o) {
       var lazyloadSrc = $(o).attr('data-src') ? $(o).attr('data-src') : $(o).attr('src')
-      $(o).wrap(
-        '<a href="' +
-        lazyloadSrc +
-        '" data-fancybox="group" data-caption="' +
-        $(o).attr('alt') +
-        '" class="fancybox"></a>'
-      )
+      $(o).wrap(`<a href="${lazyloadSrc}" data-fancybox="group" data-caption="${$(o).attr('alt')}" class="fancybox"></a>`)
     })
 
     $().fancybox({
@@ -420,41 +422,48 @@ $(function () {
   } else if (isMediumZoom) {
     const zoom = mediumZoom(document.querySelectorAll('#article-container :not(a)>img'))
     zoom.on('open', function (event) {
-      const photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
+      var photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
       zoom.update({
         background: photoBg
       })
     })
   }
 
-  // 點擊toc，收起sidebar
-  // $('.toc-link').on('click', function () {
-  //   closeMobileSidebar('toc')
-  // })
-
+  /**
+   * 滾動處理
+   */
   var initTop = 0
-  $(window).scroll(function (event) {
+  var isChatShow = true
+  var isChatBtnHide = typeof chatBtnHide === 'function'
+  var isChatBtnShow = typeof chatBtnShow === 'function'
+  $(window).scroll(throttle(function (event) {
     var currentTop = $(this).scrollTop()
-    var isUp = scrollDirection(currentTop)
+    var isDown = scrollDirection(currentTop)
     if (currentTop > 56) {
-      if (isUp) {
-        if ($pageHead.hasClass('visible')) $pageHead.removeClass('visible')
+      if (isDown) {
+        if ($nav.hasClass('visible')) $nav.removeClass('visible')
+        if (isChatBtnShow && isChatShow === true) {
+          chatBtnHide()
+          isChatShow = false
+        }
       } else {
-        if (!$pageHead.hasClass('visible')) $pageHead.addClass('visible')
+        if (!$nav.hasClass('visible')) $nav.addClass('visible')
+        if (isChatBtnHide && isChatShow === false) {
+          window.chatBtnShow()
+          isChatShow = true
+        }
       }
-      $pageHead.addClass('fixed')
-
+      $nav.addClass('fixed')
       if ($rightside.css('opacity') === '0') {
         $rightside.css({ opacity: '1', transform: 'translateX(-38px)' })
       }
     } else {
       if (currentTop === 0) {
-        $pageHead.removeClass('fixed').removeClass('visible')
+        $nav.removeClass('fixed').removeClass('visible')
       }
-
       $rightside.css({ opacity: '', transform: '' })
     }
-  })
+  }, 200))
 
   // find the scroll direction
   function scrollDirection (currentTop) {
@@ -467,14 +476,14 @@ $(function () {
    * 點擊滾回頂部
    */
   $('#go-up').on('click', function () {
-    scrollTo('body')
+    scrollToDest('body')
   })
 
   /**
    *  toc
    */
 
-  if (GLOBAL_CONFIG_SITE.isPost && isTocContent) {
+  if (GLOBAL_CONFIG_SITE.isPost && GLOBAL_CONFIG_SITE.isSidebar) {
     $('.toc-child').hide()
 
     // main of scroll
@@ -491,7 +500,7 @@ $(function () {
         closeMobileSidebar('toc')
       } else {
         e.preventDefault()
-        scrollTo($(this).attr('href'))
+        scrollToDest($(this).attr('href'))
       }
     })
 
@@ -518,6 +527,8 @@ $(function () {
       }, 100)
     }
 
+    // anchor
+    var isanchor = GLOBAL_CONFIG.isanchor
     var updateAnchor = function (anchor) {
       if (window.history.replaceState && anchor !== window.location.hash) {
         window.history.replaceState(undefined, undefined, anchor)
@@ -551,7 +562,7 @@ $(function () {
 
       var currentActive = $('.toc-link.active')
       if (currentId && currentActive.attr('href') !== currentId) {
-        updateAnchor(currentId)
+        if (isanchor) updateAnchor(currentId)
 
         $('.toc-link').removeClass('active')
 
@@ -620,7 +631,7 @@ $(function () {
   })
 
   $(window).on('touchmove', function (e) {
-    var $menusChild = $('#page-header .menus_item_child')
+    var $menusChild = $('#nav .menus_item_child')
     if ($menusChild.is(':visible')) {
       $menusChild.css('display', 'none')
     }
@@ -648,7 +659,7 @@ $(function () {
       if (copyFont.length > 45) {
         textFont = copyFont + '\n' + '\n' + '\n' +
           copyright.languages.author + '\n' +
-          copyright.languages.link + '\n' +
+          copyright.languages.link + window.location.href + '\n' +
           copyright.languages.source + '\n' +
           copyright.languages.info
       } else {
@@ -666,43 +677,23 @@ $(function () {
   /**
    * Darkmode
    */
-  var isFontAwesomeV5 = GLOBAL_CONFIG.isFontAwesomeV5
   var $darkModeButtom = $('#darkmode')
-  if (typeof autoChangeMode !== 'undefined') {
-    if (Cookies.get('theme') === 'dark') changeLightIcon()
-    else changeDarkIcon()
-  }
-
-  function changeLightIcon () {
-    isFontAwesomeV5 ? $darkModeButtom.removeClass('fa-moon').addClass('fa-sun') : $darkModeButtom.removeClass('fa-moon-o').addClass('fa-sun-o')
-  }
-
-  function changeDarkIcon () {
-    isFontAwesomeV5 ? $darkModeButtom.removeClass('fa-sun').addClass('fa-moon') : $darkModeButtom.removeClass('fa-sun-o').addClass('fa-moon-o')
-  }
-
   function switchReadMode () {
     var nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
     if (nowMode === 'light') {
-      changeLightIcon()
       activateDarkMode()
-      Cookies.set('theme', 'dark', { expires: 2 })
+      Cookies.set('theme', 'dark', 2)
       if (isSnackbar) snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
     } else {
-      changeDarkIcon()
       activateLightMode()
-      Cookies.set('theme', 'light', { expires: 2 })
+      Cookies.set('theme', 'light', 2)
       if (isSnackbar) snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
     }
   }
 
   $darkModeButtom.click(function () {
     switchReadMode()
-    try {
-      utterancesTheme()
-    } catch (e) {
-      return false
-    }
+    if (typeof utterancesTheme === 'function') utterancesTheme()
   })
 
   /**
@@ -711,7 +702,7 @@ $(function () {
   if (GLOBAL_CONFIG.runtime) {
     // get user config
     var $runtimeCount = $('#webinfo-runtime-count')
-    var startDate = $runtimeCount.attr('start_date')
+    var startDate = $runtimeCount.attr('publish_date')
     var showDateTime = function () {
       var BirthDay = new Date(startDate)
       var today = new Date()
@@ -725,6 +716,18 @@ $(function () {
     interval = setInterval(showDateTime, 10000)
   }
 
+  /**
+   * table overflow
+   */
+
+  var $table = $('#article-container table').not($('figure.highlight > table'))
+  $table.each(function () {
+    $(this).wrap('<div class="table-wrap"></div>')
+  })
+
+  /**
+   * 百度推送
+   */
   if (GLOBAL_CONFIG.baiduPush) {
     (function () {
       var bp = document.createElement('script')
@@ -743,14 +746,46 @@ $(function () {
    * tag-hide
    */
   var $hideInline = $('.hide-button')
-  $hideInline.on('click', function (e) {
-    e.preventDefault()
-    $(this).hide()
-    var $hideContent = $(this).next('.hide-content')
-    $hideContent.show()
-    $hideContent.find('.justified-gallery').justifiedGallery({
-      rowHeight: 220,
-      margins: 4
+  if ($hideInline.length) {
+    $hideInline.on('click', function (e) {
+      var $this = $(this)
+      var $hideContent = $(this).next('.hide-content')
+      $this.toggleClass('open')
+      $hideContent.toggle()
+      if ($this.hasClass('open')) {
+        if (isJustifiedGallery && $hideContent.find('.justified-gallery').length > 0) {
+          initJustifiedGallery($hideContent.find('.justified-gallery'))
+        }
+      }
     })
+  }
+
+  const $tab = $('#article-container .tabs')
+  $tab.find('.tab button').on('click', function (e) {
+    const $this = $(this)
+    const $tabItem = $this.parent()
+
+    if (!$tabItem.hasClass('active')) {
+      const $tacbContent = $this.parents('.nav-tabs').next()
+      $tabItem.siblings('.active').removeClass('active')
+      $tabItem.addClass('active')
+      const tabId = $this.attr('data-href')
+      $tacbContent.find('> .tab-item-content').removeClass('active')
+      $tacbContent.find(`> ${tabId}`).addClass('active')
+      const $isTabJustifiedGallery = $tacbContent.find(tabId).find('.justified-gallery')
+      if (isJustifiedGallery && $isTabJustifiedGallery.length > 0) {
+        initJustifiedGallery($isTabJustifiedGallery)
+      }
+    }
+  })
+
+  var $cardCategory = $('.card-category-list-item.parent a')
+  $cardCategory.on('click', function (e) {
+    if ($(event.target).hasClass('card-category-list-icon')) {
+      var $this = $(this)
+      $this.find('.card-category-list-icon').toggleClass('expand')
+      $this.parent().next().toggle()
+      return false
+    }
   })
 })

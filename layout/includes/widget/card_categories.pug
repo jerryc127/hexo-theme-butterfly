@@ -2,22 +2,8 @@ if site.categories.length
   .card-widget.card-categories
       .card-content
         .item-headline
-          i.fa.fa-folder-open(aria-hidden="true")
+          i.fas.fa-folder-open
           span= _p('aside.card_categories')
-        ul.aside-category-item        
-          mixin displayCategories(parent = undefined) 
-            - site.categories.find({ parent }).sort("name").each(function(category) {
-                - var childCount = site.categories.find({ parent: category._id }).count();              
-                li.aside-category-list
-                  a.aside-category-list_link(href=url_for(category.path))
-                    span.aside-category-list_name= category.name
-                    span.aside-category-list_length= category.length
-                  
-                if childCount > 0
-                  ul.aside-category-item.child
-                    +displayCategories(category._id)
-            - })
-
-          +displayCategories()
+        !=aside_categories({ limit: theme.aside.card_categories.limit === 0 ? 0 : theme.aside.card_categories.limit || 8 , expand: theme.aside.card_categories.expand })
 
   

@@ -2,9 +2,9 @@ extends includes/layout.pug
 
 block content
   if theme.category_ui == 'index'
-    include ./includes/mixins/UI.pug
+    include ./includes/mixins/post-ui.pug
     #recent-posts.recent-posts.category_ui   
-      +UI_NEW(page.posts)
+      +postUI
       include includes/pagination.pug    
   else
     include ./includes/mixins/article-sort.pug

@@ -1,11 +1,18 @@
-const url_for = require('hexo-util').url_for.bind(hexo);
+/**
+ * Butterfly
+ * galleryGroup and allery
+ */
 
-function gallery(args, content) {
-  return `<div class="justified-gallery">${hexo.render.renderSync({text: content, engine: 'markdown'}).split('\n').join('')}
-          </div>`;
+'use strict'
+
+const url_for = require('hexo-util').url_for.bind(hexo)
+
+function gallery (args, content) {
+  return `<div class="justified-gallery">${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}
+          </div>`
 }
 
-function galleryGroup(args){
+function galleryGroup (args) {
   const name = args[0]
   const desrc = args[1]
   const url = url_for(args[2])
@@ -23,5 +30,5 @@ function galleryGroup(args){
   `
 }
 
-hexo.extend.tag.register('gallery', gallery, {ends: true});
-hexo.extend.tag.register('galleryGroup', galleryGroup);
+hexo.extend.tag.register('gallery', gallery, { ends: true })
+hexo.extend.tag.register('galleryGroup', galleryGroup)

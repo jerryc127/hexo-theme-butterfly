@@ -2,7 +2,7 @@ extends includes/layout.pug
 
 block content
   article#post(class="")
-    #article-container!=page.content
+    #article-container.post-content!=page.content
     include includes/post/post-copyright.pug
     .tag_share
       if (theme.post_meta.post.tags)

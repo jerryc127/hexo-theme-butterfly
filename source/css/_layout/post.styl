@@ -1,147 +1,148 @@
-#article-container
-  if hexo-config('beautify.enable')
-    headStyle(fontsize)
-      padding-left: unit(fontsize + .4, 'rem')
+beautify()
+  headStyle(fontsize)
+    padding-left: unit(fontsize + .4, 'rem')
 
-      code
-        font-size: unit(fontsize, 'rem')
+    code
+      font-size: unit(fontsize, 'rem')
 
-      &:before
-        margin-left: unit((-(fontsize + .2)), 'rem')
-        font-size: unit(fontsize, 'rem')
+    &:before
+      margin-left: unit((-(fontsize + .2)), 'rem')
+      font-size: unit(fontsize, 'rem')
 
-      &:hover
-        padding-left: unit(fontsize + .6, 'rem')
+    &:hover
+      padding-left: unit(fontsize + .6, 'rem')
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6
-      cursor: pointer
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    cursor: pointer
+    transition: all .2s ease-out
+
+    &:before
+      position: absolute
+      top: calc(50% - .35rem)
+      color: $title-prefix-icon-color
+      content: $title-prefix-icon
+      line-height: 1
       transition: all .2s ease-out
+      @extend .fontawesomeIcon
 
+    &:hover
       &:before
-        position: absolute
-        top: calc(50% - .35rem)
-        color: $title-prefix-icon-color
-        content: $title-prefix-icon
-        font-style: normal
-        font-variant: normal
-        line-height: 1
-        transition: all .2s ease-out
-        text-rendering: auto
-        -webkit-font-smoothing: antialiased
+        color: $light-blue
 
-        if hexo-config('fontawesome_v5') && hexo-config('fontawesome_v5.enable')
-          font-weight: 600
-          font-family: 'Font Awesome 5 Free'
-        else
-          font-weight: normal
-          font-family: FontAwesome
+  h1
+    headStyle(1)
 
-      &:hover
-        &:before
-          color: $light-blue
+  h2
+    headStyle(.9)
 
-    h1
-      headStyle(1)
+  h3
+    headStyle(.8)
 
-    h2
-      headStyle(.9)
+  h4
+    headStyle(.7)
 
-    h3
-      headStyle(.8)
+  h5
+    headStyle(.6)
 
-    h4
-      headStyle(.7)
+  h6
+    headStyle(.6)
 
-    h5
-      headStyle(.6)
+  ol,
+  ul
+    margin-top: .4rem
+    padding: 0 0 0 .8rem
+    list-style: none
+    counter-reset: li
 
-    h6
-      headStyle(.6)
+    p
+      margin: 0 0 .5rem
 
     ol,
     ul
-      margin-top: .4rem
-      padding: 0 0 0 .8rem
-      list-style: none
-      counter-reset: li
+      padding-left: .5rem
 
-      p
-        margin: 0 0 .5rem
-
-      ol,
-      ul
-        padding-left: .5rem
-
-      li
+    li
+      &:not(.tab)
         position: relative
         margin: .2rem 0
         padding: .1rem .5rem .1rem 1.5rem
 
-        &:hover
-          &:before
-            transform: rotate(360deg)
-
+      &:hover
         &:before
-          position: absolute
-          top: 0
-          left: 0
-          background: $light-blue
-          color: $card-bg
-          cursor: pointer
-          transition: all .3s ease-out
+          transform: rotate(360deg)
 
-    ol
-      > li
+      &:before
+        position: absolute
+        top: 0
+        left: 0
+        background: $light-blue
+        color: $card-bg
+        cursor: pointer
+        transition: all .3s ease-out
+
+  ol
+    > li
+      &:before
+        margin-top: .2rem
+        width: w = 1.2rem
+        height: h = w
+        border-radius: .5 * w
+        content: counter(li)
+        counter-increment: li
+        text-align: center
+        font-size: .6rem
+        line-height: h
+
+  ul
+    > li:not(.tab)
+      &:hover
         &:before
-          margin-top: .2rem
-          width: w = 1.2rem
-          height: h = w
-          border-radius: .5 * w
-          content: counter(li)
-          counter-increment: li
-          text-align: center
-          font-size: .6rem
-          line-height: h
+          border-color: $theme-button-hover-color
 
-    ul
-      > li
-        &:hover
-          &:before
-            border-color: $theme-button-hover-color
+      &:before
+        $w = .3rem
+        top: 10px
+        margin-left: .45rem
+        width: w = $w
+        height: h = w
+        border: .5 * w solid $light-blue
+        border-radius: w
+        background: transparent
+        content: ''
+        line-height: h
 
-        &:before
-          $w = .3rem
-          top: 10px
-          margin-left: .45rem
-          width: w = $w
-          height: h = w
-          border: .5 * w solid $light-blue
-          border-radius: w
-          background: transparent
-          content: ''
-          line-height: h
-  else
+no-beautify()
+  ol,
+  ul
+    margin-top: .4rem
+
+    p
+      margin: 0 0 .5rem
+
     ol,
     ul
-      margin-top: .4rem
-      counter-reset: li
+      padding-left: .5rem
 
-      p
-        margin: 0 0 .5rem
+    li
+      position: relative
+      margin: .3rem 0
+      padding-left: .3rem
 
-      ol,
-      ul
-        padding-left: .5rem
+#article-container
+  if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'site'
+    beautify()
+  else if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'post'
+    no-beautify()
 
-      li
-        position: relative
-        margin: .3rem 0
-        padding-left: .3rem
+    &.post-content
+      beautify()
+  else
+    no-beautify()
 
 a
   color: $a-link-color
@@ -163,63 +164,9 @@ a.fancybox
   width: 100%
   text-align: center
 
-p
-  margin: 0 0 .8rem
-
 img
   max-width: 100%
   transition: all .2s
-
-// highlight
-.highlight-tools
-  .code-expand
-    position: absolute
-    top: 0
-    z-index: 1
-    padding: 7px 10px
-    color: $highlight-foreground
-    cursor: pointer
-    transition: all .3s
-    transform: rotate(0)
-
-    & + .code-lang
-      left: 30px
-
-    &.code-closed
-      transition: all .3s
-      transform: rotate(-90deg) !important
-
-  .code-lang
-    position: absolute
-    left: 15px
-    z-index: 1
-    color: $highlight-foreground
-    text-transform: capitalize
-    font-weight: bold
-    font-size: .8rem
-    line-height: 1.4rem
-    cursor: pointer
-
-  .copy-notice
-    position: absolute
-    top: 0
-    right: 0
-    z-index: 1
-    background: darken($highlight-background, 5)
-    color: $highlight-aqua
-    opacity: 0
-
-  .fa-clipboard
-    position: absolute
-    top: .4rem
-    right: 10px
-    z-index: 1
-    color: $highlight-aqua
-    cursor: pointer
-    transition: color .2s
-
-    &:hover
-      color: darken($highlight-aqua, 20%)
 
 .katex-wrap
   overflow: auto
@@ -319,6 +266,9 @@ img
             text-decoration: none
 
 #article-container
+  word-wrap: break-word
+  overflow-wrap: break-word
+
   a
     color: $theme-link-color
 
@@ -327,6 +277,12 @@ img
 
   img
     margin: 0 auto .8rem
+
+  p
+    margin: 0 0 .8rem
+
+  iframe
+    margin: 0 0 1rem
 
 @media screen and (max-width: 1024px)
   .layout_post
@@ -338,3 +294,14 @@ img
 
     & > #post
       padding: 1.8rem .7rem
+
+// adjust the layout width in big screen
+@media screen and (min-width: $lr)
+  .layout_post
+    max-width: 1300px
+
+  .layout_page
+    max-width: 1500px
+
+    &.hide-aside
+      max-width: 1300px

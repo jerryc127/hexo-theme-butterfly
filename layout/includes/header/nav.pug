@@ -1,0 +1,17 @@
+nav#nav
+  span#blog_name.pull-left
+    a#site-name.blog_title(href=url_for('/')) #[=config.title]
+    
+  span.pull-right.menus
+    if (theme.algolia_search.enable || theme.local_search && theme.local_search.enable)
+      #search_button
+        a.site-page.social-icon.search
+          i.fas.fa-search.fa-fw
+          span=' '+_p('search')
+    !=fragment_cache('menus', function(){return partial('includes/header/menu_item')})
+
+    span.toggle-menu.close
+      a.site-page
+        i.fas.fa-bars.fa-fw
+
+
