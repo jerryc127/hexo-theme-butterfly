@@ -295,7 +295,8 @@ $(function () {
     var langNameIndex, langName
     $figureHighlight.each(function () {
       langNameIndex = langName = $(this).attr('class').split(' ')[1]
-      if (langNameIndex === 'plain') langName = 'Code'
+      if (langNameIndex === "plain" || langNameIndex === undefined)
+        langName = "Code";
       $(this).prev().append('<div class="code-lang">' + langName + '</div>')
     })
   }
