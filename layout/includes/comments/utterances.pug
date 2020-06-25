@@ -1,15 +1,30 @@
-script#utterances_comment(src=theme.CDN.utterances
-        repo=theme.utterances.repo
-        issue-term=theme.utterances.issue_term
-        theme= theme.display_mode === 'dark' ? theme.utterances.dark_theme : theme.utterances.light_theme
-        crossorigin="anonymous"
-        async)
+#utterances-wrap
+
+script.
+  function loadUtterances () {
+    let ele = document.createElement('script')
+    ele.setAttribute('id', 'utterances_comment')
+    ele.setAttribute('src', '!{url_for(theme.CDN.utterances)}')
+    ele.setAttribute('repo', '!{theme.utterances.repo}')
+    ele.setAttribute('issue-term', '!{theme.utterances.issue_term}')
+    let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
+    ele.setAttribute('theme', nowTheme)
+    ele.setAttribute('crossorigin', 'anonymous')
+    ele.setAttribute('async', 'true')
+    document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+  }
+
+  if ('!{defaultComment}' === 'Utterances' || !{theme.comments.load_begin}) {
+    window.addEventListener('load', loadUtterances)
+  }
+  else {
+    function loadOtherComment () {
+      loadUtterances()
+    }
+  }
 
 if theme.darkmode.enable
   script.
-    var themeNow = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
-    document.getElementById('utterances_comment').setAttribute('theme',themeNow)
-
     function utterancesTheme () {
     var theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
     const message = {

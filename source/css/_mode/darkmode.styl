@@ -85,6 +85,8 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         color: alpha(#FFFFFF, .6) !important
 
       figure.highlight
+        box-shadow: none
+
         .line:before
           color: alpha(#FFFFFF, .6) !important
 
@@ -245,6 +247,17 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
 
         a
           color: alpha(#FFFFFF, .6) !important
+
+    #post-comment
+      .comment-switch
+        if hexo-config('comments.text')
+          background: #2c2c2c
+
+        label
+          filter: brightness(.7)
+
+    .post-outdate-notice
+      filter: brightness(.7)
 
     // error 404
     #error-wrap

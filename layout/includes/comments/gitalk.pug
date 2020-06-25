@@ -1,26 +1,46 @@
 #gitalk-container
-script.
-  var gitalk = new Gitalk({
-    clientID: '!{theme.gitalk.client_id}',
-    clientSecret: '!{theme.gitalk.client_secret}',
-    repo: '!{theme.gitalk.repo}',
-    owner: '!{theme.gitalk.owner}',
-    admin: ['!{theme.gitalk.admin}'],
-    id: md5(decodeURI(location.pathname)),
-    language: '!{theme.gitalk.language}',
-    perPage: !{theme.gitalk.perPage},
-    distractionFreeMode: !{theme.gitalk.distractionFreeMode},
-    pagerDirection: '!{theme.gitalk.pagerDirection}',
-    createIssueManually: !{theme.gitalk.createIssueManually},
-    updateCountCallback: commentCount
-  })
-  gitalk.render('gitalk-container')
+script(src=url_for(theme.CDN.blueimp_md5))
 
-  function commentCount(n){
-    try {
-      document.getElementsByClassName('gitalk-comment-count')[0].innerHTML= n
-    } catch (e) {
-      return false
+script.
+  function loadGitalk () {
+    const ele = document.createElement('link')
+    ele.rel = 'stylesheet'
+    ele.href= '!{url_for(theme.CDN.gitalk_css)}'
+    document.getElementsByTagName('head')[0].appendChild(ele)
+
+    loadScript('!{url_for(theme.CDN.gitalk)}', function () {
+      var gitalk = new Gitalk({
+        clientID: '!{theme.gitalk.client_id}',
+        clientSecret: '!{theme.gitalk.client_secret}',
+        repo: '!{theme.gitalk.repo}',
+        owner: '!{theme.gitalk.owner}',
+        admin: ['!{theme.gitalk.admin}'],
+        id: md5(decodeURI(location.pathname)),
+        language: '!{theme.gitalk.language}',
+        perPage: !{theme.gitalk.perPage},
+        distractionFreeMode: !{theme.gitalk.distractionFreeMode},
+        pagerDirection: '!{theme.gitalk.pagerDirection}',
+        createIssueManually: !{theme.gitalk.createIssueManually},
+        updateCountCallback: commentCount
+      })
+      gitalk.render('gitalk-container')
+    })
+
+    function commentCount(n){
+      try {
+        document.getElementsByClassName('gitalk-comment-count')[0].innerHTML= n
+      } catch (e) {
+        return false
+      }
+    }
+  }
+
+  if ('!{defaultComment}' === 'Gitalk' || !{theme.comments.load_begin}) {
+    window.addEventListener('load', loadGitalk)
+  }
+  else {
+    function loadOtherComment () {
+      loadGitalk()
     }
   }
 

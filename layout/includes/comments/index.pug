@@ -1,29 +1,36 @@
-- var d = theme.disqus && theme.disqus.enable
-- var dj = theme.disqusjs && theme.disqusjs.enable
-- var l = theme.livere && theme.livere.enable
-- var gt = theme.gitalk && theme.gitalk.enable
-- var v = theme.valine && theme.valine.enable
-- var u = theme.utterances && theme.utterances.enable
-- var fb = theme.facebook_comments && theme.facebook_comments.enable
-- var isComment = d || dj || l || gt || v || u || fb
-
-if isComment
+if theme.comments && theme.comments.use
+  - const defaultComment = theme.comments.use[0]
   hr
   #post-comment
-    .comment_headling
-      i.fas.fa-comments.fa-fw
-      span= ' ' + _p('comment')
-    if d
-      include ./disqus.pug
-    else if dj
-      include ./disqusjs.pug
-    else if l
-      include ./livere.pug
-    else if gt
-      include ./gitalk.pug
-    else if v
-      include ./valine.pug
-    else if u
-      include ./utterances.pug
-    else if fb
-      include ./facebook_comments.pug
+    .comment-head
+      .comment-headling
+        i.fas.fa-comments.fa-fw
+        span= ' ' + _p('comment')
+      
+      if theme.comments.use.length > 1
+        .comment-switch
+          span.first-comment=defaultComment
+          label
+            input#switch-comments-btn(type="checkbox")
+            span.slider
+          span.second-comment=theme.comments.use[1]
+
+
+    .comment-wrap
+      each name, index in theme.comments.use
+        div(class=`comments-items-${index+1}` data-name=`${name}`)
+          case name
+            when 'Disqus'
+              include ./disqus.pug
+            when 'Valine'
+              include ./valine.pug
+            when 'Disqusjs'
+              include ./disqusjs.pug
+            when 'Livere'
+              include ./livere.pug
+            when 'Gitalk'
+              include ./gitalk.pug
+            when 'Utterances'
+              include ./utterances.pug
+            when 'Facebook Comments'
+              include ./facebook_comments.pug

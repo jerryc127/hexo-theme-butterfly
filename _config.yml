@@ -20,7 +20,7 @@ menu:
 # Code Blocks (代碼相關)
 # --------------------------------------
 
-highlight_theme: light # default / darker / pale night / light / ocean / mac / false
+highlight_theme: light # default / darker / pale night / light / ocean / mac / mac light / false
 highlight_copy: true # copy button
 highlight_lang: true # show the code language
 highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
@@ -122,7 +122,7 @@ cover:
   # left/right/both
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
-  default_cover: 
+  default_cover:
     - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
 
 # Replace Broken Images (替換無法顯示的圖片)
@@ -200,6 +200,15 @@ photofigcaption: false
 # when you scroll in post, the URL will update according to header id.
 anchor: false
 
+# Displays outdated notice for a post (文章過期提醒)
+noticeOutdate:
+  enable: false
+  style: flat # style: simple/flat
+  limit_day: 500 # When will it be shown
+  position: top # position: top/bottom
+  message_prev: It has been
+  message_next: days since the last update, the content of the article may be outdated.
+
 # Share System (分享功能)
 # --------------------------------------
 
@@ -231,18 +240,23 @@ addtoany:
 # Comments System
 # --------------------------------------
 
+comments:
+  # Up to two comments system, the first will be shown as default
+  # Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments
+  use:
+  text: true # Display the comment name next to the button
+  load_begin: false # The second comment system will auto load when visiting the website
+  count: false # Dispaly comment count in top_img
+
 # disqus
 # https://disqus.com/
 disqus:
-  enable: false
   shortname:
-  count: false # dispaly comment count in top_img
 
 # Alternative Disqus - Render comments with Disqus API
 # DisqusJS評論系統，可以實現在網路審查地區載入 Disqus 評論列表，兼容原版
 # https://github.com/SukkaW/DisqusJS
 disqusjs:
-  enable: false
   shortname:
   siteName:
   apikey:
@@ -250,18 +264,15 @@ disqusjs:
   nocomment: # display when a blog post or an article has no comment attached
   admin:
   adminLabel:
-  count: false # dispaly comment count in top_img
 
 # livere(來必力)
 # https://www.livere.com/
 livere:
-  enable: false
   uid:
 
 # gitalk
 # https://github.com/gitalk/gitalk
 gitalk:
-  enable: false
   client_id:
   client_secret:
   repo:
@@ -272,12 +283,10 @@ gitalk:
   distractionFreeMode: false # Facebook-like distraction free mode.
   pagerDirection: last # Comment sorting direction, available values are last and first.
   createIssueManually: false # Gitalk will create a corresponding github issue for your every single page automatically
-  count: false # dispaly comment count in top_img
 
 # valine
 # https://valine.js.org
 valine:
-  enable: false # if you want use valine,please set this value is true
   appId: # leancloud application app id
   appKey: # leancloud application app key
   pageSize: 10 # comment list page size
@@ -291,12 +300,10 @@ valine:
   emojiCDN: # emoji CDN
   enableQQ: false # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
   requiredFields: nick,mail # required fields (nick/mail)
-  count: false # dispaly comment count in top_img
 
 # utterances
 # https://utteranc.es/
 utterances:
-  enable: false
   repo:
   # Issue Mapping: pathname/url/title/og:title
   issue_term: pathname
@@ -307,13 +314,11 @@ utterances:
 # Facebook Comments Plugin
 # https://developers.facebook.com/docs/plugins/comments/
 facebook_comments:
-  enable: false
   app_id:
   user_id: # optional
   pageSize: 10 # The number of comments to show
   order_by: social # social/time/reverse_time
   lang: en_US # Language en_US/zh_CN/zh_TW and so on
-  count: false
 
 # Chat Services
 # --------------------------------------
@@ -736,7 +741,7 @@ fragment_cache: true
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
-    # - <link rel="stylesheet" href="/xxx.css">
+  # - <link rel="stylesheet" href="/xxx.css">
   bottom:
     # - <script src="xxxx"></script>
 

@@ -284,6 +284,27 @@ img
   iframe
     margin: 0 0 1rem
 
+  .post-outdate-notice
+    position: relative
+    margin: 0 0 1rem
+    padding: .5rem 1.2rem
+    border-radius: 3px
+    background-color: $noticeOutdate-bg
+    color: $noticeOutdate-color
+
+    if hexo-config('noticeOutdate.style') == 'flat'
+      padding: .5rem 1.2rem .5rem 1.8rem
+      border-left: 5px solid $noticeOutdate-border
+
+      &:before
+        @extend .fontawesomeIcon
+        position: absolute
+        top: 50%
+        left: 1em
+        color: $noticeOutdate-border
+        content: '\f071'
+        transform: translateY(-50%)
+
 @media screen and (max-width: 1024px)
   .layout_post
     width: auto

@@ -98,7 +98,7 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
   return result
 })
 
-var toMomentLocale = function (lang) {
+const toMomentLocale = function (lang) {
   if (lang === undefined) {
     return undefined
   }

@@ -5,7 +5,7 @@
 
 'use strict'
 
-const url_for = require('hexo-util').url_for.bind(hexo)
+const urlFor = require('hexo-util').url_for.bind(hexo)
 
 function gallery (args, content) {
   return `<div class="justified-gallery">${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}
@@ -15,8 +15,8 @@ function gallery (args, content) {
 function galleryGroup (args) {
   const name = args[0]
   const desrc = args[1]
-  const url = url_for(args[2])
-  const img = url_for(args[3])
+  const url = urlFor(args[2])
+  const img = urlFor(args[3])
 
   return `
   <figure class="gallery-group">

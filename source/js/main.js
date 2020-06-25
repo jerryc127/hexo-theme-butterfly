@@ -9,12 +9,12 @@ $(function () {
     * 傳入 1 sidebar打開時
    * 傳入 2 正常狀態下
    */
-  var blogNameWidth = $('#blog_name').width()
-  var menusWidth = $('.menus').width()
-  var sidebarWidth = $('#sidebar').width()
+  const blogNameWidth = $('#blog_name').width()
+  const menusWidth = $('.menus').width()
+  const sidebarWidth = $('#sidebar').width()
 
   function isAdjust (n) {
-    var t
+    let t
     if (n === 1) {
       t = blogNameWidth + menusWidth > $nav.width() - sidebarWidth - 20
     } else if (n === 2) {
@@ -106,7 +106,7 @@ $(function () {
       color: '#99a9bf',
       opacity: '1'
     })
-    var isAdjustTimeCount = window.setInterval(function () {
+    const isAdjustTimeCount = window.setInterval(function () {
       if ($nav.hasClass('fixed')) isAdjust(1)
       else isAdjust(2)
     }, 100)
@@ -116,7 +116,7 @@ $(function () {
   }
 
   $('#toggle-sidebar').on('click', function () {
-    var isOpen = $(this).hasClass('on')
+    const isOpen = $(this).hasClass('on')
     isOpen ? $(this).removeClass('on') : $(this).addClass('on')
     if (isOpen) {
       closeSidebar()
@@ -130,10 +130,10 @@ $(function () {
    * 顯示menu和toc的sidebar
    */
 
-  var $toggleMenu = $('.toggle-menu')
-  var $mobileSidevarMenus = $('#mobile-sidebar-menus')
-  var $mobileTocButton = $('#mobile-toc-button')
-  var $menuMask = $('#menu_mask')
+  const $toggleMenu = $('.toggle-menu')
+  const $mobileSidebarMenus = $('#mobile-sidebar-menus')
+  const $mobileTocButton = $('#mobile-toc-button')
+  const $menuMask = $('#menu_mask')
 
   function openMobileSidebar (name) {
     sidebarPaddingR()
@@ -142,11 +142,11 @@ $(function () {
 
     if (name === 'menu') {
       $toggleMenu.removeClass('close').addClass('open')
-      $mobileSidevarMenus.css('transform', 'translate3d(-100%,0,0)')
-      var $mobileSidevarMenusChild = $mobileSidevarMenus.children()
-      for (let i = 0; i <= $mobileSidevarMenusChild.length; i++) {
+      $mobileSidebarMenus.css('transform', 'translate3d(-100%,0,0)')
+      const $mobileSidebarMenusChild = $mobileSidebarMenus.children()
+      for (let i = 0; i <= $mobileSidebarMenusChild.length; i++) {
         const duration = i / 5 + 0.2
-        $mobileSidevarMenusChild.eq(i).css('animation', 'sidebarItem ' + duration + 's')
+        $mobileSidebarMenusChild.eq(i).css('animation', 'sidebarItem ' + duration + 's')
       }
     }
 
@@ -163,7 +163,7 @@ $(function () {
 
     if (name === 'menu') {
       $toggleMenu.removeClass('open').addClass('close')
-      $mobileSidevarMenus.css('transform', '')
+      $mobileSidebarMenus.css('transform', '')
       $('#mobile-sidebar-menus > div,#mobile-sidebar-menus > hr').css('animation', '')
     }
 
@@ -227,7 +227,7 @@ $(function () {
       return true
     } else { // webkit - safari/chrome
       if (isSnackbar) {
-        var bookmarkText = GLOBAL_CONFIG.Snackbar.bookmark.message_prev + ' ' + (navigator.userAgent.toLowerCase().indexOf('mac') !== -1 ? 'Command/Cmd' : 'CTRL') + '+ D ' + GLOBAL_CONFIG.Snackbar.bookmark.message_next + '.'
+        const bookmarkText = GLOBAL_CONFIG.Snackbar.bookmark.message_prev + ' ' + (navigator.userAgent.toLowerCase().indexOf('mac') !== -1 ? 'Command/Cmd' : 'CTRL') + '+ D ' + GLOBAL_CONFIG.Snackbar.bookmark.message_next + '.'
         snackbarShow(bookmarkText)
       } else {
         alert(GLOBAL_CONFIG.bookmark.message_prev + ' ' + (navigator.userAgent.toLowerCase().indexOf('mac') !== -1 ? 'Command/Cmd' : 'CTRL') + '+ D ' + GLOBAL_CONFIG.bookmark.message_next + '.')
@@ -261,7 +261,7 @@ $(function () {
     }
 
     $(document).on('click', '.highlight-tools >.code-expand', function () {
-      var $hideItem = $(this).parent().nextAll()
+      const $hideItem = $(this).parent().nextAll()
       if ($(this).hasClass('code-closed')) {
         $hideItem.css('display', 'block')
         $(this).removeClass('code-closed')
@@ -275,7 +275,7 @@ $(function () {
     * 代碼語言
     */
     if (isHighlightLang) {
-      var langNameIndex, langName
+      let langNameIndex, langName
       $figureHighlight.each(function () {
         langNameIndex = langName = $(this).attr('class').split(' ')[1]
         if (langNameIndex === 'plain' || langNameIndex === undefined) langName = 'Code'
@@ -289,7 +289,7 @@ $(function () {
     */
     if (isHighlightCopy) {
       $highlightTools.append('<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>')
-      var copy = function (text, ctx) {
+      const copy = function (text, ctx) {
         if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
           try {
             document.execCommand('copy') // Security exception may be thrown by some browsers.
@@ -337,14 +337,14 @@ $(function () {
 
       // click events
       $(document).on('click', '.highlight-tools>.copy-button', function () {
-        var $buttonParent = $(this).parents('figure.highlight')
+        const $buttonParent = $(this).parents('figure.highlight')
         $buttonParent.addClass('copy-true')
-        var selection = window.getSelection()
-        var range = document.createRange()
+        const selection = window.getSelection()
+        const range = document.createRange()
         range.selectNodeContents($buttonParent.find('table .code pre')[0])
         selection.removeAllRanges()
         selection.addRange(range)
-        var text = selection.toString()
+        const text = selection.toString()
         copy(text, this)
         selection.removeAllRanges()
         $buttonParent.removeClass('copy-true')
@@ -358,9 +358,9 @@ $(function () {
   function addPhotoFigcaption () {
     const images = $('#article-container img').not('.justified-gallery img')
     images.each(function (i, o) {
-      var $this = $(o)
+      const $this = $(o)
       if ($this.attr('alt')) {
-        var t = $('<div class="img-alt is-center">' + $this.attr('alt') + '</div>')
+        const t = $('<div class="img-alt is-center">' + $this.attr('alt') + '</div>')
         $this.after(t)
       }
     })
@@ -370,11 +370,11 @@ $(function () {
   /**
    * justified-gallery 圖庫排版
    */
-  var $justifiedGallery = $('.justified-gallery')
-  var isJustifiedGallery = false
+  const $justifiedGallery = $('.justified-gallery')
+  let isJustifiedGallery = false
   if ($justifiedGallery.length) {
     isJustifiedGallery = true
-    var $imgList = $justifiedGallery.find('img')
+    const $imgList = $justifiedGallery.find('img')
     $imgList.unwrap()
     if ($imgList.length) {
       $imgList.each(function (i, o) {
@@ -386,29 +386,18 @@ $(function () {
     loadScript(`${GLOBAL_CONFIG.justifiedGallery.js}`, function () {
       initJustifiedGallery($justifiedGallery)
     })
-
-    var initJustifiedGallery = function (selector) {
-      selector.each(function (i, o) {
-        if ($(this).is(':visible')) {
-          $(this).justifiedGallery({
-            rowHeight: 220,
-            margins: 4
-          })
-        }
-      })
-    }
   }
 
   /**
    * fancybox和 mediumZoom
    */
 
-  var isMediumZoom = GLOBAL_CONFIG.medium_zoom
-  var isFancybox = GLOBAL_CONFIG.fancybox
+  const isMediumZoom = GLOBAL_CONFIG.medium_zoom
+  const isFancybox = GLOBAL_CONFIG.fancybox
   if (isFancybox) {
-    var images = $('#article-container img:not(.gallery-group-img)').not($('a>img'))
+    const images = $('#article-container img:not(.gallery-group-img)').not($('a>img'))
     images.each(function (i, o) {
-      var lazyloadSrc = $(o).attr('data-src') ? $(o).attr('data-src') : $(o).attr('src')
+      const lazyloadSrc = $(o).attr('data-src') ? $(o).attr('data-src') : $(o).attr('src')
       $(o).wrap(`<a href="${lazyloadSrc}" data-fancybox="group" data-caption="${$(o).attr('alt')}" class="fancybox"></a>`)
     })
 
@@ -422,7 +411,7 @@ $(function () {
   } else if (isMediumZoom) {
     const zoom = mediumZoom(document.querySelectorAll('#article-container :not(a)>img'))
     zoom.on('open', function (event) {
-      var photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
+      const photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
       zoom.update({
         background: photoBg
       })
@@ -432,13 +421,13 @@ $(function () {
   /**
    * 滾動處理
    */
-  var initTop = 0
-  var isChatShow = true
-  var isChatBtnHide = typeof chatBtnHide === 'function'
-  var isChatBtnShow = typeof chatBtnShow === 'function'
+  let initTop = 0
+  let isChatShow = true
+  const isChatBtnHide = typeof chatBtnHide === 'function'
+  const isChatBtnShow = typeof chatBtnShow === 'function'
   $(window).scroll(throttle(function (event) {
-    var currentTop = $(this).scrollTop()
-    var isDown = scrollDirection(currentTop)
+    const currentTop = $(this).scrollTop()
+    const isDown = scrollDirection(currentTop)
     if (currentTop > 56) {
       if (isDown) {
         if ($nav.hasClass('visible')) $nav.removeClass('visible')
@@ -467,7 +456,7 @@ $(function () {
 
   // find the scroll direction
   function scrollDirection (currentTop) {
-    var result = currentTop > initTop // true is down & false is up
+    const result = currentTop > initTop // true is down & false is up
     initTop = currentTop
     return result
   }
@@ -488,7 +477,7 @@ $(function () {
 
     // main of scroll
     $(window).scroll(throttle(function (event) {
-      var currentTop = $(this).scrollTop()
+      const currentTop = $(this).scrollTop()
       scrollPercent(currentTop)
       findHeadPosition(currentTop)
       autoScrollToc(currentTop)
@@ -505,20 +494,20 @@ $(function () {
     })
 
     // expand toc-item
-    var expandToc = function ($item) {
+    const expandToc = function ($item) {
       if ($item.is(':visible')) {
         return
       }
       $item.fadeIn(400)
     }
 
-    var scrollPercent = function (currentTop) {
-      var docHeight = $('#article-container').height()
-      var winHeight = $(window).height()
-      var contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight)
-      var scrollPercent = (currentTop) / (contentMath)
-      var scrollPercentRounded = Math.round(scrollPercent * 100)
-      var percentage = (scrollPercentRounded > 100) ? 100
+    const scrollPercent = function (currentTop) {
+      const docHeight = $('#article-container').height()
+      const winHeight = $(window).height()
+      const contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight)
+      const scrollPercent = (currentTop) / (contentMath)
+      const scrollPercentRounded = Math.round(scrollPercent * 100)
+      const percentage = (scrollPercentRounded > 100) ? 100
         : (scrollPercentRounded <= 0) ? 0
           : scrollPercentRounded
       $('.progress-num').text(percentage)
@@ -528,8 +517,8 @@ $(function () {
     }
 
     // anchor
-    var isanchor = GLOBAL_CONFIG.isanchor
-    var updateAnchor = function (anchor) {
+    const isanchor = GLOBAL_CONFIG.isanchor
+    const updateAnchor = function (anchor) {
       if (window.history.replaceState && anchor !== window.location.hash) {
         window.history.replaceState(undefined, undefined, anchor)
       }
@@ -539,17 +528,17 @@ $(function () {
     // DOM Hierarchy:
     // ol.toc > (li.toc-item, ...)
     // li.toc-item > (a.toc-link, ol.toc-child > (li.toc-item, ...))
-    var findHeadPosition = function (top) {
+    const findHeadPosition = function (top) {
     // assume that we are not in the post page if no TOC link be found,
     // thus no need to update the status
       if ($('.toc-link').length === 0) {
         return false
       }
 
-      var list = $('#article-container').find('h1,h2,h3,h4,h5,h6')
-      var currentId = ''
+      const list = $('#article-container').find('h1,h2,h3,h4,h5,h6')
+      let currentId = ''
       list.each(function () {
-        var head = $(this)
+        const head = $(this)
         if (top > head.offset().top - 25) {
           currentId = '#' + $(this).attr('id')
         }
@@ -560,20 +549,20 @@ $(function () {
         $('.toc-child').hide()
       }
 
-      var currentActive = $('.toc-link.active')
+      const currentActive = $('.toc-link.active')
       if (currentId && currentActive.attr('href') !== currentId) {
         if (isanchor) updateAnchor(currentId)
 
         $('.toc-link').removeClass('active')
 
-        var _this = $('.toc-link[href="' + currentId + '"]')
+        const _this = $('.toc-link[href="' + currentId + '"]')
         _this.addClass('active')
 
-        var parents = _this.parents('.toc-child')
+        const parents = _this.parents('.toc-child')
         // Returned list is in reverse order of the DOM elements
         // Thus `parents.last()` is the outermost .toc-child container
         // i.e. list of subsections
-        var topLink = (parents.length > 0) ? parents.last() : _this
+        const topLink = (parents.length > 0) ? parents.last() : _this
         expandToc(topLink.closest('.toc-item').find('.toc-child'))
         topLink
           // Find all top-level .toc-item containers, i.e. sections
@@ -584,10 +573,10 @@ $(function () {
       }
     }
 
-    var autoScrollToc = function (currentTop) {
+    const autoScrollToc = function (currentTop) {
       if ($('.toc-link').hasClass('active')) {
-        var activePosition = $('.active').offset().top
-        var sidebarScrolltop = $('#sidebar .sidebar-toc__content').scrollTop()
+        const activePosition = $('.active').offset().top
+        const sidebarScrolltop = $('#sidebar .sidebar-toc__content').scrollTop()
         if (activePosition > (currentTop + $(window).height() - 100)) {
           $('#sidebar .sidebar-toc__content').scrollTop(sidebarScrolltop + 100)
         }
@@ -631,7 +620,7 @@ $(function () {
   })
 
   $(window).on('touchmove', function (e) {
-    var $menusChild = $('#nav .menus_item_child')
+    const $menusChild = $('#nav .menus_item_child')
     if ($menusChild.is(':visible')) {
       $menusChild.css('display', 'none')
     }
@@ -651,7 +640,7 @@ $(function () {
   /**
    * 複製時加上版權信息
    */
-  var copyright = GLOBAL_CONFIG.copyright
+  const copyright = GLOBAL_CONFIG.copyright
   if (copyright !== undefined) {
     document.body.oncopy = function (event) {
       event.preventDefault()
@@ -677,9 +666,9 @@ $(function () {
   /**
    * Darkmode
    */
-  var $darkModeButtom = $('#darkmode')
+  const $darkModeButtom = $('#darkmode')
   function switchReadMode () {
-    var nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+    const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
     if (nowMode === 'light') {
       activateDarkMode()
       Cookies.set('theme', 'dark', 2)
@@ -701,26 +690,24 @@ $(function () {
    */
   if (GLOBAL_CONFIG.runtime) {
     // get user config
-    var $runtimeCount = $('#webinfo-runtime-count')
-    var startDate = $runtimeCount.attr('publish_date')
-    var showDateTime = function () {
-      var BirthDay = new Date(startDate)
-      var today = new Date()
-      var timeold = (today.getTime() - BirthDay.getTime())
-      var daysold = Math.floor(timeold / (24 * 60 * 60 * 1000))
+    const $runtimeCount = $('#webinfo-runtime-count')
+    const startDate = $runtimeCount.attr('publish_date')
+    const showDateTime = function () {
+      const BirthDay = new Date(startDate)
+      const today = new Date()
+      const timeold = (today.getTime() - BirthDay.getTime())
+      const daysold = Math.floor(timeold / (24 * 60 * 60 * 1000))
       $runtimeCount.text(daysold + ' ' + GLOBAL_CONFIG.runtime_unit)
     }
-    var interval
     showDateTime()
-    clearInterval(interval)
-    interval = setInterval(showDateTime, 10000)
+    setInterval(showDateTime, 10000)
   }
 
   /**
    * table overflow
    */
 
-  var $table = $('#article-container table').not($('figure.highlight > table'))
+  const $table = $('#article-container table').not($('figure.highlight > table'))
   $table.each(function () {
     $(this).wrap('<div class="table-wrap"></div>')
   })
@@ -730,14 +717,14 @@ $(function () {
    */
   if (GLOBAL_CONFIG.baiduPush) {
     (function () {
-      var bp = document.createElement('script')
-      var curProtocol = window.location.protocol.split(':')[0]
+      const bp = document.createElement('script')
+      const curProtocol = window.location.protocol.split(':')[0]
       if (curProtocol === 'https') {
         bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
       } else {
         bp.src = 'http://push.zhanzhang.baidu.com/push.js'
       }
-      var s = document.getElementsByTagName('script')[0]
+      const s = document.getElementsByTagName('script')[0]
       s.parentNode.insertBefore(bp, s)
     })()
   }
@@ -745,11 +732,11 @@ $(function () {
   /**
    * tag-hide
    */
-  var $hideInline = $('.hide-button')
+  const $hideInline = $('.hide-button')
   if ($hideInline.length) {
     $hideInline.on('click', function (e) {
-      var $this = $(this)
-      var $hideContent = $(this).next('.hide-content')
+      const $this = $(this)
+      const $hideContent = $(this).next('.hide-content')
       $this.toggleClass('open')
       $hideContent.toggle()
       if ($this.hasClass('open')) {
@@ -779,13 +766,51 @@ $(function () {
     }
   })
 
-  var $cardCategory = $('.card-category-list-item.parent a')
+  const $cardCategory = $('.card-category-list-item.parent a')
   $cardCategory.on('click', function (e) {
     if ($(event.target).hasClass('card-category-list-icon')) {
-      var $this = $(this)
+      const $this = $(this)
       $this.find('.card-category-list-icon').toggleClass('expand')
       $this.parent().next().toggle()
       return false
     }
   })
+
+  let switchDone = false
+  $('#switch-comments-btn').change(function () {
+    $('#post-comment > .comment-wrap > div').each(function () {
+      if ($(this).is(':visible')) {
+        $(this).hide()
+      } else {
+        $(this).css({
+          display: 'block',
+          animation: 'tabshow .5s'
+        })
+      }
+    })
+    if (!switchDone && typeof loadOtherComment === 'function') {
+      switchDone = true
+      loadOtherComment()
+    }
+  })
+
+  if (GLOBAL_CONFIG_SITE.isPost && GLOBAL_CONFIG.noticeOutdate !== undefined) {
+    const data = GLOBAL_CONFIG.noticeOutdate
+    const diffDate = function (d) {
+      const dateNow = new Date()
+      const datePost = new Date(d.replace(/-/g, '/'))
+      const dateDiff = dateNow.getTime() - datePost.getTime()
+      const dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000))
+      return dayDiff
+    }
+    var diffDay = diffDate(GLOBAL_CONFIG_SITE.postUpdate)
+    if (diffDay >= data.limitDay) {
+      const code = `<div class="post-outdate-notice">${data.messagePrev + ' ' + diffDay + ' ' + data.messageNext}</div>`
+      if (data.position === 'top') {
+        $('#article-container').prepend(code)
+      } else {
+        $('#article-container').append(code)
+      }
+    }
+  }
 })

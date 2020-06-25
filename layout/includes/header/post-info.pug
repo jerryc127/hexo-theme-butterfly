@@ -57,29 +57,32 @@
           span=_p('post.page_pv') + ':'
           span#busuanzi_value_page_pv
 
-      span.post-meta-commentcount
-        if ((theme.disqus && theme.disqus.enable && theme.disqus.count && page.comments !== false) || (theme.disqusjs && theme.disqusjs.enable && theme.disqusjs.count && page.comments !== false))
+      if page.comments !== false && theme.comments.use && theme.comments.count
+        span.post-meta-commentcount
+        
+        - let whichCount = theme.comments.use[0]
+        if whichCount === 'Disqus' || whichCount === 'Disqusjs'
           if (postWordcount || theme.busuanzi.page_pv)
             span.post-meta__separator |
           i.far.fa-comments.fa-fw.post-meta__icon
           span= _p('post.comments') + ':'
           span.disqus-comment-count.comment-count
             a(href=full_url_for(page.path) + '#disqus_thread')
-        else if (theme.valine && theme.valine.enable && theme.valine.count && page.comments !== false)
+        else if whichCount === 'Valine'
           if (postWordcount || theme.busuanzi.page_pv)
             span.post-meta__separator |
           i.far.fa-comments.fa-fw.post-meta__icon
           span= _p('post.comments') + ':'
           a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
             span.valine-comment-count.comment-count(data-xid=url_for(page.path) itemprop="commentCount")
-        else if (theme.gitalk && theme.gitalk.enable && theme.gitalk.count && page.comments !== false)
+        else if whichCount === 'Gitalk'
           if (postWordcount || theme.busuanzi.page_pv)
             span.post-meta__separator |
           i.far.fa-comments.fa-fw.post-meta__icon
           span= _p('post.comments') + ':'
           a(href=url_for(page.path) + '#post-comment')
             span.gitalk-comment-count.comment-count
-        else if theme.facebook_comments.enable && theme.facebook_comments.count && page.comments !== false
+        else if whichCount === 'Facebook Comments'
           if (postWordcount || theme.busuanzi.page_pv)
             span.post-meta__separator |
           i.far.fa-comments.fa-fw.post-meta__icon

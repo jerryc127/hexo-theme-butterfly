@@ -24,7 +24,7 @@ if $highlight_theme == 'default'
     bg-color: darken($highlight-background, 2)
   }
 
-if $highlight_theme == 'darker' || ($highlight_theme == 'mac')
+if $highlight_theme == 'darker' || $highlight_theme == 'mac'
   $highlight-background = #212121
   $highlight-current-line = #282a2e
   $highlight-selection = #61616150
@@ -39,6 +39,7 @@ if $highlight_theme == 'darker' || ($highlight_theme == 'mac')
   $highlight-purple = #C792EA
   $highlight-deletion = #BF42BF
   $highlight-addition = #105EDE
+  $highlight-mac-border = rgba(0,0,0,.4)
   $highlight-gutter = {
     color: alpha($highlight-foreground, .5),
     bg-color: $highlight-background
@@ -96,7 +97,7 @@ if $highlight_theme == 'ocean'
     bg-color: darken($highlight-background, 2)
   }
 
-if $highlight_theme == 'light'
+if $highlight_theme == 'light' || $highlight_theme == 'mac light'
   $highlight-background = #F6F8FA
   $highlight-current-line = #00346e
   $highlight-selection = #80CBC440
@@ -111,6 +112,7 @@ if $highlight_theme == 'light'
   $highlight-purple = #7C4DFF
   $highlight-deletion = #BF42BF
   $highlight-addition = #105EDE
+  $highlight-mac-border = rgba(144, 164, 174, .4)
   $highlight-gutter = {
     color: alpha($highlight-foreground, .5),
     bg-color: $highlight-background

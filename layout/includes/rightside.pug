@@ -1,32 +1,32 @@
-section#rightside.rightside
+section#rightside
   #rightside-config-hide
     if is_post()
       if theme.readmode
-        button#readmode(title=_p('rightside.readmode_title'))
+        button#readmode(type="button" title=_p('rightside.readmode_title'))
           i.fas.fa-book-open
-      button#font_plus(title=_p('rightside.font_plus_title'))
+      button#font_plus(type="button" title=_p('rightside.font_plus_title'))
         i.fas.fa-plus
-      button#font_minus(title=_p('rightside.font_minus_title'))
+      button#font_minus(type="button" title=_p('rightside.font_minus_title'))
         i.fas.fa-minus
     if theme.translate && theme.translate.enable
-      button#translateLink.translate_chn_to_cht(title=_p('rightside.translate_title'))= theme.translate.default
+      button#translateLink(type="button" title=_p('rightside.translate_title'))= theme.translate.default
     if theme.darkmode.enable && theme.darkmode.button
-      button#darkmode(title=_p('rightside.night_mode_title'))
+      button#darkmode(type="button" title=_p('rightside.night_mode_title'))
         i.fas.fa-adjust
   #rightside-config-show
-    button#rightside_config(title=_p("rightside.setting"))
+    button#rightside_config(type="button" title=_p("rightside.setting"))
       i.fas.fa-cog
-    if is_post() && page.comments !== false && isComment
+    if is_post() && page.comments !== false && theme.comments.use
       a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
-        i.scroll_to_comment.fas.fa-comments
+        i.fas.fa-comments
     if showToc
-      button#mobile-toc-button.close(title=_p("rightside.toc"))
+      button#mobile-toc-button.close(type="button" title=_p("rightside.toc"))
         i.fas.fa-list-ul
     if theme.chat_btn && (theme.chatra.enable || theme.tidio.enable || theme.daovoice.enable || theme.gitter.enable)
-      button#chat_btn(title=_p("rightside.chat_btn"))
+      button#chat_btn(type="button" title=_p("rightside.chat_btn"))
         i.fas.fa-sms
 
-    button#go-up(title=_p("rightside.back_to_top"))
+    button#go-up(type="button" title=_p("rightside.back_to_top"))
       i.fas.fa-arrow-up
 
 

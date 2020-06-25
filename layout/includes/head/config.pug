@@ -74,12 +74,23 @@
     })
   }
 
+  var noticeOutdate = 'undefined';
+  if (theme.noticeOutdate && theme.noticeOutdate.enable) {
+    noticeOutdate = JSON.stringify({
+      limitDay: theme.noticeOutdate.limit_day,
+      position: theme.noticeOutdate.position,
+      messagePrev: theme.noticeOutdate.message_prev,
+      messageNext: theme.noticeOutdate.message_next,
+    })
+  }
+
 script.
   var GLOBAL_CONFIG = { 
     root: '!{config.root}',
     algolia: !{algolia},
     localSearch: !{localSearch},
     translate: !{translate},
+    noticeOutdate: !{noticeOutdate},
     copy: {
       success: '!{_p("copy.success")}',
       error: '!{_p("copy.error")}',

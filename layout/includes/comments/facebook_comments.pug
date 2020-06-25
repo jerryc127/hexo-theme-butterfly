@@ -1,10 +1,28 @@
 #fb-root
-script(async defer crossorigin="anonymous" src=`https://connect.facebook.net/${theme.facebook_comments.lang}/sdk.js#xfbml=1&version=v6.0`)
 .fb-comments(data-colorscheme = theme.display_mode === 'dark' ? 'dark' : 'light'
             data-href=urlNoIndex() 
             data-numposts= theme.facebook_comments.pageSize || 10
             data-order-by= theme.facebook_comments.order_by || 'social'
             data-width="100%")
+
+script.
+  function loadFBComent () {
+    let ele = document.createElement('script')
+    ele.setAttribute('src','https://connect.facebook.net/!{theme.facebook_comments.lang}/sdk.js#xfbml=1&version=v7.0')
+    ele.setAttribute('async', 'true')
+    ele.setAttribute('defer', 'true')
+    ele.setAttribute('crossorigin', 'anonymous')
+    document.getElementById('fb-root').insertAdjacentElement('afterbegin',ele)
+  }
+
+  if ('!{defaultComment}' === 'Facebook Comments' || !{theme.comments.load_begin}) {
+    window.addEventListener('load', loadFBComent)
+  }
+  else {
+    function loadOtherComment () {
+      loadFBComent()
+    }
+  }
 
 if theme.darkmode.enable
   script.

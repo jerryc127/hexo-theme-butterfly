@@ -14,10 +14,10 @@ hexo.extend.filter.register('before_post_render', function (data) {
   return data
 })
 
-var randomCover = function () {
-  var theme = hexo.theme.config
-  var cover
-  var num
+function randomCover () {
+  const theme = hexo.theme.config
+  let cover
+  let num
 
   if (theme.cover.default_cover) {
     if (!Array.isArray(theme.cover.default_cover)) {

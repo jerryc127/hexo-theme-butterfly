@@ -1,5 +1,5 @@
 - var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
-- var pageHighlightShrinkSet = page.highlight_shrink !== undefined ? page.highlight_shrink : theme.highlight_shrink
+- var pageHighlightShrinkSet = page.highlight_shrink === true || page.highlight_shrink === false ? page.highlight_shrink : theme.highlight_shrink
 - var pageHighlightShrink = theme.highlight_shrink !== 'none' && pageHighlightShrinkSet ? 'code-close' : ''
 
 doctype html

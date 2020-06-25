@@ -164,6 +164,7 @@
         background-color: $light-blue
 
       span
+        @extend .limit-one-line
         display: inline-block
         vertical-align: bottom
 
@@ -195,7 +196,7 @@
             width: 70% !important
 
           &-count
-            width: 18%
+            width: calc(100% - 70% - 20px)
             text-align: right
 
           &-icon
