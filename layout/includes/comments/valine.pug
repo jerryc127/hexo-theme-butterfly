@@ -2,10 +2,9 @@
 if site.data.valine
   - emojiMaps = JSON.stringify(site.data.valine)
 
-#vcomment.vcomment
 script.
   function loadvaline () {  
-    var requestSetting = function (from,set) {
+    function requestSetting (from, set) {
       var from = from
       var setting = set.split(',').filter(function(item){
       return from.indexOf(item) > -1
@@ -22,6 +21,7 @@ script.
         el:'#vcomment',
         appId: '#{theme.valine.appId}',
         appKey: '#{theme.valine.appKey}',
+        path: window.location.pathname,
         placeholder: '#{theme.valine.placeholder}',
         avatar: '#{theme.valine.avatar}',
         meta: guestInfo,
@@ -35,11 +35,13 @@ script.
         requiredFields: requiredFields
       });
     }
-    loadScript('!{url_for(theme.CDN.valine)}', initValine)
+
+    if (typeof window.valine ==='object') initValine() 
+    else $.getScript('!{url_for(theme.CDN.valine)}', initValine)
   }
 
   if ('!{defaultComment}' === 'Valine' || !{theme.comments.load_begin}) {
-    window.addEventListener('load', loadvaline)
+    loadvaline()
   }
   else {
     function loadOtherComment () {

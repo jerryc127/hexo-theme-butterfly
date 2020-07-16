@@ -17,7 +17,7 @@
 
     &.current
       background: $theme-paginator-color
-      color: $button-color
+      color: var(--white)
       cursor: default
 
   img.prev-cover,
@@ -39,7 +39,7 @@
   .prev_info,
   .next_info
     @extend .limit-one-line
-    color: $button-color
+    color: var(--white)
     font-weight: 500
 
   .next-post
@@ -51,7 +51,7 @@
 
   .prev-post .label,
   .next-post .label
-    color: alpha($white, .9)
+    color: var(--light-grey)
     text-transform: uppercase
     font-size: 90%
 

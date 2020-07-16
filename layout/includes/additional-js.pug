@@ -1,76 +1,90 @@
-script(src=url_for(theme.CDN.jquery))
-script(src=url_for(theme.CDN.utils))
-script(src=url_for(theme.CDN.main))
+div
+  script(src=url_for(theme.CDN.jquery))
+  script(src=url_for(theme.CDN.utils))
+  script(src=url_for(theme.CDN.main))
 
-if theme.translate && theme.translate.enable
-  script(src=url_for(theme.CDN.translate))
+  if theme.translate && theme.translate.enable
+    script(src=url_for(theme.CDN.translate))
 
-if theme.medium_zoom
-  script(src=url_for(theme.CDN.medium_zoom))
+  if theme.medium_zoom
+    script(src=url_for(theme.CDN.medium_zoom))
 
-if theme.fancybox
-  script(src=url_for(theme.CDN.fancybox))
+  if theme.fancybox
+    script(src=url_for(theme.CDN.fancybox))
 
-include ./math/index.pug 
+  if theme.fireworks && theme.fireworks.enable
+    script(src=url_for(theme.CDN.anime))
+    script(src=url_for(theme.CDN.fireworks))
 
-if theme.fireworks && theme.fireworks.enable
-  script(src=url_for(theme.CDN.anime))
-  script(src=url_for(theme.CDN.fireworks))
+  if (theme.snackbar && theme.snackbar.enable)
+    script(src=url_for(theme.CDN.snackbar))
 
-if (theme.snackbar && theme.snackbar.enable)
-  script(src=url_for(theme.CDN.snackbar))
+  if (theme.canvas_ribbon && theme.canvas_ribbon.enable)
+    include ./third-party/canvas-ribbon.pug
 
-if (theme.canvas_ribbon && theme.canvas_ribbon.enable)
-  include ./third-party/canvas-ribbon.pug
+  if (theme.canvas_ribbon_piao && theme.canvas_ribbon_piao.enable)
+    include ./third-party/canvas-ribbon-piao.pug
 
-if (theme.canvas_ribbon_piao && theme.canvas_ribbon_piao.enable)
-  include ./third-party/canvas-ribbon-piao.pug
+  if (theme.canvas_nest && theme.canvas_nest.enable)
+    include ./third-party/canvas-nest.pug 
 
-if (theme.canvas_nest && theme.canvas_nest.enable)
-  include ./third-party/canvas-nest.pug 
+  if theme.activate_power_mode.enable
+    script(src=url_for(theme.CDN.activate_power_mode))
+    script.
+      POWERMODE.colorful = #{theme.activate_power_mode.colorful};
+      POWERMODE.shake = #{theme.activate_power_mode.shake};
+      document.body.addEventListener('input', POWERMODE);
 
-if theme.activate_power_mode.enable
-  script(src=url_for(theme.CDN.activate_power_mode))
-  script.
-    POWERMODE.colorful = #{theme.activate_power_mode.colorful};
-    POWERMODE.shake = #{theme.activate_power_mode.shake};
-    document.body.addEventListener('input', POWERMODE);
+  if theme.instantpage
+    script(src=url_for(theme.CDN.instantpage) type="module" defer)
 
-if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
-  script(async src=url_for(theme.CDN.busuanzi))
+  if theme.lazyload.enable
+    script(src=url_for(theme.CDN.lazyload) async)
 
-if theme.instantpage
-  script(src=url_for(theme.CDN.instantpage) type="module" defer)
+  //- 鼠標特效
+  if theme.click_heart
+    script(src=url_for(theme.CDN.click_heart))
 
-if theme.lazyload.enable
-  script(src=url_for(theme.CDN.lazyload) async)
+  if theme.ClickShowText && theme.ClickShowText.enable
+    script(src=url_for(theme.CDN.ClickShowText))
 
-//- 鼠標特效
-if theme.click_heart
-  script(src=url_for(theme.CDN.click_heart))
+  if theme.pangu && theme.pangu.enable
+    include ./third-party/pangu.pug
 
-if theme.ClickShowText && theme.ClickShowText.enable
-  script(src=url_for(theme.CDN.ClickShowText))
+  //- search
+  if theme.algolia_search && theme.algolia_search.enable
+    script(src=url_for(theme.CDN.algolia_js))
+  else if theme.local_search && theme.local_search.enable
+    script(src=url_for(theme.CDN.local_search))
 
-if theme.pangu && theme.pangu.enable
-  include ./third-party/pangu.pug
+  if theme.preloader
+    !=partial('includes/loading/loading-js', {}, {cache:theme.fragment_cache})
 
-//- search
-if theme.algolia_search && theme.algolia_search.enable
-  script(src=url_for(theme.CDN.algolia_js))
-else if theme.local_search && theme.local_search.enable
-  script(src=url_for(theme.CDN.local_search))
+  !=partial('includes/chat/index', {}, {cache:theme.fragment_cache})
 
-//- mermaid
-if theme.mermaid.enable
-  include ./math/mermaid.pug
+  .js-pjax
+    if is_home() && theme.subtitle.enable
+      include ./third-party/subtitle.pug
 
-if is_home()
-  include ./head/subtitle.pug
+    include ./math/index.pug
 
-!=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
+    //- mermaid
+    if theme.mermaid.enable
+      include ./third-party/mermaid.pug
 
-if theme.preloader
-  !=partial('includes/loading/loading-js', {}, {cache:theme.fragment_cache})
+    if commentsJsLoad
+      include ./comments/js.pug
 
-!=partial('includes/chat/index', {}, {cache:theme.fragment_cache})
+    if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
+      script(async src=url_for(theme.CDN.busuanzi))
+
+  if theme.aplayerInject
+    if theme.pjax
+      include ./head/aplayer.pug
+    else if page.aplayer
+      include ./head/aplayer.pug
+
+  if theme.pjax
+    include ./third-party/pjax.pug
+
+  !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})

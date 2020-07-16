@@ -4,19 +4,22 @@
   position: relative
   margin: 0 0 1rem
   padding: 15px
+  
 
   if ($note-style == 'simple')
-    border: 1px solid $light-grey
+    border: 1px solid #EEEEEE
     border-left-width: 5px
 
   if ($note-style == 'modern')
     border: 1px solid transparent
-    background-color: $whitesmoke
+    background-color: var(--white)smoke
+    
 
   if ($note-style == 'flat')
     border: initial
-    border-left: 5px solid $light-grey
-    background-color: lighten($light-grey, 65%)
+    color: $font-black
+    border-left: 5px solid #EEEEEE
+    background-color: lighten(#EEEEEE, 65%)
 
   if hexo-config('note.border_radius') is a 'unit'
     border-radius: unit(hexo-config('note.border_radius'), px)
@@ -47,6 +50,9 @@
 
     &:last-child
       margin-bottom: 0 !important
+  
+  code
+    background: $code-background !important
 
   if $note-icons
     &:not(.no-icon)
@@ -69,14 +75,11 @@
         background: lookup('$note-modern-' + $type + '-bg')
         color: lookup('$note-modern-' + $type + '-text')
 
-        a,
-        span.exturl
+        a
           &:not(.btn)
-            border-bottom: 1px solid lookup('$note-modern-' + $type + '-text')
             color: lookup('$note-modern-' + $type + '-text')
 
             &:hover
-              border-bottom: 1px solid lookup('$note-modern-' + $type + '-hover')
               color: lookup('$note-modern-' + $type + '-hover')
 
       if ($note-style != 'modern')

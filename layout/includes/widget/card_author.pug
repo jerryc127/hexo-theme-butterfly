@@ -19,15 +19,14 @@
             .length_num= site.tags.length
 
       if site.categories.length
-        .card-info-data-item.is-center      
+        .card-info-data-item.is-center
           a(href=url_for(config.category_dir))
             .headline= _p('aside.categories') 
             .length_num= site.categories.length
 
-    .card-info-bookmark.is-center
-      button#bookmark-it.button--animated(type="button" title= _p('aside.card_bookmark'))
-        i.fas.fa-bookmark
-        span= _p('aside.card_bookmark') || 'Follow Me'
+    a#card-info-btn.button--animated(href=theme.aside.card_author.button.link)
+      i(class=theme.aside.card_author.button.icon)
+      span=theme.aside.card_author.button.text
   
     if(theme.social)
         .card-info-social-icons.is-center

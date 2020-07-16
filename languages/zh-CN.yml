@@ -24,7 +24,8 @@ post:
   created: 发表于
   updated: 更新于
   wordcount: 字数总计
-  min2read: '阅读时长: %s 分钟'
+  min2read: 阅读时长
+  min2read_unit: 分钟
   page_pv: 阅读量
   comments: 评论数
   copyright:
@@ -63,7 +64,6 @@ aside:
   card_tags: 标签
   card_archives: 归档
   card_recent_post: 最新文章
-  card_bookmark: 加入书签
   card_webinfo:
     headline: 网站资讯
     article_name: 文章数目

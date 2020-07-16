@@ -23,6 +23,7 @@ if $highlight_theme == 'default'
     color: alpha($highlight-foreground, .8),
     bg-color: darken($highlight-background, 2)
   }
+  $highlight-scrollbar = darken($highlight-background, 6)
 
 if $highlight_theme == 'darker' || $highlight_theme == 'mac'
   $highlight-background = #212121
@@ -48,6 +49,7 @@ if $highlight_theme == 'darker' || $highlight_theme == 'mac'
     color: alpha($highlight-foreground, .8),
     bg-color: darken($highlight-background, 2)
   }
+  $highlight-scrollbar = darken($highlight-background, 6)
 
 if $highlight_theme == 'pale night'
   $highlight-background = #292D3E
@@ -72,6 +74,7 @@ if $highlight_theme == 'pale night'
     color: $highlight-foreground,
     bg-color: darken($highlight-background, 2)
   }
+  $highlight-scrollbar = darken($highlight-background, 6)
 
 if $highlight_theme == 'ocean'
   $highlight-background = #0F111A
@@ -96,6 +99,7 @@ if $highlight_theme == 'ocean'
     color: $highlight-foreground,
     bg-color: darken($highlight-background, 2)
   }
+  $highlight-scrollbar = darken($highlight-background, 5)
 
 if $highlight_theme == 'light' || $highlight_theme == 'mac light'
   $highlight-background = #F6F8FA
@@ -121,6 +125,8 @@ if $highlight_theme == 'light' || $highlight_theme == 'mac light'
     color: $highlight-foreground,
     bg-color: darken($highlight-background, 5)
   }
+  $highlight-scrollbar = darken($highlight-background, 8)
+
 
 if $highlight_theme == false
   $highlight-background = #F6F8FA

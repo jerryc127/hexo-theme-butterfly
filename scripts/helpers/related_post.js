@@ -41,7 +41,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   const limitNum = config.related_post.limit || 6
   const dateType = config.related_post.date_type || 'created'
   const headlineLang = this._p('post.recommend')
-  const lazySrc = config.lazyload.enable ? 'data-src' : 'src'
+  const lazySrc = config.lazyload.enable ? 'data-lazy-src' : 'src'
 
   relatedPosts = relatedPosts.sort(compare('weight'))
 

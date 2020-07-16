@@ -24,7 +24,8 @@ post:
   created: 發表於
   updated: 更新於
   wordcount: 字數總計
-  min2read: '閱讀時長: %s 分鐘'
+  min2read: 閲讀時長
+  min2read_unit: 分鐘
   page_pv: 閱讀量
   comments: 評論數
   copyright:
@@ -63,7 +64,6 @@ aside:
   card_tags: 標籤
   card_archives: 歸檔
   card_recent_post: 最新文章
-  card_bookmark: 加入書籤
   card_webinfo:
     headline: 網站資訊
     article_name: 文章數目

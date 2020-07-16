@@ -7,14 +7,11 @@
   transition: all .5s
 
   #rightside-config-hide
+    transition: transform .4s
     transform: translate(35px, 0)
 
-  .rightside-in
-    transform: translate(0, 0) !important
-    animation: rightsideIn .3s
-
-  .rightside-out
-    animation: rightsideOut .3s
+    &.show
+      transform: translate(0, 0) !important
 
   & > div
     & > button,
@@ -23,14 +20,14 @@
       margin-bottom: 2px
       width: 30px
       height: 30px
-      background-color: $light-blue
-      color: $button-color
+      background-color: var(--btn-bg)
+      color: var(--btn-color)
       text-align: center
       font-size: 16px
       cursor: pointer
 
       &:hover
-        background-color: $theme-button-hover-color
+        background-color: var(--btn-hover-color)
 
   #rightside_config
     i
@@ -41,17 +38,3 @@
 
     @media screen and (max-width: $bg)
       display: block
-
-@keyframes rightsideIn
-  0%
-    transform: translate(30px, 0)
-
-  100%
-    transform: translate(0, 0)
-
-@keyframes rightsideOut
-  0%
-    transform: translate(0, 0)
-
-  100%
-    transform: translate(30px, 0)

@@ -2,37 +2,39 @@ script(src=`//code.tidio.co/${theme.tidio.public_key}.js` async)
 
 if theme.chat_btn
   script.
-    (function() {
-      function onTidioChatApiReady() {
+    function onTidioChatApiReady() {
+      window.tidioChatApi.hide();
+      window.tidioChatApi.on("close", function() {
         window.tidioChatApi.hide();
-        window.tidioChatApi.on("close", function() {
-          window.tidioChatApi.hide();
-        });
-      }
-      if (window.tidioChatApi) {
-        window.tidioChatApi.on("ready", onTidioChatApiReady);
-      } else {
-        document.addEventListener("tidioChat-ready", onTidioChatApiReady);
-      }
+      });
+    }
+    if (window.tidioChatApi) {
+      window.tidioChatApi.on("ready", onTidioChatApiReady);
+    } else {
+      document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+    }
 
+    var chatBtnFn = () => {
       document.getElementById("chat_btn").addEventListener("click", function(){
         window.tidioChatApi.show();
         window.tidioChatApi.open();
-    });
-    })();
+      });
+    }
+    chatBtnFn()
+
 else if theme.chat_hide_show
   script.
     function chatBtnHide () {
       if (window.tidioChatApi) {
-        window.tidioChatApi.hide();
-        //- document.getElementById('tidio-chat').style.display= 'none'
+        //- window.tidioChatApi.hide();
+        document.getElementById('tidio-chat').style.display= 'none'
       }
     }
 
     function chatBtnShow () {
       if (window.tidioChatApi) {
-        window.tidioChatApi.show();
-        //- document.getElementById('tidio-chat').style.display= 'block'
+        //- window.tidioChatApi.show();
+        document.getElementById('tidio-chat').style.display= 'block'
       } 
     }
 

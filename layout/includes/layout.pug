@@ -15,13 +15,12 @@ html(lang=config.language data-theme=theme.display_mode)
 
     !=partial('includes/mobile-sidebar/index', {}, {cache:theme.fragment_cache})
 
-    include ./sidebar.pug
-
     #body-wrap(class=pageHighlightShrink)
       if theme.background
         - var is_photo = theme.background.startsWith('url') ? 'photo':'color'
         #web_bg(data-type=is_photo)
 
+      include ./sidebar.pug
       include ./header/index.pug
 
       if (!is_post())

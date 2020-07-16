@@ -1,21 +1,20 @@
-#gitalk-container
-script(src=url_for(theme.CDN.blueimp_md5))
-
 script.
   function loadGitalk () {
-    const ele = document.createElement('link')
-    ele.rel = 'stylesheet'
-    ele.href= '!{url_for(theme.CDN.gitalk_css)}'
-    document.getElementsByTagName('head')[0].appendChild(ele)
+    function addGitalkSource () {
+      const ele = document.createElement('link')
+      ele.rel = 'stylesheet'
+      ele.href= '!{url_for(theme.CDN.gitalk_css)}'
+      document.getElementsByTagName('head')[0].appendChild(ele)
+    }
 
-    loadScript('!{url_for(theme.CDN.gitalk)}', function () {
+    function initGitalk () {
       var gitalk = new Gitalk({
         clientID: '!{theme.gitalk.client_id}',
         clientSecret: '!{theme.gitalk.client_secret}',
         repo: '!{theme.gitalk.repo}',
         owner: '!{theme.gitalk.owner}',
         admin: ['!{theme.gitalk.admin}'],
-        id: md5(decodeURI(location.pathname)),
+        id: '!{md5(page.path)}',
         language: '!{theme.gitalk.language}',
         perPage: !{theme.gitalk.perPage},
         distractionFreeMode: !{theme.gitalk.distractionFreeMode},
@@ -24,7 +23,13 @@ script.
         updateCountCallback: commentCount
       })
       gitalk.render('gitalk-container')
-    })
+    }
+
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      addGitalkSource()
+      $.getScript('!{url_for(theme.CDN.gitalk)}', initGitalk)
+    }
 
     function commentCount(n){
       try {
@@ -36,12 +41,13 @@ script.
   }
 
   if ('!{defaultComment}' === 'Gitalk' || !{theme.comments.load_begin}) {
-    window.addEventListener('load', loadGitalk)
+    loadGitalk()
   }
   else {
     function loadOtherComment () {
       loadGitalk()
     }
   }
+
 
 

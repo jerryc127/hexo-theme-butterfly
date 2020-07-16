@@ -1,28 +1,25 @@
-//- https://sidecar.gitter.im/
-script.
-  var isChatBtn = !{theme.chat_btn}
-
-  if (isChatBtn) {
+if theme.chat_btn
+  script.
     ((window.gitter = {}).chat = {}).options = {
       room: '#{theme.gitter.room}',
       activationElement: '#chat_btn'
     };
-  } else {
+  
+  script(src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer)
+
+else
+  script.
     ((window.gitter = {}).chat = {}).options = {
       room: '#{theme.gitter.room}',
     };
 
     if (!{theme.chat_hide_show}) {
-      var gitterBtn = document.getElementsByClassName('gitter-open-chat-button')
-
       function chatBtnHide () {
-        gitterBtn[0].style.display= 'none'
+        document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'none'
       }
 
       function chatBtnShow () {
-        gitterBtn[0].style.display= 'block'
+        document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'block'
       }
     }
-  }
-
-script(src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer)
+  script(src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer)

@@ -30,7 +30,9 @@ code_word_wrap: false
 # copyright: Add the copyright information after copied content (複製的內容後面加上版權信息)
 copy:
   enable: true
-  copyright: false
+  copyright:
+    enable: false
+    limit_count: 50
 
 # social settings (社交圖標設置)
 # formal:
@@ -141,10 +143,12 @@ post_meta:
     date_type: created # created or updated or both 主頁文章日期是創建日或者更新日或都顯示
     categories: true # true or false 主頁是否顯示分類
     tags: false # true or false 主頁是否顯示標籤
+    label: true # true or false 顯示描述性文字
   post:
     date_type: both # created or updated or both 文章頁日期是創建日或者更新日或都顯示
     categories: true # true or false 文章頁是否顯示分類
     tags: true # true or false 文章頁是否顯示標籤
+    label: true # true or false 顯示描述性文字
 
 # wordcount (字數統計)
 wordcount:
@@ -242,8 +246,10 @@ addtoany:
 
 comments:
   # Up to two comments system, the first will be shown as default
-  # Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments
+  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments
   use:
+    # - Valine
+    # - Disqus
   text: true # Display the comment name next to the button
   load_begin: false # The second comment system will auto load when visiting the website
   count: false # Dispaly comment count in top_img
@@ -416,6 +422,10 @@ baidu_site_verification:
 # see http://zhanzhang.so.com/
 qihu_site_verification:
 
+# Yandex Webmaster tools verification setting
+# see https://webmaster.yandex.com/
+yandex_site_verification:
+
 # Beautify/Effect (美化/效果)
 # --------------------------------------
 
@@ -580,12 +590,17 @@ aside:
   card_author:
     enable: true
     description:
+    button:
+      icon: fab fa-github
+      text: Follow Me
+      link: https://github.com/xxxxxx
   card_announcement:
     enable: true
     content: This is my Blog
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
+    sort: date # date or updated
   card_categories:
     enable: true
     limit: 8 # if set 0 will show all
@@ -685,6 +700,12 @@ note:
 # other
 # --------------------------------------
 
+# https://github.com/MoOx/pjax
+pjax: true
+
+# Inject the css and script (aplayer/meting)
+aplayerInject: true 
+
 # Snackbar (Toast Notification 彈窗)
 # https://github.com/polonel/SnackBar
 # position 彈窗位置
@@ -755,8 +776,10 @@ CDN:
   main: /js/main.js
   utils: /js/utils.js
 
+  # pjax
+  pjax: https://cdn.jsdelivr.net/npm/pjax/pjax.min.js
+
   # comments
-  blueimp_md5: https://cdn.jsdelivr.net/npm/blueimp-md5/js/md5.min.js
   gitalk: https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js
   gitalk_css: https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css
   valine: https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js
@@ -776,7 +799,7 @@ CDN:
   algolia_search_css: https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css
 
   # math
-  mathjax: https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  mathjax: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   katex: https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css
   katex_copytex: https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js
   katex_copytex_css: https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css
@@ -792,7 +815,7 @@ CDN:
 
   lazyload: https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js
   instantpage: https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js
-  typed: https://cdn.jsdelivr.net/npm/typed.js
+  typed: https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js
   pangu: https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js
 
   # photo
@@ -824,4 +847,4 @@ CDN:
   # aplayer
   aplayer_css: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css
   aplayer_js: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js
-  meting_js: https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js
+  meting_js: https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js

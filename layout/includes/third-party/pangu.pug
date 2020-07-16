@@ -1,12 +1,19 @@
-script(src=url_for(theme.CDN.pangu))
-if theme.pangu.field === 'post' && is_post()
-  script.
-    document.addEventListener('DOMContentLoaded', function() {
-      pangu.autoSpacingPage()
-    })
-else if theme.pangu.field === 'site'
-  script.
-    document.addEventListener('DOMContentLoaded', function() {
-      pangu.autoSpacingPage()
-    })
+script.
+  function panguFn () {
+    if (typeof pangu === 'object') pangu.spacingElementById('content-inner')
+    else {
+      $.getScript('!{url_for(theme.CDN.pangu)}', () => {
+        pangu.spacingElementById('content-inner')
+      })
+    }
+  }
 
+  function panguInit () {
+    if (!{theme.pangu.field === 'post'}){
+      GLOBAL_CONFIG_SITE.isPost && panguFn()
+    } else {
+      panguFn()
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', panguFn)

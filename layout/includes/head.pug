@@ -35,10 +35,6 @@ if theme.disable_baidu_transformation
   meta(http-equiv="Cache-Control" content="no-transform")
   meta(http-equiv="Cache-Control" content="no-siteapp")
 
-if theme.douban
-  if theme.douban.meta && (is_current('/movies/', [strict]) || is_current('/books/', [strict]) || is_current('/games/', [strict]))
-    meta(name="referrer" content="no-referrer")
-
 //- 預解析
 !=partial('includes/head/preconnect', {}, {cache:theme.fragment_cache})
 
@@ -47,6 +43,11 @@ if theme.douban
 
 //- Open_Graph
 include ./head/Open_Graph.pug
+
+if theme.facebook_comments.app_id
+  meta(property="fb:app_id" content=theme.facebook_comments.app_id )
+if theme.facebook_comments.user_id
+  meta(property="fb:admins" content=theme.facebook_comments.user_id)
 
 //- PWA
 if (theme.pwa && theme.pwa.enable)
@@ -65,18 +66,9 @@ if theme.fancybox
 if (theme.snackbar && theme.snackbar.enable)
   link(rel='stylesheet', href=url_for(theme.CDN.snackbar_css))
 
-if is_post()
-  if(page.prev)
-    link(rel="prev" title=page.prev.title href=url_for(page.prev.permalink) )
-  if(page.next)
-    link(rel="next" title=page.next.title  href=url_for(page.next.permalink) )
-
 if theme.algolia_search.enable
-  link(rel="stylesheet" type="text/css" href=url_for(theme.CDN.algolia_search_css))
+  link(rel='stylesheet' href=url_for(theme.CDN.algolia_search_css))
   script(src=url_for(theme.CDN.algolia_search) defer)
-
-//- comment css
-include ./head/comment.pug
 
 //- google_adsense
 !=partial('includes/head/google_adsense', {}, {cache:theme.fragment_cache})
@@ -96,5 +88,3 @@ include ./head/noscript.pug
 
 !=fragment_cache('injectHead', function(){return injectHtml(theme.inject.head)})
 
-if page.aplayer
-  include ./head/aplayer.pug

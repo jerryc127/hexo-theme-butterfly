@@ -1,16 +1,16 @@
 mixin postUI(posts)
   each article , index in page.posts.data
     .recent-post-item
-      - var link = article.link || article.path
-      - var title = article.title || _p('no_title')
-      - var leftOrRight = index%2 == 0 ? 'left_radius' : 'right_radius'
-      - var post_cover = article.cover
-      - var no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
+      - let link = article.link || article.path
+      - let title = article.title || _p('no_title')
+      - let leftOrRight = index%2 == 0 ? 'left_radius' : 'right_radius'
+      - let post_cover = article.cover
+      - let no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
       if post_cover && theme.cover.index_enable
         .post_cover(class=leftOrRight)
           a(href=url_for(link) title=title)      
             if theme.lazyload.enable
-              img.post_bg(data-src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` alt=title)
+              img.post_bg(data-lazy-src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` alt=title)
             else
               img.post_bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` alt=title)
       .recent-post-info(class=no_cover)
@@ -19,26 +19,26 @@ mixin postUI(posts)
           if (is_home() && (article.top || article.sticky > 0))
             span.article-meta
               i.fas.fa-thumbtack.article-meta__icon.sticky
-              span.sticky= _p('sticky')
+              span.sticky.article-meta-label= _p('sticky')
               span.article-meta__separator |
           if (theme.post_meta.page.date_type)
-            if (theme.post_meta.page.date_type === 'both')
-              time.post-meta__date
-                span.post-meta__date-created(title=_p('post.created') + ' ' + full_date(article.date))
-                  i.far.fa-calendar-alt
-                  =date(article.date, config.date_format)
+            span.post-meta-date
+              if (theme.post_meta.page.date_type === 'both')               
+                i.far.fa-calendar-alt
+                span.article-meta-label= _p('post.created')
+                time.post-meta-date-created(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date))=date(article.date, config.date_format)
                 span.article-meta__separator |
-                span.post-meta__date-updated(title=_p('post.updated') + ' ' + full_date(article.updated))
-                  i.fas.fa-history
-                  =date(article.updated, config.date_format)
-            else
-              - var data_type_updated = theme.post_meta.page.date_type === 'updated'
-              - var date_type = data_type_updated ? 'updated' : 'date'
-              - var date_icon = data_type_updated ? 'fas fa-history' :'far fa-calendar-alt'
-              - var date_title = data_type_updated ? _p('post.updated') : _p('post.created')
-              time.post-meta__date(title=date_title + ' ' + full_date(article[date_type]))
+                i.fas.fa-history
+                span.article-meta-label= _p('post.updated')
+                time.post-meta-date-updated(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated))=date(article.updated, config.date_format)
+              else
+                - let data_type_updated = theme.post_meta.page.date_type === 'updated'
+                - let date_type = data_type_updated ? 'updated' : 'date'
+                - let date_icon = data_type_updated ? 'fas fa-history' :'far fa-calendar-alt'
+                - let date_title = data_type_updated ? _p('post.updated') : _p('post.created')
                 i(class=date_icon)
-                =date(article[date_type], config.date_format)
+                span.article-meta-label=date_title
+                time(datetime=date_xml(article[date_type]) title=date_title + ' ' + full_date(article[date_type]))=date(article[date_type], config.date_format)
           if (theme.post_meta.page.categories && article.categories.data.length > 0)
             span.article-meta
               span.article-meta__separator |
