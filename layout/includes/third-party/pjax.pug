@@ -36,7 +36,9 @@ script.
   document.addEventListener('pjax:send', function () {
     if (window.aplayers) {
       for (let i = 0; i < window.aplayers.length; i++) {
-        if (!window.aplayers[i].options.fixed) window.aplayers[i].destroy()
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
       }
     }
 
