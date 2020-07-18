@@ -701,10 +701,10 @@ note:
 # --------------------------------------
 
 # https://github.com/MoOx/pjax
-pjax: true
+pjax: false
 
 # Inject the css and script (aplayer/meting)
-aplayerInject: true 
+aplayerInject: false 
 
 # Snackbar (Toast Notification 彈窗)
 # https://github.com/polonel/SnackBar

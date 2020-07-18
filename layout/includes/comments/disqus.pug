@@ -6,11 +6,15 @@ script.
       this.page.title = '!{ page.title }'
     };
 
-    if (window.DISQUS) {
+    window.disqusReset = () => {
       DISQUS.reset({
         reload: true,
         config: disqus_config
       })
+    }
+
+    if (window.DISQUS) {
+      disqusReset()
     } else {
       (function() { 
         var d = document, s = d.createElement('script')
@@ -34,11 +38,11 @@ script.
 
 if is_post() && theme.comments.count && defaultComment === 'Disqus'
   script.
-    function getDisqusCount() {
+    if (window.DISQUSWIDGETS === undefined) {
       var d = document, s = d.createElement('script');
       s.src = 'https://!{theme.disqus.shortname}.disqus.com/count.js';
       s.id = 'dsq-count-scr';
       (d.head || d.body).appendChild(s);
+    } else {
+      DISQUSWIDGETS.getCount({reset: true});
     }
-
-   getDisqusCount()

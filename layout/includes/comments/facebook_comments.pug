@@ -1,25 +1,29 @@
 #fb-root
 script.
-  function loadFBComent () {
-    let ele = document.createElement('script')
-    ele.setAttribute('src','https://connect.facebook.net/!{theme.facebook_comments.lang}/sdk.js#xfbml=1&version=v7.0')
-    ele.setAttribute('async', 'true')
-    ele.setAttribute('defer', 'true')
-    ele.setAttribute('crossorigin', 'anonymous')
-    document.getElementById('fb-root').insertAdjacentElement('afterbegin',ele)
-
+  function loadFBComment () {
     var themeNow = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
     document.getElementsByClassName('fb-comments')[0].setAttribute('data-colorscheme',themeNow)
 
     if (typeof FB === 'object') FB.XFBML.parse()
+    else {
+      let ele = document.createElement('script')
+      ele.setAttribute('src','https://connect.facebook.net/!{theme.facebook_comments.lang}/sdk.js#xfbml=1&version=v7.0')
+      ele.setAttribute('async', 'true')
+      ele.setAttribute('defer', 'true')
+      ele.setAttribute('crossorigin', 'anonymous')
+      document.getElementById('fb-root').insertAdjacentElement('afterbegin',ele)
+    }   
   }
 
   if ('!{defaultComment}' === 'Facebook Comments' || !{theme.comments.load_begin}) {
-    loadFBComent()
+    document.getElementsByClassName('fb-comments').length && loadFBComment()
+    !{theme.pjax} && document.addEventListener('pjax:complete', () => 
+      document.getElementsByClassName('fb-comments').length && loadFBComment()
+    )
   }
   else {
     function loadOtherComment () {
-      loadFBComent()
+      loadFBComment()
     }
   }
 

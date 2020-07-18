@@ -7,7 +7,7 @@ script.
       document.getElementsByTagName('head')[0].appendChild(ele)
     }
 
-    function initDiqusjs () {
+    function initDisqusjs () {
       window.DISQUS = null
       new DisqusJS({
         shortname: '!{theme.disqusjs.shortname}',
@@ -23,11 +23,13 @@ script.
       });
     }
 
-    if (window.disqusjsload) initDiqusjs()
+    window.disqusReset = initDisqusjs
+
+    if (window.disqusJsLoad) initDisqusjs()
     else {
       addDisqusjsCSS()
-      $.getScript('!{url_for(theme.CDN.disqusjs)}', initDiqusjs)
-      window.disqusjsload = true
+      $.getScript('!{url_for(theme.CDN.disqusjs)}', initDisqusjs)
+      window.disqusJsLoad = true
     }
   }
 
@@ -43,10 +45,12 @@ script.
 
 if is_post() && theme.comments.count && defaultComment === 'Disqusjs'
   script.
-    function getDisqusCount() {
+    if (window.DISQUSWIDGETS === undefined) {
       var d = document, s = d.createElement('script');
-      s.src = 'https://!{theme.disqusjs.shortname}.disqus.com/count.js';
+      s.src = 'https://!{theme.disqus.shortname}.disqus.com/count.js';
       s.id = 'dsq-count-scr';
       (d.head || d.body).appendChild(s);
+    } else {
+      DISQUSWIDGETS.getCount({reset: true});
     }
-    getDisqusCount()
+

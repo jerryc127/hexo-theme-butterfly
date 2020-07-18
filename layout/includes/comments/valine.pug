@@ -3,7 +3,7 @@ if site.data.valine
   - emojiMaps = JSON.stringify(site.data.valine)
 
 script.
-  function loadvaline () {  
+  function loadValine () {
     function requestSetting (from, set) {
       var from = from
       var setting = set.split(',').filter(function(item){
@@ -18,10 +18,9 @@ script.
 
     function initValine () {
       window.valine = new Valine({
-        el:'#vcomment',
+        el: '#vcomment',
         appId: '#{theme.valine.appId}',
         appKey: '#{theme.valine.appKey}',
-        path: window.location.pathname,
         placeholder: '#{theme.valine.placeholder}',
         avatar: '#{theme.valine.avatar}',
         meta: guestInfo,
@@ -32,20 +31,22 @@ script.
         emojiCDN: '#{theme.valine.emojiCDN}',
         emojiMaps: !{emojiMaps},
         enableQQ: #{theme.valine.enableQQ},
-        requiredFields: requiredFields
+        requiredFields: requiredFields,
+        path: window.location.pathname,
       });
     }
 
-    if (typeof window.valine ==='object') initValine() 
+    if (typeof Valine === 'function') initValine() 
     else $.getScript('!{url_for(theme.CDN.valine)}', initValine)
   }
 
   if ('!{defaultComment}' === 'Valine' || !{theme.comments.load_begin}) {
-    loadvaline()
+    document.querySelector('#vcomment') && loadValine()
+    !{theme.pjax} && document.addEventListener('pjax:complete', () => document.querySelector('#vcomment') && loadValine())
   }
   else {
     function loadOtherComment () {
-      loadvaline()
+      loadValine()
     }
   }
 

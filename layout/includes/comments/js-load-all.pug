@@ -1,0 +1,7 @@
+- let defaultComment = theme.comments.use[0]
+each name in theme.comments.use
+  case name
+    when 'Valine'
+      include ./valine.pug
+    when 'Facebook Comments'
+      include ./facebook_comments.pug

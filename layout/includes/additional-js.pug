@@ -78,13 +78,19 @@ div
     if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
       script(async src=url_for(theme.CDN.busuanzi))
 
+  if theme.pjax && theme.comments && theme.comments.use
+    !=partial('includes/comments/js-load-all', {}, {cache:theme.fragment_cache})
+  else if commentsJsLoad
+    !=partial('includes/comments/js-load-all', {}, {cache:theme.fragment_cache})
+
   if theme.aplayerInject
     if theme.pjax
       include ./head/aplayer.pug
     else if page.aplayer
       include ./head/aplayer.pug
 
-  if theme.pjax
-    include ./third-party/pjax.pug
-
   !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
+
+  if theme.pjax
+    !=partial('includes/third-party/pjax', {}, {cache:theme.fragment_cache})
+

@@ -1,5 +1,5 @@
 script.
-  function loadlivere () {
+  function loadLivere () {
     (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];
         if (typeof LivereTower === 'function') { return; }
@@ -11,13 +11,10 @@ script.
   }
 
   if ('!{defaultComment}' === 'Livere' || !{theme.comments.load_begin}) {
-    loadlivere()
+    loadLivere()
   }
   else {
     function loadOtherComment () {
-      loadlivere()
+      loadLivere()
     }
   }
-
-noscript.
-  Please activate JavaScript for write a comment in LiveRe

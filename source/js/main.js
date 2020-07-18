@@ -28,7 +28,7 @@ const adjustMenu = function (n) {
 }
 
 // 初始化header
-const initAjust = () => {
+const initAdjust = () => {
   if (window.innerWidth < 768) adjustMenu(0)
   else adjustMenu(2)
   $('#nav').css({ opacity: '1', animation: 'headerNoOpacity 1s' })
@@ -197,7 +197,7 @@ const sidebarFn = () => {
  * 首頁top_img底下的箭頭
  */
 
-const indexSrollDown = () => {
+const indexScrollDown = () => {
   $('#scroll_down').on('click', function () {
     scrollToDest('#content-inner')
   })
@@ -207,7 +207,7 @@ const indexSrollDown = () => {
  * 代碼
  * 只適用於Hexo默認的代碼渲染
  */
-const addHightlightTool = function () {
+const addHighlightTool = function () {
   const $figureHighlight = $('figure.highlight')
   if ($figureHighlight.length) {
     const isHighlightCopy = GLOBAL_CONFIG.highlightCopy
@@ -333,7 +333,7 @@ function addPhotoFigcaption () {
  * justified-gallery 圖庫排版
  */
 
-let dectectJGJsLoad = false
+let detectJgJsLoad = false
 const justifiedGalleryRun = function () {
   const $justifiedGallery = $('.justified-gallery')
   if ($justifiedGallery.length) {
@@ -346,13 +346,13 @@ const justifiedGalleryRun = function () {
       })
     }
 
-    if (dectectJGJsLoad) initJustifiedGallery($justifiedGallery)
+    if (detectJgJsLoad) initJustifiedGallery($justifiedGallery)
     else {
       $('head').append(`<link rel="stylesheet" type="text/css" href="${GLOBAL_CONFIG.justifiedGallery.css}">`)
       $.getScript(`${GLOBAL_CONFIG.justifiedGallery.js}`, function () {
         initJustifiedGallery($justifiedGallery)
       })
-      dectectJGJsLoad = true
+      detectJgJsLoad = true
     }
   }
 }
@@ -441,7 +441,7 @@ const scrollFn = function () {
  * 點擊滾回頂部
  */
 
-const backtotop = function () {
+const backToTop = function () {
   $('#go-up').on('click', function () {
     scrollToDest('body')
   })
@@ -485,7 +485,7 @@ const tocFn = function () {
   }
 
   // anchor
-  const isanchor = GLOBAL_CONFIG.isanchor
+  const isAnchor = GLOBAL_CONFIG.isanchor
   const updateAnchor = function (anchor) {
     if (window.history.replaceState && anchor !== window.location.hash) {
       window.history.replaceState(undefined, undefined, anchor)
@@ -519,7 +519,7 @@ const tocFn = function () {
 
     const currentActive = $('.toc-link.active')
     if (currentId && currentActive.attr('href') !== currentId) {
-      if (isanchor) updateAnchor(currentId)
+      if (isAnchor) updateAnchor(currentId)
 
       $('.toc-link').removeClass('active')
 
@@ -544,12 +544,12 @@ const tocFn = function () {
   const autoScrollToc = function (currentTop) {
     if ($('.toc-link').hasClass('active')) {
       const activePosition = $('.active').offset().top
-      const sidebarScrolltop = $('#sidebar .sidebar-toc__content').scrollTop()
+      const sidebarScrollTop = $('#sidebar .sidebar-toc__content').scrollTop()
       if (activePosition > (currentTop + $(window).height() - 100)) {
-        $('#sidebar .sidebar-toc__content').scrollTop(sidebarScrolltop + 100)
+        $('#sidebar .sidebar-toc__content').scrollTop(sidebarScrollTop + 100)
       }
       if (activePosition < currentTop + 100) {
-        $('#sidebar .sidebar-toc__content').scrollTop(sidebarScrolltop - 100)
+        $('#sidebar .sidebar-toc__content').scrollTop(sidebarScrollTop - 100)
       }
     }
   }
@@ -660,6 +660,8 @@ const switchDarkmode = function () {
     $darkModeButton.click(function () {
       switchReadMode()
       typeof utterancesTheme === 'function' && utterancesTheme()
+      typeof FB === 'object' && window.loadFBComment()
+      window.DISQUS && $('#disqus_thread').children().length && setTimeout(() => window.disqusReset(), 200)
     })
   }
 }
@@ -730,13 +732,13 @@ const tabsClick = function () {
     const $tabItem = $this.parent()
 
     if (!$tabItem.hasClass('active')) {
-      const $tacbContent = $this.parents('.nav-tabs').next()
+      const $tabContent = $this.parents('.nav-tabs').next()
       $tabItem.siblings('.active').removeClass('active')
       $tabItem.addClass('active')
       const tabId = $this.attr('data-href')
-      $tacbContent.find('> .tab-item-content').removeClass('active')
-      $tacbContent.find(`> ${tabId}`).addClass('active')
-      const $isTabJustifiedGallery = $tacbContent.find(tabId).find('.justified-gallery')
+      $tabContent.find('> .tab-item-content').removeClass('active')
+      $tabContent.find(`> ${tabId}`).addClass('active')
+      const $isTabJustifiedGallery = $tabContent.find(tabId).find('.justified-gallery')
       if ($isTabJustifiedGallery.length > 0) {
         initJustifiedGallery($isTabJustifiedGallery)
       }
@@ -808,7 +810,7 @@ if (GLOBAL_CONFIG.islazyload) {
   )
 }
 
-const unrefreshFn = function () {
+const unRefreshFn = function () {
   $(window).on('resize', function () {
     if (window.innerWidth < 768) adjustMenu(0)
     else if ($('#sidebar').hasClass('tocOpenPc') && $('#nav').hasClass('fixed')) adjustMenu(1)
@@ -821,7 +823,7 @@ const unrefreshFn = function () {
 }
 
 const refreshFn = function () {
-  initAjust()
+  initAdjust()
 
   if (GLOBAL_CONFIG_SITE.isPost) {
     sidebarAutoOpen()
@@ -833,13 +835,13 @@ const refreshFn = function () {
   }
 
   sidebarFn()
-  GLOBAL_CONFIG_SITE.isHome && indexSrollDown()
-  addHightlightTool()
+  GLOBAL_CONFIG_SITE.isHome && indexScrollDown()
+  addHighlightTool()
   GLOBAL_CONFIG.isPhotoFigcaption && addPhotoFigcaption()
   justifiedGalleryRun()
   lightBox()
   scrollFn()
-  backtotop()
+  backToTop()
   rightsideConfigClick()
   switchDarkmode()
   GLOBAL_CONFIG.runtime && runtimeShow()
@@ -852,5 +854,5 @@ const refreshFn = function () {
 
 $(function () {
   refreshFn()
-  unrefreshFn()
+  unRefreshFn()
 })
