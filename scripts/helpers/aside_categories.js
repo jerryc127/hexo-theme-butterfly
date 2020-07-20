@@ -24,7 +24,7 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
   const categoryDir = this.url_for(config.category_dir)
   const limit = options.limit === 0 ? categories.length : options.limit
   const isExpand = options.expand !== 'none'
-  const expandClass = isExpand && options.expand === true ? 'card-category-list-icon expand' : 'card-category-list-icon'
+  const expandClass = isExpand && options.expand === true ? 'expand' : ''
 
   const buttonLabel = this._p('aside.more_button')
   const prepareQuery = (parent) => {

@@ -209,40 +209,46 @@ const indexScrollDown = () => {
  */
 const addHighlightTool = function () {
   const $figureHighlight = $('figure.highlight')
-  if ($figureHighlight.length) {
-    const isHighlightCopy = GLOBAL_CONFIG.highlightCopy
-    const isHighlightLang = GLOBAL_CONFIG.highlightLang
-    const isHighlightShrink = GLOBAL_CONFIG_SITE.isHighlightShrink
+  const isHighlightCopy = GLOBAL_CONFIG.highlightCopy
+  const isHighlightLang = GLOBAL_CONFIG.highlightLang
+  const isHighlightShrink = GLOBAL_CONFIG_SITE.isHighlightShrink
 
-    if (isHighlightCopy || isHighlightLang || isHighlightShrink !== undefined) {
-      $figureHighlight.prepend('<div class="highlight-tools"></div>')
+  if ($figureHighlight.length && (isHighlightCopy || isHighlightLang || isHighlightShrink !== undefined)) {
+    let highlightShrinkEle = ''
+    let highlightCopyEle = ''
+    const highlightShrinkClass = isHighlightShrink === true ? 'closed' : ''
+
+    if (isHighlightShrink !== undefined) {
+      highlightShrinkEle = `<i class="fas fa-angle-down expand ${highlightShrinkClass}"></i>`
+    }
+
+    if (isHighlightCopy) {
+      highlightCopyEle = '<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>'
+    }
+
+    if (isHighlightLang) {
+      let langName
+      $figureHighlight.each(function () {
+        const $this = $(this)
+        langName = $this.attr('class').split(' ')[1]
+        if (langName === 'plain' || langName === undefined) langName = 'Code'
+        const highlightLangEle = `<div class="code-lang">${langName}</div>`
+        $this.prepend(`<div class="highlight-tools ${highlightShrinkClass}">${highlightShrinkEle + highlightLangEle + highlightCopyEle}</div>`)
+      })
+    } else {
+      $figureHighlight.prepend(`<div class="highlight-tools ${highlightShrinkClass}">${highlightShrinkEle + highlightCopyEle}</div>`)
     }
 
     /**
      * 代碼收縮
      */
-    const $highlightTools = $('.highlight-tools')
-    if (isHighlightShrink === true) {
-      $highlightTools.append('<i class="fas fa-angle-down expand closed"></i>')
-    } else if (isHighlightShrink === false) {
-      $highlightTools.append('<i class="fas fa-angle-down expand"></i>')
-    }
 
-    $highlightTools.find('>.expand').on('click', function () {
-      const $this = $(this)
-      $this.parent().nextAll().toggle()
-      $this.toggleClass('closed')
-    })
-
-    /**
-     * 代碼語言
-     */
-    if (isHighlightLang) {
-      let langNameIndex, langName
-      $figureHighlight.each(function () {
-        langNameIndex = langName = $(this).attr('class').split(' ')[1]
-        if (langNameIndex === 'plain' || langNameIndex === undefined) langName = 'Code'
-        $(this).find('.highlight-tools').append('<div class="code-lang">' + langName + '</div>')
+    if (isHighlightShrink !== undefined) {
+      $figureHighlight.find('.highlight-tools >.expand').on('click', function () {
+        const $this = $(this)
+        const $table = $this.parent().nextAll()
+        $this.toggleClass('closed')
+        $table.is(':visible') ? $table.css('display', 'none') : $table.css('display', 'block')
       })
     }
 
@@ -250,43 +256,23 @@ const addHighlightTool = function () {
      * 代碼copy
      */
     if (isHighlightCopy) {
-      $highlightTools.append('<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>')
       const copy = function (text, ctx) {
         if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
-          try {
-            document.execCommand('copy') // Security exception may be thrown by some browsers.
-            if (GLOBAL_CONFIG.Snackbar !== undefined) {
-              snackbarShow(GLOBAL_CONFIG.copy.success)
-            } else {
-              $(ctx).prev('.copy-notice')
-                .text(GLOBAL_CONFIG.copy.success)
-                .animate({
-                  opacity: 1
-                }, 450, function () {
-                  setTimeout(function () {
-                    $(ctx).prev('.copy-notice').animate({
-                      opacity: 0
-                    }, 650)
-                  }, 400)
-                })
-            }
-          } catch (ex) {
-            if (GLOBAL_CONFIG.Snackbar !== undefined) {
-              snackbarShow(GLOBAL_CONFIG.copy.success)
-            } else {
-              $(ctx).prev('.copy-notice')
-                .text(GLOBAL_CONFIG.copy.error)
-                .animate({
-                  opacity: 1
-                }, 650, function () {
-                  setTimeout(function () {
-                    $(ctx).prev('.copy-notice').animate({
-                      opacity: 0
-                    }, 650)
-                  }, 400)
-                })
-              return false
-            }
+          document.execCommand('copy')
+          if (GLOBAL_CONFIG.Snackbar !== undefined) {
+            snackbarShow(GLOBAL_CONFIG.copy.success)
+          } else {
+            $(ctx).prev('.copy-notice')
+              .text(GLOBAL_CONFIG.copy.success)
+              .animate({
+                opacity: 1
+              }, 450, function () {
+                setTimeout(function () {
+                  $(ctx).prev('.copy-notice').animate({
+                    opacity: 0
+                  }, 650)
+                }, 400)
+              })
           }
         } else {
           if (GLOBAL_CONFIG.Snackbar !== undefined) {
@@ -298,7 +284,7 @@ const addHighlightTool = function () {
       }
 
       // click events
-      $highlightTools.find('>.copy-button').on('click', function () {
+      $figureHighlight.find('.highlight-tools >.copy-button').on('click', function () {
         const $buttonParent = $(this).parents('figure.highlight')
         $buttonParent.addClass('copy-true')
         const selection = window.getSelection()
@@ -747,20 +733,18 @@ const tabsClick = function () {
 }
 
 const cardCategoryToggle = function () {
-  const $cardCategory = $('.card-category-list-item.parent a')
+  const $cardCategory = $('.card-category-list-item.parent i')
   $cardCategory.on('click', function (e) {
-    if ($(event.target).hasClass('card-category-list-icon')) {
-      const $this = $(this)
-      $this.find('.card-category-list-icon').toggleClass('expand')
-      $this.parent().next().toggle()
-      return false
-    }
+    e.preventDefault()
+    const $this = $(this)
+    $this.toggleClass('expand')
+    $this.parents('.parent').next().toggle()
   })
 }
 
 const switchComments = function () {
   let switchDone = false
-  $('#switch-comments-btn').change(function () {
+  $('#switch-comments-btn').on('click', function () {
     $('#post-comment > .comment-wrap > div').each(function () {
       if ($(this).is(':visible')) {
         $(this).hide()

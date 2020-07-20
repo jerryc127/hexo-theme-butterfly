@@ -83,7 +83,7 @@ div
   else if commentsJsLoad
     !=partial('includes/comments/js-load-all', {}, {cache:theme.fragment_cache})
 
-  if theme.aplayerInject
+  if theme.aplayerInject && !config.aplayer.asset_inject
     if theme.pjax
       include ./head/aplayer.pug
     else if page.aplayer

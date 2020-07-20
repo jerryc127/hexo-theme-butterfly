@@ -1,4 +1,12 @@
 #vcomment
+  .vbtn
+    border: none
+    background: var(--btn-bg)
+    color: var(--btn-color)
+
+    &:hover
+      background: var(--btn-hover-color)
+
   if hexo-config('valine.bg')
     textarea
       background: url(hexo-config('valine.bg')) 100% 100% no-repeat

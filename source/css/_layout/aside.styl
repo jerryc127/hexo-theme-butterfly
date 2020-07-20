@@ -195,15 +195,15 @@
             width: calc(100% - 70% - 20px)
             text-align: right
 
-          &-icon
-            float: right
-            margin-right: -.35rem
-            padding: .35rem
-            transition: transform .3s
-            transform: rotate(0)
+        i
+          float: right
+          margin-right: -.35rem
+          padding: .35rem
+          transition: transform .3s
+          transform: rotate(0)
 
-            &.expand
-              transform: rotate(-90deg)
+          &.expand
+            transform: rotate(-90deg)
 
         if hexo-config('aside.card_categories.expand') == false
           + .child

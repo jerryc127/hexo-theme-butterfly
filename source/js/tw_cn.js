@@ -84,7 +84,7 @@
     }
     return str
   }
-  function translateInitilization () {
+  function translateInitialization () {
     translateButtonObject = document.getElementById('translateLink')
     if (translateButtonObject) {
       if (currentEncoding !== targetEncoding) {
@@ -94,6 +94,6 @@
       translateButtonObject.addEventListener('click', translatePage, false)
     }
   }
-  translateInitilization()
-  document.addEventListener('pjax:complete', translateInitilization)
+  translateInitialization()
+  document.addEventListener('pjax:complete', translateInitialization)
 })()
