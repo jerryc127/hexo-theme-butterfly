@@ -60,8 +60,6 @@ div
   if theme.preloader
     !=partial('includes/loading/loading-js', {}, {cache:theme.fragment_cache})
 
-  !=partial('includes/chat/index', {}, {cache:theme.fragment_cache})
-
   .js-pjax
     if is_home() && theme.subtitle.enable
       include ./third-party/subtitle.pug
@@ -90,6 +88,7 @@ div
       include ./head/aplayer.pug
 
   !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
+  !=partial('includes/chat/index', {}, {cache:theme.fragment_cache})
 
   if theme.pjax
     !=partial('includes/third-party/pjax', {}, {cache:theme.fragment_cache})

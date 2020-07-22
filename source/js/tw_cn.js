@@ -1,7 +1,6 @@
 (function () {
   const translate = GLOBAL_CONFIG.translate
   const snackbarData = GLOBAL_CONFIG.Snackbar
-
   const defaultEncoding = translate.defaultEncoding // 網站默認語言，1: 繁體中文, 2: 簡體中文
   const translateDelay = translate.translateDelay // 延遲時間,若不在前, 要設定延遲翻譯時間, 如100表示100ms,默認為0
   const msgToTraditionalChinese = translate.msgToTraditionalChinese // 此處可以更改為你想要顯示的文字

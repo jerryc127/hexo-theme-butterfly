@@ -196,7 +196,6 @@ const sidebarFn = () => {
 /**
  * 首頁top_img底下的箭頭
  */
-
 const indexScrollDown = () => {
   $('#scroll_down').on('click', function () {
     scrollToDest('#content-inner')
@@ -424,16 +423,6 @@ const scrollFn = function () {
 }
 
 /**
- * 點擊滾回頂部
- */
-
-const backToTop = function () {
-  $('#go-up').on('click', function () {
-    scrollToDest('body')
-  })
-}
-
-/**
  *  toc
  */
 const tocFn = function () {
@@ -542,33 +531,60 @@ const tocFn = function () {
 }
 
 /**
- * 閲讀模式
- */
-const readModeToggle = function () {
-  $('#readmode').on('click', function () {
-    $('body').toggleClass('read-mode')
-  })
-}
-
-/**
- * 字體調整
+ * Rightside
  */
 
+let $rightsideEle = $('#rightside')
+
+// read-mode
+$rightsideEle.on('click', '#readmode', function () {
+  $('body').toggleClass('read-mode')
+})
+
+// font change
 const originFontSize = $('body').css('font-size')
-const fontChange = function () {
-  $('#font_plus').click(function () {
-    const nowFontSize = parseFloat($('body').css('font-size'))
-    if (nowFontSize < 20) {
-      $('body').css('font-size', nowFontSize + 1)
+$rightsideEle.on('click', '#font_plus', () => {
+  const nowFontSize = parseFloat($('body').css('font-size'))
+  if (nowFontSize < 20) {
+    $('body').css('font-size', nowFontSize + 1)
+  }
+})
+
+$rightsideEle.on('click', '#font_minus', () => {
+  const nowFontSize = parseFloat($('body').css('font-size'))
+  if (nowFontSize > 10) {
+    $('body').css('font-size', nowFontSize - 1)
+  }
+})
+
+// Switch Between Light And Dark Mode
+if ($('#darkmode').length) {
+  const switchReadMode = function () {
+    const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+    if (nowMode === 'light') {
+      activateDarkMode()
+      Cookies.set('theme', 'dark', 2)
+      GLOBAL_CONFIG.Snackbar !== undefined && snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
+    } else {
+      activateLightMode()
+      Cookies.set('theme', 'light', 2)
+      GLOBAL_CONFIG.Snackbar !== undefined && snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
     }
-  })
-  $('#font_minus').click(function () {
-    const nowFontSize = parseFloat($('body').css('font-size'))
-    if (nowFontSize > 10) {
-      $('body').css('font-size', nowFontSize - 1)
-    }
+  }
+
+  $rightsideEle.on('click', '#darkmode', () => {
+    switchReadMode()
+    typeof utterancesTheme === 'function' && utterancesTheme()
+    typeof FB === 'object' && window.loadFBComment()
+    window.DISQUS && $('#disqus_thread').children().length && setTimeout(() => window.disqusReset(), 200)
   })
 }
+
+// rightside 點擊設置 按鈕 展開
+$rightsideEle.on('click', '#rightside_config', () => $('#rightside-config-hide').toggleClass('show'))
+
+// Back to top
+$rightsideEle.on('click', '#go-up', () => scrollToDest('body'))
 
 /**
  * menu
@@ -586,15 +602,6 @@ const subMenuFn = function () {
     if ($menusChild.is(':visible')) {
       $menusChild.css('display', 'none')
     }
-  })
-}
-
-/**
- * rightside 點擊設置 按鈕 展開
- */
-const rightsideConfigClick = function () {
-  $('#rightside_config').on('click', function () {
-    $('#rightside-config-hide').toggleClass('show')
   })
 }
 
@@ -621,34 +628,6 @@ const addCopyright = function () {
       // 兼容IE
       return window.clipboardData.setData('text', textFont)
     }
-  }
-}
-
-/**
- * Darkmode
- */
-const switchDarkmode = function () {
-  const $darkModeButton = $('#darkmode')
-  if ($darkModeButton.length) {
-    const switchReadMode = function () {
-      const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
-      if (nowMode === 'light') {
-        activateDarkMode()
-        Cookies.set('theme', 'dark', 2)
-        GLOBAL_CONFIG.Snackbar !== undefined && snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
-      } else {
-        activateLightMode()
-        Cookies.set('theme', 'light', 2)
-        GLOBAL_CONFIG.Snackbar !== undefined && snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
-      }
-    }
-
-    $darkModeButton.click(function () {
-      switchReadMode()
-      typeof utterancesTheme === 'function' && utterancesTheme()
-      typeof FB === 'object' && window.loadFBComment()
-      window.DISQUS && $('#disqus_thread').children().length && setTimeout(() => window.disqusReset(), 200)
-    })
   }
 }
 
@@ -813,8 +792,6 @@ const refreshFn = function () {
     sidebarAutoOpen()
     toggleSidebarFn()
     GLOBAL_CONFIG_SITE.isSidebar && tocFn()
-    fontChange()
-    readModeToggle()
     GLOBAL_CONFIG.noticeOutdate !== undefined && postNoticeUpdate()
   }
 
@@ -825,9 +802,6 @@ const refreshFn = function () {
   justifiedGalleryRun()
   lightBox()
   scrollFn()
-  backToTop()
-  rightsideConfigClick()
-  switchDarkmode()
   GLOBAL_CONFIG.runtime && runtimeShow()
   addTableWrap()
   tagHideClick()

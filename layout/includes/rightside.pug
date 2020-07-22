@@ -22,7 +22,7 @@ section#rightside
     if showToc
       button#mobile-toc-button.close(type="button" title=_p("rightside.toc"))
         i.fas.fa-list-ul
-    if theme.chat_btn && (theme.chatra.enable || theme.tidio.enable || theme.daovoice.enable || theme.gitter.enable)
+    if theme.chat_btn
       button#chat_btn(type="button" title=_p("rightside.chat_btn"))
         i.fas.fa-sms
 

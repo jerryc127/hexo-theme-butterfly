@@ -248,8 +248,8 @@ comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments
   use:
-    # - Valine
-    # - Disqus
+  # - Valine
+  # - Disqus
   text: true # Display the comment name next to the button
   load_begin: false # The second comment system will auto load when visiting the website
   count: false # Dispaly comment count in top_img
@@ -360,6 +360,12 @@ gitter:
   enable: false
   room:
 
+# crisp
+# https://crisp.chat/en/
+crisp:
+  enable: false
+  website_id:
+
 # Footer Settings
 # --------------------------------------
 
@@ -393,6 +399,7 @@ tencent_analytics:
 # Google Adsense (谷歌廣告)
 google_adsense:
   enable: false
+  auto_ads: true
   js: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
   client:
   enable_page_level_ads: true
@@ -635,7 +642,7 @@ runtimeshow:
 
 # Conversion between Traditional and Simplified Chinese (簡繁轉換)
 translate:
-  enable: true
+  enable: false
   # The text of a button
   default: 繁
   # the language of website (1 - Traditional Chinese/ 2 - Simplified Chinese）
@@ -704,7 +711,7 @@ note:
 pjax: false
 
 # Inject the css and script (aplayer/meting)
-aplayerInject: false 
+aplayerInject: false
 
 # Snackbar (Toast Notification 彈窗)
 # https://github.com/polonel/SnackBar
