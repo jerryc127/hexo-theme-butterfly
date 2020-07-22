@@ -94,7 +94,7 @@ avatar:
 # the banner image of home page
 index_img:
 
-# if the banner of page not setting,it will show the top_img
+# if the banner of page not setting, it will show the top_img
 default_top_img: https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg
 
 # the banner image of archive page
@@ -159,7 +159,7 @@ wordcount:
 
 # Display the article introduction on homepage
 # 1: description
-# 2: both (if the description exists, it will show description. or show the auto_excerpt)
+# 2: both (if the description exists, it will show description, or show the auto_excerpt)
 # 3: auto_excerpt (default)
 index_post_content:
   method: 3
@@ -252,7 +252,7 @@ comments:
   # - Disqus
   text: true # Display the comment name next to the button
   load_begin: false # The second comment system will auto load when visiting the website
-  count: false # Dispaly comment count in top_img
+  count: false # Display comment count in top_img
 
 # disqus
 # https://disqus.com/
@@ -260,7 +260,7 @@ disqus:
   shortname:
 
 # Alternative Disqus - Render comments with Disqus API
-# DisqusJS評論系統，可以實現在網路審查地區載入 Disqus 評論列表，兼容原版
+# DisqusJS 評論系統，可以實現在網路審查地區載入 Disqus 評論列表，兼容原版
 # https://github.com/SukkaW/DisqusJS
 disqusjs:
   shortname:
@@ -271,7 +271,7 @@ disqusjs:
   admin:
   adminLabel:
 
-# livere(來必力)
+# livere (來必力)
 # https://www.livere.com/
 livere:
   uid:
@@ -298,8 +298,8 @@ valine:
   pageSize: 10 # comment list page size
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
   lang: en # i18n: zh-CN/zh-TW/en/ja
-  placeholder: Please leave your footprints # valine comment input placeholder(like: Please leave your footprints )
-  guest_info: nick,mail,link #valine comment header info (nick/mail/link)
+  placeholder: Please leave your footprints # valine comment input placeholder (like: Please leave your footprints)
+  guest_info: nick,mail,link # valine comment header info (nick/mail/link)
   recordIP: false # Record reviewer IP
   serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
   bg: # valine background
@@ -369,17 +369,17 @@ crisp:
 # Footer Settings
 # --------------------------------------
 
-since: 2020
-
-footer_custom_text:
-
-footer_copyright: true
-
-ICP:
-  enable: false
-  url:
-  text:
-  icon: /img/icp.png
+footer:
+  owner: # 顯示站長信息
+    enable: true
+    since: 2020
+  custom_text: Hi, welcome to my blog! # 頁腳自定義文本
+  copyright: true # 顯示框架及主題作者信息
+  ICP: # 備案信息
+    enable: false
+    url:
+    text:
+    icon: /img/icp.png
 
 # Analysis
 # --------------------------------------
