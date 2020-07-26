@@ -33,15 +33,16 @@ script.
   }
   
   function commentCount(n){
-    if (document.querySelector('#post-meta .gitalk-comment-count')) {
-      document.querySelector('#post-meta .gitalk-comment-count').innerHTML= n
+    let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.innerHTML= n
     }
   }
 
-  if ('!{defaultComment}' === 'Gitalk' || !{theme.comments.load_begin}) {
-    loadGitalk()
-  }
-  else {
+  if ('!{theme.comments.use[0]}' === 'Gitalk' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
     function loadOtherComment () {
       loadGitalk()
     }

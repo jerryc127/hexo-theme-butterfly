@@ -10,8 +10,9 @@ script.
     })(document, 'script');
   }
 
-  if ('!{defaultComment}' === 'Livere' || !{theme.comments.load_begin}) {
-    loadLivere()
+  if ('!{theme.comments.use[0]}' === 'Livere' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) loadComment(document.getElementById('lv-container'), loadLivere)
+    else loadLivere()
   }
   else {
     function loadOtherComment () {

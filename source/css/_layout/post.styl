@@ -58,18 +58,24 @@ beautify()
     list-style: none
     counter-reset: li
 
+    @media screen and (max-width: $sm)
+      padding: 0 0 0 .4rem
+
     p
       margin: 0 0 .5rem
 
     ol,
     ul
-      padding-left: .5rem
+      padding-left: .6rem
+
+      @media screen and (max-width: $sm)
+        padding-left: 0.2rem
+
 
     li
       &:not(.tab)
         position: relative
         margin: .2rem 0
-        padding: .1rem .5rem .1rem 1.5rem
 
       &:hover
         &:before
@@ -86,9 +92,12 @@ beautify()
 
   ol
     > li
+      &:not(.tab)
+        padding: .1rem .2rem .1rem 1.4rem
+
       &:before
-        margin-top: .2rem
-        width: w = 1.2rem
+        margin-top: .3rem
+        width: w = 1rem
         height: h = w
         border-radius: .5 * w
         content: counter(li)
@@ -99,6 +108,8 @@ beautify()
 
   ul
     > li:not(.tab)
+      padding: .1rem .2rem .1rem 1rem
+
       &:hover
         &:before
           border-color: $pseudo-hover
@@ -106,7 +117,6 @@ beautify()
       &:before
         $w = .3rem
         top: 10px
-        margin-left: .45rem
         width: w = $w
         height: h = w
         border: .5 * w solid $light-blue

@@ -1,17 +1,17 @@
 .category-content
   ul
     margin-top: .4rem
-    padding: 0 0 0 .8rem
+    padding: 0 0 0 1rem
     list-style: none
     counter-reset: li
 
     ul
-      padding-left: .5rem
+      padding-left: .2rem
 
     li
       position: relative
       margin: .3rem 0
-      padding: .1rem .5rem .1rem 1.5rem !important
+      padding: .1rem .2rem .1rem 1rem
 
       &:before
         position: absolute
@@ -20,7 +20,6 @@
         transition: all .3s ease-out
         $w = .3rem
         top: 10px
-        margin-left: .45rem
         width: w = $w
         height: h = w
         border: .5 * w solid $light-blue
@@ -28,3 +27,7 @@
         background: transparent
         content: ''
         line-height: h
+
+      &:hover
+        &:before
+          border-color: $pseudo-hover

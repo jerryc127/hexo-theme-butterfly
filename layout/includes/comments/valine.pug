@@ -4,18 +4,6 @@ if site.data.valine
 
 script.
   function loadValine () {
-    function requestSetting (from, set) {
-      var from = from
-      var setting = set.split(',').filter(function(item){
-      return from.indexOf(item) > -1
-      });
-      setting = setting.length == 0 ? from :setting;
-      return setting
-    }
-
-    var guestInfo = requestSetting(['nick','mail','link'],'#{ theme.valine.guest_info }')
-    var requiredFields = requestSetting(['nick','mail'],'#{ theme.valine.requiredFields }')
-
     function initValine () {
       window.valine = new Valine({
         el: '#vcomment',
@@ -23,7 +11,7 @@ script.
         appKey: '#{theme.valine.appKey}',
         placeholder: '#{theme.valine.placeholder}',
         avatar: '#{theme.valine.avatar}',
-        meta: guestInfo,
+        meta: '#{theme.valine.guest_info }'.split(','),
         pageSize: '#{theme.valine.pageSize}',
         lang: '#{theme.valine.lang}',
         recordIP: #{theme.valine.recordIP},
@@ -31,22 +19,22 @@ script.
         emojiCDN: '#{theme.valine.emojiCDN}',
         emojiMaps: !{emojiMaps},
         enableQQ: #{theme.valine.enableQQ},
-        requiredFields: requiredFields,
         path: window.location.pathname,
       });
+      if ('#{theme.valine.requiredFields}') { valine.config.requiredFields= '#{theme.valine.requiredFields}'.split(',') }
     }
 
     if (typeof Valine === 'function') initValine() 
     else $.getScript('!{url_for(theme.CDN.valine)}', initValine)
   }
 
-  if ('!{defaultComment}' === 'Valine' || !{theme.comments.load_begin}) {
-    document.querySelector('#vcomment') && loadValine()
-    !{theme.pjax} && document.addEventListener('pjax:complete', () => document.querySelector('#vcomment') && loadValine())
-  }
-  else {
+  if ('!{theme.comments.use[0]}' === 'Valine' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) loadComment(document.querySelector('#vcomment'),loadValine)
+    else setTimeout(() => loadValine(), 0)
+  } else {
     function loadOtherComment () {
       loadValine()
     }
   }
+  
 

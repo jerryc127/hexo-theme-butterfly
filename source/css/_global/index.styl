@@ -244,6 +244,14 @@ if hexo-config('avatar.effect') == true
   .sidebar-toc__content
     animation: tocsidebarRtoL .7s
 
+#mobile-sidebar-menus
+  &.open
+    transform: translate3d(-100%, 0px, 0px)
+
+    for i in 1 2 3 4
+      > :nth-child({i})
+        animation: sidebarItem (i / 5)s
+
 @keyframes scroll-down-effect
   0%
     top: 0

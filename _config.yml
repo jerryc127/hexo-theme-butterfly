@@ -101,11 +101,11 @@ default_top_img: https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg
 archive_img:
 
 # the banner image of tag page
-# tag page, look like https://xxxxxxxxx.com/tags/butterfly
+# note: tag page, not tags page (子標籤頁面的 top_img)
 tag_img:
 
 # the banner image of category page
-# category page, look like https://xxxxxxxxx.com/categories/butterfly
+# note: category page, not categories page (子分類頁面的 top_img)
 category_img:
 
 # If you are using hexo-douban, you can configure it (如果你有使用 hexo-douban,可配置這個)
@@ -251,7 +251,9 @@ comments:
   # - Valine
   # - Disqus
   text: true # Display the comment name next to the button
-  load_begin: false # The second comment system will auto load when visiting the website
+  # lazyload: The comment system will be load when comment element enters the browser's viewport.
+  # If you set it to false, the comment count will be invalid
+  lazyload: false
   count: false # Display comment count in top_img
 
 # disqus
@@ -368,14 +370,13 @@ crisp:
 
 # Footer Settings
 # --------------------------------------
-
 footer:
-  owner: # 顯示站長信息
+  owner:
     enable: true
     since: 2020
-  custom_text: Hi, welcome to my blog! # 頁腳自定義文本
-  copyright: true # 顯示框架及主題作者信息
-  ICP: # 備案信息
+  custom_text: 
+  copyright: true # Copyright of theme and framework
+  ICP: # Chinese ICP License
     enable: false
     url:
     text:
@@ -456,7 +457,7 @@ yandex_site_verification:
 
 # The top_img settings of home page
 # default: top img - full screen, site info - middle (默認top_img全屏，site_info在中間)
-# The positon of site info, eg: 300px/300em/300rem/10% (主頁標題距離頂部距離)
+# The position of site info, eg: 300px/300em/300rem/10% (主頁標題距離頂部距離)
 index_site_info_top:
 # The height of top_img, eg: 300px/300em/300rem (主頁top_img高度)
 index_top_img_height:
@@ -553,12 +554,12 @@ font:
 # 左上角網站名字 主頁居中網站名字
 blog_title_font:
   font_link: https://fonts.googleapis.com/css?family=Titillium+Web&display=swap
-  font-family: Titillium Web, 'PingFang SC', 'Hiragino Sans GB', Microsoft YaHei', sans-serif
+  font-family: Titillium Web, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif
 
 # The setting of divider icon (水平分隔線圖標設置)
 hr_icon:
   enable: true
-  icon: # the unicode value of Font Awesome icon
+  icon: # the unicode value of Font Awesome icon, such as '\3423'
   icon-top:
 
 # the subtitle on homepage (主頁subtitle)
@@ -707,6 +708,8 @@ note:
 # other
 # --------------------------------------
 
+# Pjax [Beta]
+# It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
 pjax: false
 

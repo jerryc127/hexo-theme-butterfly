@@ -37,7 +37,7 @@ const initAdjust = () => {
 /**
  * 進入post頁sidebar處理
  */
-const sidebarAutoOpen = () => {
+const OpenSidebarAuto = () => {
   if (window.innerWidth > 1024 && $('#toggle-sidebar').hasClass('on')) {
     setTimeout(function () {
       openSidebar()
@@ -87,7 +87,7 @@ const openSidebar = () => {
   })
 }
 
-const toggleSidebarFn = function () {
+const toggleSidebar = function () {
   $('#toggle-sidebar').on('click', function () {
     const isOpen = $(this).hasClass('on')
     isOpen ? $(this).removeClass('on') : $(this).addClass('on')
@@ -119,12 +119,7 @@ const sidebarFn = () => {
 
     if (name === 'menu') {
       $toggleMenu.removeClass('close').addClass('open')
-      $mobileSidebarMenus.css('transform', 'translate3d(-100%,0,0)')
-      const $mobileSidebarMenusChild = $mobileSidebarMenus.children()
-      for (let i = 0; i <= $mobileSidebarMenusChild.length; i++) {
-        const duration = i / 5 + 0.2
-        $mobileSidebarMenusChild.eq(i).css('animation', 'sidebarItem ' + duration + 's')
-      }
+      $mobileSidebarMenus.addClass('open')
     }
 
     if (name === 'toc') {
@@ -139,8 +134,7 @@ const sidebarFn = () => {
 
     if (name === 'menu') {
       $toggleMenu.removeClass('open').addClass('close')
-      $mobileSidebarMenus.css('transform', '')
-      $('#mobile-sidebar-menus > div,#mobile-sidebar-menus > hr').css('animation', '')
+      $mobileSidebarMenus.removeClass('open')
     }
 
     if (name === 'toc') {
@@ -196,7 +190,7 @@ const sidebarFn = () => {
 /**
  * 首頁top_img底下的箭頭
  */
-const indexScrollDown = () => {
+const scrollDownInIndex = () => {
   $('#scroll_down').on('click', function () {
     scrollToDest('#content-inner')
   })
@@ -319,7 +313,7 @@ function addPhotoFigcaption () {
  */
 
 let detectJgJsLoad = false
-const justifiedGalleryRun = function () {
+const runJustifiedGallery = function () {
   const $justifiedGallery = $('.justified-gallery')
   if ($justifiedGallery.length) {
     const $imgList = $justifiedGallery.find('img')
@@ -345,7 +339,7 @@ const justifiedGalleryRun = function () {
 /**
  * fancybox和 mediumZoom
  */
-const lightBox = function () {
+const addLightBox = function () {
   const isMediumZoom = GLOBAL_CONFIG.medium_zoom
   const isFancybox = GLOBAL_CONFIG.fancybox
   if (isFancybox) {
@@ -534,7 +528,7 @@ const tocFn = function () {
  * Rightside
  */
 
-let $rightsideEle = $('#rightside')
+const $rightsideEle = $('#rightside')
 
 // read-mode
 $rightsideEle.on('click', '#readmode', function () {
@@ -591,7 +585,7 @@ $rightsideEle.on('click', '#go-up', () => scrollToDest('body'))
  * 側邊欄sub-menu 展開/收縮
  * 解決menus在觸摸屏下，滑動屏幕menus_item_child不消失的問題（手機hover的bug)
  */
-const subMenuFn = function () {
+const clickFnOfSubMenu = function () {
   $('#mobile-sidebar-menus .expand').on('click', function () {
     $(this).parents('.menus_item').find('> .menus_item_child').slideToggle()
     $(this).toggleClass('closed')
@@ -634,7 +628,7 @@ const addCopyright = function () {
 /**
  * 網頁運行時間
  */
-const runtimeShow = function () {
+const addRuntime = function () {
   const $runtimeCount = $('#webinfo-runtime-count')
   if ($runtimeCount.length) {
     const publishDate = $runtimeCount.attr('publish_date')
@@ -656,7 +650,7 @@ const addTableWrap = function () {
  * 百度推送
  */
 
-const baiduPush = () => {
+const pushToBaidu = () => {
   const bp = document.createElement('script')
   const curProtocol = window.location.protocol.split(':')[0]
   if (curProtocol === 'https') {
@@ -673,7 +667,7 @@ const baiduPush = () => {
  * tag-hide
  */
 
-const tagHideClick = function () {
+const clickFnOfTagHide = function () {
   const $hideInline = $('.hide-button')
   if ($hideInline.length) {
     $hideInline.on('click', function (e) {
@@ -690,7 +684,7 @@ const tagHideClick = function () {
   }
 }
 
-const tabsClick = function () {
+const clickFnOfTabs = function () {
   const $tab = $('#article-container .tabs')
   $tab.find('.tab > button').on('click', function (e) {
     const $this = $(this)
@@ -711,7 +705,7 @@ const tabsClick = function () {
   })
 }
 
-const cardCategoryToggle = function () {
+const toggleCardCategory = function () {
   const $cardCategory = $('.card-category-list-item.parent i')
   $cardCategory.on('click', function (e) {
     e.preventDefault()
@@ -741,7 +735,7 @@ const switchComments = function () {
   })
 }
 
-const postNoticeUpdate = function () {
+const addPostOutdateNotice = function () {
   const data = GLOBAL_CONFIG.noticeOutdate
   var diffDay = diffDate(GLOBAL_CONFIG_SITE.postUpdate)
   if (diffDay >= data.limitDay) {
@@ -780,33 +774,33 @@ const unRefreshFn = function () {
     else adjustMenu(2)
   })
 
-  subMenuFn()
+  clickFnOfSubMenu()
   GLOBAL_CONFIG.copyright !== undefined && addCopyright()
-  GLOBAL_CONFIG.baiduPush && baiduPush()
+  GLOBAL_CONFIG.baiduPush && pushToBaidu()
 }
 
 const refreshFn = function () {
   initAdjust()
 
   if (GLOBAL_CONFIG_SITE.isPost) {
-    sidebarAutoOpen()
-    toggleSidebarFn()
+    OpenSidebarAuto()
+    toggleSidebar()
     GLOBAL_CONFIG_SITE.isSidebar && tocFn()
-    GLOBAL_CONFIG.noticeOutdate !== undefined && postNoticeUpdate()
+    GLOBAL_CONFIG.noticeOutdate !== undefined && addPostOutdateNotice()
   }
 
   sidebarFn()
-  GLOBAL_CONFIG_SITE.isHome && indexScrollDown()
+  GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
   addHighlightTool()
   GLOBAL_CONFIG.isPhotoFigcaption && addPhotoFigcaption()
-  justifiedGalleryRun()
-  lightBox()
+  runJustifiedGallery()
+  addLightBox()
   scrollFn()
-  GLOBAL_CONFIG.runtime && runtimeShow()
+  GLOBAL_CONFIG.runtime && addRuntime()
   addTableWrap()
-  tagHideClick()
-  tabsClick()
-  cardCategoryToggle()
+  clickFnOfTagHide()
+  clickFnOfTabs()
+  toggleCardCategory()
   switchComments()
 }
 

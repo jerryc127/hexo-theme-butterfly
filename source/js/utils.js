@@ -108,10 +108,24 @@ const initJustifiedGallery = function (selector) {
   })
 }
 
-const diffDate = function (d) {
+const diffDate = d => {
   const dateNow = new Date()
   const datePost = new Date(d.replace(/-/g, '/'))
   const dateDiff = dateNow.getTime() - datePost.getTime()
   const dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000))
   return dayDiff
+}
+
+const loadComment = (dom, callback) => {
+  if ('IntersectionObserver' in window) {
+    const observerItem = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        callback()
+        observerItem.disconnect()
+      }
+    }, { threshold: [0] })
+    observerItem.observe(dom)
+  } else {
+    callback()
+  }
 }

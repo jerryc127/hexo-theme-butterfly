@@ -43,10 +43,10 @@ div
 
   //- 鼠標特效
   if theme.click_heart
-    script(src=url_for(theme.CDN.click_heart))
+    script(src=url_for(theme.CDN.click_heart) async)
 
   if theme.ClickShowText && theme.ClickShowText.enable
-    script(src=url_for(theme.CDN.ClickShowText))
+    script(src=url_for(theme.CDN.ClickShowText) async)
 
   if theme.pangu && theme.pangu.enable
     include ./third-party/pangu.pug
@@ -75,11 +75,6 @@ div
 
     if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
       script(async src=url_for(theme.CDN.busuanzi))
-
-  if theme.pjax && theme.comments && theme.comments.use
-    !=partial('includes/comments/js-load-all', {}, {cache:theme.fragment_cache})
-  else if commentsJsLoad
-    !=partial('includes/comments/js-load-all', {}, {cache:theme.fragment_cache})
 
   if theme.aplayerInject && !config.aplayer.asset_inject
     if theme.pjax
