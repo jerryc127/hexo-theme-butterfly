@@ -3,7 +3,7 @@ sidebar:
   have_read: 你已经读了
 
 footer:
-  driven: 驱动
+  framework: 框架
   theme: 主题
 
 copy:
@@ -24,7 +24,8 @@ post:
   created: 发表于
   updated: 更新于
   wordcount: 字数总计
-  min2read: '阅读时长: %s 分钟'
+  min2read: 阅读时长
+  min2read_unit: 分钟
   page_pv: 阅读量
   comments: 评论数
   copyright:
@@ -38,13 +39,13 @@ post:
 search: 搜索
 algolia_search:
   input_placeholder: 搜索文章
-  hits_empty: '找不到您查询的内容:${query}'
+  hits_empty: '找不到您查询的内容：${query}'
   hits_stats: '找到 ${hits} 条结果，用时 ${time} 毫秒'
 
 local_search:
   label: 本地搜索
   input_placeholder: 搜索文章
-  hits_empty: '找不到您查询的内容:${query}'
+  hits_empty: '找不到您查询的内容：${query}'
   powered: '提供支持'
   by: 由
 
@@ -63,7 +64,6 @@ aside:
   card_tags: 标签
   card_archives: 归档
   card_recent_post: 最新文章
-  card_bookmark: 加入书签
   card_webinfo:
     headline: 网站资讯
     article_name: 文章数目

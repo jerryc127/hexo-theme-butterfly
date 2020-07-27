@@ -12,10 +12,13 @@ script.
   })(document, window, 'Chatra');
 
   if (!{theme.chat_btn}) {
-    var chatBtn = document.getElementById("chat_btn")
+    var chatBtnFn = () => {
+      var chatBtn = document.getElementById("chat_btn")
       chatBtn.addEventListener("click", function(){
         Chatra('openChat')
       });
+    }
+    chatBtnFn()
   } else {
     if (!{theme.chat_hide_show}) {
       function chatBtnHide () {

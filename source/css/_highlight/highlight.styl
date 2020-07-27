@@ -24,8 +24,8 @@ blockquote
   margin: 0 0 1rem
   padding: .1rem .8rem
   border-left: .2rem solid $blockquote-padding-color
-  background-color: $blockquote-background-color
-  color: $blockquote-color
+  background-color: var(--blockquote-bg)
+  color: var(--blockquote-color)
 
   a
     word-break: break-all
@@ -123,9 +123,6 @@ blockquote
       padding-left: .5rem
       width: 100%
 
-    .line
-      height: 1rem
-
     .highlight-tools
       position: relative
       overflow: hidden
@@ -135,17 +132,19 @@ blockquote
       color: $highlight-tools.color
       font-size: 14px
 
-      .code-expand
+      &.closed + table
+        display: none
+
+      .expand
         position: absolute
         padding: .4rem .7rem
         cursor: pointer
-        transition: all .3s
-        transform: rotate(0)
+        transition: transform .3s
 
         & + .code-lang
           left: 1.7rem
 
-        &.code-closed
+        &.closed
           transition: all .3s
           transform: rotate(-90deg) !important
 
@@ -182,7 +181,7 @@ blockquote
     td
       border: none
 
-  if $highlight_theme == 'mac' || $highlight_theme == 'mac light'
+  if $highlight_theme == 'mac' || ($highlight_theme == 'mac light')
     figure.highlight
       margin: 0 0 1.2rem
       border-radius: 7px
@@ -201,10 +200,10 @@ blockquote
           box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b
           content: ' '
 
-        .code-expand
+        .expand
           right: 0
 
-          &.code-closed
+          &.closed
             transition: all .3s
             transform: rotate(90deg) !important
 
@@ -216,9 +215,3 @@ blockquote
 
         .code-lang
           left: 3.8rem !important
-
-// when the page.highlight_shrink set to true
-#body-wrap.code-close
-  figure.highlight
-    & > :not(.highlight-tools)
-      display: none

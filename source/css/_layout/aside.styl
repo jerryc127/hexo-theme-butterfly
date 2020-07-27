@@ -7,7 +7,7 @@
   .card-widget
     overflow: hidden
     border-radius: 8px
-    background: $card-bg
+    background: var(--card-bg)
     box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
     transition: all .3s
 
@@ -44,12 +44,12 @@
         a
           .headline
             @extend .limit-one-line
-            color: $font-black
+            color: var(--font-color)
             font-size: .7rem
 
           .length_num
             margin-top: -.3rem
-            color: $dark-black
+            color: var(--text-highlight-color)
             font-size: 1rem
 
     .card-info-social-icons
@@ -57,7 +57,7 @@
 
       .social-icon
         margin: 0 .5rem
-        color: $font-black
+        color: var(--font-color)
         font-size: 1rem
         cursor: pointer
 
@@ -67,13 +67,11 @@
         &:hover
           transform: rotate(540deg)
 
-    #bookmark-it
-      position: relative
-      z-index: 1
+    #card-info-btn
       display: block
-      width: 100%
-      background-color: $light-blue
-      color: $button-color
+      background-color: var(--btn-bg)
+      color: var(--btn-color)
+      text-align: center
       line-height: 1.6rem
 
       span
@@ -94,7 +92,7 @@
       padding: 0 .1rem
 
       &:hover
-        color: $light-blue !important
+        color: $text-hover !important
 
   .card-recent-post
     .aside-recent-item
@@ -103,46 +101,44 @@
       & > .aside-recent-post
         margin-bottom: 10px
 
-        & > a
-          color: $font-black
+        .aside-post-cover
+          float: left
+          overflow: hidden
+          width: 66px
+          height: 66px
 
-          .aside-post-cover
-            float: left
-            overflow: hidden
-            width: 66px
-            height: 66px
+          .aside-post-bg
+            padding: 0
+            max-width: 100%
+            width: 100%
+            height: 100%
+            transition: all .6s
+            object-fit: cover
 
-            .aside-post-bg
-              padding: 0
-              max-width: 100%
-              width: 100%
-              height: 100%
-              transition: all .6s
-              object-fit: cover
+            &:hover
+              box-shadow: none
+              transform: scale(1.1)
 
-              &:hover
-                box-shadow: none
-                transform: scale(1.1)
+        .aside-post-info
+          .aside-post_meta
+            padding-left: 10px
+            color: $theme-meta-color
+            font-size: .6rem
 
           .aside-post-title
-            .aside-post_meta
-              padding-left: 10px
-              color: $theme-meta-color
-              font-size: .6rem
+            @extend .limit-more-line
+            padding-left: 10px
+            height: 40px
+            color: var(--font-color)
+            line-height: 1rem
+            -webkit-line-clamp: 2
 
-            .aside-post_title
-              @extend .limit-more-line
-              padding-left: 10px
-              height: 40px
-              line-height: 1rem
-              -webkit-line-clamp: 2
+            &:hover
+              color: $text-hover
 
-              &:hover
-                color: $light-blue !important
-
-            &.no-aside-cover
-              .aside-post_title
-                height: auto
+          &.no-aside-cover
+            .aside-post-title
+              height: auto
 
   .card-archives ul.card-archive-list,
   .card-categories ul.card-category-list
@@ -156,12 +152,12 @@
       display: inline-block
       padding: .15rem 1rem
       width: 100%
-      color: $font-black
+      color: var(--font-color)
       transition: all .4s
 
       &:hover
         padding: .15rem .85rem
-        background-color: $light-blue
+        background-color: var(--text-bg-hover)
 
       span
         @extend .limit-one-line
@@ -188,7 +184,7 @@
   .card-categories
     .card-category-list
       &.child
-        padding: 0 0 0 1rem
+        padding: 0 0 0 .8rem
 
       > .parent
         .card-category-list
@@ -199,15 +195,15 @@
             width: calc(100% - 70% - 20px)
             text-align: right
 
-          &-icon
-            float: right
-            margin-right: -.35rem
-            padding: .35rem
-            transition: transform .3s
-            transform: rotate(0)
+        i
+          float: right
+          margin-right: -.35rem
+          padding: .35rem
+          transition: transform .3s
+          transform: rotate(0)
 
-            &.expand
-              transform: rotate(-90deg)
+          &.expand
+            transform: rotate(-90deg)
 
         if hexo-config('aside.card_categories.expand') == false
           + .child

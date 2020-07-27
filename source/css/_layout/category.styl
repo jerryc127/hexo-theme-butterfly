@@ -1,59 +1,25 @@
 .category-content
-  ol,
   ul
     margin-top: .4rem
-    padding: 0 0 0 .8rem
+    padding: 0 0 0 1rem
     list-style: none
     counter-reset: li
 
-    p
-      margin: 0
-
-    ol,
     ul
-      padding-left: .5rem
+      padding-left: .2rem
 
     li
       position: relative
       margin: .3rem 0
-      padding: .1rem .5rem .1rem 1.5rem !important
-
-      &:hover
-        &:before
-          transform: rotate(360deg)
+      padding: .1rem .2rem .1rem 1rem
 
       &:before
         position: absolute
-        top: 0
         left: 0
-        background: $light-blue
-        color: $card-bg
         cursor: pointer
         transition: all .3s ease-out
-
-  ol
-    li
-      &:before
-        margin-top: .2rem
-        width: w = 1.2rem
-        height: h = w
-        border-radius: .5 * w
-        content: counter(li)
-        counter-increment: li
-        text-align: center
-        font-size: .6rem
-        line-height: h
-
-  ul
-    li
-      &:hover
-        &:before
-          border-color: $theme-button-hover-color
-
-      &:before
         $w = .3rem
         top: 10px
-        margin-left: .45rem
         width: w = $w
         height: h = w
         border: .5 * w solid $light-blue
@@ -61,3 +27,7 @@
         background: transparent
         content: ''
         line-height: h
+
+      &:hover
+        &:before
+          border-color: $pseudo-hover

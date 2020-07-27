@@ -18,7 +18,6 @@ beautify()
   h4,
   h5,
   h6
-    cursor: pointer
     transition: all .2s ease-out
 
     &:before
@@ -59,18 +58,24 @@ beautify()
     list-style: none
     counter-reset: li
 
+    @media screen and (max-width: $sm)
+      padding: 0 0 0 .4rem
+
     p
       margin: 0 0 .5rem
 
     ol,
     ul
-      padding-left: .5rem
+      padding-left: .6rem
+
+      @media screen and (max-width: $sm)
+        padding-left: 0.2rem
+
 
     li
       &:not(.tab)
         position: relative
         margin: .2rem 0
-        padding: .1rem .5rem .1rem 1.5rem
 
       &:hover
         &:before
@@ -81,15 +86,18 @@ beautify()
         top: 0
         left: 0
         background: $light-blue
-        color: $card-bg
+        color: $white
         cursor: pointer
         transition: all .3s ease-out
 
   ol
     > li
+      &:not(.tab)
+        padding: .1rem .2rem .1rem 1.4rem
+
       &:before
-        margin-top: .2rem
-        width: w = 1.2rem
+        margin-top: .3rem
+        width: w = 1rem
         height: h = w
         border-radius: .5 * w
         content: counter(li)
@@ -100,14 +108,15 @@ beautify()
 
   ul
     > li:not(.tab)
+      padding: .1rem .2rem .1rem 1rem
+
       &:hover
         &:before
-          border-color: $theme-button-hover-color
+          border-color: $pseudo-hover
 
       &:before
         $w = .3rem
         top: 10px
-        margin-left: .45rem
         width: w = $w
         height: h = w
         border: .5 * w solid $light-blue
@@ -202,7 +211,7 @@ img
 
         &:hover
           background: $light-blue
-          color: $button-color
+          color: var(--white)
 
     .post_share
       display: inline-block
@@ -224,7 +233,7 @@ img
     position: relative
     margin: 2rem 0 .5rem
     padding: .5rem .8rem
-    border: 1px solid $light-grey
+    border: 1px solid var(--light-grey)
     transition: box-shadow .3s ease-in-out
 
     &:before
@@ -244,7 +253,7 @@ img
       width: w = .4rem
       height: w
       border-radius: w
-      background: $white
+      background: var(--card-bg)
       content: ''
 
     &:hover

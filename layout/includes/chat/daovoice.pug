@@ -13,10 +13,13 @@ script.
   daovoice('update');
 
   if (isChatBtn) {
-    var chatBtn = document.getElementById("chat_btn")
-    chatBtn.addEventListener("click", function(){
-      daovoice('show')
-    });
+    var chatBtnFn = () => {
+      var chatBtn = document.getElementById("chat_btn")
+      chatBtn.addEventListener("click", function(){
+        daovoice('show')
+      });
+    }
+    chatBtnFn()
   } else {
     if (!{theme.chat_hide_show}) {
       function chatBtnHide () {

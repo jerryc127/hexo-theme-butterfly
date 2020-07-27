@@ -5,87 +5,79 @@
   #post-meta
     .meta-firstline
       if (theme.post_meta.post.date_type)
-        if (theme.post_meta.post.date_type === 'both')
-          time.post-meta__date
-            span.post-meta__date-created(title= _p('post.created')+' '+full_date(page.date))
-              i.far.fa-calendar-alt.fa-fw
-              =' '+_p('post.created')+' '+date(page.date, config.date_format)
-            span.post-meta__separator |
-            span.post-meta__date-updated(title= _p('post.updated')+' '+full_date(page.updated))
-              i.fas.fa-history.fa-fw
-              =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-        else
-          - var data_type_update = theme.post_meta.post.date_type === 'updated'
-          - var date_type = data_type_update ? 'updated' : 'date'
-          - var date_icon = data_type_update ? 'fas fa-history' :'far fa-calendar-alt'
-          - var data_info = data_type_update ? _p('post.updated') : _p('post.created')
-          time.post-meta__date(title=data_info + ' ' + full_date(page[date_type]))
-            i.fa-fw(class=date_icon)
-            =' ' + data_info + ' ' + date(page[date_type], config.date_format)
-                
+        span.post-meta-date
+          if (theme.post_meta.post.date_type === 'both')
+            i.far.fa-calendar-alt.fa-fw.post-meta-icon
+            span.post-meta-label= _p('post.created')
+            time.post-meta-date-created(datetime=date_xml(page.date) title=_p('post.created') + ' ' + full_date(page.date))=date(page.date, config.date_format)
+            span.post-meta-separator |
+            i.fas.fa-history.fa-fw.post-meta-icon
+            span.post-meta-label= _p('post.updated')
+            time.post-meta-date-updated(datetime=date_xml(page.updated) title=_p('post.updated') + ' ' + full_date(page.updated))=date(page.updated, config.date_format)
+          else
+            - let data_type_update = theme.post_meta.post.date_type === 'updated'
+            - let date_type = data_type_update ? 'updated' : 'date'
+            - let date_icon = data_type_update ? 'fas fa-history' :'far fa-calendar-alt'
+            - let data_info = data_type_update ? _p('post.updated') : _p('post.created')
+            i.fa-fw.post-meta-icon(class=date_icon)
+            span.post-meta-label= data_info
+            time(datetime=date_xml(page[date_type]) title=date_title + ' ' + full_date(page[date_type]))=date(page[date_type], config.date_format)
       if (theme.post_meta.post.categories && page.categories.data.length > 0)
-        span.post-meta__categories
+        span.post-meta-categories
           if (theme.post_meta.post.date_type)
-            span.post-meta__separator |
+            span.post-meta-separator |
 
           each item, index in page.categories.data
-            i.fas.fa-inbox.fa-fw.post-meta__icon
-            a(href=url_for(item.path)).post-meta__categories #[=item.name]
+            i.fas.fa-inbox.fa-fw.post-meta-icon
+            a(href=url_for(item.path)).post-meta-categories #[=item.name]
             if (index < page.categories.data.length - 1)
-              i.fas.fa-angle-right.post-meta__separator
+              i.fas.fa-angle-right.post-meta-separator
 
     .meta-secondline  
       - let postWordcount = theme.wordcount.enable && (theme.wordcount.post_wordcount || theme.wordcount.min2read)
       if (postWordcount)
+        span.post-meta-separator |
         span.post-meta-wordcount
           if theme.wordcount.post_wordcount
-            i.far.fa-file-word.fa-fw.post-meta__icon
-            span= _p('post.wordcount') + ':'
+            i.far.fa-file-word.fa-fw.post-meta-icon
+            span.post-meta-label= _p('post.wordcount') + ':'
             span.word-count= wordcount(page.content)
             if theme.wordcount.min2read
-              span.post-meta__separator |
+              span.post-meta-separator |
           if theme.wordcount.min2read
-            i.far.fa-clock.fa-fw.post-meta__icon
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
+            i.far.fa-clock.fa-fw.post-meta-icon
+            span.post-meta-label= _p('post.min2read') + ':'
+            span= min2read(page.content, {cn: 350, en: 160}) + _p('post.min2read_unit')
     
-    .meta-thirdline
-      span.post-meta-pv-cv
-        if (postWordcount && theme.busuanzi.page_pv)
-          span.post-meta__separator |
-        if theme.busuanzi.page_pv
-          i.far.fa-eye.fa-fw.post-meta__icon
-          span=_p('post.page_pv') + ':'
+      if theme.busuanzi.page_pv
+        span.post-meta-separator |
+        span.post-meta-pv-cv
+          i.far.fa-eye.fa-fw.post-meta-icon
+          span.post-meta-label=_p('post.page_pv') + ':'
           span#busuanzi_value_page_pv
 
-      if page.comments !== false && theme.comments.use && theme.comments.count
-        span.post-meta-commentcount
-        
-        - let whichCount = theme.comments.use[0]
-        if whichCount === 'Disqus' || whichCount === 'Disqusjs'
-          if (postWordcount || theme.busuanzi.page_pv)
-            span.post-meta__separator |
-          i.far.fa-comments.fa-fw.post-meta__icon
-          span= _p('post.comments') + ':'
-          span.disqus-comment-count.comment-count
-            a(href=full_url_for(page.path) + '#disqus_thread')
-        else if whichCount === 'Valine'
-          if (postWordcount || theme.busuanzi.page_pv)
-            span.post-meta__separator |
-          i.far.fa-comments.fa-fw.post-meta__icon
-          span= _p('post.comments') + ':'
-          a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
-            span.valine-comment-count.comment-count(data-xid=url_for(page.path) itemprop="commentCount")
-        else if whichCount === 'Gitalk'
-          if (postWordcount || theme.busuanzi.page_pv)
-            span.post-meta__separator |
-          i.far.fa-comments.fa-fw.post-meta__icon
-          span= _p('post.comments') + ':'
-          a(href=url_for(page.path) + '#post-comment')
-            span.gitalk-comment-count.comment-count
-        else if whichCount === 'Facebook Comments'
-          if (postWordcount || theme.busuanzi.page_pv)
-            span.post-meta__separator |
-          i.far.fa-comments.fa-fw.post-meta__icon
-          span= _p('post.comments') + ':'
-          a.comment-count(href=url_for(page.path) + '#post-comment')
-            span.fb-comments-count(data-href=urlNoIndex())
+      if !theme.comments.lazyload && page.comments !== false && theme.comments.use && theme.comments.count
+        - var whichCount = theme.comments.use[0]
+        if whichCount !== 'Livere' && whichCount !== 'Utterances'
+          span.post-meta-separator |
+          span.post-meta-commentcount
+            if whichCount === 'Disqus' || whichCount === 'Disqusjs'
+              i.far.fa-comments.fa-fw.post-meta-icon
+              span.post-meta-label= _p('post.comments') + ':'
+              span.disqus-comment-count.comment-count
+                a(href=full_url_for(page.path) + '#disqus_thread')
+            else if whichCount === 'Valine'
+              i.far.fa-comments.fa-fw.post-meta-icon
+              span.post-meta-label= _p('post.comments') + ':'
+              a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
+                span.valine-comment-count.comment-count(data-xid=url_for(page.path) itemprop="commentCount")
+            else if whichCount === 'Gitalk'
+              i.far.fa-comments.fa-fw.post-meta-icon
+              span.post-meta-label= _p('post.comments') + ':'
+              a(href=url_for(page.path) + '#post-comment')
+                span.gitalk-comment-count.comment-count
+            else if whichCount === 'Facebook Comments'
+              i.far.fa-comments.fa-fw.post-meta-icon
+              span.post-meta-label= _p('post.comments') + ':'
+              a.comment-count(href=url_for(page.path) + '#post-comment')
+                span.fb-comments-count(data-href=urlNoIndex())

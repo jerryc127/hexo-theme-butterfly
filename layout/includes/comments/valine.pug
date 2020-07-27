@@ -2,29 +2,16 @@
 if site.data.valine
   - emojiMaps = JSON.stringify(site.data.valine)
 
-#vcomment.vcomment
 script.
-  function loadvaline () {  
-    var requestSetting = function (from,set) {
-      var from = from
-      var setting = set.split(',').filter(function(item){
-      return from.indexOf(item) > -1
-      });
-      setting = setting.length == 0 ? from :setting;
-      return setting
-    }
-
-    var guestInfo = requestSetting(['nick','mail','link'],'#{ theme.valine.guest_info }')
-    var requiredFields = requestSetting(['nick','mail'],'#{ theme.valine.requiredFields }')
-
+  function loadValine () {
     function initValine () {
       window.valine = new Valine({
-        el:'#vcomment',
+        el: '#vcomment',
         appId: '#{theme.valine.appId}',
         appKey: '#{theme.valine.appKey}',
         placeholder: '#{theme.valine.placeholder}',
         avatar: '#{theme.valine.avatar}',
-        meta: guestInfo,
+        meta: '#{theme.valine.guest_info }'.split(','),
         pageSize: '#{theme.valine.pageSize}',
         lang: '#{theme.valine.lang}',
         recordIP: #{theme.valine.recordIP},
@@ -32,18 +19,22 @@ script.
         emojiCDN: '#{theme.valine.emojiCDN}',
         emojiMaps: !{emojiMaps},
         enableQQ: #{theme.valine.enableQQ},
-        requiredFields: requiredFields
+        path: window.location.pathname,
       });
+      if ('#{theme.valine.requiredFields}') { valine.config.requiredFields= '#{theme.valine.requiredFields}'.split(',') }
     }
-    loadScript('!{url_for(theme.CDN.valine)}', initValine)
+
+    if (typeof Valine === 'function') initValine() 
+    else $.getScript('!{url_for(theme.CDN.valine)}', initValine)
   }
 
-  if ('!{defaultComment}' === 'Valine' || !{theme.comments.load_begin}) {
-    window.addEventListener('load', loadvaline)
-  }
-  else {
+  if ('!{theme.comments.use[0]}' === 'Valine' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) loadComment(document.querySelector('#vcomment'),loadValine)
+    else setTimeout(() => loadValine(), 0)
+  } else {
     function loadOtherComment () {
-      loadvaline()
+      loadValine()
     }
   }
+  
 

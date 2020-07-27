@@ -2,12 +2,10 @@
 .hide-inline,
 .hide-block
   & > .hide-button
-    position: relative
-    z-index: 1
     display: inline-block
     padding: .3rem 1rem
     background: $tag-hide-bg
-    color: $white !important
+    color: var(--white)
 
     &.open
       display: none
@@ -32,7 +30,7 @@
   & > .hide-button
     padding: .3rem .5rem
     background: $tag-hide-toggle-bg
-    color: $font-color
+    color: #1F2D3D
     cursor: pointer
 
     & > i

@@ -11,13 +11,14 @@
             .flink-list-item
               a(href=url_for(item.link)  title=item.name target="_blank")
                 if theme.lazyload.enable
-                  img(data-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                  img(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
                 else
                   img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
-                .flink-item-name= item.name 
-                .flink-item-desc= item.descr
+                span.flink-item-name= item.name 
+                span.flink-item-desc(title=item.descr)= item.descr
     != page.content
-  if page.comments !== false
-    include includes/comments/index.pug
+  if page.comments !== false && theme.comments && theme.comments.use
+    - var commentsJsLoad = true
+    !=partial('includes/comments/index', {}, {cache:theme.fragment_cache})
 
 

@@ -1,16 +1,18 @@
+
 #article-container
   .tabs
     position: relative
     margin: 0 0 1rem
-    border: 1px solid $tab-border-color
-    border-top: none
+    border-right: 1px solid var(--tab-border-color)
+    border-bottom: 1px solid var(--tab-border-color)
+    border-left: 1px solid var(--tab-border-color)
 
     > .nav-tabs
       display: flex
       flex-wrap: wrap
       margin: 0
       padding: 0
-      background: $tab-botton-bg
+      background: var(--tab-botton-bg)
 
       > .tab
         margin: 0
@@ -24,15 +26,11 @@
           display: block
           padding: .5rem 1rem
           width: 100%
-          border-top: 2px solid $tab-border-color
-          background: $tab-botton-bg
-          color: $font-color
+          border-top: 2px solid var(--tab-border-color)
+          background: var(--tab-botton-bg)
+          color: var(--tab-botton-color)
           line-height: 2
           transition: all .4s
-
-          &:hover
-            border-top: 2px solid $tab-button-hover-bg
-            background: $tab-button-hover-bg
 
           i
             width: 1.5em
@@ -40,8 +38,14 @@
         &.active
           button
             border-top: 2px solid $tab-active-border-color
-            background: $card-bg
+            background: var(--tab-button-active-bg)
             cursor: default
+
+        &:not(.active)
+          button
+            &:hover
+              border-top: 2px solid var(--tab-button-hover-bg)
+              background: var(--tab-button-hover-bg)
 
     > .tab-contents
       .tab-item-content

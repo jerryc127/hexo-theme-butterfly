@@ -6,10 +6,14 @@
 'use strict'
 
 hexo.extend.filter.register('before_post_render', function (data) {
+  if (data.top_img && data.top_img.indexOf('/') === -1) data.top_img = data.path + data.top_img
+  if (data.cover && data.cover.indexOf('/') === -1) data.cover = data.path + data.cover
+
   if (data.cover === false) {
     data.randomcover = randomCover()
     return data
   }
+
   data.cover = data.cover || randomCover()
   return data
 })

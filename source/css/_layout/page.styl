@@ -19,7 +19,7 @@
     padding: 0
     height: 280px
     border-radius: 8px
-    background: $card-bg
+    background: var(--card-bg)
     box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
     transition: all .3s
 
@@ -82,30 +82,33 @@
       & > .article-title
         @extend .limit-more-line
         margin-bottom: .3rem
-        color: $font-black
+        color: var(--text-highlight-color)
         font-size: 1.2rem
         line-height: 1.4
         transition: all .2s ease-in-out
         -webkit-line-clamp: 2
 
         &:hover
-          color: $light-blue !important
+          color: $text-hover
 
       & > .article-meta-wrap
-        font-size: 85%
+        color: $theme-meta-color
+        font-size: 90%
 
-        & > time
-          color: $theme-meta-color
+        & > .post-meta-date
           cursor: default
-
-        & > .article-meta
-          color: $theme-meta-color
 
         .sticky
           color: $sticky-color
 
         i
           margin: 0 .2rem 0 0
+
+        .article-meta-label
+          if hexo-config('post_meta.page.label')
+            padding-right: .2rem
+          else
+            display: none
 
         .article-meta__separator
           margin: 0 .3rem
@@ -116,12 +119,11 @@
         .fa-angle-right
           margin: 0 .2rem
 
-        a.article-meta__categories,
-        a.article-meta__tags
+        a
           color: $theme-meta-color
 
           &:hover
-            color: $light-blue !important
+            color: $text-hover
             text-decoration: underline
 
       & > .content
@@ -138,7 +140,7 @@
     transition: all .3s
 
     &:hover
-      color: $theme-button-hover-color !important
+      color: $text-hover !important
       transform: scale(1.1)
 
   &__title
@@ -152,7 +154,7 @@
 .layout_page > div:first-child:not(.recent-posts)
   padding: 50px 40px
   border-radius: 8px
-  background: $card-bg
+  background: var(--card-bg)
   box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
   transition: all .3s
 
@@ -178,7 +180,7 @@
 
     &:hover
       &:before
-        border-color: $theme-button-hover-color
+        border-color: $pseudo-hover
 
     &:before
       position: absolute
@@ -189,7 +191,7 @@
       height: h = w
       border: .5 * w solid $light-blue
       border-radius: w
-      background: $card-bg
+      background: var(--card-bg)
       content: ''
       line-height: h
       transition: all .2s ease-in-out
@@ -213,7 +215,7 @@
 
     &:hover
       &:before
-        border-color: $theme-button-hover-color
+        border-color: $pseudo-hover
 
     &:before
       $w = .3rem
@@ -224,7 +226,7 @@
       height: h = w
       border: .5 * w solid $light-blue
       border-radius: w
-      background: $card-bg
+      background: var(--card-bg)
       content: ''
       line-height: h
       transition: all .2s ease-in-out
@@ -234,7 +236,7 @@
       flex-direction: column
       justify-content: center
 
-      .article-sort-post
+      .article-sort-item-info
         padding: 0
         width: 100%
 
@@ -248,26 +250,34 @@
 
       &:before
         top: .7rem
-        border-color: $theme-button-hover-color
+        border-color: $pseudo-hover
 
-    &__time
-      padding-left: .4rem
-      font-size: .7rem
+    &-time
+      color: $theme-meta-color
+      font-size: .9em
 
-    &__title
+      time
+        padding-left: .4rem
+        cursor: default
+
+    &-title
       @extend .limit-more-line
-      color: $font-black
-      font-size: .75rem
+      color: var(--font-color)
+      font-size: 1.1em
       transition: all .3s
       -webkit-line-clamp: 2
 
       &:hover
-        color: $light-blue !important
+        color: $text-hover
         transform: translateX(20px)
 
-    &__img
+    &-img
+      float: left
+      overflow: hidden
+      width: 80px
+      height: 80px
+
       img
-        padding: 0
         width: 100%
         height: 100%
         transition: all .6s
@@ -276,22 +286,11 @@
         &:hover
           transform: scale(1.1)
 
-    &__post
-      color: $theme-meta-color
-
-      &:hover
-        color: $theme-meta-color
-
-  &-img
-    float: left
-    overflow: hidden
-    width: 80px
-    height: 80px
-
-  &-post
-    display: inline-block
-    padding: 0 1rem
-    width: calc(100% - 80px)
+    &-info
+      display: inline-block
+      overflow: hidden
+      padding: 0 1rem
+      width: calc(100% - 80px)
 
 .category-lists
   padding: 1rem 0 1.5rem
@@ -302,8 +301,11 @@
 
 .category-list
   a
-    color: $font-black
+    color: var(--font-color)
     cursor: pointer
+
+    &:hover
+      color: $text-hover
 
   .category-list-count
     margin-left: .4rem

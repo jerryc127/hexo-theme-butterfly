@@ -1,12 +1,10 @@
 (function () {
   const translate = GLOBAL_CONFIG.translate
   const snackbarData = GLOBAL_CONFIG.Snackbar
-
   const defaultEncoding = translate.defaultEncoding // 網站默認語言，1: 繁體中文, 2: 簡體中文
   const translateDelay = translate.translateDelay // 延遲時間,若不在前, 要設定延遲翻譯時間, 如100表示100ms,默認為0
   const msgToTraditionalChinese = translate.msgToTraditionalChinese // 此處可以更改為你想要顯示的文字
   const msgToSimplifiedChinese = translate.msgToSimplifiedChinese // 同上，但兩處均不建議更改
-  const translateButtonId = 'translateLink' // 默認互換id
   let currentEncoding = defaultEncoding
   const targetEncodingCookie = 'translate-chn-cht'
   let targetEncoding =
@@ -85,8 +83,8 @@
     }
     return str
   }
-  function translateInitilization () {
-    translateButtonObject = document.getElementById(translateButtonId)
+  function translateInitialization () {
+    translateButtonObject = document.getElementById('translateLink')
     if (translateButtonObject) {
       if (currentEncoding !== targetEncoding) {
         setTimeout(function () { translateBody() }, translateDelay)
@@ -95,5 +93,6 @@
       translateButtonObject.addEventListener('click', translatePage, false)
     }
   }
-  translateInitilization()
+  translateInitialization()
+  document.addEventListener('pjax:complete', translateInitialization)
 })()

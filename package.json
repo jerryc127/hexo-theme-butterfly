@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-butterfly",
-  "version": "3.0.0",
+  "version": "3.0.0-rc2-dev",
   "private": true,
   "engines": {
     "node": ">=8.10.0"

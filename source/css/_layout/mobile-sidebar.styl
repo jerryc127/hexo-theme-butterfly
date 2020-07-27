@@ -16,7 +16,7 @@
     overflow-y: auto
     width: 250px
     height: 100%
-    background: #f6f8fa
+    background: var(--sidebar-bg)
     transition: all .5s
 
     & > .mobile_author_icon
@@ -46,12 +46,12 @@
             @extend .limit-one-line
 
           .length_num
-            color: $dark-black
+            color: var(--text-highlight-color)
             font-size: .9rem
 
           .headline
             display: block
-            color: $font-black
+            color: var(--font-color)
             font-size: .7rem
 
     hr
@@ -65,7 +65,7 @@
         position: relative
         display: block
         padding: .3rem 1.5rem
-        color: $font-black
+        color: var(--font-color)
         font-size: .8rem
         cursor: pointer
 
@@ -79,14 +79,13 @@
           &:hover
             color: $light-blue
 
-      .menus-expand
+      .expand
         position: absolute
         right: 0
         padding: .4rem
-        transition: all .3s
-        transform: rotate(0)
+        transition: transform .3s
 
-        &.menus-closed
+        &.closed
           transform: rotate(90deg) !important
 
       .menus_item_child

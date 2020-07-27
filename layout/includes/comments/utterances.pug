@@ -1,5 +1,3 @@
-#utterances-wrap
-
 script.
   function loadUtterances () {
     let ele = document.createElement('script')
@@ -14,23 +12,23 @@ script.
     document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
   }
 
-  if ('!{defaultComment}' === 'Utterances' || !{theme.comments.load_begin}) {
-    window.addEventListener('load', loadUtterances)
+  function utterancesTheme () {
+    if (document.querySelector('.utterances-frame')) {
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
+      const message = {
+        type: 'set-theme',
+        theme: theme
+      };
+      const iframe = document.querySelector('.utterances-frame');
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
   }
-  else {
+
+  if ('!{theme.comments.use[0]}' === 'Utterances' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
     function loadOtherComment () {
       loadUtterances()
     }
   }
-
-if theme.darkmode.enable
-  script.
-    function utterancesTheme () {
-    var theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
-    const message = {
-      type: 'set-theme',
-      theme: theme
-    };
-    const iframe = document.querySelector('.utterances-frame');
-    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
-    }

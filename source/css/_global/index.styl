@@ -5,8 +5,8 @@ html
 body
   position: relative
   min-height: 100%
-  background: $body-bg
-  color: $font-black
+  background: var(--global-bg)
+  color: var(--font-color)
   font-size: $font-size
   font-family: $font-family
   line-height: $text-line-height
@@ -20,10 +20,13 @@ body
   height: 8px
 
 *::-webkit-scrollbar-thumb
-  background: $light-blue
+  background: var(--btn-bg)
 
 *::-webkit-scrollbar-track
   background-color: transparent
+
+input::placeholder
+  color: var(--font-color)
 
 #web_bg
   position: fixed
@@ -44,7 +47,7 @@ h5,
 h6
   position: relative
   margin: 1rem 0 .7rem
-  color: lighten($font-color, 15%)
+  color: var(--text-highlight-color)
   font-weight: bold
 
   code
@@ -53,19 +56,10 @@ h6
 *
   box-sizing: border-box
 
-#toggle-sidebar
-  position: fixed
-  bottom: $sidebar-icon-top
-  left: $sidebar-icon-left
-  z-index: 100
-  font-size: $sidebar-icon-size
-  cursor: pointer
-  transition: all .2s
-
 hr
   position: relative
   margin: 2rem auto
-  border: 2px dashed lighten($theme-hr-color, 50%)
+  border: 2px dashed var(--hr-border)
 
   if hexo-config('hr_icon.enable')
     width: calc(100% - 4px)
@@ -79,7 +73,7 @@ hr
       top: $hr-icon-top
       left: 5%
       z-index: 1
-      color: lighten($theme-hr-color, 30%)
+      color: var(--hr-before-color)
       content: $hr-icon
       font-size: 20px
       line-height: 1
@@ -103,7 +97,7 @@ table
   th,
   td
     padding: .3rem .6rem
-    border: 1px solid darken($light-grey, 10%)
+    border: 1px solid var(--light-grey)
     vertical-align: middle
 
 *::selection
@@ -111,7 +105,6 @@ table
   color: #F7F7F7
 
 button
-  margin: 0
   padding: 0
   outline: 0
   border: none
@@ -157,8 +150,9 @@ button
   float: right
 
 .button--animated
-  transition-duration: 1s
-  transition-property: color
+  position: relative
+  z-index: 1
+  transition: color 1s
 
   &:before
     position: absolute
@@ -167,11 +161,9 @@ button
     bottom: 0
     left: 0
     z-index: -1
-    background: $theme-button-hover-color
+    background: var(--btn-hover-color)
     content: ''
-    transition-timing-function: ease-out
-    transition-duration: .5s
-    transition-property: transform
+    transition: transform .5s ease-out
     transform: scaleX(0)
     transform-origin: 0 50%
 
@@ -186,7 +178,7 @@ img:not([src])
 
 .img-alt
   margin: -.5rem 0 .5rem
-  color: $font-black
+  color: #858585
 
   &:hover
     text-decoration: none !important
@@ -250,6 +242,14 @@ if hexo-config('avatar.effect') == true
 
   .sidebar-toc__content
     animation: tocsidebarRtoL .7s
+
+#mobile-sidebar-menus
+  &.open
+    transform: translate3d(-100%, 0px, 0px)
+
+    for i in 1 2 3 4
+      > :nth-child({i})
+        animation: sidebarItem (i / 5)s
 
 @keyframes scroll-down-effect
   0%

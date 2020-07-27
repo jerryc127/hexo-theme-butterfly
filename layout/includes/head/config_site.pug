@@ -8,11 +8,12 @@
   const showToc = is_post() && pageToc && (toc(page.content) !== '' || page.encrypt == true )
 -
 
-script.
-  var GLOBAL_CONFIG_SITE = { 
-    isPost: !{is_post()},
-    isHome: !{is_home()},
-    isHighlightShrink: !{isHighlightShrink},
-    isSidebar: !{showToc},
-    postUpdate: '!{full_date(page.updated)}'
-  }
+script#config_change
+  .
+    var GLOBAL_CONFIG_SITE = { 
+      isPost: !{is_post()},
+      isHome: !{is_home()},
+      isHighlightShrink: !{isHighlightShrink},
+      isSidebar: !{showToc},
+      postUpdate: '!{full_date(page.updated)}'
+    }

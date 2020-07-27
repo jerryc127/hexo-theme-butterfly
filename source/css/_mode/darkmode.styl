@@ -1,11 +1,31 @@
 if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
   [data-theme='dark']
-    body
-      background-color: darken(#121212, 2)
-      color: alpha(#FFFFFF, .6)
-
-    ::-webkit-scrollbar-thumb
-      background: lighten(#121212, 5)
+    --global-bg: darken(#121212, 2)
+    --font-color: alpha(#FFFFFF, .6)
+    --hr-border: alpha(#FFFFFF, .3)
+    --hr-before-color: alpha(#FFFFFF, .6)
+    --search-bg: #121212
+    --search-input-color: alpha(#FFFFFF, .6)
+    --search-result-title: alpha(#FFFFFF, .8)
+    --preloader-bg: darken(#121212, 2)
+    --preloader-color: alpha(#FFFFFF, .6)
+    --tab-border-color: #2c2c2c
+    --tab-botton-bg: #2c2c2c
+    --tab-botton-color: alpha(#FFFFFF, .6)
+    --tab-button-hover-bg: lighten(#121212, 15)
+    --tab-button-active-bg: #121212
+    --card-bg: #121212
+    --sidebar-bg: #121212
+    --btn-hover-color: lighten(#121212, 40)
+    --btn-color: alpha(#FFFFFF, .6)
+    --btn-bg: lighten(#121212, 5)
+    --text-bg-hover: lighten(#121212, 15)
+    --light-grey: alpha(#FFFFFF, .6)
+    --white: alpha(#FFFFFF, .8)
+    --text-highlight-color: alpha(#FFFFFF, .8)
+    --blockquote-color: alpha(#FFFFFF, .6)
+    --blockquote-bg: lighten(#121212, 10)
+    --reward-pop: lighten(#121212, 10)
 
     // 網站背景，footer背景
     #web_bg[data-type=color],
@@ -20,62 +40,28 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       background-color: alpha($dark-black, .7)
       content: ''
 
-    #page-header,
-    .layout_post > #post,
-    .layout_page > div:first-child:not(.recent-posts)
+    #page-header
       background-color: #121212
-
-    #sidebar
-      background: #121212
-      box-shadow: -.25rem 0 .25rem #121212
 
     #article-container code
       background: #2c2c2c
-
-    .recent-posts
-      .recent-post-item
-        background: #121212 !important
-
-      .article-title
-        color: alpha(#FFFFFF, .8) !important
 
     // 頭部
     #page-header
       &:before
         position: absolute
         top: 0
-        right: 0
-        bottom: 0
         left: 0
+        display: block
+        width: 100%
+        height: 100%
         background-color: alpha($dark-black, .7)
         content: ''
 
       & > #nav
-        a
-          color: alpha(#FFFFFF, .8) !important
-
         &.fixed
           background: alpha(#121212, .8)
           box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0)
-
-          .toggle-menu,
-          #site-name,
-          a
-            color: alpha(#FFFFFF, .8)
-
-        .menus_item_child
-          background-color: lighten(#121212, 5) !important
-
-          li
-            &:hover
-              background: lighten(#121212, 20) !important
-
-            a
-              color: alpha(#FFFFFF, .8)
-
-      #site_subtitle
-        & > span
-          color: alpha(#FFFFFF, .6)
 
     // 代碼框
     #article-container
@@ -87,234 +73,43 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       figure.highlight
         box-shadow: none
 
+        table::-webkit-scrollbar-thumb
+          background: lighten(#121212, 5)
+
         .line:before
           color: alpha(#FFFFFF, .6) !important
-
-        .gutter pre
-          background-color: lighten(#121212, 2) !important
 
         .hljs
           background-color: lighten(#121212, 2) !important
 
-    .highlight-tools
-      background: lighten(#121212, 3) !important
-      color: #90a4ae !important
-
-    blockquote
-      background-color: lighten(#121212, 10)
-      color: alpha(#FFFFFF, .6)
-
-    hr
-      border: 2px dashed alpha(#FFFFFF, .3)
-      background: 0
-
-      &:before
-        color: alpha(#FFFFFF, .6)
-
-    .layout_post .tag_share .post-meta__tags
-      border: 1px solid alpha(#FFFFFF, .6)
-      color: alpha(#FFFFFF, .6)
-
-      &:hover
-        background: darken(#FFFFFF, 60)
-
-    // 文章版權
-    .post-copyright
-      border: 1px solid alpha(#FFFFFF, .6)
-
-      .post-copyright-meta
-        color: alpha(#FFFFFF, .8)
-
-      .post-copyright-info
-        color: alpha(#FFFFFF, .6)
-
-      &:after
-        background: #121212
-
-    // 音樂播放器
-    .aplayer
-      filter: brightness(.7)
-      color: $dark-black
-
-    // 右下角按鈕
-    #rightside
-      & > div
-        & > button,
-        & > a
-          background-color: lighten(#121212, 5)
-          color: alpha(#FFFFFF, .6)
-
-          &:hover
-            background: lighten(#121212, 20)
-
-    // 打賞按鈕
-    .post-reward
-      .reward-button
-        background-color: lighten(#121212, 10) !important
-
-      .reward-all
-        background-color: lighten(#121212, 10) !important
-
-        &:after
-          border-top: 13px solid lighten(#121212, 10) !important
-
-    .flink-list-item:before,
-    .card-category-list-item a:hover,
-    .card-archive-list-item a:hover,
-    #bookmark-it
-      background-color: lighten(#121212, 10) !important
-
-    img,
-    .gist
-      filter: brightness(.7)
-
-    #article-container iframe
-      filter: brightness(.7)
-
-    // 側邊欄
-    #aside_content
-      .card-widget
-        background: #121212 !important
-
-      .headline,
-      .length_num,
-      .aside-post_title,
-      .card-category-list-link,
-      .card-archive-list-link,
-      .social-icon,
-      .card-category-list-link-more,
-      .card-archive-list-link-more
-        color: alpha(#FFFFFF, .6) !important
-
-    .button--animated:before
-      background: lighten(#121212, 20)
-
-    #post-meta,
-    #post-meta a,
-    #footer-wrap,
-    #footer-wrap a,
-    .img-alt
-      color: alpha(#FFFFFF, .6) !important
-
-    .posttitle,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6
-      color: alpha(#FFFFFF, .8)
-
-    .recent-posts .post-meta__date,
-    .recent-posts .article-meta,
-    .recent-posts a,
-    .post-reward .reward-button,
-    .copy-button,
-    .gutter pre,
-    #bookmark-it,
-    .copy-notice,
-    .flink-list-item a,
-    .category-list-link,
-    .relatedPosts_date,
-    .prev-post .label,
-    .next-post .label
-      color: alpha(#FFFFFF, .6) !important
-
-    .prev_info,
-    .next_info,
-    .relatedPosts_title
-      color: alpha(#FFFFFF, .8) !important
-
-    // 時間軸界面
-    .article-sort
-      &-item__title
-        color: alpha(#FFFFFF, .6)
-
-      &-item:before,
-      &-title:before
-        background: #121212
-
-    // 手機 MENU,TOC
-    #mobile-sidebar
-      #mobile-sidebar-menus
-        background: #121212
-
-        .headline
-          color: alpha(#FFFFFF, .6) !important
-
-        .length_num
-          color: alpha(#FFFFFF, .8) !important
-
-        a
-          color: alpha(#FFFFFF, .6) !important
+        .highlight-tools
+          background: lighten(#121212, 3) !important
+          color: #90a4ae !important
 
     #post-comment
       .comment-switch
         if hexo-config('comments.text')
-          background: #2c2c2c
+          background: #2c2c2c !important
 
         label
           filter: brightness(.7)
 
-    .post-outdate-notice
-      filter: brightness(.7)
-
-    // error 404
-    #error-wrap
-      .error-content
-        background: #121212
-
-        .error-img
-          filter: brightness(.7)
-
-        .error-info
-          .error_title
-            color: alpha(#FFFFFF, .8)
-
-          .error_subtitle
-            color: alpha(#FFFFFF, .6)
-
-          a
-            background: #2c2c2c
-
     // note
-    if hexo-config('note.style') == 'modern'
+    if hexo-config('note.style') == 'modern' || hexo-config('note.style') == 'flat'
       .note
         filter: brightness(.7)
-
-    if hexo-config('note.style') == 'flat'
-      .note
-        filter: brightness(.7)
-        color: #4c4948
 
     // hide-tags
     .hide-button,
-    .btn-beautify
-      filter: brightness(.8)
-
-    // tabs
-    #article-container
-      .tabs
-        border: 2px solid #2c2c2c
-        border-top: none
-
-        > .nav-tabs
-          background: #2c2c2c
-
-          button
-            border-top: 2px solid #2c2c2c
-            background: #2c2c2c
-            color: alpha(#FFFFFF, .6)
-
-          .tab:not(.active)
-            button
-              &:hover
-                border-top: 2px solid lighten(#121212, 20)
-                background: lighten(#121212, 20)
-
-          .active
-            button
-              background: #121212
+    .btn-beautify,
+    .mermaid,
+    .post-outdate-notice,
+    .error-img,
+    #article-container iframe,
+    img,
+    .gist,
+    .aplayer
+      filter: brightness(.7)
 
     // 第三方
     // 插件 hexo-blog-encrypt
@@ -326,81 +121,29 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       input
         background-color: #121212
 
-    .mermaid
-      filter: brightness(.7)
+    // Gitalk
+    #gitalk-container
+      filter: brightness(.8)
 
-    if hexo-config('gitalk') && hexo-config('gitalk.enable')
-      #gitalk-container
-        .gt-header-textarea,
-        .gt-header-preview,
-        .gt-comment-content,
-        button,
-        .gt-popup
-          filter: brightness(.7)
+      svg
+        fill: alpha(#FFFFFF, .8) !important
 
-        svg
-          fill: alpha(#FFFFFF, .6) !important
-
-    if hexo-config('valine') && hexo-config('valine.enable')
-      #vcomment
-        .vbtn,
-        .vat
-          border: 1px solid alpha(#FFFFFF, .6)
-          background: #121212 !important
-          color: alpha(#FFFFFF, .6) !important
-
-          &:hover
-            background: lighten(#121212, 20) !important
-
-    if hexo-config('local_search') && hexo-config('local_search.enable')
-      #local-search
-        background: #121212
-
-        .local-search-box--input
-          background: #121212
+    // Disqus and Disqusjs
+    #disqus_thread
+      #dsqjs
+        .dsqjs-tab-active,
+        .dsqjs-no-comment
           color: alpha(#FFFFFF, .6)
 
-        .search-result-title
+        .dsqjs-order-label
+          background-color: lighten(#121212, 5)
+
+        .dsqjs-post-body
           color: alpha(#FFFFFF, .6)
 
-    if hexo-config('algolia_search.enable')
-      #algolia-search
-        background: #121212
+          code,
+          pre
+            background: #2c2c2c
 
-        .ais-search-box--input
-          background: #121212
-          color: alpha(#FFFFFF, .6)
-
-        #algolia-search-results
-          .algolia-hit-item-link
+          blockquote
             color: alpha(#FFFFFF, .6)
-
-    if hexo-config('disqusjs.enable')
-      #disqus_thread
-        #dsqjs
-          .dsqjs-tab-active,
-          .dsqjs-no-comment
-            color: alpha(#FFFFFF, .6)
-
-          .dsqjs-order-label
-            background-color: lighten(#121212, 5)
-
-          .dsqjs-post-body
-            color: alpha(#FFFFFF, .6)
-
-            code,
-            pre
-              background: #2c2c2c
-
-            blockquote
-              color: alpha(#FFFFFF, .6)
-
-    if hexo-config('preloader')
-      #loading-box
-        .loading-left-bg,
-        .loading-right-bg,
-        .configure-core
-          background-color: darken(#121212, 2)
-
-        .loading-word
-          color: alpha(#FFFFFF, .6)

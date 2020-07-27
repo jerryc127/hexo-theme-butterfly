@@ -9,6 +9,7 @@
 'use strict'
 
 const { stripHTML, escapeHTML } = require('hexo-util')
+const crypto = require('crypto')
 
 hexo.extend.helper.register('page_description', function () {
   const { config, page } = this
@@ -55,4 +56,8 @@ hexo.extend.helper.register('urlNoIndex', function () {
     url = url.replace(/\.html$/, '')
   }
   return url
+})
+
+hexo.extend.helper.register('md5', function (path) {
+  return crypto.createHash('md5').update(decodeURI(this.url_for(path))).digest('hex')
 })

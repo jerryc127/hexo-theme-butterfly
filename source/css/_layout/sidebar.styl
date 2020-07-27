@@ -1,3 +1,15 @@
+#toggle-sidebar
+  position: fixed
+  bottom: $sidebar-icon-top
+  left: $sidebar-icon-left
+  z-index: 100
+  font-size: $sidebar-icon-size
+  cursor: pointer
+  transition: all .2s
+
+  @media screen and (max-width: $bg)
+    display: none
+
 #sidebar
   position: fixed
   top: 0
@@ -6,9 +18,20 @@
   padding: 1rem 0 2rem .5rem
   width: $sidebar-width
   height: 100%
-  background: $sidebar-background
-  box-shadow: -.25rem 0 .25rem rgba($sidebar-background, .6) inset
+  background: var(--sidebar-bg)
   opacity: .9
+
+  @media screen and (max-width: $bg)
+    right: -($mobile-sidebar-width)
+    left: auto
+    z-index: 103
+    width: $mobile-sidebar-width
+    opacity: 1
+    transition: all .4s
+    box-shadow: none
+
+    .toc-child
+      display: block !important
 
   .sidebar-toc
     ol,
@@ -57,18 +80,3 @@
         width: 0
         height: 1px
         background: $theme-toc-color
-
-@media screen and (max-width: $bg)
-  i#toggle-sidebar
-    display: none
-
-  #sidebar
-    right: -($mobile-sidebar-width)
-    left: auto
-    z-index: 103
-    width: $mobile-sidebar-width
-    opacity: 1
-    transition: all .4s
-
-    .toc-child
-      display: block !important

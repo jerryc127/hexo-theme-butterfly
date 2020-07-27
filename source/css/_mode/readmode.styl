@@ -1,149 +1,29 @@
 if hexo-config('readmode')
   [data-theme='light']
-    $light-redmode-bg = #fff
-
     .read-mode
-      background: $light-redmode-bg
-
-      #page-header.post-bg
-        a
-          color: $font-black !important
-
-      #article-container
-        pre,
-        .highlight:not(.js-file-line-container)
-          background: #f7f7f7 !important
-
-          *
-            color: $font-black !important
-
-        figure.highlight
-          .line:before
-            color: $font-black !important
-
-          .hljs
-            background: #f7f7f7 !important
-
-        code
-          color: #4c4948
-
-        blockquote
-          border-left: .2rem solid #ddd
-          background-color: $light-redmode-bg
-
-        ol,
-        li
-          &:before
-            background: $light-redmode-bg
-            color: #4c4948
-
-        ul
-          >li
-            &:before
-              border: .2rem solid #90a4ae
-
-        hr
-          border: 2px dashed #d6dbdf
-          background: $light-redmode-bg
-
-          &:before
-            color: darken(#d6dbdf, 10)
-
-        .hide-toggle
-          border: 1px solid darken(#d6dbdf, 10) !important
-
-        .hide-button,
-        .btn-beautify
-          background: $light-redmode-bg !important
-          color: #4c4948 !important
-
-        .btn-beautify
-          border: 1px solid darken(#d6dbdf, 10)
-
-          &.button--animated:before
-            background: $light-redmode-bg
-
-        .hide-inline,
-        .hide-block
-          & >.hide-button
-            border: 1px solid darken(#d6dbdf, 10)
-
-          & > .button--animated:before
-            background: $light-redmode-bg
-
-        .note
-          border: 2px solid #eee
-          background-color: $light-redmode-bg
-
-        .tabs
-          border: 1px solid darken(#d6dbdf, 10)
-
-      #rightside button
-        background: darken(#d6dbdf, 20) !important
+      --font-color: #4c4948
+      --readmode-light-color: #fff
+      --white: #4c4948
+      --light-grey: #4c4948
+      --gray: #d6dbdf
+      --hr-border: #d6dbdf
+      --hr-before-color: darken(#d6dbdf, 10)
+      -highlight-bg: #f7f7f7
 
   [data-theme='dark']
-    $dark-readmode-bg = #0d0d0d
-
     .read-mode
-      background: $dark-readmode-bg
-
-      #article-container
-        pre,
-        .highlight:not(.js-file-line-container)
-          *
-            color: rgba(255, 255, 255, .6) !important
-
-        code
-          color: rgba(255, 255, 255, .6)
-
-        blockquote
-          border-left: .2rem solid rgba(255, 255, 255, .6)
-          background-color: $dark-readmode-bg
-
-        ol,
-        li
-          &:before
-            background: $dark-readmode-bg
-            color: rgba(255, 255, 255, .6)
-
-        ul
-          >li
-            &:before
-              border: .15rem solid rgba(255, 255, 255, .6)
-
-        .hide-toggle
-          border: 1px solid rgba(255, 255, 255, .6) !important
-
-        .hide-button,
-        .btn-beautify
-          background: $dark-readmode-bg !important
-          filter: none
-          color: rgba(255, 255, 255, .6) !important
-
-        .btn-beautify
-          border: 1px solid rgba(255, 255, 255, .6)
-
-          &.button--animated:before
-            background: $dark-readmode-bg !important
-
-        .hide-inline,
-        .hide-block
-          & >.hide-button
-            border: 1px solid rgba(255, 255, 255, .6)
-
-          & > .button--animated:before
-            background: $dark-readmode-bg !important
-
-        .note
-          border: 2px solid rgba(255, 255, 255, .6)
-          filter: none
-          background-color: $dark-readmode-bg
-          color: rgba(255, 255, 255, .6)
-
-        .tabs
-          border: 2px solid rgba(255, 255, 255, .6)
+      --font-color: rgba(255, 255, 255, .6)
+      --readmode-light-color: #0d0d0d
+      --white: rgba(255, 255, 255, .8)
+      --light-grey: rgba(255, 255, 255, .6)
+      --gray: rgba(255, 255, 255, .6)
+      --hr-border: rgba(255, 255, 255, .3)
+      --hr-before-color: rgba(255, 255, 255, .6)
+      -highlight-bg: #171717
 
   .read-mode
+    background: var(--readmode-light-color)
+
     #body-wrap
       padding-left: 0 !important
 
@@ -151,15 +31,11 @@ if hexo-config('readmode')
       background-color: transparent
       background-image: none !important
 
-      a
-        text-shadow: none !important
-
       &:before
         opacity: 0
 
       & > #post-info
         padding: 0
-        color: $font-black
         text-align: center
 
     .layout_post
@@ -169,13 +45,6 @@ if hexo-config('readmode')
 
         &:hover
           box-shadow: none
-
-    figure.highlight
-      border-radius: 0 !important
-      box-shadow: none !important
-
-      & > :not(.highlight-tools)
-        display: block !important
 
     & > canvas
       display: none !important
@@ -188,11 +57,9 @@ if hexo-config('readmode')
     #toggle-sidebar,
     #mobile-toc-button,
     #nav,
-    .post-outdate-notice
-      display: none !important
-
+    .post-outdate-notice,
     #web_bg
-      background: none
+      display: none !important
 
     if !hexo-config('chat_btn')
       #chatra,
@@ -204,6 +71,29 @@ if hexo-config('readmode')
         display: none !important
 
     #article-container
+      a
+        color: #99a9bf
+
+      pre,
+      .highlight:not(.js-file-line-container)
+        background: var(-highlight-bg) !important
+
+        *
+          color: var(--font-color) !important
+
+      figure.highlight
+        border-radius: 0 !important
+        box-shadow: none !important
+
+        & > :not(.highlight-tools)
+          display: block !important
+
+        .line:before
+          color: var(--font-color) !important
+
+        .hljs
+          background: var(-highlight-bg) !important
+
       h1,
       h2,
       h3,
@@ -224,7 +114,20 @@ if hexo-config('readmode')
         &:hover:before
           transform: none !important
 
+      ol,
+      li
+        &:before
+          background: transparent !important
+          color: var(--font-color) !important
+
+      ul
+        >li
+          &:before
+            border: .15rem solid var(--gray) !important
+
       .tabs
+        border: 2px solid var(--tab-border-color)
+
         > .nav-tabs
           background: transparent
 
@@ -244,3 +147,38 @@ if hexo-config('readmode')
 
         > .tab-contents .tab-item-content.active
           animation: none
+
+      code
+        color: var(--font-color)
+
+      blockquote
+        border-left: .2rem solid var(--gray)
+        background-color: var(--readmode-light-color)
+
+      .hide-toggle
+        border: 1px solid var(--gray) !important
+
+      .hide-button,
+      .btn-beautify
+        background: var(--readmode-light-color) !important
+        color: var(--font-color) !important
+
+      .btn-beautify
+        border: 1px solid var(--gray) !important
+
+      .button--animated:before
+        background: var(--readmode-light-color) !important
+
+      .hide-inline,
+      .hide-block
+        & >.hide-button
+          border: 1px solid var(--gray)
+
+        & > .button--animated:before
+          background: var(--readmode-light-color)
+
+      .note
+        border: 2px solid var(--gray)
+        filter: none
+        background-color: var(--readmode-light-color)
+        color: var(--font-color)

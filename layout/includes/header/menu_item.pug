@@ -8,11 +8,11 @@
           span=' '+label
     else
       .menus_item
-        a.site-page
+        a.site-page(href='javascript:void(0);')
           if label.split('||')[1]
-            i.fa-fw(class=trim(label.split('||')[1])  )
+            i.fa-fw(class=trim(label.split('||')[1]))
           span=' '+ trim(label.split('||')[0])
-          i.fas.fa-chevron-down.menus-expand
+          i.fas.fa-chevron-down.expand
         ul.menus_item_child
           each i in value
             li
