@@ -858,3 +858,10 @@ CDN:
   aplayer_css: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css
   aplayer_js: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js
   meting_js: https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js
+  
+  # moment
+  moment:
+    main: https://cdn.jsdelivr.net/npm/moment@2.27/moment.min.js
+    locale:
+      zh_cn: https://cdn.jsdelivr.net/npm/moment@2.27/locale/zh-cn.min.js
+      zh_tw: https://cdn.jsdelivr.net/npm/moment@2.27/locale/zh-tw.min.js
