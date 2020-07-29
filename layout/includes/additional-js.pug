@@ -76,6 +76,19 @@ div
     if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
       script(async src=url_for(theme.CDN.busuanzi))
 
+    if theme.aside.card_webinfo
+      script(src=url_for(theme.CDN.moment.main))
+      if config.language == 'zh-CN'
+        script(src=url_for(theme.CDN.moment.locale.zh_cn))
+      if config.language == 'zh-TW'
+        script(src=url_for(theme.CDN.moment.locale.zh_tw))
+      script.
+        try {
+          $('#lastupd-show').html(moment(new Date('#{new Date()}')).fromNow());
+        } catch (e) {
+          console.error(e);
+        }
+
   !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
   !=partial('includes/chat/index', {}, {cache:theme.fragment_cache})
 
@@ -87,17 +100,4 @@ div
 
   if theme.pjax
     !=partial('includes/third-party/pjax', {}, {cache:theme.fragment_cache})
-
-  if theme.aside.card_webinfo
-    script(src=url_for(theme.CDN.moment.main))
-    if config.language == 'zh-CN'
-      script(src=url_for(theme.CDN.moment.locale.zh_cn))
-    if config.language == 'zh-TW'
-      script(src=url_for(theme.CDN.moment.locale.zh_tw))
-    script.
-      try {
-        $('#lastupd-show').html(moment(new Date('#{new Date()}')).fromNow());
-      } catch (e) {
-        console.error(e);
-      }
 
