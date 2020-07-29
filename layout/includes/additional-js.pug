@@ -88,3 +88,16 @@ div
   if theme.pjax
     !=partial('includes/third-party/pjax', {}, {cache:theme.fragment_cache})
 
+  if theme.aside.card_webinfo
+    script(src=url_for(theme.CDN.moment.main))
+    if config.language == 'zh-CN'
+      script(src=url_for(theme.CDN.moment.locale.zh_cn))
+    if config.language == 'zh-TW'
+      script(src=url_for(theme.CDN.moment.locale.zh_tw))
+    script.
+      try {
+        $('#lastupd-show').html(moment(new Date('#{new Date()}')).fromNow());
+      } catch (e) {
+        console.error(e);
+      }
+
