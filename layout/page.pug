@@ -10,7 +10,7 @@ block content
         !=cloudTags({source: site.tags, minfontsize: 15, maxfontsize: 30, limit: 0})
       if page.comments !== false && theme.comments && theme.comments.use
         - var commentsJsLoad = true
-        !=partial('includes/comments/index', {}, {cache:theme.fragment_cache})
+        !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})
   else if page.type === 'link'
     include flink.pug
   else if page.type === 'categories'    
@@ -22,7 +22,7 @@ block content
         div!= list_categories()
       if page.comments !== false && theme.comments && theme.comments.use
         - var commentsJsLoad = true
-        !=partial('includes/comments/index', {}, {cache:theme.fragment_cache})
+        !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})
   else
     #page
       if theme.douban && theme.douban.meta
@@ -31,4 +31,4 @@ block content
       #article-container!= page.content
       if page.comments !== false && theme.comments && theme.comments.use
         - var commentsJsLoad = true
-        !=partial('includes/comments/index', {}, {cache:theme.fragment_cache})
+        !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})

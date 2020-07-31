@@ -9,7 +9,7 @@ block content
         .post-meta__tag-list
           each item, index in page.tags.data
             a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/share/index.pug
+      include includes/third-party/share/index.pug
         
     if theme.reward.enable
       !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
@@ -24,5 +24,5 @@ block content
 
     if page.comments !== false && theme.comments && theme.comments.use
       - var commentsJsLoad = true
-      !=partial('includes/comments/index', {}, {cache:theme.fragment_cache})
+      !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})
       

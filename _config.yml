@@ -7,15 +7,15 @@
 #   name || link || icon
 
 menu:
-  Home: / || fas fa-home
-  Archives: /archives/ || fas fa-archive
-  Tags: /tags/ || fas fa-tags
-  Categories: /categories/ || fas fa-folder-open
-  List||fas fa-list:
-    - Music || /music/ || fas fa-music
-    - Movie || /movies/ || fas fa-video
-  Link: /link/ || fas fa-link
-  About: /about/ || fas fa-heart
+  # Home: / || fas fa-home
+  # Archives: /archives/ || fas fa-archive
+  # Tags: /tags/ || fas fa-tags
+  # Categories: /categories/ || fas fa-folder-open
+  # List||fas fa-list:
+  #   - Music || /music/ || fas fa-music
+  #   - Movie || /movies/ || fas fa-video
+  # Link: /link/ || fas fa-link
+  # About: /about/ || fas fa-heart
 
 # Code Blocks (代碼相關)
 # --------------------------------------
@@ -38,8 +38,8 @@ copy:
 # formal:
 #   icon: link || the description
 social:
-  fab fa-github: https://github.com/xxxxx || Github
-  fas fa-envelope: mailto:xxxxxx@gmail.com || Email
+  # fab fa-github: https://github.com/xxxxx || Github
+  # fas fa-envelope: mailto:xxxxxx@gmail.com || Email
 
 # search (搜索)
 # --------------------------------------
@@ -184,12 +184,12 @@ post_copyright:
 reward:
   enable: false
   QR_code:
-    - img: /img/wechat.jpg
-      link:
-      text: wechat
-    - img: /img/alipay.jpg
-      link:
-      text: alipay
+    # - img: /img/wechat.jpg
+    #   link:
+    #   text: wechat
+    # - img: /img/alipay.jpg
+    #   link:
+    #   text: alipay
 
 # Related Articles
 related_post:
@@ -564,7 +564,7 @@ hr_icon:
 
 # the subtitle on homepage (主頁subtitle)
 subtitle:
-  enable: true
+  enable: false
   # Typewriter Effect (打字效果)
   effect: true
   # loop (循環打字)
@@ -582,8 +582,6 @@ subtitle:
   # 開頭不允許轉義字元，如需要，請把整個句子用雙引號包住
   # 如果關閉打字效果，subtitle只會顯示sub的第一行文字
   sub:
-    - 今日事&#44;今日畢
-    - Never put off till tomorrow what you can do today
 
 # Loading Animation (加載動畫)
 preloader: false
@@ -714,7 +712,9 @@ note:
 pjax: false
 
 # Inject the css and script (aplayer/meting)
-aplayerInject: false
+aplayerInject:
+  enable: false
+  per_page: true
 
 # Snackbar (Toast Notification 彈窗)
 # https://github.com/polonel/SnackBar

@@ -1,7 +1,0 @@
-.post_share
-  if theme.addThis.enable
-    !=partial('includes/share/add-this', {}, {cache:theme.fragment_cache})
-  else if theme.sharejs && theme.sharejs.enable
-    include ./share-js.pug
-  else if theme.addtoany.enable
-    !=partial('includes/share/addtoany', {}, {cache:theme.fragment_cache})

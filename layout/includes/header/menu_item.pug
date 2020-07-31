@@ -1,22 +1,23 @@
-.menus_items
-  each value, label in theme.menu
-    if !Array.isArray(value)
-      .menus_item
-        a.site-page(href=url_for(trim(value.split('||')[0])))
-          if value.split('||')[1]
-            i.fa-fw(class=trim(value.split('||')[1]))
-          span=' '+label
-    else
-      .menus_item
-        a.site-page(href='javascript:void(0);')
-          if label.split('||')[1]
-            i.fa-fw(class=trim(label.split('||')[1]))
-          span=' '+ trim(label.split('||')[0])
-          i.fas.fa-chevron-down.expand
-        ul.menus_item_child
-          each i in value
-            li
-              a.site-page(href=url_for(trim(i.split('||')[1])))
-                if i.split('||')[2]
-                  i.fa-fw(class=trim(i.split('||')[2]))
-                span=' '+trim(i.split('||')[0])
+if theme.menu
+  .menus_items
+    each value, label in theme.menu
+      if !Array.isArray(value)
+        .menus_item
+          a.site-page(href=url_for(trim(value.split('||')[0])))
+            if value.split('||')[1]
+              i.fa-fw(class=trim(value.split('||')[1]))
+            span=' '+label
+      else
+        .menus_item
+          a.site-page(href='javascript:void(0);')
+            if label.split('||')[1]
+              i.fa-fw(class=trim(label.split('||')[1]))
+            span=' '+ trim(label.split('||')[0])
+            i.fas.fa-chevron-down.expand
+          ul.menus_item_child
+            each i in value
+              li
+                a.site-page(href=url_for(trim(i.split('||')[1])))
+                  if i.split('||')[2]
+                    i.fa-fw(class=trim(i.split('||')[2]))
+                  span=' '+trim(i.split('||')[0])

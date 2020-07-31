@@ -8,9 +8,6 @@ html(lang=config.language data-theme=theme.display_mode)
     if theme.preloader
       !=partial('includes/loading/loading', {}, {cache:theme.fragment_cache})
 
-    if theme.fireworks && theme.fireworks.enable
-      canvas.fireworks
-
     !=partial('includes/mobile-sidebar/index', {}, {cache:theme.fragment_cache})
 
     #body-wrap
@@ -41,5 +38,5 @@ html(lang=config.language data-theme=theme.display_mode)
         !=partial('includes/footer', {}, {cache:theme.fragment_cache})
 
     include ./rightside.pug
-    !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
+    !=partial('includes/third-party/search/index', {}, {cache:theme.fragment_cache})
     include ./additional-js.pug
