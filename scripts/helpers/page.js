@@ -9,6 +9,7 @@
 'use strict'
 
 const { stripHTML, escapeHTML } = require('hexo-util')
+const crypto = require('crypto')
 
 hexo.extend.helper.register('page_description', function () {
   const { config, page } = this
@@ -25,7 +26,7 @@ hexo.extend.helper.register('page_description', function () {
 hexo.extend.helper.register('injectHtml', function (data) {
   let result = ''
   if (!data) return ''
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     result += data[i]
   }
   return result
@@ -41,8 +42,8 @@ hexo.extend.helper.register('cloudTags', function (options = {}) {
   let result = ''
   const tagLimit = limit === 0 ? source.length : limit
   source.sort('name').limit(tagLimit).forEach(function (tags) {
-    var fontSize = Math.floor(Math.random() * (maxfontsize - minfontsize) + minfontsize) + 'px'
-    var color = 'rgb(' + Math.floor(Math.random() * 201) + ', ' + Math.floor(Math.random() * 201) + ', ' + Math.floor(Math.random() * 201) + ')' // 0,0,0 -> 200,200,200
+    const fontSize = Math.floor(Math.random() * (maxfontsize - minfontsize) + minfontsize) + 'px'
+    const color = 'rgb(' + Math.floor(Math.random() * 201) + ', ' + Math.floor(Math.random() * 201) + ', ' + Math.floor(Math.random() * 201) + ')' // 0,0,0 -> 200,200,200
     result += `<a href='${env.url_for(tags.path)}' style='font-size:${fontSize}; color:${color}'>${tags.name}</a>`
   })
   return result
@@ -55,4 +56,8 @@ hexo.extend.helper.register('urlNoIndex', function () {
     url = url.replace(/\.html$/, '')
   }
   return url
+})
+
+hexo.extend.helper.register('md5', function (path) {
+  return crypto.createHash('md5').update(decodeURI(this.url_for(path))).digest('hex')
 })

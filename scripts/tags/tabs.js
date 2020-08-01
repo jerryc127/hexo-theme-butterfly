@@ -44,10 +44,10 @@ function postTabs (args, content) {
     const icon = tabIcon.trim()
     tabIcon.length > 0 && (tabIcon = `<i class="${icon}"${isOnlyicon}></i>`)
 
-    const toTop = '<button class="tab-to-top" onclick="scrollToDest($(this).parents(\'.tabs\'),65)"><i class="fas fa-arrow-up"></i></button>'
+    const toTop = '<button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents(\'.tabs\'),65)"><i class="fas fa-arrow-up"></i></button>'
 
     const isActive = (tabActive > 0 && tabActive === tabId) || (tabActive === 0 && tabId === 1) ? ' active' : ''
-    tabNav += `<li class="tab${isActive}"><button data-href="#${tabHref}">${tabIcon + tabCaption.trim()}</button></li>`
+    tabNav += `<li class="tab${isActive}"><button type="button" data-href="#${tabHref}">${tabIcon + tabCaption.trim()}</button></li>`
     tabContent += `<div class="tab-item-content${isActive}" id="${tabHref}">${postContent + toTop}</div>`
   }
 

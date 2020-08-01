@@ -8,8 +8,9 @@ block content
         span.tag-cloud__amount= site.tags.length
       .tag-cloud-tags
         !=cloudTags({source: site.tags, minfontsize: 15, maxfontsize: 30, limit: 0})
-      if page.comments !== false
-        include includes/comments/index.pug
+      if page.comments !== false && theme.comments && theme.comments.use
+        - var commentsJsLoad = true
+        !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})
   else if page.type === 'link'
     include flink.pug
   else if page.type === 'categories'    
@@ -19,10 +20,15 @@ block content
           |  - 
           span.category__amount= site.categories.length
         div!= list_categories()
-      if page.comments !== false
-        include includes/comments/index.pug
+      if page.comments !== false && theme.comments && theme.comments.use
+        - var commentsJsLoad = true
+        !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})
   else
     #page
+      if theme.douban && theme.douban.meta
+        if (is_current('/movies/', [strict]) || is_current('/books/', [strict]) || is_current('/games/', [strict]))
+          meta(name="referrer" content="no-referrer")
       #article-container!= page.content
-      if page.comments !== false
-        include includes/comments/index.pug
+      if page.comments !== false && theme.comments && theme.comments.use
+        - var commentsJsLoad = true
+        !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})

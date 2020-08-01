@@ -1,0 +1,26 @@
+#fb-root
+script.
+  function loadFBComment () {
+    var themeNow = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+    document.getElementsByClassName('fb-comments')[0].setAttribute('data-colorscheme',themeNow)
+
+    if (typeof FB === 'object') FB.XFBML.parse()
+    else {
+      let ele = document.createElement('script')
+      ele.setAttribute('src','https://connect.facebook.net/!{theme.facebook_comments.lang}/sdk.js#xfbml=1&version=v7.0')
+      ele.setAttribute('async', 'true')
+      ele.setAttribute('defer', 'true')
+      ele.setAttribute('crossorigin', 'anonymous')
+      document.getElementById('fb-root').insertAdjacentElement('afterbegin',ele)
+    }   
+  }
+
+  if ('!{theme.comments.use[0]}' === 'Facebook Comments' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) loadComment(document.querySelector('#post-comment .fb-comments'), loadFBComment)
+    else loadFBComment()
+  } else {
+    function loadOtherComment () {
+      loadFBComment()
+    }
+  }
+

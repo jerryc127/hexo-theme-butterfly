@@ -1,11 +1,15 @@
 # hexo-theme-butterfly
 
-<a href="https://github.com/jerryc127/hexo-theme-butterfly/releases"><img alt="Version" src="https://img.shields.io/badge/release-3.0.0-blue"/></a>
-<a href="https://jerryc.me"><img alt="Author" src="https://img.shields.io/badge/author-JerryC-blur"/></a>
-<a href="https://hexo.io"><img alt="Hexo" src="https://img.shields.io/badge/hexo-4.0+-0e83c"/></a>
-<a href="https://nodejs.org/"><img alt="node.js" src="https://img.shields.io/badge/node.js-8.0+-blur"/></a>
+![version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly)
+![https://img.shields.io/npm/v/hexo-theme-butterfly?color=%09%23bf00ff](https://img.shields.io/npm/v/hexo-theme-butterfly?color=%09%23bf00ff)
+![hexo version](https://img.shields.io/badge/hexo-4.0+-0e83c)
+![npm download](https://img.shields.io/npm/dw/hexo-theme-butterfly?color=green)
+![nodejs version](https://img.shields.io/badge/node.js-8.0+-yellow)
+![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly?color=FF5531)
 
-Demo:  👍 [Butterfly](https://demo.jerryc.me/)  ||   🤞 [JerryC](https://jerryc.me/)
+Demo: 👍 [Butterfly](https://demo.jerryc.me/)  ||   🤞 [JerryC](https://jerryc.me/)
+
+Docs: 📖 [Butterfly Docs](https://demo.jerryc.me/posts/21cfbf15/)
 
 Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) theme.
 
@@ -32,18 +36,6 @@ git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/bu
  If you don't have pug & stylus renderer, try this: 
 
 > npm install hexo-renderer-pug hexo-renderer-stylus
-
-## Documentation
-
-Find in [Butterfly Docs](https://demo.jerryc.me/posts/21cfbf15/). it supports `zh-TW` and `zh-CN`
-
-You can also join the Chat Group.
-
-[💬 Join QQ Group [recommend]](https://jq.qq.com/?_wv=1027&k=5KI3Jqb)
-
-[💬 Join Telegram Group](https://t.me/hexo_butterfly)
-
-
 
 ## Screenshots
 

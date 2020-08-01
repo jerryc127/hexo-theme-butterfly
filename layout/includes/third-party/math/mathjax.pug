@@ -1,0 +1,45 @@
+//- Mathjax 3
+//- http://docs.mathjax.org/en/latest/upgrading/v2.html#changes-in-the-mathjax-api
+//- https://github.com/mathjax/MathJax/issues/2209
+//- http://docs.mathjax.org/en/latest/options/input/tex.html#the-configuration-block
+//- http://docs.mathjax.org/en/latest/web/typeset.html#resetting-automatic-equation-numbering
+
+script.
+  if (!window.MathJax) {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]],
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+              const display = !!node.type.match(/; *mode=display/)
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+              const text = document.createTextNode('')
+              node.parentNode.replaceChild(text, node)
+              math.start = {node: text, delim: '', n: 0}
+              math.end = {node: text, delim: '', n: 0}
+              doc.math.push(math)
+            }
+          }, '']
+        }
+      }
+    }
+    
+    var script = document.createElement('script')
+    script.src = '!{theme.CDN.mathjax}'
+    script.id = 'MathJax-script'
+    script.async = true
+    document.head.appendChild(script)
+  } else {
+    MathJax.startup.document.state(0)
+    MathJax.texReset()
+    MathJax.typeset()
+  }

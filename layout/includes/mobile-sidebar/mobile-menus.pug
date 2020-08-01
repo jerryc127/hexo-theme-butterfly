@@ -1,6 +1,9 @@
 #mobile-sidebar-menus
   .mobile_author_icon
-    img.avatar-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
+    if theme.lazyload.enable
+      img.avatar-img(data-lazy-src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
+    else
+      img.avatar-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
   .mobile_post_data
     if site.posts.length
       .mobile_data_item.is-center

@@ -18,42 +18,42 @@
 
 function hideInline (args) {
   args = args.join(' ').split(',')
-  var content = args[0]
-  var display = args[1] || 'Click'
-  var bg = args[2] || false
-  var color = args[3] || false
-  var group = 'style="'
+  const content = args[0]
+  const display = args[1] || 'Click'
+  const bg = args[2] || false
+  const color = args[3] || false
+  let group = 'style="'
 
   if (bg) group += `background-color: ${bg};`
   if (color) group += `color: ${color}`
   group += '"'
 
-  return `<span class="hide-inline"><button class="hide-button button--animated" ${group}>${display}
+  return `<span class="hide-inline"><button type="button" class="hide-button button--animated" ${group}>${display}
   </button><span class="hide-content">${content}</span></span>`
 }
 
 function hideBlock (args, content) {
   args = args.join(' ').split(',')
-  var display = args[0] || 'Click'
-  var bg = args[1] || false
-  var color = args[2] || false
-  var group = 'style="'
+  const display = args[0] || 'Click'
+  const bg = args[1] || false
+  const color = args[2] || false
+  let group = 'style="'
 
   if (bg) group += `background-color: ${bg};`
   if (color) group += `color: ${color}`
   group += '"'
 
-  return `<div class="hide-block"><button class="hide-button button--animated" ${group}>${display}
+  return `<div class="hide-block"><button type="button" class="hide-button button--animated" ${group}>${display}
     </button><span class="hide-content">${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}</span></div>`
 }
 
 function hideToggle (args, content) {
   args = args.join(' ').split(',')
-  var display = args[0]
-  var bg = args[1] || false
-  var color = args[2] || false
-  var group = 'style="'
-  var border = ''
+  const display = args[0]
+  const bg = args[1] || false
+  const color = args[2] || false
+  let group = 'style="'
+  let border = ''
 
   if (bg) {
     border = `style="border: 1px solid ${bg}"`

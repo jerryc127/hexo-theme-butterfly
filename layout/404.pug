@@ -26,5 +26,5 @@ html(lang=config.language data-theme=theme.display_mode)
             i.fas.fa-rocket
             = _p('error404.back_button')
           
-    !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
+    !=partial('includes/third-party/search/index', {}, {cache:theme.fragment_cache})
     include includes/additional-js.pug

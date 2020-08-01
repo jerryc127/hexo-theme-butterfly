@@ -1,0 +1,40 @@
+- let emojiMaps = '""'
+if site.data.valine
+  - emojiMaps = JSON.stringify(site.data.valine)
+
+script.
+  function loadValine () {
+    function initValine () {
+      window.valine = new Valine({
+        el: '#vcomment',
+        appId: '#{theme.valine.appId}',
+        appKey: '#{theme.valine.appKey}',
+        placeholder: '#{theme.valine.placeholder}',
+        avatar: '#{theme.valine.avatar}',
+        meta: '#{theme.valine.guest_info }'.split(','),
+        pageSize: '#{theme.valine.pageSize}',
+        lang: '#{theme.valine.lang}',
+        recordIP: #{theme.valine.recordIP},
+        serverURLs: '#{theme.valine.serverURLs}',
+        emojiCDN: '#{theme.valine.emojiCDN}',
+        emojiMaps: !{emojiMaps},
+        enableQQ: #{theme.valine.enableQQ},
+        path: window.location.pathname,
+      });
+      if ('#{theme.valine.requiredFields}') { valine.config.requiredFields= '#{theme.valine.requiredFields}'.split(',') }
+    }
+
+    if (typeof Valine === 'function') initValine() 
+    else $.getScript('!{url_for(theme.CDN.valine)}', initValine)
+  }
+
+  if ('!{theme.comments.use[0]}' === 'Valine' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) loadComment(document.querySelector('#vcomment'),loadValine)
+    else setTimeout(() => loadValine(), 0)
+  } else {
+    function loadOtherComment () {
+      loadValine()
+    }
+  }
+  
+

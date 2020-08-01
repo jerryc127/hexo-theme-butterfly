@@ -6,7 +6,6 @@ $light-red = #F47466
 $themeColorEnable = hexo-config('theme_color') && hexo-config('theme_color.enable')
 $theme-color = $themeColorEnable ? convert(hexo-config('theme_color.main')) : $bright-blue
 $theme-paginator-color = $themeColorEnable ? convert(hexo-config('theme_color.paginator')) : $strong-cyan
-$theme-button-hover-color = $themeColorEnable ? convert(hexo-config('theme_color.button_hover')) : $light-orange
 $theme-text-selection-color = $themeColorEnable ? convert(hexo-config('theme_color.text_selection')) : $strong-cyan
 $theme-link-color = $themeColorEnable ? convert(hexo-config('theme_color.link_color')) : $bright-blue
 $theme-hr-color = $themeColorEnable ? convert(hexo-config('theme_color.hr_color')) : $bright-blue
@@ -30,7 +29,6 @@ $title-prefix-icon-color = $beautifyEnable ? convert(hexo-config('beautify.title
 // Global Variables
 $font-size = 14px
 $font-color = #1F2D3D
-$button-color = #fff
 $rem = 20px
 $text-line-height = 2
 $sm = 768px
@@ -48,8 +46,11 @@ $white = #FFFFFF
 $whitesmoke = #f5f5f5
 $font-black = #4C4948
 $card-bg = $white
+$text-highlight-color = $font-color
+$text-hover = $theme-color
+$text-bg-hover = $theme-color
 // code
-$line-height-code-block = 20px
+$line-height-code-block = 1.6
 $blockquote-color = #6a737d
 $blockquote-padding-color = $themeColorEnable ? convert(hexo-config('theme_color.blockquote_padding_color')) : #49B1F5
 $blockquote-background-color = $themeColorEnable ? alpha(convert(hexo-config('theme_color.blockquote_background_color')), .1) : alpha($blockquote-padding-color, .1)
@@ -66,6 +67,12 @@ $sidebar-width = 300px
 $sidebar-background = #f6f8fa
 $sidebar-active-color = #fff
 $mobile-sidebar-width = 250px
+// Button
+$button-color = #fff
+$button-hover-color = $themeColorEnable ? convert(hexo-config('theme_color.button_hover')) : $light-orange
+$button-bg= $theme-color
+$pseudo-hover = $button-hover-color
+
 // table
 $table-thead-bg = #99a9bf
 // reward
@@ -73,8 +80,19 @@ $reward-pop-up-bg = #f5f5f5
 $reward-pop-up-color = #858585
 // search
 $search-bg = #f6f8fa
+$search-input-color= $font-black
 $search-color = $theme-color
 $search-keyword-highlight = #F47466
+$search-result-title= $font-black
+// comments
+$comments-switch-first-text = $bright-blue
+$comments-switch-second-text = $light-orange
+$comments-switch-round = #fff
+$comments-switch-bg = #f6f8fa
+// noticeOutdate
+$noticeOutdate-bg = #ffe6e6
+$noticeOutdate-color = #ff6666
+$noticeOutdate-border = #ff8080
 // gallery
 $gallery-color = #fff
 // tag-hide
@@ -82,6 +100,7 @@ $tag-hide-bg = $theme-color
 $tag-hide-toggle-bg = #f0f0f0
 // preloader
 $preloader-bg = #37474f
+$preloader-word-color = #fff
 // rightside
 $rightside-bottom = hexo-config('rightside-bottom') is a 'unit' ? unit(hexo-config('rightside-bottom'), px) : 40px
 // fireworks
@@ -156,6 +175,8 @@ $btn-green-color = #5cb85c
 // Tag Plugins - Tab
 $tab-border-color = #f0f0f0
 $tab-botton-bg = #f0f0f0
+$tab-botton-color = $font-color
 $tab-button-hover-bg = darken($tab-border-color, 8)
 $tab-active-border-color = $theme-color
+$tab-button-active-bg= $card-bg
 $tab-to-top-color = #99a9bf

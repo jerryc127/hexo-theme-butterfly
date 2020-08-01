@@ -1,0 +1,43 @@
+if theme.chat_btn
+  script.
+    ((window.gitter = {}).chat = {}).options = {
+      disableDefaultChat: true,
+    };
+    document.addEventListener('gitter-sidecar-ready', (e) => {
+      const GitterChat = e.detail.Chat
+      let chat
+
+      function initGitter () {
+        chat = new GitterChat({
+          room: '#{theme.gitter.room}',
+          activationElement: '#chat_btn'
+        });
+      }
+
+      initGitter()
+
+      if (!{theme.pjax}) {
+        document.addEventListener('pjax:complete', () => {
+          chat.destroy()
+          initGitter()
+        })
+      }
+
+    })
+else
+  script.
+    ((window.gitter = {}).chat = {}).options = {
+      room: '#{theme.gitter.room}',
+    };
+
+    if (!{theme.chat_hide_show}) {
+      function chatBtnHide () {
+        document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'none'
+      }
+
+      function chatBtnShow () {
+        document.getElementsByClassName('gitter-open-chat-button')[0].style.display= 'block'
+      }
+    }
+
+script(src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer)

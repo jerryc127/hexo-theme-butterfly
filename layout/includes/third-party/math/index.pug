@@ -1,0 +1,18 @@
+if theme.mathjax && theme.mathjax.enable
+  if theme.mathjax.per_page
+    if(!is_tag() && !is_category() && !is_archive() && !is_home())
+      include ./mathjax.pug
+  else
+    if page.mathjax
+      include ./mathjax.pug
+
+if theme.katex && theme.katex.enable
+  if theme.katex.per_page
+    if(!is_tag() && !is_category() && !is_archive() && !is_home())
+      include ./katex.pug
+  else
+    if page.katex
+      include ./katex.pug
+
+if theme.mermaid.enable
+  include ./mermaid.pug

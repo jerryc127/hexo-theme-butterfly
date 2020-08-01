@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
+
 function debounce (func, wait, immediate) {
-  var timeout
+  let timeout
   return function () {
-    var context = this
-    var args = arguments
-    var later = function () {
+    const context = this
+    const args = arguments
+    const later = function () {
       timeout = null
       if (!immediate) func.apply(context, args)
     }
-    var callNow = immediate && !timeout
+    const callNow = immediate && !timeout
     clearTimeout(timeout)
     timeout = setTimeout(later, wait)
     if (callNow) func.apply(context, args)
@@ -15,21 +17,21 @@ function debounce (func, wait, immediate) {
 };
 
 function throttle (func, wait, options) {
-  var timeout, context, args
-  var previous = 0
+  let timeout, context, args
+  let previous = 0
   if (!options) options = {}
 
-  var later = function () {
+  const later = function () {
     previous = options.leading === false ? 0 : new Date().getTime()
     timeout = null
     func.apply(context, args)
     if (!timeout) context = args = null
   }
 
-  var throttled = function () {
-    var now = new Date().getTime()
+  const throttled = function () {
+    const now = new Date().getTime()
     if (!previous && options.leading === false) previous = now
-    var remaining = wait - (now - previous)
+    const remaining = wait - (now - previous)
     context = this
     args = arguments
     if (remaining <= 0 || remaining > wait) {
@@ -49,70 +51,31 @@ function throttle (func, wait, options) {
 }
 
 function sidebarPaddingR () {
-  var innerWidth = window.innerWidth
-  var clientWidth = document.body.clientWidth
-  var paddingRight = innerWidth - clientWidth
+  const innerWidth = window.innerWidth
+  const clientWidth = document.body.clientWidth
+  const paddingRight = innerWidth - clientWidth
   if (innerWidth !== clientWidth) {
     $('body').css('padding-right', paddingRight)
   }
 }
 
-// iPadOS
-function isIpad () {
-  return navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1
-}
-
-function isTMobile () {
-  var ua = navigator.userAgent
-  var pa = /iPad|iPhone|iPod|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g
-  return window.screen.width < 992 && pa.test(ua)
-}
-
-function isMobile () {
-  return this.isIpad() || this.isTMobile()
-}
-
-function isDesktop () {
-  return !this.isMobile()
-}
-
 function scrollToDest (name, offset = 0) {
-  var scrollOffset = $(name).offset()
+  const scrollOffset = $(name).offset()
   $('body,html').animate({
     scrollTop: scrollOffset.top - offset
   })
 };
 
-function loadScript (url, callback) {
-  var script = document.createElement('script')
-  script.type = 'text/javascript'
-  if (script.readyState) { // IE
-    script.onreadystatechange = function () {
-      if (script.readyState === 'loaded' ||
-        script.readyState === 'complete') {
-        script.onreadystatechange = null
-        callback()
-      }
-    }
-  } else { // Others
-    script.onload = function () {
-      callback()
-    }
-  }
-  script.src = url
-  document.body.appendChild(script)
-};
-
 function snackbarShow (text, showAction, duration) {
-  var a = (typeof showAction !== 'undefined') ? showAction : false
-  var d = (typeof duration !== 'undefined') ? duration : 2000
-  var position = GLOBAL_CONFIG.Snackbar.position
-  var bg = document.documentElement.getAttribute('data-theme') === 'light' ? GLOBAL_CONFIG.Snackbar.bgLight : GLOBAL_CONFIG.Snackbar.bgDark
+  const sa = (typeof showAction !== 'undefined') ? showAction : false
+  const dur = (typeof duration !== 'undefined') ? duration : 2000
+  const position = GLOBAL_CONFIG.Snackbar.position
+  const bg = document.documentElement.getAttribute('data-theme') === 'light' ? GLOBAL_CONFIG.Snackbar.bgLight : GLOBAL_CONFIG.Snackbar.bgDark
   Snackbar.show({
     text: text,
     backgroundColor: bg,
-    showAction: a,
-    duration: d,
+    showAction: sa,
+    duration: dur,
     pos: position
   })
 }
@@ -124,9 +87,9 @@ const Cookies = {
     if (parts.length === 2) return parts.pop().split(';').shift()
   },
   set: function (name, value, days) {
-    var expires = ''
+    let expires = ''
     if (days) {
-      var date = new Date()
+      const date = new Date()
       date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
       expires = '; expires=' + date.toUTCString()
     }
@@ -134,12 +97,35 @@ const Cookies = {
   }
 }
 
-/**
- * lazyload
- */
-if (GLOBAL_CONFIG.islazyload) {
-  window.lazyLoadOptions = {
-    elements_selector: 'img',
-    threshold: 0
+const initJustifiedGallery = function (selector) {
+  selector.each(function (i, o) {
+    if ($(this).is(':visible')) {
+      $(this).justifiedGallery({
+        rowHeight: 220,
+        margins: 4
+      })
+    }
+  })
+}
+
+const diffDate = d => {
+  const dateNow = new Date()
+  const datePost = new Date(d.replace(/-/g, '/'))
+  const dateDiff = dateNow.getTime() - datePost.getTime()
+  const dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000))
+  return dayDiff
+}
+
+const loadComment = (dom, callback) => {
+  if ('IntersectionObserver' in window) {
+    const observerItem = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        callback()
+        observerItem.disconnect()
+      }
+    }, { threshold: [0] })
+    observerItem.observe(dom)
+  } else {
+    callback()
   }
 }

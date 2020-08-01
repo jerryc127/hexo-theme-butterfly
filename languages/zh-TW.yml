@@ -3,8 +3,8 @@ sidebar:
   have_read: 你已經讀了
 
 footer:
-  driven: Power by
-  theme: Theme
+  framework: 框架
+  theme: 主題
 
 copy:
   success: 複製成功
@@ -24,7 +24,8 @@ post:
   created: 發表於
   updated: 更新於
   wordcount: 字數總計
-  min2read: '閱讀時長: %s 分鐘'
+  min2read: 閲讀時長
+  min2read_unit: 分鐘
   page_pv: 閱讀量
   comments: 評論數
   copyright:
@@ -38,13 +39,13 @@ post:
 search: 搜尋
 algolia_search:
   input_placeholder: 搜尋文章
-  hits_empty: '找不到您查詢的內容:${query}'
+  hits_empty: '找不到您查詢的內容：${query}'
   hits_stats: '找到 ${hits} 條結果，用時 ${time} 毫秒'
 
 local_search:
   label: 本地搜尋
   input_placeholder: 搜尋文章
-  hits_empty: '找不到您查詢的內容:${query}'
+  hits_empty: '找不到您查詢的內容：${query}'
   powered: '提供支援'
   by: 由
 
@@ -63,7 +64,6 @@ aside:
   card_tags: 標籤
   card_archives: 歸檔
   card_recent_post: 最新文章
-  card_bookmark: 加入書籤
   card_webinfo:
     headline: 網站資訊
     article_name: 文章數目

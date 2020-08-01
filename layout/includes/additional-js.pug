@@ -1,76 +1,61 @@
-script(src=url_for(theme.CDN.jquery))
-script(src=url_for(theme.CDN.utils))
-script(src=url_for(theme.CDN.main))
+div
+  script(src=url_for(theme.CDN.jquery))
+  script(src=url_for(theme.CDN.utils))
+  script(src=url_for(theme.CDN.main))
 
-if theme.translate && theme.translate.enable
-  script(src=url_for(theme.CDN.translate))
+  if theme.translate && theme.translate.enable
+    script(src=url_for(theme.CDN.translate))
 
-if theme.medium_zoom
-  script(src=url_for(theme.CDN.medium_zoom))
+  if theme.medium_zoom
+    script(src=url_for(theme.CDN.medium_zoom))
+  else if theme.fancybox
+    script(src=url_for(theme.CDN.fancybox))
 
-if theme.fancybox
-  script(src=url_for(theme.CDN.fancybox))
+  if theme.instantpage
+    script(src=url_for(theme.CDN.instantpage) type="module" defer)
 
-include ./math/index.pug 
+  if theme.lazyload.enable
+    script(src=url_for(theme.CDN.lazyload) async)
 
-if theme.fireworks && theme.fireworks.enable
-  script(src=url_for(theme.CDN.anime))
-  script(src=url_for(theme.CDN.fireworks))
+  if (theme.snackbar && theme.snackbar.enable)
+    script(src=url_for(theme.CDN.snackbar))
 
-if (theme.snackbar && theme.snackbar.enable)
-  script(src=url_for(theme.CDN.snackbar))
+  if theme.pangu && theme.pangu.enable
+    !=partial('includes/third-party/pangu.pug', {}, {cache:theme.fragment_cache})
 
-if (theme.canvas_ribbon && theme.canvas_ribbon.enable)
-  include ./third-party/canvas-ribbon.pug
+  //- search
+  if theme.algolia_search.enable
+    script(src=url_for(theme.CDN.algolia_js))
+  else if theme.local_search.enable
+    script(src=url_for(theme.CDN.local_search))
 
-if (theme.canvas_ribbon_piao && theme.canvas_ribbon_piao.enable)
-  include ./third-party/canvas-ribbon-piao.pug
+  if theme.preloader
+    !=partial('includes/loading/loading-js', {}, {cache:theme.fragment_cache})
 
-if (theme.canvas_nest && theme.canvas_nest.enable)
-  include ./third-party/canvas-nest.pug 
+  .js-pjax
+    if is_home() && theme.subtitle.enable
+      include ./third-party/subtitle.pug
 
-if theme.activate_power_mode.enable
-  script(src=url_for(theme.CDN.activate_power_mode))
-  script.
-    POWERMODE.colorful = #{theme.activate_power_mode.colorful};
-    POWERMODE.shake = #{theme.activate_power_mode.shake};
-    document.body.addEventListener('input', POWERMODE);
+    include ./third-party/math/index.pug
 
-if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
-  script(async src=url_for(theme.CDN.busuanzi))
+    if commentsJsLoad
+      include ./third-party/comments/js.pug
 
-if theme.instantpage
-  script(src=url_for(theme.CDN.instantpage) type="module" defer)
+    if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
+      script(async src=url_for(theme.CDN.busuanzi))
 
-if theme.lazyload.enable
-  script(src=url_for(theme.CDN.lazyload) async)
+  !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
 
-//- 鼠標特效
-if theme.click_heart
-  script(src=url_for(theme.CDN.click_heart))
+  !=partial('includes/third-party/effect', {}, {cache:theme.fragment_cache})
 
-if theme.ClickShowText && theme.ClickShowText.enable
-  script(src=url_for(theme.CDN.ClickShowText))
+  !=partial('includes/third-party/chat/index', {}, {cache:theme.fragment_cache})
 
-if theme.pangu && theme.pangu.enable
-  include ./third-party/pangu.pug
+  if theme.aplayerInject && theme.aplayerInject.enable
+    if theme.pjax || theme.aplayerInject.per_page
+      include ./head/aplayer.pug
+    else if page.aplayer
+      include ./head/aplayer.pug
 
-//- search
-if theme.algolia_search && theme.algolia_search.enable
-  script(src=url_for(theme.CDN.algolia_js))
-else if theme.local_search && theme.local_search.enable
-  script(src=url_for(theme.CDN.local_search))
+  if theme.pjax
+    !=partial('includes/third-party/pjax', {}, {cache:theme.fragment_cache})
 
-//- mermaid
-if theme.mermaid.enable
-  include ./math/mermaid.pug
-
-if is_home()
-  include ./head/subtitle.pug
-
-!=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
-
-if theme.preloader
-  !=partial('includes/loading/loading-js', {}, {cache:theme.fragment_cache})
-
-!=partial('includes/chat/index', {}, {cache:theme.fragment_cache})

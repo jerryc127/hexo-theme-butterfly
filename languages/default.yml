@@ -3,7 +3,7 @@ sidebar:
   have_read: You've read
 
 footer:
-  driven: Driven
+  framework: Framework
   theme: Theme
 
 copy:
@@ -24,7 +24,8 @@ post:
   created: Created
   updated: Updated
   wordcount: Word count
-  min2read: 'Reading time: %s min'
+  min2read: Reading time
+  min2read_unit: min
   page_pv: Post View
   comments: Comments
   copyright:
@@ -61,7 +62,6 @@ aside:
   card_tags: Tags
   card_archives: Archives
   card_recent_post: Recent Post
-  card_bookmark: Bookmark
   card_webinfo:
     headline: Info
     article_name: Article

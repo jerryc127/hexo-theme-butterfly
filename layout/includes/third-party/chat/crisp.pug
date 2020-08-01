@@ -1,0 +1,36 @@
+script.
+  window.$crisp = [];
+  window.CRISP_WEBSITE_ID = "!{theme.crisp.website_id}";
+  (function () {
+    d = document;
+    s = d.createElement("script");
+    s.src = "https://client.crisp.chat/l.js";
+    s.async = 1;
+    d.getElementsByTagName("head")[0].appendChild(s);
+  })();
+  $crisp.push(["safe", true])
+
+  if (!{theme.chat_btn}) {
+    $crisp.push(["do", "chat:hide"])
+    $crisp.push(["on", "chat:closed", function() {
+      $crisp.push(["do", "chat:hide"])
+    }])
+    var chatBtnFn = () => {
+      var chatBtn = document.getElementById("chat_btn")
+      chatBtn.addEventListener("click", function(){
+        $crisp.push(["do", "chat:show"])
+        $crisp.push(["do", "chat:open"])
+
+      });
+    }
+    chatBtnFn()
+  } else {
+    if (!{theme.chat_hide_show}) {
+      function chatBtnHide () {
+        $crisp.push(["do", "chat:hide"])
+      }
+      function chatBtnShow () {
+        $crisp.push(["do", "chat:show"])
+      }
+    }
+  }

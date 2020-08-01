@@ -7,11 +7,11 @@
 'use strict'
 
 hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
-  var relatedPosts = []
+  let relatedPosts = []
   currentPost.tags.forEach(function (tag) {
     allPosts.forEach(function (post) {
       if (isTagRelated(tag.name, post.tags)) {
-        var relatedPost = {
+        const relatedPost = {
           title: post.title,
           path: post.path,
           cover: post.cover,
@@ -20,7 +20,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
           updated: post.updated,
           created: post.date
         }
-        var index = findItem(relatedPosts, 'path', post.path)
+        const index = findItem(relatedPosts, 'path', post.path)
         if (index !== -1) {
           relatedPosts[index].weight += 1
         } else {
@@ -34,14 +34,14 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   if (relatedPosts.length === 0) {
     return ''
   }
-  var result = ''
+  let result = ''
   const hexoConfig = hexo.theme.config.rootConfig
   const config = hexo.theme.config
 
-  var limitNum = config.related_post.limit || 6
-  var dateType = config.related_post.date_type || 'created'
-  var headlineLang = this._p('post.recommend')
-  var lazySrc = config.lazyload.enable ? 'data-src' : 'src'
+  const limitNum = config.related_post.limit || 6
+  const dateType = config.related_post.date_type || 'created'
+  const headlineLang = this._p('post.recommend')
+  const lazySrc = config.lazyload.enable ? 'data-lazy-src' : 'src'
 
   relatedPosts = relatedPosts.sort(compare('weight'))
 
@@ -54,8 +54,8 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
       '</span></div>'
     result += '<div class="relatedPosts_list">'
 
-    for (var i = 0; i < Math.min(relatedPosts.length, limitNum); i++) {
-      var cover =
+    for (let i = 0; i < Math.min(relatedPosts.length, limitNum); i++) {
+      const cover =
         relatedPosts[i].cover === false
           ? relatedPosts[i].randomcover
           : relatedPosts[i].cover
@@ -96,7 +96,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
 })
 
 function isTagRelated (tagName, TBDtags) {
-  var result = false
+  let result = false
   TBDtags.forEach(function (tag) {
     if (tagName === tag.name) {
       result = true
@@ -106,7 +106,7 @@ function isTagRelated (tagName, TBDtags) {
 }
 
 function findItem (arrayToSearch, attr, val) {
-  for (var i = 0; i < arrayToSearch.length; i++) {
+  for (let i = 0; i < arrayToSearch.length; i++) {
     if (arrayToSearch[i][attr] === val) {
       return i
     }
@@ -116,8 +116,8 @@ function findItem (arrayToSearch, attr, val) {
 
 function compare (attr) {
   return function (a, b) {
-    var val1 = a[attr]
-    var val2 = b[attr]
+    const val1 = a[attr]
+    const val2 = b[attr]
     return val2 - val1
   }
 }

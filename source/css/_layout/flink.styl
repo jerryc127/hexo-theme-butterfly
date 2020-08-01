@@ -11,12 +11,12 @@
       position: relative
       float: left
       overflow: hidden
-      margin: 20px 7px
+      margin: 15px 7px
       width: calc(100% / 3 - 15px)
       height: 90px
       border-radius: 8px
       line-height: 17px
-      transform: perspective(1px) translateZ(0)
+      -webkit-transform: translateZ(0)
 
       @media screen and (max-width: 1100px)
         width: calc(50% - 15px) !important
@@ -35,11 +35,9 @@
         bottom: 0
         left: 0
         z-index: -1
-        background: $light-blue
+        background: var(--text-bg-hover)
         content: ''
-        transition-timing-function: ease-out
-        transition-duration: .3s
-        transition-property: transform
+        transition: transform .3s ease-out
         transform: scale(0)
 
       &:hover:before,
@@ -48,14 +46,14 @@
         transform: scale(1)
 
       a
-        color: $font-color
+        color: var(--font-color)
         text-decoration: none
 
         img
           float: left
-          margin: 13px 0 0 10px
-          width: 65px
-          height: 65px
+          margin: 15px 10px
+          width: 60px
+          height: 60px
           border-radius: 35px
           transition: all .3s
 
@@ -64,6 +62,7 @@
 
         .flink-item-name
           @extend .limit-one-line
+          display: block
           padding: 16px 10px 0 0
           height: 40px
           font-weight: bold
@@ -71,6 +70,7 @@
 
         .flink-item-desc
           @extend .limit-one-line
-          padding: 16px 10px
+          display: block
+          padding: 16px 10px 16px 0
           height: 50px
           font-size: 13px

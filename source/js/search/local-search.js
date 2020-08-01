@@ -1,13 +1,13 @@
 $(function () {
-  var loadFlag = false
-  $('a.social-icon.search').on('click', function () {
+  let loadFlag = false
+  const openSearch = function () {
     $('body').css({
       width: '100%',
       overflow: 'hidden'
     })
-    $('.search-dialog').css('display', 'block')
+    $('#local-search').css('display', 'block')
     $('#local-search-input input').focus()
-    $('.search-mask').fadeIn()
+    $('#search-mask').fadeIn()
     if (!loadFlag) {
       search(GLOBAL_CONFIG.localSearch.path)
       loadFlag = true
@@ -20,27 +20,37 @@ $(function () {
         document.removeEventListener('keydown', f)
       }
     })
-  })
+  }
 
-  var closeSearch = function () {
-    $('body').css('width', '')
-    $('body').css('overflow', '')
-    $('.search-dialog').css({
+  const closeSearch = function () {
+    $('body').css({
+      width: '',
+      overflow: ''
+    })
+    $('#local-search').css({
       animation: 'search_close .5s'
     })
 
-    $('.search-dialog').animate({}, function () {
-      setTimeout(function () {
-        $('.search-dialog').css({
-          animation: '',
-          display: 'none'
-        })
-      }, 500)
-    })
+    setTimeout(function () {
+      $('#local-search').css({
+        animation: '',
+        display: 'none'
+      })
+    }, 500)
 
-    $('.search-mask').fadeOut()
+    $('#search-mask').fadeOut()
   }
-  $('.search-mask, .search-close-button').on('click touchstart', closeSearch)
+
+  const searchClickFn = () => {
+    $('a.social-icon.search').on('click', openSearch)
+    $('#search-mask, .search-close-button').on('click', closeSearch)
+  }
+
+  searchClickFn()
+  window.addEventListener('pjax:success', function () {
+    $('#local-search').is(':visible') && closeSearch()
+    searchClickFn()
+  })
 
   function search (path) {
     $.ajax({
@@ -48,7 +58,7 @@ $(function () {
       dataType: 'xml',
       success: function (xmlResponse) {
         // get the contents from search data
-        var datas = $('entry', xmlResponse).map(function () {
+        const datas = $('entry', xmlResponse).map(function () {
           return {
             title: $('title', this).text(),
             content: $('content', this).text(),
@@ -56,29 +66,29 @@ $(function () {
           }
         }).get()
 
-        var $input = $('#local-search-input input')[0]
-        var $resultContent = $('#local-hits')[0]
+        const $input = $('#local-search-input input')[0]
+        const $resultContent = $('#local-hits')[0]
         $input.addEventListener('input', function () {
-          var str = '<div class="search-result-list">'
-          var keywords = this.value.trim().toLowerCase().split(/[\s]+/)
+          let str = '<div class="search-result-list">'
+          const keywords = this.value.trim().toLowerCase().split(/[\s]+/)
           $resultContent.innerHTML = ''
           if (this.value.trim().length <= 0) {
             $('.local-search-stats__hr').hide()
             return
           }
-          var count = 0
+          let count = 0
           // perform local searching
           datas.forEach(function (data) {
-            var isMatch = true
+            let isMatch = true
             if (!data.title || data.title.trim() === '') {
               data.title = 'Untitled'
             }
-            var dataTitle = data.title.trim().toLowerCase()
-            var dataContent = data.content.trim().replace(/<[^>]+>/g, '').toLowerCase()
-            var dataUrl = data.url
-            var indexTitle = -1
-            var indexContent = -1
-            var firstOccur = -1
+            let dataTitle = data.title.trim().toLowerCase()
+            const dataContent = data.content.trim().replace(/<[^>]+>/g, '').toLowerCase()
+            const dataUrl = data.url
+            let indexTitle = -1
+            let indexContent = -1
+            let firstOccur = -1
             // only match artiles with not empty titles and contents
             if (dataTitle !== '' || dataContent !== '') {
               keywords.forEach(function (keyword, i) {
@@ -101,11 +111,11 @@ $(function () {
 
             // show search results
             if (isMatch) {
-              var content = data.content.trim().replace(/<[^>]+>/g, '')
+              const content = data.content.trim().replace(/<[^>]+>/g, '')
               if (firstOccur >= 0) {
                 // cut out 130 characters
-                var start = firstOccur - 30
-                var end = firstOccur + 100
+                let start = firstOccur - 30
+                let end = firstOccur + 100
 
                 if (start < 0) {
                   start = 0
@@ -119,11 +129,11 @@ $(function () {
                   end = content.length
                 }
 
-                var matchContent = content.substring(start, end)
+                let matchContent = content.substring(start, end)
 
                 // highlight all keywords
                 keywords.forEach(function (keyword) {
-                  var regS = new RegExp(keyword, 'gi')
+                  const regS = new RegExp(keyword, 'gi')
                   matchContent = matchContent.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
                   dataTitle = dataTitle.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
                 })
@@ -145,6 +155,7 @@ $(function () {
           }
           str += '</div>'
           $resultContent.innerHTML = str
+          window.pjax && window.pjax.refresh($resultContent)
         })
       }
     })

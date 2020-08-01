@@ -1,17 +1,19 @@
 -
   let isHighlightShrink
   if (theme.highlight_shrink == 'none') isHighlightShrink = 'undefined'
-  else if (page.highlight_shrink !== null && page.toc !== undefined ) isHighlightShrink = page.highlight_shrink
+  else if (page.highlight_shrink === true || page.highlight_shrink === false) isHighlightShrink = page.highlight_shrink
   else isHighlightShrink = theme.highlight_shrink
 
-  const pageToc = page.toc !== null && page.toc !== undefined ? page.toc : theme.toc.enable
+  const pageToc = page.toc === true || page.toc === false ? page.toc : theme.toc.enable
   const showToc = is_post() && pageToc && (toc(page.content) !== '' || page.encrypt == true )
 -
 
-script.
-  var GLOBAL_CONFIG_SITE = { 
-    isPost: !{is_post()},
-    isHome: !{is_home()},
-    isHighlightShrink: !{isHighlightShrink},
-    isSidebar: !{showToc}
+script#config_change
+  .
+    var GLOBAL_CONFIG_SITE = { 
+      isPost: !{is_post()},
+      isHome: !{is_home()},
+      isHighlightShrink: !{isHighlightShrink},
+      isSidebar: !{showToc},
+      postUpdate: '!{full_date(page.updated)}'
     }

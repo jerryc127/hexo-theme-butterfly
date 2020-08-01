@@ -1,7 +1,10 @@
 .card-widget.card-info
   .card-content
     .card-info-avatar.is-center
-      img.avatar-img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+      if theme.lazyload.enable
+        img.avatar-img(data-lazy-src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+      else
+        img.avatar-img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")      
       .author-info__name= config.author
       .author-info__description!= theme.aside.card_author.description || config.description
 
@@ -19,15 +22,14 @@
             .length_num= site.tags.length
 
       if site.categories.length
-        .card-info-data-item.is-center      
+        .card-info-data-item.is-center
           a(href=url_for(config.category_dir))
             .headline= _p('aside.categories') 
             .length_num= site.categories.length
 
-    .card-info-bookmark.is-center
-      button#bookmark-it.button--animated(title= _p('aside.card_bookmark'))
-        i.fas.fa-bookmark
-        span= _p('aside.card_bookmark') || 'Follow Me'
+    a#card-info-btn.button--animated(href=theme.aside.card_author.button.link)
+      i(class=theme.aside.card_author.button.icon)
+      span=theme.aside.card_author.button.text
   
     if(theme.social)
         .card-info-social-icons.is-center

@@ -1,0 +1,34 @@
+script.
+  function loadUtterances () {
+    let ele = document.createElement('script')
+    ele.setAttribute('id', 'utterances_comment')
+    ele.setAttribute('src', '!{url_for(theme.CDN.utterances)}')
+    ele.setAttribute('repo', '!{theme.utterances.repo}')
+    ele.setAttribute('issue-term', '!{theme.utterances.issue_term}')
+    let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
+    ele.setAttribute('theme', nowTheme)
+    ele.setAttribute('crossorigin', 'anonymous')
+    ele.setAttribute('async', 'true')
+    document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+  }
+
+  function utterancesTheme () {
+    if (document.querySelector('.utterances-frame')) {
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
+      const message = {
+        type: 'set-theme',
+        theme: theme
+      };
+      const iframe = document.querySelector('.utterances-frame');
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
+
+  if ('!{theme.comments.use[0]}' === 'Utterances' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    function loadOtherComment () {
+      loadUtterances()
+    }
+  }
