@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-butterfly",
-  "version": "3.0.0-rc1",
+  "version": "3.0.0-rc2",
   "description": "A Simple and Card UI Design theme for Hexo",
   "main": "package.json",
   "scripts": {
@@ -11,7 +11,8 @@
     "theme",
     "butterfly",
     "Card UI Design",
-    "Jerry"
+    "Jerry",
+    "hexo-theme-butterfly"
   ],
   "repository": {
     "type" : "git",

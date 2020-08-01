@@ -1,14 +1,15 @@
 # hexo-theme-butterfly
 
-[![GitHub version](https://badge.fury.io/gh/jerryc127%2Fhexo-theme-butterfly.svg)](https://badge.fury.io/gh/jerryc127%2Fhexo-theme-butterfly)
-[![npm version](https://badge.fury.io/js/hexo-theme-butterfly.svg)](https://badge.fury.io/js/hexo-theme-butterfly)
+![version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly)
+![https://img.shields.io/npm/v/hexo-theme-butterfly?color=%09%23bf00ff](https://img.shields.io/npm/v/hexo-theme-butterfly?color=%09%23bf00ff)
 ![hexo version](https://img.shields.io/badge/hexo-4.0+-0e83c)
-![npm download](https://img.shields.io/npm/dw/hexo-theme-butterfly)
-<a href="https://nodejs.org/"><img alt="node.js" src="https://img.shields.io/badge/node.js-8.0+-blur"/></a>
-![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly)
+![npm download](https://img.shields.io/npm/dw/hexo-theme-butterfly?color=green)
+![nodejs version](https://img.shields.io/badge/node.js-8.0+-yellow)
+![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly?color=FF5531)
 
 Demo: 👍 [Butterfly](https://demo.jerryc.me/)  ||   🤞 [JerryC](https://jerryc.me/)
-Docs: [Butterfly Docs](https://demo.jerryc.me/posts/21cfbf15/)
+
+Docs: 📖 [Butterfly Docs](https://demo.jerryc.me/posts/21cfbf15/)
 
 Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) theme.
 
