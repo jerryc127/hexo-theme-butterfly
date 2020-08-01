@@ -252,7 +252,7 @@ comments:
   # - Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
-  # If you set it to false, the comment count will be invalid
+  # If you set it to true, the comment count will be invalid
   lazyload: false
   count: false # Display comment count in top_img
 
