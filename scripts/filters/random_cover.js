@@ -23,7 +23,7 @@ function randomCover () {
   let cover
   let num
 
-  if (theme.cover.default_cover) {
+  if (theme.cover && theme.cover.default_cover) {
     if (!Array.isArray(theme.cover.default_cover)) {
       cover = theme.cover.default_cover
       return cover

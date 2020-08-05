@@ -15,6 +15,8 @@ Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) t
 
 ## Installation
 
+### GIT
+
 Stable branch [recommend]:
 
 ```
@@ -25,6 +27,16 @@ Dev branch:
 
 ```
 git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
+```
+
+### NPM
+
+> It supports Hexo 5.0.0 or later
+
+In Hexo site root directory 
+
+```powershell
+npm i hexo-theme-butterfly
 ```
 
 ## Configuration

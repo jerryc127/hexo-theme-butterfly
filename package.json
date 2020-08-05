@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-butterfly",
-  "version": "3.0.0-rc2",
+  "version": "3.0.0",
   "description": "A Simple and Card UI Design theme for Hexo",
   "main": "package.json",
   "scripts": {
@@ -23,7 +23,7 @@
     "email": "wong@jerryc.me"
   },
   "dependencies": {
-    "hexo-renderer-marked": "^3.0.0",
+    "hexo-renderer-stylus": "^1.1.0",
     "hexo-renderer-pug": "^1.0.0"
   },
   "homepage": "https://demo.jerryc.me/",
