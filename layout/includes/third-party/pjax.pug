@@ -1,16 +1,22 @@
 script(src=url_for(theme.CDN.pjax))
 script.
-  var pjax = new Pjax({
+  let pjaxSelectors = [
+    'title',
+    'meta[name=description]',
+    '#config_change',
+    '#body-wrap',
+    '#rightside-config-hide',
+    '#rightside-config-show',
+    '.js-pjax'
+  ]
+
+  if (!{theme.Open_Graph_meta && theme.comments.use.includes('Livere')}) {
+    pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+  }
+
+  const pjax = new Pjax({
     elements: 'a:not([target="_blank"])',
-    selectors: [
-      'title',
-      'meta[name=description]',
-      '#config_change',
-      '#body-wrap',
-      '#rightside-config-hide',
-      '#rightside-config-show',
-      '.js-pjax'
-    ],
+    selectors: pjaxSelectors,
     cacheBust: false,
   })
 
