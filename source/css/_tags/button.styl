@@ -1,0 +1,58 @@
+#article-container
+  .btn-center
+    margin: 0 0 1rem
+    text-align: center
+
+  .btn-beautify
+    display: inline-block
+    margin: 0 .2rem .3rem
+    padding: 0 1rem
+    background-color: $btn-default-color
+    color: $btn-color
+    line-height: 2
+
+    &:not(.block) + .btn-beautify:not(.block)
+      margin: 0 .2rem 1rem
+
+    &.block
+      display: block
+      margin: 0 0 1rem
+      width: fit-content
+      width: -moz-fit-content
+
+      &.center
+        margin: 0 auto 1rem
+
+      &.right
+        margin: 0 0 1rem auto
+
+    &.larger
+      padding: .3rem 1.3rem
+
+    &:hover
+      text-decoration: none
+
+    for $type in $btn-types
+      &.{$type}
+        background-color: lookup('$btn-' + $type + '-color')
+
+    &.outline
+      border: 1px solid transparent
+      border-color: $btn-default-color
+      background-color: transparent
+      color: $btn-default-color
+      transition: all .3s
+
+      &.button--animated:before
+        background: $btn-default-color
+
+      &:hover
+        color: white !important
+
+      for $type in $btn-types
+        &.{$type}
+          border-color: lookup('$btn-' + $type + '-color')
+          color: lookup('$btn-' + $type + '-color')
+
+          &.button--animated:before
+            background: lookup('$btn-' + $type + '-color')

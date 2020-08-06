@@ -1,5 +1,5 @@
 #local-search
-  animation: titlescale 0.5s
+  animation: titlescale .5s
 
   .local-search-box
     margin: 0 auto
@@ -7,44 +7,56 @@
     width: 100%
 
     input
-      padding: 0.25rem 0.7rem
+      padding: .25rem .7rem
       width: 100%
       outline: none
-      border: 2px solid $light-blue
+      border: 2px solid $search-color
       border-radius: 2rem
+      background: var(--search-bg)
+      color: var(--search-input-color)
       font-size: 14px
+      -webkit-appearance: none
 
   .local-search__hit-item
     position: relative
-    padding-left: 1.5rem
+    padding-left: 1.3rem
+    line-height: 1.7
 
     &:hover
       &:before
-        border-color: $ruby
+        border-color: $pseudo-hover
 
     &:before
-      $w = 0.3rem
+      $w = .3rem
       position: absolute
-      top: 0.4rem
+      top: .3rem
       left: 0
       width: w = $w
       height: h = w
-      border: 0.5 * w solid $light-blue
+      border: .5 * w solid $search-color
       border-radius: w
-      background: $white
-      content: ""
+      background: transparent
+      content: ''
       line-height: h
-      transition: all 0.2s ease-in-out
+      transition: all .2s ease-in-out
 
     a
       display: block
-      color: $font-black
-      text-decoration: none
+      color: var(--search-result-title)
+      font-weight: 600
       font-size: 14px
       cursor: pointer
 
       &:hover
-        color: $light-blue
+        color: $search-color
+
+    .search-result
+      margin: 0 0 .4rem
+      word-break: break-all
+
+    .search-keyword
+      color: $search-keyword-highlight
+      font-weight: bold
 
   .local-search-stats__hr
     display: none !important
@@ -52,3 +64,7 @@
   .search-result-list
     overflow-y: auto
     max-height: 10.5rem
+
+    @media screen and (max-width: $sm)
+      padding-bottom: 2rem
+      max-height: 75vh !important

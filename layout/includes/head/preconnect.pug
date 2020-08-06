@@ -1,0 +1,19 @@
+link(rel="preconnect" href="//cdn.jsdelivr.net")
+
+if theme.google_analytics
+  link(rel="preconnect" href="//www.google-analytics.com" crossorigin)
+
+if theme.baidu_analytics
+  link(rel="preconnect" href="//hm.baidu.com")
+
+if theme.tencent_analytics
+  link(rel="preconnect" href="//ta.qq.com")
+
+if theme.blog_title_font.font_link && theme.blog_title_font.font_link.indexOf('//fonts.googleapis.com') != -1
+  link(rel="preconnect" href="//fonts.googleapis.com" crossorigin)
+
+if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
+  link(rel="preconnect" href="//busuanzi.ibruce.info")
+
+if theme.baidu_push
+  link(rel="preconnect" href="//zz.bdstatic.com")

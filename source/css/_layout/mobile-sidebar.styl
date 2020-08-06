@@ -1,174 +1,93 @@
 #mobile-sidebar
   #menu_mask
     position: fixed
-    top: 0
-    bottom: 0
-    width: 100%
-    height: 110vh
-    left: 0
-    right: 0
-    background: alpha($black,0.7)
     z-index: 102
     display: none
-
-  #mobile-sidebar-menus,#mobile-sidebar-toc
-    position: fixed
-    top: 0
-    right: -254px
-    width: 250px
-    height 101vh
-    background: $white
-    cursor: pointer
-    box-shadow: 0 0 4px alpha($dark-black,0.27)
-    z-index: 103
-    overflow-y: scroll
-    display: block
-    transition: transform .3s
-    opacity: 0
-    will-change: transform
+    width: 100%
+    height: 100%
+    background: alpha($dark-black, .8)
 
   #mobile-sidebar-menus
-    .mobile_author_icon
+    position: fixed
+    top: 0
+    right: -250px
+    z-index: 103
+    overflow-x: hidden
+    overflow-y: auto
+    width: 250px
+    height: 100%
+    background: var(--sidebar-bg)
+    transition: all .5s
+
+    & > .mobile_author_icon
       padding: 1.3rem 1.5rem 0
       text-align: center
 
       img
-        height: 120px
-        width: 120px
-        padding: 0
-        display: inline-block
-        vertical-align: top
+        width: 110px
+        height: 110px
         border-radius: 70px
-        transition: all .3s
+        transition: all .5s
+
+        &:hover
+          transform: rotate(360deg)
 
     .mobile_post_data
-      display: flex
-      justify-content: center
+      display: table
       padding: .6rem .5rem 0
+      width: 100%
+      table-layout: fixed
 
       .mobile_data_item
-        flex: 1
+        display: table-cell
 
-      .mobile_data_link 
-        a
-          text-decoration: none
+        .mobile_data_link
+          & > a > div
+            @extend .limit-one-line
 
-        .length_num 
-          font-size: .9rem
-          color: $dark-black
+          .length_num
+            color: var(--text-highlight-color)
+            font-size: .9rem
 
-        .headline 
-          display: block
-          font-size: 0.7rem
-          text-transform: uppercase
-          color:$font-black
-      
-    hr         
+          .headline
+            display: block
+            color: var(--font-color)
+            font-size: .7rem
+
+    hr
       margin: 1rem auto
 
     .menus_items
-      padding: 0 .5rem
-      margin-bottom: 5rem
+      padding: 0 .5rem 2rem
 
-      a
-        display: block !important
-        opacity: 1 !important
-        margin: 0
+      .site-page
+        @extend .limit-one-line
+        position: relative
+        display: block
         padding: .3rem 1.5rem
-        color: $font-black
-        text-shadow: none
-        font-size: 0.8rem
-        z-index: 0
-        text-overflow: ellipsis
-        overflow: hidden
-        white-space: nowrap  
-        
-      i
-        width: 30%
-        text-align: left 
+        color: var(--font-color)
+        font-size: .8rem
+        cursor: pointer
 
-      span
-        width 70%
+        i:first-child
+          width: 30%
+          text-align: left
 
-        &:hover
-          color: $light-blue
+        span
+          width: 70%
 
-      .menus-expand
+          &:hover
+            color: $light-blue
+
+      .expand
         position: absolute
-        width: 30px !important
-        height: 30px
         right: 0
-        padding: 6px        
-        transform: rotate(0deg)
-        transition: all .3s
-    
-        &.menus-closed
-          transform: rotate(180deg) !important
-          transition: all .3s
-      
+        padding: .4rem
+        transition: transform .3s
+
+        &.closed
+          transform: rotate(90deg) !important
+
       .menus_item_child
-        list-style: none
         margin: 0
-                            
-  #mobile-sidebar-toc
-    padding: 1rem 0.5rem 5rem 0.3rem
-
-    ol,li
-      list-style: none
-      padding: 0 0 0 8px
-      margin: 0
-    
-
-    .toc_mobile_headline 
-        text-align: center
-        font-size: 18px
-        font-weight: bold
-
-  a
-    text-decoration: none
-    color: $light-black
-
-    &:hover
-          color: $light-blue
-
-// 手機打開menus，toc特效
-.open-mobile-menus,
-.open-mobile-toc
-  overflow: hidden
-  #body-wrap
-    transform: translateX(-250px)
-  #page-header
-    transform: translateX(-250px)
-    &.fixed.visible
-      transform: translate3d(-250px, 100%, 0)
-  #rightside
-    transform: translate3d(-288px, 0, 0) !important
-
-.open-mobile-menus
-  padding-left: 0 !important
-
-  #mobile-sidebar
-    #mobile-sidebar-menus
-      transform: translateX(-254px)
-      opacity: 1
-
-  // pc界面打開mobile-menus需關閉sidebar
-  #sidebar
-    left: -300px !important
-
-.open-mobile-toc
-  #mobile-sidebar
-    #mobile-sidebar-toc
-      transform: translateX(-254px)
-      opacity: 1
-
-@media screen and (max-width: $sm)
-  #mobile-sidebar-menus
-    display: block !important
-
-@media screen and (max-width: $bg)
-  #mobile-sidebar-toc
-    display: block !important
-
-
-
+        list-style: none

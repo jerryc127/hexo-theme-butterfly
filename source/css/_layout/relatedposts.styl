@@ -1,75 +1,53 @@
 .relatedPosts
-    margin: 0 auto
-    padding: 0
-    margin-top: 1rem
-    width: 100%
+  margin-top: 1rem
+
+  .relatedPosts_headline
+    margin-bottom: 5px
+    font-weight: 700
+    font-size: 20px
 
   .relatedPosts_item
-    width: calc(100%/3 - 10px)
-    height: 200px
-    overflow: hidden
-    float: left
     position: relative
-    margin: 5px
-    background: #000
+    display: inline-block
+    overflow: hidden
+    margin: 3px
+    width: calc(33.333% - 6px)
+    height: 200px
+    background: $dark-black
+    vertical-align: bottom
 
     &:hover
       .relatedPosts_cover
         opacity: .8
-        transform:scale(1.1)
+        transform: scale(1.1)
 
+    @media screen and (max-width: 768px)
+      margin: 2px
+      width: calc(50% - 4px)
+      height: 150px
+
+    @media screen and (max-width: 480px)
+      width: calc(100% - 4px)
 
   .relatedPosts_cover
-    border: 0
-    transition: all 0.6s
-    display: block
     width: 100%
     height: 100%
-    padding: 0
-    opacity: 0.4
-    margin: 0
+    opacity: .4
+    transition: all .6s
     object-fit: cover
 
-  .relatedPosts_title
-    color: #fff
+  .relatedPosts_main
     position: absolute
-    left: 0
-    right: 0
-    top: 45%
-    height: 60px
-    padding: 0 30px
-    display: -webkit-box
-    -webkit-line-clamp: 2
-    -webkit-box-orient: vertical
-    overflow: hidden
-    max-width: 100%
+    top: 50%
+    padding: 0 1rem
     width: 100%
-    margin: 0 auto
-    text-align: center
+    transform: translate(0, -50%)
 
-  .relatedPosts_headline
-    font-size: 20px
-    font-weight: 700
-    margin-bottom: 5px
+    .relatedPosts_date
+      color: var(--light-grey)
+      font-size: 90%
 
-  .clear_both
-    clear: both
-
-
-@media screen and (max-width:768px) 
-  .relatedPosts_item
-    width: calc(100%/2 - 4px)
-    height: 150px
-    margin: 2px
-  
-  .relatedPosts_title
-    top: 40%
-
-@media screen and (max-width:480px) 
-  .relatedPosts_item
-    width: calc(100% - 4px)
-    height: 150px
-    margin: 2px
-  
-  .relatedPosts_title
-    top: 40%
+    .relatedPosts_title
+      @extend .limit-more-line
+      color: var(--white)
+      -webkit-line-clamp: 2

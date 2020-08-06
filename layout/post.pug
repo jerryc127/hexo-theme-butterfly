@@ -1,79 +1,28 @@
 extends includes/layout.pug
 
-block top_img
-  - var top_img =  page.top_img || page.cover || theme.post_meta.top_img || theme.default_top_img
-  - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-  div#top-container(style=bg_img)
-    #post-info
-      #post-title
-          .posttitle= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          if (theme.post_meta.date_type === 'both')
-            time.post-meta__date
-              i.fa.fa-calendar(aria-hidden="true")
-              =' '+_p('post.created')+' '+date(page.date, config.date_format)
-              span.post-meta__separator |
-              i.fa.fa-history(aria-hidden="true")
-              =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-          else
-            - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-            time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-                  
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator.mobile_hidden |
-          span.mobile_hidden
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right(aria-hidden="true")
-        .post-meta-wordcount
-          if (theme.wordcount && theme.wordcount.enable)
-            i.fa.fa-file-word-o.post-meta__icon(aria-hidden="true")
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            i.fa.fa-clock-o.post-meta__icon(aria-hidden="true")
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-          if (theme.wordcount && theme.wordcount.enable && theme.busuanzi.page_pv)
-            span.post-meta__separator |
-          if theme.busuanzi.page_pv
-            i.fa.fa-eye.post-meta__icon(aria-hidden="true")        
-            span= _p('post.page_pv') + ': '
-            span#busuanzi_value_page_pv
-
-
 block content
   article#post(class="")
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable && page.copyright != false)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  
-  .tag_share
-    if (theme.post_meta.tags)
-      .post-meta__tag-list
-        each item, index in page.tags.data
-          a(href=url_for(item.path)).post-meta__tags #[=item.name]    
-    include includes/share/index.pug
+    #article-container.post-content!=page.content
+    include includes/post/post-copyright.pug
+    .tag_share
+      if (theme.post_meta.post.tags)
+        .post-meta__tag-list
+          each item, index in page.tags.data
+            a(href=url_for(item.path)).post-meta__tags #[=item.name]
+      include includes/third-party/share/index.pug
         
-  if theme.reward.enable
-    include includes/reward.pug
-  include includes/pagination.pug
-  
-  if theme.related_post && theme.related_post.enable
-    != related_posts(page,site.posts)
-  if page.comments !== false
-    include includes/comments/index.pug
+    if theme.reward.enable
+      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+
+    //- ad
+    if theme.ad && theme.ad.post
+      .post-ad!=theme.ad.post
+
+    include includes/pagination.pug
+    if theme.related_post && theme.related_post.enable
+      != related_posts(page,site.posts)
+
+    if page.comments !== false && theme.comments && theme.comments.use
+      - var commentsJsLoad = true
+      !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})
+      

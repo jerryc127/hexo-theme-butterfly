@@ -1,0 +1,19 @@
+if theme.aside.enable 
+  if page.aside !== false
+    #aside_content.aside_content
+      if theme.aside.card_author.enable
+        !=partial('includes/widget/card_author', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_announcement.enable
+        !=partial('includes/widget/card_announcement', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_recent_post.enable
+        !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})
+      if theme.ad && theme.ad.aside
+        !=partial('includes/widget/card_ad', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_categories.enable
+        !=partial('includes/widget/card_categories', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_tags.enable
+        !=partial('includes/widget/card_tags', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_archives.enable
+        !=partial('includes/widget/card_archives', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_webinfo
+        !=partial('includes/widget/card_webinfo', {}, {cache:theme.fragment_cache})  

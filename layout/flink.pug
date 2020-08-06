@@ -1,31 +1,24 @@
-.flink
-  each i in site.data.link
-    h1= i.class_name
-    .post-cards
-      ul.md-links
-        each item in i.link_list
-          li.md-links-item
-            a(href=item.link  title=item.name target="_blank")
-              if theme.lazyload.enable
-                img.lazyload(data-src=item.avatar onerror=`onerror=null;src='${theme.lodding_bg.flink}'` height="72px")
-              else
-                img(src=item.avatar onerror=`onerror=null;src='${theme.lodding_bg.flink}'` height="72px")
-              div(class="md-links-title")= item.name 
-                <br/>
-              div(class="md-links-des")=item.descr
-
-  hr
-  div 
-    p(style="font-size:15px;font-weight:bold")= theme.Flink.info_headline
-    ul
-      li= theme.Flink.name
-      li= theme.Flink.address
-      li= theme.Flink.avatar 
-      li= theme.Flink.info
-
-  hr
-  .comment_int
-    p.comment-word= theme.Flink.comment
-
+#page
+  .flink#article-container
+    if site.data.link
+      each i in site.data.link
+        if i.class_name
+          h2!= i.class_name
+        if i.class_desc
+          .flink-desc!=i.class_desc
+        .flink-list
+          each item in i.link_list
+            .flink-list-item
+              a(href=url_for(item.link)  title=item.name target="_blank")
+                if theme.lazyload.enable
+                  img(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                else
+                  img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                span.flink-item-name= item.name 
+                span.flink-item-desc(title=item.descr)= item.descr
+    != page.content
+  if page.comments !== false && theme.comments && theme.comments.use
+    - var commentsJsLoad = true
+    !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})
 
 

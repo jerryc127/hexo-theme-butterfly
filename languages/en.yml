@@ -3,7 +3,7 @@ sidebar:
   have_read: You've read
 
 footer:
-  driven: Driven
+  framework: Framework
   theme: Theme
 
 copy:
@@ -19,25 +19,27 @@ page:
 
 sticky: Sticky
 no_title: No title
-archives: Archives
 
 post:
   created: Created
   updated: Updated
   wordcount: Word count
-  min2read: "Reading time: %s min"
+  min2read: Reading time
+  min2read_unit: min
   page_pv: Post View
+  comments: Comments
   copyright:
     author: Author
     link: Link
     copyright_notice: Copyright Notice
     copyright_content: 'All articles in this blog are licensed under <a href="%s">%s</a> unless stating additionally.'
+  recommend: Related Articles
 
 search: Search
 algolia_search:
   input_placeholder: Search for Posts
   hits_empty: "We didn't find any results for the search: ${query}."
-  hits_stats: "${hits} results found in ${time} ms"
+  hits_stats: '${hits} results found in ${time} ms'
 
 local_search:
   label: Local search
@@ -60,13 +62,14 @@ aside:
   card_tags: Tags
   card_archives: Archives
   card_recent_post: Recent Post
-  card_bookmark: Add to bookmark
   card_webinfo:
     headline: Info
     article_name: Article
     runtime_name: Run time
+    site_wordcount: Total Count
     site_uv_name: UV
     site_pv_name: PV
+  more_button: More
 
 donate: Donate
 share: Share
@@ -75,13 +78,13 @@ bookmark:
 
 rightside:
   readmode_title: Read Mode
-  font_plus_title: Increase font size
-  font_minus_title: Decrease font size
-  translate_title: Traditional Chinese and Simplified Chinese Conversion
-  night_mode_title: Dark Mode
-  back_to_top: Back to top
-  toc: Table of Contents
-  scroll_to_comment: Scroll to comment
+  font_plus_title: Increase Font Size
+  font_minus_title: Decrease Font Size
+  translate_title: Switch Between Traditional Chinese And Simplified Chinese
+  night_mode_title: Switch Between Light And Dark Mode
+  back_to_top: Back To Top
+  toc: Table Of Contents
+  scroll_to_comment: Scroll To Comments
   setting: Setting
 
 runtime_unit: days
@@ -98,5 +101,11 @@ Snackbar:
     message_next: to bookmark this page
   chs_to_cht: Traditional Chinese Activated Manually
   cht_to_chs: Simplified Chinese Activated Manually
-  day_to_night: Light Mode Activated Manually
-  night_to_day: Dark Mode Activated Manually
+  day_to_night: Dark Mode Activated Manually
+  night_to_day: Light Mode Activated Manually
+
+loading: Loading...
+
+error404:
+  error_title: Page not found
+  back_button: Go back home

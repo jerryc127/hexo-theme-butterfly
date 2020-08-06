@@ -1,0 +1,38 @@
+- let defaultComment = theme.comments.use[0]
+hr
+#post-comment
+  .comment-head
+    .comment-headline
+      i.fas.fa-comments.fa-fw
+      span= ' ' + _p('comment')
+    
+    if theme.comments.use.length > 1
+      .comment-switch
+        span.first-comment=defaultComment
+        label
+          input#switch-comments-btn(type="checkbox")
+          span.slider
+        span.second-comment=theme.comments.use[1]
+
+
+  .comment-wrap
+    each name in theme.comments.use
+      div
+        case name
+          when 'Disqus'
+            #disqus_thread
+          when 'Valine'
+            #vcomment.vcomment
+          when 'Disqusjs'
+            #disqus_thread
+          when 'Livere'
+            #lv-container(data-id="city" data-uid=theme.livere.uid)
+          when 'Gitalk'
+            #gitalk-container
+          when 'Utterances'
+            #utterances-wrap
+          when 'Facebook Comments'
+            .fb-comments(data-colorscheme = theme.display_mode === 'dark' ? 'dark' : 'light'
+                        data-numposts= theme.facebook_comments.pageSize || 10
+                        data-order-by= theme.facebook_comments.order_by || 'social'
+                        data-width="100%")

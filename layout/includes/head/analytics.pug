@@ -1,0 +1,20 @@
+if theme.baidu_analytics
+  script.
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?!{theme.baidu_analytics}";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+if theme.google_analytics
+  script(async src=`https://www.googletagmanager.com/gtag/js?id=${theme.google_analytics}`)
+  script.
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '!{theme.google_analytics}');
+
+if theme.tencent_analytics
+  script(src=`https://tajs.qq.com/stats?sId=${theme.tencent_analytics}` charset="UTF-8" data-pjax)

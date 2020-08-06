@@ -1,0 +1,149 @@
+if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
+  [data-theme='dark']
+    --global-bg: darken(#121212, 2)
+    --font-color: alpha(#FFFFFF, .6)
+    --hr-border: alpha(#FFFFFF, .3)
+    --hr-before-color: alpha(#FFFFFF, .6)
+    --search-bg: #121212
+    --search-input-color: alpha(#FFFFFF, .6)
+    --search-result-title: alpha(#FFFFFF, .8)
+    --preloader-bg: darken(#121212, 2)
+    --preloader-color: alpha(#FFFFFF, .6)
+    --tab-border-color: #2c2c2c
+    --tab-botton-bg: #2c2c2c
+    --tab-botton-color: alpha(#FFFFFF, .6)
+    --tab-button-hover-bg: lighten(#121212, 15)
+    --tab-button-active-bg: #121212
+    --card-bg: #121212
+    --sidebar-bg: #121212
+    --btn-hover-color: lighten(#121212, 40)
+    --btn-color: alpha(#FFFFFF, .6)
+    --btn-bg: lighten(#121212, 5)
+    --text-bg-hover: lighten(#121212, 15)
+    --light-grey: alpha(#FFFFFF, .6)
+    --white: alpha(#FFFFFF, .8)
+    --text-highlight-color: alpha(#FFFFFF, .8)
+    --blockquote-color: alpha(#FFFFFF, .6)
+    --blockquote-bg: lighten(#121212, 10)
+    --reward-pop: lighten(#121212, 10)
+
+    // 網站背景，footer背景
+    #web_bg[data-type=color],
+    #footer[data-type=color]
+      background: darken(#121212, 2)
+
+    #web_bg[data-type=photo]:before,
+    #footer[data-type=photo]:before
+      position: absolute
+      width: 100%
+      height: 100%
+      background-color: alpha($dark-black, .7)
+      content: ''
+
+    #page-header
+      background-color: #121212
+
+    #article-container code
+      background: #2c2c2c
+
+    // 頭部
+    #page-header
+      &:before
+        position: absolute
+        top: 0
+        left: 0
+        display: block
+        width: 100%
+        height: 100%
+        background-color: alpha($dark-black, .7)
+        content: ''
+
+      & > #nav
+        &.fixed
+          background: alpha(#121212, .8)
+          box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0)
+
+    // 代碼框
+    #article-container
+      pre,
+      .highlight:not(.js-file-line-container)
+        background-color: lighten(#121212, 2) !important
+        color: alpha(#FFFFFF, .6) !important
+
+      figure.highlight
+        box-shadow: none
+
+        table::-webkit-scrollbar-thumb
+          background: lighten(#121212, 5)
+
+        .line:before
+          color: alpha(#FFFFFF, .6) !important
+
+        .hljs
+          background-color: lighten(#121212, 2) !important
+
+        .highlight-tools
+          background: lighten(#121212, 3) !important
+          color: #90a4ae !important
+
+    #post-comment
+      .comment-switch
+        if hexo-config('comments.text')
+          background: #2c2c2c !important
+
+        label
+          filter: brightness(.7)
+
+    // note
+    if hexo-config('note.style') == 'modern' || hexo-config('note.style') == 'flat'
+      .note
+        filter: brightness(.7)
+
+    // hide-tags
+    .hide-button,
+    .btn-beautify,
+    .mermaid,
+    .post-outdate-notice,
+    .error-img,
+    #article-container iframe,
+    img,
+    .gist,
+    .aplayer
+      filter: brightness(.7)
+
+    // 第三方
+    // 插件 hexo-blog-encrypt
+    #hexo-blog-encrypt
+      label,
+      input
+        color: alpha(#FFFFFF, .6) !important
+
+      input
+        background-color: #121212
+
+    // Gitalk
+    #gitalk-container
+      filter: brightness(.8)
+
+      svg
+        fill: alpha(#FFFFFF, .8) !important
+
+    // Disqus and Disqusjs
+    #disqus_thread
+      #dsqjs
+        .dsqjs-tab-active,
+        .dsqjs-no-comment
+          color: alpha(#FFFFFF, .6)
+
+        .dsqjs-order-label
+          background-color: lighten(#121212, 5)
+
+        .dsqjs-post-body
+          color: alpha(#FFFFFF, .6)
+
+          code,
+          pre
+            background: #2c2c2c
+
+          blockquote
+            color: alpha(#FFFFFF, .6)

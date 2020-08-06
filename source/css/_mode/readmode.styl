@@ -1,0 +1,184 @@
+if hexo-config('readmode')
+  [data-theme='light']
+    .read-mode
+      --font-color: #4c4948
+      --readmode-light-color: #fff
+      --white: #4c4948
+      --light-grey: #4c4948
+      --gray: #d6dbdf
+      --hr-border: #d6dbdf
+      --hr-before-color: darken(#d6dbdf, 10)
+      -highlight-bg: #f7f7f7
+
+  [data-theme='dark']
+    .read-mode
+      --font-color: rgba(255, 255, 255, .6)
+      --readmode-light-color: #0d0d0d
+      --white: rgba(255, 255, 255, .8)
+      --light-grey: rgba(255, 255, 255, .6)
+      --gray: rgba(255, 255, 255, .6)
+      --hr-border: rgba(255, 255, 255, .3)
+      --hr-before-color: rgba(255, 255, 255, .6)
+      -highlight-bg: #171717
+
+  .read-mode
+    background: var(--readmode-light-color)
+
+    #body-wrap
+      padding-left: 0 !important
+
+    #page-header.post-bg
+      background-color: transparent
+      background-image: none !important
+
+      &:before
+        opacity: 0
+
+      & > #post-info
+        padding: 0
+        text-align: center
+
+    .layout_post
+      > #post
+        background: transparent
+        box-shadow: none
+
+        &:hover
+          box-shadow: none
+
+    & > canvas
+      display: none !important
+
+    .highlight-tools,
+    #footer,
+    #post > *:not(:first-child),
+    #to_comment,
+    #sidebar,
+    #toggle-sidebar,
+    #mobile-toc-button,
+    #nav,
+    .post-outdate-notice,
+    #web_bg
+      display: none !important
+
+    if !hexo-config('chat_btn')
+      #chatra,
+      #tidio-chat-code,
+      #tidio-chat,
+      #daodream-container,
+      .gitter-chat-embed,
+      .gitter-open-chat-button
+        display: none !important
+
+    #article-container
+      a
+        color: #99a9bf
+
+      pre,
+      .highlight:not(.js-file-line-container)
+        background: var(-highlight-bg) !important
+
+        *
+          color: var(--font-color) !important
+
+      figure.highlight
+        border-radius: 0 !important
+        box-shadow: none !important
+
+        & > :not(.highlight-tools)
+          display: block !important
+
+        .line:before
+          color: var(--font-color) !important
+
+        .hljs
+          background: var(-highlight-bg) !important
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6
+        padding: 0
+
+        &:before
+          content: ''
+
+        &:hover
+          padding: 0
+
+      ul,
+      li,
+      ol
+        &:hover:before
+          transform: none !important
+
+      ol,
+      li
+        &:before
+          background: transparent !important
+          color: var(--font-color) !important
+
+      ul
+        >li
+          &:before
+            border: .15rem solid var(--gray) !important
+
+      .tabs
+        border: 2px solid var(--tab-border-color)
+
+        > .nav-tabs
+          background: transparent
+
+          > .tab
+            border-bottom: 0
+
+            button
+              border-top: none !important
+              background: transparent
+
+              &:hover
+                background: none !important
+
+            &.active
+              button
+                text-decoration: underline
+
+        > .tab-contents .tab-item-content.active
+          animation: none
+
+      code
+        color: var(--font-color)
+
+      blockquote
+        border-left: .2rem solid var(--gray)
+        background-color: var(--readmode-light-color)
+
+      .hide-toggle
+        border: 1px solid var(--gray) !important
+
+      .hide-button,
+      .btn-beautify
+        background: var(--readmode-light-color) !important
+        color: var(--font-color) !important
+
+      .btn-beautify
+        border: 1px solid var(--gray) !important
+
+      .button--animated:before
+        background: var(--readmode-light-color) !important
+
+      .hide-inline,
+      .hide-block
+        & >.hide-button
+          border: 1px solid var(--gray)
+
+        & > .button--animated:before
+          background: var(--readmode-light-color)
+
+      .note
+        border: 2px solid var(--gray)
+        filter: none
+        background-color: var(--readmode-light-color)
+        color: var(--font-color)

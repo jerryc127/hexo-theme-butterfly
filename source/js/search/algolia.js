@@ -1,54 +1,53 @@
 $(function () {
-  $('a.social-icon.search').on('click', function () {
-    $('body').css('width', '100%')
-    $('body').css('overflow', 'hidden')
-
-    $('.search-dialog').animate({}, function () {
-      $('.search-dialog').css({
-        'display': 'block'
-      }),300
-    })
-
+  const openSearch = () => {
+    $('body').css({ width: '100%', overflow: 'hidden' })
+    $('#algolia-search').css('display', 'block')
     $('.ais-search-box--input').focus()
-    $('.search-mask').fadeIn();
+    $('#search-mask').fadeIn()
     // shortcut: ESC
-    document.addEventListener('keydown', function f(event) {
-      if (event.code == "Escape") {
-        closeSearch();
-        document.removeEventListener('keydown', f);
+    document.addEventListener('keydown', function f (event) {
+      if (event.code === 'Escape') {
+        closeSearch()
+        document.removeEventListener('keydown', f)
       }
     })
+  }
+
+  const closeSearch = () => {
+    $('body').css({ width: '', overflow: '' })
+    $('#algolia-search').css({
+      animation: 'search_close .5s'
+    })
+
+    setTimeout(function () {
+      $('#algolia-search').css({
+        animation: '',
+        display: 'none'
+      })
+    }, 500)
+
+    $('#search-mask').fadeOut()
+  }
+
+  const searchClickFn = () => {
+    $('a.social-icon.search').on('click', openSearch)
+    $('#search-mask, .search-close-button').on('click touchstart', closeSearch)
+  }
+
+  searchClickFn()
+
+  window.addEventListener('pjax:success', function () {
+    closeSearch()
+    searchClickFn()
   })
 
-  var closeSearch = function () {
-    $('body').css('width', '')
-    $('body').css('overflow', '')
-    $('.search-dialog').css({
-      'animation': 'search_close .5s'
-    })
-
-    $('.search-dialog').animate({}, function () {
-
-      setTimeout(function () {
-        $('.search-dialog').css({
-          'animation': '',
-          'display': 'none'
-        })
-      },500)
-    })
-
-    $('.search-mask').fadeOut();
-  }
-  $('.search-mask, .search-close-button').on('click', closeSearch)
-
-
-  var algolia = GLOBAL_CONFIG.algolia
-  var isAlgoliaValid = algolia.appId && algolia.apiKey && algolia.indexName
+  const algolia = GLOBAL_CONFIG.algolia
+  const isAlgoliaValid = algolia.appId && algolia.apiKey && algolia.indexName
   if (!isAlgoliaValid) {
     return console.error('Algolia setting is invalid!')
   }
 
-  var search = instantsearch({
+  const search = instantsearch({
     appId: algolia.appId,
     apiKey: algolia.apiKey,
     indexName: algolia.indexName,
@@ -56,7 +55,7 @@ $(function () {
       hitsPerPage: algolia.hits.per_page || 10
     },
     searchFunction: function (helper) {
-      var searchInput = $('#algolia-search-input').find('input')
+      const searchInput = $('#algolia-search-input').find('input')
 
       if (searchInput.val()) {
         helper.search()
@@ -77,7 +76,7 @@ $(function () {
       container: '#algolia-hits',
       templates: {
         item: function (data) {
-          var link = data.permalink ? data.permalink : (GLOBAL_CONFIG.root + data.path)
+          const link = data.permalink ? data.permalink : (GLOBAL_CONFIG.root + data.path)
           return (
             '<a href="' + link + '" class="algolia-hit-item-link">' +
             data._highlightResult.title.value +
@@ -103,13 +102,13 @@ $(function () {
       container: '#algolia-stats',
       templates: {
         body: function (data) {
-          var stats = GLOBAL_CONFIG.algolia.languages.hits_stats
+          const stats = GLOBAL_CONFIG.algolia.languages.hits_stats
             .replace(/\$\{hits}/, data.nbHits)
             .replace(/\$\{time}/, data.processingTimeMS)
           return (
             '<hr>' +
             stats +
-            '<span class="algolia-logo pull_right">' +
+            '<span class="algolia-logo pull-right">' +
             '  <img src="' + GLOBAL_CONFIG.root + 'img/algolia.svg" alt="Algolia" />' +
             '</span>'
           )
@@ -124,10 +123,10 @@ $(function () {
       scrollTo: false,
       showFirstLast: false,
       labels: {
-        first: '<i class="fa fa-angle-double-left"></i>',
-        last: '<i class="fa fa-angle-double-right"></i>',
-        previous: '<i class="fa fa-angle-left"></i>',
-        next: '<i class="fa fa-angle-right"></i>'
+        first: '<i class="fas fa-angle-double-left"></i>',
+        last: '<i class="fas fa-angle-double-right"></i>',
+        previous: '<i class="fas fa-angle-left"></i>',
+        next: '<i class="fas fa-angle-right"></i>'
       },
       cssClasses: {
         root: 'pagination',
@@ -138,6 +137,9 @@ $(function () {
       }
     })
   )
-
   search.start()
+
+  window.pjax && search.on('render', () => {
+    window.pjax.refresh(document.getElementById('algolia-hits'))
+  })
 })

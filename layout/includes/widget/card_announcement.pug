@@ -1,6 +1,6 @@
-.card_widget.card-announcement
+.card-widget.card-announcement
   .card-content
-    .item_headline
-      i.fa.fa-bullhorn.card-announcement-animation(aria-hidden="true")
+    .item-headline
+      i.fas.fa-bullhorn.card-announcement-animation
       span= _p('aside.card_announcement')
-    .announcement_content= theme.announcement.content
+    .announcement_content!= theme.aside.card_announcement.content

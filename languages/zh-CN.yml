@@ -3,7 +3,7 @@ sidebar:
   have_read: 你已经读了
 
 footer:
-  driven: 驱动
+  framework: 框架
   theme: 主题
 
 copy:
@@ -19,31 +19,34 @@ page:
 
 sticky: 置顶
 no_title: 无题
-archives: 时间轴
 
 post:
   created: 发表于
   updated: 更新于
   wordcount: 字数总计
-  min2read: "阅读时长: %s 分钟"
+  min2read: 阅读时长
+  min2read_unit: 分钟
   page_pv: 阅读量
+  comments: 评论数
   copyright:
     author: 文章作者
     link: 文章链接
     copyright_notice: 版权声明
-    copyright_content: '本博客所有文章除特别声明外，均采用 <a href="%s">%s</a> 许可协议。转载请注明来自 <a href="%s">%s</a>！'
+    copyright_content: '本博客所有文章除特别声明外，均采用
+      <a href="%s" target="_blank">%s</a> 许可协议。转载请注明来自 <a href="%s" target="_blank">%s</a>！'
+  recommend: 相关推荐
 
 search: 搜索
 algolia_search:
   input_placeholder: 搜索文章
-  hits_empty: "找不到您查询的内容:${query}"
-  hits_stats: "找到 ${hits} 条结果，用时 ${time} 毫秒"
+  hits_empty: '找不到您查询的内容：${query}'
+  hits_stats: '找到 ${hits} 条结果，用时 ${time} 毫秒'
 
 local_search:
   label: 本地搜索
   input_placeholder: 搜索文章
-  hits_empty: "找不到您查询的内容:${query}"
-  powered: "提供支持"
+  hits_empty: '找不到您查询的内容：${query}'
+  powered: '提供支持'
   by: 由
 
 pagination:
@@ -61,26 +64,26 @@ aside:
   card_tags: 标签
   card_archives: 归档
   card_recent_post: 最新文章
-  card_bookmark: 加入书签
   card_webinfo:
     headline: 网站资讯
     article_name: 文章数目
     runtime_name: 已运行时间
+    site_wordcount: 本站总字数
     site_uv_name: 本站访客数
     site_pv_name: 本站总访问量
+  more_button: 查看更多
 
 donate: 打赏
 share: 分享
 bookmark:
   title: 添加书签
 
-
 rightside:
   readmode_title: 阅读模式
   font_plus_title: 放大字体
   font_minus_title: 缩小字体
   translate_title: 简繁转换
-  night_mode_title: 夜间模式
+  night_mode_title: 浅色和深色模式转换
   back_to_top: 回到顶部
   toc: 目录
   scroll_to_comment: 直达评论
@@ -102,3 +105,10 @@ Snackbar:
   cht_to_chs: 你已切换为简体
   day_to_night: 你已切换为深色模式
   night_to_day: 你已切换为浅色模式
+
+error_title: 页面没有找到
+loading: 加载中...
+
+error404:
+  error_title: 页面没有找到
+  back_button: 回到主页

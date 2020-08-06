@@ -1,0 +1,57 @@
+script.
+  function loadDisqusjs () {
+    function addDisqusjsCSS () {
+      const ele = document.createElement('link')
+      ele.rel = 'stylesheet'
+      ele.href= '!{url_for(theme.CDN.disqusjs_css)}'
+      document.getElementsByTagName('head')[0].appendChild(ele)
+    }
+
+    function initDisqusjs () {
+      window.DISQUS = null
+      new DisqusJS({
+        shortname: '!{theme.disqusjs.shortname}',
+        siteName: '!{theme.disqusjs.siteName}',
+        identifier: '!{ page.path }',
+        url: '!{ page.permalink }',
+        title: '!{ page.title }',
+        api: '!{theme.disqusjs.api}',
+        apikey: '!{theme.disqusjs.apikey}',
+        nocomment: '!{theme.disqusjs.nocomment}',
+        admin: '!{theme.disqusjs.admin}',
+        adminLabel: '!{theme.disqusjs.adminLabel}'
+      });
+    }
+
+    window.disqusReset = initDisqusjs
+
+    if (window.disqusJsLoad) initDisqusjs()
+    else {
+      addDisqusjsCSS()
+      $.getScript('!{url_for(theme.CDN.disqusjs)}', initDisqusjs)
+      window.disqusJsLoad = true
+    }
+  }
+
+  if ('!{theme.comments.use[0]}' === 'Disqusjs' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) loadComment(document.getElementById('disqus_thread'), loadDisqusjs)
+    else loadDisqusjs()
+  }
+  else {
+    function loadOtherComment () {
+      loadDisqusjs()
+    }
+  }
+
+
+if is_post() && !theme.comments.lazyload && theme.comments.count && theme.comments.use[0] === 'Disqusjs'
+  script.
+    if (window.DISQUSWIDGETS === undefined) {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://!{theme.disqus.shortname}.disqus.com/count.js';
+      s.id = 'dsq-count-scr';
+      (d.head || d.body).appendChild(s);
+    } else {
+      DISQUSWIDGETS.getCount({reset: true});
+    }
+

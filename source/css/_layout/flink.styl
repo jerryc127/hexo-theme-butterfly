@@ -1,122 +1,76 @@
-.flink
-  .md-links 
-    min-height: calc(100% - 120px - 5pc - 6em)
-    text-align: center
+.flink#article-container
+  .flink-desc
+    margin: .2rem 0 .5rem
+
+  .flink-list
     overflow: auto
-    padding: 0
-    margin: 0 auto
+    padding: 10px 10px 0
+    text-align: center
 
-    a 
-      color: #333
-      text-decoration: none
-  
-    li 
-      width: calc(100%/3 - 14px)
-      float: left
-      list-style: none
-    
-  .md-links-item 
-    height: 90px
-    line-height: 17px
-    margin: 20px 7px
-    padding: 0px 0px
-    transition: box-shadow 0.25s
-    text-overflow: ellipsis
-    overflow: hidden
-    border-radius: 8px
-    transform: perspective(1px) translateZ(0)
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0)
-    position: relative
-    transition-property: color
-    transition-duration: 0.3s                      
-    
-    img 
-      float: left
-      border-radius: 35px
-      margin: 11px 10px
-      width: 70px
-      height: 70px
-      border: 0px solid #eaeefb      
-      transition: all .3s 
-  
-    &:hover 
-      img
-        filter: unqoute("progid:DXImageTransform.Microsoft.BasicImage(rotation=3)")
-        transform: rotate(540deg)
-    
-    &:before
-      content: ""
-      position: absolute
-      z-index: -1
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
-      background: $light-blue !important
-      transform: scale(0)
-      transition-property: transform
-      transition-duration: 0.3s
-      transition-timing-function: ease-out
-
-  .md-links-item:hover, 
-  .md-links-item:focus, 
-  .md-links-item:active 
-    color: white
-
-  .md-links-item:hover:before, 
-  .md-links-item:focus:before, 
-  .md-links-item:active:before 
-      -webkit-transform: scale(1)
-      transform: scale(1)
-  
-  .md-links-item a:hover
-    cursor: pointer
-  
-  .md-links-title 
-      padding-top: 16px
-      padding-right: 10px
-      font-size: 20px
-      font-weight: bold
-      height:40px
-      overflow: hidden
-      white-space: nowrap
-      text-overflow: ellipsis
-
-  .post-cards 
-      margin-top: 5px
-      min-height: 100px
-      padding: 0 15px
-      border-radius: 15px
-  
-  .comment-word
-      font-weight:bold
-      font-size:1.7em
-  
-  .md-links-des
-      padding: 16px 10px  
-      font-size:13px 
-      overflow: hidden
-      height:50px
-      white-space: nowrap
-      text-overflow: ellipsis
-
-@media screen and (max-width:1100px)
-  .flink
-    .post-cards 
+    & > .flink-list-item
       position: relative
-      margin: -20px -16px 0
-      border-radius: 18px
-      padding: 16px
-    
-    .md-links 
-      li 
-        width: calc(100%/2 - 14px)   
+      float: left
+      overflow: hidden
+      margin: 15px 7px
+      width: calc(100% / 3 - 15px)
+      height: 90px
+      border-radius: 8px
+      line-height: 17px
+      -webkit-transform: translateZ(0)
 
-@media screen and (max-width:600px)
-  .flink
-    .md-links 
-      li 
-        width: calc(100%/1 - 14px) 
+      @media screen and (max-width: 1100px)
+        width: calc(50% - 15px) !important
 
+      @media screen and (max-width: 600px)
+        width: calc(100% - 15px) !important
 
+      &:hover
+        img
+          transform: rotate(360deg)
 
+      &:before
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        z-index: -1
+        background: var(--text-bg-hover)
+        content: ''
+        transition: transform .3s ease-out
+        transform: scale(0)
+
+      &:hover:before,
+      &:focus:before,
+      &:active:before
+        transform: scale(1)
+
+      a
+        color: var(--font-color)
+        text-decoration: none
+
+        img
+          float: left
+          margin: 15px 10px
+          width: 60px
+          height: 60px
+          border-radius: 35px
+          transition: all .3s
+
+        .img-alt
+          display: none
+
+        .flink-item-name
+          @extend .limit-one-line
+          display: block
+          padding: 16px 10px 0 0
+          height: 40px
+          font-weight: bold
+          font-size: 20px
+
+        .flink-item-desc
+          @extend .limit-one-line
+          display: block
+          padding: 16px 10px 16px 0
+          height: 50px
+          font-size: 13px
