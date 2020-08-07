@@ -475,8 +475,10 @@ tag_ui: # 留空或 index
 # White color will be shown as default
 background:
 
-# Show the footer background image (same as top_img)
+# Show the footer background image (same as top_img) true / false
 footer_bg: false
+# Customize the footer image(自定义页脚图片)
+footer_bg_custom: https://cdn.jsdelivr.net/gh/lete114/CDN@2.0/Use/Jkx5y6.jpg
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:
