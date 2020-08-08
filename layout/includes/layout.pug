@@ -32,7 +32,7 @@ html(lang=config.language data-theme=theme.display_mode)
           else
             block content
       
-      - var footer_bg = theme.footer_bg == false ? '' : bg_img
+      - var footer_bg = theme.footer_bg == true ? `background-image: url(${url_for(theme.footer_bg_custom)})` : (theme.footer_bg == false ? `background: transparent !important` : '')
       - var is_bg = theme.footer_bg == false ? 'color' : 'photo'
       footer#footer(style=footer_bg data-type=is_bg)
         !=partial('includes/footer', {}, {cache:theme.fragment_cache})

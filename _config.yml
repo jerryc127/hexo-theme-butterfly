@@ -378,8 +378,8 @@ footer:
   copyright: true # Copyright of theme and framework
   ICP: # Chinese ICP License
     enable: false
-    url:
-    text:
+    url: 
+    text: 
     icon: /img/icp.png
 
 # Analysis
@@ -475,8 +475,18 @@ tag_ui: # 留空或 index
 # White color will be shown as default
 background:
 
-# Show the footer background image (same as top_img)
-footer_bg: false
+# Customize the footer background image (自定義頁脚圖片)
+# true : Setting the background (設置背景圖)
+# false : Setting no background (不設置背景圖)
+# Null follows the theme color (留空顯示主題色)
+footer_bg: 
+footer_bg_custom: https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg
+
+# Customize the color of the footer font (頁脚字體自定義顔色)
+footer_typeface_color_custom: '#e58a8a'
+
+# footer link custom color (頁脚鏈接自定義顔色)
+footer_a_color_custom:
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:

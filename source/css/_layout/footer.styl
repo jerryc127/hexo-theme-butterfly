@@ -10,17 +10,22 @@
       position: absolute
       width: 100%
       height: 100%
-      background-color: alpha($dark-black, .5)
       content: ''
 
 #footer-wrap
   position: relative
   padding: 2rem 1rem
-  color: var(--light-grey)
+  if hexo-config('footer_typeface_color_custom') != ''
+     color: convert(hexo-config('footer_typeface_color_custom'))
+  else
+     color: var(--light-grey)
   text-align: center
 
   a
-    color: var(--light-grey)
+    if hexo-config('footer_a_color_custom') != ''
+       color: convert(hexo-config('footer_a_color_custom'))
+    else
+       color: var(--light-grey)
 
     &:hover
       text-decoration: underline
