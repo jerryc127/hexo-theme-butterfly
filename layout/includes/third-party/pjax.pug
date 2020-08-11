@@ -10,7 +10,7 @@ script.
     '.js-pjax'
   ]
 
-  if (!{theme.Open_Graph_meta && theme.comments.use.includes('Livere')}) {
+  if (!{theme.Open_Graph_meta && theme.comments.use && theme.comments.use.includes('Livere')}) {
     pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
   }
 
