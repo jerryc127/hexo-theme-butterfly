@@ -51,11 +51,10 @@ div
   !=partial('includes/third-party/chat/index', {}, {cache:theme.fragment_cache})
 
   if theme.aplayerInject && theme.aplayerInject.enable
-    if theme.pjax || theme.aplayerInject.per_page
+    if theme.pjax.enable || theme.aplayerInject.per_page
       include ./head/aplayer.pug
     else if page.aplayer
       include ./head/aplayer.pug
 
-  if theme.pjax
+  if theme.pjax.enable
     !=partial('includes/third-party/pjax', {}, {cache:theme.fragment_cache})
-

@@ -4,7 +4,7 @@
   .relatedPosts_headline
     margin-bottom: 5px
     font-weight: 700
-    font-size: 20px
+    font-size: 1.43em
 
   .relatedPosts_item
     position: relative
@@ -21,12 +21,12 @@
         opacity: .8
         transform: scale(1.1)
 
-    @media screen and (max-width: 768px)
+    +maxWidth768()
       margin: 2px
       width: calc(50% - 4px)
       height: 150px
 
-    @media screen and (max-width: 480px)
+    +maxWidth600()
       width: calc(100% - 4px)
 
   .relatedPosts_cover

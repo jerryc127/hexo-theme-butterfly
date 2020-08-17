@@ -53,9 +53,6 @@ if theme.facebook_comments.user_id
 if (theme.pwa && theme.pwa.enable)
   !=partial('includes/head/pwa', {}, {cache:theme.fragment_cache})
 
-if theme.darkmode.enable
-  !=partial('includes/head/darkmode', {}, {cache:theme.fragment_cache})
-
 //- main css
 link(rel='stylesheet', href=url_for(theme.CDN.main_css))
 link(rel='stylesheet', href=url_for(theme.CDN.fontawesome))
@@ -85,6 +82,8 @@ if theme.blog_title_font.font_link
 
 include ./head/config_site.pug
 include ./head/noscript.pug
+
+!=partial('includes/head/darkmode', {}, {cache:theme.fragment_cache})
 
 !=fragment_cache('injectHead', function(){return injectHtml(theme.inject.head)})
 

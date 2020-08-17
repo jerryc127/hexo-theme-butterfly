@@ -17,6 +17,34 @@
   text-rendering: auto
   -webkit-font-smoothing: antialiased
 
+maxWidth600()
+  @media screen and (max-width: 600px)
+    {block}
+
+maxWidth768()
+  @media screen and (max-width: 768px)
+    {block}
+
+minWidth768()
+  @media screen and (min-width: 768px)
+    {block}
+
+maxWidth1024()
+  @media screen and (max-width: 1024px)
+    {block}
+
+maxWidth900()
+  @media screen and (max-width: 900px)
+    {block}
+
+minWidth900()
+  @media screen and (min-width: 900px)
+    {block}
+
+minWidth2000()
+  @media screen and (min-width: 2000px)
+    {block}
+
 [data-theme='light']
   --global-bg: $body-bg
   --font-color: $font-black
@@ -44,3 +72,4 @@
   --blockquote-color: $blockquote-color
   --blockquote-bg: $blockquote-background-color
   --reward-pop: $reward-pop-up-bg
+  --sidebar-icon-color: $sidebar-icon-color

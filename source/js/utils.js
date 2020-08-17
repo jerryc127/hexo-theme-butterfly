@@ -14,7 +14,7 @@ function debounce (func, wait, immediate) {
     timeout = setTimeout(later, wait)
     if (callNow) func.apply(context, args)
   }
-};
+}
 
 function throttle (func, wait, options) {
   let timeout, context, args
@@ -59,12 +59,18 @@ function sidebarPaddingR () {
   }
 }
 
-function scrollToDest (name, offset = 0) {
-  const scrollOffset = $(name).offset()
+function scrollToDest (name) {
+  const scrollOffset = $(name).offset().top
+  let offset
+  if ($(window).scrollTop() > scrollOffset) {
+    offset = 65
+  } else {
+    offset = 0
+  }
   $('body,html').animate({
-    scrollTop: scrollOffset.top - offset
+    scrollTop: scrollOffset - offset
   })
-};
+}
 
 function snackbarShow (text, showAction, duration) {
   const sa = (typeof showAction !== 'undefined') ? showAction : false
@@ -78,23 +84,6 @@ function snackbarShow (text, showAction, duration) {
     duration: dur,
     pos: position
   })
-}
-
-const Cookies = {
-  get: function (name) {
-    const value = `; ${document.cookie}`
-    const parts = value.split(`; ${name}=`)
-    if (parts.length === 2) return parts.pop().split(';').shift()
-  },
-  set: function (name, value, days) {
-    let expires = ''
-    if (days) {
-      const date = new Date()
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000))
-      expires = '; expires=' + date.toUTCString()
-    }
-    document.cookie = name + '=' + (value || '') + expires + '; path=/'
-  }
 }
 
 const initJustifiedGallery = function (selector) {

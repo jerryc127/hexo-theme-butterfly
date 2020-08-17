@@ -4,12 +4,13 @@
         i.fas.fa-chart-line
         span= _p('aside.card_webinfo.headline')
     .webinfo
-      .webinfo-item
-        .webinfo-article-name= _p('aside.card_webinfo.article_name') + " :"
-        .webinfo-article-count= site.posts.length      
+      if theme.aside.card_webinfo.post_count
+        .webinfo-item
+          .webinfo-article-name= _p('aside.card_webinfo.article_name') + " :"
+          .webinfo-article-count= site.posts.length      
       if theme.runtimeshow.enable
         .webinfo-item
-          .webinfo-runtime-name= _p('aside.card_webinfo.runtime_name') + " :"
+          .webinfo-runtime-name= _p('aside.card_webinfo.runtime.name') + " :"
           #webinfo-runtime-count.webinfo-runtime-count(publish_date=theme.runtimeshow.publish_date)      
       if theme.wordcount.enable && theme.wordcount.total_wordcount
         .webinfo-item
@@ -23,4 +24,8 @@
         .webinfo-item
           .webinfo-site-name= _p('aside.card_webinfo.site_pv_name') + " :"
           .webinfo-site-pv-count#busuanzi_value_site_pv
+      if theme.aside.card_webinfo.last_push_date
+        .webinfo-item
+          .webinfo-last-push-date-name= _p('aside.card_webinfo.last_push_date.name') + " :"
+          .webinfo-last-push-date(last-push-date=date(Date.now(), config.date_format))
 

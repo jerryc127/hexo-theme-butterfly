@@ -65,7 +65,12 @@ aside:
   card_webinfo:
     headline: Info
     article_name: Article
-    runtime_name: Run time
+    runtime:
+      name: Run time
+      unit: days
+    last_push_date:
+      name: Last Push
+      suffix: days ago
     site_wordcount: Total Count
     site_uv_name: UV
     site_pv_name: PV
@@ -86,8 +91,6 @@ rightside:
   toc: Table Of Contents
   scroll_to_comment: Scroll To Comments
   setting: Setting
-
-runtime_unit: days
 
 copy_copyright:
   author: Author

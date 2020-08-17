@@ -16,7 +16,7 @@ if theme.chat_btn
 
       initGitter()
 
-      if (!{theme.pjax}) {
+      if (!{theme.pjax.enable}) {
         document.addEventListener('pjax:complete', () => {
           chat.destroy()
           initGitter()

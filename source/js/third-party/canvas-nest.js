@@ -15,11 +15,8 @@
   }
 
   function l() {
-    var i = j("script"),
-      w = i.length,
-      v = i[w - 1];
+    var v = cn;
     return {
-      l: w,
       z: o(v, "zIndex", -1),
       o: o(v, "opacity", 0.5),
       c: o(v, "color", "0,0,0"),
@@ -49,7 +46,6 @@
   }
   var u = document.createElement("canvas"),
     s = l(),
-    c = "c_n" + s.l,
     e = u.getContext("2d"),
     r, n, m = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (i) {
       window.setTimeout(i, 1000 / 45)
@@ -60,7 +56,6 @@
       y: null,
       max: 20000
     };
-  u.id = c;
   u.style.cssText = "position:fixed;top:0;left:0;z-index:" + s.z + ";opacity:" + s.o;
   j("body")[0].appendChild(u);
   k(), window.onresize = k;

@@ -67,7 +67,12 @@ aside:
   card_webinfo:
     headline: 網站資訊
     article_name: 文章數目
-    runtime_name: 已執行時間
+    runtime:
+      name: 已運行時間
+      unit: 天
+    last_push_date:
+      name: 最後更新時間
+      suffix: 天前
     site_wordcount: 本站總字數
     site_uv_name: 本站訪客數
     site_pv_name: 本站總訪問量
@@ -88,8 +93,6 @@ rightside:
   toc: 目錄
   scroll_to_comment: 直達評論
   setting: 設定
-
-runtime_unit: 天
 
 copy_copyright:
   author: 作者

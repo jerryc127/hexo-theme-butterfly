@@ -1,0 +1,60 @@
+.category-content
+  .category-lists
+    padding: 1rem 0 1.5rem
+
+    +maxWidth768()
+      padding: 0
+
+    .category__title
+      text-align: center
+      font-size: 2.57em
+
+    .category-list
+      a
+        color: var(--font-color)
+
+        &:hover
+          color: $text-hover
+
+      .category-list-count
+        margin-left: .4rem
+        color: $theme-meta-color
+
+        &:before
+          content: '('
+
+        &:after
+          content: ')'
+
+    ul
+      margin-top: .4rem
+      padding: 0 0 0 1rem
+      list-style: none
+      counter-reset: li
+
+      ul
+        padding-left: .2rem
+
+      li
+        position: relative
+        margin: .3rem 0
+        padding: .12em .4em .12em 1.4em
+
+        &:before
+          position: absolute
+          left: 0
+          cursor: pointer
+          transition: all .3s ease-out
+          $w = .43em
+          top: .7em
+          width: w = $w
+          height: h = w
+          border: .5 * w solid $light-blue
+          border-radius: w
+          background: transparent
+          content: ''
+          // line-height: h
+
+        &:hover
+          &:before
+            border-color: $pseudo-hover

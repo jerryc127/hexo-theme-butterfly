@@ -29,17 +29,17 @@
   #site_title
     margin: 0
     color: var(--white)
-    font-size: 1.3rem
+    font-size: 1.85em
 
-    @media screen and (min-width: $sm)
-      font-size: 2rem
+    +minWidth768()
+      font-size: 2.85em
 
   #site_subtitle
     color: var(--light-grey)
-    font-size: .8rem
+    font-size: 1.15em
 
-    @media screen and (min-width: $sm)
-      font-size: 1.2rem
+    +minWidth768()
+      font-size: 1.72em
 
   #site_social_icons
     display: none
@@ -47,14 +47,14 @@
     width: 15rem
     text-align: center
 
-    @media screen and (max-width: $sm)
+    +maxWidth768()
       display: block
 
     .social-icon
       margin: 0 .5rem
       color: var(--light-grey)
       text-shadow: .1rem .1rem .2rem rgba(0, 0, 0, .15)
-      font-size: 1rem
+      font-size: 1.43em
       cursor: pointer
 
   #scroll_down
@@ -73,7 +73,7 @@
   &.not-index-bg
     height: 20rem
 
-    @media screen and (max-width: $sm)
+    +maxWidth768()
       height: 14rem
 
   #page_site-info
@@ -82,14 +82,14 @@
     padding: 0 .5rem
     width: 100%
 
-    @media screen and (max-width: $sm)
+    +maxWidth768()
       top: 7rem
 
   // post
   &.post-bg
     height: 20rem
 
-    @media screen and (max-width: $sm)
+    +maxWidth768()
       height: 18rem
 
     &:before
@@ -109,16 +109,16 @@
       width: 100%
       text-align: left
 
-      @media screen and (max-width: $sm)
+      +maxWidth768()
         bottom: 1.1rem
         padding: 0 1.1rem
 
       #post-title
         margin-bottom: .4rem
-        font-size: 1.5rem
+        font-size: 2.15em
 
-        @media screen and (max-width: $sm)
-          font-size: 1.2rem
+        +maxWidth768()
+          font-size: 1.72em
 
         .posttitle
           @extend .limit-more-line
@@ -130,12 +130,12 @@
         color: var(--light-grey)
         font-size: 95%
 
-        @media screen and (min-width: $sm)
+        +minWidth768()
           > .meta-secondline
             > span:first-child
               display: none
 
-        @media screen and (max-width: $sm)
+        +maxWidth768()
           font-size: 90%
 
           > .meta-firstline,
@@ -174,20 +174,25 @@ _:future,
   position: absolute
   top: 0
   z-index: 90
-  padding: 10px 36px
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  padding: 0 36px
   width: 100%
-  height: 58px
-  border: none
-  font-size: 18px
+  height: 60px
+  font-size: 1.3em
   opacity: 0
   transition: all .5s
 
-  @media screen and (max-width: $sm)
-    padding: 10px .8rem
+  +maxWidth768()
+    padding: 0 16px
 
   &:not(.fixed)
     .menus
       padding-right: 0 !important
+
+  #blog_name
+    flex: 1
 
   .toggle-menu
     display: none
@@ -197,10 +202,6 @@ _:future,
     &:hover
       color: var(--white)
 
-    &.is-visible-inline
-      .site-page
-        font-size: inherit
-
   a
     color: var(--light-grey)
 
@@ -209,7 +210,7 @@ _:future,
 
   &.fixed
     position: fixed
-    top: -60px
+    top: -62px
     z-index: 91
     background: rgba(255, 255, 255, .8)
     box-shadow: 0 5px 6px -5px alpha($grey, .6)
@@ -300,6 +301,19 @@ _:future,
             color: var(--font-color)
             text-shadow: none
 
+  &.hide-menu
+    .toggle-menu
+      display: inline-block !important
+
+      .site-page
+        font-size: inherit
+
+    .menus_items
+      display: none !important
+
+    #search_button span
+      display: none !important
+
   #search_button
     display: inline
     padding: 0 0 0 .7rem
@@ -308,5 +322,5 @@ _:future,
     position: relative
     padding-bottom: .3rem
     text-shadow: .05rem .05rem .1rem rgba($dark-black, .3)
-    font-size: .7rem
+    font-size: .78em
     cursor: pointer

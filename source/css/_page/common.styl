@@ -1,0 +1,51 @@
+.layout_page
+  display: flex
+  margin: 0 auto
+  padding: 2rem 15px
+  max-width: 1200px
+
+  +maxWidth900()
+    flex-direction: column
+
+  +maxWidth768()
+    padding: 1rem 5px !important
+
+  & > div:first-child:not(.recent-posts)
+    +maxWidth768()
+      padding: 1.8rem .7rem !important
+
+  & > div:first-child
+    width: 75%
+
+    +maxWidth900()
+      width: 100% !important
+
+  // 隱藏aside
+  &.hide-aside
+    max-width: 1000px
+
+    & > div
+      width: 100% !important
+
+.layout_post > #post,
+.layout_page > div:first-child:not(.recent-posts)
+  align-self: flex-start
+  padding: 50px 40px
+  border-radius: 8px
+  background: var(--card-bg)
+  box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
+  transition: all .3s
+
+  &:hover
+    box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
+
++minWidth900()
+  if hexo-config('aside.position') == 'left'
+    #recent-posts,
+    #page,
+    .category-content,
+    #archive,
+    .tag-cloud,
+    #tag,
+    #category
+      order: 2

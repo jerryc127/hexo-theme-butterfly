@@ -17,4 +17,16 @@ if theme.google_analytics
     gtag('config', '!{theme.google_analytics}');
 
 if theme.tencent_analytics
-  script(src=`https://tajs.qq.com/stats?sId=${theme.tencent_analytics}` charset="UTF-8" data-pjax)
+  script.
+    var _mtac = {};
+    (function() {
+        var mta = document.createElement("script");
+        mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "!{theme.tencent_analytics}");
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+
+if theme.cnzz_analytics
+  script(async data-pjax src=`https://s4.cnzz.com/z_stat.php?id=${theme.cnzz_analytics}&web_id=${theme.cnzz_analytics}`)

@@ -67,7 +67,12 @@ aside:
   card_webinfo:
     headline: 网站资讯
     article_name: 文章数目
-    runtime_name: 已运行时间
+    runtime:
+      name: 已运行时间
+      unit: 天
+    last_push_date:
+      name: 最后更新时间
+      suffix: 天前
     site_wordcount: 本站总字数
     site_uv_name: 本站访客数
     site_pv_name: 本站总访问量
@@ -89,8 +94,6 @@ rightside:
   scroll_to_comment: 直达评论
   setting: 设置
 
-runtime_unit: 天
-
 copy_copyright:
   author: 作者
   link: 链接
@@ -106,7 +109,6 @@ Snackbar:
   day_to_night: 你已切换为深色模式
   night_to_day: 你已切换为浅色模式
 
-error_title: 页面没有找到
 loading: 加载中...
 
 error404:

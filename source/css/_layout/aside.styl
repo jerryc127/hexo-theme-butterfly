@@ -1,11 +1,12 @@
 #aside_content
   width: 25%
 
-  .card-widget:not(:first-child)
-    margin-top: 1rem
+  > .card-widget:first-child
+    margin-top: 0
 
   .card-widget
     overflow: hidden
+    margin-top: 1rem
     border-radius: 8px
     background: var(--card-bg)
     box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
@@ -27,7 +28,7 @@
     .author-info
       &__name
         font-weight: 500
-        font-size: 1.1rem
+        font-size: 1.57em
 
       &__description
         margin-top: -.3rem
@@ -45,12 +46,12 @@
           .headline
             @extend .limit-one-line
             color: var(--font-color)
-            font-size: .7rem
+            font-size: 1em
 
           .length_num
             margin-top: -.3rem
             color: var(--text-highlight-color)
-            font-size: 1rem
+            font-size: 1.4em
 
     .card-info-social-icons
       margin: .3rem 0 -.3rem
@@ -58,7 +59,7 @@
       .social-icon
         margin: 0 .5rem
         color: var(--font-color)
-        font-size: 1rem
+        font-size: 1.4em
         cursor: pointer
 
       i
@@ -72,7 +73,7 @@
       background-color: var(--btn-bg)
       color: var(--btn-color)
       text-align: center
-      line-height: 1.6rem
+      line-height: 2.4
 
       span
         padding-left: .5rem
@@ -81,10 +82,16 @@
     padding: 1rem 1.2rem
 
   .item-headline
-    font-size: .8rem
+    font-size: 1.2em
 
     span
       margin-left: .5rem
+
+  .sticky_layout
+    +minWidth900()
+      position: sticky
+      position: -webkit-sticky
+      top: 20px
 
   .card-tag-cloud
     a
@@ -94,51 +101,65 @@
       &:hover
         color: $text-hover !important
 
+  .aside-list
+    margin: 10px 0 -15px
+
+    & > .aside-list-item
+      display: flex
+      align-items: center
+      margin-bottom: 10px
+
+      // padding 8px 0
+      // border-bottom: 1px dashed #f5f5f5
+      // height: 4.72em
+      .thumbnail
+        // float: left
+        overflow: hidden
+        width: w = 4.2em
+        height: w
+        border-radius: w
+
+        & > img
+          width: 100%
+          height: 100%
+          transition: all .6s
+          object-fit: cover
+
+          &:hover
+            transform: scale(1.1)
+
+      .content
+        flex: 1
+        padding-left: 10px
+        word-break: break-all
+
+        & > .name
+          @extend .limit-one-line
+
+        & > time
+          color: $theme-meta-color
+          font-size: .85%
+
+        & > .comment
+          font-size: .9%
+
+        & > .title,
+        & > .comment
+          @extend .limit-more-line
+          color: var(--font-color)
+          line-height: 1.5
+          -webkit-line-clamp: 2
+
+          &:hover
+            color: $text-hover
+
   .card-recent-post
-    .aside-recent-item
-      margin: 10px 0 -15px
+    .thumbnail
+      border-radius: 0 !important
 
-      & > .aside-recent-post
-        margin-bottom: 10px
-
-        .aside-post-cover
-          float: left
-          overflow: hidden
-          width: 66px
-          height: 66px
-
-          .aside-post-bg
-            padding: 0
-            max-width: 100%
-            width: 100%
-            height: 100%
-            transition: all .6s
-            object-fit: cover
-
-            &:hover
-              box-shadow: none
-              transform: scale(1.1)
-
-        .aside-post-info
-          .aside-post_meta
-            padding-left: 10px
-            color: $theme-meta-color
-            font-size: .6rem
-
-          .aside-post-title
-            @extend .limit-more-line
-            padding-left: 10px
-            height: 40px
-            color: var(--font-color)
-            line-height: 1rem
-            -webkit-line-clamp: 2
-
-            &:hover
-              color: $text-hover
-
-          &.no-aside-cover
-            .aside-post-title
-              height: auto
+    .no-aside-cover
+      title
+        height: auto
 
   .card-archives ul.card-archive-list,
   .card-categories ul.card-category-list
@@ -150,7 +171,7 @@
   .card-categories ul.card-category-list > .card-category-list-item
     a
       display: inline-block
-      padding: .15rem 1rem
+      padding: .15rem .5rem
       width: 100%
       color: var(--font-color)
       transition: all .4s
@@ -211,25 +232,19 @@
 
   .card-webinfo
     .webinfo
-      padding: .2rem 1rem
+      padding: .2rem .5rem
 
       .webinfo-item
-        display: block
+        display: flex
+        align-items: center
         padding: 4px 0 0
 
         div
           &:first-child
-            display: inline-block
+            flex: 1
+            padding-right: 1rem
 
-          &:last-child
-            display: inline-block
-            float: right
-
-@media screen and (max-width: 900px)
-  .layout_page
-    flex-direction: column
-
-  #recent-posts,
++maxWidth900()
   #aside_content
     width: 100% !important
 
@@ -237,7 +252,7 @@
     .card-widget:first-child
       margin-top: 1rem
 
-@media screen and (min-width: 900px)
++minWidth900()
   #aside_content
     .card-widget
       if hexo-config('aside.position') == 'right'
@@ -246,6 +261,6 @@
         margin-right: 15px
 
 if hexo-config('aside.mobile') == false
-  @media screen and (max-width: $sm)
+  +maxWidth768()
     #aside_content
       display: none

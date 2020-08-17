@@ -9,7 +9,7 @@
   width: 30rem
   background: var(--search-bg)
 
-  @media screen and (max-width: $sm)
+  +maxWidth768()
     top: 0
     left: 0
     margin: 0
@@ -24,7 +24,7 @@
     top: .8rem
     right: 1rem
     color: $grey
-    font-size: 1rem
+    font-size: 1.4em
     line-height: 1
     cursor: pointer
     transition: color .2s ease-in-out
@@ -35,7 +35,7 @@
   &__title
     padding: 0 0 .7rem
     color: $search-color
-    font-size: 1rem
+    font-size: 1.4em
     line-height: 1
 
 #search-mask

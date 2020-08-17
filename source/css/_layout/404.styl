@@ -20,7 +20,7 @@ if hexo-config('error_404.enable')
       background: var(--card-bg)
       box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
 
-      @media screen and (max-width: 768px)
+      +maxWidth768()
         flex-direction: column
         margin: 0
         height: 25rem
@@ -34,7 +34,7 @@ if hexo-config('error_404.enable')
         background-position: center
         background-size: cover
 
-        @media screen and (max-width: 768px)
+        +maxWidth768()
           flex: 1
           width: 100%
           border-top-right-radius: 8px
@@ -47,7 +47,7 @@ if hexo-config('error_404.enable')
         font-size: 14px
         font-family: $site-name-font
 
-        @media screen and (max-width: 768px)
+        +maxWidth768()
           flex: 1.1
           width: 100%
 
@@ -55,7 +55,7 @@ if hexo-config('error_404.enable')
           margin-top: -4rem
           font-size: 9em
 
-          @media screen and (max-width: 768px)
+          +maxWidth768()
             margin-top: -3rem
 
         .error_subtitle

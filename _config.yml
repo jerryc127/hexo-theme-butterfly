@@ -17,6 +17,9 @@ menu:
   # Link: /link/ || fas fa-link
   # About: /about/ || fas fa-heart
 
+# Hide the child menu items in mobile sidebar
+hide_sidebar_menu_child: false
+
 # Code Blocks (代碼相關)
 # --------------------------------------
 
@@ -125,7 +128,7 @@ cover:
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
+    # - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
@@ -232,14 +235,7 @@ sharejs:
 # https://www.addtoany.com/
 addtoany:
   enable: false
-  item:
-    - facebook
-    - twitter
-    - wechat
-    - sina_weibo
-    - facebook_messenger
-    - email
-    - copy_link
+  item: facebook,twitter,wechat,sina_weibo,facebook_messenger,email,copy_link
 
 # Comments System
 # --------------------------------------
@@ -252,7 +248,7 @@ comments:
   # - Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
-  # If you set it to false, the comment count will be invalid
+  # If you set it to true, the comment count will be invalid
   lazyload: false
   count: false # Display comment count in top_img
 
@@ -374,7 +370,7 @@ footer:
   owner:
     enable: true
     since: 2020
-  custom_text: 
+  custom_text:
   copyright: true # Copyright of theme and framework
   ICP: # Chinese ICP License
     enable: false
@@ -386,13 +382,20 @@ footer:
 # --------------------------------------
 
 # Baidu Analytics
+# https://tongji.baidu.com/web/welcome/login
 baidu_analytics:
 
 # Google Analytics
+# https://analytics.google.com/analytics/web/
 google_analytics:
 
 # Tencent Analytics ID
+# https://mta.qq.com
 tencent_analytics:
+
+# CNZZ Analytics
+# https://www.umeng.com/
+cnzz_analytics:
 
 # Advertisement
 # --------------------------------------
@@ -528,9 +531,9 @@ click_heart: false
 ClickShowText:
   enable: false
   text:
-    - I
-    - LOVE
-    - YOU
+    # - I
+    # - LOVE
+    # - YOU
   fontSize: 15px
 
 # Default display mode (網站默認的顯示模式)
@@ -547,6 +550,7 @@ beautify:
 # Global font settings
 # Don't modify the following settings unless you know how they work (非必要不要修改)
 font:
+  global-font-size: # The unit must be 'px', default is 14px
   font-family:
   code-font:
 
@@ -621,7 +625,10 @@ aside:
     format: MMMM YYYY # eg: YYYY年MM月
     order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
     limit: 8 # if set 0 will show all
-  card_webinfo: true
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: true
 
 # busuanzi count for PV / UV in site
 # 訪問人數
@@ -709,7 +716,11 @@ note:
 # Pjax [Beta]
 # It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
-pjax: false
+pjax:
+  enable: false
+  exclude:
+    # - xxxx
+    # - xxxx
 
 # Inject the css and script (aplayer/meting)
 aplayerInject:

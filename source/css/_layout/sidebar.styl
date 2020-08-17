@@ -3,12 +3,18 @@
   bottom: $sidebar-icon-top
   left: $sidebar-icon-left
   z-index: 100
+  color: var(--sidebar-icon-color)
   font-size: $sidebar-icon-size
   cursor: pointer
   transition: all .2s
 
-  @media screen and (max-width: $bg)
+  +maxWidth1024()
     display: none
+
+.tocOpenPc
+  & > #toggle-sidebar
+    color: #99a9bf
+    transform: rotateZ(180deg)
 
 #sidebar
   position: fixed
@@ -21,7 +27,7 @@
   background: var(--sidebar-bg)
   opacity: .9
 
-  @media screen and (max-width: $bg)
+  +maxWidth1024()
     right: -($mobile-sidebar-width)
     left: auto
     z-index: 103

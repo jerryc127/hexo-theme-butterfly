@@ -18,10 +18,10 @@
       line-height: 17px
       -webkit-transform: translateZ(0)
 
-      @media screen and (max-width: 1100px)
+      +maxWidth1024()
         width: calc(50% - 15px) !important
 
-      @media screen and (max-width: 600px)
+      +maxWidth600()
         width: calc(100% - 15px) !important
 
       &:hover
@@ -66,11 +66,11 @@
           padding: 16px 10px 0 0
           height: 40px
           font-weight: bold
-          font-size: 20px
+          font-size: 1.43em
 
         .flink-item-desc
           @extend .limit-one-line
           display: block
           padding: 16px 10px 16px 0
           height: 50px
-          font-size: 13px
+          font-size: .93em

@@ -3,25 +3,25 @@
     .item-headline
       i.fas.fa-history
       span= _p('aside.card_recent_post')
-    .aside-recent-item
+    .aside-list
       - let postLimit = theme.aside.card_recent_post.limit === 0 ? site.posts.length : theme.aside.card_recent_post.limit || 5
       - let sort = theme.aside.card_recent_post.sort === 'updated' ? 'updated' : 'date'
       - site.posts.sort(sort, -1).limit(postLimit).each(function(article){
-        .aside-recent-post
+        .aside-list-item
           - let link = article.link || article.path
           - let title = article.title || _p('no_title')
           - let no_cover = article.cover === false || !theme.cover.aside_enable ? 'no-aside-cover' : ''
           - let post_cover = article.cover
           if post_cover && theme.cover.aside_enable
-            a.aside-post-cover(href=url_for(link) title=title)
+            a.thumbnail(href=url_for(link) title=title)
               if theme.lazyload.enable
-                img.aside-post-bg(data-lazy-src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
+                img(data-lazy-src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
               else
-                img.aside-post-bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
-          .aside-post-info(class=no_cover)
-            a.aside-post-title(href=url_for(link) title=title)= title
+                img(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
+          .content(class=no_cover)
+            a.title(href=url_for(link) title=title)= title
             if theme.aside.card_recent_post.sort === 'updated'
-              time.aside-post_meta.post-meta-updated(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated)) #[=date(article.updated, config.date_format)]
+              time(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated)) #[=date(article.updated, config.date_format)]
             else
-              time.aside-post_meta.post-meta-date(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date)) #[=date(article.date, config.date_format)]
+              time(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date)) #[=date(article.date, config.date_format)]
       - })
