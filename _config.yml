@@ -23,7 +23,7 @@ hide_sidebar_menu_child: false
 # Code Blocks (代碼相關)
 # --------------------------------------
 
-highlight_theme: light # default / darker / pale night / light / ocean / mac / mac light / false
+highlight_theme: light #  darker / pale night / light / ocean / mac / mac light / false
 highlight_copy: true # copy button
 highlight_lang: true # show the code language
 highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
@@ -550,9 +550,10 @@ beautify:
 # Global font settings
 # Don't modify the following settings unless you know how they work (非必要不要修改)
 font:
-  global-font-size: # The unit must be 'px', default is 14px
+  global-font-size:
+  code-font-size:
   font-family:
-  code-font:
+  code-font-family:
 
 # Font settings for the site title and site subtitle
 # 左上角網站名字 主頁居中網站名字
@@ -869,3 +870,8 @@ CDN:
   aplayer_css: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css
   aplayer_js: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js
   meting_js: https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js
+
+  # Prism.js
+  prismjs_js: https://cdn.jsdelivr.net/npm/prismjs/prism.min.js
+  prismjs_lineNumber_js: https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js
+  prismjs_autoloader: https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js

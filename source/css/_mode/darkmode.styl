@@ -44,8 +44,12 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     #page-header
       background-color: #121212
 
-    #article-container code
-      background: #2c2c2c
+    #article-container 
+      code
+        background: #2c2c2c
+
+      pre > code 
+        background: 0
 
     // 頭部
     #page-header
@@ -73,15 +77,19 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
 
       figure.highlight
         box-shadow: none
+        
+        if hexo-config('rootConfig.highlight') && hexo-config('rootConfig.highlight.enable')
+          table::-webkit-scrollbar-thumb
+            background: lighten(#121212, 5)
 
-        table::-webkit-scrollbar-thumb
+          .line:before
+            color: alpha(#FFFFFF, .6) !important
+
+          .hljs
+            background-color: lighten(#121212, 2) !important
+        
+        pre[class*='language-']::-webkit-scrollbar-thumb
           background: lighten(#121212, 5)
-
-        .line:before
-          color: alpha(#FFFFFF, .6) !important
-
-        .hljs
-          background-color: lighten(#121212, 2) !important
 
         .highlight-tools
           background: lighten(#121212, 3) !important

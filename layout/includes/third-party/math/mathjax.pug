@@ -28,7 +28,15 @@ script.
               math.end = {node: text, delim: '', n: 0}
               doc.math.push(math)
             }
-          }, '']
+          }, ''],
+          addClass: [200,() => {
+            document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+              const target = node.parentNode
+              if (!target.classList.contains('has-jax')) {
+                target.classList.add('mathjax-overflow')
+              }
+            })
+          }, '', false]
         }
       }
     }

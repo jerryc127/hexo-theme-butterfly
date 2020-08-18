@@ -16,7 +16,7 @@ $theme-toc-color = $themeColorEnable && hexo-config('theme_color.toc_color') ? c
 $dafault-font-family = -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif
 $dafault-code-font = consolas, Menlo, 'PingFang SC', 'Microsoft YaHei', sans-serif
 $font-family = hexo-config('font.font-family') ? unquote(hexo-config('font.font-family')) : $dafault-font-family
-$code-font = hexo-config('font.code-font') ? unquote(hexo-config('font.code-font')) : $dafault-code-font
+$code-font-family = hexo-config('font.code-font-family') ? unquote(hexo-config('font.code-font-family')) : $dafault-code-font
 $site-name-font = hexo-config('blog_title_font.font-family') ? unquote(hexo-config('blog_title_font.font-family')) : $font-family
 // hr
 $hrEnable = hexo-config('hr_icon') && hexo-config('hr_icon.enable')
@@ -28,6 +28,7 @@ $title-prefix-icon = $beautifyEnable ? hexo-config('beautify.title-prefix-icon')
 $title-prefix-icon-color = $beautifyEnable ? convert(hexo-config('beautify.title-prefix-icon-color')) : $light-red
 // Global Variables
 $font-size = hexo-config('font.global-font-size') ? convert(hexo-config('font.global-font-size')) : 14px
+$code-font-size = hexo-config('font.code-font-size') ? convert(hexo-config('font.code-font-size')) : $font-size
 $font-color = #1F2D3D
 $rem = 20px
 $text-line-height = 2

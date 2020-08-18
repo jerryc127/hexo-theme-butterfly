@@ -46,6 +46,8 @@ div
 
   !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
 
+  !=partial('includes/third-party/prismjs', {}, {cache:theme.fragment_cache})
+
   !=partial('includes/third-party/effect', {}, {cache:theme.fragment_cache})
 
   !=partial('includes/third-party/chat/index', {}, {cache:theme.fragment_cache})

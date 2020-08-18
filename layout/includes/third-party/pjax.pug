@@ -23,6 +23,8 @@ script.
     elements: '!{pjaxExclude}',
     selectors: pjaxSelectors,
     cacheBust: false,
+    analytics: !{theme.google_analytics ? true : false},
+    scrollRestoration: false
   })
 
   document.addEventListener('pjax:complete', function () {
@@ -47,6 +49,9 @@ script.
     if (!{theme.tencent_analytics ? true : false}) {
       MtaH5.pgv()
     }
+
+    // prismjs
+    typeof Prism === 'object' && Prism.highlightAll()
   })
 
 
@@ -65,5 +70,6 @@ script.
 
     //reset readmode
     $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
   })
 
