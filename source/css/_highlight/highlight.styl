@@ -49,6 +49,7 @@ blockquote
 #article-container
   pre,
   code
+    font-size: $code-font-size
     font-family: $code-font-family !important
 
   code
@@ -62,7 +63,6 @@ blockquote
   pre
     @extend $code-block
     padding: 10px 20px
-    font-size: $code-font-size
 
     code
       padding: 0
@@ -79,6 +79,20 @@ blockquote
       padding: 8px 0
       border: none
 
+    figcaption,
+    .caption
+      padding: .3rem 0 .1rem .7rem
+      font-size: $code-font-size
+      line-height: 1em
+
+      a
+        float: right
+        padding-right: 10px
+        color: $highlight-foreground
+
+        &:hover
+          border-bottom-color: $highlight-foreground
+
   .highlight-tools
     position: relative
     display: flex
@@ -88,6 +102,7 @@ blockquote
     height: 2.15em
     background: $highlight-tools.bg-color
     color: $highlight-tools.color
+    font-size: $code-font-size
 
     &.closed + table
       display: none

@@ -11,11 +11,6 @@
   +maxWidth1024()
     display: none
 
-.tocOpenPc
-  & > #toggle-sidebar
-    color: #99a9bf
-    transform: rotateZ(180deg)
-
 #sidebar
   position: fixed
   top: 0
@@ -26,6 +21,11 @@
   height: 100%
   background: var(--sidebar-bg)
   opacity: .9
+
+  &.tocOpenPc
+    & > #toggle-sidebar
+      color: #99a9bf
+      transform: rotateZ(180deg)
 
   +maxWidth1024()
     right: -($mobile-sidebar-width)
