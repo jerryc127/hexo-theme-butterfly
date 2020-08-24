@@ -72,6 +72,7 @@ aside:
       unit: 天
     last_push_date:
       name: 最后更新时间
+      zero_day: 今天
       suffix: 天前
     site_wordcount: 本站总字数
     site_uv_name: 本站访客数

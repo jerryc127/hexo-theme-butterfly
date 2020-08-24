@@ -633,10 +633,12 @@ const addLastPushDate = () => {
   if ($lastPushDateItem.length) {
     const lastPushDate = $lastPushDateItem.attr('last-push-date')
     const diffDay = diffDate(lastPushDate)
-    if (diffDay > 365) {
+    if (diffDay < 1) {
+      $lastPushDateItem.text(GLOBAL_CONFIG.last_push_date.zeroDay)
+    } else if (diffDay > 365) {
       $lastPushDateItem.text(lastPushDate)
     } else {
-      $lastPushDateItem.text(diffDay + ' ' + GLOBAL_CONFIG.last_push_date)
+      $lastPushDateItem.text(diffDay + ' ' + GLOBAL_CONFIG.last_push_date.suffix)
     }
   }
 }
@@ -808,7 +810,7 @@ const refreshFn = function () {
   addLightBox()
   scrollFn()
   GLOBAL_CONFIG.runtime && addRuntime()
-  GLOBAL_CONFIG.last_push_date && addLastPushDate()
+  GLOBAL_CONFIG.last_push_date !== undefined && addLastPushDate()
   addTableWrap()
   clickFnOfTagHide()
   tabsFn.clickFnOfTabs()

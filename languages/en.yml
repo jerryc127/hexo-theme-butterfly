@@ -70,6 +70,7 @@ aside:
       unit: days
     last_push_date:
       name: Last Push
+      zero_day: Today
       suffix: days ago
     site_wordcount: Total Count
     site_uv_name: UV

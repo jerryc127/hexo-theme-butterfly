@@ -95,6 +95,14 @@
     })
   }
 
+  let last_push_date = 'undefined';
+  if (theme.aside.card_webinfo.last_push_date) {
+    last_push_date = JSON.stringify({
+      zeroDay: _p("aside.card_webinfo.last_push_date.zero_day"),
+      suffix: _p("aside.card_webinfo.last_push_date.suffix")
+    })
+  }
+
 script.
   var GLOBAL_CONFIG = { 
     root: '!{config.root}',
@@ -114,7 +122,7 @@ script.
       message_next: '!{_p("Snackbar.bookmark.message_next")}'
     },
     runtime: '!{theme.runtimeshow.enable ? _p("aside.card_webinfo.runtime.unit") : ""}',
-    last_push_date: '!{theme.aside.card_webinfo.last_push_date ? _p("aside.card_webinfo.last_push_date.suffix") : ""}',
+    last_push_date: !{last_push_date},
     copyright: !{copyright},
     ClickShowText: !{ClickShowText},
     medium_zoom: !{theme.medium_zoom},

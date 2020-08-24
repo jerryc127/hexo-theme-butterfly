@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+<!-- Do not delete the template (不要刪除模板) -->
+
 <!--
 IMPORTANT: Please follow the template to create a new issue.
 重要：請依照該模板來提交。
@@ -14,7 +16,7 @@ IMPORTANT: Please follow the template to create a new issue.
 If you upgrade from the old version, and an error occurs when running, please copy the new content in the config to the butterfly.yml
 如果你是由舊版本升級到新版，執行時出現報錯，請首先把config裡新的內容複製到舊的butterfly設定去(如有)
 
-If you are a problem when visit the website, please open your browser 'developer tools (shortcut F12)' and check the console if there is an error, include your website address in the feedback
+If you are a problem when visiting the website, please open your browser 'developer tools (shortcut F12)' and check the console if there is an error, include your website address in the feedback
 如果你是線上訪問出現問題，請檢查瀏覽器‘開發人員工具（快捷鍵F12）’的console是否有報錯，反饋時附上你的網站
 -->
 
