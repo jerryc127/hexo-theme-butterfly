@@ -7,10 +7,13 @@
     flex-direction: row
     align-items: center
     height: 20em
-    border-radius: 8px
+    border-radius: 12px 8px 8px 12px
     background: var(--card-bg)
     box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
     transition: all .3s
+
+    +maxWidth768()
+      border-radius: 12px 12px 8px 8px
 
     &:hover
       box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)

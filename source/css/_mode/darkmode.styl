@@ -44,12 +44,16 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     #page-header
       background-color: #121212
 
-    #article-container 
+    #article-container
       code
         background: #2c2c2c
 
-      pre > code 
+      pre > code
         background: 0
+
+      .note
+        code
+          background: $code-background
 
     // 頭部
     #page-header
@@ -77,7 +81,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
 
       figure.highlight
         box-shadow: none
-        
+
         if hexo-config('rootConfig.highlight') && hexo-config('rootConfig.highlight.enable')
           table::-webkit-scrollbar-thumb
             background: lighten(#121212, 5)
@@ -87,7 +91,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
 
           .hljs
             background-color: lighten(#121212, 2) !important
-        
+
         pre[class*='language-']::-webkit-scrollbar-thumb
           background: lighten(#121212, 5)
 

@@ -70,7 +70,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
         '<img class="relatedPosts_cover" ' +
         lazySrc +
         '="' +
-        cover +
+        this.url_for(cover) +
         '">'
       if (dateType === 'created') {
         result +=
