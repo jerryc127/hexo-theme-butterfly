@@ -1,0 +1,71 @@
+script.
+  window.addEventListener('load', () => {
+    const changeContent = (content) => {
+      if (content === '') return content
+
+      content = content.replace(/<[^>]+>/g,"") // remove html tag
+      content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
+      content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
+
+      if (content.length > 150) {
+        content = content.substring(0,150) + '...'
+      }
+      return content
+    }
+
+    const getGithubIssues = () => {
+      let githubArray = []
+      $.getJSON('https://api.github.com/repos/!{theme.newest_comments.github_issues.repo}/issues/comments?sort=updated&direction=desc&per_page=!{theme.newest_comments.limit}&page=1', (data) => { 
+        $.each(data, (index, item) => {
+          githubArray.push({
+            'avatar': item.user.avatar_url,
+            'content': changeContent(item.body),
+            'nick': item.user.login,
+            'url': item.html_url,
+            'date': item.updated_at
+          })
+        })
+        saveToLocal.set('github-newest-comments', JSON.stringify(githubArray), 10/(60*24))
+        generateHtml(githubArray)
+      })
+    }
+
+    const generateHtml = array => {
+      let result = ''
+
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (!{theme.newest_comments.avatar}) {
+          result += `<a href='${array[i].url}' class="thumbnail"><img src='${array[i].avatar}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick}</span><time> / ${diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+
+      let $dom = document.querySelector('.card-newest-comments .aside-list')
+      $dom.innerHTML= result
+      window.pjax && window.pjax.refresh($dom)
+    }
+
+    const newestCommentInit = () => {
+      if (document.querySelector('.card-newest-comments .aside-list')) {
+        const data = saveToLocal.get('github-newest-comments')
+        if (data) {
+          generateHtml(JSON.parse(data))
+        } else {
+          getGithubIssues()
+        }
+      }
+    }
+
+    newestCommentInit()
+    document.addEventListener('pjax:complete', newestCommentInit)
+  })
+
+
+
+

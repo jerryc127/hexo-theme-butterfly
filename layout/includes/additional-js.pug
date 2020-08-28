@@ -44,9 +44,15 @@ div
     if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
       script(async src=url_for(theme.CDN.busuanzi))
 
-  !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
-
   !=partial('includes/third-party/prismjs', {}, {cache:theme.fragment_cache})
+
+  if theme.aside.enable && theme.newest_comments.enable
+    if theme.pjax.enable
+      !=partial('includes/third-party/newest-comments/index', {}, {cache:theme.fragment_cache})
+    else if (!is_post() && page.aside !== false)
+      !=partial('includes/third-party/newest-comments/index', {}, {cache:theme.fragment_cache})
+
+  !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
 
   !=partial('includes/third-party/effect', {}, {cache:theme.fragment_cache})
 

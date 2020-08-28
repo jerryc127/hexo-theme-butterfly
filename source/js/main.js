@@ -618,9 +618,9 @@ const addCopyright = () => {
  * 網頁運行時間
  */
 const addRuntime = () => {
-  const $runtimeCount = $('#webinfo-runtime-count')
+  const $runtimeCount = $('#runtimeshow')
   if ($runtimeCount.length) {
-    const publishDate = $runtimeCount.attr('publish_date')
+    const publishDate = $runtimeCount.attr('data-publishDate')
     $runtimeCount.text(diffDate(publishDate) + ' ' + GLOBAL_CONFIG.runtime)
   }
 }
@@ -629,17 +629,12 @@ const addRuntime = () => {
  * 最後一次更新時間
  */
 const addLastPushDate = () => {
-  const $lastPushDateItem = $('.webinfo-last-push-date')
+  const $lastPushDateItem = $('#last-push-date')
   if ($lastPushDateItem.length) {
-    const lastPushDate = $lastPushDateItem.attr('last-push-date')
-    const diffDay = diffDate(lastPushDate)
-    if (diffDay < 1) {
-      $lastPushDateItem.text(GLOBAL_CONFIG.last_push_date.zeroDay)
-    } else if (diffDay > 365) {
-      $lastPushDateItem.text(lastPushDate)
-    } else {
-      $lastPushDateItem.text(diffDay + ' ' + GLOBAL_CONFIG.last_push_date.suffix)
-    }
+    const lastPushDate = $lastPushDateItem.attr('data-lastPushDate')
+    const diffDay = diffDate(lastPushDate, true)
+    console.log(diffDay)
+    $lastPushDateItem.text(diffDay)
   }
 }
 
@@ -810,7 +805,7 @@ const refreshFn = function () {
   addLightBox()
   scrollFn()
   GLOBAL_CONFIG.runtime && addRuntime()
-  GLOBAL_CONFIG.last_push_date !== undefined && addLastPushDate()
+  addLastPushDate()
   addTableWrap()
   clickFnOfTagHide()
   tabsFn.clickFnOfTabs()

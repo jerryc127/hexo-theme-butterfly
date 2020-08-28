@@ -91,6 +91,6 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
 
   return `<ul class="card-category-list">
             ${list[0]}
-            ${moreButton()}           
+            ${moreButton()}
             </ul>`
 })

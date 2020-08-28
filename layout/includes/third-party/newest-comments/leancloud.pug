@@ -1,0 +1,98 @@
+script(src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js")
+script.
+  window.addEventListener('load', () => {
+    const changeContent = (content) => {
+      if (content === '') return content
+
+      content = content.replace(/<[^>]+>/g,"") // remove html tag
+      content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
+      content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
+
+      if (content.length > 150) {
+        content = content.substring(0,150) + '...'
+      }
+      return content
+    }
+
+    const getIcon = (icon, mail) => {
+      if (icon) return icon 
+      let defaultIcon = '!{theme.newest_comments.leancloud.default_avatar}' || '404'
+      let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase())}?d=${defaultIcon}`
+      return iconUrl
+    }
+
+    const generateHtml = array => {
+      let result = ''
+
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (!{theme.newest_comments.avatar}) {
+          result += `<a href='${array[i].url}' class="thumbnail"><img src='${getIcon(array[i].avatar, array[i].mail)}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick}</span><time> / ${diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+
+      let $dom = document.querySelector('.card-newest-comments .aside-list')
+      $dom.innerHTML= result
+      window.pjax && window.pjax.refresh($dom)
+    }
+
+    const getValineData = () => {
+
+      if (!(AV.applicationId && (AV.applicationKey || AV.masterKey))) {
+        const dataInit = {
+          appId: '!{theme.newest_comments.leancloud.appId}',
+          appKey: '!{theme.newest_comments.leancloud.appKey}'
+        }
+
+        if (!{theme.newest_comments.leancloud.serverURL ? true : false}) {
+          dataInit.serverURL= '!{theme.newest_comments.leancloud.serverURL}'
+        }
+
+        AV.init(dataInit)
+      }
+
+      const query = new AV.Query('Comment');
+      query.descending('createdAt').limit(!{theme.newest_comments.limit})
+
+      var valineArray = []
+      query.find().then(comments => {
+        comments.forEach(comment => {
+          valineArray.push({
+            'avatar': comment.get('QQAvatar'),
+            'content': changeContent(comment.get('comment')),
+            'mail': comment.get('mail'),
+            'nick': comment.get('nick'),
+            'url': comment.get('url'),
+            'date': comment.createdAt,
+          })
+        })
+      }).then(function() {
+        saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+        generateHtml(valineArray)
+      })
+    }
+
+    const newestCommentInit = () => {
+      if (document.querySelector('.card-newest-comments .aside-list')) {
+        const data = saveToLocal.get('leancloud-newest-comments')
+        if (data) {
+          generateHtml(JSON.parse(data))
+        } else {
+          if (typeof window.AV === 'object') {
+            getValineData()
+          } else {
+            $.getScript('https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js', getValineData)
+          }
+        }
+      }
+    }
+
+    newestCommentInit()
+    document.addEventListener('pjax:complete', newestCommentInit)
+  })

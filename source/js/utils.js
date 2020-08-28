@@ -97,12 +97,26 @@ const initJustifiedGallery = function (selector) {
   })
 }
 
-const diffDate = d => {
+const diffDate = (d, more = false) => {
   const dateNow = new Date()
-  const datePost = new Date(d.replace(/-/g, '/'))
+  const datePost = new Date(d)
   const dateDiff = dateNow.getTime() - datePost.getTime()
   const dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000))
-  return dayDiff
+  let result
+  if (more) {
+    if (dateDiff <= 3600000) { // < 1 hour
+      result = GLOBAL_CONFIG.date_suffix.one_hour
+    } else if (dateDiff < 3600000 * 24) { // 1 hour < x < 24 hours
+      result = Math.floor(dateDiff / 3600000) + ' ' + GLOBAL_CONFIG.date_suffix.hours
+    } else if (dayDiff >= 1 || dayDiff < 365) { // 1 day < x < 365 days
+      result = dayDiff + ' ' + GLOBAL_CONFIG.date_suffix.day
+    } else { // > 365 days
+      result = d.toLocaleDateString().replace(/\//g, '-')
+    }
+  } else {
+    result = dayDiff
+  }
+  return result
 }
 
 const loadComment = (dom, callback) => {

@@ -17,6 +17,7 @@
 - else pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
 - var pageAuthor = config.email ? config.author + ',' + config.email : config.author
 - var pageCopyright = config.copyright || config.author
+- var themeColor = theme.display_mode === 'dark' ? '#0d0d0d' : '#ffffff'
 
 meta(charset='UTF-8')
 meta(http-equiv="X-UA-Compatible" content="IE=edge")
@@ -28,12 +29,14 @@ if pageKeywords
 meta(name="author" content=pageAuthor)
 meta(name="copyright" content=pageCopyright)
 meta(name ="format-detection" content="telephone=no")
-!=favicon_tag(theme.favicon || config.favicon)
-link(rel="canonical" href=urlNoIndex())
+meta(name="theme-color" content=themeColor)
 
 if theme.disable_baidu_transformation
   meta(http-equiv="Cache-Control" content="no-transform")
   meta(http-equiv="Cache-Control" content="no-siteapp")
+
+!=favicon_tag(theme.favicon || config.favicon)
+link(rel="canonical" href=urlNoIndex())
 
 //- 預解析
 !=partial('includes/head/preconnect', {}, {cache:theme.fragment_cache})

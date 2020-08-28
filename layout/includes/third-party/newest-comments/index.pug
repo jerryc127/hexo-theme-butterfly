@@ -1,0 +1,6 @@
+if theme.newest_comments.leancloud.enable
+  include ./leancloud.pug
+else if theme.newest_comments.github_issues.enable
+  include ./github-issues.pug
+else if theme.newest_comments.disqus.enable
+  include ./disqus-comment.pug

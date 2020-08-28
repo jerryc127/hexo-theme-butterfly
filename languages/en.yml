@@ -70,12 +70,20 @@ aside:
       unit: days
     last_push_date:
       name: Last Push
-      zero_day: Today
-      suffix: days ago
     site_wordcount: Total Count
     site_uv_name: UV
     site_pv_name: PV
   more_button: More
+  card_newest_comments:
+    heading: Newest Comments
+    loading_text: loading...
+    zero_day: Today
+    day: days ago
+
+date_suffix:
+  one_hour: Just
+  hours: hours ago
+  day: days ago
 
 donate: Donate
 share: Share

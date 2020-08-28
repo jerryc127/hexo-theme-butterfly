@@ -72,12 +72,20 @@ aside:
       unit: 天
     last_push_date:
       name: 最後更新時間
-      zero_day: 今天
-      suffix: 天前
     site_wordcount: 本站總字數
     site_uv_name: 本站訪客數
     site_pv_name: 本站總訪問量
   more_button: 檢視更多
+  card_newest_comments:
+    heading: 最新評論
+    loading_text: 正在加載中...
+    zero_day: 今天
+    day: 天前
+
+date_suffix:
+  one_hour: 剛剛
+  hours: 小時前
+  day: 天前
 
 donate: 打賞
 share: 分享
