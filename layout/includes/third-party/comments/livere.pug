@@ -16,7 +16,7 @@ script.
   }
 
   if ('!{theme.comments.use[0]}' === 'Livere' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) loadComment(document.getElementById('lv-container'), loadLivere)
+    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('lv-container'), loadLivere)
     else loadLivere()
   }
   else {

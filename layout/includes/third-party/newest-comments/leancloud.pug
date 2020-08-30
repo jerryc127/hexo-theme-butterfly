@@ -16,8 +16,8 @@ script.
 
     const getIcon = (icon, mail) => {
       if (icon) return icon 
-      let defaultIcon = '!{theme.newest_comments.leancloud.default_avatar}' || '404'
-      let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase())}?d=${defaultIcon}`
+      let defaultIcon = '!{ theme.newest_comments.leancloud.default_avatar ? `?d=${theme.newest_comments.leancloud.default_avatar}` : ''}'
+      let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
       return iconUrl
     }
 
@@ -33,7 +33,7 @@ script.
 
         result += `<div class='content'>
         <a class='comment' href='${array[i].url}'>${array[i].content}</a>
-        <div class='name'><span>${array[i].nick}</span><time> / ${diffDate(array[i].date, true)}</time></div>
+        <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
         </div></div>`
       }
 

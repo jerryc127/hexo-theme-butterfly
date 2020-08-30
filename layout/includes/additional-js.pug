@@ -15,7 +15,7 @@ div
     script(src=url_for(theme.CDN.instantpage) type="module" defer)
 
   if theme.lazyload.enable
-    script(src=url_for(theme.CDN.lazyload) async)
+    script(src=url_for(theme.CDN.lazyload))
 
   if (theme.snackbar && theme.snackbar.enable)
     script(src=url_for(theme.CDN.snackbar))

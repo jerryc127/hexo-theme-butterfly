@@ -87,6 +87,10 @@
     span
       margin-left: .5rem
 
+    & + div,
+    & + ul
+      padding: .3rem 0 0
+
   .sticky_layout
     +minWidth900()
       position: sticky
@@ -102,8 +106,6 @@
         color: $text-hover !important
 
   .aside-list
-    margin: 10px 0 -15px
-
     & > span
       display: block
       margin-bottom: .5rem
@@ -121,7 +123,7 @@
         border-bottom: 1px dashed #f5f5f5
 
       &:last-child
-        margin-bottom: .3rem
+        padding-bottom: 0
 
       .thumbnail
         overflow: hidden
@@ -173,7 +175,6 @@
   .card-archives ul.card-archive-list,
   .card-categories ul.card-category-list
     margin: 0
-    padding: .2rem 0 0
     list-style: none
 
   .card-archives ul.card-archive-list > .card-archive-list-item,
@@ -241,12 +242,10 @@
 
   .card-webinfo
     .webinfo
-      padding: .2rem .5rem
-
       .webinfo-item
         display: flex
         align-items: center
-        padding: 4px 0 0
+        padding: .1rem .5rem 0
 
         div
           &:first-child

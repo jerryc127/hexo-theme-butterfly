@@ -91,14 +91,14 @@ favicon: /img/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: /img/avatar.png
+  img:
   effect: false
 
 # the banner image of home page
 index_img:
 
 # if the banner of page not setting, it will show the top_img
-default_top_img: https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg
+default_top_img:
 
 # the banner image of archive page
 archive_img:
@@ -557,9 +557,10 @@ font:
 
 # Font settings for the site title and site subtitle
 # 左上角網站名字 主頁居中網站名字
-blog_title_font:
-  font_link: https://fonts.googleapis.com/css?family=Titillium+Web&display=swap
-  font-family: Titillium Web, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif
+
+# blog_title_font:
+  # font_link: https://fonts.googleapis.com/css?family=Titillium+Web&display=swap
+  # font-family: Titillium Web, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif
 
 # The setting of divider icon (水平分隔線圖標設置)
 hr_icon:
@@ -654,7 +655,7 @@ newest_comments:
     appId: # leancloud application app id
     appKey: # leancloud application app key
     serverURL: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-    default_avatar: mp # mp/identicon/monsterid/wavatar/retro/robohash/blank
+    default_avatar: # mp/identicon/monsterid/wavatar/retro/robohash/blank
   github_issues:
     enable: false
     repo:
@@ -762,7 +763,7 @@ baidu_push: false
 
 # https://instant.page/
 # prefetch (預加載)
-instantpage: true
+instantpage: false
 
 # https://github.com/vinta/pangu.js
 # Insert a space between Chinese character and English character (中英文之間添加空格)
@@ -773,7 +774,7 @@ pangu:
 # Lazyload (圖片懶加載)
 # https://github.com/verlok/lazyload
 lazyload:
-  enable: true
+  enable: false
   post: /img/loading.gif
 
 # PWA

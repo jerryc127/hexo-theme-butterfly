@@ -83,13 +83,13 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
     let moreHtml = ''
     if (categories.length <= limit) return ''
     moreHtml += '<li class="card-category-list-item more is-center">'
-    moreHtml += `<a class="card-category-list-link-more" href="${categoryDir}">
+    moreHtml += `<a class="card-category-list-link-more" href="${categoryDir}/">
                 <span>${buttonLabel}</span><i class="fas fa-angle-right"></i></a></li>`
 
     return moreHtml
   }
 
-  return `<ul class="card-category-list">
+  return `<ul class="card-category-list" id="aside-cat-list">
             ${list[0]}
             ${moreButton()}
             </ul>`

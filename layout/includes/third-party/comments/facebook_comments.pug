@@ -16,7 +16,7 @@ script.
   }
 
   if ('!{theme.comments.use[0]}' === 'Facebook Comments' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) loadComment(document.querySelector('#post-comment .fb-comments'), loadFBComment)
+    if (!{theme.comments.lazyload}) btf.loadComment(document.querySelector('#post-comment .fb-comments'), loadFBComment)
     else loadFBComment()
   } else {
     function loadOtherComment () {

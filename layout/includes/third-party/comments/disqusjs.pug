@@ -34,7 +34,7 @@ script.
   }
 
   if ('!{theme.comments.use[0]}' === 'Disqusjs' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) loadComment(document.getElementById('disqus_thread'), loadDisqusjs)
+    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('disqus_thread'), loadDisqusjs)
     else loadDisqusjs()
   }
   else {

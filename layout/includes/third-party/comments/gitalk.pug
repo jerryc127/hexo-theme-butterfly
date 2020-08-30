@@ -40,7 +40,7 @@ script.
   }
 
   if ('!{theme.comments.use[0]}' === 'Gitalk' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
     else loadGitalk()
   } else {
     function loadOtherComment () {

@@ -25,7 +25,6 @@ if theme.darkmode.enable
         if (isLightMode) activateLightMode()
         else if (isDarkMode) activateDarkMode()
         else if (isNotSpecified || hasNoSupport) {
-          console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
           var now = new Date()
           var hour = now.getHours()
           var isNight = hour <= 6 || hour >= 18

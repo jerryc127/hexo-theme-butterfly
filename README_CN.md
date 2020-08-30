@@ -2,9 +2,8 @@
 
 ![version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly)
 ![https://img.shields.io/npm/v/hexo-theme-butterfly?color=%09%23bf00ff](https://img.shields.io/npm/v/hexo-theme-butterfly?color=%09%23bf00ff)
-![hexo version](https://img.shields.io/badge/hexo-4.0+-0e83c)
+![hexo version](https://img.shields.io/badge/hexo-4.2+-0e83c)
 ![npm download](https://img.shields.io/npm/dw/hexo-theme-butterfly?color=green)
-![nodejs version](https://img.shields.io/badge/node.js-8.0+-yellow)
 ![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly?color=FF5531)
 
 

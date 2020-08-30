@@ -15,7 +15,7 @@ script.
     '.js-pjax'
   ]
 
-  if (!{theme.Open_Graph_meta && theme.comments.use && theme.comments.use.includes('Livere')}) {
+  if (!{Boolean(theme.Open_Graph_meta && theme.comments.use && theme.comments.use.includes('Livere'))}) {
     pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
   }
 
@@ -28,13 +28,13 @@ script.
   })
 
   document.addEventListener('pjax:complete', function () {
-    refreshFn()
+    window.refreshFn()
 
     $('script[data-pjax]').each(function () {
       $(this).parent().append($(this).remove())
     })
 
-    GLOBAL_CONFIG.islazyload && lazyLoadInstance.update()
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
 
     typeof chatBtnFn === 'function' && chatBtnFn()
     typeof panguInit === 'function' && panguInit()
