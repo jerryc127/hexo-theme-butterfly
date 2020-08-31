@@ -9,7 +9,7 @@ figure.gallery-group
   background: $dark-black
   -webkit-transform: translate3d(0, 0, 0)
 
-  @media screen and (max-width: 600px)
+  +maxWidth600()
     width: calc(100% - .4rem)
 
   &:hover
@@ -61,7 +61,7 @@ figure.gallery-group
     margin: 0
     padding: .4rem 0 0
     letter-spacing: 1px
-    font-size: .8rem
+    font-size: 1.1em
     line-height: 1.5
     opacity: 0
     transition: opacity .35s, transform .35s
@@ -74,7 +74,7 @@ figure.gallery-group
     margin: 0
     padding: .4rem 0
     font-weight: bold
-    font-size: 1.2rem
+    font-size: 1.65em
     line-height: 1.5
     -webkit-line-clamp: 2
 
@@ -98,9 +98,6 @@ figure.gallery-group
 
   img
     opacity: 0
-
-  .img-alt
-    display: none
 
   .fancybox
     width: auto

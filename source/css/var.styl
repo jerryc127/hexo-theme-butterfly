@@ -4,19 +4,19 @@ $strong-cyan = #00c4b6
 $light-orange = #FF7242
 $light-red = #F47466
 $themeColorEnable = hexo-config('theme_color') && hexo-config('theme_color.enable')
-$theme-color = $themeColorEnable ? convert(hexo-config('theme_color.main')) : $bright-blue
-$theme-paginator-color = $themeColorEnable ? convert(hexo-config('theme_color.paginator')) : $strong-cyan
-$theme-text-selection-color = $themeColorEnable ? convert(hexo-config('theme_color.text_selection')) : $strong-cyan
-$theme-link-color = $themeColorEnable ? convert(hexo-config('theme_color.link_color')) : $bright-blue
-$theme-hr-color = $themeColorEnable ? convert(hexo-config('theme_color.hr_color')) : $bright-blue
-$code-foreground = $themeColorEnable ? convert(hexo-config('theme_color.code_foreground')) : $light-red
-$code-background = $themeColorEnable ? convert(hexo-config('theme_color.code_background')) : rgba(27, 31, 35, .05)
-$theme-toc-color = $themeColorEnable ? convert(hexo-config('theme_color.toc_color')) : $strong-cyan
+$theme-color = $themeColorEnable && hexo-config('theme_color.main') ? convert(hexo-config('theme_color.main')) : $bright-blue
+$theme-paginator-color = $themeColorEnable && hexo-config('theme_color.paginator') ? convert(hexo-config('theme_color.paginator')) : $strong-cyan
+$theme-text-selection-color = $themeColorEnable && hexo-config('theme_color.text_selection') ? convert(hexo-config('theme_color.text_selection')) : $strong-cyan
+$theme-link-color = $themeColorEnable && hexo-config('theme_color.link_color') ? convert(hexo-config('theme_color.link_color')) : $bright-blue
+$theme-hr-color = $themeColorEnable && hexo-config('theme_color.hr_color') ? convert(hexo-config('theme_color.hr_color')) : $bright-blue
+$code-foreground = $themeColorEnable && hexo-config('theme_color.code_foreground') ? convert(hexo-config('theme_color.code_foreground')) : $light-red
+$code-background = $themeColorEnable && hexo-config('theme_color.code_background') ? convert(hexo-config('theme_color.code_background')) : rgba(27, 31, 35, .05)
+$theme-toc-color = $themeColorEnable && hexo-config('theme_color.toc_color') ? convert(hexo-config('theme_color.toc_color')) : $strong-cyan
 // font
 $dafault-font-family = -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif
 $dafault-code-font = consolas, Menlo, 'PingFang SC', 'Microsoft YaHei', sans-serif
 $font-family = hexo-config('font.font-family') ? unquote(hexo-config('font.font-family')) : $dafault-font-family
-$code-font = hexo-config('font.code-font') ? unquote(hexo-config('font.code-font')) : $dafault-code-font
+$code-font-family = hexo-config('font.code-font-family') ? unquote(hexo-config('font.code-font-family')) : $dafault-code-font
 $site-name-font = hexo-config('blog_title_font.font-family') ? unquote(hexo-config('blog_title_font.font-family')) : $font-family
 // hr
 $hrEnable = hexo-config('hr_icon') && hexo-config('hr_icon.enable')
@@ -27,16 +27,14 @@ $beautifyEnable = hexo-config('beautify.enable')
 $title-prefix-icon = $beautifyEnable ? hexo-config('beautify.title-prefix-icon') : '\f0c1'
 $title-prefix-icon-color = $beautifyEnable ? convert(hexo-config('beautify.title-prefix-icon-color')) : $light-red
 // Global Variables
-$font-size = 14px
+$font-size = hexo-config('font.global-font-size') ? convert(hexo-config('font.global-font-size')) : 14px
+$code-font-size = hexo-config('font.code-font-size') ? convert(hexo-config('font.code-font-size')) : $font-size
 $font-color = #1F2D3D
 $rem = 20px
 $text-line-height = 2
-$sm = 768px
-$bg = 1024px
-$lr = 2000px
-$web-bg = convert(hexo-config('background'))
-$index_top_img_height = convert(hexo-config('index_top_img_height')) || 100vh
-$index_site_info_top = convert(hexo-config('index_site_info_top')) || 43%
+$web-bg = hexo-config('background') && convert(hexo-config('background'))
+$index_top_img_height = hexo-config('index_top_img_height') ? convert(hexo-config('index_top_img_height')) : 100vh
+$index_site_info_top = hexo-config('index_site_info_top') ? convert(hexo-config('index_site_info_top')) : 43%
 // Global color & SVG
 $light-blue = $theme-color
 $dark-black = #000000
@@ -52,27 +50,27 @@ $text-bg-hover = $theme-color
 // code
 $line-height-code-block = 1.6
 $blockquote-color = #6a737d
-$blockquote-padding-color = $themeColorEnable ? convert(hexo-config('theme_color.blockquote_padding_color')) : #49B1F5
-$blockquote-background-color = $themeColorEnable ? alpha(convert(hexo-config('theme_color.blockquote_background_color')), .1) : alpha($blockquote-padding-color, .1)
+$blockquote-padding-color = $themeColorEnable && hexo-config('theme_color.blockquote_padding_color') ? convert(hexo-config('theme_color.blockquote_padding_color')) : #49B1F5
+$blockquote-background-color = $themeColorEnable && hexo-config('theme_color.blockquote_background_color') ? alpha(convert(hexo-config('theme_color.blockquote_background_color')), .1) : alpha($blockquote-padding-color, .1)
 // page
 $body-bg = #fff
 $a-link-color = #99a9bf
 $sticky-color = $light-orange
-$theme-meta-color = $themeColorEnable ? convert(hexo-config('theme_color.meta_color')) : #858585
+$theme-meta-color = $themeColorEnable && hexo-config('theme_color.meta_color') ? convert(hexo-config('theme_color.meta_color')) : #858585
 // sidebar
 $sidebar-icon-top = 20px
 $sidebar-icon-left = $sidebar-icon-top - 4px
 $sidebar-icon-size = 16px
+$sidebar-icon-color = #1F2D3D
 $sidebar-width = 300px
 $sidebar-background = #f6f8fa
 $sidebar-active-color = #fff
 $mobile-sidebar-width = 250px
 // Button
 $button-color = #fff
-$button-hover-color = $themeColorEnable ? convert(hexo-config('theme_color.button_hover')) : $light-orange
-$button-bg= $theme-color
+$button-hover-color = $themeColorEnable && hexo-config('theme_color.button_hover') ? convert(hexo-config('theme_color.button_hover')) : $light-orange
+$button-bg = $theme-color
 $pseudo-hover = $button-hover-color
-
 // table
 $table-thead-bg = #99a9bf
 // reward
@@ -80,10 +78,10 @@ $reward-pop-up-bg = #f5f5f5
 $reward-pop-up-color = #858585
 // search
 $search-bg = #f6f8fa
-$search-input-color= $font-black
+$search-input-color = $font-black
 $search-color = $theme-color
 $search-keyword-highlight = #F47466
-$search-result-title= $font-black
+$search-result-title = $font-black
 // comments
 $comments-switch-first-text = $bright-blue
 $comments-switch-second-text = $light-orange
@@ -102,7 +100,7 @@ $tag-hide-toggle-bg = #f0f0f0
 $preloader-bg = #37474f
 $preloader-word-color = #fff
 // rightside
-$rightside-bottom = hexo-config('rightside-bottom') is a 'unit' ? unit(hexo-config('rightside-bottom'), px) : 40px
+$rightside-bottom = hexo-config('rightside-bottom') ? convert(hexo-config('rightside-bottom')) : 40px
 // fireworks
 $fireworks-zIndex = hexo-config('fireworks.zIndex') ? hexo-config('fireworks.zIndex') : 99999
 // Tag Plugins - Note
@@ -178,5 +176,5 @@ $tab-botton-bg = #f0f0f0
 $tab-botton-color = $font-color
 $tab-button-hover-bg = darken($tab-border-color, 8)
 $tab-active-border-color = $theme-color
-$tab-button-active-bg= $card-bg
+$tab-button-active-bg = $card-bg
 $tab-to-top-color = #99a9bf

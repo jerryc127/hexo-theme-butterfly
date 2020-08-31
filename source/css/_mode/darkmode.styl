@@ -26,6 +26,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --blockquote-color: alpha(#FFFFFF, .6)
     --blockquote-bg: lighten(#121212, 10)
     --reward-pop: lighten(#121212, 10)
+    --sidebar-icon-color: alpha(#FFFFFF, .6)
 
     // 網站背景，footer背景
     #web_bg[data-type=color],
@@ -43,8 +44,16 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     #page-header
       background-color: #121212
 
-    #article-container code
-      background: #2c2c2c
+    #article-container
+      code
+        background: #2c2c2c
+
+      pre > code
+        background: 0
+
+      .note
+        code
+          background: $code-background
 
     // 頭部
     #page-header
@@ -73,14 +82,18 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       figure.highlight
         box-shadow: none
 
-        table::-webkit-scrollbar-thumb
+        if hexo-config('rootConfig.highlight') && hexo-config('rootConfig.highlight.enable')
+          table::-webkit-scrollbar-thumb
+            background: lighten(#121212, 5)
+
+          .line:before
+            color: alpha(#FFFFFF, .6) !important
+
+          .hljs
+            background-color: lighten(#121212, 2) !important
+
+        pre[class*='language-']::-webkit-scrollbar-thumb
           background: lighten(#121212, 5)
-
-        .line:before
-          color: alpha(#FFFFFF, .6) !important
-
-        .hljs
-          background-color: lighten(#121212, 2) !important
 
         .highlight-tools
           background: lighten(#121212, 3) !important
@@ -110,6 +123,9 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     .gist,
     .aplayer
       filter: brightness(.7)
+
+    #aside_content .aside-list > .aside-list-item:not(:last-child)
+      border-bottom: 1px dashed alpha(#FFFFFF, .1)
 
     // 第三方
     // 插件 hexo-blog-encrypt

@@ -25,7 +25,7 @@ script.
   }
 
   if ('!{theme.comments.use[0]}' === 'Utterances' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
     else loadUtterances()
   } else {
     function loadOtherComment () {

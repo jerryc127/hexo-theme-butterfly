@@ -1,0 +1,34 @@
+#article-container
+  pre[class*='language-']
+    &.line-numbers
+      position: relative
+      padding-left: 3.8em
+      counter-reset: linenumber
+      line-height: $line-height-code-block
+
+      > code
+        position: relative
+        white-space: inherit
+        line-height: $line-height-code-block
+
+      .line-numbers-rows
+        position: absolute
+        top: 0
+        left: -3.8em
+        width: 3em
+        letter-spacing: -1px
+        font-size: 100%
+        pointer-events: none
+        user-select: none
+
+        & > span
+          display: block
+          counter-increment: linenumber
+          pointer-events: none
+
+          &:before
+            display: block
+            padding-right: .8em
+            color: $highlight-gutter.color
+            content: counter(linenumber)
+            text-align: right

@@ -48,11 +48,11 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   if (relatedPosts.length > 0) {
     result += '<div class="relatedPosts">'
     result +=
-      '<div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span>' +
+      '<div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>' +
       ' ' +
       headlineLang +
       '</span></div>'
-    result += '<div class="relatedPosts_list">'
+    result += '<div class="relatedPosts-list">'
 
     for (let i = 0; i < Math.min(relatedPosts.length, limitNum); i++) {
       const cover =
@@ -60,33 +60,33 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
           ? relatedPosts[i].randomcover
           : relatedPosts[i].cover
       result +=
-        '<div class="relatedPosts_item"><a href="' +
+        '<div><a href="' +
         hexoConfig.root +
         relatedPosts[i].path +
         '" title="' +
         relatedPosts[i].title +
         '">'
       result +=
-        '<img class="relatedPosts_cover" ' +
+        '<img class="cover" ' +
         lazySrc +
         '="' +
-        cover +
+        this.url_for(cover) +
         '">'
       if (dateType === 'created') {
         result +=
-          '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i>' +
+          '<div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i>' +
           ' ' +
           this.date(relatedPosts[i].created, hexoConfig.date_format) +
           '</div>'
       } else {
         result +=
-          '<div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fas fa-history fa-fw"></i>' +
+          '<div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i>' +
           ' ' +
           this.date(relatedPosts[i].updated, hexoConfig.date_format) +
           '</div>'
       }
       result +=
-        '<div class="relatedPosts_title">' + relatedPosts[i].title + '</div>'
+        '<div class="title">' + relatedPosts[i].title + '</div>'
       result += '</div></a></div>'
     }
 

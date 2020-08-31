@@ -1,0 +1,20 @@
+if hexo-fonfig('rootConfig.prismjs.line_number')
+  @require 'line-number'
+
+if $highlight_theme != false
+  @require 'diff'
+
+#article-container
+  pre[class*='language-']
+    &::-webkit-scrollbar-thumb
+      background: $highlight-scrollbar
+
+    &:not(.line-numbers)
+      padding: 10px 20px
+
+    .caption
+      margin-left: -3.8em
+      padding: .2rem .8rem !important
+
+      a
+        padding: 0 !important

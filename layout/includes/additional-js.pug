@@ -15,7 +15,7 @@ div
     script(src=url_for(theme.CDN.instantpage) type="module" defer)
 
   if theme.lazyload.enable
-    script(src=url_for(theme.CDN.lazyload) async)
+    script(src=url_for(theme.CDN.lazyload))
 
   if (theme.snackbar && theme.snackbar.enable)
     script(src=url_for(theme.CDN.snackbar))
@@ -44,6 +44,14 @@ div
     if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
       script(async src=url_for(theme.CDN.busuanzi))
 
+  !=partial('includes/third-party/prismjs', {}, {cache:theme.fragment_cache})
+
+  if theme.aside.enable && theme.newest_comments.enable
+    if theme.pjax.enable
+      !=partial('includes/third-party/newest-comments/index', {}, {cache:theme.fragment_cache})
+    else if (!is_post() && page.aside !== false)
+      !=partial('includes/third-party/newest-comments/index', {}, {cache:theme.fragment_cache})
+
   !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
 
   !=partial('includes/third-party/effect', {}, {cache:theme.fragment_cache})
@@ -51,11 +59,10 @@ div
   !=partial('includes/third-party/chat/index', {}, {cache:theme.fragment_cache})
 
   if theme.aplayerInject && theme.aplayerInject.enable
-    if theme.pjax || theme.aplayerInject.per_page
+    if theme.pjax.enable || theme.aplayerInject.per_page
       include ./head/aplayer.pug
     else if page.aplayer
       include ./head/aplayer.pug
 
-  if theme.pjax
+  if theme.pjax.enable
     !=partial('includes/third-party/pjax', {}, {cache:theme.fragment_cache})
-

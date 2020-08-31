@@ -1,3 +1,8 @@
+- var pjaxExclude = 'a:not([target="_blank"])'
+if theme.pjax.exclude
+  each val in theme.pjax.exclude
+    - pjaxExclude = pjaxExclude + `:not([href="${val}"])`
+
 script(src=url_for(theme.CDN.pjax))
 script.
   let pjaxSelectors = [
@@ -10,24 +15,26 @@ script.
     '.js-pjax'
   ]
 
-  if (!{theme.Open_Graph_meta && theme.comments.use && theme.comments.use.includes('Livere')}) {
+  if (!{Boolean(theme.Open_Graph_meta && theme.comments.use && theme.comments.use.includes('Livere'))}) {
     pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
   }
 
-  const pjax = new Pjax({
-    elements: 'a:not([target="_blank"])',
+  var pjax = new Pjax({
+    elements: '!{pjaxExclude}',
     selectors: pjaxSelectors,
     cacheBust: false,
+    analytics: !{theme.google_analytics ? true : false},
+    scrollRestoration: false
   })
 
   document.addEventListener('pjax:complete', function () {
-    refreshFn()
+    window.refreshFn()
 
     $('script[data-pjax]').each(function () {
       $(this).parent().append($(this).remove())
     })
 
-    GLOBAL_CONFIG.islazyload && lazyLoadInstance.update()
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
 
     typeof chatBtnFn === 'function' && chatBtnFn()
     typeof panguInit === 'function' && panguInit()
@@ -38,7 +45,15 @@ script.
 
     typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
 
+    // Analytics
+    if (!{theme.tencent_analytics ? true : false}) {
+      MtaH5.pgv()
+    }
+
+    // prismjs
+    typeof Prism === 'object' && Prism.highlightAll()
   })
+
 
   document.addEventListener('pjax:send', function () {
     if (window.aplayers) {
@@ -56,7 +71,5 @@ script.
     //reset readmode
     $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
 
-    //reset font-size
-    $('body').css('font-size') !== originFontSize && $('body').css('font-size', parseFloat(originFontSize))
   })
 

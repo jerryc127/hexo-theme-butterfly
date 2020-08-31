@@ -1,12 +1,16 @@
 // https://github.com/equinusocio/vsc-material-theme
 $highlight_theme = hexo-config('highlight_theme')
+$highlighEnable = hexo-config('rootConfig.highlight') && hexo-config('rootConfig.highlight.enable')
+$prismjsEnable = hexo-config('rootConfig.prismjs') && hexo-config('rootConfig.prismjs.enable')
+wordWrap = !hexo-config('rootConfig.highlight.line_number') && hexo-config('code_word_wrap')
 
 @require 'theme'
 
-if $highlight_theme != false
-  @require 'diff'
+if $highlighEnable
+  @require 'highlight/index'
 
-wordWrap = !hexo-config('rootConfig.highlight.line_number') && hexo-config('code_word_wrap')
+if $prismjsEnable
+  @require 'prismjs/index'
 
 $code-block
   overflow: auto
@@ -45,7 +49,8 @@ blockquote
 #article-container
   pre,
   code
-    font-family: $code-font !important
+    font-size: $code-font-size
+    font-family: $code-font-family !important
 
   code
     padding: .1rem .2rem
@@ -74,33 +79,10 @@ blockquote
       padding: 8px 0
       border: none
 
-    .line
-      if wordWrap
-        &:before
-          display: inline-block
-          padding: 0 .3rem 0 0
-          min-width: 1.6rem
-          color: $highlight-gutter.color
-          content: counter(line)
-          counter-increment: line
-          text-align: left
-
-      &.marked
-        background-color: $highlight-selection
-
-    table
-      display: block
-      overflow: auto
-      border: none
-
-    td
-      padding: 0
-      border: none
-
-    figcaption
-      clearfix()
+    figcaption,
+    .caption
       padding: .3rem 0 .1rem .7rem
-      font-size: 1em
+      font-size: $code-font-size
       line-height: 1em
 
       a
@@ -111,66 +93,53 @@ blockquote
         &:hover
           border-bottom-color: $highlight-foreground
 
-    .gutter pre
-      padding-right: .5rem
-      padding-left: .5rem
-      background-color: $highlight-gutter.bg-color
-      color: $highlight-gutter.color
-      text-align: right
+  .highlight-tools
+    position: relative
+    display: flex
+    align-items: center
+    overflow: hidden
+    min-height: 1.2rem
+    height: 2.15em
+    background: $highlight-tools.bg-color
+    color: $highlight-tools.color
+    font-size: $code-font-size
 
-    .code pre
-      padding-right: .5rem
-      padding-left: .5rem
-      width: 100%
+    &.closed + table
+      display: none
 
-    .highlight-tools
-      position: relative
-      overflow: hidden
-      width: 100%
-      height: 1.5rem
-      background: $highlight-tools.bg-color
-      color: $highlight-tools.color
-      font-size: 14px
+    .expand
+      position: absolute
+      padding: .4rem .7rem
+      cursor: pointer
+      transition: transform .3s
 
-      &.closed + table
-        display: none
+      & + .code-lang
+        left: 1.7rem
 
-      .expand
-        position: absolute
-        padding: .4rem .7rem
-        cursor: pointer
-        transition: transform .3s
+      &.closed
+        transition: all .3s
+        transform: rotate(-90deg) !important
 
-        & + .code-lang
-          left: 1.7rem
+    .code-lang
+      position: absolute
+      left: .7rem
+      text-transform: uppercase
+      font-weight: bold
+      font-size: 1.15em
 
-        &.closed
-          transition: all .3s
-          transform: rotate(-90deg) !important
+    .copy-notice
+      position: absolute
+      right: 1.7rem
+      opacity: 0
 
-      .code-lang
-        position: absolute
-        left: .7rem
-        text-transform: capitalize
-        font-weight: bold
-        font-size: .8rem
-        line-height: 1.5rem
+    .copy-button
+      position: absolute
+      right: .7rem
+      cursor: pointer
+      transition: color .2s
 
-      .copy-notice
-        position: absolute
-        top: .25rem
-        right: 1.7rem
-        opacity: 0
-
-      .copy-button
-        position: absolute
-        top: .4rem
-        right: .7rem
-        cursor: pointer
-        transition: color .2s
-
-        &:hover
-          color: $theme-color
+      &:hover
+        color: $theme-color
 
   .gutter
     user-select: none
@@ -191,7 +160,6 @@ blockquote
       .highlight-tools
         &:after
           position: absolute
-          top: .45rem
           left: .7rem
           width: 12px
           height: 12px

@@ -58,7 +58,7 @@ beautify()
     list-style: none
     counter-reset: li
 
-    @media screen and (max-width: $sm)
+    +maxWidth768()
       padding: 0 0 0 .4rem
 
     p
@@ -68,7 +68,7 @@ beautify()
     ul
       padding-left: .6rem
 
-      @media screen and (max-width: $sm)
+      +maxWidth768()
         padding-left: .2rem
 
     li
@@ -92,30 +92,30 @@ beautify()
   ol
     > li
       &:not(.tab)
-        padding: .1rem .2rem .1rem 1.4rem
+        padding: .2em .2em .2em 1.8em
 
       &:before
-        margin-top: .3rem
-        width: w = 1rem
+        margin-top: .65em
+        width: w = 1.45em
         height: h = w
         border-radius: .5 * w
         content: counter(li)
         counter-increment: li
         text-align: center
-        font-size: .6rem
+        font-size: .85em
         line-height: h
 
   ul
     > li:not(.tab)
-      padding: .1rem .2rem .1rem 1rem
+      padding: .2em .2em .2em 1.4em
 
       &:hover
         &:before
           border-color: $pseudo-hover
 
       &:before
-        $w = .3rem
-        top: 10px
+        $w = .42em
+        top: .78em
         width: w = $w
         height: h = w
         border: .5 * w solid $light-blue
@@ -204,8 +204,7 @@ img
         border: 1px solid $light-blue
         border-radius: .6rem
         color: $light-blue
-        font-size: 12px
-        cursor: pointer
+        font-size: .85em
         transition: all .2s ease-in-out
 
         &:hover
@@ -219,14 +218,14 @@ img
       width: fit-content
 
       .social-share
-        font-size: 12px
+        font-size: .85em
 
         .social-share-icon
           margin: 0 4px
-          width: 26px
-          height: 26px
-          font-size: 15px
-          line-height: 25px
+          width: w = 1.85em
+          height: w
+          font-size: 1.2em
+          line-height: w
 
   .post-copyright
     position: relative
@@ -295,29 +294,29 @@ img
   .post-outdate-notice
     position: relative
     margin: 0 0 1rem
-    padding: .5rem 1.2rem
+    padding: .5em 1.2em
     border-radius: 3px
     background-color: $noticeOutdate-bg
     color: $noticeOutdate-color
 
     if hexo-config('noticeOutdate.style') == 'flat'
-      padding: .5rem 1.2rem .5rem 1.8rem
+      padding: .5em 1em .5em 2.6em
       border-left: 5px solid $noticeOutdate-border
 
       &:before
         @extend .fontawesomeIcon
         position: absolute
         top: 50%
-        left: 1em
+        left: .9em
         color: $noticeOutdate-border
         content: '\f071'
         transform: translateY(-50%)
 
-@media screen and (max-width: 1024px)
++maxWidth1024()
   .layout_post
     width: auto
 
-@media screen and (max-width: $sm)
++maxWidth768()
   .layout_post
     padding: 1rem 5px
 
@@ -325,7 +324,7 @@ img
       padding: 1.8rem .7rem
 
 // adjust the layout width in big screen
-@media screen and (min-width: $lr)
++minWidth2000()
   .layout_post
     max-width: 1300px
 

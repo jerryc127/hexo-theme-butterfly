@@ -25,7 +25,7 @@ script.
   }
 
   if ('!{theme.comments.use[0]}' === 'Disqus' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) loadComment(document.getElementById('disqus_thread'), loadDisqus)
+    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
     else loadDisqus()
   } else {
     function loadOtherComment () {

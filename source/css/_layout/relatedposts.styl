@@ -1,53 +1,54 @@
 .relatedPosts
   margin-top: 1rem
 
-  .relatedPosts_headline
+  & > .headline
     margin-bottom: 5px
     font-weight: 700
-    font-size: 20px
+    font-size: 1.43em
 
-  .relatedPosts_item
-    position: relative
-    display: inline-block
-    overflow: hidden
-    margin: 3px
-    width: calc(33.333% - 6px)
-    height: 200px
-    background: $dark-black
-    vertical-align: bottom
+  & > .relatedPosts-list
+    & > div
+      position: relative
+      display: inline-block
+      overflow: hidden
+      margin: 3px
+      width: calc(33.333% - 6px)
+      height: 200px
+      background: $dark-black
+      vertical-align: bottom
 
-    &:hover
-      .relatedPosts_cover
-        opacity: .8
-        transform: scale(1.1)
+      &:hover
+        .cover
+          opacity: .8
+          transform: scale(1.1)
 
-    @media screen and (max-width: 768px)
-      margin: 2px
-      width: calc(50% - 4px)
-      height: 150px
+      +maxWidth768()
+        margin: 2px
+        width: calc(50% - 4px)
+        height: 150px
 
-    @media screen and (max-width: 480px)
-      width: calc(100% - 4px)
+      +maxWidth600()
+        width: calc(100% - 4px)
 
-  .relatedPosts_cover
-    width: 100%
-    height: 100%
-    opacity: .4
-    transition: all .6s
-    object-fit: cover
+    .cover
+      width: 100%
+      height: 100%
+      opacity: .4
+      transition: all .6s
+      object-fit: cover
 
-  .relatedPosts_main
-    position: absolute
-    top: 50%
-    padding: 0 1rem
-    width: 100%
-    transform: translate(0, -50%)
+    .content
+      position: absolute
+      top: 50%
+      padding: 0 1rem
+      width: 100%
+      transform: translate(0, -50%)
 
-    .relatedPosts_date
-      color: var(--light-grey)
-      font-size: 90%
+      .date
+        color: var(--light-grey)
+        font-size: 90%
 
-    .relatedPosts_title
-      @extend .limit-more-line
-      color: var(--white)
-      -webkit-line-clamp: 2
+      .title
+        @extend .limit-more-line
+        color: var(--white)
+        -webkit-line-clamp: 2

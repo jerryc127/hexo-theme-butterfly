@@ -24,7 +24,8 @@ html(lang=config.language data-theme=theme.display_mode)
             div!= body
           else
             block content
-            include widget/index.pug
+            if theme.aside.enable && page.aside !== false
+              !=partial('includes/widget/index', {}, {cache:theme.fragment_cache})
       else
         main#content-inner.layout_post
           if body

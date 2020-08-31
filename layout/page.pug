@@ -7,7 +7,7 @@ block content
         |  - 
         span.tag-cloud__amount= site.tags.length
       .tag-cloud-tags
-        !=cloudTags({source: site.tags, minfontsize: 15, maxfontsize: 30, limit: 0})
+        !=cloudTags({source: site.tags, minfontsize: 1, maxfontsize: 2.1, limit: 0, unit: 'em'})
       if page.comments !== false && theme.comments && theme.comments.use
         - var commentsJsLoad = true
         !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})

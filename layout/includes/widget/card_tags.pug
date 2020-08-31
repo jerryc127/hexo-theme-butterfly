@@ -7,6 +7,6 @@ if site.tags.length
 
       - let tagLimit = theme.aside.card_tags.limit === 0 ? 0 : theme.aside.card_tags.limit || 40
       if theme.aside.card_tags.color
-        .card-tag-cloud!=cloudTags({source: site.tags, minfontsize: 16, maxfontsize: 22, limit: tagLimit})
+        .card-tag-cloud!= cloudTags({source: site.tags, minfontsize: 1.1, maxfontsize: 1.5, limit: tagLimit, unit: 'em'})
       else
-        .card-tag-cloud!= tagcloud({min_font: 16, max_font: 22, amount: tagLimit , color: true, start_color: '#999', end_color: '#99a9bf'})
+        .card-tag-cloud!= tagcloud({min_font: 1.1, max_font: 1.5, amount: tagLimit , color: true, start_color: '#999', end_color: '#99a9bf', unit: 'em'})

@@ -4,10 +4,6 @@ section#rightside
       if theme.readmode
         button#readmode(type="button" title=_p('rightside.readmode_title'))
           i.fas.fa-book-open
-      button#font_plus(type="button" title=_p('rightside.font_plus_title'))
-        i.fas.fa-plus
-      button#font_minus(type="button" title=_p('rightside.font_minus_title'))
-        i.fas.fa-minus
     if theme.translate && theme.translate.enable
       button#translateLink(type="button" title=_p('rightside.translate_title'))= theme.translate.default
     if theme.darkmode.enable && theme.darkmode.button

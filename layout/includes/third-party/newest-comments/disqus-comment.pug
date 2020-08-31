@@ -1,0 +1,71 @@
+script.
+  window.addEventListener('load', () => {
+    const changeContent = (content) => {
+      if (content === '') return content
+
+      content = content.replace(/<[^>]+>/g,"") // remove html tag
+      content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
+      content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
+
+      if (content.length > 150) {
+        content = content.substring(0,150) + '...'
+      }
+      return content
+    }
+
+    const getDisqusComment = () => {
+      let disqusArray = []
+      $.getJSON('https://disqus.com/api/3.0/forums/listPosts.json?forum=!{theme.newest_comments.disqus.forum}&related=thread&limit=!{theme.newest_comments.limit}&api_key=!{theme.newest_comments.disqus.api_key}', function(data){
+        $.each(data.response, (i, item) => {
+          disqusArray.push({
+            'avatar': item.author.avatar.cache,
+            'content': changeContent(item.message),
+            'nick': item.author.name,
+            'url': item.url,
+            'date': item.createdAt
+          })
+        })
+        // set expiry to 10 min
+        saveToLocal.set('disqus-newest-comments', JSON.stringify(disqusArray), 10/(60*24))
+        generateHtml(disqusArray)
+      })
+    }
+
+    const generateHtml = array => {
+      let result = ''
+
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (!{theme.newest_comments.avatar}) {
+          result += `<a href='${array[i].url}' class="thumbnail"><img src='${array[i].avatar}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+
+      let $dom = document.querySelector('.card-newest-comments .aside-list')
+      $dom.innerHTML= result
+      window.pjax && window.pjax.refresh($dom)
+    }
+
+    const newestCommentInit = () => {
+      if (document.querySelector('.card-newest-comments .aside-list')) {
+        const data = saveToLocal.get('disqus-newest-comments')
+        if (data) {
+          generateHtml(JSON.parse(data))
+        } else {
+          getDisqusComment()
+        }
+      }
+    }
+
+    newestCommentInit()
+    document.addEventListener('pjax:complete', newestCommentInit)
+  })
+
+
+

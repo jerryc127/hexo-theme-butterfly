@@ -11,19 +11,19 @@
     .card-info-data
       if site.posts.length
         .card-info-data-item.is-center
-          a(href=url_for(config.archive_dir))
+          a(href=url_for(config.archive_dir) + '/')
             .headline= _p('aside.articles') 
             .length_num= site.posts.length
 
       if site.tags.length
-        .card-info-data-item.is-center       
-          a(href=url_for(config.tag_dir))
+        .card-info-data-item.is-center
+          a(href=url_for(config.tag_dir) + '/')
             .headline= _p('aside.tags')
             .length_num= site.tags.length
 
       if site.categories.length
         .card-info-data-item.is-center
-          a(href=url_for(config.category_dir))
+          a(href=url_for(config.category_dir) + '/')
             .headline= _p('aside.categories') 
             .length_num= site.categories.length
 

@@ -16,8 +16,8 @@ if (theme.canvas_nest && theme.canvas_nest.enable)
 if theme.activate_power_mode.enable
   script(src=url_for(theme.CDN.activate_power_mode))
   script.
-    POWERMODE.colorful = #{theme.activate_power_mode.colorful};
-    POWERMODE.shake = #{theme.activate_power_mode.shake};
+    POWERMODE.colorful = !{theme.activate_power_mode.colorful};
+    POWERMODE.shake = !{theme.activate_power_mode.shake};
     document.body.addEventListener('input', POWERMODE);
 
 //- 鼠標特效

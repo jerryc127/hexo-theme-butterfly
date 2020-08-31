@@ -47,12 +47,10 @@
 
           .length_num
             color: var(--text-highlight-color)
-            font-size: .9rem
+            font-size: 1.28em
 
           .headline
-            display: block
             color: var(--font-color)
-            font-size: .7rem
 
     hr
       margin: 1rem auto
@@ -66,7 +64,7 @@
         display: block
         padding: .3rem 1.5rem
         color: var(--font-color)
-        font-size: .8rem
+        font-size: 1.15em
         cursor: pointer
 
         i:first-child
@@ -81,13 +79,16 @@
 
       .expand
         position: absolute
-        right: 0
-        padding: .4rem
+        top: .78em
+        right: .4rem
         transition: transform .3s
 
-        &.closed
+        &.hide
           transform: rotate(90deg) !important
 
       .menus_item_child
         margin: 0
         list-style: none
+
+        if hexo-config('hide_sidebar_menu_child')
+          display: none

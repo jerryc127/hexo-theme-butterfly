@@ -1,26 +1,31 @@
 .card-widget.card-webinfo
   .card-content
     .item-headline
-        i.fas.fa-chart-line
-        span= _p('aside.card_webinfo.headline')
+      i.fas.fa-chart-line
+      span= _p('aside.card_webinfo.headline')
     .webinfo
-      .webinfo-item
-        .webinfo-article-name= _p('aside.card_webinfo.article_name') + " :"
-        .webinfo-article-count= site.posts.length      
+      if theme.aside.card_webinfo.post_count
+        .webinfo-item
+          .item-name= _p('aside.card_webinfo.article_name') + " :"
+          .item-count= site.posts.length
       if theme.runtimeshow.enable
         .webinfo-item
-          .webinfo-runtime-name= _p('aside.card_webinfo.runtime_name') + " :"
-          #webinfo-runtime-count.webinfo-runtime-count(publish_date=theme.runtimeshow.publish_date)      
+          .item-name= _p('aside.card_webinfo.runtime.name') + " :"
+          .item-count#runtimeshow(data-publishDate=date_xml(theme.runtimeshow.publish_date))
       if theme.wordcount.enable && theme.wordcount.total_wordcount
         .webinfo-item
-          .webinfo-site-wordcount-name=_p('aside.card_webinfo.site_wordcount') + " :"
-          .webinfo-site-wordcount=totalcount(site)
+          .item-name=_p('aside.card_webinfo.site_wordcount') + " :"
+          .item-count=totalcount(site)
       if theme.busuanzi.site_uv 
-        .webinfo-item       
-          .webinfo-site-uv-name= _p('aside.card_webinfo.site_uv_name') + " :"
-          .webinfo-site-uv-count#busuanzi_value_site_uv
+        .webinfo-item
+          .item-name= _p('aside.card_webinfo.site_uv_name') + " :"
+          .item-count#busuanzi_value_site_uv
       if theme.busuanzi.site_pv
         .webinfo-item
-          .webinfo-site-name= _p('aside.card_webinfo.site_pv_name') + " :"
-          .webinfo-site-pv-count#busuanzi_value_site_pv
+          .item-name= _p('aside.card_webinfo.site_pv_name') + " :"
+          .item-count#busuanzi_value_site_pv
+      if theme.aside.card_webinfo.last_push_date
+        .webinfo-item
+          .item-name= _p('aside.card_webinfo.last_push_date.name') + " :"
+          .item-count#last-push-date(data-lastPushDate=date_xml(Date.now()))
 

@@ -1,0 +1,39 @@
+if $highlight_theme != false
+  @require 'diff'
+
+#article-container
+  figure.highlight
+    .line
+      if wordWrap
+        &:before
+          display: inline-block
+          padding: 0 .3rem 0 0
+          min-width: 1.6rem
+          color: $highlight-gutter.color
+          content: counter(line)
+          counter-increment: line
+          text-align: left
+
+      &.marked
+        background-color: $highlight-selection
+
+    table
+      display: block
+      overflow: auto
+      border: none
+
+    td
+      padding: 0
+      border: none
+
+    .gutter pre
+      padding-right: .5rem
+      padding-left: .5rem
+      background-color: $highlight-gutter.bg-color
+      color: $highlight-gutter.color
+      text-align: right
+
+    .code pre
+      padding-right: .5rem
+      padding-left: .5rem
+      width: 100%
