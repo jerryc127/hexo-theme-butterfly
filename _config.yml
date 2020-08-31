@@ -557,7 +557,6 @@ font:
 
 # Font settings for the site title and site subtitle
 # 左上角網站名字 主頁居中網站名字
-
 # blog_title_font:
   # font_link: https://fonts.googleapis.com/css?family=Titillium+Web&display=swap
   # font-family: Titillium Web, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif
