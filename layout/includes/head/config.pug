@@ -14,8 +14,8 @@
         hits_stats: _p("algolia_search.hits_stats")
       }
     })
-  } 
-  
+  }
+
   let localSearch = 'undefined';
   if (theme.local_search && theme.local_search.enable) {
     localSearch = JSON.stringify({
@@ -58,7 +58,6 @@
     })
   }
 
-  
   let Snackbar = 'undefined';
   if (theme.snackbar && theme.snackbar.enable) {
     Snackbar = JSON.stringify({
@@ -95,15 +94,11 @@
     })
   }
 
-  let date_suffix = 'undefined';
-  if (theme.aside.card_webinfo.last_push_date) {
-    date_suffix = JSON.stringify({
-      one_hour: _p("date_suffix.one_hour"),
-      hours: _p("date_suffix.hours"),
-      day: _p('date_suffix.day')
-
-    })
-  }
+  let date_suffix = JSON.stringify({
+    one_hour: _p("date_suffix.one_hour"),
+    hours: _p("date_suffix.hours"),
+    day: _p('date_suffix.day')
+  })
 
 script.
   var GLOBAL_CONFIG = { 
@@ -139,18 +134,18 @@ script.
     islazyload: !{theme.lazyload.enable},
     isanchor: !{theme.anchor}
   };
-  
+
   var saveToLocal = {
     set: function setWithExpiry(key, value, ttl) {
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
+      const now = new Date()
+      const expiryDay = ttl * 86400000
+      const item = {
+        value: value,
+        expiry: now.getTime() + expiryDay,
+      }
+      localStorage.setItem(key, JSON.stringify(item))
       },
-    
+
     get: function getWithExpiry(key) {
       const itemStr = localStorage.getItem(key)
 
