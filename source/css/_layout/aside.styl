@@ -150,6 +150,7 @@
 
         & > time,
         & > .name
+          display: block
           color: $theme-meta-color
           font-size: 85%
 
@@ -164,13 +165,8 @@
           &:hover
             color: $text-hover
 
-  .card-recent-post
-    .thumbnail
-      border-radius: 0 !important
-
-    .no-aside-cover
-      title
-        height: auto
+      &.no-cover
+        min-height: 4.4em
 
   .card-archives ul.card-archive-list,
   .card-categories ul.card-category-list

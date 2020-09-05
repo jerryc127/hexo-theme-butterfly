@@ -52,10 +52,14 @@ script.
 
     // prismjs
     typeof Prism === 'object' && Prism.highlightAll()
+
+    typeof preloader === 'object' && preloader.endLoading()
   })
 
 
   document.addEventListener('pjax:send', function () {
+    typeof preloader === 'object' && preloader.initLoading()
+    
     if (window.aplayers) {
       for (let i = 0; i < window.aplayers.length; i++) {
         if (!window.aplayers[i].options.fixed) {

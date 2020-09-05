@@ -1,43 +1,60 @@
-if is_home()
-  - var top_img = theme.index_img || theme.default_top_img
-else if is_post()
-  - var top_img = page.top_img || page.cover || page.randomcover || theme.default_top_img
-else if is_archive()
-  - var top_img = theme.archive_img || theme.default_top_img
-else if is_tag()
-  - var top_img = theme.tag_img || theme.default_top_img
-else if is_category()
-  - var top_img = theme.category_img || theme.default_top_img
+if page.top_img !== false
+  if is_post()
+    - var top_img = page.top_img || page.cover || page.randomcover || theme.default_top_img
+  else if is_page()
+    - var top_img = page.top_img || theme.default_top_img
+  else if is_tag()
+    - var top_img = theme.tag_per_img && theme.tag_per_img[page.tag] 
+    - top_img = top_img ? top_img : (theme.tag_img !== false ? theme.tag_img || theme.default_top_img : false)
+  else if is_category()
+    - var top_img = theme.category_per_img && theme.category_per_img[page.category]
+    - top_img = top_img ? top_img : (theme.category_img !== false ? theme.category_img || theme.default_top_img : false)
+  else if is_home()
+    - var top_img = theme.index_img !== false ? theme.index_img || theme.default_top_img : false
+  else if is_archive()
+    - var top_img = theme.archive_img !== false ? theme.archive_img || theme.default_top_img : false
+  else
+    - var top_img = page.top_img || theme.default_top_img
+
+  if theme.douban
+    - var doubanExist = false
+    if is_current('/movies/', [strict])
+      - var top_img = theme.douban.movies_img !== false ? theme.douban.movies_img || theme.default_top_img : false
+      - doubanExist = true
+    else if is_current('/books/', [strict])
+      - var top_img = theme.douban.books_img !== false ? theme.douban.books_img || theme.default_top_img : false
+      - doubanExist = true
+    else if is_current('/games/', [strict])
+      - var top_img = theme.douban.games_img !== false ? theme.douban.games_img || theme.default_top_img : false
+      - doubanExist = true
+
+  if top_img !== false
+    - var imgSource = top_img && top_img.indexOf('/') !== -1 ? `background-image: url(${url_for(top_img)})` : `background: ${top_img}`
+    - var bg_img = top_img ? imgSource : ''
+    - var site_title = is_archive() ? _p('page.archives') : page.title || page.tag || page.category || config.title
+    - var isHomeClass = is_home() ? 'full_page' : 'not-index-bg'
+    - is_post() ? isHomeClass = 'post-bg' : isHomeClass
+  else
+    - var isHomeClass = 'no-top-img'
 else
-  - var top_img = page.top_img || theme.default_top_img
-
-if theme.douban
-  if is_current('/movies/', [strict])
-    - var top_img = theme.douban.movies_img || theme.default_top_img
-  else if is_current('/books/', [strict])
-    - var top_img = theme.douban.books_img || theme.default_top_img
-  else if is_current('/games/', [strict])
-    - var top_img = theme.douban.games_img || theme.default_top_img
-
-- var bg_img = top_img && top_img !== true ? `background-image: url(${url_for(top_img)})` : ''
-- var site_title = is_archive() ? _p('page.archives') : page.title || page.tag || page.category || config.title
-- var isHomeClass = is_home() ? 'full_page' : 'not-index-bg'
-- is_post() ? isHomeClass = 'post-bg' : isHomeClass
+  - var top_img = false
+  - var isHomeClass = 'no-top-img'
 
 header#page-header(class=isHomeClass style=bg_img)
   !=partial('includes/header/nav', {}, {cache:theme.fragment_cache})
-  if is_home()
-    #site-info
-      h1#site_title=site_title
-      #site_subtitle
-        span#subtitle
-      if(theme.social)
-        #site_social_icons
-          !=fragment_cache('social', function(){return partial('includes/header/social')})
-    #scroll_down
-      i.fas.fa-angle-down.scroll-down-effects
-  else if is_post()
-    include ./post-info.pug 
-  else
-    #page_site-info
-      h1#site_title=site_title
+  if top_img !== false
+    if is_post()
+      include ./post-info.pug
+    else if is_home() 
+      #site-info
+        h1#site_title=site_title
+        #site_subtitle
+          span#subtitle
+        if(theme.social)
+          #site_social_icons
+            !=fragment_cache('social', function(){return partial('includes/header/social')})
+      #scroll_down
+        i.fas.fa-angle-down.scroll-down-effects
+    else
+      #page_site-info
+        h1#site_title=site_title

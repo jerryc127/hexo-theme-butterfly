@@ -33,7 +33,7 @@ div
     !=partial('includes/loading/loading-js', {}, {cache:theme.fragment_cache})
 
   .js-pjax
-    if is_home() && theme.subtitle.enable
+    if theme.subtitle.enable && is_home() && theme.index_img !== false
       include ./third-party/subtitle.pug
 
     include ./third-party/math/index.pug

@@ -33,9 +33,16 @@ html(lang=config.language data-theme=theme.display_mode)
           else
             block content
       
-      - var footer_bg = theme.footer_bg == false ? '' : bg_img
-      - var is_bg = theme.footer_bg == false ? 'color' : 'photo'
-      footer#footer(style=footer_bg data-type=is_bg)
+      - var footerBg = theme.footer_bg
+      if (footerBg)
+        if (footerBg === true)
+          - var footer_bg = bg_img
+        else
+          - var footer_bg = theme.footer_bg.indexOf('/') !== -1 ? `background-image: url(${url_for(footerBg)})` : `background: ${footerBg}`
+      else
+        - var footer_bg = ''
+
+      footer#footer(style=footer_bg)
         !=partial('includes/footer', {}, {cache:theme.fragment_cache})
 
     include ./rightside.pug

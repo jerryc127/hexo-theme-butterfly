@@ -83,19 +83,17 @@ aside:
     day: 天前
 
 date_suffix:
-  one_hour: 剛剛
-  hours: 小時前
+  just: 剛剛
+  min: 分鐘前
+  hour: 小時前
   day: 天前
+  month: 個月前
 
 donate: 打賞
 share: 分享
-bookmark:
-  title: 新增書籤
 
 rightside:
   readmode_title: 閱讀模式
-  font_plus_title: 放大字型
-  font_minus_title: 縮小字型
   translate_title: 簡繁轉換
   night_mode_title: 淺色和深色模式轉換
   back_to_top: 回到頂部
@@ -110,9 +108,6 @@ copy_copyright:
   info: 著作權歸作者所有。商業轉載請聯絡作者獲得授權，非商業轉載請註明出處。
 
 Snackbar:
-  bookmark:
-    message_prev: 按
-    message_next: 鍵將本頁加入書籤
   chs_to_cht: 你已切換為繁體
   cht_to_chs: 你已切換為簡體
   day_to_night: 你已切換為深色模式

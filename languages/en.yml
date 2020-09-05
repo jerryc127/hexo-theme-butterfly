@@ -81,19 +81,17 @@ aside:
     day: days ago
 
 date_suffix:
-  one_hour: Just
-  hours: hours ago
+  just: Just
+  min: minutes ago
+  hour: hours ago
   day: days ago
+  month: months ago
 
 donate: Donate
 share: Share
-bookmark:
-  title: Bookmark
 
 rightside:
   readmode_title: Read Mode
-  font_plus_title: Increase Font Size
-  font_minus_title: Decrease Font Size
   translate_title: Switch Between Traditional Chinese And Simplified Chinese
   night_mode_title: Switch Between Light And Dark Mode
   back_to_top: Back To Top
@@ -108,9 +106,6 @@ copy_copyright:
   info: Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
 
 Snackbar:
-  bookmark:
-    message_prev: Press
-    message_next: to bookmark this page
   chs_to_cht: Traditional Chinese Activated Manually
   cht_to_chs: Simplified Chinese Activated Manually
   day_to_night: Dark Mode Activated Manually

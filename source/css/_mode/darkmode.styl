@@ -29,20 +29,19 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --sidebar-icon-color: alpha(#FFFFFF, .6)
 
     // 網站背景，footer背景
-    #web_bg[data-type=color],
-    #footer[data-type=color]
+    #web_bg[data-type=color]
       background: darken(#121212, 2)
 
-    #web_bg[data-type=photo]:before,
-    #footer[data-type=photo]:before
+    #web_bg[data-type=photo]:before
       position: absolute
       width: 100%
       height: 100%
       background-color: alpha($dark-black, .7)
       content: ''
 
-    #page-header
-      background-color: #121212
+    #footer
+      &:before
+        background-color: alpha($dark-black, .7)
 
     #article-container
       code
@@ -67,10 +66,10 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         background-color: alpha($dark-black, .7)
         content: ''
 
-      & > #nav
-        &.fixed
-          background: alpha(#121212, .8)
-          box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0)
+      & > #nav.fixed,
+      &.no-top-img #nav
+        background: alpha(#121212, .8)
+        box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0)
 
     // 代碼框
     #article-container

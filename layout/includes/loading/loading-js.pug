@@ -1,6 +1,13 @@
 script.
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loading-box').classList.add("loaded")
+  var preloader = {
+    endLoading: () => {
+      document.body.style.overflow = 'auto';
+      document.getElementById('loading-box').classList.add("loaded")
+    },
+    initLoading: () => {
+      document.body.style.overflow = '';
+      document.getElementById('loading-box').classList.remove("loaded")
+
+    }
   }
-  window.addEventListener('load',endLoading)
+  window.addEventListener('load',()=> {preloader.endLoading()})

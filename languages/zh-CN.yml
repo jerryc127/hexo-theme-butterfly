@@ -83,19 +83,17 @@ aside:
     day: 天前
 
 date_suffix:
-  one_hour: 刚刚
-  hours: 小时前
+  just: 刚刚
+  min: 分钟前
+  hour: 小时前
   day: 天前
+  month: 个月前
 
 donate: 打赏
 share: 分享
-bookmark:
-  title: 添加书签
 
 rightside:
   readmode_title: 阅读模式
-  font_plus_title: 放大字体
-  font_minus_title: 缩小字体
   translate_title: 简繁转换
   night_mode_title: 浅色和深色模式转换
   back_to_top: 回到顶部
@@ -110,9 +108,6 @@ copy_copyright:
   info: 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 Snackbar:
-  bookmark:
-    message_prev: 按
-    message_next: 键将本页加入书签
   chs_to_cht: 你已切换为繁体
   cht_to_chs: 你已切换为简体
   day_to_night: 你已切换为深色模式
