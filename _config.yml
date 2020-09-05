@@ -94,22 +94,32 @@ avatar:
   img:
   effect: false
 
-# the banner image of home page
+# The banner image of home page
 index_img:
 
-# if the banner of page not setting, it will show the top_img
+# If the banner of page not setting, it will show the top_img
 default_top_img:
 
-# the banner image of archive page
+# The banner image of archive page
 archive_img:
 
-# the banner image of tag page
+# If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
 tag_img:
 
-# the banner image of category page
+# The banner image of tag page
+# format: 
+#  - tag name: xxxxx
+tag_per_img:
+
+# If the banner of category page not setting, it will show the top_img
 # note: category page, not categories page (子分類頁面的 top_img)
 category_img:
+
+# The banner image of category page
+# format: 
+#  - category name: xxxxx
+category_per_img:
 
 # If you are using hexo-douban, you can configure it (如果你有使用 hexo-douban,可配置這個)
 # douban:
