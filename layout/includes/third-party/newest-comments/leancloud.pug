@@ -28,7 +28,7 @@ script.
         result += '<div class=\'aside-list-item\'>'
 
         if (!{theme.newest_comments.avatar}) {
-          result += `<a href='${array[i].url}' class="thumbnail"><img src='${getIcon(array[i].avatar, array[i].mail)}'></a>`
+          result += `<a href='${array[i].url}' class="thumbnail"><img src='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
         }
 
         result += `<div class='content'>

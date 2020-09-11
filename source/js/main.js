@@ -29,7 +29,7 @@ $(function () {
   const initAdjust = () => {
     if (window.innerWidth < 768) adjustMenu(0)
     else adjustMenu(2)
-    $('#nav').css({ opacity: '1', animation: 'headerNoOpacity 1s' })
+    $('#nav').addClass('show')
   }
 
   /**
@@ -725,20 +725,19 @@ $(function () {
     const $cardCategory = $('#aside-cat-list .card-category-list-item.parent i')
     $cardCategory.on('click', function (e) {
       e.preventDefault()
-      const $this = $(this)
-      $this.toggleClass('expand')
-      $this.parents('.parent').next().toggle()
+      $(this).toggleClass('expand').parents('.parent').next().slideToggle(300)
     })
   }
 
   const switchComments = function () {
     let switchDone = false
     $('#switch-comments-btn').on('click', function () {
-      $('#post-comment > .comment-wrap > div').each(function () {
-        if ($(this).is(':visible')) {
-          $(this).hide()
+      $('#post-comment > .comment-wrap > div').each(function (i, o) {
+        const $this = $(o)
+        if ($this.is(':visible')) {
+          $this.hide()
         } else {
-          $(this).css({
+          $this.css({
             display: 'block',
             animation: 'tabshow .5s'
           })
