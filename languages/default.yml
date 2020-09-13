@@ -77,8 +77,7 @@ aside:
   card_newest_comments:
     heading: Newest Comments
     loading_text: loading...
-    zero_day: Today
-    day: days ago
+    error: Unable to get the data, please make sure the settings are correct.
 
 date_suffix:
   just: Just

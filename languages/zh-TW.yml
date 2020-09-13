@@ -79,8 +79,7 @@ aside:
   card_newest_comments:
     heading: 最新評論
     loading_text: 正在加載中...
-    zero_day: 今天
-    day: 天前
+    error: 無法獲取資料，請確認相關配置是否正確
 
 date_suffix:
   just: 剛剛
