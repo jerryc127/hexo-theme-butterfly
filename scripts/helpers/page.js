@@ -34,19 +34,32 @@ hexo.extend.helper.register('injectHtml', function (data) {
 
 hexo.extend.helper.register('cloudTags', function (options = {}) {
   const env = this
-  const source = options.source
+  let source = options.source
   const minfontsize = options.minfontsize
   const maxfontsize = options.maxfontsize
   const limit = options.limit
   const unit = options.unit || 'px'
 
   let result = ''
-  const tagLimit = limit === 0 ? source.length : limit
-  source.sort('name').limit(tagLimit).forEach(function (tags) {
-    const fontSizeRD = Math.random() * (maxfontsize - minfontsize) + minfontsize
-    const fontSize = fontSizeRD.toFixed(2) + unit
+  if (limit > 0) {
+    source = source.limit(limit)
+  }
+
+  const sizes = []
+  source.sort('length').forEach(tag => {
+    const { length } = tag
+    if (sizes.includes(length)) return
+    sizes.push(length)
+  })
+
+  const length = sizes.length - 1
+  source.forEach(tag => {
+    const ratio = length ? sizes.indexOf(tag.length) / length : 0
+    const size = minfontsize + ((maxfontsize - minfontsize) * ratio)
+    let style = `font-size: ${parseFloat(size.toFixed(2))}${unit};`
     const color = 'rgb(' + Math.floor(Math.random() * 201) + ', ' + Math.floor(Math.random() * 201) + ', ' + Math.floor(Math.random() * 201) + ')' // 0,0,0 -> 200,200,200
-    result += `<a href='${env.url_for(tags.path)}' style='font-size:${fontSize}; color:${color}'>${tags.name}</a>`
+    style += ` color: ${color}`
+    result += `<a href="${env.url_for(tag.path)}" style="${style}">${tag.name}</a>`
   })
   return result
 })
