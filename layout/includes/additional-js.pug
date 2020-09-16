@@ -35,6 +35,9 @@ div
   .js-pjax
     if theme.subtitle.enable && is_home() && theme.index_img !== false
       include ./third-party/subtitle.pug
+    
+    if page.type === 'artitalk'
+      include ./third-party/artitalk.pug
 
     include ./third-party/math/index.pug
 

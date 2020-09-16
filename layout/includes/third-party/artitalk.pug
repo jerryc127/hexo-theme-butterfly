@@ -1,0 +1,24 @@
+- let option = theme.artitalk.option ? JSON.stringify(theme.artitalk.option) : false
+
+script.
+  (()=>{
+    let setting = {
+      appId: '!{theme.artitalk.appId}',
+      appKey: '!{theme.artitalk.appKey}',
+    }
+
+    if (!{Boolean(option)}) {
+      const otherSetting = !{option}
+      setting = Object.assign({}, setting, otherSetting)
+    }
+
+    const init = () => {
+      new Artitalk(setting)
+    }
+
+    if (typeof Artitalk === 'function') {
+      init()
+    } else {
+      $.getScript('!{theme.CDN.artitalk}',init)
+    }
+  })()
