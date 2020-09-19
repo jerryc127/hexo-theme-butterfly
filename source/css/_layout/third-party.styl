@@ -1,5 +1,5 @@
 #vcomment
-  font-size: 1.15em
+  font-size: 1.1em
 
   .vbtn
     border: none
@@ -12,6 +12,9 @@
   if hexo-config('valine.bg')
     textarea
       background: url(hexo-config('valine.bg')) 100% 100% no-repeat
+
+      &:focus
+        background: none
 
   .vimg
     transition: all .3s

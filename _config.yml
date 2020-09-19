@@ -497,6 +497,9 @@ footer_bg: false
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:
 
+# Enter transitions (開啓網頁進入效果)
+enter_transitions: true
+
 # Background effects (背景特效)
 # --------------------------------------
 

@@ -45,31 +45,189 @@ minWidth2000()
   @media screen and (min-width: 2000px)
     {block}
 
-[data-theme='light']
-  --global-bg: $body-bg
-  --font-color: $font-black
-  --hr-border: lighten($theme-hr-color, 50%)
-  --hr-before-color: lighten($theme-hr-color, 30%)
-  --search-bg: $search-bg
-  --search-input-color: $search-input-color
-  --search-result-title: $search-result-title
-  --preloader-bg: $preloader-bg
-  --preloader-color: $preloader-word-color
-  --tab-border-color: $tab-border-color
-  --tab-botton-bg: $tab-botton-bg
-  --tab-botton-color: $tab-botton-color
-  --tab-button-hover-bg: $tab-button-hover-bg
-  --tab-button-active-bg: $tab-button-active-bg
-  --card-bg: $card-bg
-  --sidebar-bg: $sidebar-background
-  --btn-hover-color: $button-hover-color
-  --btn-color: $button-color
-  --btn-bg: $button-bg
-  --text-bg-hover: $text-bg-hover
-  --light-grey: $light-grey
-  --white: $white
-  --text-highlight-color: $text-highlight-color
-  --blockquote-color: $blockquote-color
-  --blockquote-bg: $blockquote-background-color
-  --reward-pop: $reward-pop-up-bg
-  --sidebar-icon-color: $sidebar-icon-color
+// animation
+if hexo-config('enter_transitions')
+  #content-inner,
+  #footer
+    animation: main 1s
+
+  #page-header
+    animation: header-effect 1s
+
+  #site-title,
+  #site-subtitle
+    animation: titlescale 1s
+
+  #nav.show
+    animation: headerNoOpacity 1s
+
+  canvas:not(#ribbon-canvas),
+  #web_bg
+    animation: to_show 4s
+
+  #ribbon-canvas
+    animation: ribbon_to_show 4s
+
+  .tocOpenPc
+    .sidebar-toc__title
+      animation: tocsidebarLtoR .5s
+
+    .sidebar-toc__progress
+      animation: tocsidebarLtoR .7s
+
+    .sidebar-toc__content
+      animation: tocsidebarLtoR .9s
+
+  .tocOpenMobile
+    .sidebar-toc__title
+      animation: tocsidebarRtoL .4s
+
+    .sidebar-toc__progress
+      animation: tocsidebarRtoL .6s
+
+    .sidebar-toc__content
+      animation: tocsidebarRtoL .7s
+
+  #mobile-sidebar-menus
+    &.open
+      for i in 1 2 3 4
+        > :nth-child({i})
+          animation: sidebarItem (i / 5)s
+
+.card-announcement-animation
+  color: #FF0000
+  animation: announ_animation .8s linear infinite
+
+.scroll-down-effects
+  animation: scroll-down-effect 1.5s infinite
+
+if hexo-config('avatar.effect') == true
+  .avatar-img
+    animation: avatar_turn_around 2s linear infinite
+
+.reward-main
+  animation: donate_effcet .3s .1s ease both
+
+@keyframes scroll-down-effect
+  0%
+    top: 0
+    opacity: .4
+
+  50%
+    top: -16px
+    opacity: 1
+
+  100%
+    top: 0
+    opacity: .4
+
+@keyframes header-effect
+  0%
+    opacity: 0
+    transform: translateY(-50px)
+
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes headerNoOpacity
+  0%
+    transform: translateY(-50px)
+
+  100%
+    transform: translateY(0)
+
+@keyframes main
+  0%
+    opacity: 0
+    transform: translateY(50px)
+
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes titlescale
+  0%
+    opacity: 0
+    transform: scale(.7)
+
+  100%
+    opacity: 1
+    transform: scale(1)
+
+@keyframes search_close
+  0%
+    opacity: 1
+    transform: scale(1)
+
+  100%
+    opacity: 0
+    transform: scale(.7)
+
+@keyframes to_show
+  0%
+    opacity: 0
+
+  100%
+    opacity: 1
+
+@keyframes ribbon_to_show
+  0%
+    opacity: 0
+
+  100%
+    opacity: hexo-config('canvas_ribbon.alpha')
+
+@keyframes avatar_turn_around
+  from
+    transform: rotate(0)
+
+  to
+    transform: rotate(360deg)
+
+@keyframes sub_menus
+  0%
+    opacity: 0
+    transform: translateY(10px)
+
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes donate_effcet
+  0%
+    opacity: 0
+    transform: translateY(-20px)
+
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes announ_animation
+  0%,
+  to
+    transform: scale(1)
+
+  50%
+    transform: scale(1.2)
+
+@keyframes sidebarItem
+  0%
+    transform: translateX(200px)
+
+  100%
+    transform: translateX(0)
+
+@keyframes tocsidebarRtoL
+  0%
+    transform: translateX(200px)
+
+  100%
+    transform: translateX(0)
+
+@keyframes tocsidebarLtoR
+  0%
+    transform: translateX(-200px)
+
+  100%
+    transform: translateX(0)

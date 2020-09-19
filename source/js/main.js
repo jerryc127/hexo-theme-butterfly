@@ -186,7 +186,7 @@ $(function () {
  * 首頁top_img底下的箭頭
  */
   const scrollDownInIndex = () => {
-    $('#scroll_down').on('click', function () {
+    $('#scroll-down').on('click', function () {
       btf.scrollToDest('#content-inner')
     })
   }
@@ -657,22 +657,6 @@ $(function () {
   }
 
   /**
- * 百度推送
- */
-  const pushToBaidu = () => {
-    const bp = document.createElement('script')
-    const curProtocol = window.location.protocol.split(':')[0]
-    if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
-    } else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
-    }
-    bp.dataset.pjax = ''
-    const s = document.getElementsByTagName('script')[0]
-    s.parentNode.insertBefore(bp, s)
-  }
-
-  /**
  * tag-hide
  */
   const clickFnOfTagHide = function () {
@@ -789,7 +773,6 @@ $(function () {
     clickFnOfSubMenu()
     GLOBAL_CONFIG.islazyload && lazyloadImg()
     GLOBAL_CONFIG.copyright !== undefined && addCopyright()
-    GLOBAL_CONFIG.baiduPush && pushToBaidu()
   }
 
   window.refreshFn = function () {

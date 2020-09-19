@@ -62,7 +62,7 @@ $(function () {
           return {
             title: $('title', this).text(),
             content: $('content', this).text(),
-            url: $('url', this).text()
+            url: GLOBAL_CONFIG.root + $('url', this).text()
           }
         }).get()
 
