@@ -62,7 +62,7 @@ $(function () {
           return {
             title: $('title', this).text(),
             content: $('content', this).text(),
-            url: GLOBAL_CONFIG.root + $('url', this).text()
+            url: $('url', this).text()
           }
         }).get()
 
@@ -85,7 +85,7 @@ $(function () {
             }
             let dataTitle = data.title.trim().toLowerCase()
             const dataContent = data.content.trim().replace(/<[^>]+>/g, '').toLowerCase()
-            const dataUrl = data.url
+            const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url
             let indexTitle = -1
             let indexContent = -1
             let firstOccur = -1
