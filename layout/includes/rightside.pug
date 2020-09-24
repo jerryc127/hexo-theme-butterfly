@@ -10,8 +10,12 @@ section#rightside
       button#darkmode(type="button" title=_p('rightside.night_mode_title'))
         i.fas.fa-adjust
   #rightside-config-show
-    button#rightside_config(type="button" title=_p("rightside.setting"))
-      i.fas.fa-cog
+    if !(is_post()) && ((theme.translate && theme.translate.enable) || (theme.darkmode.enable && theme.darkmode.button))
+      button#rightside_config(type="button" title=_p("rightside.setting"))
+        i.fas.fa-cog
+    else if is_post() && (theme.readmode || (theme.translate && theme.translate.enable) || (theme.darkmode.enable && theme.darkmode.button))
+      button#rightside_config(type="button" title=_p("rightside.setting"))
+        i.fas.fa-cog
     if is_post() && page.comments !== false && theme.comments.use
       a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
         i.fas.fa-comments
