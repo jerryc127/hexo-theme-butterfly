@@ -27,6 +27,9 @@ script.
         })
         saveToLocal.set('github-newest-comments', JSON.stringify(githubArray), 10/(60*24))
         generateHtml(githubArray)
+      }).fail(()=>{
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
       })
     }
 
@@ -37,7 +40,7 @@ script.
         result += '<div class=\'aside-list-item\'>'
 
         if (!{theme.newest_comments.avatar}) {
-          result += `<a href='${array[i].url}' class="thumbnail"><img src='${array[i].avatar}'></a>`
+          result += `<a href='${array[i].url}' class="thumbnail"><img src='${array[i].avatar}' alt='${array[i].nick}'></a>`
         }
 
         result += `<div class='content'>
@@ -46,13 +49,13 @@ script.
         </div></div>`
       }
 
-      let $dom = document.querySelector('.card-newest-comments .aside-list')
+      let $dom = document.querySelector('#card-newest-comments .aside-list')
       $dom.innerHTML= result
       window.pjax && window.pjax.refresh($dom)
     }
 
     const newestCommentInit = () => {
-      if (document.querySelector('.card-newest-comments .aside-list')) {
+      if (document.querySelector('#card-newest-comments .aside-list')) {
         const data = saveToLocal.get('github-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))

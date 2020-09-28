@@ -17,6 +17,8 @@
 
 ### Git 安裝
 
+> 本倉庫同時上傳到 [Gitee](https://gitee.com/iamjerryw/hexo-theme-butterfly)，如果你訪問 Github 緩慢，可從 Gitee 中下載。
+
 在博客根目錄裡安裝穩定版【推薦】
 
 ```powershell

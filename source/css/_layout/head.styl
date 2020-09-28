@@ -2,7 +2,6 @@
   position: relative
   width: 100%
   background-color: $light-blue
-  background-attachment: scroll
   background-position: center center
   background-size: cover
   background-repeat: no-repeat
@@ -19,14 +18,14 @@
       padding: 0 .5rem
       width: 100%
 
-  #site_title,
-  #site_subtitle,
-  #scroll_down .scroll-down-effects
+  #site-title,
+  #site-subtitle,
+  #scroll-down .scroll-down-effects
     text-align: center
     text-shadow: .1rem .1rem .2rem rgba(0, 0, 0, .15)
     line-height: 1.5
 
-  #site_title
+  #site-title
     margin: 0
     color: var(--white)
     font-size: 1.85em
@@ -34,7 +33,7 @@
     +minWidth768()
       font-size: 2.85em
 
-  #site_subtitle
+  #site-subtitle
     color: var(--light-grey)
     font-size: 1.15em
 
@@ -57,7 +56,7 @@
       font-size: 1.43em
       cursor: pointer
 
-  #scroll_down
+  #scroll-down
     position: absolute
     bottom: 0
     width: 100%
@@ -76,7 +75,7 @@
     +maxWidth768()
       height: 14rem
 
-  #page_site-info
+  #page-site-info
     position: absolute
     top: 10rem
     padding: 0 .5rem
@@ -102,66 +101,101 @@
       background-color: alpha($dark-black, .5)
       content: ''
 
+  &.no-top-img
+    margin-bottom: .5rem
+    height: 60px
+    background: 0
+
+    #nav
+      background: rgba(255, 255, 255, .8)
+      box-shadow: 0 5px 6px -5px rgba(133, 133, 133, .6)
+
+      a
+        color: var(--font-color)
+        text-shadow: none
+
+  #post-info
+    position: absolute
+    bottom: 1.5rem
+    padding: 0 8%
+    width: 100%
+    text-align: left
+
+    +maxWidth768()
+      bottom: 1.1rem
+      padding: 0 1.1rem
+
+#post-info
+  #post-title
+    margin-bottom: .4rem
+    font-size: 2.15em
+
+    +maxWidth768()
+      font-size: 1.72em
+
+    .posttitle
+      @extend .limit-more-line
+      color: var(--white)
+      line-height: 1.5
+      -webkit-line-clamp: 3
+
+  #post-meta
+    color: var(--light-grey)
+    font-size: 95%
+
+    +minWidth768()
+      > .meta-secondline
+        > span:first-child
+          display: none
+
+    +maxWidth768()
+      font-size: 90%
+
+      > .meta-firstline,
+      > .meta-secondline
+        display: inline
+
+    .post-meta
+      &-separator
+        margin: 0 .25rem
+
+      &-icon
+        margin-right: .2rem
+
+      &-label
+        if hexo-config('post_meta.post.label')
+          margin-right: .2rem
+        else
+          display: none
+
+    a
+      color: var(--light-grey)
+      transition: all .3s ease-out
+
+      &:hover
+        color: $text-hover
+        text-decoration: underline
+
+    if hexo-config('post_meta.post.date_format') == 'relative'
+      time
+        display: none
+
+// for not top_img
+#post
+  & > #post-info
+    margin-bottom: 1.5rem
+
+    .posttitle
+      padding-bottom: .2rem
+      border-bottom: 1px solid var(--light-grey)
+      color: var(--text-highlight-color)
+
+[data-theme='light']
+  #post
     #post-info
-      position: absolute
-      bottom: 1.5rem
-      padding: 0 8%
-      width: 100%
-      text-align: left
-
-      +maxWidth768()
-        bottom: 1.1rem
-        padding: 0 1.1rem
-
-      #post-title
-        margin-bottom: .4rem
-        font-size: 2.15em
-
-        +maxWidth768()
-          font-size: 1.72em
-
-        .posttitle
-          @extend .limit-more-line
-          color: var(--white)
-          line-height: 1.5
-          -webkit-line-clamp: 3
-
-      #post-meta
-        color: var(--light-grey)
-        font-size: 95%
-
-        +minWidth768()
-          > .meta-secondline
-            > span:first-child
-              display: none
-
-        +maxWidth768()
-          font-size: 90%
-
-          > .meta-firstline,
-          > .meta-secondline
-            display: inline
-
-        .post-meta
-          &-separator
-            margin: 0 .25rem
-
-          &-icon
-            margin-right: .2rem
-
-          &-label
-            if hexo-config('post_meta.post.label')
-              margin-right: .2rem
-            else
-              display: none
-
-        a
-          color: var(--light-grey)
-          transition: all .3s ease-out
-
-          &:hover
-            color: $text-hover
-            text-decoration: underline
+      #post-meta,
+      #post-meta a
+        color: #78818a
 
 // css hack
 // all browser in ios and safari in all apple device
@@ -191,6 +225,9 @@ _:future,
     #menus
       padding-right: 0 !important
 
+  &.show
+    opacity: 1
+
   #blog_name
     flex: 1
 
@@ -210,7 +247,7 @@ _:future,
 
   &.fixed
     position: fixed
-    top: -62px
+    top: -60px
     z-index: 91
     background: rgba(255, 255, 255, .8)
     box-shadow: 0 5px 6px -5px alpha($grey, .6)

@@ -107,6 +107,10 @@
         .fa-angle-right
           margin: 0 .2rem
 
+        if hexo-config('post_meta.page.date_format') == 'relative'
+          time
+            display: none
+
         a
           color: $theme-meta-color
 

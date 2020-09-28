@@ -39,13 +39,12 @@
   &:hover
     box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
 
-+minWidth900()
-  if hexo-config('aside.position') == 'left'
-    #recent-posts,
-    #page,
-    .category-content,
-    #archive,
-    .tag-cloud,
-    #tag,
-    #category
-      order: 2
+if hexo-config('aside.position') == 'left'
+  +minWidth900()
+    .layout_page
+      & > div:first-child
+        order: 2
+
+#page
+  h1.page-title
+    margin-top: .4rem

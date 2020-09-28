@@ -6,8 +6,13 @@
 'use strict'
 
 hexo.extend.filter.register('before_post_render', function (data) {
-  if (data.top_img && data.top_img.indexOf('/') === -1) data.top_img = data.path + data.top_img
-  if (data.cover && data.cover.indexOf('/') === -1) data.cover = data.path + data.cover
+  if (hexo.theme.config.rootConfig.post_asset_folder) {
+    const imgTestReg = /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/
+    const topImg = data.top_img
+    const cover = data.cover
+    if (topImg && topImg.indexOf('/') === -1 && imgTestReg.test(topImg)) data.top_img = data.path + topImg
+    if (cover && cover.indexOf('/') === -1) data.cover = data.path + cover
+  }
 
   if (data.cover === false) {
     data.randomcover = randomCover()
@@ -33,6 +38,7 @@ function randomCover () {
       return cover
     }
   } else {
-    return theme.default_top_img
+    cover = 'https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg'
+    return cover
   }
 }

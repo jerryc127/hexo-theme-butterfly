@@ -28,7 +28,7 @@ script.
         result += '<div class=\'aside-list-item\'>'
 
         if (!{theme.newest_comments.avatar}) {
-          result += `<a href='${array[i].url}' class="thumbnail"><img src='${getIcon(array[i].avatar, array[i].mail)}'></a>`
+          result += `<a href='${array[i].url}' class="thumbnail"><img src='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
         }
 
         result += `<div class='content'>
@@ -37,58 +37,59 @@ script.
         </div></div>`
       }
 
-      let $dom = document.querySelector('.card-newest-comments .aside-list')
+      let $dom = document.querySelector('#card-newest-comments .aside-list')
       $dom.innerHTML= result
       window.pjax && window.pjax.refresh($dom)
     }
 
     const getValineData = () => {
-
-      if (!(AV.applicationId && (AV.applicationKey || AV.masterKey))) {
-        const dataInit = {
-          appId: '!{theme.newest_comments.leancloud.appId}',
-          appKey: '!{theme.newest_comments.leancloud.appKey}'
+        let serverURL = ''
+        if (!{Boolean(theme.newest_comments.leancloud.serverURL)}) {
+          serverURL = '!{theme.newest_comments.leancloud.serverURL}'
+        } else {
+          serverURL = 'https://!{theme.newest_comments.leancloud.appId.substring(0,8)}.api.lncldglobal.com'
         }
 
-        if (!{theme.newest_comments.leancloud.serverURL ? true : false}) {
-          dataInit.serverURL= '!{theme.newest_comments.leancloud.serverURL}'
-        }
-
-        AV.init(dataInit)
+      var settings = {
+        "url": `${serverURL}/1.1/classes/Comment?limit=!{theme.newest_comments.limit}&order=-createdAt`,
+        "method": "GET",
+        "timeout": 0,
+        "headers": {
+          "X-LC-Id": '!{theme.newest_comments.leancloud.appId}',
+          "X-LC-Key": '!{theme.newest_comments.leancloud.appKey}',
+          "Content-Type": "application/json"
+        },
       }
 
-      const query = new AV.Query('Comment');
-      query.descending('createdAt').limit(!{theme.newest_comments.limit})
-
-      var valineArray = []
-      query.find().then(comments => {
-        comments.forEach(comment => {
+      $.ajax(settings).done((response) => {
+        var valineArray = []
+        response.results.forEach((e)=>{
           valineArray.push({
-            'avatar': comment.get('QQAvatar'),
-            'content': changeContent(comment.get('comment')),
-            'mail': comment.get('mail'),
-            'nick': comment.get('nick'),
-            'url': comment.get('url'),
-            'date': comment.createdAt,
+            'avatar': e.QQAvatar,
+            'content': changeContent(e.comment),
+            'mail': e.mail,
+            'nick': e.nick,
+            'url': e.url,
+            'date': e.createdAt,
           })
         })
-      }).then(function() {
+        
         saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
         generateHtml(valineArray)
+
+      }).fail(()=>{
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
       })
     }
 
     const newestCommentInit = () => {
-      if (document.querySelector('.card-newest-comments .aside-list')) {
+      if (document.querySelector('#card-newest-comments .aside-list')) {
         const data = saveToLocal.get('leancloud-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
-          if (typeof window.AV === 'object') {
-            getValineData()
-          } else {
-            $.getScript('https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js', getValineData)
-          }
+          getValineData()
         }
       }
     }

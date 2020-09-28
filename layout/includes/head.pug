@@ -10,7 +10,6 @@
 - var isSubtitle = config.subtitle ? ' - ' + config.subtitle : ''
 - var tabTitle = is_home() || !pageTitle ? config.title + isSubtitle : pageTitle + ' | ' + config.title
 
-- var pageDescription = page_description()
 - var pageKeywords
 - if (page.keywords) pageKeywords = Array.isArray(page.keywords) ? (page.keywords).join(',') :  ([]).join(',') || page.keywords
 - else if (page.tags && page.tags.length) pageKeywords = page.tags.data.map(function(tag) {return tag.name;}).join(',')
@@ -23,7 +22,6 @@ meta(charset='UTF-8')
 meta(http-equiv="X-UA-Compatible" content="IE=edge")
 meta(name="viewport" content="width=device-width,initial-scale=1")
 title= tabTitle
-meta(name="description" content!=pageDescription)
 if pageKeywords
   meta(name="keywords" content=pageKeywords)
 meta(name="author" content=pageAuthor)
@@ -35,6 +33,9 @@ if theme.disable_baidu_transformation
   meta(http-equiv="Cache-Control" content="no-transform")
   meta(http-equiv="Cache-Control" content="no-siteapp")
 
+//- Open_Graph
+include ./head/Open_Graph.pug
+
 !=favicon_tag(theme.favicon || config.favicon)
 link(rel="canonical" href=urlNoIndex())
 
@@ -43,14 +44,6 @@ link(rel="canonical" href=urlNoIndex())
 
 //- 網站驗證
 !=partial('includes/head/site_verification', {}, {cache:theme.fragment_cache})
-
-//- Open_Graph
-include ./head/Open_Graph.pug
-
-if theme.facebook_comments.app_id
-  meta(property="fb:app_id" content=theme.facebook_comments.app_id )
-if theme.facebook_comments.user_id
-  meta(property="fb:admins" content=theme.facebook_comments.user_id)
 
 //- PWA
 if (theme.pwa && theme.pwa.enable)

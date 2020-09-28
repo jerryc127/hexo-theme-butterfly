@@ -1,14 +1,19 @@
 .tag-cloud
-  text-align: center
+  &-list
+    a
+      display: inline-block
+      padding: 0 .4rem
+      transition: all .3s
 
-  a
-    display: inline-block
-    padding: 0 .4rem
-    transition: all .3s
+      &:hover
+        color: $text-hover !important
+        transform: scale(1.1)
 
-    &:hover
-      color: $text-hover !important
-      transform: scale(1.1)
+      +maxWidth768()
+        zoom: .85
 
-  &__title
+  &-title
     font-size: 2.57em
+
+    +maxWidth768()
+      font-size: 2em

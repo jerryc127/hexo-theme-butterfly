@@ -94,22 +94,32 @@ avatar:
   img:
   effect: false
 
-# the banner image of home page
+# The banner image of home page
 index_img:
 
-# if the banner of page not setting, it will show the top_img
+# If the banner of page not setting, it will show the top_img
 default_top_img:
 
-# the banner image of archive page
+# The banner image of archive page
 archive_img:
 
-# the banner image of tag page
+# If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
 tag_img:
 
-# the banner image of category page
+# The banner image of tag page
+# format: 
+#  - tag name: xxxxx
+tag_per_img:
+
+# If the banner of category page not setting, it will show the top_img
 # note: category page, not categories page (子分類頁面的 top_img)
 category_img:
+
+# The banner image of category page
+# format: 
+#  - category name: xxxxx
+category_per_img:
 
 # If you are using hexo-douban, you can configure it (如果你有使用 hexo-douban,可配置這個)
 # douban:
@@ -144,11 +154,13 @@ error_404:
 post_meta:
   page: # Home Page
     date_type: created # created or updated or both 主頁文章日期是創建日或者更新日或都顯示
+    date_format: date # date/relative 顯示日期還是相對日期
     categories: true # true or false 主頁是否顯示分類
     tags: false # true or false 主頁是否顯示標籤
     label: true # true or false 顯示描述性文字
   post:
     date_type: both # created or updated or both 文章頁日期是創建日或者更新日或都顯示
+    date_format: date # date/relative 顯示日期還是相對日期
     categories: true # true or false 文章頁是否顯示分類
     tags: true # true or false 文章頁是否顯示標籤
     label: true # true or false 顯示描述性文字
@@ -164,6 +176,7 @@ wordcount:
 # 1: description
 # 2: both (if the description exists, it will show description, or show the auto_excerpt)
 # 3: auto_excerpt (default)
+# false: do not show the article introduction
 index_post_content:
   method: 3
   length: 500 # if you set method to 2 or 3, the length need to config
@@ -473,16 +486,17 @@ tag_ui: # 留空或 index
 
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
-# The formal of color: '#49B202'
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-# White color will be shown as default
 background:
 
-# Show the footer background image (same as top_img)
+# Footer Background
 footer_bg: false
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:
+
+# Enter transitions (開啓網頁進入效果)
+enter_transitions: true
 
 # Background effects (背景特效)
 # --------------------------------------
@@ -497,8 +511,8 @@ canvas_ribbon:
   click_to_change: false
   mobile: false
 
-# Dynamic ribbon (動態彩帶)
-canvas_ribbon_piao:
+# Fluttering Ribbon (動態彩帶)
+canvas_fluttering_ribbon:
   enable: false
   mobile: false
 
@@ -518,14 +532,18 @@ activate_power_mode:
   enable: false
   colorful: true # open particle animation (冒光特效)
   shake: true #  open shake (抖動特效)
+  mobile: false
 
 # Mouse click effects: fireworks (鼠標點擊效果: 煙火特效)
 fireworks:
   enable: false
   zIndex: 9999 # -1 or 9999
+  mobile: false
 
 # Mouse click effects: Heart symbol (鼠標點擊效果: 愛心)
-click_heart: false
+click_heart:
+  enable: false
+  mobile: false
 
 # Mouse click effects: words (鼠標點擊效果: 文字)
 ClickShowText:
@@ -535,6 +553,7 @@ ClickShowText:
     # - LOVE
     # - YOU
   fontSize: 15px
+  mobile: false
 
 # Default display mode (網站默認的顯示模式)
 # light (default) / dark
@@ -733,6 +752,13 @@ note:
 # other
 # --------------------------------------
 
+# Artitalk
+# see https://artitalk.js.org/
+artitalk:
+  appId:
+  appKey:
+  option:
+
 # Pjax [Beta]
 # It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
@@ -849,9 +875,9 @@ CDN:
   busuanzi: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
 
   # background effect
-  canvas_ribbon: /js/third-party/canvas-ribbon.js
-  canvas_ribbon_piao: /js/third-party/piao.js
-  canvas_nest: /js/third-party/canvas-nest.js
+  canvas_ribbon: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js
+  canvas_fluttering_ribbon: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js
+  canvas_nest: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js
 
   lazyload: https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js
   instantpage: https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js
@@ -868,11 +894,10 @@ CDN:
   snackbar: https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js
 
   # effect
-  anime: https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js
-  activate_power_mode: /js/third-party/activate-power-mode.js
-  fireworks: /js/third-party/fireworks.js
-  click_heart: /js/third-party/click_heart.js
-  ClickShowText: /js/third-party/ClickShowText.js
+  activate_power_mode: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js
+  fireworks: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js
+  click_heart: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js
+  ClickShowText: https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js
 
   # fontawesome
   fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
@@ -893,3 +918,5 @@ CDN:
   prismjs_js: https://cdn.jsdelivr.net/npm/prismjs/prism.min.js
   prismjs_lineNumber_js: https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js
   prismjs_autoloader: https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js
+
+  artitalk: https://cdn.jsdelivr.net/npm/artitalk

@@ -1,0 +1,6 @@
+if theme.douban && theme.douban.meta && doubanExist
+  meta(name="referrer" content="no-referrer")
+#article-container
+  if top_img === false
+    h1.page-title= page.title
+  != page.content

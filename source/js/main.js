@@ -29,7 +29,7 @@ $(function () {
   const initAdjust = () => {
     if (window.innerWidth < 768) adjustMenu(0)
     else adjustMenu(2)
-    $('#nav').css({ opacity: '1', animation: 'headerNoOpacity 1s' })
+    $('#nav').addClass('show')
   }
 
   /**
@@ -159,14 +159,18 @@ $(function () {
     })
 
     const mql = window.matchMedia('(max-width: 1024px)')
-    mql.addListener((ev) => {
+    const $toggleSidebar = $('#toggle-sidebar')
+    const matchFn = (ev) => {
       if (ev.matches) {
         if ($sidebar.hasClass('tocOpenPc')) closeSidebar()
       } else {
-        if ($('#toggle-sidebar').hasClass('on')) openSidebar()
+        if ($toggleSidebar.hasClass('on')) openSidebar()
         if ($mobileTocButton.hasClass('open')) closeMobileSidebar('toc')
       }
-    })
+    }
+
+    mql.addListener(matchFn)
+    document.addEventListener('pjax:send', () => { mql.removeListener(matchFn) })
 
     // toc元素點擊
     $sidebar.find('.toc-link').on('click', function (e) {
@@ -182,7 +186,7 @@ $(function () {
  * 首頁top_img底下的箭頭
  */
   const scrollDownInIndex = () => {
-    $('#scroll_down').on('click', function () {
+    $('#scroll-down').on('click', function () {
       btf.scrollToDest('#content-inner')
     })
   }
@@ -345,9 +349,7 @@ $(function () {
  * fancybox和 mediumZoom
  */
   const addLightBox = function () {
-    const isMediumZoom = GLOBAL_CONFIG.medium_zoom
-    const isFancybox = GLOBAL_CONFIG.fancybox
-    if (isFancybox) {
+    if (GLOBAL_CONFIG.lightbox === 'fancybox') {
       const images = $('#article-container img:not(.gallery-group-img)').not($('a>img'))
       images.each(function (i, o) {
         const lazyloadSrc = $(o).attr('data-lazy-src') ? $(o).attr('data-lazy-src') : $(o).attr('src')
@@ -363,7 +365,7 @@ $(function () {
         buttons: ['slideShow', 'fullScreen', 'thumbs', 'close'],
         hash: false
       })
-    } else if (isMediumZoom) {
+    } else {
       const zoom = mediumZoom(document.querySelectorAll('#article-container :not(a)>img'))
       zoom.on('open', function (event) {
         const photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
@@ -425,14 +427,18 @@ $(function () {
  *  toc
  */
   const tocFn = function () {
-    $('.toc-child').hide()
+    const $sidebar = $('#sidebar')
+    const $tocChild = $sidebar.find('.toc-child')
+    const $tocLink = $sidebar.find('.toc-link')
+    const $article = $('#article-container')
+
+    $tocChild.hide()
 
     // main of scroll
     $(window).scroll(btf.throttle(function (event) {
       const currentTop = $(this).scrollTop()
       scrollPercent(currentTop)
       findHeadPosition(currentTop)
-      autoScrollToc(currentTop)
     }, 100))
 
     // expand toc-item
@@ -444,18 +450,17 @@ $(function () {
     }
 
     const scrollPercent = function (currentTop) {
-      const $dom = $('#article-container')
-      const docHeight = $dom.height()
+      const docHeight = $article.height()
       const winHeight = $(window).height()
-      const headerHeight = $dom.offset().top
+      const headerHeight = $article.offset().top
       const contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight)
       const scrollPercent = (currentTop - headerHeight) / (contentMath)
       const scrollPercentRounded = Math.round(scrollPercent * 100)
       const percentage = (scrollPercentRounded > 100) ? 100
         : (scrollPercentRounded <= 0) ? 0
           : scrollPercentRounded
-      $('#sidebar .progress-num').text(percentage)
-      $('#sidebar .sidebar-toc__progress-bar').animate({
+      $sidebar.find('.progress-num').text(percentage)
+      $sidebar.find('.sidebar-toc__progress-bar').animate({
         width: percentage + '%'
       }, 100)
     }
@@ -468,19 +473,32 @@ $(function () {
       }
     }
 
+    const autoScrollToc = function (currentTop, item) {
+      const activePosition = item.offset().top
+      const $tocContent = $sidebar.find('.sidebar-toc__content')
+      const sidebarScrollTop = $tocContent.scrollTop()
+      if (activePosition > (currentTop + $(window).height() - 100)) {
+        $tocContent.scrollTop(sidebarScrollTop + 100)
+      }
+      if (activePosition < currentTop + 100) {
+        $tocContent.scrollTop(sidebarScrollTop - 100)
+      }
+    }
+
     // find head position & add active class
     // DOM Hierarchy:
     // ol.toc > (li.toc-item, ...)
     // li.toc-item > (a.toc-link, ol.toc-2child > (li.toc-item, ...))
     const versionBiggerFive = GLOBAL_CONFIG.hexoversion.split('.')[0] >= 5
+    const list = $article.find('h1,h2,h3,h4,h5,h6')
+
     const findHeadPosition = function (top) {
     // assume that we are not in the post page if no TOC link be found,
     // thus no need to update the status
-      if ($('.toc-link').length === 0) {
+      if ($tocLink.length === 0) {
         return false
       }
 
-      const list = $('#article-container').find('h1,h2,h3,h4,h5,h6')
       let currentId = ''
       list.each(function () {
         const head = $(this)
@@ -491,18 +509,19 @@ $(function () {
       })
 
       if (currentId === '') {
-        $('.toc-link').removeClass('active')
-        $('.toc-child').hide()
+        $tocLink.removeClass('active')
+        $tocChild.hide()
       }
 
-      const currentActive = $('.toc-link.active')
+      const currentActive = $tocLink.filter('.active')
       if (currentId && currentActive.attr('href') !== currentId) {
         if (isAnchor) updateAnchor(currentId)
 
-        $('.toc-link').removeClass('active')
+        $tocLink.removeClass('active')
 
-        const _this = $('.toc-link[href="' + currentId + '"]')
+        const _this = $tocLink.filter('[href="' + currentId + '"]')
         _this.addClass('active')
+        autoScrollToc(top, _this)
 
         const parents = _this.parents('.toc-child')
         // Returned list is in reverse order of the DOM elements
@@ -516,19 +535,6 @@ $(function () {
           .closest('.toc-item').siblings('.toc-item')
         // Hide their respective list of subsections
           .find('.toc-child').hide()
-      }
-    }
-
-    const autoScrollToc = function (currentTop) {
-      if ($('.toc-link').hasClass('active')) {
-        const activePosition = $('.active').offset().top
-        const sidebarScrollTop = $('#sidebar .sidebar-toc__content').scrollTop()
-        if (activePosition > (currentTop + $(window).height() - 100)) {
-          $('#sidebar .sidebar-toc__content').scrollTop(sidebarScrollTop + 100)
-        }
-        if (activePosition < currentTop + 100) {
-          $('#sidebar .sidebar-toc__content').scrollTop(sidebarScrollTop - 100)
-        }
       }
     }
   }
@@ -651,22 +657,6 @@ $(function () {
   }
 
   /**
- * 百度推送
- */
-  const pushToBaidu = () => {
-    const bp = document.createElement('script')
-    const curProtocol = window.location.protocol.split(':')[0]
-    if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
-    } else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
-    }
-    bp.dataset.pjax = ''
-    const s = document.getElementsByTagName('script')[0]
-    s.parentNode.insertBefore(bp, s)
-  }
-
-  /**
  * tag-hide
  */
   const clickFnOfTagHide = function () {
@@ -719,20 +709,19 @@ $(function () {
     const $cardCategory = $('#aside-cat-list .card-category-list-item.parent i')
     $cardCategory.on('click', function (e) {
       e.preventDefault()
-      const $this = $(this)
-      $this.toggleClass('expand')
-      $this.parents('.parent').next().toggle()
+      $(this).toggleClass('expand').parents('.parent').next().slideToggle(300)
     })
   }
 
   const switchComments = function () {
     let switchDone = false
     $('#switch-comments-btn').on('click', function () {
-      $('#post-comment > .comment-wrap > div').each(function () {
-        if ($(this).is(':visible')) {
-          $(this).hide()
+      $('#post-comment > .comment-wrap > div').each(function (i, o) {
+        const $this = $(o)
+        if ($this.is(':visible')) {
+          $this.hide()
         } else {
-          $(this).css({
+          $this.css({
             display: 'block',
             animation: 'tabshow .5s'
           })
@@ -766,6 +755,14 @@ $(function () {
     })
   }
 
+  const relativeDate = function (selector) {
+    selector.each((i, o) => {
+      const $this = $(o)
+      const timeVal = $this.attr('datetime')
+      $this.text(btf.diffDate(timeVal, true)).css('display', 'inline')
+    })
+  }
+
   const unRefreshFn = function () {
     $(window).on('resize', function () {
       if (window.innerWidth < 768) adjustMenu(0)
@@ -776,7 +773,6 @@ $(function () {
     clickFnOfSubMenu()
     GLOBAL_CONFIG.islazyload && lazyloadImg()
     GLOBAL_CONFIG.copyright !== undefined && addCopyright()
-    GLOBAL_CONFIG.baiduPush && pushToBaidu()
   }
 
   window.refreshFn = function () {
@@ -787,6 +783,12 @@ $(function () {
       toggleSidebar()
       GLOBAL_CONFIG_SITE.isSidebar && tocFn()
       GLOBAL_CONFIG.noticeOutdate !== undefined && addPostOutdateNotice()
+      GLOBAL_CONFIG.relativeDate.post && relativeDate($('#post-meta time'))
+    } else {
+      GLOBAL_CONFIG.relativeDate.homepage && relativeDate($('#recent-posts time'))
+      GLOBAL_CONFIG.runtime && addRuntime()
+      addLastPushDate()
+      toggleCardCategory()
     }
 
     sidebarFn()
@@ -794,15 +796,12 @@ $(function () {
     GLOBAL_CONFIG.highlight && addHighlightTool()
     GLOBAL_CONFIG.isPhotoFigcaption && addPhotoFigcaption()
     runJustifiedGallery()
-    addLightBox()
+    GLOBAL_CONFIG.lightbox !== 'null' && addLightBox()
     scrollFn()
-    GLOBAL_CONFIG.runtime && addRuntime()
-    addLastPushDate()
     addTableWrap()
     clickFnOfTagHide()
     tabsFn.clickFnOfTabs()
     tabsFn.backToTop()
-    toggleCardCategory()
     switchComments()
   }
 

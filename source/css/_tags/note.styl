@@ -1,27 +1,50 @@
 .note
   $note-icons = hexo-config('note.icons')
-  $note-style = hexo-config('note.style')
   position: relative
   margin: 0 0 1rem
   padding: 15px
 
-  if ($note-style == 'simple')
+  if hexo-config('note.border_radius') is a 'unit'
+    border-radius: unit(hexo-config('note.border_radius'), px)
+
+  &.icon
+    padding-left: 2.25rem
+
+  & > .note-icon
+    position: absolute
+    top: calc(50% - .4rem)
+    left: .7rem
+    font-size: larger
+
+  for $type in $tagsP-types
+    &.{$type}
+      &:not(.disabled)
+        border-left-color: lookup('$tagsP-' + $type + '-color') !important
+
+        &.modern
+          border-left-color: transparent !important
+          color: lookup('$tagsP-' + $type + '-color')
+
+        &:not(.simple)
+          background: lighten(lookup('$tagsP-' + $type + '-color'), 85%) !important
+
+      & > .note-icon
+        color: lookup('$tagsP-' + $type + '-color')
+
+  &.simple
     border: 1px solid #EEEEEE
     border-left-width: 5px
 
-  if ($note-style == 'modern')
-    border: 1px solid transparent
+  &.modern
+    border: 1px solid transparent !important
     background-color: #f5f5f5
     color: $font-black
 
-  if ($note-style == 'flat')
+  &.flat
     border: initial
     border-left: 5px solid #EEEEEE
     background-color: lighten(#EEEEEE, 65%)
     color: $font-black
-
-  if hexo-config('note.border_radius') is a 'unit'
-    border-radius: unit(hexo-config('note.border_radius'), px)
 
   h2,
   h3,
@@ -52,21 +75,21 @@
 
   if $note-icons
     &:not(.no-icon)
-      padding-left: 45px
+      padding-left: 2.25rem
 
       &::before
         position: absolute
-        top: 13px
-        left: 15px
+        top: calc(50% - .8rem)
+        left: .7rem
         font-size: larger
         @extend .fontawesomeIcon
 
   for $type in $note-types
     &.{$type}
-      if ($note-style == 'flat')
+      &.flat
         background: lookup('$note-' + $type + '-bg')
 
-      if ($note-style == 'modern')
+      &.modern
         border-color: lookup('$note-modern-' + $type + '-border')
         background: lookup('$note-modern-' + $type + '-bg')
         color: lookup('$note-modern-' + $type + '-text')
@@ -78,7 +101,7 @@
             &:hover
               color: lookup('$note-modern-' + $type + '-hover')
 
-      if ($note-style != 'modern')
+      &:not(.modern)
         border-left-color: lookup('$note-' + $type + '-border')
 
         h2,
@@ -89,8 +112,10 @@
           color: lookup('$note-' + $type + '-text')
 
       if $note-icons
-        &:not(.no-icon)::before
-          content: lookup('$note-' + $type + '-icon')
+        &:not(.no-icon)
+          &::before
+            content: lookup('$note-' + $type + '-icon')
 
-          if ($note-style != 'modern')
-            color: lookup('$note-' + $type + '-text')
+          &:not(.modern)
+            &::before
+              color: lookup('$note-' + $type + '-text')

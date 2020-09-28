@@ -1,12 +1,11 @@
-- var contentType = is_post() ? 'article' : 'website'
-
 if theme.Open_Graph_meta
-  meta(property="og:type" content=contentType)
-  meta(property="og:title" content=pageTitle)
-  meta(property="og:url" content=urlNoIndex())
-  meta(property="og:site_name" content=config.title)
-  meta(property="og:description" content!=pageDescription)
-  meta(property="og:image" content=full_url_for(page.cover || theme.avatar.img))
-  meta(property="article:published_time" content=date_xml(page.date))
-  meta(property="article:modified_time" content=date_xml(page.updated))
-  meta(name="twitter:card" content="summary")
+  - let contentType = is_post() ? 'article' : 'website'
+  - let metaImage = full_url_for(page.cover || theme.avatar.img)
+  - let fb_appId = theme.facebook_comments.app_id || ''
+  - let fb_admins = theme.facebook_comments.user_id || ''
+
+  != open_graph({type: contentType, image: metaImage, fb_admins: fb_admins, fb_app_id: fb_appId})
+
+else
+  meta(name="description" content=page_description())
+

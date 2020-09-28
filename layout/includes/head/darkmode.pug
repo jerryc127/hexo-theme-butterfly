@@ -1,50 +1,53 @@
 if theme.darkmode.enable
   script.
-    var activateDarkMode = function () {
-      document.documentElement.setAttribute('data-theme', 'dark')
-      if (document.querySelector('meta[name="theme-color"]') !== null) {
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-      }
-    }
-    var activateLightMode = function () {
-      document.documentElement.setAttribute('data-theme', 'light')
-      if (document.querySelector('meta[name="theme-color"]') !== null) {
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-      }
-    }
-
-    var autoChangeMode = '#{theme.darkmode.autoChangeMode}'
-    var t = saveToLocal.get('theme')
-    if (autoChangeMode === '1') {
-      var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-      var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-      var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-      var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
-
-      if (t === undefined) {
-        if (isLightMode) activateLightMode()
-        else if (isDarkMode) activateDarkMode()
-        else if (isNotSpecified || hasNoSupport) {
-          var now = new Date()
-          var hour = now.getHours()
-          var isNight = hour <= 6 || hour >= 18
-          isNight ? activateDarkMode() : activateLightMode()
+    (function () {
+      window.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
         }
-        window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
-          if (saveToLocal.get('theme') === undefined) {
-            e.matches ? activateDarkMode() : activateLightMode()
+      }
+      window.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      const autoChangeMode = '#{theme.darkmode.autoChangeMode}'
+      const t = saveToLocal.get('theme')
+      if (autoChangeMode === '1') {
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+        const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+        const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+        const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+        if (t === undefined) {
+          if (isLightMode) activateLightMode()
+          else if (isDarkMode) activateDarkMode()
+          else if (isNotSpecified || hasNoSupport) {
+            const now = new Date()
+            const hour = now.getHours()
+            const isNight = hour <= 6 || hour >= 18
+            isNight ? activateDarkMode() : activateLightMode()
           }
-        })
-      } else if (t === 'light') activateLightMode()
-      else activateDarkMode()
-    } else if (autoChangeMode === '2') {
-      now = new Date()
-      hour = now.getHours()
-      isNight = hour <= 6 || hour >= 18
-      if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
-      else if (t === 'light') activateLightMode()
-      else activateDarkMode()
-    } else {
-      if (t === 'dark') activateDarkMode()
-      else if (t === 'light') activateLightMode()
-    }
+          window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+            if (saveToLocal.get('theme') === undefined) {
+              e.matches ? activateDarkMode() : activateLightMode()
+            }
+          })
+        } else if (t === 'light') activateLightMode()
+        else activateDarkMode()
+      } else if (autoChangeMode === '2') {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+        else if (t === 'light') activateLightMode()
+        else activateDarkMode()
+      } else {
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      }
+    })()
+

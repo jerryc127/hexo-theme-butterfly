@@ -1,0 +1,19 @@
+.flink#article-container
+  if site.data.link
+    each i in site.data.link
+      if i.class_name
+        h2!= i.class_name
+      if i.class_desc
+        .flink-desc!=i.class_desc
+      .flink-list
+        each item in i.link_list
+          .flink-list-item
+            a(href=url_for(item.link)  title=item.name target="_blank")
+              if theme.lazyload.enable
+                img(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+              else
+                img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+              span.flink-item-name= item.name 
+              span.flink-item-desc(title=item.descr)= item.descr
+  != page.content
+
