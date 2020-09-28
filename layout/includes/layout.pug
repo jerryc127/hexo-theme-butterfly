@@ -12,8 +12,7 @@ html(lang=config.language data-theme=theme.display_mode)
 
     #body-wrap
       if theme.background
-        - var is_photo = theme.background.startsWith('url') ? 'photo':'color'
-        #web_bg(data-type=is_photo)
+        #web_bg
 
       include ./sidebar.pug
       include ./header/index.pug

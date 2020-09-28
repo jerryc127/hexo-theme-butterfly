@@ -32,7 +32,7 @@ $code-font-size = hexo-config('font.code-font-size') ? convert(hexo-config('font
 $font-color = #1F2D3D
 $rem = 20px
 $text-line-height = 2
-$web-bg = hexo-config('background') && convert(hexo-config('background'))
+$web-bg = hexo-config('background') && unquote(hexo-config('background'))
 $index_top_img_height = hexo-config('index_top_img_height') ? convert(hexo-config('index_top_img_height')) : 100vh
 $index_site_info_top = hexo-config('index_site_info_top') ? convert(hexo-config('index_site_info_top')) : 43%
 // Global color & SVG

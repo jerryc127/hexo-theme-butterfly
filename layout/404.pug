@@ -13,8 +13,7 @@ html(lang=config.language data-theme=theme.display_mode)
       canvas.fireworks
     
     if theme.background
-      - var is_photo = theme.background.startsWith('url') ? 'photo':'color'
-      #web_bg(data-type=is_photo)
+      #web_bg
 
     #error-wrap
       .error-content
