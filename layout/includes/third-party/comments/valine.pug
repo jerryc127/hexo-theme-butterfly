@@ -1,3 +1,4 @@
+- let option = theme.valine.option ? JSON.stringify(theme.valine.option) : false
 - let emojiMaps = '""'
 if site.data.valine
   - emojiMaps = JSON.stringify(site.data.valine)
@@ -5,7 +6,7 @@ if site.data.valine
 script.
   function loadValine () {
     function initValine () {
-      const initData = {
+      let initData = {
         el: '#vcomment',
         appId: '#{theme.valine.appId}',
         appKey: '#{theme.valine.appKey}',
@@ -25,7 +26,12 @@ script.
       if (!{Boolean(theme.valine.requiredFields)}) { 
         initData.requiredFields= ('!{theme.valine.requiredFields}'.split(','))
       }
-
+      
+      if (!{Boolean(option)}) {
+        const otherData = !{option}
+        initData = Object.assign({}, initData, otherData)
+      }
+      
       const valine = new Valine(initData)
     }
 

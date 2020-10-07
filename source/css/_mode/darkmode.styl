@@ -48,6 +48,9 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         code
           background: $code-background
 
+      .aplayer
+        filter: brightness(.8)
+
     // 頭部
     #page-header
       & > #nav.fixed,
@@ -103,8 +106,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     .error-img,
     #article-container iframe,
     img,
-    .gist,
-    .aplayer
+    .gist
       filter: brightness(.8)
 
     #aside_content .aside-list > .aside-list-item:not(:last-child)
