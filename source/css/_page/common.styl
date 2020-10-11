@@ -1,4 +1,4 @@
-.layout_page
+.layout
   display: flex
   margin: 0 auto
   padding: 2rem 15px
@@ -10,7 +10,20 @@
   +maxWidth768()
     padding: 1rem 5px !important
 
+  +minWidth2000()
+    max-width: 1500px
+
   & > div:first-child:not(.recent-posts)
+    align-self: flex-start
+    padding: 50px 40px
+    border-radius: 8px
+    background: var(--card-bg)
+    box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
+    transition: all .3s
+
+    &:hover
+      box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
+
     +maxWidth768()
       padding: 1.8rem .7rem !important
 
@@ -20,30 +33,19 @@
     +maxWidth900()
       width: 100% !important
 
+    if hexo-config('aside.position') == 'left'
+      +minWidth900()
+        order: 2
+
   // 隱藏aside
   &.hide-aside
     max-width: 1000px
 
+    +minWidth2000()
+      max-width: 1300px
+
     & > div
       width: 100% !important
-
-.layout_post > #post,
-.layout_page > div:first-child:not(.recent-posts)
-  align-self: flex-start
-  padding: 50px 40px
-  border-radius: 8px
-  background: var(--card-bg)
-  box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
-  transition: all .3s
-
-  &:hover
-    box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
-
-if hexo-config('aside.position') == 'left'
-  +minWidth900()
-    .layout_page
-      & > div:first-child
-        order: 2
 
 #page
   h1.page-title

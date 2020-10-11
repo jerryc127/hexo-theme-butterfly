@@ -1,10 +1,27 @@
 #aside_content
   width: 25%
 
+  +minWidth900()
+    if hexo-config('aside.position') == 'right'
+      padding-left: 15px
+    else
+      padding-right: 15px
+
+  +maxWidth900()
+    width: 100%
+
+  if hexo-config('aside.mobile') == false
+    +maxWidth768()
+      display: none
+
   > .card-widget:first-child
     margin-top: 0
 
+    +maxWidth900()
+      margin-top: 1rem
+
   .card-widget
+    position: relative
     overflow: hidden
     margin-top: 1rem
     border-radius: 8px
@@ -82,14 +99,11 @@
     padding: 1rem 1.2rem
 
   .item-headline
+    padding-bottom: .3rem
     font-size: 1.2em
 
     span
       margin-left: .5rem
-
-    & + div,
-    & + ul
-      padding: .3rem 0 0
 
   .sticky_layout
     +minWidth900()
@@ -171,6 +185,7 @@
   .card-archives ul.card-archive-list,
   .card-categories ul.card-category-list
     margin: 0
+    padding: 0
     list-style: none
 
   .card-archives ul.card-archive-list > .card-archive-list-item,
@@ -248,23 +263,71 @@
             flex: 1
             padding-right: 1rem
 
-+maxWidth900()
-  #aside_content
-    width: 100% !important
-
-  #aside_content
-    .card-widget:first-child
-      margin-top: 1rem
-
-+minWidth900()
-  #aside_content
-    .card-widget
-      if hexo-config('aside.position') == 'right'
-        margin-left: 15px
-      else
-        margin-right: 15px
-
-if hexo-config('aside.mobile') == false
-  +maxWidth768()
-    #aside_content
+  // toc
+  #card-toc
+    +maxWidth900()
+      position: fixed
+      right: 45px
+      bottom: 30px
+      z-index: 9999
       display: none
+      width: 300px
+      transform-origin: right bottom
+      animation: toc-close .3s
+
+      &.open
+        display: block
+        animation: toc-open .3s
+
+      .toc-child
+        display: block !important
+
+    .toc-content
+      overflow-y: auto
+      max-height: calc(100vh - 120px)
+
+      ol,
+      li
+        list-style: none
+
+      > ol
+        padding: 0 !important
+
+      ol
+        margin: 0
+        padding-left: .4rem
+
+      .toc-link
+        display: block
+        padding-left: .3rem
+        border-left: 3px solid transparent
+        color: var(--toc-link-color)
+        transition: all .2s ease-in-out
+
+        &.active
+          border-left-color: darken($theme-toc-color, 20%)
+          background: $theme-toc-color
+          color: $sidebar-active-color
+
+      &:before
+        position: absolute
+        top: .6rem
+        right: 1.2rem
+        color: #a9a9a9
+        content: attr(progress-percentage)
+        font-style: italic
+        font-size: 1.2rem
+
+@keyframes toc-open
+  0%
+    transform: scale(.7)
+
+  100%
+    transform: scale(1)
+
+@keyframes toc-close
+  0%
+    transform: scale(.7)
+
+  100%
+    transform: scale(1)

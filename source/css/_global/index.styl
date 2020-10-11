@@ -26,6 +26,7 @@
   --blockquote-bg: $blockquote-background-color
   --reward-pop: $reward-pop-up-bg
   --sidebar-icon-color: $sidebar-icon-color
+  --toc-link-color: $toc-link-color
 
 html
   height: 100%
@@ -140,6 +141,16 @@ button
   background: none
   cursor: pointer
 
+a
+  color: $a-link-color
+  text-decoration: none
+  word-wrap: break-word
+  transition: all .2s
+  overflow-wrap: break-word
+
+  &:hover
+    color: $light-blue
+
 // font
 #site-title,
 #site-subtitle,
@@ -182,6 +193,10 @@ button
     &:before
       transition-timing-function: cubic-bezier(.45, 1.64, .47, .66)
       transform: scaleX(1)
+
+img
+  max-width: 100%
+  transition: all .2s
 
 img[src=''],
 img:not([src])

@@ -68,26 +68,6 @@ if hexo-config('enter_transitions')
   #ribbon-canvas
     animation: ribbon_to_show 4s
 
-  .tocOpenPc
-    .sidebar-toc__title
-      animation: tocsidebarLtoR .5s
-
-    .sidebar-toc__progress
-      animation: tocsidebarLtoR .7s
-
-    .sidebar-toc__content
-      animation: tocsidebarLtoR .9s
-
-  .tocOpenMobile
-    .sidebar-toc__title
-      animation: tocsidebarRtoL .4s
-
-    .sidebar-toc__progress
-      animation: tocsidebarRtoL .6s
-
-    .sidebar-toc__content
-      animation: tocsidebarRtoL .7s
-
   #mobile-sidebar-menus
     &.open
       for i in 1 2 3 4
@@ -214,20 +194,6 @@ if hexo-config('avatar.effect') == true
 @keyframes sidebarItem
   0%
     transform: translateX(200px)
-
-  100%
-    transform: translateX(0)
-
-@keyframes tocsidebarRtoL
-  0%
-    transform: translateX(200px)
-
-  100%
-    transform: translateX(0)
-
-@keyframes tocsidebarLtoR
-  0%
-    transform: translateX(-200px)
 
   100%
     transform: translateX(0)

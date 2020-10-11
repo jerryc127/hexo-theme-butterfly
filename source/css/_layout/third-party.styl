@@ -61,6 +61,13 @@
     margin: 0 0 .8em
     padding: .3rem 0 .8em
 
+.katex-wrap
+  overflow: auto
+
+  if hexo-config('katex') && hexo-config('katex.hide_scrollbar')
+    &::-webkit-scrollbar
+      display: none
+
 // mathjax
 .mathjax-overflow
   overflow-x: auto

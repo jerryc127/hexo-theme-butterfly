@@ -76,7 +76,3 @@ hexo.extend.helper.register('urlNoIndex', function () {
 hexo.extend.helper.register('md5', function (path) {
   return crypto.createHash('md5').update(decodeURI(this.url_for(path))).digest('hex')
 })
-
-hexo.extend.helper.register('get_hexo_version', function () {
-  return hexo.version
-})

@@ -8,30 +8,22 @@ html(lang=config.language data-theme=theme.display_mode)
     if theme.preloader
       !=partial('includes/loading/loading', {}, {cache:theme.fragment_cache})
 
+    if theme.background
+      #web_bg
+      
     !=partial('includes/mobile-sidebar/index', {}, {cache:theme.fragment_cache})
 
     #body-wrap
-      if theme.background
-        #web_bg
-
-      include ./sidebar.pug
       include ./header/index.pug
 
-      if (!is_post())
-        main#content-inner.layout_page(class=hideAside)
-          if body
-            div!= body
-          else
-            block content
-            if theme.aside.enable && page.aside !== false
-              !=partial('includes/widget/index', {}, {cache:theme.fragment_cache})
-      else
-        main#content-inner.layout_post
-          if body
-            div!= body
-          else
-            block content
-      
+      main#content-inner.layout(class=hideAside)
+        if body
+          div!= body
+        else
+          block content
+          if theme.aside.enable && page.aside !== false
+            include widget/index.pug
+
       - var footerBg = theme.footer_bg
       if (footerBg)
         if (footerBg === true)

@@ -1,7 +1,3 @@
-sidebar:
-  catalog: 目录
-  have_read: 你已经读了
-
 footer:
   framework: 框架
   theme: 主题
@@ -80,6 +76,7 @@ aside:
     heading: 最新评论
     loading_text: 正在加载中...
     error: 无法获取资料，请确认相关配置是否正确
+  card_toc: 目录
 
 date_suffix:
   just: 刚刚

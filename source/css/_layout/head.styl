@@ -116,10 +116,14 @@
 
   #post-info
     position: absolute
-    bottom: 1.5rem
+    bottom: 5rem
     padding: 0 8%
     width: 100%
-    text-align: left
+    text-align: center
+
+    +maxWidth900()
+      bottom: 1.5rem
+      text-align: left
 
     +maxWidth768()
       bottom: 1.1rem
@@ -128,7 +132,7 @@
 #post-info
   #post-title
     margin-bottom: .4rem
-    font-size: 2.15em
+    font-size: 2.5em
 
     +maxWidth768()
       font-size: 1.72em

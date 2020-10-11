@@ -1,7 +1,3 @@
-sidebar:
-  catalog: Catalog
-  have_read: You've read
-
 footer:
   framework: Framework
   theme: Theme
@@ -78,6 +74,7 @@ aside:
     heading: Newest Comments
     loading_text: loading...
     error: Unable to get the data, please make sure the settings are correct.
+  card_toc: Catalog
 
 date_suffix:
   just: Just

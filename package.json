@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-butterfly",
-  "version": "3.3.0-b1",
+  "version": "3.3.0-b2",
   "description": "A Simple and Card UI Design theme for Hexo",
   "main": "package.json",
   "scripts": {

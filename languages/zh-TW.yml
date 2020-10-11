@@ -1,7 +1,3 @@
-sidebar:
-  catalog: 目錄
-  have_read: 你已經讀了
-
 footer:
   framework: 框架
   theme: 主題
@@ -80,6 +76,7 @@ aside:
     heading: 最新評論
     loading_text: 正在加載中...
     error: 無法獲取資料，請確認相關配置是否正確
+  card_toc: 目錄
 
 date_suffix:
   just: 剛剛
