@@ -45,7 +45,8 @@ if hexo-config('error_404.enable')
         padding: .5rem
         text-align: center
         font-size: 14px
-        font-family: $site-name-font
+        if $site-name-font
+          font-family: $site-name-font
 
         +maxWidth768()
           flex: 1.1

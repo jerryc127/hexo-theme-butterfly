@@ -2,13 +2,12 @@
  * Butterfly
  * @example
  *  page_description()
- *  injectHtml(data)
  *  cloudTags(source, minfontsize, maxfontsize, limit)
  */
 
 'use strict'
 
-const { stripHTML, escapeHTML } = require('hexo-util')
+const { stripHTML, escapeHTML, prettyUrls } = require('hexo-util')
 const crypto = require('crypto')
 
 hexo.extend.helper.register('page_description', function () {
@@ -21,15 +20,6 @@ hexo.extend.helper.register('page_description', function () {
     ).replace(/\n/g, ' ')
     return description
   }
-})
-
-hexo.extend.helper.register('injectHtml', function (data) {
-  let result = ''
-  if (!data) return ''
-  for (let i = 0; i < data.length; i++) {
-    result += data[i]
-  }
-  return result
 })
 
 hexo.extend.helper.register('cloudTags', function (options = {}) {
@@ -65,12 +55,7 @@ hexo.extend.helper.register('cloudTags', function (options = {}) {
 })
 
 hexo.extend.helper.register('urlNoIndex', function () {
-  const { permalink } = hexo.config
-  let url = this.url.replace(/index\.html$/, '')
-  if (!permalink.endsWith('.html')) {
-    url = url.replace(/\.html$/, '')
-  }
-  return url
+  return prettyUrls(this.url, { trailing_index: false, trailing_html: false })
 })
 
 hexo.extend.helper.register('md5', function (path) {

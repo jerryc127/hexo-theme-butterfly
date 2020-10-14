@@ -35,7 +35,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
     return ''
   }
   let result = ''
-  const hexoConfig = hexo.theme.config.rootConfig
+  const hexoConfig = hexo.config
   const config = hexo.theme.config
 
   const limitNum = config.related_post.limit || 6

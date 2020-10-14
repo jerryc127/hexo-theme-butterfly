@@ -53,17 +53,9 @@ algolia_search:
   hits:
     per_page: 6
 
-  labels:
-    input_placeholder: Search for Posts
-    hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
-    hits_stats: '${hits} results found in ${time} ms'
-
 # Local search
 local_search:
   enable: false
-  labels:
-    input_placeholder: Search for Posts
-    hits_empty: "We didn't find any results for the search: ${query}" # if there are no result
 
 # Math (數學)
 # --------------------------------------
@@ -108,7 +100,7 @@ archive_img:
 tag_img:
 
 # The banner image of tag page
-# format: 
+# format:
 #  - tag name: xxxxx
 tag_per_img:
 
@@ -117,16 +109,9 @@ tag_per_img:
 category_img:
 
 # The banner image of category page
-# format: 
+# format:
 #  - category name: xxxxx
 category_per_img:
-
-# If you are using hexo-douban, you can configure it (如果你有使用 hexo-douban,可配置這個)
-# douban:
-#   meta: false
-#   movies_img:
-#   books_img:
-#   games_img:
 
 cover:
   # display the cover or not (是否顯示文章封面)
@@ -576,9 +561,9 @@ font:
 
 # Font settings for the site title and site subtitle
 # 左上角網站名字 主頁居中網站名字
-# blog_title_font:
-  # font_link: https://fonts.googleapis.com/css?family=Titillium+Web&display=swap
-  # font-family: Titillium Web, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif
+blog_title_font:
+  font_link:
+  font-family:
 
 # The setting of divider icon (水平分隔線圖標設置)
 hr_icon:

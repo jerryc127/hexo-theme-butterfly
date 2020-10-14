@@ -152,12 +152,13 @@ a
     color: $light-blue
 
 // font
-#site-title,
-#site-subtitle,
-#site-name,
-#aside_content .author-info__name,
-#aside_content .author-info__description
-  font-family: $site-name-font
+if $site-name-font
+  #site-title,
+  #site-subtitle,
+  #site-name,
+  #aside_content .author-info__name,
+  #aside_content .author-info__description
+    font-family: $site-name-font
 
 .is-center
   text-align: center

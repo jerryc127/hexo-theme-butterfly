@@ -9,4 +9,13 @@ hexo.extend.filter.register('before_generate', () => {
     logger.error('請把 Hexo 升級到 V5.0.0 或更高的版本！')
     process.exit(-1)
   }
+
+  if (hexo.locals.get) {
+    const data = hexo.locals.get('data')
+    if (data && data.butterfly) {
+      logger.error(" 'butterfly.yml' is deprecated. Please use '_config.butterfly.yml' ")
+      logger.error(" 'butterfly.yml' 已經棄用，請使用 '_config.butterfly.yml' ")
+      process.exit(-1)
+    }
+  }
 })

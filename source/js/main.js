@@ -351,11 +351,14 @@ $(function () {
 
     const mobileToc = {
       open: () => {
-        $cardTocLayout.addClass('open')
+        $cardTocLayout.css('display', 'block')
       },
 
       close: () => {
-        $cardTocLayout.removeClass('open')
+        $cardTocLayout.css('animation', 'toc-close .2s')
+        setTimeout(() => {
+          $cardTocLayout.css({ display: '', animation: '' })
+        }, 100)
       }
     }
 
