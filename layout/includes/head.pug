@@ -81,3 +81,4 @@ include ./head/noscript.pug
 
 !=partial('includes/head/darkmode', {}, {cache:theme.fragment_cache})
 
+!=fragment_cache('injectHead', function(){return injectHtml(theme.inject.head)})
