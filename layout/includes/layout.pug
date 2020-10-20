@@ -11,7 +11,7 @@ html(lang=config.language data-theme=theme.display_mode)
     if theme.background
       #web_bg
       
-    !=partial('includes/mobile-sidebar/index', {}, {cache:theme.fragment_cache})
+    !=partial('includes/sidebar', {}, {cache:theme.fragment_cache})
 
     #body-wrap
       include ./header/index.pug

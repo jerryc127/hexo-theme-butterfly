@@ -65,7 +65,7 @@
             color: var(--font-color)
             font-size: 1em
 
-          .length_num
+          .length-num
             margin-top: -.3rem
             color: var(--text-highlight-color)
             font-size: 1.4em
@@ -271,7 +271,7 @@
       bottom: 30px
       z-index: 100
       display: none
-      width: 300px
+      width: $toc-mobile-width
       transform-origin: right bottom
       animation: toc-open .3s
 
@@ -303,7 +303,7 @@
         &.active
           border-left-color: darken($theme-toc-color, 20%)
           background: $theme-toc-color
-          color: $sidebar-active-color
+          color: $toc-active-color
 
       &:before
         position: absolute

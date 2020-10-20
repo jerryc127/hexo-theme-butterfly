@@ -1,0 +1,31 @@
+#sidebar
+  #menu-mask
+  #sidebar-menus
+    .author-avatar
+      if theme.lazyload.enable
+        img.avatar-img(data-lazy-src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
+      else
+        img.avatar-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
+    .site-data
+      if site.posts.length
+        .data-item.is-center
+          .data-item-link
+            a(href=url_for(config.archive_dir) + '/')
+              .headline= _p('aside.articles') 
+              .length-num= site.posts.length
+
+      if site.tags.length
+        .data-item.is-center
+          .data-item-link
+            a(href=url_for(config.tag_dir) + '/' )
+              .headline= _p('aside.tags')
+              .length-num= site.tags.length
+
+      if site.categories.length
+        .data-item.is-center
+          .data-item-link
+            a(href=url_for(config.category_dir) + '/')
+              .headline= _p('aside.categories') 
+              .length-num= site.categories.length
+    hr
+    !=fragment_cache('menus', function(){return partial('includes/header/menu_item')})

@@ -1,5 +1,5 @@
-#mobile-sidebar
-  #menu_mask
+#sidebar
+  #menu-mask
     position: fixed
     z-index: 102
     display: none
@@ -7,14 +7,14 @@
     height: 100%
     background: alpha($dark-black, .8)
 
-  #mobile-sidebar-menus
+  #sidebar-menus
     position: fixed
     top: 0
-    right: -250px
+    right: -($sidebar-width)
     z-index: 103
     overflow-x: hidden
     overflow-y: auto
-    width: 250px
+    width: $sidebar-width
     height: 100%
     background: var(--sidebar-bg)
     transition: all .5s
@@ -22,7 +22,7 @@
     &.open
       transform: translate3d(-100%, 0, 0)
 
-    & > .mobile_author_icon
+    & > .author-avatar
       padding: 1.3rem 1.5rem 0
       text-align: center
 
@@ -35,20 +35,20 @@
         &:hover
           transform: rotate(360deg)
 
-    .mobile_post_data
+    .site-data
       display: table
       padding: .6rem .5rem 0
       width: 100%
       table-layout: fixed
 
-      .mobile_data_item
+      .data-item
         display: table-cell
 
-        .mobile_data_link
+        .data-item-link
           & > a > div
             @extend .limit-one-line
 
-          .length_num
+          .length-num
             color: var(--text-highlight-color)
             font-size: 1.28em
 
@@ -71,11 +71,11 @@
         cursor: pointer
 
         i:first-child
-          width: 30%
+          width: 25%
           text-align: left
 
         span
-          width: 70%
+          width: 75%
 
           &:hover
             color: $light-blue

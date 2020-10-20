@@ -1,68 +1,69 @@
 #local-search
-  animation: titlescale .5s
+  .search-dialog
+    animation: titlescale .5s
 
-  .local-search-box
-    margin: 0 auto
-    max-width: 100%
-    width: 100%
-
-    input
-      padding: .25rem .7rem
+    .local-search-box
+      margin: 0 auto
+      max-width: 100%
       width: 100%
-      outline: none
-      border: 2px solid $search-color
-      border-radius: 2rem
-      background: var(--search-bg)
-      color: var(--search-input-color)
-      -webkit-appearance: none
 
-  .local-search__hit-item
-    position: relative
-    padding-left: 1.2rem
-    line-height: 1.7
+      input
+        padding: .25rem .7rem
+        width: 100%
+        outline: none
+        border: 2px solid $search-color
+        border-radius: 2rem
+        background: var(--search-bg)
+        color: var(--search-input-color)
+        -webkit-appearance: none
 
-    &:hover
-      &:before
-        border-color: $pseudo-hover
-
-    &:before
-      $w = .5em
-      position: absolute
-      top: .45em
-      left: 0
-      width: w = $w
-      height: h = w
-      border: .15rem solid $search-color
-      border-radius: w
-      background: transparent
-      content: ''
-      line-height: h
-      transition: all .2s ease-in-out
-
-    a
-      display: block
-      color: var(--search-result-title)
-      font-weight: 600
-      cursor: pointer
+    .local-search__hit-item
+      position: relative
+      padding-left: 1.2rem
+      line-height: 1.7
 
       &:hover
-        color: $search-color
+        &:before
+          border-color: $pseudo-hover
 
-    .search-result
-      margin: 0 0 .4rem
-      word-break: break-all
+      &:before
+        $w = .5em
+        position: absolute
+        top: .45em
+        left: 0
+        width: w = $w
+        height: h = w
+        border: .15rem solid $search-color
+        border-radius: w
+        background: transparent
+        content: ''
+        line-height: h
+        transition: all .2s ease-in-out
 
-    .search-keyword
-      color: $search-keyword-highlight
-      font-weight: bold
+      a
+        display: block
+        color: var(--search-result-title)
+        font-weight: 600
+        cursor: pointer
 
-  .local-search-stats__hr
-    display: none !important
+        &:hover
+          color: $search-color
 
-  .search-result-list
-    overflow-y: auto
-    max-height: 10.5rem
+      .search-result
+        margin: 0 0 .4rem
+        word-break: break-all
 
-    +maxWidth768()
-      padding-bottom: 2rem
-      max-height: 75vh !important
+      .search-keyword
+        color: $search-keyword-highlight
+        font-weight: bold
+
+    .local-search-stats__hr
+      display: none !important
+
+    .search-result-list
+      overflow-y: auto
+      max-height: 10.5rem
+
+      +maxWidth768()
+        padding-bottom: 2rem
+        max-height: 75vh !important

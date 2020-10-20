@@ -24,8 +24,8 @@ $(function () {
   // sidebar menus
   const sidebarFn = () => {
     const $toggleMenu = $('#toggle-menu')
-    const $mobileSidebarMenus = $('#mobile-sidebar-menus')
-    const $menuMask = $('#menu_mask')
+    const $mobileSidebarMenus = $('#sidebar-menus')
+    const $menuMask = $('#menu-mask')
     const $body = $('body')
 
     function openMobileSidebar () {
@@ -489,7 +489,7 @@ $(function () {
  * 解決menus在觸摸屏下，滑動屏幕menus_item_child不消失的問題（手機hover的bug)
  */
   const clickFnOfSubMenu = function () {
-    $('#mobile-sidebar-menus .expand').on('click', function () {
+    $('#sidebar-menus .expand').on('click', function () {
       $(this).parents('.menus_item').find('> .menus_item_child').slideToggle()
       $(this).toggleClass('hide')
     })
