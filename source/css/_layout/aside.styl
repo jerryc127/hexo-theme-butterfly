@@ -327,3 +327,14 @@
 
   100%
     transform: scale(.7)
+
++minWidth900()
+  html.hide-aside
+    .layout
+      justify-content: center
+
+      > div:last-child
+        display: none
+
+      > div:first-child
+        width: 80%

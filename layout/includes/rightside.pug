@@ -23,6 +23,10 @@
       button#rightside_config(type="button" title=_p("rightside.setting"))
         i.fas.fa-cog
 
+    if theme.aside.enable && theme.aside.button
+      button#hide-aside-btn(type="button")
+        i.fas.fa-arrows-alt-h
+
     if theme.chat_btn
       button#chat_btn(type="button" title=_p("rightside.chat_btn"))
         i.fas.fa-sms

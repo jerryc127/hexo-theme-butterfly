@@ -483,6 +483,11 @@ $(function () {
   // Back to top
   $rightsideEle.on('click', '#go-up', () => btf.scrollToDest('body'))
 
+  $rightsideEle.on('click', '#hide-aside-btn', () => {
+    const $htmlDom = $(document.documentElement)
+    $htmlDom.hasClass('hide-aside') ? $htmlDom.removeClass('hide-aside') : $htmlDom.addClass('hide-aside')
+  })
+
   /**
  * menu
  * 側邊欄sub-menu 展開/收縮
