@@ -485,7 +485,13 @@ $(function () {
 
   $rightsideEle.on('click', '#hide-aside-btn', () => {
     const $htmlDom = $(document.documentElement)
-    $htmlDom.hasClass('hide-aside') ? $htmlDom.removeClass('hide-aside') : $htmlDom.addClass('hide-aside')
+    if ($htmlDom.hasClass('hide-aside')) {
+      $htmlDom.removeClass('hide-aside')
+      saveToLocal.set('aside-status', 'show', 2)
+    } else {
+      $htmlDom.addClass('hide-aside')
+      saveToLocal.set('aside-status', 'hide', 2)
+    }
   })
 
   /**
@@ -624,7 +630,9 @@ $(function () {
 
   const switchComments = function () {
     let switchDone = false
-    $('#switch-comments-btn').on('click', function () {
+    $('#comment-switch > .switch-btn').on('click', function () {
+      const $btn = $(this)
+      $btn.hasClass('move') ? $btn.removeClass('move') : $btn.addClass('move')
       $('#post-comment > .comment-wrap > div').each(function (i, o) {
         const $this = $(o)
         if ($this.is(':visible')) {

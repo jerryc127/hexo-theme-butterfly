@@ -1,3 +1,4 @@
+- let disqusjsApi = theme.disqusjs.api || 'https://disqus.skk.moe/disqus/'
 script.
   function loadDisqusjs () {
     function addDisqusjsCSS () {
@@ -15,7 +16,7 @@ script.
         identifier: '!{ page.path }',
         url: '!{ page.permalink }',
         title: '!{ page.title }',
-        api: '!{theme.disqusjs.api}',
+        api: '!{disqusjsApi}',
         apikey: '!{theme.disqusjs.apikey}',
         nocomment: '!{theme.disqusjs.nocomment}',
         admin: '!{theme.disqusjs.admin}',

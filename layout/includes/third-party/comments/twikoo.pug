@@ -1,0 +1,24 @@
+script.
+  function loadTwikoo () {
+    function init () {
+      twikoo.init({ 
+        envId: '!{theme.twikoo}' 
+      })
+    }
+
+    if (typeof twikoo.init === 'function') {
+      init()
+    } else {
+      $.getScript('!{theme.CDN.twikoo}', init)
+    }
+  }
+
+  if ('!{theme.comments.use[0]}' === 'Twikoo' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('twikoo'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    function loadOtherComment () {
+      loadTwikoo()
+    }
+  }
+

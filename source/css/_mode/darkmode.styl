@@ -86,11 +86,11 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
           color: #90a4ae !important
 
     #post-comment
-      .comment-switch
+      #comment-switch
         if hexo-config('comments.text')
           background: #2c2c2c !important
 
-        label
+        .switch-btn
           filter: brightness(.8)
 
     // note

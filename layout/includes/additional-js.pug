@@ -63,9 +63,9 @@ div
   
   if theme.aplayerInject && theme.aplayerInject.enable
     if theme.pjax.enable || theme.aplayerInject.per_page
-      include ./head/aplayer.pug
+      include ./third-party/aplayer.pug
     else if page.aplayer
-      include ./head/aplayer.pug
+      include ./third-party/aplayer.pug
 
   if theme.pjax.enable
     !=partial('includes/third-party/pjax', {}, {cache:theme.fragment_cache})
