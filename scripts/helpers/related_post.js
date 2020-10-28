@@ -35,7 +35,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
     return ''
   }
   let result = ''
-  const hexoConfig = hexo.theme.config.rootConfig
+  const hexoConfig = hexo.config
   const config = hexo.theme.config
 
   const limitNum = config.related_post.limit || 6
@@ -71,7 +71,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
         lazySrc +
         '="' +
         this.url_for(cover) +
-        '">'
+        '" alt="cover">'
       if (dateType === 'created') {
         result +=
           '<div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i>' +

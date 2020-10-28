@@ -14,7 +14,7 @@
       background: url(hexo-config('valine.bg')) 100% 100% no-repeat
 
       &:focus
-        background: none
+        background-image: none
 
   .vimg
     transition: all .3s
@@ -60,6 +60,13 @@
   .gt-meta
     margin: 0 0 .8em
     padding: .3rem 0 .8em
+
+.katex-wrap
+  overflow: auto
+
+  if hexo-config('katex') && hexo-config('katex.hide_scrollbar')
+    &::-webkit-scrollbar
+      display: none
 
 // mathjax
 .mathjax-overflow

@@ -142,6 +142,24 @@ no-beautify()
       padding-left: .3rem
 
 #article-container
+  word-wrap: break-word
+  overflow-wrap: break-word
+
+  a
+    color: $theme-link-color
+
+    &:hover
+      text-decoration: underline
+
+  img
+    margin: 0 auto .8rem
+
+  p
+    margin: 0 0 .8rem
+
+  iframe
+    margin: 0 0 1rem
+
   if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'site'
     beautify()
   else if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'post'
@@ -152,42 +170,7 @@ no-beautify()
   else
     no-beautify()
 
-a
-  color: $a-link-color
-  text-decoration: none
-  word-wrap: break-word
-  transition: all .2s
-  overflow-wrap: break-word
-
-  &:hover
-    color: $light-blue
-
-a.fancybox
-  outline: none
-
-  &:focus
-    outline: none
-
-  display: inline-block
-  width: 100%
-  text-align: center
-
-img
-  max-width: 100%
-  transition: all .2s
-
-.katex-wrap
-  overflow: auto
-
-  if hexo-config('katex') && hexo-config('katex.hide_scrollbar')
-    &::-webkit-scrollbar
-      display: none
-
-.layout_post
-  margin: 0 auto
-  padding: 2rem 15px
-  max-width: 1000px
-
+#post
   img
     display: block
 
@@ -272,25 +255,6 @@ img
           &:hover
             text-decoration: none
 
-#article-container
-  word-wrap: break-word
-  overflow-wrap: break-word
-
-  a
-    color: $theme-link-color
-
-    &:hover
-      text-decoration: underline
-
-  img
-    margin: 0 auto .8rem
-
-  p
-    margin: 0 0 .8rem
-
-  iframe
-    margin: 0 0 1rem
-
   .post-outdate-notice
     position: relative
     margin: 0 0 1rem
@@ -311,25 +275,3 @@ img
         color: $noticeOutdate-border
         content: '\f071'
         transform: translateY(-50%)
-
-+maxWidth1024()
-  .layout_post
-    width: auto
-
-+maxWidth768()
-  .layout_post
-    padding: 1rem 5px
-
-    & > #post
-      padding: 1.8rem .7rem
-
-// adjust the layout width in big screen
-+minWidth2000()
-  .layout_post
-    max-width: 1300px
-
-  .layout_page
-    max-width: 1500px
-
-    &.hide-aside
-      max-width: 1300px

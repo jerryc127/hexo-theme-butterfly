@@ -1,76 +1,77 @@
 #algolia-search
-  animation: titlescale .5s
+  .search-dialog
+    animation: titlescale .5s
 
-  .ais-search-box
-    margin: 0 auto
-    max-width: 100%
-    width: 100%
+    .ais-search-box
+      margin: 0 auto
+      max-width: 100%
+      width: 100%
 
-    input
-      padding: .25rem .7rem
-      outline: none
-      border: 2px solid $search-color
-      border-radius: 2rem
-      background: var(--search-bg)
-      color: var(--search-input-color)
+      input
+        padding: .25rem .7rem
+        outline: none
+        border: 2px solid $search-color
+        border-radius: 2rem
+        background: var(--search-bg)
+        color: var(--search-input-color)
 
-  .ais-hits--item.algolia-hit-item
-    position: relative
-    padding-left: 1.2rem
-
-    &:hover
-      &:before
-        border-color: $pseudo-hover
-
-    &:before
-      $w = .5em
-      position: absolute
-      top: .53em
-      left: 0
-      width: w = $w
-      height: h = w
-      border: .15rem solid $search-color
-      border-radius: w
-      background: transparent
-      content: ''
-      line-height: h
-      transition: all .2s ease-in-out
-
-    a
-      display: block
-      color: var(--search-result-title)
-      cursor: pointer
+    .ais-hits--item.algolia-hit-item
+      position: relative
+      padding-left: 1.2rem
 
       &:hover
-        color: $search-color
+        &:before
+          border-color: $pseudo-hover
 
-    em
-      color: $search-keyword-highlight
-      font-weight: bold
+      &:before
+        $w = .5em
+        position: absolute
+        top: .53em
+        left: 0
+        width: w = $w
+        height: h = w
+        border: .15rem solid $search-color
+        border-radius: w
+        background: transparent
+        content: ''
+        line-height: h
+        transition: all .2s ease-in-out
 
-  .ais-pagination.pagination
-    margin: .8rem 0 0
-    padding: 0
-    text-align: center
+      a
+        display: block
+        color: var(--search-result-title)
+        cursor: pointer
 
-    .ais-pagination--item
-      margin: 0 .2rem
+        &:hover
+          color: $search-color
+
+      em
+        color: $search-keyword-highlight
+        font-weight: bold
+
+    .ais-pagination.pagination
+      margin: .8rem 0 0
       padding: 0
+      text-align: center
 
-      a
-        display: inline-block
-        min-width: 1.2rem
-        height: 1.2rem
-        text-align: center
-        line-height: 1.2rem
+      .ais-pagination--item
+        margin: 0 .2rem
+        padding: 0
 
-    .ais-pagination--item.current
-      a
-        background: $theme-paginator-color
-        color: #eee
-        cursor: default
+        a
+          display: inline-block
+          min-width: 1.2rem
+          height: 1.2rem
+          text-align: center
+          line-height: 1.2rem
 
-  .algolia-logo
-    padding-top: 2px
-    width: 4rem
-    height: 1.5rem
+      .ais-pagination--item.current
+        a
+          background: $theme-paginator-color
+          color: #eee
+          cursor: default
+
+    .algolia-logo
+      padding-top: 2px
+      width: 4rem
+      height: 1.5rem

@@ -1,11 +1,11 @@
 extends includes/layout.pug
 
 block content
-  article#post(class="")
+  #post
     if top_img === false
       include includes/header/post-info.pug
 
-    #article-container.post-content!=page.content
+    article#article-container.post-content!=page.content
     include includes/post/post-copyright.pug
     .tag_share
       if (theme.post_meta.post.tags)

@@ -1,20 +1,28 @@
 #aside_content.aside_content
   if theme.aside.card_author.enable
-    include ./card_author.pug
+    !=partial('includes/widget/card_author', {}, {cache:theme.fragment_cache})
+  if theme.aside.card_announcement.enable
+    !=partial('includes/widget/card_announcement', {}, {cache:theme.fragment_cache})
   .sticky_layout
-    if theme.aside.card_announcement.enable
-      include ./card_announcement.pug
-    if theme.aside.card_recent_post.enable
-      include ./card_recent_post.pug
-    if theme.newest_comments.enable
-      include ./card_newest_comment.pug
-    if theme.ad && theme.ad.aside
-      include ./card_ad.pug
-    if theme.aside.card_categories.enable
-      include ./card_categories.pug
-    if theme.aside.card_tags.enable
-      include ./card_tags.pug
-    if theme.aside.card_archives.enable
-      include ./card_archives.pug
-    if theme.aside.card_webinfo.enable
-      include ./card_webinfo.pug
+    if is_post()
+      if showToc
+        include ./card_post_toc.pug
+      if theme.aside.card_recent_post.enable
+        !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})
+      if theme.ad && theme.ad.aside
+        !=partial('includes/widget/card_ad', {}, {cache:theme.fragment_cache})
+    else
+      if theme.aside.card_recent_post.enable
+        !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})
+      if theme.ad && theme.ad.aside
+        !=partial('includes/widget/card_ad', {}, {cache:theme.fragment_cache})
+      if theme.newest_comments.enable
+        !=partial('includes/widget/card_newest_comment', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_categories.enable
+        !=partial('includes/widget/card_categories', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_tags.enable
+        !=partial('includes/widget/card_tags', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_archives.enable
+        !=partial('includes/widget/card_archives', {}, {cache:theme.fragment_cache})
+      if theme.aside.card_webinfo.enable
+        !=partial('includes/widget/card_webinfo', {}, {cache:theme.fragment_cache})

@@ -1,88 +1,97 @@
-#toggle-sidebar
-  position: fixed
-  bottom: $sidebar-icon-top
-  left: $sidebar-icon-left
-  z-index: 100
-  color: var(--sidebar-icon-color)
-  font-size: $sidebar-icon-size
-  cursor: pointer
-  transition: all .2s
-
-  +maxWidth1024()
-    display: none
-
 #sidebar
-  position: fixed
-  top: 0
-  left: -($sidebar-width)
-  z-index: 10
-  padding: 1rem 0 2rem .5rem
-  width: $sidebar-width
-  height: 100%
-  background: var(--sidebar-bg)
-  opacity: .9
+  #menu-mask
+    position: fixed
+    z-index: 102
+    display: none
+    width: 100%
+    height: 100%
+    background: alpha($dark-black, .8)
 
-  &.tocOpenPc
-    & > #toggle-sidebar
-      color: #99a9bf
-      transform: rotateZ(180deg)
-
-  +maxWidth1024()
-    right: -($mobile-sidebar-width)
-    left: auto
+  #sidebar-menus
+    position: fixed
+    top: 0
+    right: -($sidebar-width)
     z-index: 103
-    width: $mobile-sidebar-width
-    box-shadow: none
-    opacity: 1
-    transition: all .4s
+    overflow-x: hidden
+    overflow-y: auto
+    width: $sidebar-width
+    height: 100%
+    background: var(--sidebar-bg)
+    transition: all .5s
 
-    .toc-child
-      display: block !important
+    &.open
+      transform: translate3d(-100%, 0, 0)
 
-  .sidebar-toc
-    ol,
-    li
-      list-style: none
-
-    ol
-      margin-top: .2rem
-      padding-left: .4rem
-
-    &__title
-      padding-right: .5rem
+    & > .author-avatar
+      padding: 1.3rem 1.5rem 0
       text-align: center
-      font-size: 1.3em
 
-    &__content
-      overflow-y: scroll
-      padding-bottom: 5rem
-      height: 90vh
+      img
+        width: 110px
+        height: 110px
+        border-radius: 70px
+        transition: all .5s
 
-    .toc-link
-      display: block
-      padding-left: .2rem
-      border-right: 3px solid transparent
-      transition: all .2s ease-in-out
+        &:hover
+          transform: rotate(360deg)
 
-      &.active
-        border-right-color: darken($theme-toc-color, 20%)
-        background: $theme-toc-color
-        color: $sidebar-active-color
+    .site-data
+      display: table
+      padding: .6rem .5rem 0
+      width: 100%
+      table-layout: fixed
 
-    &__progress
-      position: relative
-      margin-bottom: .3rem
-      padding-left: .6rem
-      color: $theme-toc-color
+      .data-item
+        display: table-cell
 
-      .progress-notice
-        margin-right: .4rem
+        .data-item-link
+          & > a > div
+            @extend .limit-one-line
 
-      .progress-num
-        display: inline-block
-        min-width: .9rem
+          .length-num
+            color: var(--text-highlight-color)
+            font-size: 1.28em
 
-      &-bar
-        width: 0
-        height: 1px
-        background: $theme-toc-color
+          .headline
+            color: var(--font-color)
+
+    hr
+      margin: 1rem auto
+
+    .menus_items
+      padding: 0 .5rem 2rem
+
+      .site-page
+        @extend .limit-one-line
+        position: relative
+        display: block
+        padding: .3rem 1.5rem
+        color: var(--font-color)
+        font-size: 1.15em
+        cursor: pointer
+
+        i:first-child
+          width: 25%
+          text-align: left
+
+        span
+          width: 75%
+
+          &:hover
+            color: $light-blue
+
+      .expand
+        position: absolute
+        top: .78em
+        right: .4rem
+        transition: transform .3s
+
+        &.hide
+          transform: rotate(90deg) !important
+
+      .menus_item_child
+        margin: 0
+        list-style: none
+
+        if hexo-config('hide_sidebar_menu_child')
+          display: none

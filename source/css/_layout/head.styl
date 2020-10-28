@@ -116,28 +116,31 @@
 
   #post-info
     position: absolute
-    bottom: 1.5rem
+    bottom: 5rem
     padding: 0 8%
     width: 100%
-    text-align: left
+    text-align: center
+
+    +maxWidth900()
+      bottom: 1.5rem
+      text-align: left
 
     +maxWidth768()
       bottom: 1.1rem
       padding: 0 1.1rem
 
 #post-info
-  #post-title
+  .post-title
+    @extend .limit-more-line
     margin-bottom: .4rem
-    font-size: 2.15em
+    font-size: 2.5em
+    font-weight: normal
+    color: var(--white)
+    line-height: 1.5
+    -webkit-line-clamp: 3
 
     +maxWidth768()
       font-size: 1.72em
-
-    .posttitle
-      @extend .limit-more-line
-      color: var(--white)
-      line-height: 1.5
-      -webkit-line-clamp: 3
 
   #post-meta
     color: var(--light-grey)
@@ -185,7 +188,7 @@
   & > #post-info
     margin-bottom: 1.5rem
 
-    .posttitle
+    .post-title
       padding-bottom: .2rem
       border-bottom: 1px solid var(--light-grey)
       color: var(--text-highlight-color)

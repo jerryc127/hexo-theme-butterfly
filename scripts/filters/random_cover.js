@@ -6,7 +6,8 @@
 'use strict'
 
 hexo.extend.filter.register('before_post_render', function (data) {
-  if (hexo.theme.config.rootConfig.post_asset_folder) {
+  const { config } = this
+  if (config.post_asset_folder) {
     const imgTestReg = /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/
     const topImg = data.top_img
     const cover = data.cover

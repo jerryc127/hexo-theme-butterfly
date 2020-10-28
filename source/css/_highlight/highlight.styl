@@ -1,8 +1,8 @@
 // https://github.com/equinusocio/vsc-material-theme
 $highlight_theme = hexo-config('highlight_theme')
-$highlighEnable = hexo-config('rootConfig.highlight') && hexo-config('rootConfig.highlight.enable')
-$prismjsEnable = hexo-config('rootConfig.prismjs') && hexo-config('rootConfig.prismjs.enable')
-wordWrap = !hexo-config('rootConfig.highlight.line_number') && hexo-config('code_word_wrap')
+$highlighEnable = hexo-config('highlight_settings') && hexo-config('highlight_settings.enable')
+$prismjsEnable = hexo-config('prismjs_settings') && hexo-config('prismjs_settings.enable')
+wordWrap = !hexo-config('highlight_settings.line_number') && hexo-config('code_word_wrap')
 
 @require 'theme'
 
@@ -126,6 +126,7 @@ blockquote
       text-transform: uppercase
       font-weight: bold
       font-size: 1.15em
+      user-select: none
 
     .copy-notice
       position: absolute

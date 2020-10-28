@@ -14,10 +14,10 @@
       span= _p('footer.theme') + ' '
       a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
   if theme.footer.custom_text
-    .footer_custom_text!=`${theme.footer.custom_text}`   
+    .footer_custom_text!=`${theme.footer.custom_text}`
   if theme.footer.ICP.enable
     .icp
       a(href=theme.footer.ICP.url)
         if theme.footer.ICP.icon
-          img.icp-icon(src=url_for(theme.footer.ICP.icon))
+          img.icp-icon(src=url_for(theme.footer.ICP.icon) alt='ICP')
         span=theme.footer.ICP.text
