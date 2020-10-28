@@ -79,6 +79,6 @@ if theme.blog_title_font &&　theme.blog_title_font.font_link
 include ./head/config_site.pug
 include ./head/noscript.pug
 
-!=partial('includes/head/darkmode', {}, {cache:theme.fragment_cache})
+!=partial('includes/head/js', {}, {cache:theme.fragment_cache})
 
 !=fragment_cache('injectHead', function(){return injectHtml(theme.inject.head)})
