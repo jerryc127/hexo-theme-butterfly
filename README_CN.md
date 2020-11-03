@@ -7,9 +7,9 @@
 ![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly?color=FF5531)
 
 
-預覽: 👍 [Butterfly](https://demo.jerryc.me/)  ||  🤞 [JerryC](https://jerryc.me/)
+預覽: 👍 [Butterfly](https://butterfly.js.org/)  ||  🤞 [JerryC](https://jerryc.me/)
 
-文檔: 📖 [Butterfly Docs](https://demo.jerryc.me/posts/21cfbf15/)
+文檔: 📖 [Butterfly Docs](https://butterfly.js.org/posts/21cfbf15/)
 
 一款基於[hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody)修改的主題
 
