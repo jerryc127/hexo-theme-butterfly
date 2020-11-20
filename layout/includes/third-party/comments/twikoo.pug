@@ -9,7 +9,7 @@ script.
     if (typeof twikoo.init === 'function') {
       init()
     } else {
-      $.getScript('!{theme.CDN.twikoo}', init)
+      getScript('!{theme.CDN.twikoo}').then(init)
     }
   }
 

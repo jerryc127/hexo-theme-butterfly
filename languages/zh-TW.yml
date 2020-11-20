@@ -42,8 +42,6 @@ local_search:
   label: 本地搜尋
   input_placeholder: 搜尋文章
   hits_empty: '找不到您查詢的內容：${query}'
-  powered: '提供支援'
-  by: 由
 
 pagination:
   prev: 上一篇

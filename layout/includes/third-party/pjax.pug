@@ -29,8 +29,12 @@ script.
   document.addEventListener('pjax:complete', function () {
     window.refreshFn()
 
-    $('script[data-pjax]').each(function () {
-      $(this).parent().append($(this).remove())
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
     })
 
     GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
@@ -69,10 +73,8 @@ script.
 
     typeof typed === 'object' && typed.destroy()
 
-    $(window).off('scroll')
-
     //reset readmode
-    $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+    const $bodyClassList = document.body.classList
+    $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
 
   })
-

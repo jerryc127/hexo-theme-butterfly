@@ -51,9 +51,7 @@ script.
         }
 
       var settings = {
-        "url": `${serverURL}/1.1/classes/Comment?limit=!{theme.newest_comments.limit}&order=-createdAt`,
         "method": "GET",
-        "timeout": 0,
         "headers": {
           "X-LC-Id": '!{theme.newest_comments.leancloud.appId}',
           "X-LC-Key": '!{theme.newest_comments.leancloud.appKey}',
@@ -61,26 +59,25 @@ script.
         },
       }
 
-      $.ajax(settings).done((response) => {
-        var valineArray = []
-        response.results.forEach((e)=>{
-          valineArray.push({
-            'avatar': e.QQAvatar,
-            'content': changeContent(e.comment),
-            'mail': e.mail,
-            'nick': e.nick,
-            'url': e.url,
-            'date': e.createdAt,
+      fetch(`${serverURL}/1.1/classes/Comment?limit=!{theme.newest_comments.limit}&order=-createdAt`,settings)
+        .then(response => response.json())
+        .then(data => {
+          const valineArray = data.results.map(function (e) {
+            return {
+              'avatar': e.QQAvatar,
+              'content': changeContent(e.comment),
+              'mail': e.mail,
+              'nick': e.nick,
+              'url': e.url,
+              'date': e.createdAt,
+            }
           })
-        })
-        
-        saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
-        generateHtml(valineArray)
-
-      }).fail(()=>{
-        const $dom = document.querySelector('#card-newest-comments .aside-list')
-        $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
-      })
+          saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+          generateHtml(valineArray)
+        }).catch(e => { 
+          const $dom = document.querySelector('#card-newest-comments .aside-list')
+          $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
+        }) 
     }
 
     const newestCommentInit = () => {

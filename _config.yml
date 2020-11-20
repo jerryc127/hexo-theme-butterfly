@@ -542,6 +542,7 @@ ClickShowText:
     # - LOVE
     # - YOU
   fontSize: 15px
+  random: false
   mobile: false
 
 # Default display mode (網站默認的顯示模式)
@@ -813,6 +814,9 @@ Open_Graph_meta: true
 
 # Caches the contents in a fragment, speed up the generation (開啟hexo自帶的緩存,加快生成速度)
 fragment_cache: true
+
+# Add the vendor prefixes to ensure compatibility
+css_prefix: true
 
 # Inject
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)

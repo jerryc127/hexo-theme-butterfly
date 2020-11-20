@@ -1,5 +1,4 @@
 div
-  script(src=url_for(theme.CDN.jquery))
   script(src=url_for(theme.CDN.utils))
   script(src=url_for(theme.CDN.main))
 
@@ -8,11 +7,9 @@ div
 
   if theme.medium_zoom
     script(src=url_for(theme.CDN.medium_zoom))
-  else if theme.fancybox
-    script(src=url_for(theme.CDN.fancybox))
 
   if theme.instantpage
-    script(src=url_for(theme.CDN.instantpage) type="module" defer)
+    script(src=url_for(theme.CDN.instantpage) type="module")
 
   if theme.lazyload.enable
     script(src=url_for(theme.CDN.lazyload))
@@ -35,9 +32,6 @@ div
   .js-pjax
     if theme.subtitle.enable && is_home() && theme.index_img !== false
       include ./third-party/subtitle.pug
-    
-    if page.type === 'artitalk'
-      include ./third-party/artitalk.pug
 
     include ./third-party/math/index.pug
 

@@ -14,23 +14,24 @@ script.
     }
 
     const getGithubIssues = () => {
-      let githubArray = []
-      $.getJSON('https://api.github.com/repos/!{theme.newest_comments.github_issues.repo}/issues/comments?sort=updated&direction=desc&per_page=!{theme.newest_comments.limit}&page=1', (data) => { 
-        $.each(data, (index, item) => {
-          githubArray.push({
-            'avatar': item.user.avatar_url,
-            'content': changeContent(item.body),
-            'nick': item.user.login,
-            'url': item.html_url,
-            'date': item.updated_at
+      fetch('https://api.github.com/repos/!{theme.newest_comments.github_issues.repo}/issues/comments?sort=updated&direction=desc&per_page=!{theme.newest_comments.limit}&page=1')
+        .then(response => response.json())
+        .then(data => {
+          const githubArray = data.map(item => {
+            return {
+              'avatar': item.user.avatar_url,
+              'content': changeContent(item.body),
+              'nick': item.user.login,
+              'url': item.html_url,
+              'date': item.updated_at
+            }
           })
+          saveToLocal.set('github-newest-comments', JSON.stringify(githubArray), 10/(60*24))
+          generateHtml(githubArray)
+        }).catch(e => {
+          const $dom = document.querySelector('#card-newest-comments .aside-list')
+          $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
         })
-        saveToLocal.set('github-newest-comments', JSON.stringify(githubArray), 10/(60*24))
-        generateHtml(githubArray)
-      }).fail(()=>{
-        const $dom = document.querySelector('#card-newest-comments .aside-list')
-        $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
-      })
     }
 
     const generateHtml = array => {

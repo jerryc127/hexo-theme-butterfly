@@ -56,21 +56,8 @@ var btf = {
     const clientWidth = document.body.clientWidth
     const paddingRight = innerWidth - clientWidth
     if (innerWidth !== clientWidth) {
-      $('body').css('padding-right', paddingRight)
+      document.body.style.paddingRight = paddingRight + 'px'
     }
-  },
-
-  scrollToDest: name => {
-    const scrollOffset = $(name).offset().top
-    let offset
-    if ($(window).scrollTop() > scrollOffset) {
-      offset = 65
-    } else {
-      offset = 0
-    }
-    $('body,html').animate({
-      scrollTop: scrollOffset - offset
-    })
   },
 
   snackbarShow: (text, showAction, duration) => {
@@ -88,6 +75,9 @@ var btf = {
   },
 
   initJustifiedGallery: function (selector) {
+    if (!(selector instanceof jQuery)) {
+      selector = $(selector)
+    }
     selector.each(function (i, o) {
       if ($(this).is(':visible')) {
         $(this).justifiedGallery({
@@ -145,5 +135,118 @@ var btf = {
     } else {
       callback()
     }
-  }
+  },
+
+  scrollToDest: (pos, time) => {
+    if (pos < 0 || time < 0) {
+      return
+    }
+    var currentPos = window.scrollY || window.screenTop
+
+    if (currentPos > pos) pos = pos - 65
+    var start = null
+    time = time || 500
+    window.requestAnimationFrame(function step (currentTime) {
+      start = !start ? currentTime : start
+      if (currentPos < pos) {
+        const progress = currentTime - start
+        window.scrollTo(0, ((pos - currentPos) * progress / time) + currentPos)
+        if (progress < time) {
+          window.requestAnimationFrame(step)
+        } else {
+          window.scrollTo(0, pos)
+        }
+      } else {
+        const progress = currentTime - start
+        window.scrollTo(0, currentPos - ((currentPos - pos) * progress / time))
+        if (progress < time) {
+          window.requestAnimationFrame(step)
+        } else {
+          window.scrollTo(0, pos)
+        }
+      }
+    })
+  },
+
+  fadeIn: (ele, time) => {
+    ele.style.cssText = `display:block;animation: to_show ${time}s`
+  },
+
+  fadeOut: (ele, time) => {
+    ele.addEventListener('animationend', function f () {
+      ele.style.cssText = "display: none; animation: '' "
+      ele.removeEventListener('animationend', f)
+    })
+    ele.style.animation = `to_hide ${time}s`
+  },
+
+  getParents: (elem, selector) => {
+    // polyfill
+    if (!Element.prototype.matches) {
+      Element.prototype.matches =
+          Element.prototype.matchesSelector ||
+          Element.prototype.mozMatchesSelector ||
+          Element.prototype.msMatchesSelector ||
+          Element.prototype.oMatchesSelector ||
+          Element.prototype.webkitMatchesSelector ||
+          function (s) {
+            const matches = (this.document || this.ownerDocument).querySelectorAll(s)
+            let i = matches.length
+            while (--i >= 0 && matches.item(i) !== this) {}
+            return i > -1
+          }
+    }
+
+    for (; elem && elem !== document; elem = elem.parentNode) {
+      if (elem.matches(selector)) return elem
+    }
+    return null
+  },
+
+  /**
+   *
+   * @param {*} ele
+   * @param {*} selector class name
+   */
+  siblings: (ele, selector) => {
+    return [...ele.parentNode.children].filter((child) => {
+      if (selector) {
+        return child !== ele && child.classList.contains(selector)
+      }
+    })
+  },
+
+  /**
+   *
+   * @param {*} selector
+   * @param {*} eleType the type of create element
+   * @param {*} id id
+   * @param {*} cn class name
+   */
+  wrap: function (selector, eleType, id = null, cn = null) {
+    const creatEle = document.createElement(eleType)
+    if (id) creatEle.id = id
+    if (cn) creatEle.className = cn
+    selector.parentNode.insertBefore(creatEle, selector)
+    creatEle.appendChild(selector)
+  },
+
+  unwrap: function (el) {
+    const elParentNode = el.parentNode
+    if (elParentNode !== document.body) {
+      elParentNode.parentNode.insertBefore(el, elParentNode)
+      elParentNode.parentNode.removeChild(elParentNode)
+    }
+  },
+
+  isJqueryLoad: (fn) => {
+    if (typeof jQuery === 'undefined') {
+      getScript(GLOBAL_CONFIG.source.jQuery).then(fn)
+    } else {
+      fn()
+    }
+  },
+
+  isHidden: (ele) => ele.offsetHeight === 0 && ele.offsetWidth === 0
+
 }
