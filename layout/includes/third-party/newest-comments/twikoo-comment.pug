@@ -14,25 +14,33 @@ script.
     }
 
     const getComment = () => {
-      fetch('https://api.github.com/repos/!{theme.newest_comments.github_issues.repo}/issues/comments?sort=updated&direction=desc&per_page=!{theme.newest_comments.limit}&page=1')
-        .then(response => response.json())
-        .then(data => {
-          const githubArray = data.map(item => {
-            return {
-              'avatar': item.user.avatar_url,
-              'content': changeContent(item.body),
-              'nick': item.user.login,
-              'url': item.html_url,
-              'date': item.updated_at
-            }
-          })
-          saveToLocal.set('github-newest-comments', JSON.stringify(githubArray), 10/(60*24))
-          generateHtml(githubArray)
-        }).catch(e => {
+      const runTwikoo = () => {
+        twikoo.getRecentComments({
+          envId: '!{theme.twikoo}',
+          pageSize: !{theme.newest_comments.limit},
+          includeReply: true
+        }).then(function (res) {
+          saveToLocal.set('twikoo-newest-comments', JSON.stringify(res), 10/(60*24))
+          generateHtml(res)
+        }).catch(function (err) {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
           $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
         })
+      }
+
+      if (typeof twikoo === 'object') {
+        runTwikoo()
+      } else {
+        getScript('!{theme.CDN.twikoo}').then(runTwikoo)
+      }
     }
+
+    const getIcon = (md5) => {
+      let defaultIcon = '!{ theme.newest_comments.twikoo.default_avatar ? `?d=${theme.newest_comments.twikoo.default_avatar}` : ''}'
+      let iconUrl = `https://gravatar.loli.net/avatar/${md5 + defaultIcon}`
+      return iconUrl
+    }
+
 
     const generateHtml = array => {
       let result = ''
@@ -42,12 +50,12 @@ script.
           result += '<div class=\'aside-list-item\'>'
 
           if (!{theme.newest_comments.avatar}) {
-            result += `<a href='${array[i].url}' class="thumbnail"><img data-lazy-src='${array[i].avatar}' alt='${array[i].nick}'></a>`
+            result += `<a href='${array[i].url}' class='thumbnail'><img data-lazy-src='${getIcon(array[i].mailMd5)}' alt='${array[i].nick}'></a>`
           }
-
+          
           result += `<div class='content'>
-          <a class='comment' href='${array[i].url}'>${array[i].content}</a>
-          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+          <a class='comment' href='${array[i].url}'>${changeContent(array[i].commentText)}</a>
+          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].created, true)}</time></div>
           </div></div>`
         }
       } else {
@@ -62,7 +70,7 @@ script.
 
     const newestCommentInit = () => {
       if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = saveToLocal.get('github-newest-comments')
+        const data = saveToLocal.get('twikoo-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
@@ -74,7 +82,6 @@ script.
     newestCommentInit()
     document.addEventListener('pjax:complete', newestCommentInit)
   })
-
 
 
 

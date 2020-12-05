@@ -73,6 +73,7 @@ aside:
     headline: Newest Comments
     loading_text: loading...
     error: Unable to get the data, please make sure the settings are correct.
+    zero: No Comment
   card_toc: Catalog
 
 date_suffix:
@@ -87,12 +88,13 @@ share: Share
 
 rightside:
   readmode_title: Read Mode
-  translate_title: Switch Between Traditional Chinese And Simplified Chinese
-  night_mode_title: Switch Between Light And Dark Mode
+  translate_title: Toggle Between Traditional Chinese And Simplified Chinese
+  night_mode_title: Toggle Between Light And Dark Mode
   back_to_top: Back To Top
   toc: Table Of Contents
   scroll_to_comment: Scroll To Comments
   setting: Setting
+  aside: Toggle between single-column and double-column
 
 copy_copyright:
   author: Author

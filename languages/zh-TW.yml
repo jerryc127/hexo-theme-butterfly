@@ -73,7 +73,8 @@ aside:
   card_newest_comments:
     headline: 最新評論
     loading_text: 正在加載中...
-    error: 無法獲取資料，請確認相關配置是否正確
+    error: 無法獲取評論，請確認相關配置是否正確
+    zero: 沒有評論
   card_toc: 目錄
 
 date_suffix:
@@ -94,6 +95,7 @@ rightside:
   toc: 目錄
   scroll_to_comment: 直達評論
   setting: 設定
+  aside: 單欄和雙欄切換
 
 copy_copyright:
   author: 作者

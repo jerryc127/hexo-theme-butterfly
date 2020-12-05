@@ -173,6 +173,7 @@ index_post_content:
 toc:
   enable: true
   number: true
+  style_simple: false
 
 post_copyright:
   enable: true
@@ -239,7 +240,7 @@ addtoany:
 
 comments:
   # Up to two comments system, the first will be shown as default
-  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments
+  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments/Twikoo
   use:
   # - Valine
   # - Disqus
@@ -673,6 +674,9 @@ newest_comments:
     enable: false
     forum:
     api_key:
+  twikoo:
+    enable: false
+    default_avatar: # mp/identicon/monsterid/wavatar/retro/robohash/blank/404
 
 # Bottom right button (右下角按鈕)
 # --------------------------------------

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 var btf = {
   debounce: function (func, wait, immediate) {
     let timeout
@@ -141,9 +139,18 @@ var btf = {
     if (pos < 0 || time < 0) {
       return
     }
-    var currentPos = window.scrollY || window.screenTop
 
-    if (currentPos > pos) pos = pos - 65
+    var currentPos = window.scrollY || window.screenTop
+    if (currentPos > pos) pos = pos - 70
+
+    if ('CSS' in window && CSS.supports('scroll-behavior', 'smooth')) {
+      window.scrollTo({
+        top: pos,
+        behavior: 'smooth'
+      })
+      return
+    }
+
     var start = null
     time = time || 500
     window.requestAnimationFrame(function step (currentTime) {

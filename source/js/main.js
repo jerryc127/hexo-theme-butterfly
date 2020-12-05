@@ -1,12 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const blogNameWidth = document.getElementById('site-name').offsetWidth
-  const menusWidth = document.getElementById('menus').offsetWidth
+  let blogNameWidth = document.getElementById('site-name').offsetWidth
+  const $menusEle = document.querySelector('#menus .menus_items')
+  let menusWidth = $menusEle && $menusEle.offsetWidth
+  const $searchEle = document.querySelector('#search-button')
+  let searchWidth = $searchEle && $searchEle.offsetWidth
+  let detectFontSizeChange = false
 
   const adjustMenu = () => {
+    if (detectFontSizeChange) {
+      blogNameWidth = document.getElementById('site-name').offsetWidth
+      menusWidth = $menusEle && $menusEle.offsetWidth
+      searchWidth = $searchEle && $searchEle.offsetWidth
+      detectFontSizeChange = false
+    }
     const $nav = document.getElementById('nav')
     let t
     if (window.innerWidth < 768) t = true
-    else t = blogNameWidth + menusWidth > $nav.offsetWidth - 100
+    else t = blogNameWidth + menusWidth + searchWidth > $nav.offsetWidth - 120
 
     if (t) {
       $nav.classList.add('hide-menu')
@@ -36,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function closeMobileSidebar () {
-      $body.style.cssText = "overflow: ''; padding-right: ''"
+      $body.style.overflow = ''
+      $body.style.paddingRight = ''
       btf.fadeOut($menuMask, 0.5)
       $mobileSidebarMenus.classList.remove('open')
     }
@@ -213,24 +224,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const runJustifiedGallery = function () {
     let $justifiedGallery = document.querySelectorAll('#article-container .justified-gallery')
     if ($justifiedGallery.length) {
-      $justifiedGallery = $($justifiedGallery)
-      const $imgList = $justifiedGallery.find('img')
-      $imgList.unwrap()
-      if ($imgList.length) {
-        $imgList.each(function (i, o) {
-          if ($(o).attr('data-lazy-src')) $(o).attr('src', $(o).attr('data-lazy-src'))
-          $(o).wrap('<div></div>')
-        })
-      }
+      btf.isJqueryLoad(() => {
+        $justifiedGallery = $($justifiedGallery)
+        const $imgList = $justifiedGallery.find('img')
+        $imgList.unwrap()
+        if ($imgList.length) {
+          $imgList.each(function (i, o) {
+            if ($(o).attr('data-lazy-src')) $(o).attr('src', $(o).attr('data-lazy-src'))
+            $(o).wrap('<div></div>')
+          })
+        }
 
-      if (detectJgJsLoad) btf.initJustifiedGallery($justifiedGallery)
-      else {
-        $('head').append(`<link rel="stylesheet" type="text/css" href="${GLOBAL_CONFIG.source.justifiedGallery.css}">`)
-        $.getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`, function () {
-          btf.initJustifiedGallery($justifiedGallery)
-        })
-        detectJgJsLoad = true
-      }
+        if (detectJgJsLoad) btf.initJustifiedGallery($justifiedGallery)
+        else {
+          $('head').append(`<link rel="stylesheet" type="text/css" href="${GLOBAL_CONFIG.source.justifiedGallery.css}">`)
+          $.getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`, function () {
+            btf.initJustifiedGallery($justifiedGallery)
+          })
+          detectJgJsLoad = true
+        }
+      })
     }
   }
 
@@ -285,9 +298,16 @@ document.addEventListener('DOMContentLoaded', function () {
  * 滾動處理
  */
   const scrollFn = function () {
+    const $rightside = document.getElementById('rightside')
+
+    // 當沒有滾動條的時候
+    if (document.body.scrollHeight <= window.innerHeight) {
+      $rightside.style.display = 'block'
+      return
+    }
+
     let initTop = 0
     let isChatShow = true
-    const $rightside = document.getElementById('rightside')
     const $nav = document.getElementById('nav')
     const isChatBtnHide = typeof chatBtnHide === 'function'
     const isChatBtnShow = typeof chatBtnShow === 'function'
@@ -389,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const $target = e.target.classList.contains('toc-link')
         ? e.target
         : e.target.parentElement
-      btf.scrollToDest(document.querySelector(decodeURI($target.getAttribute('href'))).offsetTop, 300)
+      btf.scrollToDest(document.getElementById(decodeURI($target.getAttribute('href')).replace('#', '')).offsetTop, 300)
       if (window.innerWidth < 900) {
         mobileToc.close()
       }
@@ -489,6 +509,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  // function aa (num,target) {
+  //   const a = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--global-font-size'))
+  //   let newValue = ''
+  //   detectFontSizeChange = true
+  //   if (num) {
+  //     if (a >= 20) return
+  //     newValue = a + 1
+  //     document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
+  //     !document.getElementById('nav').classList.contains('hide-menu') && adjustMenu()
+  //   } else {
+  //     if (a <= 10) return
+  //     newValue = a - 1
+  //     document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
+  //     document.getElementById('nav').classList.contains('hide-menu') && adjustMenu()
+  //   }
+
+  //   document.getElementById('font-text').innerText = newValue
+  // }
+
   document.getElementById('rightside').addEventListener('click', function (e) {
     const $target = e.target.id || e.target.parentNode.id
     switch ($target) {
@@ -507,6 +546,12 @@ document.addEventListener('DOMContentLoaded', function () {
       case 'hide-aside-btn':
         rightSideFn.hideAsideBtn()
         break
+      // case 'font-plus':
+      //   aa(true)
+      //   break
+      // case 'font-minus':
+      //   aa()
+      //   break
       default:
         break
     }

@@ -51,13 +51,13 @@ if (theme.pwa && theme.pwa.enable)
 
 //- main css
 link(rel='stylesheet', href=url_for(theme.CDN.main_css))
-link(rel='stylesheet', href=url_for(theme.CDN.fontawesome))
+link(rel='stylesheet', href=url_for(theme.CDN.fontawesome) media="print" onload="this.media='all'")
 
 if (theme.snackbar && theme.snackbar.enable)
-  link(rel='stylesheet', href=url_for(theme.CDN.snackbar_css))
+  link(rel='stylesheet', href=url_for(theme.CDN.snackbar_css) media="print" onload="this.media='all'")
 
 if theme.algolia_search.enable
-  link(rel='stylesheet' href=url_for(theme.CDN.algolia_search_css))
+  link(rel='stylesheet' href=url_for(theme.CDN.algolia_search_css) media="print" onload="this.media='all'")
   script(src=url_for(theme.CDN.algolia_search) defer)
 
 //- google_adsense
@@ -68,7 +68,7 @@ if theme.algolia_search.enable
 
 //- font
 if theme.blog_title_font &&　theme.blog_title_font.font_link
-  link(rel='stylesheet' href=url_for(theme.blog_title_font.font_link))
+  link(rel='stylesheet' href=url_for(theme.blog_title_font.font_link) media="print" onload="this.media='all'")
 
 //- global config
 !=partial('includes/head/config', {}, {cache:theme.fragment_cache})

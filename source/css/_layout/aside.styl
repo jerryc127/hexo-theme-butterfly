@@ -229,13 +229,14 @@
         padding: 0 0 0 .8rem
 
       > .parent
-        .card-category-list
-          &-name
-            width: 70% !important
+        > a
+          .card-category-list
+            &-name
+              width: 70% !important
 
-          &-count
-            width: calc(100% - 70% - 20px)
-            text-align: right
+            &-count
+              width: calc(100% - 70% - 20px)
+              text-align: right
 
         i
           float: right
@@ -248,7 +249,7 @@
             transform: rotate(-90deg)
 
         if hexo-config('aside.card_categories.expand') == false
-          + .child
+          > .child
             display: none
 
   .card-webinfo
@@ -265,7 +266,7 @@
 
   // toc
   #card-toc
-    +minWidth900()
+    +minWidth901()
       right: 0 !important
 
     +maxWidth900()
@@ -277,7 +278,6 @@
       width: $toc-mobile-width
       opacity: 0
       transform-origin: right bottom
-      // animation: toc-open .3s
 
     .toc-content
       overflow-y: auto
@@ -328,6 +328,10 @@
         content: attr(progress-percentage)
         font-style: italic
         font-size: 1.2rem
+
+  :only-child
+    > .card-widget
+      margin-top: 0
 
 @keyframes toc-open
   0%

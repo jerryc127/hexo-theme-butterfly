@@ -50,15 +50,6 @@
     })
   }
 
-  let ClickShowText = 'undefined';
-  if (theme.ClickShowText && theme.ClickShowText.enable) {
-    ClickShowText = JSON.stringify({
-    text: theme.ClickShowText.text.join(","),
-      fontSize: theme.ClickShowText.fontSize,
-      random: theme.ClickShowText.random
-    })
-  }
-
   let Snackbar = 'undefined';
   if (theme.snackbar && theme.snackbar.enable) {
     Snackbar = JSON.stringify({
@@ -117,7 +108,6 @@ script.
       month: '!{_p("date_suffix.month")}'
     },
     copyright: !{copyright},
-    ClickShowText: !{ClickShowText},
     lightbox: '!{ theme.medium_zoom ? "mediumZoom" : (theme.fancybox ? "fancybox" : "null" )}',
     Snackbar: !{Snackbar},
     source: {

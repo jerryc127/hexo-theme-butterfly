@@ -24,25 +24,30 @@ script.
     const generateHtml = array => {
       let result = ''
 
-      for (let i = 0; i < array.length; i++) {
-        result += '<div class=\'aside-list-item\'>'
+      if (array.length) {
+        for (let i = 0; i < array.length; i++) {
+          result += '<div class=\'aside-list-item\'>'
 
-        if (!{theme.newest_comments.avatar}) {
-          result += `<a href='${array[i].url}' class="thumbnail"><img src='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
+          if (!{theme.newest_comments.avatar}) {
+            result += `<a href='${array[i].url}' class="thumbnail"><img data-lazy-src='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
+          }
+
+          result += `<div class='content'>
+          <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+          </div></div>`
         }
-
-        result += `<div class='content'>
-        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
-        <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
-        </div></div>`
+      } else {
+        result += '!{_p("aside.card_newest_comments.zero")}'
       }
 
       let $dom = document.querySelector('#card-newest-comments .aside-list')
       $dom.innerHTML= result
+      window.lazyLoadInstance && window.lazyLoadInstance.update()
       window.pjax && window.pjax.refresh($dom)
     }
 
-    const getValineData = () => {
+    const getComment = () => {
         let serverURL = ''
         if (!{Boolean(theme.newest_comments.leancloud.serverURL)}) {
           serverURL = '!{theme.newest_comments.leancloud.serverURL}'
@@ -74,7 +79,7 @@ script.
           })
           saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
           generateHtml(valineArray)
-        }).catch(e => { 
+        }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
           $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
         }) 
@@ -86,7 +91,7 @@ script.
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
-          getValineData()
+          getComment()
         }
       }
     }

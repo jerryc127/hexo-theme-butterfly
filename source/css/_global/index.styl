@@ -1,4 +1,5 @@
-[data-theme='light']
+:root
+  --global-font-size: $font-size
   --global-bg: $body-bg
   --font-color: $font-black
   --hr-border: lighten($theme-hr-color, 50%)
@@ -36,7 +37,7 @@ body
   min-height: 100%
   background: var(--global-bg)
   color: var(--font-color)
-  font-size: $font-size
+  font-size: var(--global-font-size)
   font-family: $font-family
   line-height: $text-line-height
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
