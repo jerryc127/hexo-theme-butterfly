@@ -1,2 +1,3 @@
-.card-widget.card-ad
-  != theme.ad.aside
+if theme.ad && theme.ad.aside
+  .card-widget.ads-wrap
+    != theme.ad.aside

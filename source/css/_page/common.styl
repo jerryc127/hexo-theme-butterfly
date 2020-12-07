@@ -1,0 +1,52 @@
+.layout
+  display: flex
+  margin: 0 auto
+  padding: 2rem 15px
+  max-width: 1200px
+
+  +maxWidth900()
+    flex-direction: column
+
+  +maxWidth768()
+    padding: 1rem 5px !important
+
+  +minWidth2000()
+    max-width: 1500px
+
+  & > div:first-child:not(.recent-posts)
+    align-self: flex-start
+    padding: 50px 40px
+    border-radius: 8px
+    background: var(--card-bg)
+    box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
+
+    &:hover
+      box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
+
+    +maxWidth768()
+      padding: 1.8rem .7rem !important
+
+  & > div:first-child
+    width: 75%
+    transition: all .3s
+
+    +maxWidth900()
+      width: 100% !important
+
+    if hexo-config('aside.position') == 'left'
+      +minWidth900()
+        order: 2
+
+  // 隱藏aside
+  &.hide-aside
+    max-width: 1000px
+
+    +minWidth2000()
+      max-width: 1300px
+
+    & > div
+      width: 100% !important
+
+#page
+  h1.page-title
+    margin-top: .4rem

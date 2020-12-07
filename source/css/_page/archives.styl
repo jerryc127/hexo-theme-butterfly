@@ -1,0 +1,115 @@
+.article-sort
+  margin-left: .5rem
+  padding-left: 1rem
+  border-left: 2px solid lighten($light-blue, 20)
+
+  &-title
+    position: relative
+    margin-left: .5rem
+    padding-bottom: 1rem
+    padding-left: 1rem
+    font-size: 1.72em
+
+    &:hover
+      &:before
+        border-color: $pseudo-hover
+
+    &:before
+      position: absolute
+      top: calc(((100% - 1.8rem) / 2))
+      left: -.45rem
+      z-index: 1
+      width: w = .5rem
+      height: h = w
+      border: .5 * w solid $light-blue
+      border-radius: w
+      background: var(--card-bg)
+      content: ''
+      line-height: h
+      transition: all .2s ease-in-out
+
+    &:after
+      position: absolute
+      bottom: 0
+      left: 0
+      z-index: 0
+      width: .1rem
+      height: 1.5em
+      background: lighten($light-blue, 20)
+      content: ''
+
+  &-item
+    position: relative
+    display: flex
+    align-items: center
+    margin: 0 0 1rem .5rem
+    transition: all .2s ease-in-out
+
+    &:hover
+      &:before
+        border-color: $pseudo-hover
+
+    &:before
+      $w = .3rem
+      position: absolute
+      left: calc(-1rem - 17px)
+      width: w = $w
+      height: h = w
+      border: .5 * w solid $light-blue
+      border-radius: w
+      background: var(--card-bg)
+      content: ''
+      transition: all .2s ease-in-out
+
+    &.no-article-cover
+      height: 80px
+
+      .article-sort-item-info
+        padding: 0
+
+    &.year
+      font-size: 1.43em
+
+      &:hover
+        &:before
+          border-color: $light-blue
+
+      &:before
+        border-color: $pseudo-hover
+
+    &-time
+      color: $theme-meta-color
+      font-size: 95%
+
+      time
+        padding-left: .3rem
+        cursor: default
+
+    &-title
+      @extend .limit-more-line
+      color: var(--font-color)
+      font-size: 1.1em
+      transition: all .3s
+      -webkit-line-clamp: 2
+
+      &:hover
+        color: $text-hover
+        transform: translateX(10px)
+
+    &-img
+      overflow: hidden
+      width: 80px
+      height: 80px
+
+      img
+        width: 100%
+        height: 100%
+        transition: all .6s
+        object-fit: cover
+
+        &:hover
+          transform: scale(1.1)
+
+    &-info
+      flex: 1
+      padding: 0 .8rem

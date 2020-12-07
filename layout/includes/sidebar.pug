@@ -1,21 +1,31 @@
--
-  let tocNumber = page.toc_number !== undefined ? page.toc_number : theme.toc.number
-  let autoOpenPostSet = page.auto_open == undefined ? theme.toc.auto_open : page.auto_open
-  let autoOpenSidebar = autoOpenPostSet ? 'on' : ''
--
+#sidebar
+  #menu-mask
+  #sidebar-menus
+    .author-avatar
+      if theme.lazyload.enable
+        img.avatar-img(data-lazy-src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
+      else
+        img.avatar-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
+    .site-data
+      if site.posts.length
+        .data-item.is-center
+          .data-item-link
+            a(href=url_for(config.archive_dir) + '/')
+              .headline= _p('aside.articles') 
+              .length-num= site.posts.length
 
-if(showToc)
-  i.fas.fa-arrow-right#toggle-sidebar(class=autoOpenSidebar)
-  #sidebar
-    .sidebar-toc
-      div.sidebar-toc__title= _p('sidebar.catalog')
-      div.sidebar-toc__progress
-        span.progress-notice= _p('sidebar.have_read')
-        span.progress-num 0
-        span.progress-percentage %
-        div.sidebar-toc__progress-bar      
-      if (page.encrypt == true)
-        div.sidebar-toc__content.toc-div-class(style="display:none")!=toc(page.origin, {list_number: tocNumber})
-      else 
-        div.sidebar-toc__content!=toc(page.content, {list_number: tocNumber})
-        
+      if site.tags.length
+        .data-item.is-center
+          .data-item-link
+            a(href=url_for(config.tag_dir) + '/' )
+              .headline= _p('aside.tags')
+              .length-num= site.tags.length
+
+      if site.categories.length
+        .data-item.is-center
+          .data-item-link
+            a(href=url_for(config.category_dir) + '/')
+              .headline= _p('aside.categories') 
+              .length-num= site.categories.length
+    hr
+    !=fragment_cache('menus', function(){return partial('includes/header/menu_item')})

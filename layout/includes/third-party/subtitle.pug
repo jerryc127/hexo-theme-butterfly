@@ -1,0 +1,158 @@
+- let source = theme.subtitle.source
+
+case source
+  when 1
+    script.
+      function subtitleType () {
+        fetch('https://api.btstu.cn/yan/api.php?charset=utf-8&encode=json')
+          .then(response => response.json())
+          .then(data => {
+            if (!{theme.subtitle.effect}) {
+              var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
+              var both = sub.unshift(data.text)
+              typed = new Typed('#subtitle', {
+                strings: sub,
+                startDelay: 300,
+                typeSpeed: 150,
+                loop: !{theme.subtitle.loop},
+                backSpeed: 50,
+              })
+            } else {
+              document.getElementById('subtitle').innerHTML = data.text
+            }
+          })
+      }
+
+      if (!{theme.subtitle.effect}) {
+        if (typeof Typed === 'function') {
+          subtitleType()
+        } else {
+          getScript('!{url_for(theme.CDN.typed)}').then(subtitleType)
+        }
+      } else {
+        subtitleType()
+      }
+
+  when 2
+    script.
+      function subtitleType () {
+        fetch('https://v1.hitokoto.cn')
+          .then(response => response.json())
+          .then(data => {
+            if (!{theme.subtitle.effect}) {
+              var from = '出自 ' + data.from
+              var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
+              var both = sub.unshift(data.hitokoto, from)
+              var typed = new Typed('#subtitle', {
+                strings: sub,
+                startDelay: 300,
+                typeSpeed: 150,
+                loop: !{theme.subtitle.loop},
+                backSpeed: 50,
+              })
+            } else {
+              document.getElementById('subtitle').innerHTML = data.hitokoto
+            }
+          })
+      }
+
+      if (!{theme.subtitle.effect}) {
+        if (typeof Typed === 'function') {
+          subtitleType()
+        } else {
+          getScript('!{url_for(theme.CDN.typed)}').then(subtitleType)
+        }
+      } else {
+        subtitleType()
+      }
+
+  when 3
+    script.
+      function subtitleType () {
+        getScript('http://yijuzhan.com/api/word.php?m=js').then(() => {
+          var con = str[0]
+          if (!{theme.subtitle.effect}) {
+            var from = '出自 ' + str[1]
+            var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
+            var both = sub.unshift(con, from)
+            var typed = new Typed('#subtitle', {
+              strings: sub,
+              startDelay: 300,
+              typeSpeed: 150,
+              loop: !{theme.subtitle.loop},
+              backSpeed: 50,
+            })
+          } else {
+            document.getElementById('subtitle').innerHTML = con
+          }
+        })
+      }
+
+      if (!{theme.subtitle.effect}) {
+        if (typeof Typed === 'function') {
+          subtitleType()
+        } else {
+          getScript('!{url_for(theme.CDN.typed)}').then(subtitleType)
+        }
+      } else {
+        subtitleType()
+      }
+
+  when 4
+    script.
+      function subtitleType () {
+        getScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js').then(() => {
+          jinrishici.load(function (result) {
+            if (!{theme.subtitle.effect}) {
+              var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
+              var content = result.data.content
+              var both = sub.unshift(content)
+              var typed = new Typed('#subtitle', {
+                strings: sub,
+                startDelay: 300,
+                typeSpeed: 150,
+                loop: !{theme.subtitle.loop},
+                backSpeed: 50,
+              })
+            } else {
+              document.getElementById('subtitle').innerHTML = result.data.content
+            }
+          })
+        })
+      }
+
+      if (!{theme.subtitle.effect}) {
+        if (typeof Typed === 'function') {
+          subtitleType()
+        } else {
+          getScript('!{url_for(theme.CDN.typed)}').then(subtitleType)
+        }
+      } else {
+        subtitleType()
+      }
+
+  default
+    script.
+      function subtitleType () {
+        if (!{theme.subtitle.effect}) { 
+          var typed = new Typed("#subtitle", {
+            strings: "!{theme.subtitle.sub}".split(","),
+            startDelay: 300,
+            typeSpeed: 150,
+            loop: !{theme.subtitle.loop},
+            backSpeed: 50
+          })
+        } else {
+          document.getElementById("subtitle").innerHTML = '!{theme.subtitle.sub[0]}'
+        }
+      }
+
+      if (!{theme.subtitle.effect}) {
+        if (typeof Typed === 'function') {
+          subtitleType()
+        } else {
+          getScript('!{url_for(theme.CDN.typed)}').then(subtitleType)
+        }
+      } else {
+        subtitleType()
+      }

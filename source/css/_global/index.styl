@@ -1,13 +1,43 @@
+:root
+  --global-font-size: $font-size
+  --global-bg: $body-bg
+  --font-color: $font-black
+  --hr-border: lighten($theme-hr-color, 50%)
+  --hr-before-color: lighten($theme-hr-color, 30%)
+  --search-bg: $search-bg
+  --search-input-color: $search-input-color
+  --search-result-title: $search-result-title
+  --preloader-bg: $preloader-bg
+  --preloader-color: $preloader-word-color
+  --tab-border-color: $tab-border-color
+  --tab-botton-bg: $tab-botton-bg
+  --tab-botton-color: $tab-botton-color
+  --tab-button-hover-bg: $tab-button-hover-bg
+  --tab-button-active-bg: $tab-button-active-bg
+  --card-bg: $card-bg
+  --sidebar-bg: $sidebar-background
+  --btn-hover-color: $button-hover-color
+  --btn-color: $button-color
+  --btn-bg: $button-bg
+  --text-bg-hover: $text-bg-hover
+  --light-grey: $light-grey
+  --white: $white
+  --text-highlight-color: $text-highlight-color
+  --blockquote-color: $blockquote-color
+  --blockquote-bg: $blockquote-background-color
+  --reward-pop: $reward-pop-up-bg
+  --toc-link-color: $toc-link-color
+
 html
   height: 100%
-  font-size: $rem
+  font-size: 20px
 
 body
   position: relative
   min-height: 100%
-  background: $body-bg
-  color: $font-black
-  font-size: $font-size
+  background: var(--global-bg)
+  color: var(--font-color)
+  font-size: var(--global-font-size)
   font-family: $font-family
   line-height: $text-line-height
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
@@ -20,21 +50,25 @@ body
   height: 8px
 
 *::-webkit-scrollbar-thumb
-  background: $light-blue
+  background: var(--btn-bg)
 
 *::-webkit-scrollbar-track
   background-color: transparent
 
-#web_bg
-  position: fixed
-  z-index: -999
-  width: 100%
-  height: 100%
-  background: $web-bg
-  background-attachment: local
-  background-position: center
-  background-size: cover
-  background-repeat: no-repeat
+input::placeholder
+  color: var(--font-color)
+
+if $web-bg
+  #web_bg
+    position: fixed
+    z-index: -999
+    width: 100%
+    height: 100%
+    background: $web-bg
+    background-attachment: local
+    background-position: center
+    background-size: cover
+    background-repeat: no-repeat
 
 h1,
 h2,
@@ -44,7 +78,7 @@ h5,
 h6
   position: relative
   margin: 1rem 0 .7rem
-  color: lighten($font-color, 15%)
+  color: var(--text-highlight-color)
   font-weight: bold
 
   code
@@ -53,19 +87,10 @@ h6
 *
   box-sizing: border-box
 
-#toggle-sidebar
-  position: fixed
-  bottom: $sidebar-icon-top
-  left: $sidebar-icon-left
-  z-index: 100
-  font-size: $sidebar-icon-size
-  cursor: pointer
-  transition: all .2s
-
 hr
   position: relative
   margin: 2rem auto
-  border: 2px dashed lighten($theme-hr-color, 50%)
+  border: 2px dashed var(--hr-border)
 
   if hexo-config('hr_icon.enable')
     width: calc(100% - 4px)
@@ -79,7 +104,7 @@ hr
       top: $hr-icon-top
       left: 5%
       z-index: 1
-      color: lighten($theme-hr-color, 30%)
+      color: var(--hr-before-color)
       content: $hr-icon
       font-size: 20px
       line-height: 1
@@ -103,7 +128,7 @@ table
   th,
   td
     padding: .3rem .6rem
-    border: 1px solid darken($light-grey, 10%)
+    border: 1px solid var(--light-grey)
     vertical-align: middle
 
 *::selection
@@ -111,41 +136,33 @@ table
   color: #F7F7F7
 
 button
-  margin: 0
   padding: 0
   outline: 0
   border: none
   background: none
   cursor: pointer
 
+a
+  color: $a-link-color
+  text-decoration: none
+  word-wrap: break-word
+  transition: all .2s
+  overflow-wrap: break-word
+
+  &:hover
+    color: $light-blue
+
 // font
-#page-header #site_title,
-#page-header #site_subtitle,
-#site-name,
-#aside_content .author-info__name,
-#aside_content .author-info__description
-  font-family: $site-name-font
-
-.is-right
-  text-align: right
-
-.is-left
-  text-align: left
+if $site-name-font
+  #site-title,
+  #site-subtitle,
+  #site-name,
+  #aside_content .author-info__name,
+  #aside_content .author-info__description
+    font-family: $site-name-font
 
 .is-center
   text-align: center
-
-.is_visible
-  display: block !important
-
-.is-visible-inline
-  display: inline-block !important
-
-.is-invisible
-  display: none !important
-
-.is-hidden
-  overflow: hidden
 
 .copy-true
   user-select: all
@@ -157,8 +174,9 @@ button
   float: right
 
 .button--animated
-  transition-duration: 1s
-  transition-property: color
+  position: relative
+  z-index: 1
+  transition: color 1s
 
   &:before
     position: absolute
@@ -167,11 +185,9 @@ button
     bottom: 0
     left: 0
     z-index: -1
-    background: $theme-button-hover-color
+    background: var(--btn-hover-color)
     content: ''
-    transition-timing-function: ease-out
-    transition-duration: .5s
-    transition-property: transform
+    transition: transform .5s ease-out
     transform: scaleX(0)
     transform-origin: 0 50%
 
@@ -180,202 +196,17 @@ button
       transition-timing-function: cubic-bezier(.45, 1.64, .47, .66)
       transform: scaleX(1)
 
-img[src=''],
-img:not([src])
-  opacity: 0
+img
+  max-width: 100%
+  transition: all .2s
+
+  &[src=''],
+  &:not([src])
+    opacity: 0
 
 .img-alt
   margin: -.5rem 0 .5rem
-  color: $font-black
+  color: #858585
 
   &:hover
     text-decoration: none !important
-
-.comment_headling
-  margin-bottom: 10px
-  font-weight: 700
-  font-size: 20px
-
-.post-ad
-  margin: 2rem 0
-
-.ad_height
-  display: block !important
-  height: auto !important
-
-// animation
-#content-inner,
-#footer
-  animation: main 1s
-
-#page-header
-  animation: header-effect 1s
-
-#site_title,
-#site_subtitle
-  animation: titlescale 1s
-
-canvas:not(#ribbon-canvas),
-#web_bg
-  animation: to_show 4s
-
-#ribbon-canvas
-  animation: ribbon_to_show 4s
-
-.card-announcement-animation
-  color: #FF0000
-  animation: announ_animation .8s linear infinite
-
-.scroll-down-effects
-  animation: scroll-down-effect 1.5s infinite
-
-if hexo-config('avatar.effect') == true
-  .avatar-img
-    animation: avatar_turn_around 2s linear infinite
-
-.reward-main
-  animation: donate_effcet .3s .1s ease both
-
-.tocOpenPc
-  .sidebar-toc__title
-    animation: tocsidebarLtoR .5s
-
-  .sidebar-toc__progress
-    animation: tocsidebarLtoR .7s
-
-  .sidebar-toc__content
-    animation: tocsidebarLtoR .9s
-
-.tocOpenMobile
-  .sidebar-toc__title
-    animation: tocsidebarRtoL .4s
-
-  .sidebar-toc__progress
-    animation: tocsidebarRtoL .6s
-
-  .sidebar-toc__content
-    animation: tocsidebarRtoL .7s
-
-@keyframes scroll-down-effect
-  0%
-    top: 0
-    opacity: .4
-
-  50%
-    top: -16px
-    opacity: 1
-
-  100%
-    top: 0
-    opacity: .4
-
-@keyframes header-effect
-  0%
-    opacity: 0
-    transform: translateY(-50px)
-
-  100%
-    opacity: 1
-    transform: translateY(0)
-
-@keyframes headerNoOpacity
-  0%
-    transform: translateY(-50px)
-
-  100%
-    transform: translateY(0)
-
-@keyframes main
-  0%
-    opacity: 0
-    transform: translateY(50px)
-
-  100%
-    opacity: 1
-    transform: translateY(0)
-
-@keyframes titlescale
-  0%
-    opacity: 0
-    transform: scale(.7)
-
-  100%
-    opacity: 1
-    transform: scale(1)
-
-@keyframes search_close
-  0%
-    opacity: 1
-    transform: scale(1)
-
-  100%
-    opacity: 0
-    transform: scale(.7)
-
-@keyframes to_show
-  0%
-    opacity: 0
-
-  100%
-    opacity: 1
-
-@keyframes ribbon_to_show
-  0%
-    opacity: 0
-
-  100%
-    opacity: hexo-config('canvas_ribbon.alpha')
-
-@keyframes avatar_turn_around
-  from
-    transform: rotate(0)
-
-  to
-    transform: rotate(360deg)
-
-@keyframes sub_menus
-  0%
-    opacity: 0
-    transform: translateY(10px)
-
-  100%
-    opacity: 1
-    transform: translateY(0)
-
-@keyframes donate_effcet
-  0%
-    opacity: 0
-    transform: translateY(-20px)
-
-  100%
-    opacity: 1
-    transform: translateY(0)
-
-@keyframes announ_animation
-  0%,
-  to
-    transform: scale(1)
-
-  50%
-    transform: scale(1.2)
-
-@keyframes sidebarItem
-  0%
-    transform: translateX(200px)
-
-  100%
-    transform: translateX(0)
-
-@keyframes tocsidebarRtoL
-  0%
-    transform: translateX(200px)
-
-  100%
-    transform: translateX(0)
-
-@keyframes tocsidebarLtoR
-  0%
-    transform: translateX(-200px)
-
-  100%
-    transform: translateX(0)

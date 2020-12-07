@@ -1,48 +1,42 @@
+- var htmlClassHideAside = theme.aside.enable && theme.aside.hide ? 'hide-aside' : ''
 - var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
-- var pageHighlightShrinkSet = page.highlight_shrink !== undefined ? page.highlight_shrink : theme.highlight_shrink
-- var pageHighlightShrink = theme.highlight_shrink !== 'none' && pageHighlightShrinkSet ? 'code-close' : ''
 
 doctype html
-html(lang=config.language data-theme=theme.display_mode)
+html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside)
   head
     include ./head.pug
   body
     if theme.preloader
       !=partial('includes/loading/loading', {}, {cache:theme.fragment_cache})
 
-    if theme.fireworks && theme.fireworks.enable
-      canvas.fireworks
+    if theme.background
+      #web_bg
+      
+    !=partial('includes/sidebar', {}, {cache:theme.fragment_cache})
 
-    !=partial('includes/mobile-sidebar/index', {}, {cache:theme.fragment_cache})
-
-    include ./sidebar.pug
-
-    #body-wrap(class=pageHighlightShrink)
-      if theme.background
-        - var is_photo = theme.background.startsWith('url') ? 'photo':'color'
-        #web_bg(data-type=is_photo)
-
+    #body-wrap
       include ./header/index.pug
 
-      if (!is_post())
-        main#content-inner.layout_page(class=hideAside)
-          if body
-            div!= body
-          else
-            block content
+      main#content-inner.layout(class=hideAside)
+        if body
+          div!= body
+        else
+          block content
+          if theme.aside.enable && page.aside !== false
             include widget/index.pug
+
+      - var footerBg = theme.footer_bg
+      if (footerBg)
+        if (footerBg === true)
+          - var footer_bg = bg_img
+        else
+          - var footer_bg = theme.footer_bg.indexOf('/') !== -1 ? `background-image: url(${url_for(footerBg)})` : `background: ${footerBg}`
       else
-        main#content-inner.layout_post
-          if body
-            div!= body
-          else
-            block content
-      
-      - var footer_bg = theme.footer_bg == false ? '' : bg_img
-      - var is_bg = theme.footer_bg == false ? 'color' : 'photo'
-      footer#footer(style=footer_bg data-type=is_bg)
+        - var footer_bg = ''
+
+      footer#footer(style=footer_bg)
         !=partial('includes/footer', {}, {cache:theme.fragment_cache})
 
     include ./rightside.pug
-    !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
+    !=partial('includes/third-party/search/index', {}, {cache:theme.fragment_cache})
     include ./additional-js.pug

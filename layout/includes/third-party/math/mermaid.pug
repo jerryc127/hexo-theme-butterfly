@@ -1,0 +1,15 @@
+script.
+  if (document.getElementsByClassName('mermaid').length) {
+    if (window.mermaidJsLoad) mermaid.init()
+    else {
+      getScript('!{theme.CDN.mermaid}').then(() => {
+        window.mermaidJsLoad = true
+        mermaid.initialize({
+          theme: '!{theme.mermaid.theme}',
+        })
+        !{theme.pjax.enable} && mermaid.init()
+      })
+    }
+  }
+
+

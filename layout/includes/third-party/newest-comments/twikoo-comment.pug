@@ -1,0 +1,87 @@
+script.
+  window.addEventListener('load', () => {
+    const changeContent = (content) => {
+      if (content === '') return content
+
+      content = content.replace(/<[^>]+>/g,"") // remove html tag
+      content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
+      content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
+
+      if (content.length > 150) {
+        content = content.substring(0,150) + '...'
+      }
+      return content
+    }
+
+    const getComment = () => {
+      const runTwikoo = () => {
+        twikoo.getRecentComments({
+          envId: '!{theme.twikoo}',
+          pageSize: !{theme.newest_comments.limit},
+          includeReply: true
+        }).then(function (res) {
+          saveToLocal.set('twikoo-newest-comments', JSON.stringify(res), 10/(60*24))
+          generateHtml(res)
+        }).catch(function (err) {
+          const $dom = document.querySelector('#card-newest-comments .aside-list')
+          $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
+        })
+      }
+
+      if (typeof twikoo === 'object') {
+        runTwikoo()
+      } else {
+        getScript('!{theme.CDN.twikoo}').then(runTwikoo)
+      }
+    }
+
+    const getIcon = (md5) => {
+      let defaultIcon = '!{ theme.newest_comments.twikoo.default_avatar ? `?d=${theme.newest_comments.twikoo.default_avatar}` : ''}'
+      let iconUrl = `https://gravatar.loli.net/avatar/${md5 + defaultIcon}`
+      return iconUrl
+    }
+
+
+    const generateHtml = array => {
+      let result = ''
+
+      if (array.length) {
+        for (let i = 0; i < array.length; i++) {
+          result += '<div class=\'aside-list-item\'>'
+
+          if (!{theme.newest_comments.avatar}) {
+            result += `<a href='${array[i].url}' class='thumbnail'><img data-lazy-src='${getIcon(array[i].mailMd5)}' alt='${array[i].nick}'></a>`
+          }
+          
+          result += `<div class='content'>
+          <a class='comment' href='${array[i].url}'>${changeContent(array[i].commentText)}</a>
+          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].created, true)}</time></div>
+          </div></div>`
+        }
+      } else {
+        result += '!{_p("aside.card_newest_comments.zero")}'
+      }
+
+      let $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.innerHTML= result
+      window.lazyLoadInstance && window.lazyLoadInstance.update()
+      window.pjax && window.pjax.refresh($dom)
+    }
+
+    const newestCommentInit = () => {
+      if (document.querySelector('#card-newest-comments .aside-list')) {
+        const data = saveToLocal.get('twikoo-newest-comments')
+        if (data) {
+          generateHtml(JSON.parse(data))
+        } else {
+          getComment()
+        }
+      }
+    }
+
+    newestCommentInit()
+    document.addEventListener('pjax:complete', newestCommentInit)
+  })
+
+
+

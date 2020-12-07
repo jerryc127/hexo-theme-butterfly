@@ -1,0 +1,154 @@
+#recent-posts
+  & > .recent-post-item:not(:first-child)
+    margin-top: 1rem
+
+  & > .recent-post-item
+    display: flex
+    flex-direction: row
+    align-items: center
+    height: 20em
+    border-radius: 12px 8px 8px 12px
+    background: var(--card-bg)
+    box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
+    transition: all .3s
+
+    +maxWidth768()
+      border-radius: 12px 12px 8px 8px
+
+    &:hover
+      box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
+
+      img.post_bg
+        transform: scale(1.1)
+
+    if hexo-config('cover.position') == 'both'
+      .left_radius
+        border-radius: 8px 0 0 8px
+
+      .right_radius
+        order: 2
+        border-radius: 0 8px 8px 0
+    else if hexo-config('cover.position') == 'left'
+      .left_radius
+        border-radius: 8px 0 0 8px
+
+      .right_radius
+        border-radius: 8px 0 0 8px
+    else if hexo-config('cover.position') == 'right'
+      .left_radius
+        order: 2
+        border-radius: 0 8px 8px 0
+
+      .right_radius
+        order: 2
+        border-radius: 0 8px 8px 0
+
+    &.ads-wrap
+      display: block !important
+      height: auto !important
+
+    .post_cover
+      overflow: hidden
+      width: 45%
+      height: 100%
+      -webkit-mask-image: -webkit-radial-gradient(white, black)
+
+      img.post_bg
+        width: 100%
+        height: 100%
+        transition: all .6s
+        object-fit: cover
+
+        &:hover
+          transform: scale(1.1)
+
+    & >.recent-post-info
+      display: inline-block
+      overflow: hidden
+      padding: 0 40px
+      width: 55%
+
+      &.no-cover
+        width: 100%
+
+      & > .article-title
+        @extend .limit-more-line
+        margin-bottom: .3rem
+        color: var(--text-highlight-color)
+        font-size: 1.72em
+        line-height: 1.4
+        transition: all .2s ease-in-out
+        -webkit-line-clamp: 2
+
+        &:hover
+          color: $text-hover
+
+      & > .article-meta-wrap
+        color: $theme-meta-color
+        font-size: 90%
+
+        & > .post-meta-date
+          cursor: default
+
+        .sticky
+          color: $sticky-color
+
+        i
+          margin: 0 .2rem 0 0
+
+        .article-meta-label
+          if hexo-config('post_meta.page.label')
+            padding-right: .2rem
+          else
+            display: none
+
+        .article-meta__separator
+          margin: 0 .3rem
+
+        .article-meta__link
+          margin: 0 .2rem
+
+        .fa-angle-right
+          margin: 0 .2rem
+
+        if hexo-config('post_meta.page.date_format') == 'relative'
+          time
+            display: none
+
+        a
+          color: $theme-meta-color
+
+          &:hover
+            color: $text-hover
+            text-decoration: underline
+
+      & > .content
+        @extend .limit-more-line
+        margin-top: .3rem
+        -webkit-line-clamp: 3
+
++maxWidth768()
+  #recent-posts
+    .recent-post-item
+      flex-direction: column
+      height: auto !important
+
+      .post_cover
+        order: 1 !important
+        width: 100%
+        height: 230px
+        border-radius: 8px 8px 0 0
+
+      .recent-post-info
+        order: 2 !important
+        padding: 1rem 1rem 1.5rem
+        width: 100%
+
+        &.no-cover
+          padding: 1.5rem 1rem
+
+        .article-title
+          font-size: 1.43em
+
+        .content
+          height: auto

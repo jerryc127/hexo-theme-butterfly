@@ -1,24 +1,23 @@
 #footer-wrap
-  - var now = new Date()
-  - var nowYear = now.getFullYear()
-  if theme.since && theme.since != nowYear
-    .copyright!= `&copy;${theme.since} - ${nowYear} By ${config.author}`
-  else
-    .copyright!= `&copy;${nowYear} By ${config.author}`
-  if theme.footer_copyright
+  if theme.footer.owner.enable
+    - var now = new Date()
+    - var nowYear = now.getFullYear()
+    if theme.footer.owner.since && theme.footer.owner.since != nowYear
+      .copyright!= `&copy;${theme.footer.owner.since} - ${nowYear} By ${config.author}`
+    else
+      .copyright!= `&copy;${nowYear} By ${config.author}`
+  if theme.footer.copyright
     .framework-info
-      span= _p('footer.driven') + ' '
-      a(href='https://hexo.io')
-        span Hexo
+      span= _p('footer.framework') + ' '
+      a(href='https://hexo.io')= 'Hexo'
       span.footer-separator |
       span= _p('footer.theme') + ' '
-      a(href='https://github.com/jerryc127/hexo-theme-butterfly')
-        span Butterfly
-  if theme.footer_custom_text
-    .footer_custom_text!=`${theme.footer_custom_text}`   
-  if theme.ICP.enable
+      a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
+  if theme.footer.custom_text
+    .footer_custom_text!=`${theme.footer.custom_text}`
+  if theme.footer.ICP.enable
     .icp
-      a(href=theme.ICP.url)
-        if theme.ICP.icon
-          img.icp-icon(src=url_for(theme.ICP.icon))
-        span=theme.ICP.text
+      a(href=theme.footer.ICP.url)
+        if theme.footer.ICP.icon
+          img.icp-icon(src=url_for(theme.footer.ICP.icon) alt='ICP')
+        span=theme.footer.ICP.text

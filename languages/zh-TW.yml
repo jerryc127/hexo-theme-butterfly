@@ -1,10 +1,6 @@
-sidebar:
-  catalog: 目錄
-  have_read: 你已經讀了
-
 footer:
-  driven: Power by
-  theme: Theme
+  framework: 框架
+  theme: 主題
 
 copy:
   success: 複製成功
@@ -24,7 +20,8 @@ post:
   created: 發表於
   updated: 更新於
   wordcount: 字數總計
-  min2read: '閱讀時長: %s 分鐘'
+  min2read: 閲讀時長
+  min2read_unit: 分鐘
   page_pv: 閱讀量
   comments: 評論數
   copyright:
@@ -38,15 +35,13 @@ post:
 search: 搜尋
 algolia_search:
   input_placeholder: 搜尋文章
-  hits_empty: '找不到您查詢的內容:${query}'
+  hits_empty: '找不到您查詢的內容：${query}'
   hits_stats: '找到 ${hits} 條結果，用時 ${time} 毫秒'
 
 local_search:
   label: 本地搜尋
   input_placeholder: 搜尋文章
-  hits_empty: '找不到您查詢的內容:${query}'
-  powered: '提供支援'
-  by: 由
+  hits_empty: '找不到您查詢的內容：${query}'
 
 pagination:
   prev: 上一篇
@@ -63,33 +58,44 @@ aside:
   card_tags: 標籤
   card_archives: 歸檔
   card_recent_post: 最新文章
-  card_bookmark: 加入書籤
   card_webinfo:
     headline: 網站資訊
     article_name: 文章數目
-    runtime_name: 已執行時間
+    runtime:
+      name: 已運行時間
+      unit: 天
+    last_push_date:
+      name: 最後更新時間
     site_wordcount: 本站總字數
     site_uv_name: 本站訪客數
     site_pv_name: 本站總訪問量
   more_button: 檢視更多
+  card_newest_comments:
+    headline: 最新評論
+    loading_text: 正在加載中...
+    error: 無法獲取評論，請確認相關配置是否正確
+    zero: 沒有評論
+  card_toc: 目錄
+
+date_suffix:
+  just: 剛剛
+  min: 分鐘前
+  hour: 小時前
+  day: 天前
+  month: 個月前
 
 donate: 打賞
 share: 分享
-bookmark:
-  title: 新增書籤
 
 rightside:
   readmode_title: 閱讀模式
-  font_plus_title: 放大字型
-  font_minus_title: 縮小字型
   translate_title: 簡繁轉換
   night_mode_title: 淺色和深色模式轉換
   back_to_top: 回到頂部
   toc: 目錄
   scroll_to_comment: 直達評論
   setting: 設定
-
-runtime_unit: 天
+  aside: 單欄和雙欄切換
 
 copy_copyright:
   author: 作者
@@ -98,9 +104,6 @@ copy_copyright:
   info: 著作權歸作者所有。商業轉載請聯絡作者獲得授權，非商業轉載請註明出處。
 
 Snackbar:
-  bookmark:
-    message_prev: 按
-    message_next: 鍵將本頁加入書籤
   chs_to_cht: 你已切換為繁體
   cht_to_chs: 你已切換為簡體
   day_to_night: 你已切換為深色模式

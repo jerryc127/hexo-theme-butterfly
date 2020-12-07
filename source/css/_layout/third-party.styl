@@ -1,55 +1,32 @@
-if hexo-config('valine.enable')
-  #vcomment
-    button
-      padding: .3rem .8rem
-      border-color: $button-color
-      background-color: $light-blue
-      color: $button-color
-      font-size: .7rem
-      transition: all .3s
+#vcomment
+  font-size: 1.1em
 
-      &:hover
-        background-color: $theme-button-hover-color
+  .vbtn
+    border: none
+    background: var(--btn-bg)
+    color: var(--btn-color)
 
-    if hexo-config('valine.bg')
-      textarea
-        background: url(hexo-config('valine.bg')) 100% 100% no-repeat
+    &:hover
+      background: var(--btn-hover-color)
 
-    .vimg
-      transition: all .3s
+  if hexo-config('valine.bg')
+    textarea
+      background: url(hexo-config('valine.bg')) 100% 100% no-repeat
 
-      &:hover
-        transform: rotate(360deg)
+      &:focus
+        background-image: none
 
-    .vat
-      padding: 0 .8rem
-      border: 1px solid $light-blue
-      border-radius: 5px
-      color: $light-blue
-      font-size: .7125rem
-      transition: all .3s
+  .vimg
+    transition: all .3s
 
-      &:hover
-        background-color: $light-blue
-        color: $button-color
+    &:hover
+      transform: rotate(360deg)
 
-if hexo-config('beautify.enable')
-  #article-container
-    .aplayer
-      ol,
-      ul
-        margin: 0
-        padding: 0
+  .vcards .vcard .vcontent.expand
+    &:before,
+    &:after
+      z-index: 22
 
-        li
-          margin: 0
-          padding: 0 15px
-
-          &:before
-            content: none
-
-// third-party
-// fireworks
 .fireworks
   position: fixed
   top: 0
@@ -75,18 +52,48 @@ if hexo-config('beautify.enable')
   &[data-processed]
     opacity: 1
 
-.utterances
-  max-width: 100%
+.utterances,
+.fb-comments iframe
+  width: 100% !important
 
 #gitalk-container
   .gt-meta
     margin: 0 0 .8em
     padding: .3rem 0 .8em
 
-.has-jax
+.katex-wrap
   overflow: auto
 
-//aplayer
+  if hexo-config('katex') && hexo-config('katex.hide_scrollbar')
+    &::-webkit-scrollbar
+      display: none
+
+// mathjax
+.mathjax-overflow
+  overflow-x: auto
+  overflow-y: hidden
+
+mjx-container[jax='CHTML'][display='true']
+  overflow-x: auto
+  overflow-y: hidden
+  padding-bottom: .3rem
+
+.aplayer
+  color: $font-black
+
 #article-container
   .aplayer
     margin: 0 0 1rem
+
+    if hexo-config('beautify.enable')
+      ol,
+      ul
+        margin: 0
+        padding: 0
+
+        li
+          margin: 0
+          padding: 0 15px
+
+          &:before
+            content: none

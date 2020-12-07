@@ -13,8 +13,7 @@ html(lang=config.language data-theme=theme.display_mode)
       canvas.fireworks
     
     if theme.background
-      - var is_photo = theme.background.startsWith('url') ? 'photo':'color'
-      #web_bg(data-type=is_photo)
+      #web_bg
 
     #error-wrap
       .error-content
@@ -22,9 +21,8 @@ html(lang=config.language data-theme=theme.display_mode)
         .error-info
           h1.error_title= '404'
           .error_subtitle= theme.error_404.subtitle
-          a.button--animated(href=url_for(config.root))
+          a.button--animated(href=config.root)
             i.fas.fa-rocket
             = _p('error404.back_button')
           
-    !=partial('includes/search/index', {}, {cache:theme.fragment_cache})
     include includes/additional-js.pug
