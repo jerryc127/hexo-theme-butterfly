@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
  * 首頁top_img底下的箭頭
  */
   const scrollDownInIndex = () => {
-    document.getElementById('scroll-down').addEventListener('click', function () {
+    const $scrollDownEle = document.getElementById('scroll-down')
+    $scrollDownEle && $scrollDownEle.addEventListener('click', function () {
       btf.scrollToDest(document.getElementById('content-inner').offsetTop, 300)
     })
   }
