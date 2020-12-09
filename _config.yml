@@ -375,11 +375,6 @@ footer:
     since: 2020
   custom_text:
   copyright: true # Copyright of theme and framework
-  ICP: # Chinese ICP License
-    enable: false
-    url:
-    text:
-    icon: /img/icp.png
 
 # Analysis
 # --------------------------------------
@@ -680,6 +675,9 @@ newest_comments:
 
 # Bottom right button (右下角按鈕)
 # --------------------------------------
+
+# Change font size
+change_font_size: false
 
 # Conversion between Traditional and Simplified Chinese (簡繁轉換)
 translate:

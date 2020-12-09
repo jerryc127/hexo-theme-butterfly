@@ -299,10 +299,11 @@ document.addEventListener('DOMContentLoaded', function () {
  */
   const scrollFn = function () {
     const $rightside = document.getElementById('rightside')
+    const innerHeight = window.innerHeight + 56
 
-    // 當沒有滾動條的時候
-    if (document.body.scrollHeight <= window.innerHeight) {
-      $rightside.style.display = 'block'
+    // 當滾動條小于 56 的時候
+    if (document.body.scrollHeight <= innerHeight) {
+      $rightside.style.cssText = 'opacity: 1; transform: translateX(-38px)'
       return
     }
 
@@ -337,6 +338,10 @@ document.addEventListener('DOMContentLoaded', function () {
           $nav.classList.remove('fixed', 'visible')
         }
         $rightside.style.cssText = "opacity: ''; transform: ''"
+      }
+
+      if (document.body.scrollHeight <= innerHeight) {
+        $rightside.style.cssText = 'opacity: 1; transform: translateX(-38px)'
       }
     }, 200))
 
@@ -506,27 +511,28 @@ document.addEventListener('DOMContentLoaded', function () {
         ? saveToLocal.set('aside-status', 'show', 2)
         : saveToLocal.set('aside-status', 'hide', 2)
       $htmlDom.toggle('hide-aside')
+    },
+
+    adjustFontSize: (plus) => {
+      const fontSizeVal = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--global-font-size'))
+      let newValue = ''
+      detectFontSizeChange = true
+      if (plus) {
+        if (fontSizeVal >= 20) return
+        newValue = fontSizeVal + 1
+        document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
+        !document.getElementById('nav').classList.contains('hide-menu') && adjustMenu()
+      } else {
+        if (fontSizeVal <= 10) return
+        newValue = fontSizeVal - 1
+        document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
+        document.getElementById('nav').classList.contains('hide-menu') && adjustMenu()
+      }
+
+      saveToLocal.set('global-font-size', newValue, 2)
+      // document.getElementById('font-text').innerText = newValue
     }
   }
-
-  // function aa (num,target) {
-  //   const a = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--global-font-size'))
-  //   let newValue = ''
-  //   detectFontSizeChange = true
-  //   if (num) {
-  //     if (a >= 20) return
-  //     newValue = a + 1
-  //     document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
-  //     !document.getElementById('nav').classList.contains('hide-menu') && adjustMenu()
-  //   } else {
-  //     if (a <= 10) return
-  //     newValue = a - 1
-  //     document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
-  //     document.getElementById('nav').classList.contains('hide-menu') && adjustMenu()
-  //   }
-
-  //   document.getElementById('font-text').innerText = newValue
-  // }
 
   document.getElementById('rightside').addEventListener('click', function (e) {
     const $target = e.target.id || e.target.parentNode.id
@@ -546,12 +552,12 @@ document.addEventListener('DOMContentLoaded', function () {
       case 'hide-aside-btn':
         rightSideFn.hideAsideBtn()
         break
-      // case 'font-plus':
-      //   aa(true)
-      //   break
-      // case 'font-minus':
-      //   aa()
-      //   break
+      case 'font-plus':
+        rightSideFn.adjustFontSize(true)
+        break
+      case 'font-minus':
+        rightSideFn.adjustFontSize()
+        break
       default:
         break
     }

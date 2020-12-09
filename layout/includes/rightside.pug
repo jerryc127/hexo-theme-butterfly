@@ -3,6 +3,11 @@
     if is_post() && theme.readmode
       button#readmode(type="button" title=_p('rightside.readmode_title'))
         i.fas.fa-book-open
+    if theme.change_font_size
+      button#font-plus(type="button" title=_p('rightside.font_plus_title'))
+        i.fas.fa-plus
+      button#font-minus(type="button" title=_p('rightside.font_minus_title'))
+        i.fas.fa-minus
     if theme.translate.enable
       button#translateLink(type="button" title=_p('rightside.translate_title'))= theme.translate.default
     if theme.darkmode.enable && theme.darkmode.button
@@ -13,13 +18,13 @@
         i.fas.fa-arrows-alt-h
   #rightside-config-show
     if is_post()
-      if (theme.readmode || theme.translate.enable || (theme.darkmode.enable && theme.darkmode.button))
+      if (theme.readmode || theme.translate.enable || (theme.darkmode.enable && theme.darkmode.button) || theme.change_font_size)
         button#rightside_config(type="button" title=_p("rightside.setting"))
           i.fas.fa-cog.fa-spin
       if showToc && theme.aside.mobile
         button#mobile-toc-button.close(type="button" title=_p("rightside.toc"))
           i.fas.fa-list-ul
-    else if theme.translate.enable || (theme.darkmode.enable && theme.darkmode.button)
+    else if theme.translate.enable || (theme.darkmode.enable && theme.darkmode.button) || theme.change_font_size
       button#rightside_config(type="button" title=_p("rightside.setting"))
         i.fas.fa-cog.fa-spin
 

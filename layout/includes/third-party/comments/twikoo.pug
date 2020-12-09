@@ -33,7 +33,7 @@ script.
     }
 
     if ('!{theme.comments.use[0]}' === 'Twikoo' || !!{theme.comments.lazyload}) {
-      if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('twikoo'), loadTwikoo)
+      if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
       else loadTwikoo(true)
     } else {
       window.loadOtherComment = () => {

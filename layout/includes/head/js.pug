@@ -60,6 +60,12 @@ script
     |      document.documentElement.classList.remove('hide-aside')
     |    }
     | }
+  
+  if theme.change_font_size
+    | const fontSizeVal = saveToLocal.get('global-font-size')
+    | if (fontSizeVal !== undefined) {
+    |   document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    | }
 
   | })()
 
