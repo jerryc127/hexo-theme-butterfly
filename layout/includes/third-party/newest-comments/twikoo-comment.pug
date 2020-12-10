@@ -35,13 +35,6 @@ script.
       }
     }
 
-    const getIcon = (md5) => {
-      let defaultIcon = '!{ theme.newest_comments.twikoo.default_avatar ? `?d=${theme.newest_comments.twikoo.default_avatar}` : ''}'
-      let iconUrl = `https://gravatar.loli.net/avatar/${md5 + defaultIcon}`
-      return iconUrl
-    }
-
-
     const generateHtml = array => {
       let result = ''
 
@@ -50,11 +43,15 @@ script.
           result += '<div class=\'aside-list-item\'>'
 
           if (!{theme.newest_comments.avatar}) {
-            result += `<a href='${array[i].url}' class='thumbnail'><img data-lazy-src='${getIcon(array[i].mailMd5)}' alt='${array[i].nick}'></a>`
+            let name = 'src'
+            if(!{theme.lazyload.enable}) {
+              name = 'data-lazy-src'
+            }
+            result += `<a href='${array[i].url + '#' + array[i].id}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
           }
           
           result += `<div class='content'>
-          <a class='comment' href='${array[i].url}'>${changeContent(array[i].commentText)}</a>
+          <a class='comment' href='${array[i].url + '#' + array[i].id}'>${changeContent(array[i].commentText)}</a>
           <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].created, true)}</time></div>
           </div></div>`
         }

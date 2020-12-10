@@ -669,9 +669,7 @@ newest_comments:
     enable: false
     forum:
     api_key:
-  twikoo:
-    enable: false
-    default_avatar: # mp/identicon/monsterid/wavatar/retro/robohash/blank/404
+  twikoo: false
 
 # Bottom right button (右下角按鈕)
 # --------------------------------------

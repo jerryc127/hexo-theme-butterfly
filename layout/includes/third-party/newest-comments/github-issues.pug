@@ -42,7 +42,11 @@ script.
           result += '<div class=\'aside-list-item\'>'
 
           if (!{theme.newest_comments.avatar}) {
-            result += `<a href='${array[i].url}' class="thumbnail"><img data-lazy-src='${array[i].avatar}' alt='${array[i].nick}'></a>`
+            let name = 'src'
+            if(!{theme.lazyload.enable}) {
+              name = 'data-lazy-src'
+            }
+            result += `<a href='${array[i].url}' class="thumbnail"><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
           }
 
           result += `<div class='content'>

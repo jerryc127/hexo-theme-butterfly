@@ -222,75 +222,81 @@ document.addEventListener('DOMContentLoaded', function () {
  */
 
   let detectJgJsLoad = false
-  const runJustifiedGallery = function () {
-    let $justifiedGallery = document.querySelectorAll('#article-container .justified-gallery')
-    if ($justifiedGallery.length) {
-      btf.isJqueryLoad(() => {
-        $justifiedGallery = $($justifiedGallery)
-        const $imgList = $justifiedGallery.find('img')
-        $imgList.unwrap()
-        if ($imgList.length) {
-          $imgList.each(function (i, o) {
-            if ($(o).attr('data-lazy-src')) $(o).attr('src', $(o).attr('data-lazy-src'))
-            $(o).wrap('<div></div>')
-          })
-        }
-
-        if (detectJgJsLoad) btf.initJustifiedGallery($justifiedGallery)
-        else {
-          $('head').append(`<link rel="stylesheet" type="text/css" href="${GLOBAL_CONFIG.source.justifiedGallery.css}">`)
-          $.getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`, function () {
-            btf.initJustifiedGallery($justifiedGallery)
-          })
-          detectJgJsLoad = true
-        }
+  const runJustifiedGallery = function (ele) {
+    const $justifiedGallery = $(ele)
+    const $imgList = $justifiedGallery.find('img')
+    $imgList.unwrap()
+    if ($imgList.length) {
+      $imgList.each(function (i, o) {
+        if ($(o).attr('data-lazy-src')) $(o).attr('src', $(o).attr('data-lazy-src'))
+        $(o).wrap('<div></div>')
       })
+    }
+
+    if (detectJgJsLoad) btf.initJustifiedGallery($justifiedGallery)
+    else {
+      $('head').append(`<link rel="stylesheet" type="text/css" href="${GLOBAL_CONFIG.source.justifiedGallery.css}">`)
+      $.getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`, function () {
+        btf.initJustifiedGallery($justifiedGallery)
+      })
+      detectJgJsLoad = true
     }
   }
 
   /**
  * fancybox和 mediumZoom
  */
-  const addLightBox = function () {
-    if (GLOBAL_CONFIG.lightbox === 'fancybox') {
-      const images = document.querySelectorAll('#article-container :not(a):not(.gallery-group) > img, #article-container > img')
-      if (images.length) {
-        btf.isJqueryLoad(() => {
-          const runFancybox = (ele) => {
-            ele.each(function (i, o) {
-              const $this = $(o)
-              const lazyloadSrc = $this.attr('data-lazy-src') || $this.attr('src')
-              const dataCaption = $this.attr('alt') || ''
-              $this.wrap(`<a href="${lazyloadSrc}" data-fancybox="group" data-caption="${dataCaption}" class="fancybox"></a>`)
-            })
+  const addFancybox = function (ele) {
+    if (ele.length) {
+      const runFancybox = (ele) => {
+        ele.each(function (i, o) {
+          const $this = $(o)
+          const lazyloadSrc = $this.attr('data-lazy-src') || $this.attr('src')
+          const dataCaption = $this.attr('alt') || ''
+          $this.wrap(`<a href="${lazyloadSrc}" data-fancybox="group" data-caption="${dataCaption}" class="fancybox"></a>`)
+        })
 
-            $().fancybox({
-              selector: '[data-fancybox]',
-              loop: true,
-              transitionEffect: 'slide',
-              protect: true,
-              buttons: ['slideShow', 'fullScreen', 'thumbs', 'close'],
-              hash: false
-            })
-          }
-
-          if (typeof $.fancybox === 'undefined') {
-            $('head').append(`<link rel="stylesheet" type="text/css" href="${GLOBAL_CONFIG.source.fancybox.css}">`)
-            $.getScript(`${GLOBAL_CONFIG.source.fancybox.js}`, function () {
-              runFancybox($(images))
-            })
-          } else {
-            runFancybox($(images))
-          }
+        $().fancybox({
+          selector: '[data-fancybox]',
+          loop: true,
+          transitionEffect: 'slide',
+          protect: true,
+          buttons: ['slideShow', 'fullScreen', 'thumbs', 'close'],
+          hash: false
         })
       }
-    } else {
-      const zoom = mediumZoom(document.querySelectorAll('#article-container :not(a)>img'))
-      zoom.on('open', function (event) {
-        const photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
-        zoom.update({
-          background: photoBg
+
+      if (typeof $.fancybox === 'undefined') {
+        $('head').append(`<link rel="stylesheet" type="text/css" href="${GLOBAL_CONFIG.source.fancybox.css}">`)
+        $.getScript(`${GLOBAL_CONFIG.source.fancybox.js}`, function () {
+          runFancybox($(ele))
         })
+      } else {
+        runFancybox($(ele))
+      }
+    }
+  }
+
+  const addMediumZoom = () => {
+    const zoom = mediumZoom(document.querySelectorAll('#article-container :not(a)>img'))
+    zoom.on('open', e => {
+      const photoBg = $(document.documentElement).attr('data-theme') === 'dark' ? '#121212' : '#fff'
+      zoom.update({
+        background: photoBg
+      })
+    })
+  }
+
+  const jqLoadAndRun = () => {
+    const isFancybox = GLOBAL_CONFIG.lightbox === 'fancybox'
+    const $fancyboxEle = isFancybox ? document.querySelectorAll('#article-container :not(a):not(.gallery-group) > img, #article-container > img') : null
+    const $jgEle = document.querySelectorAll('#article-container .justified-gallery')
+    const jgEleLength = $jgEle.length
+
+    if (jgEleLength || $fancyboxEle !== null) {
+      btf.isJqueryLoad(() => {
+        jgEleLength && runJustifiedGallery($jgEle)
+        isFancybox && addFancybox($fancyboxEle)
       })
     }
   }
@@ -387,7 +393,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const isAnchor = GLOBAL_CONFIG.isanchor
     const updateAnchor = function (anchor) {
       if (window.history.replaceState && anchor !== window.location.hash) {
-        window.history.replaceState(undefined, undefined, anchor)
+        if (!anchor) anchor = location.pathname
+        window.history.replaceState({}, '', anchor)
       }
     }
 
@@ -415,7 +422,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const $target = e.target.classList.contains('toc-link')
         ? e.target
         : e.target.parentElement
-      btf.scrollToDest(document.getElementById(decodeURI($target.getAttribute('href')).replace('#', '')).offsetTop, 300)
+      btf.scrollToDest(btf.getEleTop(document.getElementById(decodeURI($target.getAttribute('href')).replace('#', ''))), 300)
       if (window.innerWidth < 900) {
         mobileToc.close()
       }
@@ -436,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const list = $article.querySelectorAll('h1,h2,h3,h4,h5,h6')
     let detectItem = ''
     const findHeadPosition = function (top) {
-      if ($tocLink.length === 0) {
+      if ($tocLink.length === 0 || top === 0) {
         return false
       }
 
@@ -444,13 +451,15 @@ document.addEventListener('DOMContentLoaded', function () {
       let currentIndex = ''
 
       list.forEach(function (ele, index) {
-        if (top > ele.offsetTop - 70) {
+        if (top > btf.getEleTop(ele) - 70) {
           currentId = '#' + encodeURI(ele.getAttribute('id'))
           currentIndex = index
         }
       })
 
       if (detectItem === currentIndex) return
+
+      if (isAnchor) updateAnchor(currentId)
 
       if (currentId === '') {
         $cardToc.querySelectorAll('.active').forEach(i => { i.classList.remove('active') })
@@ -463,7 +472,6 @@ document.addEventListener('DOMContentLoaded', function () {
       $cardToc.querySelectorAll('.active').forEach(item => { item.classList.remove('active') })
       const currentActive = $tocLink[currentIndex]
       currentActive.classList.add('active')
-      if (isAnchor) updateAnchor(currentId)
 
       setTimeout(function () {
         autoScrollToc(currentActive)
@@ -698,7 +706,7 @@ document.addEventListener('DOMContentLoaded', function () {
     backToTop: () => {
       document.querySelectorAll('#article-container .tabs .tab-to-top').forEach(function (item) {
         item.addEventListener('click', function () {
-          btf.scrollToDest(btf.getParents(this, '.tabs').offsetTop, 300)
+          btf.scrollToDest(btf.getEleTop(btf.getParents(this, '.tabs')), 300)
         })
       })
     }
@@ -802,8 +810,8 @@ document.addEventListener('DOMContentLoaded', function () {
     GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
     GLOBAL_CONFIG.highlight && addHighlightTool()
     GLOBAL_CONFIG.isPhotoFigcaption && addPhotoFigcaption()
-    runJustifiedGallery()
-    GLOBAL_CONFIG.lightbox !== 'null' && addLightBox()
+    jqLoadAndRun()
+    GLOBAL_CONFIG.lightbox === 'mediumZoom' && addMediumZoom()
     scrollFn()
     addTableWrap()
     clickFnOfTagHide()
