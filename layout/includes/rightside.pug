@@ -21,7 +21,7 @@
       if (theme.readmode || theme.translate.enable || (theme.darkmode.enable && theme.darkmode.button) || theme.change_font_size)
         button#rightside_config(type="button" title=_p("rightside.setting"))
           i.fas.fa-cog.fa-spin
-      if showToc && theme.aside.mobile
+      if showToc
         button#mobile-toc-button.close(type="button" title=_p("rightside.toc"))
           i.fas.fa-list-ul
     else if theme.translate.enable || (theme.darkmode.enable && theme.darkmode.button) || theme.change_font_size

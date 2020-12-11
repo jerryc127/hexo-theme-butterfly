@@ -10,10 +10,6 @@
   +maxWidth900()
     width: 100%
 
-  if hexo-config('aside.mobile') == false
-    +maxWidth768()
-      display: none
-
   > .card-widget:first-child
     margin-top: 0
 
@@ -31,6 +27,11 @@
 
     &:hover
       box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
+
+    if hexo-config('aside.mobile') == false
+      +maxWidth768()
+        &:not(#card-toc)
+          display: none
 
   .card-info
     img
