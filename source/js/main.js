@@ -383,9 +383,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : (document.documentElement.scrollHeight - winHeight)
       const scrollPercent = (currentTop - headerHeight) / (contentMath)
       const scrollPercentRounded = Math.round(scrollPercent * 100)
-      const percentage = (scrollPercentRounded > 100) ? 100
-        : (scrollPercentRounded <= 0) ? 0
-          : scrollPercentRounded
+      const percentage = (scrollPercentRounded > 100) ? 100 : (scrollPercentRounded <= 0) ? 0 : scrollPercentRounded
       $cardToc.setAttribute('progress-percentage', percentage)
     }
 
@@ -687,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           if (!$tabItem.classList.contains('active')) {
             const $tabContent = $tabItem.parentNode.nextElementSibling
-            btf.siblings($tabItem, 'active')[0].classList.remove('active')
+            btf.siblings($tabItem, '.active')[0].classList.remove('active')
             $tabItem.classList.add('active')
             const tabId = $this.getAttribute('data-href').replace('#', '')
             const childList = [...$tabContent.children]
@@ -753,7 +751,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const addPostOutdateNotice = function () {
     const data = GLOBAL_CONFIG.noticeOutdate
-    var diffDay = btf.diffDate(GLOBAL_CONFIG_SITE.postUpdate)
+    const diffDay = btf.diffDate(GLOBAL_CONFIG_SITE.postUpdate)
     if (diffDay >= data.limitDay) {
       const ele = document.createElement('div')
       ele.className = 'post-outdate-notice'

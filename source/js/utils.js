@@ -1,4 +1,4 @@
-var btf = {
+const btf = {
   debounce: function (func, wait, immediate) {
     let timeout
     return function () {
@@ -140,7 +140,7 @@ var btf = {
       return
     }
 
-    var currentPos = window.scrollY || window.screenTop
+    const currentPos = window.scrollY || window.screenTop
     if (currentPos > pos) pos = pos - 70
 
     if ('CSS' in window && CSS.supports('scroll-behavior', 'smooth')) {
@@ -151,7 +151,7 @@ var btf = {
       return
     }
 
-    var start = null
+    let start = null
     time = time || 500
     window.requestAnimationFrame(function step (currentTime) {
       start = !start ? currentTime : start
@@ -188,38 +188,18 @@ var btf = {
   },
 
   getParents: (elem, selector) => {
-    // polyfill
-    if (!Element.prototype.matches) {
-      Element.prototype.matches =
-          Element.prototype.matchesSelector ||
-          Element.prototype.mozMatchesSelector ||
-          Element.prototype.msMatchesSelector ||
-          Element.prototype.oMatchesSelector ||
-          Element.prototype.webkitMatchesSelector ||
-          function (s) {
-            const matches = (this.document || this.ownerDocument).querySelectorAll(s)
-            let i = matches.length
-            while (--i >= 0 && matches.item(i) !== this) {}
-            return i > -1
-          }
-    }
-
     for (; elem && elem !== document; elem = elem.parentNode) {
       if (elem.matches(selector)) return elem
     }
     return null
   },
 
-  /**
-   *
-   * @param {*} ele
-   * @param {*} selector class name
-   */
   siblings: (ele, selector) => {
     return [...ele.parentNode.children].filter((child) => {
       if (selector) {
-        return child !== ele && child.classList.contains(selector)
+        return child !== ele && child.matches(selector)
       }
+      return child !== ele
     })
   },
 
@@ -230,7 +210,7 @@ var btf = {
    * @param {*} id id
    * @param {*} cn class name
    */
-  wrap: function (selector, eleType, id = null, cn = null) {
+  wrap: function (selector, eleType, id = '', cn = '') {
     const creatEle = document.createElement(eleType)
     if (id) creatEle.id = id
     if (cn) creatEle.className = cn
