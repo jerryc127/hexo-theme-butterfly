@@ -44,7 +44,7 @@ function hideBlock (args, content) {
   group += '"'
 
   return `<div class="hide-block"><button type="button" class="hide-button button--animated" ${group}>${display}
-    </button><span class="hide-content">${hexo.render.renderSync({ text: content, engine: 'markdown' })}</span></div>`
+    </button><div class="hide-content">${hexo.render.renderSync({ text: content, engine: 'markdown' })}</div></div>`
 }
 
 function hideToggle (args, content) {

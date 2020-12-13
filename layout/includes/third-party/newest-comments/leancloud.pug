@@ -15,7 +15,8 @@ script.
     }
 
     const getIcon = (icon, mail) => {
-      if (icon) return icon 
+      if (icon) return icon
+      
       let defaultIcon = '!{ theme.newest_comments.leancloud.default_avatar ? `?d=${theme.newest_comments.leancloud.default_avatar}` : ''}'
       let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
       return iconUrl
@@ -24,25 +25,34 @@ script.
     const generateHtml = array => {
       let result = ''
 
-      for (let i = 0; i < array.length; i++) {
-        result += '<div class=\'aside-list-item\'>'
+      if (array.length) {
+        for (let i = 0; i < array.length; i++) {
+          result += '<div class=\'aside-list-item\'>'
 
-        if (!{theme.newest_comments.avatar}) {
-          result += `<a href='${array[i].url}' class="thumbnail"><img src='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
+          if (!{theme.newest_comments.avatar}) {
+            let name = 'src'
+            if(!{theme.lazyload.enable}) {
+              name = 'data-lazy-src'
+            }
+            result += `<a href='${array[i].url}' class="thumbnail"><img ${name}='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
+          }
+
+          result += `<div class='content'>
+          <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+          </div></div>`
         }
-
-        result += `<div class='content'>
-        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
-        <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
-        </div></div>`
+      } else {
+        result += '!{_p("aside.card_newest_comments.zero")}'
       }
 
       let $dom = document.querySelector('#card-newest-comments .aside-list')
       $dom.innerHTML= result
+      window.lazyLoadInstance && window.lazyLoadInstance.update()
       window.pjax && window.pjax.refresh($dom)
     }
 
-    const getValineData = () => {
+    const getComment = () => {
         let serverURL = ''
         if (!{Boolean(theme.newest_comments.leancloud.serverURL)}) {
           serverURL = '!{theme.newest_comments.leancloud.serverURL}'
@@ -51,9 +61,7 @@ script.
         }
 
       var settings = {
-        "url": `${serverURL}/1.1/classes/Comment?limit=!{theme.newest_comments.limit}&order=-createdAt`,
         "method": "GET",
-        "timeout": 0,
         "headers": {
           "X-LC-Id": '!{theme.newest_comments.leancloud.appId}',
           "X-LC-Key": '!{theme.newest_comments.leancloud.appKey}',
@@ -61,26 +69,25 @@ script.
         },
       }
 
-      $.ajax(settings).done((response) => {
-        var valineArray = []
-        response.results.forEach((e)=>{
-          valineArray.push({
-            'avatar': e.QQAvatar,
-            'content': changeContent(e.comment),
-            'mail': e.mail,
-            'nick': e.nick,
-            'url': e.url,
-            'date': e.createdAt,
+      fetch(`${serverURL}/1.1/classes/Comment?limit=!{theme.newest_comments.limit}&order=-createdAt`,settings)
+        .then(response => response.json())
+        .then(data => {
+          const valineArray = data.results.map(function (e) {
+            return {
+              'avatar': e.QQAvatar,
+              'content': changeContent(e.comment),
+              'mail': e.mail,
+              'nick': e.nick,
+              'url': e.url,
+              'date': e.createdAt,
+            }
           })
-        })
-        
-        saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
-        generateHtml(valineArray)
-
-      }).fail(()=>{
-        const $dom = document.querySelector('#card-newest-comments .aside-list')
-        $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
-      })
+          saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+          generateHtml(valineArray)
+        }).catch(e => {
+          const $dom = document.querySelector('#card-newest-comments .aside-list')
+          $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
+        }) 
     }
 
     const newestCommentInit = () => {
@@ -89,7 +96,7 @@ script.
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
-          getValineData()
+          getComment()
         }
       }
     }

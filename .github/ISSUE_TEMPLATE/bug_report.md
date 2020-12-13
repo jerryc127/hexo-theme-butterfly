@@ -26,7 +26,7 @@ If you are a problem when visiting the website, please open your browser 'develo
 <!-- Check all with "x" especially FAQ & Documentation!! (使用 "x" 選擇) -->
 <!-- 請確認是否都已經翻閲過如下的資料, 尤其是安裝文件！！ -->
 - [] Yes, I have read [Hexo Docs page](https://hexo.io/docs/), especially [Templates](https://hexo.io/docs/templates.html), [Variables](https://hexo.io/docs/variables.html), [Helpers](https://hexo.io/docs/helpers.html) and [Troubleshooting](https://hexo.io/docs/troubleshooting.html).
-- [] Yes, I have read [Butterfly Documentation](https://demo.jerryc.me/posts/21cfbf15/).
+- [] Yes, I have read [Butterfly Documentation](https://butterfly.js.org/posts/21cfbf15/).
 - [] And yes, I already searched for current [issues](https://github.com/jerryc127/hexo-theme-butterfly/issues?utf8=%E2%9C%93&q=is%3Aissue) and this did not help me.
 
 ## Butterfly Information

@@ -42,8 +42,6 @@ local_search:
   label: 本地搜尋
   input_placeholder: 搜尋文章
   hits_empty: '找不到您查詢的內容：${query}'
-  powered: '提供支援'
-  by: 由
 
 pagination:
   prev: 上一篇
@@ -75,7 +73,8 @@ aside:
   card_newest_comments:
     headline: 最新評論
     loading_text: 正在加載中...
-    error: 無法獲取資料，請確認相關配置是否正確
+    error: 無法獲取評論，請確認相關配置是否正確
+    zero: 沒有評論
   card_toc: 目錄
 
 date_suffix:
@@ -90,12 +89,15 @@ share: 分享
 
 rightside:
   readmode_title: 閱讀模式
+  font_plus_title: 放大字型
+  font_minus_title: 縮小字型
   translate_title: 簡繁轉換
   night_mode_title: 淺色和深色模式轉換
   back_to_top: 回到頂部
   toc: 目錄
   scroll_to_comment: 直達評論
   setting: 設定
+  aside: 單欄和雙欄切換
 
 copy_copyright:
   author: 作者

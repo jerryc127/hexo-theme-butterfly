@@ -173,6 +173,7 @@ index_post_content:
 toc:
   enable: true
   number: true
+  style_simple: false
 
 post_copyright:
   enable: true
@@ -239,7 +240,7 @@ addtoany:
 
 comments:
   # Up to two comments system, the first will be shown as default
-  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments
+  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments/Twikoo
   use:
   # - Valine
   # - Disqus
@@ -374,11 +375,6 @@ footer:
     since: 2020
   custom_text:
   copyright: true # Copyright of theme and framework
-  ICP: # Chinese ICP License
-    enable: false
-    url:
-    text:
-    icon: /img/icp.png
 
 # Analysis
 # --------------------------------------
@@ -542,6 +538,7 @@ ClickShowText:
     # - LOVE
     # - YOU
   fontSize: 15px
+  random: false
   mobile: false
 
 # Default display mode (網站默認的顯示模式)
@@ -672,9 +669,13 @@ newest_comments:
     enable: false
     forum:
     api_key:
+  twikoo: false
 
 # Bottom right button (右下角按鈕)
 # --------------------------------------
+
+# Change font size
+change_font_size: false
 
 # Conversion between Traditional and Simplified Chinese (簡繁轉換)
 translate:
@@ -813,6 +814,9 @@ Open_Graph_meta: true
 
 # Caches the contents in a fragment, speed up the generation (開啟hexo自帶的緩存,加快生成速度)
 fragment_cache: true
+
+# Add the vendor prefixes to ensure compatibility
+css_prefix: true
 
 # Inject
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)

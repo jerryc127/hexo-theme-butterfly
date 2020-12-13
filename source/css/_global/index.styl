@@ -1,4 +1,5 @@
-[data-theme='light']
+:root
+  --global-font-size: $font-size
   --global-bg: $body-bg
   --font-color: $font-black
   --hr-border: lighten($theme-hr-color, 50%)
@@ -36,7 +37,7 @@ body
   min-height: 100%
   background: var(--global-bg)
   color: var(--font-color)
-  font-size: $font-size
+  font-size: var(--global-font-size)
   font-family: $font-family
   line-height: $text-line-height
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
@@ -57,16 +58,17 @@ body
 input::placeholder
   color: var(--font-color)
 
-#web_bg
-  position: fixed
-  z-index: -999
-  width: 100%
-  height: 100%
-  background: $web-bg
-  background-attachment: local
-  background-position: center
-  background-size: cover
-  background-repeat: no-repeat
+if $web-bg
+  #web_bg
+    position: fixed
+    z-index: -999
+    width: 100%
+    height: 100%
+    background: $web-bg
+    background-attachment: local
+    background-position: center
+    background-size: cover
+    background-repeat: no-repeat
 
 h1,
 h2,
@@ -198,9 +200,9 @@ img
   max-width: 100%
   transition: all .2s
 
-img[src=''],
-img:not([src])
-  opacity: 0
+  &[src=''],
+  &:not([src])
+    opacity: 0
 
 .img-alt
   margin: -.5rem 0 .5rem
@@ -208,10 +210,3 @@ img:not([src])
 
   &:hover
     text-decoration: none !important
-
-.post-ad
-  margin: 2rem 0
-
-.ad-height
-  display: block !important
-  height: auto !important

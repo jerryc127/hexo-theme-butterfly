@@ -41,7 +41,6 @@ local_search:
   label: Local search
   input_placeholder: Search for Posts
   hits_empty: "We didn't find any results for the search: ${query}"
-  powered_by: Powered by
 
 pagination:
   prev: Previous Post
@@ -74,6 +73,7 @@ aside:
     headline: Newest Comments
     loading_text: loading...
     error: Unable to get the data, please make sure the settings are correct.
+    zero: No Comment
   card_toc: Catalog
 
 date_suffix:
@@ -88,12 +88,15 @@ share: Share
 
 rightside:
   readmode_title: Read Mode
+  font_plus_title: Increase font size
+  font_minus_title: Decrease font size
   translate_title: Switch Between Traditional Chinese And Simplified Chinese
   night_mode_title: Switch Between Light And Dark Mode
   back_to_top: Back To Top
   toc: Table Of Contents
   scroll_to_comment: Scroll To Comments
   setting: Setting
+  aside: Toggle between single-column and double-column
 
 copy_copyright:
   author: Author

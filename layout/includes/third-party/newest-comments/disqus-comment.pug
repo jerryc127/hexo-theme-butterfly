@@ -13,45 +13,55 @@ script.
       return content
     }
 
-    const getDisqusComment = () => {
-      let disqusArray = []
-      $.getJSON('https://disqus.com/api/3.0/forums/listPosts.json?forum=!{theme.newest_comments.disqus.forum}&related=thread&limit=!{theme.newest_comments.limit}&api_key=!{theme.newest_comments.disqus.api_key}', function(data){
-        $.each(data.response, (i, item) => {
-          disqusArray.push({
-            'avatar': item.author.avatar.cache,
-            'content': changeContent(item.message),
-            'nick': item.author.name,
-            'url': item.url,
-            'date': item.createdAt
+    const getComment = () => {
+      fetch('https://disqus.com/api/3.0/forums/listPosts.json?forum=!{theme.newest_comments.disqus.forum}&related=thread&limit=!{theme.newest_comments.limit}&api_key=!{theme.newest_comments.disqus.api_key}')
+        .then(response => response.json())
+        .then(data => {
+          const disqusArray = data.response.map(item => {
+            return {
+              'avatar': item.author.avatar.cache,
+              'content': changeContent(item.message),
+              'nick': item.author.name,
+              'url': item.url,
+              'date': item.createdAt
+            }
           })
+          // set expiry to 10 min
+          saveToLocal.set('disqus-newest-comments', JSON.stringify(disqusArray), 10/(60*24))
+          generateHtml(disqusArray)
+        }).catch(e => {
+          const $dom = document.querySelector('#card-newest-comments .aside-list')
+          $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
         })
-        // set expiry to 10 min
-        saveToLocal.set('disqus-newest-comments', JSON.stringify(disqusArray), 10/(60*24))
-        generateHtml(disqusArray)
-      }).fail(()=>{
-        const $dom = document.querySelector('#card-newest-comments .aside-list')
-        $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
-      })
     }
 
     const generateHtml = array => {
       let result = ''
 
-      for (let i = 0; i < array.length; i++) {
-        result += '<div class=\'aside-list-item\'>'
+      if (array.length) {
+        for (let i = 0; i < array.length; i++) {
+          result += '<div class=\'aside-list-item\'>'
 
-        if (!{theme.newest_comments.avatar}) {
-          result += `<a href='${array[i].url}' class='thumbnail'><img src='${array[i].avatar}' alt='${array[i].nick}'></a>`
+          if (!{theme.newest_comments.avatar}) {
+            let name = 'src'
+            if(!{theme.lazyload.enable}) {
+              name = 'data-lazy-src'
+            }
+            result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+          }
+          
+          result += `<div class='content'>
+          <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+          </div></div>`
         }
-        
-        result += `<div class='content'>
-        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
-        <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
-        </div></div>`
+      } else {
+        result += '!{_p("aside.card_newest_comments.zero")}'
       }
 
       let $dom = document.querySelector('#card-newest-comments .aside-list')
       $dom.innerHTML= result
+      window.lazyLoadInstance && window.lazyLoadInstance.update()
       window.pjax && window.pjax.refresh($dom)
     }
 
@@ -61,7 +71,7 @@ script.
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
-          getDisqusComment()
+          getComment()
         }
       }
     }

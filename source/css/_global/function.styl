@@ -37,6 +37,10 @@ maxWidth900()
   @media screen and (max-width: 900px)
     {block}
 
+minWidth901()
+  @media screen and (min-width: 901px)
+    {block}
+
 minWidth900()
   @media screen and (min-width: 900px)
     {block}
@@ -150,6 +154,13 @@ if hexo-config('avatar.effect') == true
 
   100%
     opacity: 1
+
+@keyframes to_hide
+  0%
+    opacity: 1
+
+  100%
+    opacity: 0
 
 @keyframes ribbon_to_show
   0%

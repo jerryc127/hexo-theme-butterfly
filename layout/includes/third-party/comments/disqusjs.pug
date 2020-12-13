@@ -29,7 +29,7 @@ script.
     if (window.disqusJsLoad) initDisqusjs()
     else {
       addDisqusjsCSS()
-      $.getScript('!{url_for(theme.CDN.disqusjs)}', initDisqusjs)
+      getScript('!{url_for(theme.CDN.disqusjs)}').then(initDisqusjs)
       window.disqusJsLoad = true
     }
   }

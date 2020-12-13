@@ -65,11 +65,11 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
 
           result += '</a>'
 
-          result += '</li>'
-
           if (child) {
             result += `<ul class="card-category-list child">${child}</ul>`
           }
+
+          result += '</li>'
         }
       })
     }

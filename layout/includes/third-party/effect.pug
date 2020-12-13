@@ -25,4 +25,11 @@ if theme.click_heart && theme.click_heart.enable
   script#click-heart(src=url_for(theme.CDN.click_heart) async mobile=`${theme.click_heart.mobile}`)
 
 if theme.ClickShowText && theme.ClickShowText.enable
-  script#click-show-text(src=url_for(theme.CDN.ClickShowText) async mobile=`${theme.ClickShowText.mobile}`)
+  script#click-show-text(
+    src= url_for(theme.CDN.ClickShowText)
+    data-mobile= `${theme.ClickShowText.mobile}`
+    data-text= theme.ClickShowText.text.join(",")
+    data-fontsize= theme.ClickShowText.fontSize
+    data-random= `${theme.ClickShowText.random}`
+    async
+  )

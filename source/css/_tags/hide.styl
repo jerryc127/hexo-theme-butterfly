@@ -10,6 +10,12 @@
     &.open
       display: none
 
+      & + div
+        display: block
+
+      & + span
+        display: inline
+
   & > .hide-content
     display: none
 
@@ -40,6 +46,9 @@
     &.open
       i
         transform: rotate(90deg)
+
+      & + div
+        display: block
 
   & > .hide-content
     display: none

@@ -20,7 +20,7 @@ function galleryGroup (args) {
 
   return `
   <figure class="gallery-group">
-  <img class="gallery-group-img" src='${img}'>
+  <img class="gallery-group-img" src='${img}' alt="Group Image Gallery">
   <figcaption>
   <div class="gallery-group-name">${name}</div>
   <p>${desrc}</p>

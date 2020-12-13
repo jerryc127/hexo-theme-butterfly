@@ -28,7 +28,7 @@ script.
     if (typeof Gitalk === 'function') initGitalk()
     else {
       addGitalkSource()
-      $.getScript('!{url_for(theme.CDN.gitalk)}', initGitalk)
+      getScript('!{url_for(theme.CDN.gitalk)}').then(initGitalk)
     }
   }
   

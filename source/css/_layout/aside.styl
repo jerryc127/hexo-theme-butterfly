@@ -10,10 +10,6 @@
   +maxWidth900()
     width: 100%
 
-  if hexo-config('aside.mobile') == false
-    +maxWidth768()
-      display: none
-
   > .card-widget:first-child
     margin-top: 0
 
@@ -27,10 +23,15 @@
     border-radius: 8px
     background: var(--card-bg)
     box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
-    transition: all .3s
+    transition: box-shadow .3s
 
     &:hover
       box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
+
+    if hexo-config('aside.mobile') == false
+      +maxWidth768()
+        &:not(#card-toc)
+          display: none
 
   .card-info
     img
@@ -229,13 +230,14 @@
         padding: 0 0 0 .8rem
 
       > .parent
-        .card-category-list
-          &-name
-            width: 70% !important
+        > a
+          .card-category-list
+            &-name
+              width: 70% !important
 
-          &-count
-            width: calc(100% - 70% - 20px)
-            text-align: right
+            &-count
+              width: calc(100% - 70% - 20px)
+              text-align: right
 
         i
           float: right
@@ -248,7 +250,7 @@
             transform: rotate(-90deg)
 
         if hexo-config('aside.card_categories.expand') == false
-          + .child
+          > .child
             display: none
 
   .card-webinfo
@@ -265,22 +267,36 @@
 
   // toc
   #card-toc
+    +minWidth901()
+      right: 0 !important
+
     +maxWidth900()
       position: fixed
-      right: 45px
+      right: -100%
       bottom: 30px
       z-index: 100
-      display: none
+      max-height: calc(100% - 60px)
       width: $toc-mobile-width
+      opacity: 0
       transform-origin: right bottom
-      animation: toc-open .3s
-
-      .toc-child
-        display: block !important
 
     .toc-content
       overflow-y: auto
       max-height: calc(100vh - 120px)
+
+      +maxWidth900()
+        max-height: calc(100vh - 140px)
+
+      .toc-child
+        display: none
+
+        +maxWidth900()
+          display: block !important
+
+      .toc-item
+        &.active
+          .toc-child
+            display: block
 
       ol,
       li
@@ -313,6 +329,10 @@
         content: attr(progress-percentage)
         font-style: italic
         font-size: 1.2rem
+
+  :only-child
+    > .card-widget
+      margin-top: 0
 
 @keyframes toc-open
   0%
