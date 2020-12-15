@@ -23,11 +23,11 @@ script.
     const loadTwikoo = (bool = false) => {
       if (typeof twikoo === 'object') {
         init()
-        bool && $countDom && setTimeout(()=>{getCount()},0)
+        bool && $countDom && setTimeout(getCount,0)
       } else {
         getScript('!{theme.CDN.twikoo}').then(()=> {
           init()
-          bool && $countDom && setTimeout(()=>{getCount()},0)
+          bool && $countDom && setTimeout(getCount,0)
         })
       }
     }

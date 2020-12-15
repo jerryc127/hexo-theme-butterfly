@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const currentActive = $tocLink[currentIndex]
       currentActive.classList.add('active')
 
-      setTimeout(function () {
+      setTimeout(() => {
         autoScrollToc(currentActive)
       }, 0)
 
@@ -626,7 +626,7 @@ document.addEventListener('DOMContentLoaded', function () {
  */
   const addRuntime = () => {
     const $runtimeCount = document.getElementById('runtimeshow')
-    if ($runtimeCount !== null) {
+    if ($runtimeCount) {
       const publishDate = $runtimeCount.getAttribute('data-publishDate')
       $runtimeCount.innerText = btf.diffDate(publishDate) + ' ' + GLOBAL_CONFIG.runtime
     }
@@ -637,7 +637,7 @@ document.addEventListener('DOMContentLoaded', function () {
  */
   const addLastPushDate = () => {
     const $lastPushDateItem = document.getElementById('last-push-date')
-    if ($lastPushDateItem !== null) {
+    if ($lastPushDateItem) {
       const lastPushDate = $lastPushDateItem.getAttribute('data-lastPushDate')
       $lastPushDateItem.innerText = btf.diffDate(lastPushDate, true)
     }
@@ -685,7 +685,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
           if (!$tabItem.classList.contains('active')) {
             const $tabContent = $tabItem.parentNode.nextElementSibling
-            btf.siblings($tabItem, '.active')[0].classList.remove('active')
+            const $siblings = btf.siblings($tabItem, '.active')[0]
+            $siblings && $siblings.classList.remove('active')
             $tabItem.classList.add('active')
             const tabId = $this.getAttribute('data-href').replace('#', '')
             const childList = [...$tabContent.children]
@@ -712,7 +713,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const toggleCardCategory = function () {
     const $cardCategory = document.querySelectorAll('#aside-cat-list .card-category-list-item.parent i')
-    if ($cardCategory.length > 0) {
+    if ($cardCategory.length) {
       $cardCategory.forEach(function (item) {
         item.addEventListener('click', function (e) {
           e.preventDefault()

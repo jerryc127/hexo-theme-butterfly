@@ -41,7 +41,7 @@ script.
 
   if ('!{theme.comments.use[0]}' === 'Valine' || !!{theme.comments.lazyload}) {
     if (!{theme.comments.lazyload}) btf.loadComment(document.querySelector('#vcomment'),loadValine)
-    else setTimeout(() => loadValine(), 0)
+    else setTimeout(loadValine, 0)
   } else {
     function loadOtherComment () {
       loadValine()
