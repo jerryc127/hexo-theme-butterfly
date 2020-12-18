@@ -71,7 +71,7 @@ npm i hexo-theme-butterfly
 - [x] Related articles
 - [x] Displays outdated notice for a post
 - [x] Share (AddThis/Sharejs/Addtoany)
-- [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments/Twikoo）
+- [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo)
 - [x] Multiple Comment System Support
 - [x] Online Chats (Chatra/Tidio/Daovoice/Gitter/Crisp)
 - [x] Web analytics (Baidu Analytics/Google Analytics/Tencent Analytics/CNZZ Analytics)

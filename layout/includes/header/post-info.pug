@@ -65,24 +65,30 @@
             span.post-meta-label= _p('post.comments') + ':'
             if block
               block
-
-        if whichCount === 'Disqus' || whichCount === 'Disqusjs'
-          +countBlock
-            span.disqus-comment-count
-              a(href=full_url_for(page.path) + '#disqus_thread')
-        else if whichCount === 'Valine'
-          +countBlock
-            a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
-              span.valine-comment-count(data-xid=url_for(page.path) itemprop="commentCount")
-        else if whichCount === 'Gitalk'
-          +countBlock
-            a(href=url_for(page.path) + '#post-comment')
-              span.gitalk-#card-toc
-        else if whichCount === 'Twikoo'
-          +countBlock
-            a(href=url_for(page.path) + '#post-comment')
-              span#twikoo-count
-        else if whichCount === 'Facebook Comments'
-          +countBlock
-            a(href=url_for(page.path) + '#post-comment')
-              span.fb-comments-count(data-href=urlNoIndex())
+        
+        case whichCount
+          when 'Disqus'
+          when 'Disqusjs'
+            +countBlock
+              span.disqus-comment-count
+                a(href=full_url_for(page.path) + '#disqus_thread')
+          when 'Valine'
+            +countBlock
+              a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
+                span.valine-comment-count(data-xid=url_for(page.path) itemprop="commentCount")
+          when 'Waline'
+            +countBlock
+              a(href=url_for(page.path) + '#post-comment')
+                span.waline-comment-count(id=url_for(page.path))
+          when 'Gitalk'
+            +countBlock
+              a(href=url_for(page.path) + '#post-comment')
+                span.gitalk-#card-toc
+          when 'Twikoo'
+            +countBlock
+              a(href=url_for(page.path) + '#post-comment')
+                span#twikoo-count
+          when 'Facebook Comments'
+            +countBlock
+              a(href=url_for(page.path) + '#post-comment')
+                span.fb-comments-count(data-href=urlNoIndex())

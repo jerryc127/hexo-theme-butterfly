@@ -1,0 +1,108 @@
+- let default_avatar = theme.valine.avatar
+
+script(src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js")
+script.
+  window.addEventListener('load', () => {
+    const changeContent = (content) => {
+      if (content === '') return content
+
+      content = content.replace(/<[^>]+>/g,"") // remove html tag
+      content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
+      content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
+
+      if (content.length > 150) {
+        content = content.substring(0,150) + '...'
+      }
+      return content
+    }
+
+    const getIcon = (icon, mail) => {
+      if (icon) return icon
+      
+      let defaultIcon = '!{ default_avatar ? `?d=${default_avatar}` : ''}'
+      let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+      return iconUrl
+    }
+
+    const generateHtml = array => {
+      let result = ''
+
+      if (array.length) {
+        for (let i = 0; i < array.length; i++) {
+          result += '<div class=\'aside-list-item\'>'
+
+          if (!{theme.newest_comments.avatar}) {
+            let name = 'src'
+            if(!{theme.lazyload.enable}) {
+              name = 'data-lazy-src'
+            }
+            result += `<a href='${array[i].url}' class="thumbnail"><img ${name}='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
+          }
+
+          result += `<div class='content'>
+          <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+          </div></div>`
+        }
+      } else {
+        result += '!{_p("aside.card_newest_comments.zero")}'
+      }
+
+      let $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.innerHTML= result
+      window.lazyLoadInstance && window.lazyLoadInstance.update()
+      window.pjax && window.pjax.refresh($dom)
+    }
+
+    const getComment = () => {
+        let serverURL = ''
+        if (!{Boolean(theme.valine.serverURLs)}) {
+          serverURL = '!{theme.valine.serverURLs}'
+        } else {
+          serverURL = 'https://!{theme.valine.appId.substring(0,8)}.api.lncldglobal.com'
+        }
+
+      var settings = {
+        "method": "GET",
+        "headers": {
+          "X-LC-Id": '!{theme.valine.appId}',
+          "X-LC-Key": '!{theme.valine.appKey}',
+          "Content-Type": "application/json"
+        },
+      }
+
+      fetch(`${serverURL}/1.1/classes/Comment?limit=!{theme.newest_comments.limit}&order=-createdAt`,settings)
+        .then(response => response.json())
+        .then(data => {
+          const valineArray = data.results.map(function (e) {
+            return {
+              'avatar': e.QQAvatar,
+              'content': changeContent(e.comment),
+              'mail': e.mail,
+              'nick': e.nick,
+              'url': e.url,
+              'date': e.createdAt,
+            }
+          })
+          saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+          generateHtml(valineArray)
+        }).catch(e => {
+          const $dom = document.querySelector('#card-newest-comments .aside-list')
+          $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
+        }) 
+    }
+
+    const newestCommentInit = () => {
+      if (document.querySelector('#card-newest-comments .aside-list')) {
+        const data = saveToLocal.get('leancloud-newest-comments')
+        if (data) {
+          generateHtml(JSON.parse(data))
+        } else {
+          getComment()
+        }
+      }
+    }
+
+    newestCommentInit()
+    document.addEventListener('pjax:complete', newestCommentInit)
+  })

@@ -1,4 +1,5 @@
-script(src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js")
+- let default_avatar = theme.waline.avatar
+
 script.
   window.addEventListener('load', () => {
     const changeContent = (content) => {
@@ -14,11 +15,9 @@ script.
       return content
     }
 
-    const getIcon = (icon, mail) => {
-      if (icon) return icon
-      
-      let defaultIcon = '!{ theme.newest_comments.leancloud.default_avatar ? `?d=${theme.newest_comments.leancloud.default_avatar}` : ''}'
-      let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
+    const getIcon = (mail) => {
+      let defaultIcon = '!{ default_avatar ? `?d=${default_avatar}` : ''}'
+      let iconUrl = `https://gravatar.loli.net/avatar/${mail + defaultIcon}`
       return iconUrl
     }
 
@@ -34,7 +33,7 @@ script.
             if(!{theme.lazyload.enable}) {
               name = 'data-lazy-src'
             }
-            result += `<a href='${array[i].url}' class="thumbnail"><img ${name}='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
+            result += `<a href='${array[i].url}' class="thumbnail"><img ${name}='${getIcon(array[i].mail)}' alt='${array[i].nick}'></a>`
           }
 
           result += `<div class='content'>
@@ -53,28 +52,14 @@ script.
     }
 
     const getComment = () => {
-        let serverURL = ''
-        if (!{Boolean(theme.newest_comments.leancloud.serverURL)}) {
-          serverURL = '!{theme.newest_comments.leancloud.serverURL}'
-        } else {
-          serverURL = 'https://!{theme.newest_comments.leancloud.appId.substring(0,8)}.api.lncldglobal.com'
-        }
-
-      var settings = {
-        "method": "GET",
-        "headers": {
-          "X-LC-Id": '!{theme.newest_comments.leancloud.appId}',
-          "X-LC-Key": '!{theme.newest_comments.leancloud.appKey}',
-          "Content-Type": "application/json"
-        },
-      }
-
-      fetch(`${serverURL}/1.1/classes/Comment?limit=!{theme.newest_comments.limit}&order=-createdAt`,settings)
-        .then(response => response.json())
-        .then(data => {
-          const valineArray = data.results.map(function (e) {
+      const loadWaline = () => {
+        Waline.Widget.RecentComments({
+          el: '#card-newest-comments .aside-list',
+          serverURL: '!{theme.waline.serverURL}',
+          count: !{theme.newest_comments.limit}
+        }).then(comments => {
+          const walineArray = comments.map(function (e) {
             return {
-              'avatar': e.QQAvatar,
               'content': changeContent(e.comment),
               'mail': e.mail,
               'nick': e.nick,
@@ -82,17 +67,21 @@ script.
               'date': e.createdAt,
             }
           })
-          saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
-          generateHtml(valineArray)
+          saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+          generateHtml(walineArray)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
           $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
         }) 
+      }
+
+      if (typeof Waline === 'function') loadWaline() 
+      else getScript('!{url_for(theme.CDN.waline)}').then(loadWaline)
     }
 
     const newestCommentInit = () => {
       if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = saveToLocal.get('leancloud-newest-comments')
+        const data = saveToLocal.get('waline-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {

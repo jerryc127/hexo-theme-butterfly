@@ -240,7 +240,7 @@ addtoany:
 
 comments:
   # Up to two comments system, the first will be shown as default
-  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments/Twikoo
+  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo
   use:
   # - Valine
   # - Disqus
@@ -302,6 +302,14 @@ valine:
   emojiCDN: # emoji CDN
   enableQQ: false # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
   requiredFields: nick,mail # required fields (nick/mail)
+  option:
+
+# waline - A simple comment system with backend support fork from Valine
+# https://waline.js.org/
+waline:
+  serverURL: # Waline server address url
+  avatar: monsterid # gravatar style https://zh-tw.gravatar.com/site/implement/images/#default-image
+  bg: /image/comment_bg.png # waline background
   option:
 
 # utterances
@@ -656,12 +664,8 @@ newest_comments:
   enable: false
   limit: 6
   avatar: true
-  leancloud:
-    enable: false
-    appId: # leancloud application app id
-    appKey: # leancloud application app key
-    serverURL: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-    default_avatar: # mp/identicon/monsterid/wavatar/retro/robohash/blank
+  # You can only choose one, or neither
+  valine: false
   github_issues:
     enable: false
     repo:
@@ -670,6 +674,7 @@ newest_comments:
     forum:
     api_key:
   twikoo: false
+  waline: false
 
 # Bottom right button (右下角按鈕)
 # --------------------------------------
@@ -848,6 +853,7 @@ CDN:
   disqusjs_css: https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css
   utterances: https://utteranc.es/client.js
   twikoo: https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js
+  waline: https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js
 
   # share
   addtoany: https://static.addtoany.com/menu/page.js
