@@ -13,7 +13,7 @@ script.
 
     if (!{Boolean(option)}) {
       const otherSetting = !{option}
-      setting = Object.assign({}, setting, otherSetting)
+      setting = Object.assign(setting, otherSetting)
     }
 
     const init = () => {

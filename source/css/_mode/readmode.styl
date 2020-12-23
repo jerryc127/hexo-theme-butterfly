@@ -7,7 +7,10 @@ if hexo-config('readmode')
     --gray: #d6dbdf
     --hr-border: #d6dbdf
     --hr-before-color: darken(#d6dbdf, 10)
-    -highlight-bg: #f7f7f7
+    --highlight-bg: #f7f7f7
+    --exit-btn-bg: #C0C0C0
+    --exit-btn-color: #fff
+    --exit-btn-hover: darken(#C0C0C0, 20)
 
   [data-theme='dark']
     .read-mode
@@ -18,12 +21,32 @@ if hexo-config('readmode')
       --gray: rgba(255, 255, 255, .7)
       --hr-border: rgba(255, 255, 255, .5)
       --hr-before-color: rgba(255, 255, 255, .7)
-      -highlight-bg: #171717
+      --highlight-bg: #171717
+      --exit-btn-bg: #1f1f1f
+      --exit-btn-color: rgba(255, 255, 255, .9)
+      --exit-btn-hover: lighten(#1f1f1f, 20)
 
   .read-mode
     background: var(--readmode-light-color)
 
-    #aside_content
+    .exit-readmode
+      position: fixed
+      top: 30px
+      right: 30px
+      width: 40px
+      height: 40px
+      border-radius: 8px
+      background: var(--exit-btn-bg)
+      color: var(--exit-btn-color)
+      text-align: center
+      font-size: 16px
+      cursor: pointer
+      transition: background .3s
+
+      &:hover
+        background: var(--exit-btn-hover)
+
+    #aside-content
       display: none
 
     #body-wrap
@@ -54,21 +77,12 @@ if hexo-config('readmode')
     .highlight-tools,
     #footer,
     #post > *:not(#post-info):not(.post-content),
-    #to_comment,
-    #mobile-toc-button,
     #nav,
     .post-outdate-notice,
-    #web_bg
+    #web_bg,
+    #rightside,
+    .no-top-img
       display: none !important
-
-    if !hexo-config('chat_btn')
-      #chatra,
-      #tidio-chat-code,
-      #tidio-chat,
-      #daodream-container,
-      .gitter-chat-embed,
-      .gitter-open-chat-button
-        display: none !important
 
     #article-container
       a

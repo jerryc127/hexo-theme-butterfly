@@ -16,7 +16,7 @@ script.
     const getComment = () => {
       const runTwikoo = () => {
         twikoo.getRecentComments({
-          envId: '!{theme.twikoo}',
+          envId: '!{theme.twikoo.envId}',
           pageSize: !{theme.newest_comments.limit},
           includeReply: true
         }).then(function (res) {

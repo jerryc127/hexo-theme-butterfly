@@ -1,8 +1,7 @@
 if theme.aside.card_categories.enable
   if site.categories.length
     .card-widget.card-categories
-        .card-content
-          .item-headline
-            i.fas.fa-folder-open
-            span= _p('aside.card_categories')
-          !=aside_categories({ limit: theme.aside.card_categories.limit === 0 ? 0 : theme.aside.card_categories.limit || 8 , expand: theme.aside.card_categories.expand })
+      .item-headline
+        i.fas.fa-folder-open
+        span= _p('aside.card_categories')
+      !=aside_categories({ limit: theme.aside.card_categories.limit === 0 ? 0 : theme.aside.card_categories.limit || 8 , expand: theme.aside.card_categories.expand })

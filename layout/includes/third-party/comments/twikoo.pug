@@ -1,16 +1,25 @@
+- let option = theme.twikoo.option ? JSON.stringify(theme.twikoo.option) : false
+
 script.
   (()=>{
     const $countDom = document.getElementById('twikoo-count')
     const init = () => {
-      twikoo.init({
-        envId: '!{theme.twikoo}',
+      let initData = {
+        envId: '!{theme.twikoo.envId}',
         el: '#twikoo-wrap'
-      })
+      }
+
+      if (!{Boolean(option)}) {
+        const otherData = !{option}
+        initData = Object.assign(initData, otherData)
+      }
+      
+      twikoo.init(initData)
     }
 
     const getCount = () => {
       twikoo.getCommentsCount({
-        envId: '!{theme.twikoo}',
+        envId: '!{theme.twikoo.envId}',
         urls: [window.location.pathname],
         includeReply: false
       }).then(function (res) {

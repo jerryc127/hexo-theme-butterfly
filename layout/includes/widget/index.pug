@@ -1,4 +1,4 @@
-#aside_content.aside_content
+#aside-content.aside-content
   //- post
   if is_post()
     if showToc && theme.toc.style_simple
@@ -24,3 +24,4 @@
       !=partial('includes/widget/card_tags', {}, {cache:theme.fragment_cache})
       !=partial('includes/widget/card_archives', {}, {cache:theme.fragment_cache})
       !=partial('includes/widget/card_webinfo', {}, {cache:theme.fragment_cache})
+      !=partial('includes/widget/card_self', {}, {cache:theme.fragment_cache})

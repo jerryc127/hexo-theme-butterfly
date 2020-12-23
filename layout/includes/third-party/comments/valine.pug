@@ -29,7 +29,7 @@ script.
       
       if (!{Boolean(option)}) {
         const otherData = !{option}
-        initData = Object.assign({}, initData, otherData)
+        initData = Object.assign(initData, otherData)
       }
       
       const valine = new Valine(initData)
@@ -40,7 +40,7 @@ script.
   }
 
   if ('!{theme.comments.use[0]}' === 'Valine' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('vcomment'),loadValine)
     else setTimeout(loadValine, 0)
   } else {
     function loadOtherComment () {
