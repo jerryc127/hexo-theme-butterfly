@@ -27,9 +27,10 @@ if theme.aside.card_author.enable
             .headline= _p('aside.categories') 
             .length-num= site.categories.length
 
-    a#card-info-btn.button--animated(href=theme.aside.card_author.button.link)
-      i(class=theme.aside.card_author.button.icon)
-      span=theme.aside.card_author.button.text
+    if theme.aside.card_author.button.enable
+      a#card-info-btn.button--animated(href=theme.aside.card_author.button.link)
+        i(class=theme.aside.card_author.button.icon)
+        span=theme.aside.card_author.button.text
   
     if(theme.social)
         .card-info-social-icons.is-center

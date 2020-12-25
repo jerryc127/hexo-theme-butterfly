@@ -12,6 +12,12 @@ if theme.tencent_analytics
 if theme.cnzz_analytics
   link(rel="preconnect" href="//s4.cnzz.com")
 
+if theme.cloudflare_analytics
+  link(rel="preconnect" href="//static.cloudflareinsights.com")
+
+if theme.microsoft_clarity
+  link(rel="preconnect" href="//www.clarity.ms")
+
 if theme.blog_title_font && theme.blog_title_font.font_link && theme.blog_title_font.font_link.indexOf('//fonts.googleapis.com') != -1
   link(rel="preconnect" href="//fonts.googleapis.com" crossorigin='')
 

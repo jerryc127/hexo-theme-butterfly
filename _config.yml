@@ -405,6 +405,14 @@ tencent_analytics:
 # https://www.umeng.com/
 cnzz_analytics:
 
+# Cloudflare Analytics
+# https://www.cloudflare.com/zh-tw/web-analytics/
+cloudflare_analytics:
+
+# Microsoft Clarity
+# https://clarity.microsoft.com/
+microsoft_clarity:
+
 # Advertisement
 # --------------------------------------
 
@@ -619,6 +627,7 @@ aside:
     enable: true
     description:
     button:
+      enable: true
       icon: fab fa-github
       text: Follow Me
       link: https://github.com/xxxxxx
