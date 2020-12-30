@@ -1,5 +1,6 @@
 - var htmlClassHideAside = theme.aside.enable && theme.aside.hide ? 'hide-aside' : ''
 - var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
+- var pageType = is_post() ? 'post' : 'page'
 
 doctype html
 html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside)
@@ -14,7 +15,7 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
       
     !=partial('includes/sidebar', {}, {cache:theme.fragment_cache})
 
-    #body-wrap
+    #body-wrap(class=pageType)
       include ./header/index.pug
 
       main#content-inner.layout(class=hideAside)

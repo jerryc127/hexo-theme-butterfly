@@ -1,4 +1,5 @@
-#vcomment
+#vcomment,
+#waline
   font-size: 1.1em
 
   .vbtn
@@ -9,12 +10,9 @@
     &:hover
       background: var(--btn-hover-color)
 
-  if hexo-config('valine.bg')
-    textarea
-      background: url(hexo-config('valine.bg')) 100% 100% no-repeat
-
-      &:focus
-        background-image: none
+  textarea
+    &:focus
+      background-image: none
 
   .vimg
     transition: all .3s
@@ -26,6 +24,16 @@
     &:before,
     &:after
       z-index: 22
+
+if hexo-config('valine.bg')
+  #vcomment
+    textarea
+      background: url(hexo-config('valine.bg')) 100% 100% no-repeat
+
+if hexo-config('waline.bg')
+  #waline
+    textarea
+      background: url(hexo-config('waline.bg')) 100% 100% no-repeat
 
 .fireworks
   position: fixed

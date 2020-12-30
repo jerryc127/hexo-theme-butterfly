@@ -1,3 +1,5 @@
+- let default_avatar = theme.valine.avatar
+
 script(src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js")
 script.
   window.addEventListener('load', () => {
@@ -17,7 +19,7 @@ script.
     const getIcon = (icon, mail) => {
       if (icon) return icon
       
-      let defaultIcon = '!{ theme.newest_comments.leancloud.default_avatar ? `?d=${theme.newest_comments.leancloud.default_avatar}` : ''}'
+      let defaultIcon = '!{ default_avatar ? `?d=${default_avatar}` : ''}'
       let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
       return iconUrl
     }
@@ -54,17 +56,17 @@ script.
 
     const getComment = () => {
         let serverURL = ''
-        if (!{Boolean(theme.newest_comments.leancloud.serverURL)}) {
-          serverURL = '!{theme.newest_comments.leancloud.serverURL}'
+        if (!{Boolean(theme.valine.serverURLs)}) {
+          serverURL = '!{theme.valine.serverURLs}'
         } else {
-          serverURL = 'https://!{theme.newest_comments.leancloud.appId.substring(0,8)}.api.lncldglobal.com'
+          serverURL = 'https://!{theme.valine.appId.substring(0,8)}.api.lncldglobal.com'
         }
 
       var settings = {
         "method": "GET",
         "headers": {
-          "X-LC-Id": '!{theme.newest_comments.leancloud.appId}',
-          "X-LC-Key": '!{theme.newest_comments.leancloud.appKey}',
+          "X-LC-Id": '!{theme.valine.appId}',
+          "X-LC-Key": '!{theme.valine.appKey}',
           "Content-Type": "application/json"
         },
       }
@@ -78,7 +80,7 @@ script.
               'content': changeContent(e.comment),
               'mail': e.mail,
               'nick': e.nick,
-              'url': e.url,
+              'url': e.url + '#' + e.objectId,
               'date': e.createdAt,
             }
           })

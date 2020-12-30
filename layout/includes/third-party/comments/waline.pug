@@ -1,0 +1,39 @@
+- let option = theme.waline.option ? JSON.stringify(theme.waline.option) : false
+- let emojiMaps = '""'
+if site.data.waline
+  - emojiMaps = JSON.stringify(site.data.waline)
+
+script.
+  function loadWaline () {
+    function initWaline () {
+      let initData = {
+        el: '#waline-wrap',
+        serverURL: '!{theme.waline.serverURL}',
+        avatar: '#{theme.waline.avatar}',
+        path: location.pathname,
+        emojiCDN: '#{theme.waline.emojiCDN}',
+        emojiMaps: !{emojiMaps},
+      }
+      
+      if (!{Boolean(option)}) {
+        const otherData = !{option}
+        initData = Object.assign(initData, otherData)
+      }
+      
+      const waline = new Waline(initData)
+    }
+
+    if (typeof Waline === 'function') initWaline() 
+    else getScript('!{url_for(theme.CDN.waline)}').then(initWaline)
+  }
+
+  if ('!{theme.comments.use[0]}' === 'Waline' || !!{theme.comments.lazyload}) {
+    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    function loadOtherComment () {
+      loadWaline()
+    }
+  }
+  
+
