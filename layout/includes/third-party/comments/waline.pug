@@ -1,4 +1,7 @@
 - let option = theme.waline.option ? JSON.stringify(theme.waline.option) : false
+- let emojiMaps = '""'
+if site.data.waline
+  - emojiMaps = JSON.stringify(site.data.waline)
 
 script.
   function loadWaline () {
@@ -8,6 +11,8 @@ script.
         serverURL: '!{theme.waline.serverURL}',
         avatar: '#{theme.waline.avatar}',
         path: location.pathname,
+        emojiCDN: '#{theme.waline.emojiCDN}',
+        emojiMaps: !{emojiMaps},
       }
       
       if (!{Boolean(option)}) {
