@@ -1,5 +1,5 @@
 - var top_img = theme.error_404.background || theme.default_top_img
-- var bg_img = `background-image: url(${url_for(top_img)})`
+- var bg_img = `background-image: url('${url_for(top_img)}')`
 
 doctype html
 html(lang=config.language data-theme=theme.display_mode)
