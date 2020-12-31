@@ -5,8 +5,9 @@ script.
     const $countDom = document.getElementById('twikoo-count')
     const init = () => {
       let initData = {
+        el: '#twikoo-wrap',
         envId: '!{theme.twikoo.envId}',
-        el: '#twikoo-wrap'
+        region: '!{theme.twikoo.region}'
       }
 
       if (!{Boolean(option)}) {
