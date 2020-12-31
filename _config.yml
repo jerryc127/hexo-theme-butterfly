@@ -336,6 +336,7 @@ facebook_comments:
 # https://github.com/imaegoo/twikoo
 twikoo:
   envId:
+  region:
   option:
 
 # Chat Services
