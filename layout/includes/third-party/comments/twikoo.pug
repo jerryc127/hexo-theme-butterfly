@@ -21,6 +21,7 @@ script.
     const getCount = () => {
       twikoo.getCommentsCount({
         envId: '!{theme.twikoo.envId}',
+        region: '!{theme.twikoo.region}',
         urls: [window.location.pathname],
         includeReply: false
       }).then(function (res) {

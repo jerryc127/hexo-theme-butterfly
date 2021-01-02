@@ -86,6 +86,9 @@ avatar:
   img:
   effect: false
 
+# Disable all banner image
+disable_top_img: false
+
 # The banner image of home page
 index_img:
 
