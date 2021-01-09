@@ -1,14 +1,14 @@
 script.
   function panguFn () {
     if (typeof pangu === 'object') {
-      pangu.spacingElementByClassName('post-title');
-      pangu.spacingElementById('content-inner')
+      pangu.spacingElementByTagName('title');
+      pangu.spacingElementByTagName('body')
     }
     else {
       getScript('!{url_for(theme.CDN.pangu)}')
         .then(() => {
-          pangu.spacingElementByClassName('post-title');
-          pangu.spacingElementById('content-inner')
+          pangu.spacingElementByTagName('title');
+          pangu.spacingElementByTagName('body')
         })
     }
   }
