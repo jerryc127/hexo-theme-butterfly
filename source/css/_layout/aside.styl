@@ -213,16 +213,6 @@
           width: 20%
           text-align: right
 
-    &.more
-      span
-        padding-right: .3rem
-        width: auto !important
-        transition: .5s
-
-      &:hover
-        span
-          padding-right: .6rem
-
   .card-categories
     .card-category-list
       &.child
@@ -332,6 +322,21 @@
   :only-child
     > .card-widget
       margin-top: 0
+
+  .card-more-btn
+    float: right
+    color: inherit
+
+    &:hover
+      animation: more-btn-move 1s infinite
+
+@keyframes more-btn-move
+  0%,
+  100%
+    transform: translateX(0)
+
+  50%
+    transform: translateX(3px)
 
 @keyframes toc-open
   0%
