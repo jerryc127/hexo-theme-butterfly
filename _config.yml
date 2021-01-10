@@ -194,6 +194,13 @@ reward:
     # - img: /img/alipay.jpg
     #   link:
     #   text: alipay
+    
+# Post edit
+# Easily browse and edit blog source code online.
+post_edit:
+  enable: false
+  url: https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/ # Link for view source
+  #url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/ # Link for fork & edit
 
 # Related Articles
 related_post:
