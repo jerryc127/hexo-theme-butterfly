@@ -27,7 +27,7 @@ script.
             }
           })
           // set expiry to 10 min
-          saveToLocal.set('disqus-newest-comments', JSON.stringify(disqusArray), 10/(60*24))
+          saveToLocal.set('disqus-newest-comments', JSON.stringify(disqusArray), !{theme.newest_comments.storage}/(60*24))
           generateHtml(disqusArray)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
@@ -43,10 +43,7 @@ script.
           result += '<div class=\'aside-list-item\'>'
 
           if (!{theme.newest_comments.avatar}) {
-            let name = 'src'
-            if(!{theme.lazyload.enable}) {
-              name = 'data-lazy-src'
-            }
+            const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
             result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
           }
           

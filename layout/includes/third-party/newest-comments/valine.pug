@@ -18,7 +18,6 @@ script.
 
     const getIcon = (icon, mail) => {
       if (icon) return icon
-      
       let defaultIcon = '!{ default_avatar ? `?d=${default_avatar}` : ''}'
       let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
       return iconUrl
@@ -32,10 +31,7 @@ script.
           result += '<div class=\'aside-list-item\'>'
 
           if (!{theme.newest_comments.avatar}) {
-            let name = 'src'
-            if(!{theme.lazyload.enable}) {
-              name = 'data-lazy-src'
-            }
+            const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
             result += `<a href='${array[i].url}' class="thumbnail"><img ${name}='${getIcon(array[i].avatar, array[i].mail)}' alt='${array[i].nick}'></a>`
           }
 
@@ -55,12 +51,7 @@ script.
     }
 
     const getComment = () => {
-        let serverURL = ''
-        if (!{Boolean(theme.valine.serverURLs)}) {
-          serverURL = '!{theme.valine.serverURLs}'
-        } else {
-          serverURL = 'https://!{theme.valine.appId.substring(0,8)}.api.lncldglobal.com'
-        }
+      const serverURL = '!{theme.valine.serverURLs || `https://${theme.valine.appId.substring(0,8)}.api.lncldglobal.com` }'
 
       var settings = {
         "method": "GET",
@@ -84,7 +75,7 @@ script.
               'date': e.createdAt,
             }
           })
-          saveToLocal.set('leancloud-newest-comments', JSON.stringify(valineArray), 10/(60*24))
+          saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), !{theme.newest_comments.storage}/(60*24))
           generateHtml(valineArray)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
@@ -94,7 +85,7 @@ script.
 
     const newestCommentInit = () => {
       if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = saveToLocal.get('leancloud-newest-comments')
+        const data = saveToLocal.get('valine-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {

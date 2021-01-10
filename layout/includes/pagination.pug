@@ -11,29 +11,31 @@ if(!is_post())
     div.pagination
       !=paginator(options)
 else
+  - let prev = theme.post_pagination === 1 ? page.prev : page.next
+  - let next = theme.post_pagination === 1 ? page.next : page.prev
   nav#pagination.pagination-post
-    if(page.prev)
-      - var hasPageNext = page.next ? 'pull-left' : 'pull-full'
+    if(prev)
+      - var hasPageNext = next ? 'pull-left' : 'pull-full'
       .prev-post(class=hasPageNext)
-        - var pagination_cover = page.prev.cover === false ? page.prev.randomcover : page.prev.cover
-        a(href=url_for(page.prev.path))
+        - var pagination_cover = prev.cover === false ? prev.randomcover : prev.cover
+        a(href=url_for(prev.path))
           if theme.lazyload.enable
             img.prev-cover(data-lazy-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of previous post')
           else
             img.prev-cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of previous post')
           .pagination-info
             .label=_p('pagination.prev')
-            .prev_info=page.prev.title
+            .prev_info=prev.title
           
-    if(page.next)
-      - var hasPagePrev = page.prev ? 'pull-right' : 'pull-full'
-      - var pagination_cover = page.next.cover == false ? page.next.randomcover : page.next.cover
+    if(next)
+      - var hasPagePrev = prev ? 'pull-right' : 'pull-full'
+      - var pagination_cover = next.cover == false ? next.randomcover : next.cover
       .next-post(class=hasPagePrev)
-        a(href=url_for(page.next.path))
+        a(href=url_for(next.path))
           if theme.lazyload.enable
             img.next-cover(data-lazy-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of next post')
           else
             img.next-cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of next post')
           .pagination-info
             .label=_p('pagination.next')
-            .next_info=page.next.title 
+            .next_info=next.title 

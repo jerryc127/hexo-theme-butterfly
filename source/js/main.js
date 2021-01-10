@@ -1,17 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-  let blogNameWidth = document.getElementById('site-name').offsetWidth
+  const $blogName = document.getElementById('site-name')
+  let blogNameWidth = $blogName && $blogName.offsetWidth
   const $menusEle = document.querySelector('#menus .menus_items')
   let menusWidth = $menusEle && $menusEle.offsetWidth
   const $searchEle = document.querySelector('#search-button')
   let searchWidth = $searchEle && $searchEle.offsetWidth
-  let detectFontSizeChange = false
 
-  const adjustMenu = () => {
-    if (detectFontSizeChange) {
-      blogNameWidth = document.getElementById('site-name').offsetWidth
+  const adjustMenu = (change = false) => {
+    if (change) {
+      blogNameWidth = $blogName && $blogName.offsetWidth
       menusWidth = $menusEle && $menusEle.offsetWidth
       searchWidth = $searchEle && $searchEle.offsetWidth
-      detectFontSizeChange = false
     }
     const $nav = document.getElementById('nav')
     let t
@@ -536,17 +535,16 @@ document.addEventListener('DOMContentLoaded', function () {
     adjustFontSize: (plus) => {
       const fontSizeVal = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--global-font-size'))
       let newValue = ''
-      detectFontSizeChange = true
       if (plus) {
         if (fontSizeVal >= 20) return
         newValue = fontSizeVal + 1
         document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
-        !document.getElementById('nav').classList.contains('hide-menu') && adjustMenu()
+        !document.getElementById('nav').classList.contains('hide-menu') && adjustMenu(true)
       } else {
         if (fontSizeVal <= 10) return
         newValue = fontSizeVal - 1
         document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
-        document.getElementById('nav').classList.contains('hide-menu') && adjustMenu()
+        document.getElementById('nav').classList.contains('hide-menu') && adjustMenu(true)
       }
 
       saveToLocal.set('global-font-size', newValue, 2)
@@ -798,6 +796,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const unRefreshFn = function () {
     window.addEventListener('resize', adjustMenu)
+    window.addEventListener('orientationchange', () => { setTimeout(adjustMenu(true), 100) })
 
     clickFnOfSubMenu()
     GLOBAL_CONFIG.islazyload && lazyloadImg()

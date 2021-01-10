@@ -29,10 +29,7 @@ script.
           result += '<div class=\'aside-list-item\'>'
 
           if (!{theme.newest_comments.avatar}) {
-            let name = 'src'
-            if(!{theme.lazyload.enable}) {
-              name = 'data-lazy-src'
-            }
+            const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
             result += `<a href='${array[i].url}' class="thumbnail"><img ${name}='${getIcon(array[i].mail)}' alt='${array[i].nick}'></a>`
           }
 
@@ -67,7 +64,7 @@ script.
               'date': e.createdAt,
             }
           })
-          saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+          saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), !{theme.newest_comments.storage}/(60*24))
           generateHtml(walineArray)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')

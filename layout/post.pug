@@ -15,17 +15,18 @@ block content
       include includes/third-party/share/index.pug
         
     if theme.reward.enable
-      !=partial('includes/post/reward', {}, {cache:theme.fragment_cache})
+      !=partial('includes/post/reward', {}, {cache: true})
 
     //- ad
     if theme.ad && theme.ad.post
       .ads-wrap!=theme.ad.post
 
-    include includes/pagination.pug
+    if theme.post_pagination
+      include includes/pagination.pug
     if theme.related_post && theme.related_post.enable
       != related_posts(page,site.posts)
 
     if page.comments !== false && theme.comments && theme.comments.use
       - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache:theme.fragment_cache})
+      !=partial('includes/third-party/comments/index', {}, {cache: true})
       

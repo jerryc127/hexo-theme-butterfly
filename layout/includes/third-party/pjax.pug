@@ -78,3 +78,9 @@ script.
     $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
 
   })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })

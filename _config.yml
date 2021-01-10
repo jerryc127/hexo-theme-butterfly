@@ -204,6 +204,13 @@ related_post:
 # figcaption (圖片描述文字)
 photofigcaption: false
 
+# post_pagination (分頁)
+# value: 1 || 2 || false
+# 1: The 'next post' will link to old post
+# 2: The 'next post' will link to new post
+# false: disable pagination
+post_pagination: 1
+
 # anchor
 # when you scroll in post, the URL will update according to header id.
 anchor: false
@@ -685,6 +692,7 @@ newest_comments:
   enable: false
   sort_order: # Don't modify the setting unless you know how it works
   limit: 6
+  storage: 10 # unit: mins, save data to localStorage
   avatar: true
   # You can only choose one, or neither
   valine: false
@@ -802,9 +810,6 @@ snackbar:
   bg_light: '#49b1f5' # The background color of Toast Notification in light mode
   bg_dark: '#121212' # The background color of Toast Notification in dark mode
 
-# Baidu Push (百度推送)
-baidu_push: false
-
 # https://instant.page/
 # prefetch (預加載)
 instantpage: false
@@ -832,15 +837,9 @@ lazyload:
 #   favicon_16_16: /image/pwa/16.png
 #   mask_icon: /image/pwa/safari-pinned-tab.svg
 
-# Disable Baidu transformation on mobile devices (禁止百度轉碼)
-disable_baidu_transformation: true
-
 # Open graph meta tags
 # https://developers.facebook.com/docs/sharing/webmasters/
 Open_Graph_meta: true
-
-# Caches the contents in a fragment, speed up the generation (開啟hexo自帶的緩存,加快生成速度)
-fragment_cache: true
 
 # Add the vendor prefixes to ensure compatibility
 css_prefix: true

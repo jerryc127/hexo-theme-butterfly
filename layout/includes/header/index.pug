@@ -29,15 +29,17 @@ else
   - var isHomeClass = 'no-top-img'
 
 header#page-header(class=isHomeClass style=bg_img)
-  !=partial('includes/header/nav', {}, {cache:theme.fragment_cache})
+  !=partial('includes/header/nav', {}, {cache: true})
   if top_img !== false
     if is_post()
       include ./post-info.pug
     else if is_home() 
       #site-info
         h1#site-title=site_title
-        #site-subtitle
-          span#subtitle
+        if theme.subtitle.enable
+          - var loadSubJs = true
+          #site-subtitle
+            span#subtitle
         if(theme.social)
           #site_social_icons
             !=fragment_cache('social', function(){return partial('includes/header/social')})

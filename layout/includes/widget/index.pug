@@ -5,23 +5,23 @@
       .sticky_layout
         include ./card_post_toc.pug
     else
-      !=partial('includes/widget/card_author', {}, {cache:theme.fragment_cache})
-      !=partial('includes/widget/card_announcement', {}, {cache:theme.fragment_cache})
+      !=partial('includes/widget/card_author', {}, {cache: true})
+      !=partial('includes/widget/card_announcement', {}, {cache: true})
       .sticky_layout
         if showToc
           include ./card_post_toc.pug
-        !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})
-        !=partial('includes/widget/card_ad', {}, {cache:theme.fragment_cache})
+        !=partial('includes/widget/card_recent_post', {}, {cache: true})
+        !=partial('includes/widget/card_ad', {}, {cache: true})
   else
     //- page
-    !=partial('includes/widget/card_author', {}, {cache:theme.fragment_cache})
-    !=partial('includes/widget/card_announcement', {}, {cache:theme.fragment_cache})
+    !=partial('includes/widget/card_author', {}, {cache: true})
+    !=partial('includes/widget/card_announcement', {}, {cache: true})
     .sticky_layout
-      !=partial('includes/widget/card_recent_post', {}, {cache:theme.fragment_cache})
-      !=partial('includes/widget/card_ad', {}, {cache:theme.fragment_cache})
-      !=partial('includes/widget/card_newest_comment', {}, {cache:theme.fragment_cache})
-      !=partial('includes/widget/card_categories', {}, {cache:theme.fragment_cache})
-      !=partial('includes/widget/card_tags', {}, {cache:theme.fragment_cache})
-      !=partial('includes/widget/card_archives', {}, {cache:theme.fragment_cache})
-      !=partial('includes/widget/card_webinfo', {}, {cache:theme.fragment_cache})
-      !=partial('includes/widget/card_self', {}, {cache:theme.fragment_cache})
+      !=partial('includes/widget/card_recent_post', {}, {cache: true})
+      !=partial('includes/widget/card_ad', {}, {cache: true})
+      !=partial('includes/widget/card_newest_comment', {}, {cache: true})
+      !=partial('includes/widget/card_categories', {}, {cache: true})
+      !=partial('includes/widget/card_tags', {}, {cache: true})
+      !=partial('includes/widget/card_archives', {}, {cache: true})
+      !=partial('includes/widget/card_webinfo', {}, {cache: true})
+      !=partial('includes/widget/card_self', {}, {cache: true})

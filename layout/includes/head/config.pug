@@ -83,7 +83,7 @@
   }
 
 script.
-  var GLOBAL_CONFIG = { 
+  const GLOBAL_CONFIG = { 
     root: '!{config.root}',
     algolia: !{algolia},
     localSearch: !{localSearch},
@@ -126,8 +126,10 @@ script.
     isanchor: !{theme.anchor}
   };
 
-  var saveToLocal = {
+  const saveToLocal = {
+    // ttl 單位是 天
     set: function setWithExpiry(key, value, ttl) {
+      if (ttl === 0) return
       const now = new Date()
       const expiryDay = ttl * 86400000
       const item = {

@@ -8,12 +8,12 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
     include ./head.pug
   body
     if theme.preloader
-      !=partial('includes/loading/loading', {}, {cache:theme.fragment_cache})
+      !=partial('includes/loading/loading', {}, {cache: true})
 
     if theme.background
       #web_bg
       
-    !=partial('includes/sidebar', {}, {cache:theme.fragment_cache})
+    !=partial('includes/sidebar', {}, {cache: true})
 
     #body-wrap(class=pageType)
       include ./header/index.pug
@@ -36,8 +36,8 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
         - var footer_bg = ''
 
       footer#footer(style=footer_bg)
-        !=partial('includes/footer', {}, {cache:theme.fragment_cache})
+        !=partial('includes/footer', {}, {cache: true})
 
     include ./rightside.pug
-    !=partial('includes/third-party/search/index', {}, {cache:theme.fragment_cache})
+    !=partial('includes/third-party/search/index', {}, {cache: true})
     include ./additional-js.pug

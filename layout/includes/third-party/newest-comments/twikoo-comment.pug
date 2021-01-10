@@ -21,7 +21,7 @@ script.
           pageSize: !{theme.newest_comments.limit},
           includeReply: true
         }).then(function (res) {
-          saveToLocal.set('twikoo-newest-comments', JSON.stringify(res), 10/(60*24))
+          saveToLocal.set('twikoo-newest-comments', JSON.stringify(res), !{theme.newest_comments.storage}/(60*24))
           generateHtml(res)
         }).catch(function (err) {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
@@ -44,10 +44,7 @@ script.
           result += '<div class=\'aside-list-item\'>'
 
           if (!{theme.newest_comments.avatar}) {
-            let name = 'src'
-            if(!{theme.lazyload.enable}) {
-              name = 'data-lazy-src'
-            }
+            const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
             result += `<a href='${array[i].url + '#' + array[i].id}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
           }
           
