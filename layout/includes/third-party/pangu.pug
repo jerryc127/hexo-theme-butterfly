@@ -1,9 +1,15 @@
 script.
   function panguFn () {
-    if (typeof pangu === 'object') pangu.spacingElementById('body-wrap')
+    if (typeof pangu === 'object') {
+      pangu.spacingElementByTagName('title')
+      pangu.spacingElementById('sidebar')
+      pangu.spacingElementById('body-wrap')
+    }
     else {
       getScript('!{url_for(theme.CDN.pangu)}')
         .then(() => {
+          pangu.spacingElementByTagName('title')
+          pangu.spacingElementById('sidebar')
           pangu.spacingElementById('body-wrap')
         })
     }
