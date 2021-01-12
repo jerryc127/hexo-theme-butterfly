@@ -30,12 +30,13 @@ post:
     copyright_notice: Copyright Notice
     copyright_content: 'All articles in this blog are licensed under <a href="%s">%s</a> unless stating additionally.'
   recommend: Related Articles
+  edited: Edited on
 
 search: Search
 algolia_search:
   input_placeholder: Search for Posts
   hits_empty: "We didn't find any results for the search: ${query}."
-  hits_stats: '${hits} results found in ${time} ms'
+  hits_stats: "${hits} results found in ${time} ms"
 
 local_search:
   label: Local search

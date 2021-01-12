@@ -31,17 +31,18 @@ post:
     copyright_content: '本博客所有文章除特别声明外，均采用
       <a href="%s" target="_blank">%s</a> 许可协议。转载请注明来自 <a href="%s" target="_blank">%s</a>！'
   recommend: 相关推荐
+  edit: 编辑
 
 search: 搜索
 algolia_search:
   input_placeholder: 搜索文章
-  hits_empty: '找不到您查询的内容：${query}'
-  hits_stats: '找到 ${hits} 条结果，用时 ${time} 毫秒'
+  hits_empty: "找不到您查询的内容：${query}"
+  hits_stats: "找到 ${hits} 条结果，用时 ${time} 毫秒"
 
 local_search:
   label: 本地搜索
   input_placeholder: 搜索文章
-  hits_empty: '找不到您查询的内容：${query}'
+  hits_empty: "找不到您查询的内容：${query}"
 
 pagination:
   prev: 上一篇
