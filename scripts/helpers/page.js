@@ -70,3 +70,9 @@ hexo.extend.helper.register('injectHtml', function (data) {
   }
   return result
 })
+
+hexo.extend.helper.register('post_edit', function(src) {
+  const { post_edit } = this.theme;
+  if (!post_edit.enable) return '';
+  return post_edit.url + src
+})
