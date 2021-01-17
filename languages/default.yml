@@ -74,6 +74,9 @@ aside:
     loading_text: loading...
     error: Unable to get the data, please make sure the settings are correct.
     zero: No Comment
+    image: image
+    link: link
+    code: code
   card_toc: Catalog
 
 date_suffix:

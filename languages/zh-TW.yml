@@ -20,7 +20,7 @@ post:
   created: 發表於
   updated: 更新於
   wordcount: 字數總計
-  min2read: 閲讀時長
+  min2read: 閱讀時長
   min2read_unit: 分鐘
   page_pv: 閱讀量
   comments: 評論數
@@ -72,9 +72,12 @@ aside:
   more_button: 檢視更多
   card_newest_comments:
     headline: 最新評論
-    loading_text: 正在加載中...
+    loading_text: 正在載入中...
     error: 無法獲取評論，請確認相關配置是否正確
     zero: 沒有評論
+    image: 圖片
+    link: 連結
+    code: 代碼
   card_toc: 目錄
 
 date_suffix:
