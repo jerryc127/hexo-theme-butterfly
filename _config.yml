@@ -194,15 +194,14 @@ reward:
     # - img: /img/alipay.jpg
     #   link:
     #   text: alipay
-    
+
 # Post edit
 # Easily browse and edit blog source code online.
 post_edit:
   enable: false
-  # Link for view source
-  # url: https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/
-  # Link for fork & edit
   # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
+  # For example: https://github.com/jerryc127/butterfly.js.org/edit/main/source/
+  url:
 
 # Related Articles
 related_post:

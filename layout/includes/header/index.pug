@@ -48,6 +48,3 @@ header#page-header(class=isHomeClass style=bg_img)
     else
       #page-site-info
         h1#site-title=site_title
-          if theme.post_edit.enable
-            a.post-edit-link(href=post_edit(page.source) title=_p('post.edit'))
-              i.fa.fa-pen-nib
