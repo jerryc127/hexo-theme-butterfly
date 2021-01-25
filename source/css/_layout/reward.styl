@@ -12,60 +12,58 @@
     cursor: pointer
     transition: all .4s
 
-    &:hover
-      box-shadow: inset 9em 0 0 0 var(--btn-hover-color)
+  &:hover
+    & > .reward-main
+      display: block
 
-      .reward-main
-        display: block
+  .reward-main
+    position: absolute
+    bottom: 40px
+    left: 0
+    z-index: 100
+    display: none
+    padding: 0 0 15px
+    width: 100%
 
-    .reward-main
-      position: absolute
-      bottom: 40px
-      left: 0
-      z-index: 100
-      display: none
-      padding: 0 0 15px
-      width: 100%
+    .reward-all
+      display: inline-block
+      margin: 0
+      padding: 1rem .5rem
+      border-radius: 4px
+      background: var(--reward-pop)
 
-      .reward-all
+      &:before
+        position: absolute
+        bottom: -10px
+        left: 0
+        width: 100%
+        height: 20px
+        content: ''
+
+      &:after
+        position: absolute
+        right: 0
+        bottom: 2px
+        left: 0
+        margin: 0 auto
+        width: 0
+        height: 0
+        border-top: 13px solid var(--reward-pop)
+        border-right: 13px solid transparent
+        border-left: 13px solid transparent
+        content: ''
+
+      .reward-item
         display: inline-block
-        margin: 0
-        padding: 1rem .5rem
-        border-radius: 4px
-        background: var(--reward-pop)
+        padding: 0 8px
+        list-style-type: none
+        vertical-align: top
 
-        &:before
-          position: absolute
-          bottom: -10px
-          left: 0
-          width: 100%
-          height: 20px
-          content: ''
+        img
+          width: 130px
+          height: 130px
 
-        &:after
-          position: absolute
-          right: 0
-          bottom: 2px
-          left: 0
-          margin: 0 auto
-          width: 0
-          height: 0
-          border-top: 13px solid var(--reward-pop)
-          border-right: 13px solid transparent
-          border-left: 13px solid transparent
-          content: ''
-
-        .reward-item
-          display: inline-block
-          padding: 0 8px
-          list-style-type: none
-          vertical-align: top
-
-          img
-            width: 130px
-            height: 130px
-
-          .post-qr-code-desc
-            padding-top: .4rem
-            width: 130px
-            color: $reward-pop-up-color
+        .post-qr-code-desc
+          padding-top: .4rem
+          width: 130px
+          color: $reward-pop-up-color

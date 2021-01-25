@@ -30,6 +30,9 @@ div
     !=partial('includes/loading/loading-js', {}, {cache: true})
 
   .js-pjax
+    if needLoadCountJs
+      !=partial('includes/third-party/card-post-count/index', {}, {cache: true})
+    
     if loadSubJs
       include ./third-party/subtitle.pug
 

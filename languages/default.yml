@@ -13,6 +13,8 @@ page:
   category: Category
   archives: Archives
 
+card_post_count: comments
+
 sticky: Sticky
 no_title: No title
 

@@ -69,7 +69,7 @@
       font-size: 30px
 
   // page
-  &.not-index-bg
+  &.not-home-page
     height: 20rem
 
     +maxWidth768()
@@ -101,19 +101,6 @@
       background-color: alpha($dark-black, .5)
       content: ''
 
-  &.no-top-img
-    margin-bottom: .5rem
-    height: 60px
-    background: 0
-
-    #nav
-      background: rgba(255, 255, 255, .8)
-      box-shadow: 0 5px 6px -5px rgba(133, 133, 133, .6)
-
-      a
-        color: var(--font-color)
-        text-shadow: none
-
   #post-info
     position: absolute
     bottom: 5rem
@@ -128,6 +115,75 @@
     +maxWidth768()
       bottom: 1.1rem
       padding: 0 1.1rem
+
+  &.not-top-img
+    margin-bottom: .5rem
+    height: 60px
+    background: 0
+
+    #nav
+      background: rgba(255, 255, 255, .8)
+      box-shadow: 0 5px 6px -5px rgba(133, 133, 133, .6)
+
+      a
+        color: var(--font-color)
+        text-shadow: none
+
+  &.nav-fixed
+    #nav
+      position: fixed
+      top: -60px
+      z-index: 91
+      background: rgba(255, 255, 255, .8)
+      box-shadow: 0 5px 6px -5px alpha($grey, .6)
+      transition: transform .2s ease-in-out, opacity .2s ease-in-out
+
+      a,
+      #site-name,
+      #toggle-menu
+        color: var(--font-color)
+        text-shadow: none
+
+        &:hover
+          color: $light-blue
+
+  &.nav-visible
+    #nav
+      transition: all .5s
+      transform: translate3d(0, 100%, 0)
+
+    & + .layout
+      & > .aside-content > .sticky_layout
+        top: 70px
+        transition: top .5s
+
+// css hack
+// all browser in ios and safari in all apple device
+_::-webkit-full-page-media,
+_:future,
+:root #page-header.full_page
+  background-attachment: scroll !important
+
+#page
+  h1.page-title
+    margin: .4rem 0 1rem
+
+// for not top_img
+#post
+  & > #post-info
+    margin-bottom: 1.5rem
+
+    .post-title
+      padding-bottom: .2rem
+      border-bottom: 1px solid var(--light-grey)
+      color: var(--text-highlight-color)
+
+      .post-edit-link
+        float: right
+
+    #post-meta,
+    #post-meta a
+      color: #78818a
 
 #post-info
   .post-title
@@ -186,30 +242,6 @@
       time
         display: none
 
-// for not top_img
-#post
-  & > #post-info
-    margin-bottom: 1.5rem
-
-    .post-title
-      padding-bottom: .2rem
-      border-bottom: 1px solid var(--light-grey)
-      color: var(--text-highlight-color)
-
-      .post-edit-link
-        float: right
-
-    #post-meta,
-    #post-meta a
-      color: #78818a
-
-// css hack
-// all browser in ios and safari in all apple device
-_::-webkit-full-page-media,
-_:future,
-:root #page-header.full_page
-  background-attachment: scroll !important
-
 #nav
   position: absolute
   top: 0
@@ -226,10 +258,6 @@ _:future,
 
   +maxWidth768()
     padding: 0 16px
-
-  &:not(.fixed)
-    #menus
-      padding-right: 0 !important
 
   &.show
     opacity: 1
@@ -250,27 +278,6 @@ _:future,
 
     &:hover
       color: var(--white)
-
-  &.fixed
-    position: fixed
-    top: -60px
-    z-index: 91
-    background: rgba(255, 255, 255, .8)
-    box-shadow: 0 5px 6px -5px alpha($grey, .6)
-    transition: transform .2s ease-in-out, opacity .2s ease-in-out
-
-    a,
-    #site-name,
-    #toggle-menu
-      color: var(--font-color)
-      text-shadow: none
-
-      &:hover
-        color: $light-blue
-
-  &.visible
-    transition: all .5s
-    transform: translate3d(0, 100%, 0)
 
   #site-name
     text-shadow: .1rem .1rem .2rem rgba($dark-black, .15)
@@ -369,4 +376,3 @@ _:future,
     padding-bottom: .3rem
     text-shadow: .05rem .05rem .1rem rgba($dark-black, .3)
     font-size: .78em
-    cursor: pointer

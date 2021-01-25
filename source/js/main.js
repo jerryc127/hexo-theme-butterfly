@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let initTop = 0
     let isChatShow = true
-    const $nav = document.getElementById('nav')
+    const $header = document.getElementById('page-header')
     const isChatBtnHide = typeof chatBtnHide === 'function'
     const isChatBtnShow = typeof chatBtnShow === 'function'
     window.addEventListener('scroll', btf.throttle(function (e) {
@@ -323,25 +323,25 @@ document.addEventListener('DOMContentLoaded', function () {
       const isDown = scrollDirection(currentTop)
       if (currentTop > 56) {
         if (isDown) {
-          if ($nav.classList.contains('visible')) $nav.classList.remove('visible')
+          if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
           if (isChatBtnShow && isChatShow === true) {
             chatBtnHide()
             isChatShow = false
           }
         } else {
-          if (!$nav.classList.contains('visible')) $nav.classList.add('visible')
+          if (!$header.classList.contains('nav-visible')) $header.classList.add('nav-visible')
           if (isChatBtnHide && isChatShow === false) {
             chatBtnShow()
             isChatShow = true
           }
         }
-        $nav.classList.add('fixed')
+        $header.classList.add('nav-fixed')
         if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
           $rightside.style.cssText = 'opacity: 1; transform: translateX(-38px)'
         }
       } else {
         if (currentTop === 0) {
-          $nav.classList.remove('fixed', 'visible')
+          $header.classList.remove('nav-fixed', 'nav-visible')
         }
         $rightside.style.cssText = "opacity: ''; transform: ''"
       }
@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let currentIndex = ''
 
       list.forEach(function (ele, index) {
-        if (top > btf.getEleTop(ele) - 70) {
+        if (top > btf.getEleTop(ele) - 80) {
           currentId = '#' + encodeURI(ele.getAttribute('id'))
           currentIndex = index
         }
