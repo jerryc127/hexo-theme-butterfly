@@ -15,7 +15,7 @@ hexo.extend.helper.register('page_description', function () {
   let description = page.description || page.content || page.title || config.description
 
   if (description) {
-    description = escapeHTML(stripHTML(description).substring(0, 200)
+    description = escapeHTML(stripHTML(description).substring(0, 150)
       .trim()
     ).replace(/\n/g, ' ')
     return description
