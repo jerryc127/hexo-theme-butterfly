@@ -23,11 +23,11 @@
     padding: 1rem 1.2rem
     border-radius: 8px
     background: var(--card-bg)
-    box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
+    box-shadow: var(--card-box-shadow)
     transition: box-shadow .3s
 
     &:hover
-      box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
+      box-shadow: var(--card-hover-box-shadow)
 
     if hexo-config('aside.mobile') == false
       +maxWidth768()

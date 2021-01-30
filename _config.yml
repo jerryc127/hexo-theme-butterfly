@@ -620,10 +620,10 @@ subtitle:
   loop: true
   # source調用第三方服務
   # source: false 關閉調用
-  # source: 1  調用搏天api的隨機語錄（簡體） https://api.btstu.cn/
-  # source: 2  調用一言網的一句話（簡體） https://hitokoto.cn/
-  # source: 3  調用一句網（簡體） http://yijuzhan.com/
-  # source: 4  調用今日詩詞（簡體） https://www.jinrishici.com/
+  # source: 1  調用搏天api的隨機語錄（簡體）
+  # source: 2  調用一言網的一句話（簡體）
+  # source: 3  調用一句網（簡體）
+  # source: 4  調用今日詩詞（簡體）
   # subtitle 會先顯示 source , 再顯示 sub 的內容
   source: false
   # 如果有英文逗號' , ',請使用轉義字元 &#44;

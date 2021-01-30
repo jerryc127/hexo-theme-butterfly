@@ -18,7 +18,11 @@ if hexo-config('error_404.enable')
       height: 18rem
       border-radius: 8px
       background: var(--card-bg)
-      box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
+      box-shadow: var(--card-box-shadow)
+      transition: all .3s
+
+      &:hover
+        box-shadow: var(--card-hover-box-shadow)
 
       +maxWidth768()
         flex-direction: column
@@ -45,6 +49,7 @@ if hexo-config('error_404.enable')
         padding: .5rem
         text-align: center
         font-size: 14px
+
         if $site-name-font
           font-family: $site-name-font
 
