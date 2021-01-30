@@ -38,9 +38,7 @@ if hexo-config('readmode')
       border-radius: 8px
       background: var(--exit-btn-bg)
       color: var(--exit-btn-color)
-      text-align: center
       font-size: 16px
-      cursor: pointer
       transition: background .3s
 
       &:hover
@@ -48,9 +46,6 @@ if hexo-config('readmode')
 
     #aside-content
       display: none
-
-    #body-wrap
-      padding-left: 0 !important
 
     #page-header.post-bg
       background-color: transparent
@@ -60,7 +55,6 @@ if hexo-config('readmode')
         opacity: 0
 
       & > #post-info
-        padding: 0
         text-align: center
 
     #post
@@ -81,7 +75,7 @@ if hexo-config('readmode')
     .post-outdate-notice,
     #web_bg,
     #rightside,
-    .no-top-img
+    .not-top-img
       display: none !important
 
     #article-container
@@ -90,7 +84,7 @@ if hexo-config('readmode')
 
       pre,
       .highlight:not(.js-file-line-container)
-        background: var(-highlight-bg) !important
+        background: var(--highlight-bg) !important
 
         *
           color: var(--font-color) !important
@@ -197,3 +191,7 @@ if hexo-config('readmode')
         filter: none
         background-color: var(--readmode-light-color) !important
         color: var(--font-color)
+
+        &:before,
+        .note-icon
+          color: var(--font-color)

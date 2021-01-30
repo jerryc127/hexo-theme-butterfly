@@ -1,0 +1,18 @@
+script.
+  (() => {
+    function loadWaline () {
+      function initWaline () {
+        let initData = {
+          el: '#waline-wrap',
+          serverURL: '!{theme.waline.serverURL}',
+        }
+        
+        const waline = new Waline(initData)
+      }
+
+      if (typeof Waline === 'function') initWaline() 
+      else getScript('!{url_for(theme.CDN.waline)}').then(initWaline)
+    }
+
+    window.pjax ? loadWaline() : window.addEventListener('load', loadWaline)
+  })()

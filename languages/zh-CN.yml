@@ -13,6 +13,8 @@ page:
   category: 分类
   archives: 归档
 
+card_post_count: 条评论
+
 sticky: 置顶
 no_title: 无题
 
@@ -31,6 +33,7 @@ post:
     copyright_content: '本博客所有文章除特别声明外，均采用
       <a href="%s" target="_blank">%s</a> 许可协议。转载请注明来自 <a href="%s" target="_blank">%s</a>！'
   recommend: 相关推荐
+  edit: 编辑
 
 search: 搜索
 algolia_search:
@@ -75,6 +78,9 @@ aside:
     loading_text: 正在加载中...
     error: 无法获取评论，请确认相关配置是否正确
     zero: 没有评论
+    image: 图片
+    link: 链接
+    code: 代码
   card_toc: 目录
 
 date_suffix:

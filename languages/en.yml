@@ -13,6 +13,8 @@ page:
   category: Category
   archives: Archives
 
+card_post_count: comments
+
 sticky: Sticky
 no_title: No title
 
@@ -30,6 +32,7 @@ post:
     copyright_notice: Copyright Notice
     copyright_content: 'All articles in this blog are licensed under <a href="%s">%s</a> unless stating additionally.'
   recommend: Related Articles
+  edit: Edited on
 
 search: Search
 algolia_search:
@@ -74,6 +77,9 @@ aside:
     loading_text: loading...
     error: Unable to get the data, please make sure the settings are correct.
     zero: No Comment
+    image: image
+    link: link
+    code: code
   card_toc: Catalog
 
 date_suffix:

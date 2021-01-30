@@ -3,9 +3,10 @@ script.
     const changeContent = (content) => {
       if (content === '') return content
 
+      content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
+      content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[!{_p("aside.card_newest_comments.link")}]') // replace url
+      content = content.replace(/<pre><code>.*?<\/pre>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
       content = content.replace(/<[^>]+>/g,"") // remove html tag
-      content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
-      content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
 
       if (content.length > 150) {
         content = content.substring(0,150) + '...'
@@ -21,8 +22,18 @@ script.
           pageSize: !{theme.newest_comments.limit},
           includeReply: true
         }).then(function (res) {
-          saveToLocal.set('twikoo-newest-comments', JSON.stringify(res), 10/(60*24))
-          generateHtml(res)
+          const twikooArray = res.map(e => {
+            return {
+              'content': changeContent(e.comment),
+              'avatar': e.avatar,
+              'nick': e.nick,
+              'url': e.url + '#' + e.id,
+              'date': new Date(e.created).toISOString()
+            }
+          })
+
+          saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), !{theme.newest_comments.storage}/(60*24))
+          generateHtml(twikooArray)
         }).catch(function (err) {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
           $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
@@ -44,16 +55,13 @@ script.
           result += '<div class=\'aside-list-item\'>'
 
           if (!{theme.newest_comments.avatar}) {
-            let name = 'src'
-            if(!{theme.lazyload.enable}) {
-              name = 'data-lazy-src'
-            }
-            result += `<a href='${array[i].url + '#' + array[i].id}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+            const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
+            result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
           }
           
           result += `<div class='content'>
-          <a class='comment' href='${array[i].url + '#' + array[i].id}'>${changeContent(array[i].commentText)}</a>
-          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].created, true)}</time></div>
+          <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+          <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
           </div></div>`
         }
       } else {

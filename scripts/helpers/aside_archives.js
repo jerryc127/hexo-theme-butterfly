@@ -19,7 +19,6 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
     ? (yearA, monthA, yearB, monthB) => yearA === yearB && monthA === monthB
     : (yearA, monthA, yearB, monthB) => yearA === yearB
   const limit = options.limit
-  const moreButton = this._p('aside.more_button')
   let result = ''
 
   if (!format) {
@@ -67,10 +66,17 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
     return this.url_for(url)
   }
 
-  result += '<ul class="card-archive-list">'
-
   const len = data.length
   const Judge = limit === 0 ? len : Math.min(len, limit)
+
+  result += `<div class="item-headline"><i class="fas fa-archive"></i><span>${this._p('aside.card_archives')}</span>`
+
+  if (len > Judge) {
+    result += `<a class="card-more-btn" href="${this.url_for(archiveDir)}/" title="${this._p('aside.more_button')}">
+    <i class="fas fa-angle-right"></i></a>`
+  }
+
+  result += '</div><ul class="card-archive-list">'
 
   for (let i = 0; i < Judge; i++) {
     const item = data[i]
@@ -89,11 +95,6 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
     result += '</li>'
   }
 
-  if (len > Judge) {
-    result += '<li class="card-archive-list-item more is-center">'
-    result += `<a class="card-archive-list-link-more" href="${this.url_for(archiveDir)}/">
-              <span>${moreButton}</span><i class="fas fa-angle-right"  ></i></a></li>`
-  }
   result += '</ul>'
   return result
 })

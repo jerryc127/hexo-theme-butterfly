@@ -3,9 +3,10 @@ script.
     const changeContent = (content) => {
       if (content === '') return content
 
+      content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
+      content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[!{_p("aside.card_newest_comments.link")}]') // replace url
+      content = content.replace(/<pre><code>.*?<\/pre>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
       content = content.replace(/<[^>]+>/g,"") // remove html tag
-      content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
-      content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
 
       if (content.length > 150) {
         content = content.substring(0,150) + '...'
@@ -13,21 +14,50 @@ script.
       return content
     }
 
+    const findTrueUrl = (array) => {
+      let url = ''
+      Promise.all(array.map(item =>
+        fetch(item.url).then(resp => resp.json()).then(data => {
+          if (data.user.login === 'utterances-bot') {
+            url = data.body.match(/https?\:\/\/[^\" ]+/ig).slice(-1)
+            return url[0]
+          } else {
+            url = data.body.match(/https?\:\/\/[^\" ]+/i)
+            return url[0]
+          }
+        })
+      )).then(res => {
+          array = array.map((i,index)=> {
+            return {
+              ...i,
+              url: res[index]
+            }
+          })
+
+          saveToLocal.set('github-newest-comments', JSON.stringify(array), !{theme.newest_comments.storage}/(60*24))
+          generateHtml(array)
+      });
+    }
+
     const getComment = () => {
-      fetch('https://api.github.com/repos/!{theme.newest_comments.github_issues.repo}/issues/comments?sort=updated&direction=desc&per_page=!{theme.newest_comments.limit}&page=1')
+      fetch('https://api.github.com/repos/!{theme.newest_comments.github_issues.repo}/issues/comments?sort=updated&direction=desc&per_page=!{theme.newest_comments.limit}&page=1',{
+        "headers": {
+          Accept: 'application/vnd.github.v3.html+json'
+        }
+      })
         .then(response => response.json())
         .then(data => {
           const githubArray = data.map(item => {
             return {
               'avatar': item.user.avatar_url,
-              'content': changeContent(item.body),
+              'content': changeContent(item.body_html),
               'nick': item.user.login,
-              'url': item.html_url,
-              'date': item.updated_at
+              'url': item.issue_url,
+              'date': item.updated_at,
+              'githubUrl': item.html_url
             }
           })
-          saveToLocal.set('github-newest-comments', JSON.stringify(githubArray), 10/(60*24))
-          generateHtml(githubArray)
+          findTrueUrl(githubArray)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
           $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
@@ -42,16 +72,13 @@ script.
           result += '<div class=\'aside-list-item\'>'
 
           if (!{theme.newest_comments.avatar}) {
-            let name = 'src'
-            if(!{theme.lazyload.enable}) {
-              name = 'data-lazy-src'
-            }
-            result += `<a href='${array[i].url}' class="thumbnail"><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+            const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
+            result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
           }
 
           result += `<div class='content'>
           <a class='comment' href='${array[i].url}'>${array[i].content}</a>
-          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+          <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
           </div></div>`
         }
       } else {

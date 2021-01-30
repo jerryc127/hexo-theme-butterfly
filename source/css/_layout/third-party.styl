@@ -10,10 +10,6 @@
     &:hover
       background: var(--btn-hover-color)
 
-  textarea
-    &:focus
-      background-image: none
-
   .vimg
     transition: all .3s
 
@@ -30,10 +26,16 @@ if hexo-config('valine.bg')
     textarea
       background: url(hexo-config('valine.bg')) 100% 100% no-repeat
 
+      &:focus
+        background-image: none
+
 if hexo-config('waline.bg')
   #waline-wrap
     textarea
       background: url(hexo-config('waline.bg')) 100% 100% no-repeat
+
+      &:focus
+        background-image: none
 
 .fireworks
   position: fixed

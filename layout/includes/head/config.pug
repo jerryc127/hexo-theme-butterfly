@@ -83,7 +83,7 @@
   }
 
 script.
-  var GLOBAL_CONFIG = { 
+  const GLOBAL_CONFIG = { 
     root: '!{config.root}',
     algolia: !{algolia},
     localSearch: !{localSearch},
@@ -124,47 +124,4 @@ script.
     isPhotoFigcaption: !{theme.photofigcaption},
     islazyload: !{theme.lazyload.enable},
     isanchor: !{theme.anchor}
-  };
-
-  var saveToLocal = {
-    set: function setWithExpiry(key, value, ttl) {
-      const now = new Date()
-      const expiryDay = ttl * 86400000
-      const item = {
-        value: value,
-        expiry: now.getTime() + expiryDay,
-      }
-      localStorage.setItem(key, JSON.stringify(item))
-    },
-
-    get: function getWithExpiry(key) {
-      const itemStr = localStorage.getItem(key)
-
-      if (!itemStr) {
-        return undefined
-      }
-      const item = JSON.parse(itemStr)
-      const now = new Date()
-
-      if (now.getTime() > item.expiry) {
-        localStorage.removeItem(key)
-        return undefined
-      }
-      return item.value
-    }
   }
-
-  // https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
-  const getScript = url => new Promise((resolve, reject) => {
-    const script = document.createElement('script')
-    script.src = url
-    script.async = true
-    script.onerror = reject
-    script.onload = script.onreadystatechange = function() {
-      const loadState = this.readyState
-      if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-      script.onload = script.onreadystatechange = null
-      resolve()
-    }
-    document.head.appendChild(script)
-  })

@@ -1,6 +1,9 @@
 #post-info
   h1.post-title= page.title || _p('no_title')
-    
+    if theme.post_edit.enable
+      a.post-edit-link(href=theme.post_edit.url + page.source title=_p('post.edit') target="_blank")
+        i.fas.fa-pencil-alt
+        
   #post-meta
     .meta-firstline
       if (theme.post_meta.post.date_type)

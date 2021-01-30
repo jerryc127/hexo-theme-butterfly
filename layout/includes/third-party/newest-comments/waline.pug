@@ -5,9 +5,10 @@ script.
     const changeContent = (content) => {
       if (content === '') return content
 
+      content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
+      content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[!{_p("aside.card_newest_comments.link")}]') // replace url
+      content = content.replace(/<pre><code>.*?<\/pre>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
       content = content.replace(/<[^>]+>/g,"") // remove html tag
-      content = content.replace(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/g, '') // remove image link
-      content = content.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi, '') // remove url
 
       if (content.length > 150) {
         content = content.substring(0,150) + '...'
@@ -15,7 +16,8 @@ script.
       return content
     }
 
-    const getIcon = (mail) => {
+    const getIcon = (avatar,mail) => {
+      if (avatar) return avatar
       let defaultIcon = '!{ default_avatar ? `?d=${default_avatar}` : ''}'
       let iconUrl = `https://gravatar.loli.net/avatar/${mail + defaultIcon}`
       return iconUrl
@@ -29,16 +31,13 @@ script.
           result += '<div class=\'aside-list-item\'>'
 
           if (!{theme.newest_comments.avatar}) {
-            let name = 'src'
-            if(!{theme.lazyload.enable}) {
-              name = 'data-lazy-src'
-            }
-            result += `<a href='${array[i].url}' class="thumbnail"><img ${name}='${getIcon(array[i].mail)}' alt='${array[i].nick}'></a>`
+            const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
+            result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
           }
 
           result += `<div class='content'>
           <a class='comment' href='${array[i].url}'>${array[i].content}</a>
-          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
+          <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
           </div></div>`
         }
       } else {
@@ -61,13 +60,13 @@ script.
           const walineArray = comments.map(function (e) {
             return {
               'content': changeContent(e.comment),
-              'mail': e.mail,
+              'avatar': getIcon(e.QQAvatar,e.mail),
               'nick': e.nick,
               'url': e.url + '#' + e.objectId,
-              'date': e.createdAt,
+              'date': e.updatedAt,
             }
           })
-          saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+          saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), !{theme.newest_comments.storage}/(60*24))
           generateHtml(walineArray)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')

@@ -23,11 +23,11 @@
     padding: 1rem 1.2rem
     border-radius: 8px
     background: var(--card-bg)
-    box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06)
+    box-shadow: var(--card-box-shadow)
     transition: box-shadow .3s
 
     &:hover
-      box-shadow: 0 4px 12px 12px rgba(7, 17, 27, .15)
+      box-shadow: var(--card-hover-box-shadow)
 
     if hexo-config('aside.mobile') == false
       +maxWidth768()
@@ -110,6 +110,7 @@
       position: sticky
       position: -webkit-sticky
       top: 20px
+      transition: top .3s
 
   .card-tag-cloud
     a
@@ -212,16 +213,6 @@
         &:last-child
           width: 20%
           text-align: right
-
-    &.more
-      span
-        padding-right: .3rem
-        width: auto !important
-        transition: .5s
-
-      &:hover
-        span
-          padding-right: .6rem
 
   .card-categories
     .card-category-list
@@ -332,6 +323,21 @@
   :only-child
     > .card-widget
       margin-top: 0
+
+  .card-more-btn
+    float: right
+    color: inherit
+
+    &:hover
+      animation: more-btn-move 1s infinite
+
+@keyframes more-btn-move
+  0%,
+  100%
+    transform: translateX(0)
+
+  50%
+    transform: translateX(3px)
 
 @keyframes toc-open
   0%

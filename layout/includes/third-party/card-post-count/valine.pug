@@ -1,0 +1,19 @@
+script.
+  (() => {
+    function loadValine () {
+      function initValine () {
+        let initData = {
+          el: '#vcomment',
+          appId: '#{theme.valine.appId}',
+          appKey: '#{theme.valine.appKey}',
+        }
+        
+        const valine = new Valine(initData)
+      }
+
+      if (typeof Valine === 'function') initValine() 
+      else getScript('!{url_for(theme.CDN.valine)}').then(initValine)
+    }
+
+    window.pjax ? loadValine() : window.addEventListener('load', loadValine)
+  })()

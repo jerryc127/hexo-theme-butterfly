@@ -86,6 +86,9 @@ avatar:
   img:
   effect: false
 
+# Disable all banner image
+disable_top_img: false
+
 # The banner image of home page
 index_img:
 
@@ -192,6 +195,14 @@ reward:
     #   link:
     #   text: alipay
 
+# Post edit
+# Easily browse and edit blog source code online.
+post_edit:
+  enable: false
+  # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
+  # For example: https://github.com/jerryc127/butterfly.js.org/edit/main/source/
+  url:
+
 # Related Articles
 related_post:
   enable: true
@@ -200,6 +211,13 @@ related_post:
 
 # figcaption (圖片描述文字)
 photofigcaption: false
+
+# post_pagination (分頁)
+# value: 1 || 2 || false
+# 1: The 'next post' will link to old post
+# 2: The 'next post' will link to new post
+# false: disable pagination
+post_pagination: 1
 
 # anchor
 # when you scroll in post, the URL will update according to header id.
@@ -248,7 +266,8 @@ comments:
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
   lazyload: false
-  count: false # Display comment count in top_img
+  count: false # Display comment count in post's top_img
+  card_post_count: false # Display comment count in Home Page
 
 # disqus
 # https://disqus.com/
@@ -601,10 +620,10 @@ subtitle:
   loop: true
   # source調用第三方服務
   # source: false 關閉調用
-  # source: 1  調用搏天api的隨機語錄（簡體） https://api.btstu.cn/
-  # source: 2  調用一言網的一句話（簡體） https://hitokoto.cn/
-  # source: 3  調用一句網（簡體） http://yijuzhan.com/
-  # source: 4  調用今日詩詞（簡體） https://www.jinrishici.com/
+  # source: 1  調用搏天api的隨機語錄（簡體）
+  # source: 2  調用一言網的一句話（簡體）
+  # source: 3  調用一句網（簡體）
+  # source: 4  調用今日詩詞（簡體）
   # subtitle 會先顯示 source , 再顯示 sub 的內容
   source: false
   # 如果有英文逗號' , ',請使用轉義字元 &#44;
@@ -682,6 +701,7 @@ newest_comments:
   enable: false
   sort_order: # Don't modify the setting unless you know how it works
   limit: 6
+  storage: 10 # unit: mins, save data to localStorage
   avatar: true
   # You can only choose one, or neither
   valine: false
@@ -799,9 +819,6 @@ snackbar:
   bg_light: '#49b1f5' # The background color of Toast Notification in light mode
   bg_dark: '#121212' # The background color of Toast Notification in dark mode
 
-# Baidu Push (百度推送)
-baidu_push: false
-
 # https://instant.page/
 # prefetch (預加載)
 instantpage: false
@@ -829,15 +846,9 @@ lazyload:
 #   favicon_16_16: /image/pwa/16.png
 #   mask_icon: /image/pwa/safari-pinned-tab.svg
 
-# Disable Baidu transformation on mobile devices (禁止百度轉碼)
-disable_baidu_transformation: true
-
 # Open graph meta tags
 # https://developers.facebook.com/docs/sharing/webmasters/
 Open_Graph_meta: true
-
-# Caches the contents in a fragment, speed up the generation (開啟hexo自帶的緩存,加快生成速度)
-fragment_cache: true
 
 # Add the vendor prefixes to ensure compatibility
 css_prefix: true

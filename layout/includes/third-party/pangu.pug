@@ -1,10 +1,10 @@
 script.
   function panguFn () {
-    if (typeof pangu === 'object') pangu.spacingElementById('content-inner')
+    if (typeof pangu === 'object') pangu.autoSpacingPage()
     else {
       getScript('!{url_for(theme.CDN.pangu)}')
         .then(() => {
-          pangu.spacingElementById('content-inner')
+          pangu.autoSpacingPage()
         })
     }
   }

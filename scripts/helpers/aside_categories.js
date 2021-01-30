@@ -25,7 +25,6 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
   const limit = options.limit === 0 ? categories.length : options.limit
   const isExpand = options.expand !== 'none'
   const expandClass = isExpand && options.expand === true ? 'expand' : ''
-
   const buttonLabel = this._p('aside.more_button')
   const prepareQuery = (parent) => {
     const query = {}
@@ -80,17 +79,19 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
   const list = hierarchicalList(limit, 0)
 
   const moreButton = function () {
-    let moreHtml = ''
     if (categories.length <= limit) return ''
-    moreHtml += '<li class="card-category-list-item more is-center">'
-    moreHtml += `<a class="card-category-list-link-more" href="${categoryDir}/">
-                <span>${buttonLabel}</span><i class="fas fa-angle-right"></i></a></li>`
+    const moreHtml = `<a class="card-more-btn" href="${categoryDir}/" title="${buttonLabel}">
+    <i class="fas fa-angle-right"></i></a>`
 
     return moreHtml
   }
 
-  return `<ul class="card-category-list" id="aside-cat-list">
-            ${list[0]}
+  return `<div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>${this._p('aside.card_categories')}</span>
             ${moreButton()}
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            ${list[0]}
             </ul>`
 })

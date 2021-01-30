@@ -152,6 +152,7 @@ no-beautify()
       text-decoration: underline
 
   img
+    display: block
     margin: 0 auto .8rem
 
   p
@@ -171,9 +172,6 @@ no-beautify()
     no-beautify()
 
 #post
-  img
-    display: block
-
   .tag_share
     .post-meta
       &__tag-list
@@ -218,24 +216,13 @@ no-beautify()
     transition: box-shadow .3s ease-in-out
 
     &:before
+      @extend .fontawesomeIcon
       position: absolute
-      top: t = .5rem
-      right: t
-      width: w = .8rem
-      height: w
-      border-radius: w
-      background: $light-blue
-      content: ''
-
-    &:after
-      position: absolute
-      top: t = .7rem
-      right: t
-      width: w = .4rem
-      height: w
-      border-radius: w
-      background: var(--card-bg)
-      content: ''
+      top: .1rem
+      right: .6rem
+      color: $theme-color
+      content: '\f1f9'
+      font-size: 1rem
 
     &:hover
       box-shadow: 0 0 8px 0 rgba(232, 237, 250, .6), 0 2px 4px 0 rgba(232, 237, 250, .5)

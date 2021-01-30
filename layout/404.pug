@@ -1,5 +1,5 @@
 - var top_img = theme.error_404.background || theme.default_top_img
-- var bg_img = `background-image: url(${url_for(top_img)})`
+- var bg_img = `background-image: url('${url_for(top_img)}')`
 
 doctype html
 html(lang=config.language data-theme=theme.display_mode)
@@ -7,7 +7,7 @@ html(lang=config.language data-theme=theme.display_mode)
     include includes/head.pug
   body
     if theme.preloader
-      !=partial('includes/loading/loading', {}, {cache:theme.fragment_cache})
+      !=partial('includes/loading/loading', {}, {cache: true})
 
     if theme.fireworks && theme.fireworks.enable
       canvas.fireworks

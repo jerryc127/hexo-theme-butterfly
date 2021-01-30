@@ -29,10 +29,6 @@ meta(name="copyright" content=pageCopyright)
 meta(name ="format-detection" content="telephone=no")
 meta(name="theme-color" content=themeColor)
 
-if theme.disable_baidu_transformation
-  meta(http-equiv="Cache-Control" content="no-transform")
-  meta(http-equiv="Cache-Control" content="no-siteapp")
-
 //- Open_Graph
 include ./head/Open_Graph.pug
 
@@ -40,14 +36,14 @@ include ./head/Open_Graph.pug
 link(rel="canonical" href=urlNoIndex())
 
 //- 預解析
-!=partial('includes/head/preconnect', {}, {cache:theme.fragment_cache})
+!=partial('includes/head/preconnect', {}, {cache: true})
 
 //- 網站驗證
-!=partial('includes/head/site_verification', {}, {cache:theme.fragment_cache})
+!=partial('includes/head/site_verification', {}, {cache: true})
 
 //- PWA
 if (theme.pwa && theme.pwa.enable)
-  !=partial('includes/head/pwa', {}, {cache:theme.fragment_cache})
+  !=partial('includes/head/pwa', {}, {cache: true})
 
 //- main css
 link(rel='stylesheet', href=url_for(theme.CDN.main_css))
@@ -61,21 +57,21 @@ if theme.algolia_search.enable
   script(src=url_for(theme.CDN.algolia_search) defer)
 
 //- google_adsense
-!=partial('includes/head/google_adsense', {}, {cache:theme.fragment_cache})
+!=partial('includes/head/google_adsense', {}, {cache: true})
 
 //- analytics
-!=partial('includes/head/analytics', {}, {cache:theme.fragment_cache})
+!=partial('includes/head/analytics', {}, {cache: true})
 
 //- font
 if theme.blog_title_font &&　theme.blog_title_font.font_link
   link(rel='stylesheet' href=url_for(theme.blog_title_font.font_link) media="print" onload="this.media='all'")
 
 //- global config
-!=partial('includes/head/config', {}, {cache:theme.fragment_cache})
+!=partial('includes/head/config', {}, {cache: true})
 
 include ./head/config_site.pug
 include ./head/noscript.pug
 
-!=partial('includes/head/js', {}, {cache:theme.fragment_cache})
+!=fragment_cache('injectHeadJs', function(){return inject_head_js()})
 
 !=fragment_cache('injectHead', function(){return injectHtml(theme.inject.head)})
