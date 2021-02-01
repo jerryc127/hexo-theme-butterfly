@@ -53,7 +53,7 @@ minWidth2000()
 if hexo-config('enter_transitions')
   #content-inner,
   #footer
-    animation: main 1s
+    animation: bottom-top 1s
 
   #page-header
     animation: header-effect 1s
@@ -121,15 +121,14 @@ if hexo-config('avatar.effect') == true
   100%
     transform: translateY(0)
 
-@keyframes main
+@keyframes bottom-top
   0%
     opacity: 0
-    transform: translateY(50px)
+    margin-top: 50px
 
   100%
-    filter: none
     opacity: 1
-    transform: translateY(0)
+    margin-top: 0
 
 @keyframes titlescale
   0%
