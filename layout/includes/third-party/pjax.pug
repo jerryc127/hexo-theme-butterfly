@@ -27,6 +27,13 @@ script.
   })
 
   document.addEventListener('pjax:complete', function () {
+    clearInterval(timer);
+    var progress = document.getElementsByClassName("progress");
+    progress[0].style.width = "100%";
+    timer = setTimeout(function () {
+       progress[0].parentNode.removeChild(progress[0])
+    }, 700);
+  
     window.refreshFn()
 
     document.querySelectorAll('script[data-pjax]').forEach(item => {
@@ -59,8 +66,23 @@ script.
     typeof preloader === 'object' && preloader.endLoading()
   })
 
-
+  var timer = null;
   document.addEventListener('pjax:send', function () {
+    var progress = 10;
+    var div = document.createElement('div');
+    div.className = "progress";
+    document.body.prepend(div);
+    var max=10,mini=3;
+    var result=max-mini;
+    clearInterval(timer);
+    timer = setInterval(function(){
+        var num = parseInt(Math.random()*result);
+        var randomResult = num+mini;
+        progress+=randomResult
+        document.getElementsByClassName("progress")[0].style.width = progress+"%";
+        if(progress>95)progress=95
+    },500)
+  
     typeof preloader === 'object' && preloader.initLoading()
     
     if (window.aplayers) {
