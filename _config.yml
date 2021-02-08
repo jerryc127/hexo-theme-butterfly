@@ -795,6 +795,22 @@ artitalk:
   appKey:
   option:
 
+# HexoPlusPlus All home
+# see https://hexoplusplus.js.org
+hexoplusplus:
+  enable: false
+  domain:
+  talk:
+    hpptalk: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus@1.1.0/talk_user.js # Here should be the limit must be written version number
+    hpptalk_css: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus@1.1.0/talk.css # Here should be the limit must be written version number
+    limit: 0
+    start: 0
+    themecss: # Default config: https://cdn.jsdelivr.net/gh/HexoPlusPlus/CDN@master/theme/hpp_user_talk/Butter_Fly_1.css
+    option:
+
+  info:
+    enable: false
+
 # Pjax [Beta]
 # It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax

@@ -1,0 +1,12 @@
+if top_img === false
+  h1.page-title= page.title
+
+#hpp_talk
+script.
+
+    new hpp_talk({
+      id:"hpp_talk",
+      domain: "!{theme.hexoplusplus.domain}",
+      limit: !{theme.hexoplusplus.talk.limit},
+      start: !{theme.hexoplusplus.talk.start}
+      });
