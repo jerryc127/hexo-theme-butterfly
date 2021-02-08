@@ -808,9 +808,6 @@ hexoplusplus:
     themecss: # Default config: https://cdn.jsdelivr.net/gh/HexoPlusPlus/CDN@master/theme/hpp_user_talk/Butter_Fly_1.css
     option:
 
-  info:
-    enable: false
-
 # Pjax [Beta]
 # It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
