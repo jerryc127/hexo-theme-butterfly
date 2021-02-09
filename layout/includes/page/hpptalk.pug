@@ -3,9 +3,22 @@ if top_img === false
 
 #hpp_talk
 script.
-    new hpp_talk({
-      id:"hpp_talk",
-      domain: "!{theme.hexoplusplus.domain}",
+  (()=>{
+    let setting = {
+      id: "hpp_talk",
+      domain: '!{theme.hexoplusplus.domain}',
       limit: !{theme.hexoplusplus.talk.limit},
-      start: !{theme.hexoplusplus.talk.start}
-      });
+      start: !{theme.hexoplusplus.talk.start},
+      themecss: '!{theme.hexoplusplus.talk.themecss}',
+    }
+
+    const init = () => {
+      new hpp_talk(setting)
+    }
+
+    if (typeof hpp_talk === 'function') {
+      init()
+    } else {
+      getScript('!{theme.hexoplusplus.talk.hpptalk}').then(init)
+    }
+  })()
