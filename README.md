@@ -1,3 +1,9 @@
+<div align="right">
+  Language:
+  🇺🇸
+  <a title="Chinese" href="/README_CN.md">🇨🇳</a>
+</div>
+
 # hexo-theme-butterfly
 
 ![master version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly/master?color=%231ab1ad&label=master)
