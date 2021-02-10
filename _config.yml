@@ -795,18 +795,13 @@ artitalk:
   appKey:
   option:
 
-# HexoPlusPlus All home
+# HexoPlusPlus Talk
 # see https://hexoplusplus.js.org
 hexoplusplus:
-  enable: false
   domain:
   talk:
-    hpptalk: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus@main/src/talk_user.js # Here should be the limit must be written version number
-    hpptalk_css: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus@main/src/talk.css # Here should be the limit must be written version number
-    limit: 0
+    limit: 10
     start: 0
-    themecss: https://cdn.jsdelivr.net/gh/HexoPlusPlus/CDN@master/plugin/theme/hpp_user_talk/Pofato.css # Default config: https://cdn.jsdelivr.net/gh/HexoPlusPlus/CDN@master/theme/hpp_user_talk/Butter_Fly_1.css / https://cdn.jsdelivr.net/gh/HexoPlusPlus/CDN@master/plugin/theme/hpp_user_talk/Pofato.css
-    # In order to adapt to the night mode of the Butterfly theme, you can select the CSS in the upper comment or write your own
     option:
 
 # Pjax [Beta]
@@ -966,3 +961,5 @@ CDN:
   prismjs_autoloader: https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js
 
   artitalk: https://cdn.jsdelivr.net/npm/artitalk
+  hpptalk: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus/talk_user.js
+  hpptalk_css: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus/talk.css

@@ -1,3 +1,5 @@
+- let hpptalkOption = theme.hexoplusplus.talk.option ? JSON.stringify(theme.hexoplusplus.talk.option) : false
+
 if top_img === false
   h1.page-title= page.title
 
@@ -9,16 +11,28 @@ script.
       domain: '!{theme.hexoplusplus.domain}',
       limit: !{theme.hexoplusplus.talk.limit},
       start: !{theme.hexoplusplus.talk.start},
-      themecss: '!{theme.hexoplusplus.talk.themecss}',
+    }
+
+    if (!{Boolean(hpptalkOption)}) {
+      const otherSetting = !{hpptalkOption}
+      setting = Object.assign(setting, otherSetting)
     }
 
     const init = () => {
       new hpp_talk(setting)
     }
 
+    const addCss = () => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = '!{url_for(theme.CDN.hpptalk_css)}'
+      document.head.appendChild(link)
+    }
+
     if (typeof hpp_talk === 'function') {
       init()
     } else {
-      getScript('!{theme.hexoplusplus.talk.hpptalk}').then(init)
+      addCss()
+      getScript('!{url_for(theme.CDN.hpptalk)}').then(init)
     }
   })()
