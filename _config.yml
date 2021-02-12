@@ -961,5 +961,5 @@ CDN:
   prismjs_autoloader: https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js
 
   artitalk: https://cdn.jsdelivr.net/npm/artitalk
-  hpptalk: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus/talk_user.js
-  hpptalk_css: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus/talk.css
+  hpptalk: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus@latest/talk_user.js
+  hpptalk_css: https://cdn.jsdelivr.net/gh/HexoPlusPlus/HexoPlusPlus@latest/talk.css
