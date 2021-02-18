@@ -321,6 +321,7 @@ valine:
   emojiCDN: # emoji CDN
   enableQQ: false # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
   requiredFields: nick,mail # required fields (nick/mail)
+  visitor: false #Display visitor count in Post Page
   option:
 
 # waline - A simple comment system with backend support fork from Valine
