@@ -63,7 +63,7 @@
         span(id=url_for(page.path) data-flag-title=page.title).leancloud_visitors
           i.far.fa-eye.fa-fw.post-meta-icon
           span.post-meta-label=_p('post.page_pv') + ':'
-          i.leancloud-visitors-count
+          span.leancloud-visitors-count
 
       if !theme.comments.lazyload && page.comments !== false && theme.comments.use && theme.comments.count
         - var whichCount = theme.comments.use[0]
