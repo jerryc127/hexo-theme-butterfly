@@ -1,6 +1,6 @@
 if !theme.disable_top_img && page.top_img !== false
   if is_post()
-    - var top_img = page.top_img || page.cover || page.randomcover || theme.default_top_img
+    - var top_img = page.top_img || page.cover || page.randomcover
   else if is_page()
     - var top_img = page.top_img || theme.default_top_img
   else if is_tag()

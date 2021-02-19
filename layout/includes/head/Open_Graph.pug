@@ -1,6 +1,6 @@
 if theme.Open_Graph_meta
   - let contentType = is_post() ? 'article' : 'website'
-  - let metaImage = full_url_for(page.cover || theme.avatar.img)
+  - let metaImage = (page.cover || theme.avatar.img) ? full_url_for(page.cover || theme.avatar.img) : ''
   - let fb_appId = theme.facebook_comments.app_id || ''
   - let fb_admins = theme.facebook_comments.user_id || ''
 

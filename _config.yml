@@ -321,6 +321,7 @@ valine:
   emojiCDN: # emoji CDN
   enableQQ: false # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
   requiredFields: nick,mail # required fields (nick/mail)
+  visitor: false
   option:
 
 # waline - A simple comment system with backend support fork from Valine
@@ -330,6 +331,7 @@ waline:
   avatar: monsterid # gravatar style https://zh-tw.gravatar.com/site/implement/images/#default-image
   emojiCDN: # emoji CDN
   bg: # waline background
+  visitor: false
   option:
 
 # utterances
@@ -356,6 +358,7 @@ facebook_comments:
 twikoo:
   envId:
   region:
+  visitor: false
   option:
 
 # Chat Services
