@@ -304,6 +304,7 @@ gitalk:
   distractionFreeMode: false # Facebook-like distraction free mode.
   pagerDirection: last # Comment sorting direction, available values are last and first.
   createIssueManually: false # Gitalk will create a corresponding github issue for your every single page automatically
+  option:
 
 # valine
 # https://valine.js.org
