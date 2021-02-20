@@ -1,21 +1,12 @@
-- let option = theme.twikoo.option ? JSON.stringify(theme.twikoo.option) : false
-
 script.
   (()=>{
     const $countDom = document.getElementById('twikoo-count')
     const init = () => {
-      let initData = {
+      twikoo.init(Object.assign({
         el: '#twikoo-wrap',
         envId: '!{theme.twikoo.envId}',
         region: '!{theme.twikoo.region}'
-      }
-
-      if (!{Boolean(option)}) {
-        const otherData = !{option}
-        initData = Object.assign(initData, otherData)
-      }
-      
-      twikoo.init(initData)
+      }, !{JSON.stringify(theme.twikoo.option)}))
     }
 
     const getCount = () => {

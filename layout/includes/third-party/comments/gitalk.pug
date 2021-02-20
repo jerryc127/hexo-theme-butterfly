@@ -8,7 +8,7 @@ script.
 
   function loadGitalk () {
     function initGitalk () {
-      var gitalk = new Gitalk({
+      var gitalk = new Gitalk(Object.assign({
         clientID: '!{theme.gitalk.client_id}',
         clientSecret: '!{theme.gitalk.client_secret}',
         repo: '!{theme.gitalk.repo}',
@@ -21,7 +21,8 @@ script.
         pagerDirection: '!{theme.gitalk.pagerDirection}',
         createIssueManually: !{theme.gitalk.createIssueManually},
         updateCountCallback: commentCount
-      })
+      },!{JSON.stringify(theme.gitalk.option)}))
+
       gitalk.render('gitalk-container')
     }
 
