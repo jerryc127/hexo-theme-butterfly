@@ -16,12 +16,14 @@ script.
         admin: ['!{theme.gitalk.admin}'],
         id: '!{md5(page.path)}',
         language: '!{theme.gitalk.language}',
+        proxy: '!{theme.gitalk.proxy}',
         perPage: !{theme.gitalk.perPage},
         distractionFreeMode: !{theme.gitalk.distractionFreeMode},
         pagerDirection: '!{theme.gitalk.pagerDirection}',
         createIssueManually: !{theme.gitalk.createIssueManually},
         updateCountCallback: commentCount
       })
+
       gitalk.render('gitalk-container')
     }
 
