@@ -1,12 +1,11 @@
 #sidebar
   #menu-mask
   #sidebar-menus
-    if theme.avatar.img
-      .author-avatar
-        if theme.lazyload.enable
-          img.avatar-img(data-lazy-src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
-        else
-          img.avatar-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
+    .author-avatar
+      if theme.lazyload.enable
+        img.avatar-img(data-lazy-src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
+      else
+        img.avatar-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
     .site-data
       if site.posts.length
         .data-item.is-center
@@ -29,4 +28,4 @@
               .headline= _p('aside.categories') 
               .length-num= site.categories.length
     hr
-    !=fragment_cache('menus', function(){return partial('includes/header/menu_item')})
+    !=partial('includes/header/menu_item', {}, {cache: true})

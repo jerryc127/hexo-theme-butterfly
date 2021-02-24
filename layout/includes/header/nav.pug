@@ -8,7 +8,7 @@ nav#nav
         a.site-page.social-icon.search
           i.fas.fa-search.fa-fw
           span=' '+_p('search')
-    !=fragment_cache('menus', function(){return partial('includes/header/menu_item')})
+    !=partial('includes/header/menu_item', {}, {cache: true})
 
     #toggle-menu
       a.site-page
