@@ -164,16 +164,16 @@ no-beautify()
   kbd
     margin: 0 3px
     padding: 3px 5px
-    border-radius: 3px
     border: 1px solid #b4b4b4
-    box-shadow: 0 1px 3px rgba(0,0,0,.25), 0 2px 1px 0 rgba(255,255,255,.6) inset
-    font-family: Monaco, 'Ubuntu Mono', monospace
-    font-size: 0.9em
-    font-weight: 600
+    border-radius: 3px
     background-color: #f8f8f8
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .25), 0 2px 1px 0 rgba(255, 255, 255, .6) inset
     color: #34495e
-    line-height: 1em
     white-space: nowrap
+    font-weight: 600
+    font-size: .9em
+    font-family: Monaco, 'Ubuntu Mono', monospace
+    line-height: 1em
 
   if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'site'
     beautify()

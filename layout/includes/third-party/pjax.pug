@@ -42,9 +42,11 @@ script.
     typeof chatBtnFn === 'function' && chatBtnFn()
     typeof panguInit === 'function' && panguInit()
 
-    if (typeof gtag === 'function') {
-      gtag('config', '!{theme.google_analytics}', {'page_path': window.location.pathname});
-    }
+    // google analytics
+    typeof gtag === 'function' && gtag('config', '!{theme.google_analytics}', {'page_path': window.location.pathname});
+
+    //- // baidu analytics
+    typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
 
     typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
 
