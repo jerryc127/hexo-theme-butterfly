@@ -20,7 +20,7 @@ if theme.menu
           ul.menus_item_child
             each val,lab in value 
               li
-                a.site-page(href=url_for(trim(val.split('||')[0])))
+                a.site-page.child(href=url_for(trim(val.split('||')[0])))
                   if val.split('||')[1]
                     i.fa-fw(class=trim(val.split('||')[1]))
                   span=' '+ lab

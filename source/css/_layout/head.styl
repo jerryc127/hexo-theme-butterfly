@@ -303,22 +303,6 @@ _:future,
         padding: 4px
         transition: transform .3s
 
-      & > a
-        &:after
-          position: absolute
-          bottom: 0
-          left: 0
-          z-index: -1
-          width: 0
-          height: 3px
-          background-color: lighten($theme-color, 30%)
-          content: ''
-          transition: all .3s ease-in-out
-
-        &:hover
-          &:after
-            width: 100%
-
       .menus_item_child
         position: absolute
         right: 0
@@ -377,3 +361,19 @@ _:future,
     text-shadow: .05rem .05rem .1rem rgba($dark-black, .3)
     font-size: .78em
     cursor: pointer
+
+    &:not(.child)
+      &:after
+        position: absolute
+        bottom: 0
+        left: 0
+        z-index: -1
+        width: 0
+        height: 3px
+        background-color: lighten($theme-color, 30%)
+        content: ''
+        transition: all .3s ease-in-out
+
+      &:hover
+        &:after
+          width: 100%

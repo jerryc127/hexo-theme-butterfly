@@ -1,10 +1,19 @@
-// https://github.com/equinusocio/vsc-material-theme
 $highlight_theme = hexo-config('highlight_theme')
 $highlighEnable = hexo-config('highlight_settings') && hexo-config('highlight_settings.enable')
 $prismjsEnable = hexo-config('prismjs_settings') && hexo-config('prismjs_settings.enable')
 wordWrap = !hexo-config('highlight_settings.line_number') && hexo-config('code_word_wrap')
 
 @require 'theme'
+
+:root
+  --hl-color: $highlight-foreground
+  --hl-bg: $highlight-background
+  --hltools-bg: $highlight-tools.bg-color
+  --hltools-color: $highlight-tools.color
+  --hlnumber-bg: $highlight-gutter.bg-color
+  --hlnumber-color: $highlight-gutter.color
+  --hlscrollbar-bg: $highlight-scrollbar
+  --hlexpand-bg: linear-gradient(180deg, rgba($highlight-background, .6), rgba($highlight-background, .9))
 
 if $highlighEnable
   @require 'highlight/index'
@@ -16,8 +25,8 @@ $code-block
   overflow: auto
   margin: 0 0 1rem
   padding: 0
-  background: $highlight-background
-  color: $highlight-foreground
+  background: var(--hl-bg)
+  color: var(--hl-color)
   line-height: $line-height-code-block
 
   if wordWrap
@@ -56,9 +65,6 @@ blockquote
     padding: .1rem .2rem
     background: $code-background
     color: $code-foreground
-    word-wrap: break-word
-    word-break: break-word
-    overflow-wrap: break-word
 
   pre
     @extend $code-block
@@ -67,7 +73,7 @@ blockquote
     code
       padding: 0
       background: none
-      color: $highlight-foreground
+      color: var(--hl-color)
       text-shadow: none
 
   figure.highlight
@@ -88,10 +94,10 @@ blockquote
       a
         float: right
         padding-right: 10px
-        color: $highlight-foreground
+        color: var(--hl-color)
 
         &:hover
-          border-bottom-color: $highlight-foreground
+          border-bottom-color: var(--hl-color)
 
   .highlight-tools
     position: relative
@@ -100,8 +106,8 @@ blockquote
     overflow: hidden
     min-height: 1.2rem
     height: 2.15em
-    background: $highlight-tools.bg-color
-    color: $highlight-tools.color
+    background: var(--hltools-bg)
+    color: var(--hltools-color)
     font-size: $code-font-size
 
     &.closed + table
@@ -185,3 +191,38 @@ blockquote
 
         .code-lang
           left: 3.8rem !important
+
+  if hexo-config('highlight_height_limit')
+    .code-expand-btn
+      position: absolute
+      bottom: 0
+      z-index: 10
+      width: 100%
+      background: var(--hlexpand-bg)
+      text-align: center
+      font-size: $code-font-size
+      cursor: pointer
+
+      i
+        padding: .3rem 0
+        color: var(--hlnumber-color)
+        animation: code-expand-key 1.2s infinite
+
+      &.expand-done
+        display: none !important
+
+      &:not(.expand-done)
+        & ~ table,
+        & ~ pre
+          overflow: hidden
+          height: unit(hexo-config('highlight_height_limit'), px)
+
+@keyframes code-expand-key
+  0%
+    opacity: .6
+
+  50%
+    opacity: .1
+
+  100%
+    opacity: .6
