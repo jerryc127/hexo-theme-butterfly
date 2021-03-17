@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const highlightShrinkFn = (ele) => {
       const $nextEle = [...ele.parentNode.children].slice(1)
       ele.firstChild.classList.toggle('closed')
-      if (btf.isHidden($nextEle[0])) {
+      if (btf.isHidden($nextEle[$nextEle.length - 1])) {
         $nextEle.forEach(e => { e.style.display = 'block' })
       } else {
         $nextEle.forEach(e => { e.style.display = 'none' })
