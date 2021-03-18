@@ -8,8 +8,15 @@
 
       > code
         position: relative
-        white-space: inherit
         line-height: $line-height-code-block
+
+        if hexo-config('code_word_wrap')
+          white-space: pre-wrap
+        else
+          white-space: inherit
+          word-wrap: normal
+          word-break: normal
+          overflow-wrap: normal
 
       .line-numbers-rows
         position: absolute
@@ -29,6 +36,6 @@
           &:before
             display: block
             padding-right: .8em
-            color: $highlight-gutter.color
+            color: var(--hlnumber-color)
             content: counter(linenumber)
             text-align: right

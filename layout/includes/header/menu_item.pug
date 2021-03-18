@@ -4,7 +4,7 @@ if theme.menu
 
   .menus_items
     each value, label in theme.menu
-      if !Array.isArray(value)
+      if typeof value !== 'object'
         .menus_item
           a.site-page(href=url_for(trim(value.split('||')[0])))
             if value.split('||')[1]
@@ -18,9 +18,9 @@ if theme.menu
             span=' '+ trim(label.split('||')[0])
             i.fas.fa-chevron-down.expand(class=sidebarChildHide)
           ul.menus_item_child
-            each i in value
+            each val,lab in value 
               li
-                a.site-page(href=url_for(trim(i.split('||')[1])))
-                  if i.split('||')[2]
-                    i.fa-fw(class=trim(i.split('||')[2]))
-                  span=' '+trim(i.split('||')[0])
+                a.site-page.child(href=url_for(trim(val.split('||')[0])))
+                  if val.split('||')[1]
+                    i.fa-fw(class=trim(val.split('||')[1]))
+                  span=' '+ lab

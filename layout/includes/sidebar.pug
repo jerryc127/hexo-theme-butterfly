@@ -28,4 +28,4 @@
               .headline= _p('aside.categories') 
               .length-num= site.categories.length
     hr
-    !=fragment_cache('menus', function(){return partial('includes/header/menu_item')})
+    !=partial('includes/header/menu_item', {}, {cache: true})
