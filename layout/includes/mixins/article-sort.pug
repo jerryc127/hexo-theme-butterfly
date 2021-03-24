@@ -11,10 +11,7 @@ mixin articleSort(posts)
       .article-sort-item(class=no_cover)
         if article.cover && theme.cover.archives_enable
           a.article-sort-item-img(href=url_for(article.path) title=title)
-            if theme.lazyload.enable
-              img(data-lazy-src=url_for(article.cover) alt=title onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`)
-            else
-              img(src=url_for(article.cover) alt=title onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`)
+            img(src=url_for(article.cover) alt=title onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`)
         .article-sort-item-info
           .article-sort-item-time
             i.far.fa-calendar-alt

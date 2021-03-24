@@ -94,10 +94,15 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     .post-outdate-notice,
     .error-img,
     #article-container iframe,
-    img,
     .gist,
     .ads-wrap
       filter: brightness(.8)
+
+    img
+      if hexo-config('lazyload.enable') && hexo-config('lazyload.blur') && !hexo-config('lazyload.placeholder')
+        filter: blur(0) brightness(.8)
+      else
+        filter: brightness(.8)
 
     #aside-content .aside-list > .aside-list-item:not(:last-child)
       border-bottom: 1px dashed alpha(#FFFFFF, .1)
