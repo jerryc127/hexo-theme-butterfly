@@ -1,9 +1,11 @@
+- let disqusPageTitle = page.title.replace(/'/ig,"\\'")
+
 script.
   function loadDisqus () {
     var disqus_config = function () {
       this.page.url = '!{ page.permalink }'
       this.page.identifier = '!{ page.path }'
-      this.page.title = '!{ page.title }'
+      this.page.title = '!{ disqusPageTitle }'
     };
 
     window.disqusReset = () => {

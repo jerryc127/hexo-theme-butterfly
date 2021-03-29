@@ -1,4 +1,6 @@
 - let disqusjsApi = theme.disqusjs.api || 'https://disqus.skk.moe/disqus/'
+- let disqusjsPageTitle = page.title.replace(/'/ig,"\\'")
+
 script.
   function loadDisqusjs () {
     function addDisqusjsCSS () {
@@ -15,7 +17,7 @@ script.
         siteName: '!{theme.disqusjs.siteName}',
         identifier: '!{ page.path }',
         url: '!{ page.permalink }',
-        title: '!{ page.title }',
+        title: '!{ disqusjsPageTitle }',
         api: '!{disqusjsApi}',
         apikey: '!{theme.disqusjs.apikey}',
         nocomment: '!{theme.disqusjs.nocomment}',
