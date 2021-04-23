@@ -388,11 +388,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const $article = document.getElementById('article-container')
 
     // main of scroll
-    window.addEventListener('scroll', btf.throttle(function (e) {
-      const currentTop = window.scrollY || document.documentElement.scrollTop
-      scrollPercent(currentTop)
-      findHeadPosition(currentTop)
-    }, 100))
+    window.tocScrollFn = function () {
+      return btf.throttle(function () {
+        const currentTop = window.scrollY || document.documentElement.scrollTop
+        scrollPercent(currentTop)
+        findHeadPosition(currentTop)
+      }, 100)()
+    }
+    window.addEventListener('scroll', tocScrollFn)
 
     const scrollPercent = function (currentTop) {
       const docHeight = $article.clientHeight

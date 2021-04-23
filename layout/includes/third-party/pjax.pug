@@ -26,6 +26,29 @@ script.
     scrollRestoration: false
   })
 
+  document.addEventListener('pjax:send', function () {
+
+    // removeEventListener toc scroll 
+    window.removeEventListener('scroll', window.tocScrollFn)
+
+    typeof preloader === 'object' && preloader.initLoading()
+    
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+
+    typeof typed === 'object' && typed.destroy()
+
+    //reset readmode
+    const $bodyClassList = document.body.classList
+    $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  })
+
   document.addEventListener('pjax:complete', function () {
     window.refreshFn()
 
@@ -61,28 +84,12 @@ script.
     typeof preloader === 'object' && preloader.endLoading()
   })
 
-
-  document.addEventListener('pjax:send', function () {
-    typeof preloader === 'object' && preloader.initLoading()
-    
-    if (window.aplayers) {
-      for (let i = 0; i < window.aplayers.length; i++) {
-        if (!window.aplayers[i].options.fixed) {
-          window.aplayers[i].destroy()
-        }
-      }
-    }
-
-    typeof typed === 'object' && typed.destroy()
-
-    //reset readmode
-    const $bodyClassList = document.body.classList
-    $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
-
-  })
-
   document.addEventListener('pjax:error', (e) => {
     if (e.request.status === 404) {
+      if (!{theme.anchor}) {
+        location.hash && e.request.responseURL !== location.href ? pjax.loadUrl(location.href) : pjax.loadUrl('/404.html')
+        return
+      }
       pjax.loadUrl('/404.html')
     }
   })
