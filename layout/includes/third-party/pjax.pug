@@ -86,10 +86,6 @@ script.
 
   document.addEventListener('pjax:error', (e) => {
     if (e.request.status === 404) {
-      if (!{theme.anchor}) {
-        location.hash && e.request.responseURL !== location.href ? pjax.loadUrl(location.href) : pjax.loadUrl('/404.html')
-        return
-      }
       pjax.loadUrl('/404.html')
     }
   })

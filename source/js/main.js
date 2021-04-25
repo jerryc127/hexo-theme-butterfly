@@ -413,7 +413,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const updateAnchor = function (anchor) {
       if (window.history.replaceState && anchor !== window.location.hash) {
         if (!anchor) anchor = location.pathname
-        window.history.replaceState({}, '', anchor)
+        const title = GLOBAL_CONFIG_SITE.title
+        window.history.replaceState({
+          url: location.href,
+          title: title
+        }, title, anchor)
       }
     }
 
