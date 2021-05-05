@@ -4,7 +4,7 @@
 # format: name: link || icon
 # sub-menu
 # name || icon:
-#   name : link || icon
+#   name: link || icon
 
 menu:
   # Home: / || fas fa-home

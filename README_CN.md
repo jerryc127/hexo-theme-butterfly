@@ -81,7 +81,7 @@ theme: butterfly
 - [X] 多種評論系統（Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo）
 - [x] 支持雙評論部署
 - [x] 多種在線聊天（Chatra/Tidio/Daovoice/Gitter/Crisp）
-- [x] 多種分析系統（百度分析/谷歌分析/騰訊分析/CNZZ分析）
+- [x] 多種分析系統
 - [x] 谷歌廣告/手動廣告位置
 - [x] 各種站長驗證（Google/Bing/Baidu/360/Yandex）
 - [x] 修改網站配色

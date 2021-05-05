@@ -82,9 +82,9 @@ npm i hexo-theme-butterfly
 - [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo)
 - [x] Multiple Comment System Support
 - [x] Online Chats (Chatra/Tidio/Daovoice/Gitter/Crisp)
-- [x] Web analytics (Baidu Analytics/Google Analytics/Tencent Analytics/CNZZ Analytics)
+- [x] Web analytics
 - [x] Google AdSense
-- [x] Webmaster Verification (google/Bing/Baidu/360/Yandex)
+- [x] Webmaster Verification
 - [x] Change website colour scheme
 - [x] Typewriter Effect: activate_power_mode
 - [x] Background effects (Canvas ribbon/canvas_ribbon_piao/canvas_nest)
