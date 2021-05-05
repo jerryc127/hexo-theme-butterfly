@@ -1,0 +1,11 @@
+.hl-label
+  padding: 2px 4px
+  border-radius: 3px
+  color: $btn-color
+
+  &.default
+    background-color: $btn-default-color
+
+  for $type in $tagsP-types
+    &.{$type}
+      background-color: lookup('$tagsP-' + $type + '-color')

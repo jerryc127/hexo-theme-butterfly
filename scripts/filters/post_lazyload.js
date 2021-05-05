@@ -8,9 +8,22 @@
 
 const urlFor = require('hexo-util').url_for.bind(hexo)
 
+function lazyload (htmlContent) {
+  const bg = hexo.theme.config.lazyload.placeholder ? urlFor(hexo.theme.config.lazyload.placeholder) : 'data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs='
+  return htmlContent.replace(/(<img.*? src=)/ig, `$1 "${bg}" data-lazy-src=`)
+}
+
+hexo.extend.filter.register('after_render:html', function (data) {
+  const config = hexo.theme.config.lazyload
+  if (!config.enable) return
+  if (config.field !== 'site') return
+  return lazyload.call(this, data)
+})
+
 hexo.extend.filter.register('after_post_render', data => {
-  if (!hexo.theme.config.lazyload.enable) return
-  const bg = hexo.theme.config.lazyload.post ? urlFor(hexo.theme.config.lazyload.post) : 'data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs='
-  data.content = data.content.replace(/(<img.*? src=)/ig, `$1 "${bg}" data-lazy-src=`)
+  const config = hexo.theme.config.lazyload
+  if (!config.enable) return
+  if (config.field !== 'post') return
+  data.content = lazyload.call(this, data.content)
   return data
 })

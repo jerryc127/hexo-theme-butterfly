@@ -12,6 +12,8 @@
 ![hexo version](https://img.shields.io/badge/hexo-5.0+-0e83c)
 ![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly?color=FF5531)
 
+![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/theme-butterfly-readme.png)
+
 Demo: 👍 [Butterfly](https://butterfly.js.org/)  ||   🤞 [MYW](https://immyw.com/)
 
 Docs: 📖 [Butterfly Docs](https://butterfly.js.org/posts/21cfbf15/)
@@ -80,9 +82,9 @@ npm i hexo-theme-butterfly
 - [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo)
 - [x] Multiple Comment System Support
 - [x] Online Chats (Chatra/Tidio/Daovoice/Gitter/Crisp)
-- [x] Web analytics (Baidu Analytics/Google Analytics/Tencent Analytics/CNZZ Analytics)
+- [x] Web analytics
 - [x] Google AdSense
-- [x] Webmaster Verification (google/Bing/Baidu/360/Yandex)
+- [x] Webmaster Verification
 - [x] Change website colour scheme
 - [x] Typewriter Effect: activate_power_mode
 - [x] Background effects (Canvas ribbon/canvas_ribbon_piao/canvas_nest)
@@ -97,6 +99,9 @@ npm i hexo-theme-butterfly
 
 ## Screenshots
 
+![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-1.jpg)
+![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-2.jpg)
+![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-3.jpg)
+![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-4.jpg)
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/theme-butterfly-readme-homepage-1.png)
-
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/theme-butterfly-readme-homepage-2.png)

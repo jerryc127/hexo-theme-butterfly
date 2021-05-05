@@ -8,9 +8,6 @@
         - var clickTo = item.link ? item.link : item.img
         li.reward-item
           a(href=url_for(clickTo) target='_blank')
-            if theme.lazyload.enable
-              img.post-qr-code-img(data-lazy-src=url_for(item.img) alt=item.text)
-            else
-              img.post-qr-code-img(src=url_for(item.img) alt=item.text)
+            img.post-qr-code-img(src=url_for(item.img) alt=item.text)
           .post-qr-code-desc=item.text
 

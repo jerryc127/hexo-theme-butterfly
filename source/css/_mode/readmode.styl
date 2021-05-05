@@ -173,23 +173,14 @@ if hexo-config('readmode')
         border: 1px solid var(--gray) !important
 
       .hide-button,
-      .btn-beautify
+      .btn-beautify,
+      .hl-label
+        border: 1px solid var(--gray) !important
         background: var(--readmode-light-color) !important
         color: var(--font-color) !important
 
-      .btn-beautify
-        border: 1px solid var(--gray) !important
-
       .button--animated:before
         background: var(--readmode-light-color) !important
-
-      .hide-inline,
-      .hide-block
-        & >.hide-button
-          border: 1px solid var(--gray)
-
-        & > .button--animated:before
-          background: var(--readmode-light-color)
 
       .note
         border: 2px solid var(--gray)

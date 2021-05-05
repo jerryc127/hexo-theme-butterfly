@@ -15,10 +15,7 @@ if is_post()
       .prev-post(class=hasPageNext)
         - var pagination_cover = prev.cover === false ? prev.randomcover : prev.cover
         a(href=url_for(prev.path))
-          if theme.lazyload.enable
-            img.prev-cover(data-lazy-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of previous post')
-          else
-            img.prev-cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of previous post')
+          img.prev-cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of previous post')
           .pagination-info
             .label=_p('pagination.prev')
             .prev_info=prev.title
@@ -28,10 +25,7 @@ if is_post()
       - var pagination_cover = next.cover == false ? next.randomcover : next.cover
       .next-post(class=hasPagePrev)
         a(href=url_for(next.path))
-          if theme.lazyload.enable
-            img.next-cover(data-lazy-src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of next post')
-          else
-            img.next-cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of next post')
+          img.next-cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of next post')
           .pagination-info
             .label=_p('pagination.next')
             .next_info=next.title

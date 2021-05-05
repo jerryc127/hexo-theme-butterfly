@@ -8,12 +8,12 @@
   var showToc = is_post() && theme.aside.enable && pageToc && (toc(page.content) !== '' || page.encrypt == true )
 -
 
-script#config-diff
-  .
-    var GLOBAL_CONFIG_SITE = { 
-      isPost: !{is_post()},
-      isHome: !{is_home()},
-      isHighlightShrink: !{isHighlightShrink},
-      isToc: !{showToc},
-      postUpdate: '!{full_date(page.updated)}'
-    }
+script#config-diff.
+  var GLOBAL_CONFIG_SITE = {
+    title: '!{pageTitle}',
+    isPost: !{is_post()},
+    isHome: !{is_home()},
+    isHighlightShrink: !{isHighlightShrink},
+    isToc: !{showToc},
+    postUpdate: '!{full_date(page.updated)}'
+  }

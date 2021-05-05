@@ -206,6 +206,15 @@ img
   &:not([src])
     opacity: 0
 
+// lazyload blur
+if hexo-config('lazyload.enable') && hexo-config('lazyload.blur') && !hexo-config('lazyload.placeholder')
+  img
+    &[data-lazy-src]:not(.loaded)
+      filter: blur(10px) brightness(1)
+
+    &[data-lazy-src].error
+      filter: none
+
 .img-alt
   margin: -.5rem 0 .5rem
   color: #858585
