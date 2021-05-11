@@ -12,7 +12,8 @@ script.
         path: location.pathname,
         emojiCDN: '#{theme.waline.emojiCDN}',
         emojiMaps: !{emojiMaps},
-        visitor: #{theme.waline.visitor}
+        visitor: #{theme.waline.visitor},
+        dark: '[data-theme="dark"]'
       }, !{JSON.stringify(theme.waline.option)}))
     }
 
