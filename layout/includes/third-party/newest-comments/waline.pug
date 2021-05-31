@@ -53,11 +53,10 @@ script.
     const getComment = () => {
       const loadWaline = () => {
         Waline.Widget.RecentComments({
-          el: '#card-newest-comments .aside-list',
           serverURL: '!{theme.waline.serverURL}',
           count: !{theme.newest_comments.limit}
-        }).then(comments => {
-          const walineArray = comments.map(function (e) {
+        }).then(res => {
+          const walineArray = res.comments.map(e => {
             return {
               'content': changeContent(e.comment),
               'avatar': getIcon(e.QQAvatar,e.mail),

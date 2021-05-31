@@ -1,7 +1,3 @@
-- let emojiMaps = '""'
-if site.data.waline
-  - emojiMaps = JSON.stringify(site.data.waline)
-
 script.
   function loadWaline () {
     function initWaline () {
@@ -10,8 +6,6 @@ script.
         serverURL: '!{theme.waline.serverURL}',
         avatar: '#{theme.waline.avatar}',
         path: location.pathname,
-        emojiCDN: '#{theme.waline.emojiCDN}',
-        emojiMaps: !{emojiMaps},
         visitor: #{theme.waline.visitor},
         dark: 'html[data-theme="dark"]'
       }, !{JSON.stringify(theme.waline.option)}))
