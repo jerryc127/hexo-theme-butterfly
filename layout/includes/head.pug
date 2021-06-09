@@ -1,5 +1,5 @@
 - var pageTitle
-- if (is_archive()) pageTitle = _p('page.archives')
+- if (is_archive()) pageTitle = fragment_cache('findArchivesTitle', function(){return findArchivesTitle(theme.menu);})
 - else if (is_tag()) pageTitle = _p('page.tag') + ': ' + page.tag
 - else if (is_category()) pageTitle = _p('page.category') + ': ' + page.category
 - else if (is_month()) pageTitle += ': ' + page.month + '/' + page.year

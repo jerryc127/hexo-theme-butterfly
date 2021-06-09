@@ -79,14 +79,13 @@ if hexo-config('waline.bg')
       display: none
 
 // mathjax
-.mathjax-overflow
+mjx-container
   overflow-x: auto
   overflow-y: hidden
 
-mjx-container[jax='CHTML'][display='true']
-  overflow-x: auto
-  overflow-y: hidden
-  padding-bottom: .3rem
+  &:not([display])
+    display: inline-grid
+    max-width: 100%
 
 .aplayer
   color: $font-black

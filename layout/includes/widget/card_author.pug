@@ -1,7 +1,8 @@
 if theme.aside.card_author.enable
   .card-widget.card-info
-    .card-info-avatar.is-center
-      img.avatar-img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+    .is-center
+      .avatar-img
+        img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
       .author-info__name= config.author
       .author-info__description!= theme.aside.card_author.description || config.description
 

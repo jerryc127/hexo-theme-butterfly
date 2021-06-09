@@ -70,3 +70,22 @@ hexo.extend.helper.register('injectHtml', function (data) {
   }
   return result
 })
+
+hexo.extend.helper.register('findArchivesTitle', function (menu) {
+  const defaultTitle = this._p('page.archives')
+  if (!menu) return defaultTitle
+
+  const loop = (m) => {
+    for (const key in m) {
+      if (typeof m[key] === 'object') {
+        loop(m[key])
+      }
+
+      if (/\/archives\//.test(m[key])) {
+        return key
+      }
+    }
+  }
+
+  return loop(menu) || defaultTitle
+})

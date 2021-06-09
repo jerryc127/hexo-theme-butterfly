@@ -157,12 +157,9 @@
         top: 70px
         transition: top .5s
 
-// css hack
-// all browser in ios and safari in all apple device
-_::-webkit-full-page-media,
-_:future,
-:root #page-header.full_page
-  background-attachment: scroll !important
+.apple
+  #page-header.full_page
+    background-attachment: scroll !important
 
 #page
   h1.page-title
