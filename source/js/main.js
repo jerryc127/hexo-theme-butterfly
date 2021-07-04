@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const addMediumZoom = () => {
-    const zoom = mediumZoom(document.querySelectorAll('#article-container :not(a)>img'))
+    const zoom = mediumZoom(document.querySelectorAll('#article-container :not(a):not(.flink-item-icon) > img'))
     zoom.on('open', e => {
       const photoBg = document.documentElement.getAttribute('data-theme') === 'dark' ? '#121212' : '#fff'
       zoom.update({
