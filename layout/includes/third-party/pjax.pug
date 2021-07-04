@@ -28,8 +28,9 @@ script.
 
   document.addEventListener('pjax:send', function () {
 
-    // removeEventListener toc scroll 
+    // removeEventListener scroll 
     window.removeEventListener('scroll', window.tocScrollFn)
+    window.removeEventListener('scroll', scrollCollect)
 
     typeof preloader === 'object' && preloader.initLoading()
     

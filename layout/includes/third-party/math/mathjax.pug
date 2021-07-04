@@ -1,20 +1,13 @@
 //- Mathjax 3
-//- http://docs.mathjax.org/en/latest/upgrading/v2.html#changes-in-the-mathjax-api
-//- https://github.com/mathjax/MathJax/issues/2209
-//- http://docs.mathjax.org/en/latest/options/input/tex.html#the-configuration-block
-//- http://docs.mathjax.org/en/latest/web/typeset.html#resetting-automatic-equation-numbering
-
 script.
   if (!window.MathJax) {
     window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd'
-        }
-      },
       tex: {
         inlineMath: [ ['$','$'], ["\\(","\\)"]],
         tags: 'ams'
+      },
+      chtml: {
+        scale: 1.2
       },
       options: {
         renderActions: {
@@ -28,15 +21,7 @@ script.
               math.end = {node: text, delim: '', n: 0}
               doc.math.push(math)
             }
-          }, ''],
-          addClass: [200,() => {
-            document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
-              const target = node.parentNode
-              if (!target.classList.contains('has-jax')) {
-                target.classList.add('mathjax-overflow')
-              }
-            })
-          }, '', false]
+          }, '']
         }
       }
     }

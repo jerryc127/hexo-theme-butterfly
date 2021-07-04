@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-butterfly",
-  "version": "3.7.8",
+  "version": "3.8.0",
   "description": "A Simple and Card UI Design theme for Hexo",
   "main": "package.json",
   "scripts": {
@@ -27,6 +27,6 @@
     "hexo-renderer-pug": "^1.0.0"
   },
   "homepage": "https://butterfly.js.org/",
-  "author": "Jerry <btf@immyw.com>",
+  "author": "Jerry <i@immyw.com>",
   "license": "Apache-2.0"
 }

@@ -207,18 +207,18 @@ const btf = {
    *
    * @param {*} selector
    * @param {*} eleType the type of create element
-   * @param {*} id id
-   * @param {*} cn class name
+   * @param {*} options object key: value
    */
-  wrap: function (selector, eleType, id = '', cn = '') {
+  wrap: (selector, eleType, options) => {
     const creatEle = document.createElement(eleType)
-    if (id) creatEle.id = id
-    if (cn) creatEle.className = cn
+    for (const [key, value] of Object.entries(options)) {
+      creatEle.setAttribute(key, value)
+    }
     selector.parentNode.insertBefore(creatEle, selector)
     creatEle.appendChild(selector)
   },
 
-  unwrap: function (el) {
+  unwrap: el => {
     const elParentNode = el.parentNode
     if (elParentNode !== document.body) {
       elParentNode.parentNode.insertBefore(el, elParentNode)
@@ -226,7 +226,7 @@ const btf = {
     }
   },
 
-  isJqueryLoad: (fn) => {
+  isJqueryLoad: fn => {
     if (typeof jQuery === 'undefined') {
       getScript(GLOBAL_CONFIG.source.jQuery).then(fn)
     } else {
@@ -234,9 +234,9 @@ const btf = {
     }
   },
 
-  isHidden: (ele) => ele.offsetHeight === 0 && ele.offsetWidth === 0,
+  isHidden: ele => ele.offsetHeight === 0 && ele.offsetWidth === 0,
 
-  getEleTop: (ele) => {
+  getEleTop: ele => {
     let actualTop = ele.offsetTop
     let current = ele.offsetParent
 

@@ -35,15 +35,6 @@
           display: none
 
   .card-info
-    img
-      width: 110px
-      height: 110px
-      border-radius: 70px
-      transition: all .5s
-
-      &:hover
-        transform: rotate(360deg)
-
     .author-info
       &__name
         font-weight: 500
@@ -103,7 +94,7 @@
     font-size: 1.2em
 
     span
-      margin-left: .5rem
+      margin-left: .3rem
 
   .sticky_layout
     +minWidth900()
@@ -330,6 +321,21 @@
 
     &:hover
       animation: more-btn-move 1s infinite
+
+.avatar-img
+  overflow: hidden
+  margin: 0 auto
+  width: 110px
+  height: 110px
+  border-radius: 70px
+
+  img
+    height: 100%
+    transition: all .5s
+    object-fit: cover
+
+    &:hover
+      transform: rotate(360deg)
 
 @keyframes more-btn-move
   0%,

@@ -1,4 +1,4 @@
-- let default_avatar = theme.waline.avatar
+- let { avatar,avatarCDN } = theme.waline
 
 script.
   window.addEventListener('load', () => {
@@ -16,10 +16,10 @@ script.
       return content
     }
 
-    const getIcon = (avatar,mail) => {
-      if (avatar) return avatar
-      let defaultIcon = '!{ default_avatar ? `?d=${default_avatar}` : ''}'
-      let iconUrl = `https://gravatar.loli.net/avatar/${mail + defaultIcon}`
+    const getIcon = (ava,mail) => {
+      if (ava) return ava
+      let defaultIcon = '!{ avatar ? `?d=${avatar}` : ''}'
+      let iconUrl = "!{avatarCDN ? avatarCDN : 'https://gravatar.loli.net/avatar/'}" + mail + defaultIcon
       return iconUrl
     }
 

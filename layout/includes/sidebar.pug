@@ -1,8 +1,8 @@
 #sidebar
   #menu-mask
   #sidebar-menus
-    .author-avatar
-      img.avatar-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
+    .avatar-img.is-center
+      img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
     .site-data
       if site.posts.length
         .data-item.is-center

@@ -22,22 +22,12 @@
     &.open
       transform: translate3d(-100%, 0, 0)
 
-    & > .author-avatar
-      padding: 1.3rem 1.5rem 0
-      text-align: center
-
-      img
-        width: 110px
-        height: 110px
-        border-radius: 70px
-        transition: all .5s
-
-        &:hover
-          transform: rotate(360deg)
+    & > .avatar-img
+      margin: 1rem auto
 
     .site-data
       display: table
-      padding: .6rem .5rem 0
+      padding: 0 .5rem
       width: 100%
       table-layout: fixed
 
@@ -65,25 +55,21 @@
         @extend .limit-one-line
         position: relative
         display: block
-        padding: .3rem 1.5rem
+        padding: .3rem 1.5rem .3rem 1.1rem
         color: var(--font-color)
         font-size: 1.15em
-        cursor: pointer
+
+        &:hover
+          background: var(--text-bg-hover)
 
         i:first-child
-          width: 25%
+          width: 15%
           text-align: left
-
-        span
-          width: 75%
-
-          &:hover
-            color: $light-blue
 
       .expand
         position: absolute
         top: .78em
-        right: .4rem
+        right: .9rem
         transition: transform .3s
 
         &.hide

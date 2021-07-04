@@ -4,7 +4,7 @@ link(rel="stylesheet" type="text/css" href=theme.CDN.katex_copytex_css)
 script.
   (() => {
     document.querySelectorAll('#article-container span.katex-display').forEach(item => {
-      btf.wrap(item, 'div', '', 'katex-wrap')
+      btf.wrap(item, 'div', { class: 'katex-wrap'})
     })
   })()
   
