@@ -55,25 +55,21 @@
         @extend .limit-one-line
         position: relative
         display: block
-        padding: .3rem 1.5rem
+        padding: .3rem 1.5rem .3rem 1.1rem
         color: var(--font-color)
         font-size: 1.15em
-        cursor: pointer
+
+        &:hover
+          background: var(--text-bg-hover)
 
         i:first-child
-          width: 25%
+          width: 15%
           text-align: left
-
-        span
-          width: 75%
-
-          &:hover
-            color: $light-blue
 
       .expand
         position: absolute
         top: .78em
-        right: .4rem
+        right: .9rem
         transition: transform .3s
 
         &.hide

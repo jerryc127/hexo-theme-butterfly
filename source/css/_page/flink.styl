@@ -50,20 +50,24 @@
           color: var(--font-color)
           text-decoration: none
 
-          img
+          .flink-item-icon
             float: left
+            overflow: hidden
             margin: 15px 10px
             width: 60px
             height: 60px
             border-radius: 35px
-            transition: all .3s
+
+            img
+              width: 100%
+              height: 100%
+              transition: all .3s
 
           .img-alt
             display: none
 
           .flink-item-name
             @extend .limit-one-line
-            display: block
             padding: 16px 10px 0 0
             height: 40px
             font-weight: bold
@@ -71,7 +75,6 @@
 
           .flink-item-desc
             @extend .limit-one-line
-            display: block
             padding: 16px 10px 16px 0
             height: 50px
             font-size: .93em

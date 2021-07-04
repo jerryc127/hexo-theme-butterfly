@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
         $figureHighlight.forEach(function (item) {
           const langName = item.getAttribute('data-language') ? item.getAttribute('data-language') : 'Code'
           const highlightLangEle = `<div class="code-lang">${langName}</div>`
-          btf.wrap(item, 'figure', '', 'highlight')
+          btf.wrap(item, 'figure', { class: 'highlight' })
           createEle(highlightLangEle, item)
         })
       } else {
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       if (isPrismjs) {
         $figureHighlight.forEach(function (item) {
-          btf.wrap(item, 'figure', '', 'highlight')
+          btf.wrap(item, 'figure', { class: 'highlight' })
           createEle('', item)
         })
       } else {
@@ -332,50 +332,55 @@ document.addEventListener('DOMContentLoaded', function () {
       return
     }
 
-    let initTop = 0
-    let isChatShow = true
-    const $header = document.getElementById('page-header')
-    const isChatBtnHide = typeof chatBtnHide === 'function'
-    const isChatBtnShow = typeof chatBtnShow === 'function'
-    window.addEventListener('scroll', btf.throttle(function (e) {
-      const currentTop = window.scrollY || document.documentElement.scrollTop
-      const isDown = scrollDirection(currentTop)
-      if (currentTop > 56) {
-        if (isDown) {
-          if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
-          if (isChatBtnShow && isChatShow === true) {
-            chatBtnHide()
-            isChatShow = false
-          }
-        } else {
-          if (!$header.classList.contains('nav-visible')) $header.classList.add('nav-visible')
-          if (isChatBtnHide && isChatShow === false) {
-            chatBtnShow()
-            isChatShow = true
-          }
-        }
-        $header.classList.add('nav-fixed')
-        if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
-          $rightside.style.cssText = 'opacity: 1; transform: translateX(-38px)'
-        }
-      } else {
-        if (currentTop === 0) {
-          $header.classList.remove('nav-fixed', 'nav-visible')
-        }
-        $rightside.style.cssText = "opacity: ''; transform: ''"
-      }
-
-      if (document.body.scrollHeight <= innerHeight) {
-        $rightside.style.cssText = 'opacity: 1; transform: translateX(-38px)'
-      }
-    }, 200))
-
     // find the scroll direction
     function scrollDirection (currentTop) {
       const result = currentTop > initTop // true is down & false is up
       initTop = currentTop
       return result
     }
+
+    let initTop = 0
+    let isChatShow = true
+    const $header = document.getElementById('page-header')
+    const isChatBtnHide = typeof chatBtnHide === 'function'
+    const isChatBtnShow = typeof chatBtnShow === 'function'
+
+    window.scrollCollect = () => {
+      return btf.throttle(function (e) {
+        const currentTop = window.scrollY || document.documentElement.scrollTop
+        const isDown = scrollDirection(currentTop)
+        if (currentTop > 56) {
+          if (isDown) {
+            if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
+            if (isChatBtnShow && isChatShow === true) {
+              chatBtnHide()
+              isChatShow = false
+            }
+          } else {
+            if (!$header.classList.contains('nav-visible')) $header.classList.add('nav-visible')
+            if (isChatBtnHide && isChatShow === false) {
+              chatBtnShow()
+              isChatShow = true
+            }
+          }
+          $header.classList.add('nav-fixed')
+          if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
+            $rightside.style.cssText = 'opacity: 1; transform: translateX(-38px)'
+          }
+        } else {
+          if (currentTop === 0) {
+            $header.classList.remove('nav-fixed', 'nav-visible')
+          }
+          $rightside.style.cssText = "opacity: ''; transform: ''"
+        }
+
+        if (document.body.scrollHeight <= innerHeight) {
+          $rightside.style.cssText = 'opacity: 1; transform: translateX(-38px)'
+        }
+      }, 200)()
+    }
+
+    window.addEventListener('scroll', scrollCollect)
   }
 
   /**
@@ -687,7 +692,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const $table = document.querySelectorAll('#article-container :not(.highlight) > table, #article-container > table')
     if ($table.length) {
       $table.forEach(item => {
-        btf.wrap(item, 'div', '', 'table-wrap')
+        btf.wrap(item, 'div', { class: 'table-wrap' })
       })
     }
   }

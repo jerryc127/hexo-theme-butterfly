@@ -746,7 +746,7 @@ fancybox: true
 # --------------------------------------
 
 # mermaid
-# see https://github.com/knsv/mermaid
+# see https://github.com/mermaid-js/mermaid
 mermaid:
   enable: false
   # built-in themes: default/forest/dark/neutral

@@ -1,5 +1,4 @@
-#vcomment,
-#waline
+#vcomment
   font-size: 1.1em
 
   .vbtn
@@ -20,6 +19,18 @@
     &:before,
     &:after
       z-index: 22
+
+#waline-wrap
+  --waline-font-size: 1.1em
+  --waline-theme-color: $button-bg
+  --waline-active-color: $button-hover-color
+  --waline-avatar-size: 2.75rem
+
+  .vuser
+    transition: all .5s
+
+    &:hover
+      transform: rotate(360deg)
 
 if hexo-config('valine.bg')
   #vcomment
