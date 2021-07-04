@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const jqLoadAndRun = () => {
     const $fancyboxEle = GLOBAL_CONFIG.lightbox === 'fancybox'
-      ? document.querySelectorAll('#article-container :not(a):not(.gallery-group) > img, #article-container > img')
+      ? document.querySelectorAll('#article-container :not(a):not(.gallery-group):not(.flink-item-icon) > img, #article-container > img')
       : []
     const fbLengthNoZero = $fancyboxEle.length > 0
     const $jgEle = document.querySelectorAll('#article-container .justified-gallery')
