@@ -21,7 +21,17 @@ script.
               math.end = {node: text, delim: '', n: 0}
               doc.math.push(math)
             }
-          }, '']
+          }, ''],
+          insertScript: [200, () => {
+            document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+              const target = node.parentNode
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax')
+              } else {
+                target.classList.add('has-jax')
+              }
+            });
+          }, '', false]
         }
       }
     }
