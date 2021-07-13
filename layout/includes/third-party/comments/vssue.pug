@@ -1,0 +1,48 @@
+div.js-pjax
+  script.
+    function addVssueSource () {
+     const ele = document.createElement('link')
+     ele.rel = 'stylesheet'
+     ele.href= '!{url_for(theme.CDN.vssue_css)}'
+     document.getElementsByTagName('head')[0].appendChild(ele)
+    }
+    function addVssueVue() {
+      const cookhead = document.head || document.getElementsByTagName('head')[0];
+      const inscript = document.createElement('script');
+      inscript.setAttribute('src', '!{url_for(theme.CDN.vssue_runtime)}');
+      cookhead.appendChild(inscript);
+    }
+
+    function loadVssue () {
+      function initVssue () {
+        const vssue = new Vue({
+          el: '#vssue',
+          render: h => h('Vssue', {
+              props: {
+                  title: window.location.pathname,
+                  options: {
+                      owner: '#{theme.vssue.owner}',
+                      repo: '#{theme.vssue.repo}',
+                      clientId: '#{theme.vssue.clientId}',
+                      clientSecret: '#{theme.vssue.clientSecret}',
+                  },
+              }
+          })
+        })
+    }
+
+      if (typeof Vssue === 'function') initVssue ()
+      else {
+        addVssueSource()
+        addVssueVue()
+        getScript('https://cdn.jsdelivr.net/npm/vssue/dist' + '!{url_for(theme.vssue.version)}' + '.min.js').then(initVssue)
+      }
+    }
+    if ('!{theme.comments.use[0]}' === 'Vssue' || !!{theme.comments.lazyload}) {
+      if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('vssue'),loadVssue)
+      else setTimeout(loadVssue, 0)
+    } else {
+      function loadOtherComment () {
+        loadVssue ()
+      }
+    }

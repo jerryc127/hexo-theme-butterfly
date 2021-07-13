@@ -259,7 +259,7 @@ addtoany:
 
 comments:
   # Up to two comments system, the first will be shown as default
-  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo
+  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Vssue/Waline/Utterances/Facebook Comments/Twikoo
   use:
   # - Valine
   # - Disqus
@@ -326,6 +326,15 @@ valine:
   requiredFields: nick,mail # required fields (nick/mail)
   visitor: false
   option:
+
+# vssue
+# https://vssue.js.org
+vssue:
+  version: ''  # your code hosting website(vssue.github,vssue.gitlab,vssue.bitbucket,vssue.gitee,vssue.gitea)
+  owner: ''  # your code hosting website username
+  repo: ''  # your code hosting website repo
+  clientId: ''  # the id of your OAuth APP
+  clientSecret: ''  # the secret of your OAuth APP
 
 # waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
