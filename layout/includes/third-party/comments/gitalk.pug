@@ -15,11 +15,6 @@ script.
         owner: '!{theme.gitalk.owner}',
         admin: ['!{theme.gitalk.admin}'],
         id: '!{md5(page.path)}',
-        language: '!{theme.gitalk.language}',
-        perPage: !{theme.gitalk.perPage},
-        distractionFreeMode: !{theme.gitalk.distractionFreeMode},
-        pagerDirection: '!{theme.gitalk.pagerDirection}',
-        createIssueManually: !{theme.gitalk.createIssueManually},
         updateCountCallback: commentCount
       },!{JSON.stringify(theme.gitalk.option)}))
 
