@@ -20,7 +20,7 @@ Docs: 📖 [Butterfly Docs](https://butterfly.js.org/posts/21cfbf15/)
 
 Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) theme.
 
-## Installation
+## 💻 Installation
 
 ### GIT
 
@@ -48,7 +48,7 @@ In Hexo site root directory
 npm i hexo-theme-butterfly
 ```
 
-## Configuration
+## ⚙ Configuration
 
  Set theme in the hexo work folder's root config file `_config.yml`: 
 
@@ -58,7 +58,7 @@ npm i hexo-theme-butterfly
 
 > npm install hexo-renderer-pug hexo-renderer-stylus
 
-## Features
+## 🎉 Features
 
 - [x] Card UI Design
 - [X] Support sub-menu
@@ -97,7 +97,13 @@ npm i hexo-theme-butterfly
 - [x] Lazyload images
 - [x] Instantpage/Pangu/Snackbar notification toast/PWA......
 
-## Screenshots
+## ✨ Contributors
+
+<a href="https://github.com/jerryc127/hexo-theme-butterfly/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=jerryc127/hexo-theme-butterfly" />
+</a>
+
+## 📷 Screenshots
 
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-1.jpg)
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-2.jpg)
