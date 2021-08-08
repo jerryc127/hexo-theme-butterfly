@@ -595,16 +595,13 @@ subtitle:
   loop: true
   # source調用第三方服務
   # source: false 關閉調用
-  # source: 1  調用搏天api的隨機語錄（簡體）
+  # source: 1  調用搏天 api 的隨機語錄（簡體）
   # source: 2  調用一言網的一句話（簡體）
   # source: 3  調用一句網（簡體）
   # source: 4  調用今日詩詞（簡體）
   # subtitle 會先顯示 source , 再顯示 sub 的內容
   source: false
-  # 如果有英文逗號' , ',請使用轉義字元 &#44;
-  # 如果有英文雙引號' " ',請使用轉義字元 &quot;
-  # 開頭不允許轉義字元，如需要，請把整個句子用雙引號包住
-  # 如果關閉打字效果，subtitle只會顯示sub的第一行文字
+  # 如果關閉打字效果，subtitle 只會顯示 sub 的第一行文字
   sub:
 
 # Loading Animation (加載動畫)
@@ -876,8 +873,8 @@ CDN:
   pangu: https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js
 
   # photo
-  fancybox_css: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css
-  fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js
+  fancybox_css: https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css
+  fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js
   medium_zoom: https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js
 
   # snackbar
