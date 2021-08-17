@@ -13,8 +13,8 @@
           each item in i.link_list
             .flink-list-item
               a(href=url_for(item.link)  title=item.name target="_blank")
-                .flink-item-icon.not-lightbox
-                  img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                .flink-item-icon
+                  img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
                 .flink-item-name= item.name 
                 .flink-item-desc(title=item.descr)= item.descr
     != page.content

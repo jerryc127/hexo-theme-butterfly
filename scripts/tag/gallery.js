@@ -19,8 +19,8 @@ function galleryGroup (args) {
   const img = urlFor(args[3])
 
   return `
-  <figure class="gallery-group not-lightbox">
-  <img class="gallery-group-img" src='${img}' alt="Group Image Gallery">
+  <figure class="gallery-group">
+  <img class="gallery-group-img no-lightbox" src='${img}' alt="Group Image Gallery">
   <figcaption>
   <div class="gallery-group-name">${name}</div>
   <p>${desrc}</p>

@@ -209,7 +209,11 @@ blockquote
         animation: code-expand-key 1.2s infinite
 
       &.expand-done
-        display: none !important
+        & > i
+          transform: rotate(180deg)
+
+        & + table
+          margin-bottom: 1.8em
 
       &:not(.expand-done)
         & ~ table,

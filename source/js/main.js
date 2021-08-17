@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
  */
   const addFancybox = () => {
     const runFancybox = () => {
-      document.querySelectorAll('#article-container :not(a):not(.not-lightbox) > img, #article-container > img').forEach(i => {
+      document.querySelectorAll('#article-container img:not(.no-lightbox)').forEach(i => {
         const lazyloadSrc = i.dataset.lazySrc || i.src
         const dataCaption = i.alt || ''
         btf.wrap(i, 'a', { href: lazyloadSrc, 'data-fancybox': 'gallery', 'data-caption': dataCaption, 'data-thumb': lazyloadSrc })
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const addMediumZoom = () => {
-    const zoom = mediumZoom(document.querySelectorAll('#article-container :not(a):not(.not-lightbox) > img, #article-container > img'))
+    const zoom = mediumZoom(document.querySelectorAll('#article-container img:not(.no-lightbox)'))
     zoom.on('open', e => {
       const photoBg = document.documentElement.getAttribute('data-theme') === 'dark' ? '#121212' : '#fff'
       zoom.update({
@@ -841,7 +841,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initAdjust()
 
     if (GLOBAL_CONFIG_SITE.isPost) {
-      GLOBAL_CONFIG_SITE.isToc && tocFn()
       GLOBAL_CONFIG.noticeOutdate !== undefined && addPostOutdateNotice()
       GLOBAL_CONFIG.relativeDate.post && relativeDate(document.querySelectorAll('#post-meta time'))
     } else {
@@ -851,6 +850,7 @@ document.addEventListener('DOMContentLoaded', function () {
       toggleCardCategory()
     }
 
+    GLOBAL_CONFIG_SITE.isToc && tocFn()
     sidebarFn()
     GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
     addHighlightTool()

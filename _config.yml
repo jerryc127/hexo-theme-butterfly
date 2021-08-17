@@ -175,7 +175,8 @@ index_post_content:
 
 # toc (目錄)
 toc:
-  enable: true
+  post: true
+  page: false
   number: true
   style_simple: false
 
