@@ -293,10 +293,10 @@
         .menus_item_child
           display: block
 
-        i.expand
-          transform: rotate(180deg) !important
+        & > a > i:last-child
+          transform: rotate(180deg)
 
-      i.expand
+      & > a > i:last-child
         padding: 4px
         transition: transform .3s
 

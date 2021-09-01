@@ -246,6 +246,33 @@ const btf = {
     }
 
     return actualTop
-  }
+  },
 
+  loadLightbox: ele => {
+    const service = GLOBAL_CONFIG.lightbox
+
+    if (service === 'mediumZoom') {
+      const zoom = mediumZoom(ele)
+      zoom.on('open', e => {
+        const photoBg = document.documentElement.getAttribute('data-theme') === 'dark' ? '#121212' : '#fff'
+        zoom.update({
+          background: photoBg
+        })
+      })
+    }
+
+    if (service === 'fancybox') {
+      ele.forEach(i => {
+        if (i.parentNode.tagName !== 'A') {
+          const dataSrc = i.dataset.lazySrc || i.src
+          const dataCaption = i.alt || ''
+          btf.wrap(i, 'a', { href: dataSrc, 'data-fancybox': 'gallery', 'data-caption': dataCaption, 'data-thumb': dataSrc })
+        }
+      })
+
+      Fancybox.bind('[data-fancybox]', {
+        Hash: false
+      })
+    }
+  }
 }

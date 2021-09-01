@@ -1,10 +1,6 @@
 # Main menu navigation (導航目錄)
+# see https://butterfly.js.org/posts/4aa8abbe/#導航菜單
 # --------------------------------------
-
-# format: name: link || icon
-# sub-menu
-# name || icon:
-#   name: link || icon
 
 menu:
   # Home: / || fas fa-home
@@ -16,9 +12,6 @@ menu:
   #   Movie: /movies/ || fas fa-video
   # Link: /link/ || fas fa-link
   # About: /about/ || fas fa-heart
-
-# Hide the child menu items in mobile sidebar
-hide_sidebar_menu_child: false
 
 # Code Blocks (代碼相關)
 # --------------------------------------

@@ -65,18 +65,20 @@
           width: 15%
           text-align: left
 
-      .expand
-        position: absolute
-        top: .78em
-        right: .9rem
-        transition: transform .3s
+        &.group
+          & > i:last-child
+            position: absolute
+            top: .78em
+            right: .9rem
+            transition: transform .3s
 
-        &.hide
-          transform: rotate(90deg) !important
+          &.hide
+            & > i:last-child
+              transform: rotate(90deg)
+
+            & + .menus_item_child
+              display: none
 
       .menus_item_child
         margin: 0
         list-style: none
-
-        if hexo-config('hide_sidebar_menu_child')
-          display: none

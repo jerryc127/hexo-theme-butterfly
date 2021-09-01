@@ -54,7 +54,9 @@ if (theme.snackbar && theme.snackbar.enable)
 
 if theme.algolia_search.enable
   link(rel='stylesheet' href=url_for(theme.CDN.algolia_search_css) media="print" onload="this.media='all'")
-  script(src=url_for(theme.CDN.algolia_search) defer)
+
+if theme.fancybox
+  link(rel='stylesheet' href=url_for(theme.CDN.fancybox_css) media="print" onload="this.media='all'")
 
 //- google_adsense
 !=partial('includes/head/google_adsense', {}, {cache: true})

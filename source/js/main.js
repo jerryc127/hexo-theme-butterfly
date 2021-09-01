@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * 首頁top_img底下的箭頭
- */
+   * 首頁top_img底下的箭頭
+   */
   const scrollDownInIndex = () => {
     const $scrollDownEle = document.getElementById('scroll-down')
     $scrollDownEle && $scrollDownEle.addEventListener('click', function () {
@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * 代碼
- * 只適用於Hexo默認的代碼渲染
- */
+   * 代碼
+   * 只適用於Hexo默認的代碼渲染
+   */
   const addHighlightTool = function () {
     const highLight = GLOBAL_CONFIG.highlight
     if (!highLight) return
@@ -220,76 +220,38 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * PhotoFigcaption
- */
+   * PhotoFigcaption
+   */
   function addPhotoFigcaption () {
     document.querySelectorAll('#article-container img').forEach(function (item) {
       const parentEle = item.parentNode
-      if (!parentEle.parentNode.classList.contains('justified-gallery')) {
+      const altValue = item.alt
+      if (altValue && !parentEle.parentNode.classList.contains('justified-gallery')) {
         const ele = document.createElement('div')
         ele.className = 'img-alt is-center'
-        ele.textContent = item.getAttribute('alt')
+        ele.textContent = altValue
         parentEle.insertBefore(ele, item.nextSibling)
       }
     })
   }
 
   /**
- * fancybox和 mediumZoom
- */
-  const addFancybox = () => {
-    const runFancybox = () => {
-      document.querySelectorAll('#article-container img:not(.no-lightbox)').forEach(i => {
-        const lazyloadSrc = i.dataset.lazySrc || i.src
-        const dataCaption = i.alt || ''
-        btf.wrap(i, 'a', { href: lazyloadSrc, 'data-fancybox': 'gallery', 'data-caption': dataCaption, 'data-thumb': lazyloadSrc })
-      })
-
-      Fancybox.destroy()
-      Fancybox.bind('[data-fancybox]', {
-        Hash: false
-      })
-    }
-
-    if (typeof Fancybox !== 'function') {
-      const ele = document.createElement('link')
-      ele.rel = 'stylesheet'
-      ele.href = GLOBAL_CONFIG.source.fancybox.css
-      document.head.appendChild(ele)
-
-      getScript(`${GLOBAL_CONFIG.source.fancybox.js}`).then(() => {
-        runFancybox()
-      })
-    } else {
-      runFancybox()
-    }
-  }
-
-  const addMediumZoom = () => {
-    const zoom = mediumZoom(document.querySelectorAll('#article-container img:not(.no-lightbox)'))
-    zoom.on('open', e => {
-      const photoBg = document.documentElement.getAttribute('data-theme') === 'dark' ? '#121212' : '#fff'
-      zoom.update({
-        background: photoBg
-      })
-    })
-  }
-
-  // It needs to call it after the Justified Gallery done, or the fancybox maybe not work
+   * Lightbox
+   * It needs to call it after the Justified Gallery done, or the fancybox maybe not work
+   */
   const runLightbox = () => {
-    GLOBAL_CONFIG.lightbox === 'mediumZoom' && addMediumZoom()
-    GLOBAL_CONFIG.lightbox === 'fancybox' && addFancybox()
+    btf.loadLightbox(document.querySelectorAll('#article-container img:not(.no-lightbox)'))
   }
 
   /**
- * justified-gallery 圖庫排版
- * 需要 jQuery
- */
+   * justified-gallery 圖庫排版
+   * 需要 jQuery
+   */
   let detectJgJsLoad = false
   const runJustifiedGallery = function (ele) {
     const $justifiedGallery = $(ele)
     const $imgList = $justifiedGallery.find('img')
-    $imgList.unwrap()
+    $imgList.unwrap() // remove <p> tag
     if ($imgList.length) {
       $imgList.each(function (i, o) {
         if ($(o).attr('data-lazy-src')) $(o).attr('src', $(o).attr('data-lazy-src'))
@@ -297,17 +259,15 @@ document.addEventListener('DOMContentLoaded', function () {
       })
     }
 
+    runLightbox()
+
     if (detectJgJsLoad) {
-      runLightbox()
       btf.initJustifiedGallery($justifiedGallery)
       return
     }
 
     $('head').append(`<link rel="stylesheet" type="text/css" href="${GLOBAL_CONFIG.source.justifiedGallery.css}">`)
-    $.getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`, function () {
-      runLightbox()
-      btf.initJustifiedGallery($justifiedGallery)
-    })
+    $.getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`, () => { btf.initJustifiedGallery($justifiedGallery) })
     detectJgJsLoad = true
   }
 
@@ -323,8 +283,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * 滾動處理
- */
+   * 滾動處理
+   */
   const scrollFn = function () {
     const $rightside = document.getElementById('rightside')
     const innerHeight = window.innerHeight + 56
@@ -387,8 +347,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- *  toc
- */
+  *  toc
+  */
   const tocFn = function () {
     const $cardTocLayout = document.getElementById('card-toc')
     const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0]
@@ -517,8 +477,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * Rightside
- */
+   * Rightside
+   */
   const rightSideFn = {
     switchReadMode: () => { // read-mode
       const $body = document.body
@@ -582,7 +542,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       saveToLocal.set('global-font-size', newValue, 2)
-      // document.getElementById('font-text').innerText = newValue
     }
   }
 
@@ -616,34 +575,21 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
   /**
- * menu
- * 側邊欄sub-menu 展開/收縮
- * 解決menus在觸摸屏下，滑動屏幕menus_item_child不消失的問題（手機hover的bug)
- */
-  const clickFnOfSubMenu = function () {
-    document.querySelectorAll('#sidebar-menus .expand').forEach(function (e) {
-      e.addEventListener('click', function () {
+   * menu
+   * 側邊欄sub-menu 展開/收縮
+   * 解決menus在觸摸屏下，滑動屏幕menus_item_child不消失的問題（手機hover的bug)
+   */
+  const clickFnOfSubMenu = () => {
+    document.querySelectorAll('#sidebar-menus .site-page.group').forEach(function (item) {
+      item.addEventListener('click', function () {
         this.classList.toggle('hide')
-        const $dom = this.parentNode.nextElementSibling
-        if (btf.isHidden($dom)) {
-          $dom.style.display = 'block'
-        } else {
-          $dom.style.display = 'none'
-        }
-      })
-    })
-
-    window.addEventListener('touchmove', function (e) {
-      const $menusChild = document.querySelectorAll('#nav .menus_item_child')
-      $menusChild.forEach(item => {
-        if (!btf.isHidden(item)) item.style.display = 'none'
       })
     })
   }
 
   /**
- * 複製時加上版權信息
- */
+   * 複製時加上版權信息
+   */
   const addCopyright = () => {
     const copyright = GLOBAL_CONFIG.copyright
     document.body.oncopy = (e) => {
@@ -667,8 +613,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * 網頁運行時間
- */
+   * 網頁運行時間
+   */
   const addRuntime = () => {
     const $runtimeCount = document.getElementById('runtimeshow')
     if ($runtimeCount) {
@@ -678,8 +624,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * 最後一次更新時間
- */
+   * 最後一次更新時間
+   */
   const addLastPushDate = () => {
     const $lastPushDateItem = document.getElementById('last-push-date')
     if ($lastPushDateItem) {
@@ -689,8 +635,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * table overflow
- */
+   * table overflow
+   */
   const addTableWrap = function () {
     const $table = document.querySelectorAll('#article-container :not(.highlight) > table, #article-container > table')
     if ($table.length) {
@@ -701,8 +647,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * tag-hide
- */
+   * tag-hide
+   */
   const clickFnOfTagHide = function () {
     const $hideInline = document.querySelectorAll('#article-container .hide-button')
     if ($hideInline.length) {

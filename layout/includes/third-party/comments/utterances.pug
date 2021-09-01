@@ -13,13 +13,13 @@ script.
   }
 
   function utterancesTheme () {
-    if (document.querySelector('.utterances-frame')) {
+    const iframe = document.querySelector('.utterances-frame')
+    if (iframe) {
       const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
       const message = {
         type: 'set-theme',
         theme: theme
       };
-      const iframe = document.querySelector('.utterances-frame');
       iframe.contentWindow.postMessage(message, 'https://utteranc.es');
     }
   }

@@ -1,26 +1,27 @@
 if theme.menu
-  //- for mobile sidebar
-  - let sidebarChildHide = theme.hide_sidebar_menu_child ? 'hide' : ''
-
   .menus_items
     each value, label in theme.menu
       if typeof value !== 'object'
         .menus_item
-          a.site-page(href=url_for(trim(value.split('||')[0])))
-            if value.split('||')[1]
-              i.fa-fw(class=trim(value.split('||')[1]))
+          - const valueArray = value.split('||')
+          a.site-page(href=url_for(trim(valueArray[0])))
+            if valueArray[1]
+              i.fa-fw(class=trim(valueArray[1]))
             span=' '+label
       else
         .menus_item
-          a.site-page(href='javascript:void(0);')
-            if label.split('||')[1]
-              i.fa-fw(class=trim(label.split('||')[1]))
-            span=' '+ trim(label.split('||')[0])
-            i.fas.fa-chevron-down.expand(class=sidebarChildHide)
+          - const labelArray = label.split('||')
+          - const hideClass = labelArray[2] && trim(labelArray[2]) === 'hide' ? 'hide' : ''
+          a.site-page.group(class=`${hideClass}` href='javascript:void(0);')
+            if labelArray[1]
+              i.fa-fw(class=trim(labelArray[1]))
+            span=' '+ trim(labelArray[0])
+            i.fas.fa-chevron-down
           ul.menus_item_child
             each val,lab in value 
+              - const valArray = val.split('||')
               li
-                a.site-page.child(href=url_for(trim(val.split('||')[0])))
-                  if val.split('||')[1]
-                    i.fa-fw(class=trim(val.split('||')[1]))
+                a.site-page.child(href=url_for(trim(valArray[0])))
+                  if valArray[1]
+                    i.fa-fw(class=trim(valArray[1]))
                   span=' '+ lab

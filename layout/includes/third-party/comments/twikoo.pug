@@ -5,7 +5,10 @@ script.
       twikoo.init(Object.assign({
         el: '#twikoo-wrap',
         envId: '!{theme.twikoo.envId}',
-        region: '!{theme.twikoo.region}'
+        region: '!{theme.twikoo.region}',
+        onCommentLoaded: function () {
+          btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
+        }
       }, !{JSON.stringify(theme.twikoo.option)}))
     }
 
