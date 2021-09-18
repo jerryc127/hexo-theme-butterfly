@@ -11,7 +11,7 @@ if $highlight_theme == 'darker' || ($highlight_theme == 'mac')
     color: alpha($highlight-foreground, .8),
     bg-color: darken($highlight-background, 2)
   }
-  $highlight-scrollbar = darken($highlight-background, 6)
+  $highlight-scrollbar = lighten($highlight-background, 8)
 
   if $highlighEnable
     $highlight-comment = #969896
@@ -37,7 +37,7 @@ if $highlight_theme == 'pale night'
     color: $highlight-foreground,
     bg-color: darken($highlight-background, 2)
   }
-  $highlight-scrollbar = darken($highlight-background, 6)
+  $highlight-scrollbar = lighten($highlight-background, 8)
 
   if $highlighEnable
     $highlight-comment = #676E95
@@ -63,7 +63,7 @@ if $highlight_theme == 'ocean'
     color: $highlight-foreground,
     bg-color: darken($highlight-background, 2)
   }
-  $highlight-scrollbar = darken($highlight-background, 5)
+  $highlight-scrollbar = lighten($highlight-background, 8)
 
   if $highlighEnable
     $highlight-comment = rgba(101, 115, 126, .8)

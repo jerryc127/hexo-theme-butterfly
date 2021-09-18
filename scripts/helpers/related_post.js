@@ -46,11 +46,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
 
   if (relatedPosts.length > 0) {
     result += '<div class="relatedPosts">'
-    result +=
-      '<div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>' +
-      ' ' +
-      headlineLang +
-      '</span></div>'
+    result += `<div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>${headlineLang}</span></div>`
     result += '<div class="relatedPosts-list">'
 
     for (let i = 0; i < Math.min(relatedPosts.length, limitNum); i++) {
@@ -58,32 +54,14 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
         relatedPosts[i].cover === false
           ? relatedPosts[i].randomcover
           : relatedPosts[i].cover
-      result +=
-        '<div><a href="' +
-        hexoConfig.root +
-        relatedPosts[i].path +
-        '" title="' +
-        relatedPosts[i].title +
-        '">'
-      result +=
-        '<img class="cover" src="' +
-        this.url_for(cover) +
-        '" alt="cover">'
+      result += `<div><a href="${this.url_for(relatedPosts[i].path)}" title="${relatedPosts[i].title}">`
+      result += `<img class="cover" src="${this.url_for(cover)}" alt="cover">`
       if (dateType === 'created') {
-        result +=
-          '<div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i>' +
-          ' ' +
-          this.date(relatedPosts[i].created, hexoConfig.date_format) +
-          '</div>'
+        result += `<div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> ${this.date(relatedPosts[i].created, hexoConfig.date_format)}</div>`
       } else {
-        result +=
-          '<div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i>' +
-          ' ' +
-          this.date(relatedPosts[i].updated, hexoConfig.date_format) +
-          '</div>'
+        result += `<div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> ${this.date(relatedPosts[i].updated, hexoConfig.date_format)}</div>`
       }
-      result +=
-        '<div class="title">' + relatedPosts[i].title + '</div>'
+      result += `<div class="title">${relatedPosts[i].title}</div>`
       result += '</div></a></div>'
     }
 

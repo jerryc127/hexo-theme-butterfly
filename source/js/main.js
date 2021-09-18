@@ -225,10 +225,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function addPhotoFigcaption () {
     document.querySelectorAll('#article-container img').forEach(function (item) {
       const parentEle = item.parentNode
-      if (!parentEle.parentNode.classList.contains('justified-gallery')) {
+      const altValue = item.alt
+      if (altValue && !parentEle.parentNode.classList.contains('justified-gallery')) {
         const ele = document.createElement('div')
         ele.className = 'img-alt is-center'
-        ele.textContent = item.getAttribute('alt')
+        ele.textContent = altValue
         parentEle.insertBefore(ele, item.nextSibling)
       }
     })
