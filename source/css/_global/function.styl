@@ -17,6 +17,16 @@
   text-rendering: auto
   -webkit-font-smoothing: antialiased
 
+// card hover
+.cardHover
+  border-radius: 8px
+  background: var(--card-bg)
+  box-shadow: var(--card-box-shadow)
+  transition: all .3s
+
+  &:hover
+    box-shadow: var(--card-hover-box-shadow)
+
 maxWidth600()
   @media screen and (max-width: 600px)
     {block}
@@ -123,12 +133,12 @@ if hexo-config('avatar.effect') == true
 
 @keyframes bottom-top
   0%
-    opacity: 0
     margin-top: 50px
+    opacity: 0
 
   100%
-    opacity: 1
     margin-top: 0
+    opacity: 1
 
 @keyframes titlescale
   0%

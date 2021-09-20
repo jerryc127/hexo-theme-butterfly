@@ -47,9 +47,10 @@ window.addEventListener('load', () => {
       .then(str => new window.DOMParser().parseFromString(str, 'text/xml'))
       .then(data => {
         const datas = [...data.querySelectorAll('entry')].map(function (item) {
+          const content = item.querySelector('content')
           return {
             title: item.querySelector('title').textContent,
-            content: item.querySelector('content').textContent,
+            content: content ? content.textContent : '',
             url: item.querySelector('url').textContent
           }
         })

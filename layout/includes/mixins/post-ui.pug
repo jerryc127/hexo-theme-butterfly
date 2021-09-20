@@ -1,14 +1,19 @@
 mixin postUI(posts)
   each article , index in page.posts.data
     .recent-post-item
-      - let link = article.link || article.path
-      - let title = article.title || _p('no_title')
-      - let leftOrRight = index%2 == 0 ? 'left_radius' : 'right_radius'
-      - let post_cover = article.cover
-      - let no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
+      -
+        let link = article.link || article.path
+        let title = article.title || _p('no_title')
+        const position = theme.cover.position
+        let leftOrRight = position === 'both' 
+          ? index%2 == 0 ? 'left' : 'right'
+          : position === 'left' ? 'left' : 'right'
+        let post_cover = article.cover
+        let no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
+      -
       if post_cover && theme.cover.index_enable
         .post_cover(class=leftOrRight)
-          a(href=url_for(link) title=title)      
+          a(href=url_for(link) title=title)
             img.post_bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` alt=title)
       .recent-post-info(class=no_cover)
         a.article-title(href=url_for(link) title=title)= title
@@ -20,7 +25,7 @@ mixin postUI(posts)
               span.article-meta__separator |
           if (theme.post_meta.page.date_type)
             span.post-meta-date
-              if (theme.post_meta.page.date_type === 'both')               
+              if (theme.post_meta.page.date_type === 'both')
                 i.far.fa-calendar-alt
                 span.article-meta-label=_p('post.created')
                 time.post-meta-date-created(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date))=date(article.date, config.date_format)

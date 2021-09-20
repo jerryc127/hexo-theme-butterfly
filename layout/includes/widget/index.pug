@@ -1,7 +1,9 @@
 #aside-content.aside-content
   //- post
   if is_post()
-    if showToc && theme.toc.style_simple
+    - const tocStyle = page.style_simple
+    - const tocStyleVal = tocStyle === true || tocStyle === false ? tocStyle : theme.toc.style_simple
+    if showToc && tocStyleVal
       .sticky_layout
         include ./card_post_toc.pug
     else

@@ -1,16 +1,13 @@
 beautify()
   headStyle(fontsize)
-    padding-left: unit(fontsize + .4, 'rem')
-
-    code
-      font-size: unit(fontsize, 'rem')
+    padding-left: unit(fontsize + .4, 'px')
 
     &:before
-      margin-left: unit((-(fontsize + .2)), 'rem')
-      font-size: unit(fontsize, 'rem')
+      margin-left: unit((-(fontsize + 4)), 'px')
+      font-size: unit(fontsize, 'px')
 
     &:hover
-      padding-left: unit(fontsize + .6, 'rem')
+      padding-left: unit(fontsize + 12, 'px')
 
   h1,
   h2,
@@ -22,7 +19,7 @@ beautify()
 
     &:before
       position: absolute
-      top: calc(50% - .35rem)
+      top: calc(50% - 7px)
       color: $title-prefix-icon-color
       content: $title-prefix-icon
       line-height: 1
@@ -34,47 +31,47 @@ beautify()
         color: $light-blue
 
   h1
-    headStyle(1)
+    headStyle(20)
 
   h2
-    headStyle(.9)
+    headStyle(18)
 
   h3
-    headStyle(.8)
+    headStyle(16)
 
   h4
-    headStyle(.7)
+    headStyle(14)
 
   h5
-    headStyle(.6)
+    headStyle(12)
 
   h6
-    headStyle(.6)
+    headStyle(12)
 
   ol,
   ul
-    margin-top: .4rem
-    padding: 0 0 0 .8rem
+    margin-top: 8px
+    padding: 0 0 0 16px
     list-style: none
     counter-reset: li
 
     +maxWidth768()
-      padding: 0 0 0 .4rem
+      padding: 0 0 0 8px
 
     p
-      margin: 0 0 .5rem
+      margin: 0 0 10px
 
     ol,
     ul
-      padding-left: .6rem
+      padding-left: 12px
 
       +maxWidth768()
-        padding-left: .2rem
+        padding-left: 4px
 
     li
       &:not(.tab)
         position: relative
-        margin: .2rem 0
+        margin: 4px 0
 
       &:hover
         &:before
@@ -127,19 +124,19 @@ beautify()
 no-beautify()
   ol,
   ul
-    margin-top: .4rem
+    margin-top: 8px
 
     p
-      margin: 0 0 .5rem
+      margin: 0 0 10px
 
     ol,
     ul
-      padding-left: .5rem
+      padding-left: 10px
 
     li
       position: relative
-      margin: .3rem 0
-      padding-left: .3rem
+      margin: 6px 0
+      padding-left: 6px
 
 #article-container
   word-wrap: break-word
@@ -153,14 +150,14 @@ no-beautify()
 
   img
     display: block
-    margin: 0 auto .8rem
+    margin: 0 auto 20px
     max-width: 100%
 
   p
-    margin: 0 0 .8rem
+    margin: 0 0 16px
 
   iframe
-    margin: 0 0 1rem
+    margin: 0 0 20px
 
   kbd
     margin: 0 3px
@@ -197,11 +194,11 @@ no-beautify()
 
       &__tags
         display: inline-block
-        margin: .4rem .4rem .4rem 0
-        padding: 0 .6rem
+        margin: 8px 8px 8px 0
+        padding: 0 12px
         width: fit-content
         border: 1px solid $light-blue
-        border-radius: .6rem
+        border-radius: 12px
         color: $light-blue
         font-size: .85em
         transition: all .2s ease-in-out
@@ -213,7 +210,7 @@ no-beautify()
     .post_share
       display: inline-block
       float: right
-      margin: .4rem 0
+      margin: 8px 0
       width: fit-content
 
       .social-share
@@ -228,19 +225,19 @@ no-beautify()
 
   .post-copyright
     position: relative
-    margin: 2rem 0 .5rem
-    padding: .5rem .8rem
+    margin: 40px 0 10px
+    padding: 10px 16px
     border: 1px solid var(--light-grey)
     transition: box-shadow .3s ease-in-out
 
     &:before
       @extend .fontawesomeIcon
       position: absolute
-      top: .1rem
-      right: .6rem
+      top: 2px
+      right: 12px
       color: $theme-color
       content: '\f1f9'
-      font-size: 1rem
+      font-size: 1.3em
 
     &:hover
       box-shadow: 0 0 8px 0 rgba(232, 237, 250, .6), 0 2px 4px 0 rgba(232, 237, 250, .5)
@@ -251,7 +248,7 @@ no-beautify()
         font-weight: bold
 
       &-info
-        padding-left: .3rem
+        padding-left: 6px
 
         a
           text-decoration: underline
@@ -262,7 +259,7 @@ no-beautify()
 
   .post-outdate-notice
     position: relative
-    margin: 0 0 1rem
+    margin: 0 0 20px
     padding: .5em 1.2em
     border-radius: 3px
     background-color: $noticeOutdate-bg
@@ -282,4 +279,4 @@ no-beautify()
         transform: translateY(-50%)
 
   .ads-wrap
-    margin: 2rem 0
+    margin: 40px 0

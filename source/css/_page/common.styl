@@ -7,7 +7,7 @@
   display: flex
   flex: 1 auto
   margin: 0 auto
-  padding: 2rem 15px
+  padding: 40px 15px
   max-width: 1200px
   width: 100%
 
@@ -15,23 +15,18 @@
     flex-direction: column
 
   +maxWidth768()
-    padding: 1rem 5px
+    padding: 20px 5px
 
   +minWidth2000()
     max-width: 1500px
 
   & > div:first-child:not(.recent-posts)
+    @extend .cardHover
     align-self: flex-start
     padding: 50px 40px
-    border-radius: 8px
-    background: var(--card-bg)
-    box-shadow: var(--card-box-shadow)
-
-    &:hover
-      box-shadow: var(--card-hover-box-shadow)
 
     +maxWidth768()
-      padding: 1.8rem .7rem !important
+      padding: 36px 14px
 
   & > div:first-child
     width: 75%
@@ -53,3 +48,11 @@
 
     & > div
       width: 100% !important
+
+// for apple device
+.apple
+  #page-header.full_page
+    background-attachment: scroll !important
+
+  .recent-post-item
+    transform: translateZ(0)

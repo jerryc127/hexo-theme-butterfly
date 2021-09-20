@@ -171,7 +171,7 @@ toc:
   post: true
   page: false
   number: true
-  style_simple: false
+  style_simple: false # for post
 
 post_copyright:
   enable: true

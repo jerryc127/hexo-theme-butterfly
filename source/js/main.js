@@ -354,6 +354,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0]
     const $tocLink = $cardToc.querySelectorAll('.toc-link')
     const $article = document.getElementById('article-container')
+    const $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
 
     // main of scroll
     window.tocScrollFn = function () {
@@ -373,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const scrollPercent = (currentTop - headerHeight) / (contentMath)
       const scrollPercentRounded = Math.round(scrollPercent * 100)
       const percentage = (scrollPercentRounded > 100) ? 100 : (scrollPercentRounded <= 0) ? 0 : scrollPercentRounded
-      $cardToc.setAttribute('progress-percentage', percentage)
+      $tocPercentage.textContent = percentage
     }
 
     // anchor

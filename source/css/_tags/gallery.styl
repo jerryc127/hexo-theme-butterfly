@@ -2,15 +2,15 @@ figure.gallery-group
   position: relative
   float: left
   overflow: hidden
-  margin: .3rem .2rem
-  width: calc(50% - .4rem)
+  margin: 6px 4px
+  width: calc(50% - 8px)
   height: 250px
   border-radius: 8px
   background: $dark-black
   -webkit-transform: translate3d(0, 0, 0)
 
   +maxWidth600()
-    width: calc(100% - .4rem)
+    width: calc(100% - 8px)
 
   &:hover
     img
@@ -40,7 +40,7 @@ figure.gallery-group
     position: absolute
     top: 0
     left: 0
-    padding: 1.5rem
+    padding: 30px
     width: 100%
     height: 100%
     color: $gallery-color
@@ -59,7 +59,7 @@ figure.gallery-group
   p
     @extend .limit-more-line
     margin: 0
-    padding: .4rem 0 0
+    padding: 8px 0 0
     letter-spacing: 1px
     font-size: 1.1em
     line-height: 1.5
@@ -72,7 +72,7 @@ figure.gallery-group
     @extend .limit-more-line
     position: relative
     margin: 0
-    padding: .4rem 0
+    padding: 8px 0
     font-weight: bold
     font-size: 1.65em
     line-height: 1.5
@@ -91,10 +91,10 @@ figure.gallery-group
 
 .gallery-group-main
   overflow: auto
-  padding: 0 0 .8rem
+  padding: 0 0 16px
 
 .justified-gallery
-  margin: 0 0 .8rem
+  margin: 0 0 16px
 
   img
     opacity: 0
