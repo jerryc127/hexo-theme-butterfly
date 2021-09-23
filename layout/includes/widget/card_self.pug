@@ -1,9 +1,0 @@
-if site.data.widget
-  each item in site.data.widget
-    .card-widget(class=item.class_name id=item.id_name style=item.order ? `order: ${item.order}` : '')
-      .item-headline
-        i(class=item.icon)
-        span=item.name
-      .item-content
-        !=item.html
-
