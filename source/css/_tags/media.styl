@@ -1,0 +1,57 @@
+trans($time = 0.28s)
+  transition: all $time ease
+  -moz-transition: all $time ease
+  -webkit-transition: all $time ease
+  -o-transition: all $time ease
+
+audio,video
+  border-radius: 4px
+  max-width: 100%
+video
+  z-index: 1
+  trans()
+  &:hover
+    box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.24), 0 8px 16px 0px rgba(0, 0, 0, 0.24)
+
+div.video
+  line-height: 0
+  text-align: center
+
+div.videos
+  max-width: "calc(100% + 2 * %s)" % 4px
+  display: flex
+  flex-wrap: wrap
+  justify-content: flex-start
+  align-items: flex-end
+  margin: 1em 0 - 4px
+  .video,iframe
+    width: 100%
+    margin: 4px
+
+  iframe
+    border-radius: 4px
+    width: 100%
+    min-height: 300px
+  &.left
+    justify-content: flex-start
+  &.center
+    justify-content: center
+  &.right
+    justify-content: flex-end
+  &.stretch
+    align-items: stretch
+  &[col='1']
+    .video,iframe
+      width: 100%
+  &[col='2']
+    .video,iframe
+      width: "calc(50% - 2 * %s)" % 4px
+  &[col='3']
+    .video,iframe
+      width: "calc(33.33% - 2 * %s)" % 4px
+  &[col='4']
+    .video,iframe
+      width: "calc(25% - 2 * %s)" % 4px
+[data-theme="dark"]
+  audio,video
+    filter brightness(0.7)

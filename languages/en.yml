@@ -30,7 +30,7 @@ post:
     author: Author
     link: Link
     copyright_notice: Copyright Notice
-    copyright_content: 'All articles in this blog are licensed under <a href="%s">%s</a> unless stating additionally.'
+    copyright_content: 'All articles in this blog are original by W4J1e unless otherwise stated, and reprinting without permission is prohibited!'
   recommend: Related Articles
   edit: Edited on
 

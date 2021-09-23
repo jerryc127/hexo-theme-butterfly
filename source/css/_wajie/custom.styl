@@ -1,0 +1,70 @@
+// Icon 颜色
+// https://flatuicolors.com/palette/defo
+.fa,
+.fad,
+.fal
+  &.TURQUOISE
+    color: #1abc9c
+  &.EMERALD
+    color: #2ecc71
+  &.PETERRIVE
+    color: #3498db
+  &.AMETHYST
+    color: #9b59b6
+  &.WETASPHALT
+    color: #34495e
+    
+  &.GREENSEA
+    color: #16a085
+  &.NEPHRITIS
+    color: #27ae60
+  &.BELIZEHOLE
+    color: #2980b9
+  &.WISTERIA
+    color: #8e44ad
+  &.MIDNIGHTBLUE
+    color: #2c3e50
+
+  &.SUNFLOWER
+    color: #f1c40f
+  &.CARROT
+    color: #e67e22
+  &.ALIZARIN
+    color: #e74c3c
+  &.CLOUDS
+    color: #ecf0f1
+  &.CONCRETE
+    color: #95a5a6
+
+  &.ORANGE
+    color: #f39c12
+  &.PUMPKIN
+    color: #d35400
+  &.POMEGRANATE
+    color: #c0392b
+  &.SILVER
+    color: #bdc3c7
+  &.ASBESTOS
+    color: #7f8c8d
+
+/* 头图透明 */
+#page-header{
+  background: transparent!important;
+}
+/* 页脚透明 */
+#footer{
+  background: transparent!important;
+}
+/*top-img黑色透明玻璃效果移除，不建议加，除非你执着于完全一图流或者背景图对比色明显 */
+#page-header.post-bg:before {
+  background-color: transparent!important;
+}
+/*夜间模式伪类遮罩层透明*/
+[data-theme="dark"]
+  #footer::before{
+      background: transparent!important;
+    }
+[data-theme="dark"]
+  #page-header::before{
+    background: transparent!important;
+    }	
