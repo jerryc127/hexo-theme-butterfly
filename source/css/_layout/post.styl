@@ -108,7 +108,7 @@ beautify()
 
       &:hover
         &:before
-          border-color: $pseudo-hover
+          border-color: var(--pseudo-hover)
 
       &:before
         $w = .42em
@@ -152,6 +152,7 @@ no-beautify()
     display: block
     margin: 0 auto 20px
     max-width: 100%
+    transition: filter 375ms ease-in 0.2s
 
   p
     margin: 0 0 16px

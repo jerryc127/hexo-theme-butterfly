@@ -8,15 +8,6 @@
       background: $theme-paginator-color
       color: var(--white)
 
-  img.prev-cover,
-  img.next-cover
-    position: absolute
-    width: 100%
-    height: 100%
-    opacity: .4
-    transition: all .6s
-    object-fit: cover
-
   .pagination-info
     position: absolute
     top: 50%
@@ -45,6 +36,7 @@
 
   .prev-post,
   .next-post
+    @extend .postImgHover
     width: 50%
 
     +maxWidth768()
@@ -55,12 +47,6 @@
       display: block
       overflow: hidden
       height: 150px
-
-    &:hover
-      img.prev-cover,
-      img.next-cover
-        opacity: .8
-        transform: scale(1.1)
 
   &.pagination-post
     overflow: hidden

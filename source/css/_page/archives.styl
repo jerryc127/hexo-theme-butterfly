@@ -12,7 +12,7 @@
 
     &:hover
       &:before
-        border-color: $pseudo-hover
+        border-color: var(--pseudo-hover)
 
     &:before
       position: absolute
@@ -47,7 +47,7 @@
 
     &:hover
       &:before
-        border-color: $pseudo-hover
+        border-color: var(--pseudo-hover)
 
     &:before
       $w = 6px
@@ -75,7 +75,7 @@
           border-color: $light-blue
 
       &:before
-        border-color: $pseudo-hover
+        border-color: var(--pseudo-hover)
 
     &-time
       color: $theme-meta-color
@@ -102,13 +102,7 @@
       height: 80px
 
       img
-        width: 100%
-        height: 100%
-        transition: all .6s
-        object-fit: cover
-
-        &:hover
-          transform: scale(1.1)
+        @extend .imgHover
 
     &-info
       flex: 1

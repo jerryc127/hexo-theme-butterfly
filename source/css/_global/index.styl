@@ -29,6 +29,9 @@
   --toc-link-color: $toc-link-color
   --card-box-shadow: 0 3px 8px 6px rgba(7, 17, 27, .05)
   --card-hover-box-shadow: 0 3px 8px 6px rgba(7, 17, 27, .09)
+  --timeline-bg: $timeline-content-bg
+  --timeline-border-color: $timeline-border-color
+  --pseudo-hover: $pseudo-hover
 
 body
   position: relative
@@ -203,7 +206,7 @@ img
 if hexo-config('lazyload.enable') && hexo-config('lazyload.blur') && !hexo-config('lazyload.placeholder')
   img
     &[data-lazy-src]:not(.loaded)
-      filter: blur(10px) brightness(1)
+      filter: blur(8px) brightness(1)
 
     &[data-lazy-src].error
       filter: none

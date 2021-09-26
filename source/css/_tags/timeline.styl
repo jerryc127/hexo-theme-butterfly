@@ -1,0 +1,58 @@
+#article-container
+  .timeline
+    margin: 0 0 20px
+    padding: 14px 20px 5px
+    border-left: 2px solid var(--timeline-border-color)
+
+    .timeline-item
+      margin: 0 0 15px
+
+      &:hover
+        .item-circle
+          &:before
+            border: 3px solid var(--pseudo-hover)
+
+      &.headline
+        .timeline-item-title
+          .item-circle
+            > p
+              font-weight: 600
+              font-size: 1.2em
+
+            &:before
+              left: -28px
+              border: 4px solid var(--pseudo-hover)
+
+      .timeline-item-title
+        position: relative
+
+      .item-circle
+        &:before
+          position: absolute
+          top: 50%
+          left: -27px
+          width: 6px
+          height: 6px
+          border: 3px solid var(--timeline-border-color)
+          border-radius: 50%
+          background: var(--card-bg)
+          content: ''
+          transition: all .3s
+          transform: translate(0, -50%)
+
+        > p
+          margin: 0 0 8px
+          font-weight: 500
+
+      .timeline-item-content
+        position: relative
+        padding: 12px 10px
+        border-radius: 8px
+        background: var(--timeline-bg)
+        font-size: .93em
+
+        & > :last-child
+          margin-bottom: 0
+
+    & + .timeline
+      margin-top: -20px

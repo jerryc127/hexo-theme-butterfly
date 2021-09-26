@@ -118,6 +118,4 @@ Snackbar:
 
 loading: Loading...
 
-error404:
-  error_title: Page not found
-  back_button: Go back home
+error404: Page not found

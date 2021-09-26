@@ -1,17 +1,12 @@
-- var top_img = theme.error_404.background || theme.default_top_img
-- var bg_img = `background-image: url('${url_for(top_img)}')`
+- var top_img_404 = theme.error_404.background || theme.default_top_img
 
 #body-wrap.error404
-  div(style='display: none')
-    include ./header/index.pug
+  include ./header/index.pug
 
   #error-wrap
     .error-content
-      .error-img(style=bg_img)
+      .error-img
+        img(src=url_for(top_img_404) alt='Page not found')
       .error-info
         h1.error_title= '404'
-        .error_subtitle= theme.error_404.subtitle
-        a.button--animated(href=config.root)
-          i.fas.fa-rocket
-          = _p('error404.back_button')
-          
+        .error_subtitle= theme.error_404.subtitle || _p('error404')

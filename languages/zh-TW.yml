@@ -119,6 +119,4 @@ Snackbar:
 
 loading: 載入中...
 
-error404:
-  error_title: 頁面沒有找到
-  back_button: 回到主頁
+error404: 頁面沒有找到
