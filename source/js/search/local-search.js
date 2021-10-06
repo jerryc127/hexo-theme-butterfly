@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
       loadFlag = true
     }
     // shortcut: ESC
-    document.addEventListener('keydown', function f (event) {
+    document.addEventListener('keydown', function f(event) {
       if (event.code === 'Escape') {
         closeSearch()
         document.removeEventListener('keydown', f)
@@ -41,107 +41,112 @@ window.addEventListener('load', () => {
     searchClickFn()
   })
 
-  function search (path) {
-    fetch(GLOBAL_CONFIG.root + path)
-      .then(response => response.text())
-      .then(str => new window.DOMParser().parseFromString(str, 'text/xml'))
-      .then(data => {
-        const datas = [...data.querySelectorAll('entry')].map(function (item) {
-          const content = item.querySelector('content')
-          return {
-            title: item.querySelector('title').textContent,
-            content: content ? content.textContent : '',
-            url: item.querySelector('url').textContent
-          }
-        })
-
-        const $input = document.querySelector('#local-search-input input')
-        const $resultContent = document.getElementById('local-search-results')
-        $input.addEventListener('input', function () {
-          let str = '<div class="search-result-list">'
-          const keywords = this.value.trim().toLowerCase().split(/[\s]+/)
-          $resultContent.innerHTML = ''
-          if (this.value.trim().length <= 0) return
-          let count = 0
-          // perform local searching
-          datas.forEach(function (data) {
-            let isMatch = true
-            if (!data.title || data.title.trim() === '') {
-              data.title = 'Untitled'
-            }
-            let dataTitle = data.title.trim().toLowerCase()
-            const dataContent = data.content.trim().replace(/<[^>]+>/g, '').toLowerCase()
-            const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url
-            let indexTitle = -1
-            let indexContent = -1
-            let firstOccur = -1
-            // only match artiles with not empty titles and contents
-            if (dataTitle !== '' || dataContent !== '') {
-              keywords.forEach(function (keyword, i) {
-                indexTitle = dataTitle.indexOf(keyword)
-                indexContent = dataContent.indexOf(keyword)
-                if (indexTitle < 0 && indexContent < 0) {
-                  isMatch = false
-                } else {
-                  if (indexContent < 0) {
-                    indexContent = 0
-                  }
-                  if (i === 0) {
-                    firstOccur = indexContent
-                  }
-                }
-              })
-            } else {
+  async function search(path) {
+    let datas = []
+    const typeF = path.split('.')[1]
+    const response = await fetch(GLOBAL_CONFIG.root + path)
+    if (typeF === 'json') {
+      datas = await response.json()
+    } else if (typeF === 'xml') {
+      let res = await response.text()
+      let t = await new window.DOMParser().parseFromString(res, 'text/xml')
+      let a = await t
+      datas = [...a.querySelectorAll('entry')].map(function (item) {
+        return {
+          title: item.querySelector('title').textContent,
+          content: item.querySelector('content').textContent,
+          url: item.querySelector('url').textContent
+        }
+      })
+    }
+    const $input = document.querySelector('#local-search-input input')
+    const $resultContent = document.getElementById('local-search-results')
+    $input.addEventListener('input', function () {
+      let str = '<div class="search-result-list">'
+      const keywords = this.value.trim().toLowerCase().split(/[\s]+/)
+      $resultContent.innerHTML = ''
+      if (this.value.trim().length <= 0) return
+      let count = 0
+      // perform local searching
+      datas.forEach(function (data) {
+        let isMatch = true
+        if (!data.title || data.title.trim() === '') {
+          data.title = 'Untitled'
+        }
+        let dataTitle = data.title.trim().toLowerCase()
+        const dataContent = data.content.trim().replace(/<[^>]+>/g, '').toLowerCase()
+        const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url
+        let indexTitle = -1
+        let indexContent = -1
+        let firstOccur = -1
+        // only match artiles with not empty titles and contents
+        if (dataTitle !== '' || dataContent !== '') {
+          keywords.forEach(function (keyword, i) {
+            indexTitle = dataTitle.indexOf(keyword)
+            indexContent = dataContent.indexOf(keyword)
+            if (indexTitle < 0 && indexContent < 0) {
               isMatch = false
-            }
-
-            // show search results
-            if (isMatch) {
-              const content = data.content.trim().replace(/<[^>]+>/g, '')
-              if (firstOccur >= 0) {
-                // cut out 130 characters
-                let start = firstOccur - 30
-                let end = firstOccur + 100
-
-                if (start < 0) {
-                  start = 0
-                }
-
-                if (start === 0) {
-                  end = 100
-                }
-
-                if (end > content.length) {
-                  end = content.length
-                }
-
-                let matchContent = content.substring(start, end)
-
-                // highlight all keywords
-                keywords.forEach(function (keyword) {
-                  const regS = new RegExp(keyword, 'gi')
-                  matchContent = matchContent.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
-                  dataTitle = dataTitle.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
-                })
-
-                str += '<div class="local-search__hit-item"><a href="' + dataUrl + '" class="search-result-title">' + dataTitle + '</a>'
-                count += 1
-
-                if (dataContent !== '') {
-                  str += '<p class="search-result">' + matchContent + '...</p>'
-                }
+            } else {
+              if (indexContent < 0) {
+                indexContent = 0
               }
-              str += '</div>'
+              if (i === 0) {
+                firstOccur = indexContent
+              }
             }
           })
-          if (count === 0) {
-            str += '<div id="local-search__hits-empty">' + GLOBAL_CONFIG.localSearch.languages.hits_empty.replace(/\$\{query}/, this.value.trim()) +
-              '</div>'
+        } else {
+          isMatch = false
+        }
+
+        // show search results
+        if (isMatch) {
+          const content = data.content.trim().replace(/<[^>]+>/g, '')
+          if (firstOccur >= 0) {
+            // cut out 130 characters
+            // let start = firstOccur - 30 < 0 ? 0 : firstOccur - 30
+            // let end = firstOccur + 50 > content.length ? content.length : firstOccur + 50
+            let start = firstOccur - 30
+            let end = firstOccur + 100
+
+            if (start < 0) {
+              start = 0
+            }
+
+            if (start === 0) {
+              end = 100
+            }
+
+            if (end > content.length) {
+              end = content.length
+            }
+
+            let matchContent = content.substring(start, end)
+
+            // highlight all keywords
+            keywords.forEach(function (keyword) {
+              const regS = new RegExp(keyword, 'gi')
+              matchContent = matchContent.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
+              dataTitle = dataTitle.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
+            })
+
+            str += '<div class="local-search__hit-item"><a href="' + dataUrl + '" class="search-result-title">' + dataTitle + '</a>'
+            count += 1
+
+            if (dataContent !== '') {
+              str += '<p class="search-result">' + matchContent + '...</p>'
+            }
           }
           str += '</div>'
-          $resultContent.innerHTML = str
-          window.pjax && window.pjax.refresh($resultContent)
-        })
+        }
       })
+      if (count === 0) {
+        str += '<div id="local-search__hits-empty">' + GLOBAL_CONFIG.localSearch.languages.hits_empty.replace(/\$\{query}/, this.value.trim()) +
+          '</div>'
+      }
+      str += '</div>'
+      $resultContent.innerHTML = str
+      window.pjax && window.pjax.refresh($resultContent)
+    })
   }
 })
