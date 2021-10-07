@@ -7,15 +7,15 @@
 #   name: link || icon
 
 menu:
-  # Home: / || fas fa-home
+   首页: / || fas fa-home
   # Archives: /archives/ || fas fa-archive
-  # Tags: /tags/ || fas fa-tags
-  # Categories: /categories/ || fas fa-folder-open
+   标签: /tags/ || fas fa-tags
+   分类: /categories/ || fas fa-folder-open
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video
   # Link: /link/ || fas fa-link
-  # About: /about/ || fas fa-heart
+  # 关于: /about/ || fas fa-heart
 
 # Hide the child menu items in mobile sidebar
 hide_sidebar_menu_child: false
@@ -23,7 +23,7 @@ hide_sidebar_menu_child: false
 # Code Blocks (代碼相關)
 # --------------------------------------
 
-highlight_theme: light #  darker / pale night / light / ocean / mac / mac light / false
+highlight_theme: mac #  darker / pale night / light / ocean / mac / mac light / false
 highlight_copy: true # copy button
 highlight_lang: true # show the code language
 highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
@@ -643,9 +643,9 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/todohsk
   card_announcement:
-    enable: true
+    enable: false
     content: This is my Blog
   card_recent_post:
     enable: true
@@ -672,7 +672,7 @@ aside:
   card_webinfo:
     enable: true
     post_count: true
-    last_push_date: true
+    last_push_date: false
     sort_order: # Don't modify the setting unless you know how it works
 
 # busuanzi count for PV / UV in site
