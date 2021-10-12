@@ -95,8 +95,6 @@ share: 分享
 
 rightside:
   readmode_title: 閱讀模式
-  font_plus_title: 放大字型
-  font_minus_title: 縮小字型
   translate_title: 簡繁轉換
   night_mode_title: 淺色和深色模式轉換
   back_to_top: 回到頂部

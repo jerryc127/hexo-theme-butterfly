@@ -1,45 +1,48 @@
+- const { envId, region, option } = theme.twikoo
+- const { use, lazyload, count } = theme.comments
+
 script.
   (()=>{
-    const $countDom = document.getElementById('twikoo-count')
     const init = () => {
       twikoo.init(Object.assign({
         el: '#twikoo-wrap',
-        envId: '!{theme.twikoo.envId}',
-        region: '!{theme.twikoo.region}',
+        envId: '!{envId}',
+        region: '!{region}',
         onCommentLoaded: function () {
           btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.vemoji)'))
         }
-      }, !{JSON.stringify(theme.twikoo.option)}))
+      }, !{JSON.stringify(option)}))
     }
 
     const getCount = () => {
       twikoo.getCommentsCount({
-        envId: '!{theme.twikoo.envId}',
-        region: '!{theme.twikoo.region}',
+        envId: '!{envId}',
+        region: '!{region}',
         urls: [window.location.pathname],
         includeReply: false
       }).then(function (res) {
-        $countDom.innerText = res[0].count
+        document.getElementById('twikoo-count').innerText = res[0].count
       }).catch(function (err) {
         console.error(err);
       });
     }
 
-    const loadTwikoo = (bool = false) => {
-      if (typeof twikoo === 'object') {
-        init()
-        bool && $countDom && setTimeout(getCount,0)
-      } else {
-        getScript('!{theme.CDN.twikoo}').then(()=> {
-          init()
-          bool && $countDom && setTimeout(getCount,0)
-        })
-      }
+    const runFn = () => {
+      init()
+      !{count ? 'GLOBAL_CONFIG_SITE.isPost && getCount()' : ''}
     }
 
-    if ('!{theme.comments.use[0]}' === 'Twikoo' || !!{theme.comments.lazyload}) {
-      if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
-      else loadTwikoo(true)
+    const loadTwikoo = () => {
+      if (typeof twikoo === 'object') {
+        setTimeout(runFn,0)
+        return
+      } 
+      getScript('!{theme.CDN.twikoo}').then(runFn)
+    }
+
+    if ('!{use[0]}' === 'Twikoo' || !!{lazyload}) {
+      if (!{lazyload}) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+      else loadTwikoo()
     } else {
       window.loadOtherComment = () => {
         loadTwikoo()

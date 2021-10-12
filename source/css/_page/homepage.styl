@@ -8,7 +8,7 @@
     flex-direction: row
     align-items: center
     overflow: hidden
-    height: 20em
+    height: 18em
 
     +maxWidth768()
       flex-direction: column
@@ -24,7 +24,7 @@
 
     .post_cover
       overflow: hidden
-      width: 45%
+      width: 44%
       height: 100%
 
       +maxWidth768()
@@ -42,7 +42,7 @@
 
     & >.recent-post-info
       padding: 0 40px
-      width: 55%
+      width: 57%
 
       +maxWidth768()
         padding: 20px 20px 30px
@@ -88,13 +88,10 @@
           else
             display: none
 
-        .article-meta__separator
+        .article-meta-separator
           margin: 0 6px
 
-        .article-meta__link
-          margin: 0 4px
-
-        .fa-angle-right
+        .article-meta-link
           margin: 0 4px
 
         if hexo-config('post_meta.page.date_format') == 'relative'
@@ -110,4 +107,4 @@
 
       & > .content
         @extend .limit-more-line
-        -webkit-line-clamp: 3
+        -webkit-line-clamp: 2

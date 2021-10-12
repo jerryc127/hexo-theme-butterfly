@@ -24,7 +24,7 @@ Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) t
 
 ### GIT
 
-> If you are in Mainland China, you can download in [Gitee](https://gitee.com/iamjerryw/hexo-theme-butterfly)
+> If you are in Mainland China, you can download in [Gitee](https://gitee.com/immyw/hexo-theme-butterfly.git)
 
 Stable branch [recommend]:
 

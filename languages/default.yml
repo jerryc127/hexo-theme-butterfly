@@ -94,8 +94,6 @@ share: Share
 
 rightside:
   readmode_title: Read Mode
-  font_plus_title: Increase font size
-  font_minus_title: Decrease font size
   translate_title: Toggle Between Traditional Chinese And Simplified Chinese
   night_mode_title: Toggle Between Light And Dark Mode
   back_to_top: Back To Top

@@ -72,20 +72,6 @@ const btf = {
     })
   },
 
-  initJustifiedGallery: function (selector) {
-    if (!(selector instanceof jQuery)) {
-      selector = $(selector)
-    }
-    selector.each(function (i, o) {
-      if ($(this).is(':visible')) {
-        $(this).justifiedGallery({
-          rowHeight: 220,
-          margins: 4
-        })
-      }
-    })
-  },
-
   diffDate: (d, more = false) => {
     const dateNow = new Date()
     const datePost = new Date(d)
@@ -135,15 +121,11 @@ const btf = {
     }
   },
 
-  scrollToDest: (pos, time) => {
-    if (pos < 0 || time < 0) {
-      return
-    }
-
-    const currentPos = window.scrollY || window.screenTop
+  scrollToDest: (pos, time = 500) => {
+    const currentPos = window.pageYOffset
     if (currentPos > pos) pos = pos - 70
 
-    if ('CSS' in window && CSS.supports('scroll-behavior', 'smooth')) {
+    if ('scrollBehavior' in document.documentElement.style) {
       window.scrollTo({
         top: pos,
         behavior: 'smooth'
@@ -152,25 +134,19 @@ const btf = {
     }
 
     let start = null
-    time = time || 500
+    pos = +pos
     window.requestAnimationFrame(function step (currentTime) {
       start = !start ? currentTime : start
+      const progress = currentTime - start
       if (currentPos < pos) {
-        const progress = currentTime - start
         window.scrollTo(0, ((pos - currentPos) * progress / time) + currentPos)
-        if (progress < time) {
-          window.requestAnimationFrame(step)
-        } else {
-          window.scrollTo(0, pos)
-        }
       } else {
-        const progress = currentTime - start
         window.scrollTo(0, currentPos - ((currentPos - pos) * progress / time))
-        if (progress < time) {
-          window.requestAnimationFrame(step)
-        } else {
-          window.scrollTo(0, pos)
-        }
+      }
+      if (progress < time) {
+        window.requestAnimationFrame(step)
+      } else {
+        window.scrollTo(0, pos)
       }
     })
   },
@@ -226,14 +202,6 @@ const btf = {
     }
   },
 
-  isJqueryLoad: fn => {
-    if (typeof jQuery === 'undefined') {
-      getScript(GLOBAL_CONFIG.source.jQuery).then(fn)
-    } else {
-      fn()
-    }
-  },
-
   isHidden: ele => ele.offsetHeight === 0 && ele.offsetWidth === 0,
 
   getEleTop: ele => {
@@ -265,14 +233,35 @@ const btf = {
       ele.forEach(i => {
         if (i.parentNode.tagName !== 'A') {
           const dataSrc = i.dataset.lazySrc || i.src
-          const dataCaption = i.alt || ''
+          const dataCaption = i.title || i.alt || ''
           btf.wrap(i, 'a', { href: dataSrc, 'data-fancybox': 'gallery', 'data-caption': dataCaption, 'data-thumb': dataSrc })
         }
       })
 
-      Fancybox.bind('[data-fancybox]', {
-        Hash: false
-      })
+      if (!window.fancyboxRun) {
+        Fancybox.bind('[data-fancybox]', {
+          Hash: false,
+          Thumbs: {
+            autoStart: false
+          }
+        })
+        window.fancyboxRun = true
+      }
     }
+  },
+
+  initJustifiedGallery: function (selector) {
+    selector.forEach(function (i) {
+      if (!btf.isHidden(i)) {
+        fjGallery(i, {
+          itemSelector: '.fj-gallery-item',
+          rowHeight: 220,
+          gutter: 4,
+          onJustify: function () {
+            this.$container.style.opacity = '1'
+          }
+        })
+      }
+    })
   }
 }

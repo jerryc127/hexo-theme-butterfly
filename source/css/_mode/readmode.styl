@@ -36,6 +36,7 @@ if hexo-config('readmode')
       position: fixed
       top: 30px
       right: 30px
+      z-index: 100
       width: 40px
       height: 40px
       border-radius: 8px
@@ -43,6 +44,10 @@ if hexo-config('readmode')
       color: var(--exit-btn-color)
       font-size: 16px
       transition: background .3s
+
+      +maxWidth768()
+        top: initial
+        bottom: 30px
 
       &:hover
         background: var(--exit-btn-hover)

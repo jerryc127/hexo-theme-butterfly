@@ -8,7 +8,7 @@
 const urlFor = require('hexo-util').url_for.bind(hexo)
 
 function gallery (args, content) {
-  return `<div class="justified-gallery">${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}
+  return `<div class="fj-gallery">${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}
           </div>`
 }
 

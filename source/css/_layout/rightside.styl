@@ -1,6 +1,6 @@
 #rightside
   position: fixed
-  right: -38px
+  right: -48px
   bottom: $rightside-bottom
   z-index: 100
   opacity: 0
@@ -8,7 +8,7 @@
 
   #rightside-config-hide
     transition: transform .4s
-    transform: translate(35px, 0)
+    transform: translate(48px, 0)
 
     &.show
       transform: translate(0, 0) !important
@@ -17,16 +17,24 @@
     & > button,
     & > a
       display: block
-      margin-bottom: 2px
-      width: 30px
-      height: 30px
+      margin-bottom: 5px
+      width: w = 38px
+      height: w
+      border-radius: 5px
       background-color: var(--btn-bg)
       color: var(--btn-color)
       text-align: center
       font-size: 16px
+      line-height: w
+      touch-action: manipulation
 
       &:hover
         background-color: var(--btn-hover-color)
+
+      +maxWidth768()
+        width: w = 34px
+        height: w
+        line-height: w
 
   #mobile-toc-button
     display: none
