@@ -34,16 +34,18 @@ post:
   recommend: Related Articles
   edit: Edited on
 
-search: Search
-algolia_search:
-  input_placeholder: Search for Posts
-  hits_empty: "We didn't find any results for the search: ${query}."
-  hits_stats: '${hits} results found in ${time} ms'
+search:
+  title: Search
+  load_data: Loading the Database
+  algolia_search:
+    input_placeholder: Search for Posts
+    hits_empty: "We didn't find any results for the search: ${query}."
+    hits_stats: '${hits} results found in ${time} ms'
 
-local_search:
-  label: Local search
-  input_placeholder: Search for Posts
-  hits_empty: "We didn't find any results for the search: ${query}"
+  local_search:
+    label: Local search
+    input_placeholder: Search for Posts
+    hits_empty: "We didn't find any results for the search: ${query}"
 
 pagination:
   prev: Previous Post

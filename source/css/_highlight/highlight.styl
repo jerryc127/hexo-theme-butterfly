@@ -1,7 +1,5 @@
 $highlight_theme = hexo-config('highlight_theme')
-$highlighEnable = hexo-config('highlight_settings') && hexo-config('highlight_settings.enable')
-$prismjsEnable = hexo-config('prismjs_settings') && hexo-config('prismjs_settings.enable')
-wordWrap = !hexo-config('highlight_settings.line_number') && hexo-config('code_word_wrap')
+wordWrap = $highlight_enable && !$highlight_line_number && hexo-config('code_word_wrap')
 
 @require 'theme'
 
@@ -15,10 +13,10 @@ wordWrap = !hexo-config('highlight_settings.line_number') && hexo-config('code_w
   --hlscrollbar-bg: $highlight-scrollbar
   --hlexpand-bg: linear-gradient(180deg, rgba($highlight-background, .6), rgba($highlight-background, .9))
 
-if $highlighEnable
+if $highlight_enable
   @require 'highlight/index'
 
-if $prismjsEnable
+if $prismjs_enable
   @require 'prismjs/index'
 
 $code-block

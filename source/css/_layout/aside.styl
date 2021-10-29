@@ -258,7 +258,8 @@
 
     .toc-content
       clear: both
-      overflow-y: auto
+      overflow-y: scroll
+      overflow-y: overlay
       max-height: calc(100vh - 120px)
 
       +maxWidth900()
@@ -288,6 +289,7 @@
 
       .toc-link
         display: block
+        padding-right: 8px
         padding-left: 6px
         border-left: 3px solid transparent
         color: var(--toc-link-color)

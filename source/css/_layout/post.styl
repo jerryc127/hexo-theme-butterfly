@@ -1,9 +1,9 @@
 beautify()
   headStyle(fontsize)
-    padding-left: unit(fontsize + .4, 'px')
+    padding-left: unit(fontsize + 12, 'px')
 
     &:before
-      margin-left: unit((-(fontsize + 4)), 'px')
+      margin-left: unit((-(fontsize + 6)), 'px')
       font-size: unit(fontsize, 'px')
 
     &:hover
@@ -50,93 +50,21 @@ beautify()
 
   ol,
   ul
-    margin-top: 8px
-    padding: 0 0 0 16px
-    list-style: none
-    counter-reset: li
-
-    +maxWidth768()
-      padding: 0 0 0 8px
-
     p
-      margin: 0 0 10px
+      margin: 0 0 8px
 
-    ol,
-    ul
-      padding-left: 12px
+  li
+    &::marker
+      color: $light-blue
+      font-weight: 600
+      font-size: 1.05em
 
-      +maxWidth768()
-        padding-left: 4px
+    &:hover
+      &::marker
+        color: var(--pseudo-hover)
 
-    li
-      &:not(.tab)
-        position: relative
-        margin: 4px 0
-
-      &:hover
-        &:before
-          transform: rotate(360deg)
-
-      &:before
-        position: absolute
-        top: 0
-        left: 0
-        background: $light-blue
-        color: $white
-        cursor: pointer
-        transition: all .3s ease-out
-
-  ol
-    > li
-      &:not(.tab)
-        padding: .2em .2em .2em 1.8em
-
-      &:before
-        margin-top: .65em
-        width: w = 1.45em
-        height: h = w
-        border-radius: .5 * w
-        content: counter(li)
-        counter-increment: li
-        text-align: center
-        font-size: .85em
-        line-height: h
-
-  ul
-    > li:not(.tab)
-      padding: .2em .2em .2em 1.4em
-
-      &:hover
-        &:before
-          border-color: var(--pseudo-hover)
-
-      &:before
-        $w = .42em
-        top: .78em
-        width: w = $w
-        height: h = w
-        border: .5 * w solid $light-blue
-        border-radius: w
-        background: transparent
-        content: ''
-        line-height: h
-
-no-beautify()
-  ol,
-  ul
-    margin-top: 8px
-
-    p
-      margin: 0 0 10px
-
-    ol,
-    ul
-      padding-left: 10px
-
-    li
-      position: relative
-      margin: 6px 0
-      padding-left: 6px
+  ul > li
+    list-style-type: circle
 
 #article-container
   word-wrap: break-word
@@ -152,7 +80,7 @@ no-beautify()
     display: block
     margin: 0 auto 20px
     max-width: 100%
-    transition: filter 375ms ease-in 0.2s
+    transition: filter 375ms ease-in .2s
 
   p
     margin: 0 0 16px
@@ -174,15 +102,24 @@ no-beautify()
     font-family: Monaco, 'Ubuntu Mono', monospace
     line-height: 1em
 
-  if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'site'
-    beautify()
-  else if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'post'
-    no-beautify()
+  ol,
+  ul
+    ol,
+    ul
+      padding-left: 20px
 
-    &.post-content
+    li
+      margin: 4px 0
+
+    p
+      margin: 0 0 8px
+
+  if hexo-config('beautify.enable')
+    if hexo-config('beautify.field') == 'site'
       beautify()
-  else
-    no-beautify()
+    else if hexo-config('beautify.field') == 'post'
+      &.post-content
+        beautify()
 
   > :last-child
     margin-bottom: 0 !important

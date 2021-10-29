@@ -845,8 +845,8 @@ CDN:
   # search
   local_search:
   algolia_js:
-  algolia_search:
-  algolia_search_css:
+  algolia_search_v4:
+  instantsearch_v4:
 
   # math
   mathjax:
@@ -869,8 +869,8 @@ CDN:
   pangu:
 
   # photo
-  fancybox_css:
-  fancybox:
+  fancybox_css_v4:
+  fancybox_v4:
   medium_zoom:
 
   # snackbar

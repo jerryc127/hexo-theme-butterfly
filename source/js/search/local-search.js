@@ -59,22 +59,31 @@ window.addEventListener('load', () => {
         }
       })
     }
+    if (response.ok) {
+      const $loadDataItem = document.getElementById('loading-database')
+      $loadDataItem.nextElementSibling.style.display = 'block'
+      $loadDataItem.remove()
+    }
+
     const $input = document.querySelector('#local-search-input input')
     const $resultContent = document.getElementById('local-search-results')
+    const $loadingStatus = document.getElementById('loading-status')
     $input.addEventListener('input', function () {
-      let str = '<div class="search-result-list">'
       const keywords = this.value.trim().toLowerCase().split(/[\s]+/)
+      if (keywords[0] !== '') $loadingStatus.innerHTML = '<i class="fas fa-spinner fa-pulse"></i>'
+
       $resultContent.innerHTML = ''
+      let str = '<div class="search-result-list">'
       if (this.value.trim().length <= 0) return
       let count = 0
       // perform local searching
       datas.forEach(function (data) {
         let isMatch = true
         if (!data.title || data.title.trim() === '') {
-          data.title = 'Untitled'
+          data.title = ''
         }
         let dataTitle = data.title.trim().toLowerCase()
-        const dataContent = data.content.trim().replace(/<[^>]+>/g, '').toLowerCase()
+        const dataContent = data.content ? data.content.trim().replace(/<[^>]+>/g, '').toLowerCase() : ''
         const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url
         let indexTitle = -1
         let indexContent = -1
@@ -146,6 +155,7 @@ window.addEventListener('load', () => {
       }
       str += '</div>'
       $resultContent.innerHTML = str
+      if (keywords[0] !== '') $loadingStatus.innerHTML = ''
       window.pjax && window.pjax.refresh($resultContent)
     })
   }

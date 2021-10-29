@@ -33,8 +33,8 @@ hexo.extend.filter.register('before_generate', () => {
     // search
     local_search: '/js/search/local-search.js',
     algolia_js: '/js/search/algolia.js',
-    algolia_search: 'https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js',
-    algolia_search_css: 'https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css',
+    algolia_search_v4: 'https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js',
+    instantsearch_v4: 'https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js',
 
     // math
     mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
@@ -57,8 +57,8 @@ hexo.extend.filter.register('before_generate', () => {
     pangu: 'https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js',
 
     // photo
-    fancybox_css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css',
-    fancybox: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+    fancybox_css_v4: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css',
+    fancybox_v4: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
     medium_zoom: 'https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js',
 
     // snackbar

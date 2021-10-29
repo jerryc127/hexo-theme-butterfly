@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  let blogNameWidth, menusWidth, searchWidth, $nav, hideMenuIndex, mobileSidebarOpen
+  let blogNameWidth, menusWidth, searchWidth, $nav, hideMenuIndex
+  let mobileSidebarOpen = false
 
   const adjustMenu = (init) => {
     if (init) {
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
       $body.style.paddingRight = ''
       btf.fadeOut(document.getElementById('menu-mask'), 0.5)
       document.getElementById('sidebar-menus').classList.remove('open')
+      mobileSidebarOpen = false
     }
   }
 
@@ -237,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
     if (window.fjGallery) {
-      btf.initJustifiedGallery(ele)
+      setTimeout(() => { btf.initJustifiedGallery(ele) }, 100)
       return
     }
 

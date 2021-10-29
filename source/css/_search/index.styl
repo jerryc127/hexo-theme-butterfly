@@ -22,24 +22,22 @@
   hr
     margin: 20px auto
 
-  span.search-close-button
-    position: absolute
-    top: 16px
-    right: 20px
-    color: $grey
-    font-size: 1.4em
-    line-height: 1
-    cursor: pointer
-    transition: color .2s ease-in-out
-
-    &:hover
-      color: $search-color
-
-  &__title
-    padding: 0 0 14px
+  .search-nav
+    margin: 0 0 14px
     color: $search-color
     font-size: 1.4em
     line-height: 1
+
+    .search-dialog-title
+      margin-right: 10px
+
+    .search-close-button
+      float: right
+      color: $grey
+      transition: color .2s ease-in-out
+
+      &:hover
+        color: $search-color
 
 #search-mask
   position: fixed
