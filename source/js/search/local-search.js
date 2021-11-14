@@ -1,10 +1,12 @@
 window.addEventListener('load', () => {
   let loadFlag = false
-  const openSearch = function () {
-    document.body.style.cssText = 'width: 100%;overflow: hidden'
-    document.querySelector('#local-search .search-dialog').style.display = 'block'
-    document.querySelector('#local-search-input input').focus()
-    btf.fadeIn(document.getElementById('search-mask'), 0.5)
+  const openSearch = () => {
+    const bodyStyle = document.body.style
+    bodyStyle.width = '100%'
+    bodyStyle.overflow = 'hidden'
+    btf.animateIn(document.getElementById('search-mask'), 'to_show 0.5s')
+    btf.animateIn(document.querySelector('#local-search .search-dialog'), 'titleScale 0.5s')
+    setTimeout(() => { document.querySelector('#local-search-input input').focus() }, 100)
     if (!loadFlag) {
       search(GLOBAL_CONFIG.localSearch.path)
       loadFlag = true
@@ -18,12 +20,12 @@ window.addEventListener('load', () => {
     })
   }
 
-  const closeSearch = function () {
-    document.body.style.cssText = "width: '';overflow: ''"
-    const $searchDialog = document.querySelector('#local-search .search-dialog')
-    $searchDialog.style.animation = 'search_close .5s'
-    setTimeout(() => { $searchDialog.style.cssText = "display: none; animation: ''" }, 500)
-    btf.fadeOut(document.getElementById('search-mask'), 0.5)
+  const closeSearch = () => {
+    const bodyStyle = document.body.style
+    bodyStyle.width = ''
+    bodyStyle.overflow = ''
+    btf.animateOut(document.querySelector('#local-search .search-dialog'), 'search_close .5s')
+    btf.animateOut(document.getElementById('search-mask'), 'to_hide 0.5s')
   }
 
   // click function

@@ -265,16 +265,17 @@
       +maxWidth900()
         max-height: calc(100vh - 140px)
 
-      .toc-child
-        display: none
+      &:not(.is-expand)
+        .toc-child
+          display: none
 
-        +maxWidth900()
-          display: block !important
+          +maxWidth900()
+            display: block !important
 
-      .toc-item
-        &.active
-          .toc-child
-            display: block
+        .toc-item
+          &.active
+            .toc-child
+              display: block
 
       ol,
       li

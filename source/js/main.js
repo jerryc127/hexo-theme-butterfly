@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     open: () => {
       btf.sidebarPaddingR()
       document.body.style.overflow = 'hidden'
-      btf.fadeIn(document.getElementById('menu-mask'), 0.5)
+      btf.animateIn(document.getElementById('menu-mask'), 'to_show 0.5s')
       document.getElementById('sidebar-menus').classList.add('open')
       mobileSidebarOpen = true
     },
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const $body = document.body
       $body.style.overflow = ''
       $body.style.paddingRight = ''
-      btf.fadeOut(document.getElementById('menu-mask'), 0.5)
+      btf.animateOut(document.getElementById('menu-mask'), 'to_hide 0.5s')
       document.getElementById('sidebar-menus').classList.remove('open')
       mobileSidebarOpen = false
     }
@@ -315,82 +315,69 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
-  *  toc
+  * toc,anchor
   */
-  const tocFn = function () {
-    const $cardTocLayout = document.getElementById('card-toc')
-    const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0]
-    const $tocLink = $cardToc.querySelectorAll('.toc-link')
+  const scrollFnToDo = function () {
+    const isToc = GLOBAL_CONFIG_SITE.isToc
+    const isAnchor = GLOBAL_CONFIG.isAnchor
     const $article = document.getElementById('article-container')
-    const $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
 
-    // main of scroll
-    window.tocScrollFn = function () {
-      return btf.throttle(function () {
-        const currentTop = window.scrollY || document.documentElement.scrollTop
-        scrollPercent(currentTop)
-        findHeadPosition(currentTop)
-      }, 100)()
-    }
-    window.addEventListener('scroll', tocScrollFn)
+    if (!($article && (isToc || isAnchor))) return
 
-    const scrollPercent = function (currentTop) {
-      const docHeight = $article.clientHeight
-      const winHeight = document.documentElement.clientHeight
-      const headerHeight = $article.offsetTop
-      const contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : (document.documentElement.scrollHeight - winHeight)
-      const scrollPercent = (currentTop - headerHeight) / (contentMath)
-      const scrollPercentRounded = Math.round(scrollPercent * 100)
-      const percentage = (scrollPercentRounded > 100) ? 100 : (scrollPercentRounded <= 0) ? 0 : scrollPercentRounded
-      $tocPercentage.textContent = percentage
-    }
+    let $tocLink, $cardToc, scrollPercent, autoScrollToc, isExpand
 
-    // anchor
-    const isAnchor = GLOBAL_CONFIG.isanchor
-    const updateAnchor = function (anchor) {
-      if (window.history.replaceState && anchor !== window.location.hash) {
-        if (!anchor) anchor = location.pathname
-        const title = GLOBAL_CONFIG_SITE.title
-        window.history.replaceState({
-          url: location.href,
-          title: title
-        }, title, anchor)
+    if (isToc) {
+      const $cardTocLayout = document.getElementById('card-toc')
+      $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0]
+      $tocLink = $cardToc.querySelectorAll('.toc-link')
+      const $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
+      isExpand = $cardToc.classList.contains('is-expand')
+
+      scrollPercent = currentTop => {
+        const docHeight = $article.clientHeight
+        const winHeight = document.documentElement.clientHeight
+        const headerHeight = $article.offsetTop
+        const contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : (document.documentElement.scrollHeight - winHeight)
+        const scrollPercent = (currentTop - headerHeight) / (contentMath)
+        const scrollPercentRounded = Math.round(scrollPercent * 100)
+        const percentage = (scrollPercentRounded > 100) ? 100 : (scrollPercentRounded <= 0) ? 0 : scrollPercentRounded
+        $tocPercentage.textContent = percentage
       }
-    }
 
-    window.mobileToc = {
-      open: () => {
-        $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: 55px'
-      },
+      window.mobileToc = {
+        open: () => {
+          $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: 55px'
+        },
 
-      close: () => {
-        $cardTocLayout.style.animation = 'toc-close .2s'
-        setTimeout(() => {
-          $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
-        }, 100)
+        close: () => {
+          $cardTocLayout.style.animation = 'toc-close .2s'
+          setTimeout(() => {
+            $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
+          }, 100)
+        }
       }
-    }
 
-    // toc元素點擊
-    $cardToc.addEventListener('click', (e) => {
-      e.preventDefault()
-      const $target = e.target.classList.contains('toc-link')
-        ? e.target
-        : e.target.parentElement
-      btf.scrollToDest(btf.getEleTop(document.getElementById(decodeURI($target.getAttribute('href')).replace('#', ''))), 300)
-      if (window.innerWidth < 900) {
-        window.mobileToc.close()
-      }
-    })
+      // toc元素點擊
+      $cardToc.addEventListener('click', e => {
+        e.preventDefault()
+        const $target = e.target.classList.contains('toc-link')
+          ? e.target
+          : e.target.parentElement
+        btf.scrollToDest(btf.getEleTop(document.getElementById(decodeURI($target.getAttribute('href')).replace('#', ''))), 300)
+        if (window.innerWidth < 900) {
+          window.mobileToc.close()
+        }
+      })
 
-    const autoScrollToc = function (item) {
-      const activePosition = item.getBoundingClientRect().top
-      const sidebarScrollTop = $cardToc.scrollTop
-      if (activePosition > (document.documentElement.clientHeight - 100)) {
-        $cardToc.scrollTop = sidebarScrollTop + 150
-      }
-      if (activePosition < 100) {
-        $cardToc.scrollTop = sidebarScrollTop - 150
+      autoScrollToc = item => {
+        const activePosition = item.getBoundingClientRect().top
+        const sidebarScrollTop = $cardToc.scrollTop
+        if (activePosition > (document.documentElement.clientHeight - 100)) {
+          $cardToc.scrollTop = sidebarScrollTop + 150
+        }
+        if (activePosition < 100) {
+          $cardToc.scrollTop = sidebarScrollTop - 150
+        }
       }
     }
 
@@ -398,7 +385,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const list = $article.querySelectorAll('h1,h2,h3,h4,h5,h6')
     let detectItem = ''
     const findHeadPosition = function (top) {
-      if ($tocLink.length === 0 || top === 0) {
+      if (top === 0) {
         return false
       }
 
@@ -407,37 +394,50 @@ document.addEventListener('DOMContentLoaded', function () {
 
       list.forEach(function (ele, index) {
         if (top > btf.getEleTop(ele) - 80) {
-          currentId = '#' + encodeURI(ele.getAttribute('id'))
+          const id = ele.id
+          currentId = id ? '#' + encodeURI(id) : ''
           currentIndex = index
         }
       })
 
       if (detectItem === currentIndex) return
 
-      if (isAnchor) updateAnchor(currentId)
-
-      if (currentId === '') {
-        $cardToc.querySelectorAll('.active').forEach(i => { i.classList.remove('active') })
-        detectItem = currentIndex
-        return
-      }
+      if (isAnchor) btf.updateAnchor(currentId)
 
       detectItem = currentIndex
 
-      $cardToc.querySelectorAll('.active').forEach(item => { item.classList.remove('active') })
-      const currentActive = $tocLink[currentIndex]
-      currentActive.classList.add('active')
+      if (isToc) {
+        $cardToc.querySelectorAll('.active').forEach(i => { i.classList.remove('active') })
 
-      setTimeout(() => {
-        autoScrollToc(currentActive)
-      }, 0)
+        if (currentId === '') {
+          return
+        }
 
-      let parent = currentActive.parentNode
+        const currentActive = $tocLink[currentIndex]
+        currentActive.classList.add('active')
 
-      for (; !parent.matches('.toc'); parent = parent.parentNode) {
-        if (parent.matches('li')) parent.classList.add('active')
+        setTimeout(() => {
+          autoScrollToc(currentActive)
+        }, 0)
+
+        if (isExpand) return
+        let parent = currentActive.parentNode
+
+        for (; !parent.matches('.toc'); parent = parent.parentNode) {
+          if (parent.matches('li')) parent.classList.add('active')
+        }
       }
     }
+
+    // main of scroll
+    window.tocScrollFn = function () {
+      return btf.throttle(function () {
+        const currentTop = window.scrollY || document.documentElement.scrollTop
+        isToc && scrollPercent(currentTop)
+        findHeadPosition(currentTop)
+      }, 100)()
+    }
+    window.addEventListener('scroll', tocScrollFn)
   }
 
   /**
@@ -473,12 +473,20 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       // handle some cases
       typeof utterancesTheme === 'function' && utterancesTheme()
+      typeof changeGiscusTheme === 'function' && changeGiscusTheme()
       typeof FB === 'object' && window.loadFBComment()
       window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)
       typeof runMermaid === 'function' && window.runMermaid()
     },
     showOrHideBtn: () => { // rightside 點擊設置 按鈕 展開
-      document.getElementById('rightside-config-hide').classList.toggle('show')
+      const target = document.getElementById('rightside-config-hide')
+      if (window.rightSideIn) {
+        window.rightSideIn = false
+        btf.animateOut(target, 'rightside-item-out 0.5s')
+      } else {
+        window.rightSideIn = true
+        btf.animateIn(target, 'rightside-item-in 0.5s')
+      }
     },
     scrollToTop: () => { // Back to top
       btf.scrollToDest(0, 500)
@@ -749,7 +757,7 @@ document.addEventListener('DOMContentLoaded', function () {
       toggleCardCategory()
     }
 
-    GLOBAL_CONFIG_SITE.isToc && tocFn()
+    scrollFnToDo()
     GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
     addHighlightTool()
     GLOBAL_CONFIG.isPhotoFigcaption && addPhotoFigcaption()

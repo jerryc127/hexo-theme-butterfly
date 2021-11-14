@@ -14,7 +14,7 @@
 
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/theme-butterfly-readme.png)
 
-預覽: 👍 [Butterfly](https://butterfly.js.org/)  ||  🤞 [MYW](https://immyw.com/)
+預覽: 👍 [Butterfly](https://butterfly.js.org/)  ||  🤞 [CrazyWong](https://crazywong.com/)
 
 文檔: 📖 [Butterfly Docs](https://butterfly.js.org/posts/21cfbf15/)
 
@@ -79,7 +79,7 @@ theme: butterfly
 - [x] 顯示相關文章
 - [x] 過期文章提醒
 - [x] 多種分享系統（AddThis/Sharejs/Addtoany）
-- [X] 多種評論系統（Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo）
+- [X] 多種評論系統（Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus）
 - [x] 支持雙評論部署
 - [x] 多種在線聊天（Chatra/Tidio/Daovoice/Gitter/Crisp）
 - [x] 多種分析系統

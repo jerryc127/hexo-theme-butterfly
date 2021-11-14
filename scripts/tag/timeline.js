@@ -22,8 +22,6 @@ function timeLineFn (args, content) {
     matches.push(match[2])
   }
 
-  console.log(matches)
-
   for (let i = 0; i < matches.length; i += 2) {
     const tlChildTitle = hexo.render.renderSync({ text: matches[i], engine: 'markdown' })
     const tlChildContent = hexo.render.renderSync({ text: matches[i + 1], engine: 'markdown' })

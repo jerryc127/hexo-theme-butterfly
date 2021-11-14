@@ -7,7 +7,7 @@ beautify()
       font-size: unit(fontsize, 'px')
 
     &:hover
-      padding-left: unit(fontsize + 12, 'px')
+      padding-left: unit(fontsize + 18, 'px')
 
   h1,
   h2,
@@ -101,6 +101,32 @@ beautify()
     font-size: .9em
     font-family: Monaco, 'Ubuntu Mono', monospace
     line-height: 1em
+
+  if hexo-config('anchor')
+    a.headerlink
+      &:after
+        @extend .fontawesomeIcon
+        float: right
+        color: var(--headline-presudo)
+        content: '\f0c1'
+        font-size: .95em
+        opacity: 0
+        transition: all .3s
+
+      &:hover
+        &:after
+          color: var(--pseudo-hover)
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+      &:hover
+        a.headerlink
+          &:after
+            opacity: 1
 
   ol,
   ul

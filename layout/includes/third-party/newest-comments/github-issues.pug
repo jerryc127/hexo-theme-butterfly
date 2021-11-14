@@ -75,7 +75,7 @@ script.
           }
 
           result += `<div class='content'>
-          <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+          <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
           <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
           </div></div>`
         }

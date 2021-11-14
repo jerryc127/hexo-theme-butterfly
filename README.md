@@ -14,7 +14,7 @@
 
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/theme-butterfly-readme.png)
 
-Demo: 👍 [Butterfly](https://butterfly.js.org/)  ||   🤞 [MYW](https://immyw.com/)
+Demo: 👍 [Butterfly](https://butterfly.js.org/)  ||   🤞 [CrazyWong](https://crazywong.com/)
 
 Docs: 📖 [Butterfly Docs](https://butterfly.js.org/posts/21cfbf15/)
 
@@ -79,7 +79,7 @@ npm i hexo-theme-butterfly
 - [x] Related articles
 - [x] Displays outdated notice for a post
 - [x] Share (AddThis/Sharejs/Addtoany)
-- [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo)
+- [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus)
 - [x] Multiple Comment System Support
 - [x] Online Chats (Chatra/Tidio/Daovoice/Gitter/Crisp)
 - [x] Web analytics

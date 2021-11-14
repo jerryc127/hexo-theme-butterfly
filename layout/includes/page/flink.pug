@@ -1,18 +1,57 @@
 #article-container
   .flink
-    if site.data.link
-      each i in site.data.link
-        if i.class_name
-          h2!= i.class_name
-        if i.class_desc
-          .flink-desc!=i.class_desc
-        .flink-list
-          each item in i.link_list
-            .flink-list-item
-              a(href=url_for(item.link)  title=item.name target="_blank")
-                .flink-item-icon
-                  img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
-                .flink-item-name= item.name 
-                .flink-item-desc(title=item.descr)= item.descr
+    if page.flink_url
+      script.
+        (()=>{
+          const replaceSymbol = (str) => {
+            return str.replace(/[\p{P}\p{S}]/gu, '-')
+          }
+
+          let result = ''
+          fetch('!{url_for(page.flink_url)}')
+            .then(response => response.json())
+            .then(str => {
+              for(let i = 0; i < str.length; i++){
+                const replaceClassName = replaceSymbol(str[i].class_name)
+                const className = str[i].class_name ? `<h2 id='${replaceClassName}'><a href="#${replaceClassName}" class="headerlink" title="${str[i].class_name}"></a>${str[i].class_name}</h2>` : ''
+                const classDesc = str[i].class_desc ? `<div class='flink-desc'>${str[i].class_desc}</div>` : ''
+                
+                let listResult = ''
+                const lists = str[i].link_list
+                for(let j = 0; j < lists.length; j++){
+                  listResult += `
+                    <div class="flink-list-item">
+                      <a href='${lists[j].link}' title='${lists[j].name}' target='_blank'>
+                        <div class='flink-item-icon'>
+                          <img class='no-lightbox' src='${lists[j].avatar}' onerror='this.onerror=null;this.src="!{url_for(theme.error_img.flink)}"' alt='${lists[j].name}' />
+                        </div>
+                        <div class='flink-item-name'>${lists[j].name}</div> 
+                        <div class='flink-item-desc' title='${lists[j].descr}'>${lists[j].descr}</div>
+                      </a>
+                    </div>`
+                }
+
+                result += `${className}${classDesc} <div class='flink-list'>${listResult}</div>`
+              }
+
+              document.querySelector('.flink').insertAdjacentHTML('afterbegin', result)
+            })
+        })()
+
+    else
+      if site.data.link
+        each i in site.data.link
+          if i.class_name
+            !=markdown(`## ${i.class_name}`)
+          if i.class_desc
+            .flink-desc!=i.class_desc
+          .flink-list
+            each item in i.link_list
+              .flink-list-item
+                a(href=url_for(item.link)  title=item.name target="_blank")
+                  .flink-item-icon
+                    img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                  .flink-item-name= item.name 
+                  .flink-item-desc(title=item.descr)= item.descr
     != page.content
 

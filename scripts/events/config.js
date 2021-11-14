@@ -1,12 +1,18 @@
 /**
  * Butterfly
- * CDN
+ * 1. Merge CDN
+ * 2. Capitalize the first letter of comment name
  */
 
 'use strict'
 
 hexo.extend.filter.register('before_generate', () => {
   const themeConfig = hexo.theme.config
+
+  /**
+   * Merge CDN
+   */
+
   const defaultCDN = {
     main_css: '/css/index.css',
     main: '/js/main.js',
@@ -24,6 +30,7 @@ hexo.extend.filter.register('before_generate', () => {
     utterances: 'https://utteranc.es/client.js',
     twikoo: 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
     waline: 'https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',
+    giscus: 'https://giscus.app/client.js',
 
     // share
     addtoany: 'https://static.addtoany.com/menu/page.js',
@@ -101,4 +108,18 @@ hexo.extend.filter.register('before_generate', () => {
   }
 
   themeConfig.CDN = Object.assign(defaultCDN, deleteNullValue(themeConfig.CDN))
+
+  /**
+   * Capitalize the first letter of comment name
+   */
+
+  let { use } = themeConfig.comments
+
+  if (typeof use === 'string') {
+    use = use.split(',')
+  }
+
+  const newArray = use.map(item => item.toLowerCase().replace(/^\S/, s => s.toUpperCase()))
+
+  themeConfig.comments.use = newArray
 })

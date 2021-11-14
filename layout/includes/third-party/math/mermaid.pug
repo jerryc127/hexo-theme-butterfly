@@ -3,6 +3,7 @@ script.
     const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
     if ($mermaidWrap.length) {
       window.runMermaid = () => {
+        window.loadMermaid = true
         const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '!{theme.mermaid.theme.dark}' : '!{theme.mermaid.theme.light}'
 
         Array.from($mermaidWrap).forEach((item, index) => {
@@ -17,7 +18,7 @@ script.
       }
 
       const loadMermaid = () => {
-        window.mermaid ? runMermaid() : getScript('!{theme.CDN.mermaid}').then(runMermaid)
+        window.loadMermaid ? runMermaid() : getScript('!{theme.CDN.mermaid}').then(runMermaid)
       }
 
       window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)

@@ -58,16 +58,14 @@ const btf = {
     }
   },
 
-  snackbarShow: (text, showAction, duration) => {
-    const sa = (typeof showAction !== 'undefined') ? showAction : false
-    const dur = (typeof duration !== 'undefined') ? duration : 2000
-    const position = GLOBAL_CONFIG.Snackbar.position
-    const bg = document.documentElement.getAttribute('data-theme') === 'light' ? GLOBAL_CONFIG.Snackbar.bgLight : GLOBAL_CONFIG.Snackbar.bgDark
+  snackbarShow: (text, showAction = false, duration = 2000) => {
+    const { position, bgLight, bgDark } = GLOBAL_CONFIG.Snackbar
+    const bg = document.documentElement.getAttribute('data-theme') === 'light' ? bgLight : bgDark
     Snackbar.show({
       text: text,
       backgroundColor: bg,
-      showAction: sa,
-      duration: dur,
+      showAction: showAction,
+      duration: duration,
       pos: position
     })
   },
@@ -151,16 +149,18 @@ const btf = {
     })
   },
 
-  fadeIn: (ele, time) => {
-    ele.style.cssText = `display:block;animation: to_show ${time}s`
+  animateIn: (ele, text) => {
+    ele.style.display = 'block'
+    ele.style.animation = text
   },
 
-  fadeOut: (ele, time) => {
+  animateOut: (ele, text) => {
     ele.addEventListener('animationend', function f () {
-      ele.style.cssText = "display: none; animation: '' "
+      ele.style.display = ''
+      ele.style.animation = ''
       ele.removeEventListener('animationend', f)
     })
-    ele.style.animation = `to_hide ${time}s`
+    ele.style.animation = text
   },
 
   getParents: (elem, selector) => {
@@ -180,7 +180,6 @@ const btf = {
   },
 
   /**
-   *
    * @param {*} selector
    * @param {*} eleType the type of create element
    * @param {*} options object key: value
@@ -263,5 +262,16 @@ const btf = {
         })
       }
     })
+  },
+
+  updateAnchor: (anchor) => {
+    if (anchor !== window.location.hash) {
+      if (!anchor) anchor = location.pathname
+      const title = GLOBAL_CONFIG_SITE.title
+      window.history.replaceState({
+        url: location.href,
+        title: title
+      }, title, anchor)
+    }
   }
 }
