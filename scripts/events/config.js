@@ -115,6 +115,8 @@ hexo.extend.filter.register('before_generate', () => {
 
   let { use } = themeConfig.comments
 
+  if (!use) return
+
   if (typeof use === 'string') {
     use = use.split(',')
   }
