@@ -55,7 +55,7 @@ script.
               'avatar': e.avatar,
               'nick': e.nick,
               'url': e.url + '#' + e.objectId,
-              'date': e.updatedAt,
+              'date': e.insertedAt,
             }
           })
           saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), !{theme.newest_comments.storage}/(60*24))
