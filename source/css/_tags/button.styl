@@ -11,6 +11,9 @@
     color: $btn-color
     line-height: 2
 
+    &:hover
+      background-color: var(--btn-hover-color)
+
     i + span
       margin-left: 6px
 
@@ -39,15 +42,17 @@
       &.{$type}
         background-color: lookup('$tagsP-' + $type + '-color')
 
+        &:hover
+          background-color: var(--btn-hover-color)
+
     &.outline
       border: 1px solid transparent
       border-color: $btn-default-color
       background-color: transparent
       color: $btn-default-color
-      transition: all .3s
 
-      &.button--animated:before
-        background: $btn-default-color
+      &:hover
+        background-color: $btn-default-color
 
       &:hover
         color: white !important
@@ -57,5 +62,5 @@
           border-color: lookup('$tagsP-' + $type + '-color')
           color: lookup('$tagsP-' + $type + '-color')
 
-          &.button--animated:before
-            background: lookup('$tagsP-' + $type + '-color')
+          &:hover
+            background-color: lookup('$tagsP-' + $type + '-color')

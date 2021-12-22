@@ -304,6 +304,7 @@
         background-color: var(--sidebar-bg)
         box-shadow: 0 5px 20px -4px rgba($dark-black, .5)
         animation: sub_menus .3s .1s ease both
+        border-radius: 5px
 
         &:before
           position: absolute
@@ -319,9 +320,13 @@
           &:hover
             background: var(--text-bg-hover)
 
+          &:first-child
+            border-radius: 5px 5px 0 0
+          &:last-child
+            border-radius: 0 0 5px 5px
           a
             display: inline-block
-            padding: 6px 14px
+            padding: 8px 16px
             width: 100%
             color: var(--font-color) !important
             text-shadow: none !important

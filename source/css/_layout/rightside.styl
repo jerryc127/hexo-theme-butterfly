@@ -7,7 +7,19 @@
   transition: all .5s
 
   #rightside-config-hide
-    display: none
+    height: 0
+    opacity: 0
+    transition: transform .4s
+    transform: translate(45px, 0)
+
+    &.show
+      height: auto
+      opacity: 1
+      transform: translate(0, 0)
+
+    &.status
+      height: auto
+      opacity: 1
 
   & > div
     & > button,
@@ -35,19 +47,3 @@
   +maxWidth900()
     #hide-aside-btn
       display: none
-
-@keyframes rightside-item-in
-  0%
-    transform: translate(48px, 0)
-
-  100%
-    transform: translate(0, 0)
-
-@keyframes rightside-item-out
-  0%
-    display: block
-    transform: translate(0, 0)
-
-  100%
-    display: none
-    transform: translate(48px, 0)

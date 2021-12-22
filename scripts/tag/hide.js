@@ -28,7 +28,7 @@ function hideInline (args) {
   if (color) group += `color: ${color}`
   group += '"'
 
-  return `<span class="hide-inline"><button type="button" class="hide-button button--animated" ${group}>${display}
+  return `<span class="hide-inline"><button type="button" class="hide-button" ${group}>${display}
   </button><span class="hide-content">${content}</span></span>`
 }
 
@@ -43,7 +43,7 @@ function hideBlock (args, content) {
   if (color) group += `color: ${color}`
   group += '"'
 
-  return `<div class="hide-block"><button type="button" class="hide-button button--animated" ${group}>${display}
+  return `<div class="hide-block"><button type="button" class="hide-button" ${group}>${display}
     </button><div class="hide-content">${hexo.render.renderSync({ text: content, engine: 'markdown' })}</div></div>`
 }
 

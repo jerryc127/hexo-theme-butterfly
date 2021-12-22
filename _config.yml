@@ -163,6 +163,10 @@ index_post_content:
   method: 3
   length: 500 # if you set method to 2 or 3, the length need to config
 
+# anchor
+# when you scroll in post, the URL will update according to header id.
+anchor: false
+
 # Post
 # --------------------------------------
 
@@ -214,10 +218,6 @@ photofigcaption: false
 # 2: The 'next post' will link to new post
 # false: disable pagination
 post_pagination: 1
-
-# anchor
-# when you scroll in post, the URL will update according to header id.
-anchor: false
 
 # Displays outdated notice for a post (文章過期提醒)
 noticeOutdate:
@@ -560,8 +560,8 @@ display_mode: light
 beautify:
   enable: false
   field: post # site/post
-  title-prefix-icon: '\f0c1'
-  title-prefix-icon-color: '#F47466'
+  title-prefix-icon: # '\f0c1'
+  title-prefix-icon-color: # '#F47466'
 
 # Global font settings
 # Don't modify the following settings unless you know how they work (非必要不要修改)

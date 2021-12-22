@@ -1,5 +1,5 @@
 #aside-content
-  width: 25%
+  width: 26%
 
   +minWidth900()
     if hexo-config('aside.position') == 'right'
@@ -78,6 +78,9 @@
       color: var(--btn-color)
       text-align: center
       line-height: 2.4
+
+      &:hover
+        background-color: var(--btn-hover-color)
 
       span
         padding-left: 10px
@@ -243,6 +246,7 @@
       right: -100%
       bottom: 30px
       z-index: 100
+      max-width: $toc-mobile-maxWidth
       max-height: calc(100% - 60px)
       width: $toc-mobile-width
       opacity: 0
@@ -257,13 +261,21 @@
       font-size: 140%
 
     .toc-content
-      clear: both
       overflow-y: scroll
       overflow-y: overlay
+      margin: 0 -24px
       max-height: calc(100vh - 120px)
 
       +maxWidth900()
         max-height: calc(100vh - 140px)
+
+      & > .toc
+        margin: 0 20px
+
+        & > .toc-item > .toc-child
+          margin-left: 10px
+          padding-left: 10px
+          border-left: 1px solid var(--dark-grey)
 
       &:not(.is-expand)
         .toc-child
@@ -286,18 +298,19 @@
 
       ol
         margin: 0
-        padding-left: 15px
+        padding-left: 18px
 
       .toc-link
         display: block
-        padding-right: 8px
-        padding-left: 6px
-        border-left: 3px solid transparent
+        margin: 4px 0
+        padding: 1px 6px
         color: var(--toc-link-color)
         transition: all .2s ease-in-out
 
+        &:hover
+          color: $theme-color
+
         &.active
-          border-left-color: darken($theme-toc-color, 20%)
           background: $theme-toc-color
           color: $toc-active-color
 

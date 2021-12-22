@@ -3,6 +3,10 @@
   margin-top: 80px
   width: 100%
   text-align: center
+  pointer-events: none
+
+  & > *
+    pointer-events: auto
 
   .reward-button
     display: inline-block
@@ -10,9 +14,11 @@
     background: var(--btn-bg)
     color: var(--btn-color)
     cursor: pointer
-    transition: all .4s
 
   &:hover
+    .reward-button
+      background: var(--btn-hover-color)
+
     & > .reward-main
       display: block
 
