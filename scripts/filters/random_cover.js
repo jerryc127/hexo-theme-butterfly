@@ -39,7 +39,7 @@ function randomCover () {
       return cover
     }
   } else {
-    cover = theme.default_top_img || 'https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg'
+    cover = theme.default_top_img || 'https://unpkg.zhimg.com/butterfly-extsrc@1/img/default.jpg'
     return cover
   }
 }
