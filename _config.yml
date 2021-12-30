@@ -84,7 +84,7 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img:
+index_img: themes/CHEBBEU.gif
 
 # If the banner of page not setting, it will show the top_img
 default_top_img:
