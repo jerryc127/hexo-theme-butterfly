@@ -57,12 +57,14 @@
   & > .recent-posts
     .pagination
       & > *
-        @extend .cardHover
         display: inline-block
         margin: 0 6px
         width: w = 2.5em
         height: w
         line-height: w
+
+      & > *:not(.space)
+        @extend .cardHover
 
         &:hover
           background: var(--btn-hover-color)

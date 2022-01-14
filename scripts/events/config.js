@@ -24,6 +24,7 @@ hexo.extend.filter.register('before_generate', () => {
     // comments
     gitalk: 'https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js',
     gitalk_css: 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css',
+    blueimp_md5: 'https://cdn.jsdelivr.net/npm/blueimp-md5/js/md5.min.js',
     valine: 'https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js',
     disqusjs: 'https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js',
     disqusjs_css: 'https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css',

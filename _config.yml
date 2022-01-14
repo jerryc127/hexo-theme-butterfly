@@ -254,6 +254,7 @@ addtoany:
 
 comments:
   # Up to two comments system, the first will be shown as default
+  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus
   use: # Valine,Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
@@ -466,6 +467,7 @@ site_verification:
 #   toc_color: "#00c4b6"
 #   blockquote_padding_color: "#49b1f5"
 #   blockquote_background_color: "#49b1f5"
+#   scrollbar_color: "#49b1f5"
 
 # The top_img settings of home page
 # default: top img - full screen, site info - middle (默認top_img全屏，site_info在中間)
@@ -836,6 +838,7 @@ CDN:
   # comments
   gitalk:
   gitalk_css:
+  blueimp_md5:
   valine:
   disqusjs:
   disqusjs_css:

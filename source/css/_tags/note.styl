@@ -16,7 +16,7 @@
     left: .8em
     font-size: larger
 
-  for $type in $tagsP-types
+  for $type in $color-types
     &.{$type}
       &:not(.disabled)
         border-left-color: lookup('$tagsP-' + $type + '-color') !important

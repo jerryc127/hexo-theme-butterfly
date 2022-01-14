@@ -6,6 +6,6 @@
   &.default
     background-color: $btn-default-color
 
-  for $type in $tagsP-types
+  for $type in $color-types
     &.{$type}
       background-color: lookup('$tagsP-' + $type + '-color')

@@ -1,7 +1,7 @@
 #aside-content.aside-content
   //- post
   if is_post()
-    - const tocStyle = page.style_simple
+    - const tocStyle = page.toc_style_simple
     - const tocStyleVal = tocStyle === true || tocStyle === false ? tocStyle : theme.toc.style_simple
     if showToc && tocStyleVal
       .sticky_layout

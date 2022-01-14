@@ -30,8 +30,6 @@
   --toc-link-color: $toc-link-color
   --card-box-shadow: 0 3px 8px 6px rgba(7, 17, 27, .05)
   --card-hover-box-shadow: 0 3px 8px 6px rgba(7, 17, 27, .09)
-  --timeline-bg: $timeline-content-bg
-  --timeline-border-color: $timeline-border-color
   --pseudo-hover: $pseudo-hover
   --headline-presudo: #a0a0a0
   --scrollbar-color: $scrollbar-color
@@ -49,6 +47,7 @@ body
   if !hexo-config('copy.enable')
     user-select: none
 
+// scrollbar - chrome/safari
 *::-webkit-scrollbar
   width: 8px
   height: 8px
@@ -58,6 +57,11 @@ body
 
 *::-webkit-scrollbar-track
   background-color: transparent
+
+// scrollbar - firefox
+*
+  scrollbar-width: thin
+  scrollbar-color: var(--scrollbar-color) transparent
 
 input::placeholder
   color: var(--font-color)

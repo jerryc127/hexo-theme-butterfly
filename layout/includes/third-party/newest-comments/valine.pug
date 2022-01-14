@@ -1,6 +1,6 @@
 - let default_avatar = theme.valine.avatar
 
-script(src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js")
+script(src=url_for(theme.CDN.blueimp_md5))
 script.
   window.addEventListener('load', () => {
     const changeContent = (content) => {

@@ -7,9 +7,13 @@
     display: inline-block
     margin: 0 4px 6px
     padding: 0 15px
-    background-color: $btn-default-color
+    background-color: var(--btn-beautify-color, $btn-default-color)
     color: $btn-color
     line-height: 2
+
+    for $type in $color-types
+      &.{$type}
+        --btn-beautify-color: lookup('$tagsP-' + $type + '-color')
 
     &:hover
       background-color: var(--btn-hover-color)
@@ -38,29 +42,14 @@
     &:hover
       text-decoration: none
 
-    for $type in $tagsP-types
-      &.{$type}
-        background-color: lookup('$tagsP-' + $type + '-color')
-
-        &:hover
-          background-color: var(--btn-hover-color)
-
     &.outline
       border: 1px solid transparent
-      border-color: $btn-default-color
+      border-color: var(--btn-beautify-color, $btn-default-color)
       background-color: transparent
-      color: $btn-default-color
+      color: var(--btn-beautify-color, $btn-default-color)
 
       &:hover
-        background-color: $btn-default-color
+        background-color: var(--btn-beautify-color, $btn-default-color)
 
       &:hover
         color: white !important
-
-      for $type in $tagsP-types
-        &.{$type}
-          border-color: lookup('$tagsP-' + $type + '-color')
-          color: lookup('$tagsP-' + $type + '-color')
-
-          &:hover
-            background-color: lookup('$tagsP-' + $type + '-color')

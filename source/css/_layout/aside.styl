@@ -173,9 +173,9 @@
   .card-archives ul.card-archive-list > .card-archive-list-item,
   .card-categories ul.card-category-list > .card-category-list-item
     a
-      display: inline-block
+      display: flex
+      flex-direction: row
       padding: 3px 10px
-      width: 100%
       color: var(--font-color)
       transition: all .4s
 
@@ -185,15 +185,9 @@
 
       span
         @extend .limit-one-line
-        display: inline-block
-        vertical-align: bottom
 
         &:first-child
-          width: 80%
-
-        &:last-child
-          width: 20%
-          text-align: right
+          flex: 1
 
   .card-categories
     .card-category-list
@@ -269,8 +263,8 @@
       +maxWidth900()
         max-height: calc(100vh - 140px)
 
-      & > .toc
-        margin: 0 20px
+      & > *
+        margin: 0 20px !important
 
         & > .toc-item > .toc-child
           margin-left: 10px
