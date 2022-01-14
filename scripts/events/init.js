@@ -18,10 +18,4 @@ hexo.extend.filter.register('before_generate', () => {
       process.exit(-1)
     }
   }
-
-  // let stylus to get the hexo highlight config
-  const themeConfig = hexo.theme.config
-  const hexoConfig = hexo.config
-  themeConfig.highlight_settings = hexoConfig.highlight
-  themeConfig.prismjs_settings = hexoConfig.prismjs
 })

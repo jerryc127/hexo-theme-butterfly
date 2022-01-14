@@ -35,16 +35,18 @@ post:
   recommend: 相关推荐
   edit: 编辑
 
-search: 搜索
-algolia_search:
-  input_placeholder: 搜索文章
-  hits_empty: '找不到您查询的内容：${query}'
-  hits_stats: '找到 ${hits} 条结果，用时 ${time} 毫秒'
+search:
+  title: 搜索
+  load_data: 数据库加载中
+  algolia_search:
+    input_placeholder: 搜索文章
+    hits_empty: '找不到您查询的内容：${query}'
+    hits_stats: '找到 ${hits} 条结果，用时 ${time} 毫秒'
 
-local_search:
-  label: 本地搜索
-  input_placeholder: 搜索文章
-  hits_empty: '找不到您查询的内容：${query}'
+  local_search:
+    label: 本地搜索
+    input_placeholder: 搜索文章
+    hits_empty: '找不到您查询的内容：${query}'
 
 pagination:
   prev: 上一篇
@@ -95,8 +97,6 @@ share: 分享
 
 rightside:
   readmode_title: 阅读模式
-  font_plus_title: 放大字体
-  font_minus_title: 缩小字体
   translate_title: 简繁转换
   night_mode_title: 浅色和深色模式转换
   back_to_top: 回到顶部
@@ -119,6 +119,4 @@ Snackbar:
 
 loading: 加载中...
 
-error404:
-  error_title: 页面没有找到
-  back_button: 回到主页
+error404: 页面没有找到

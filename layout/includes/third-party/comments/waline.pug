@@ -1,4 +1,4 @@
-- const { serverURL, avatar, avatarCDN, visitor, option } = theme.waline
+- const { serverURL, visitor, option } = theme.waline
 
 script.
   function loadWaline () {
@@ -6,15 +6,13 @@ script.
       const waline = new Waline(Object.assign({
         el: '#waline-wrap',
         serverURL: '!{serverURL}',
-        avatar: '#{avatar}',
-        avatarCDN: '!{avatarCDN || "https://sdn.geekzu.org/avatar/"}',
         path: location.pathname,
         visitor: !{visitor},
         dark: 'html[data-theme="dark"]'
       }, !{JSON.stringify(option)}))
     }
 
-    if (typeof Waline === 'function') initWaline() 
+    if (typeof Waline === 'function') initWaline()
     else getScript('!{url_for(theme.CDN.waline)}').then(initWaline)
   }
 

@@ -1,6 +1,6 @@
 - let default_avatar = theme.valine.avatar
 
-script(src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js")
+script(src=url_for(theme.CDN.blueimp_md5))
 script.
   window.addEventListener('load', () => {
     const changeContent = (content) => {
@@ -37,7 +37,7 @@ script.
           }
 
           result += `<div class='content'>
-          <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+          <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
           <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
           </div></div>`
         }

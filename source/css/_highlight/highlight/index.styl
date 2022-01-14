@@ -7,8 +7,8 @@ if $highlight_theme != false
       if wordWrap
         &:before
           display: inline-block
-          padding: 0 .3rem 0 0
-          min-width: 1.6rem
+          padding: 0 6px 0 0
+          min-width: 30px
           color: var(--hlnumber-color)
           content: counter(line)
           counter-increment: line
@@ -27,13 +27,13 @@ if $highlight_theme != false
         border: none
 
     .gutter pre
-      padding-right: .5rem
-      padding-left: .5rem
+      padding-right: 10px
+      padding-left: 10px
       background-color: var(--hlnumber-bg)
       color: var(--hlnumber-color)
       text-align: right
 
     .code pre
-      padding-right: .5rem
-      padding-left: .5rem
+      padding-right: 10px
+      padding-left: 10px
       width: 100%

@@ -16,13 +16,6 @@ script.
       return content
     }
 
-    const getIcon = (ava,mail) => {
-      if (ava) return ava
-      let defaultIcon = '!{ avatar ? `?d=${avatar}` : ''}'
-      let iconUrl = "!{avatarCDN ? avatarCDN : 'https://gravatar.loli.net/avatar/'}" + mail + defaultIcon
-      return iconUrl
-    }
-
     const generateHtml = array => {
       let result = ''
 
@@ -36,7 +29,7 @@ script.
           }
 
           result += `<div class='content'>
-          <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+          <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
           <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
           </div></div>`
         }
@@ -59,10 +52,10 @@ script.
           const walineArray = res.comments.map(e => {
             return {
               'content': changeContent(e.comment),
-              'avatar': getIcon(e.QQAvatar,e.mail),
+              'avatar': e.avatar,
               'nick': e.nick,
               'url': e.url + '#' + e.objectId,
-              'date': e.updatedAt,
+              'date': e.insertedAt,
             }
           })
           saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), !{theme.newest_comments.storage}/(60*24))

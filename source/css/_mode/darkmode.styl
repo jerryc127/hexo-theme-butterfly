@@ -21,6 +21,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --btn-bg: lighten(#121212, 5)
     --text-bg-hover: lighten(#121212, 15)
     --light-grey: alpha(#FFFFFF, .7)
+    --dark-grey: alpha(#FFFFFF, .2)
     --white: alpha(#FFFFFF, .9)
     --text-highlight-color: alpha(#FFFFFF, .9)
     --blockquote-color: alpha(#FFFFFF, .7)
@@ -35,6 +36,8 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --hlnumber-color: alpha(#FFFFFF, .4)
     --hlscrollbar-bg: lighten(#121212, 5)
     --hlexpand-bg: linear-gradient(180deg, rgba(lighten(#121212, 2), .6), rgba(lighten(#121212, 2), .9))
+    --scrollbar-color: lighten(#121212, 5)
+    --timeline-bg: lighten(#121212, 5)
 
     #web_bg:before,
     #footer:before,
@@ -90,7 +93,6 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     // hide-tags
     .hide-button,
     .btn-beautify,
-    .mermaid,
     .hl-label,
     .post-outdate-notice,
     .error-img,

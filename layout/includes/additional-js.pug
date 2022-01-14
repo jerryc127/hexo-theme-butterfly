@@ -7,9 +7,11 @@ div
 
   if theme.medium_zoom
     script(src=url_for(theme.CDN.medium_zoom))
+  else if theme.fancybox
+    script(src=url_for(theme.CDN.fancybox_v4))
 
   if theme.instantpage
-    script(src=url_for(theme.CDN.instantpage) type="module")
+    script(src=url_for(theme.CDN.instantpage), type='module')
 
   if theme.lazyload.enable
     script(src=url_for(theme.CDN.lazyload))
@@ -18,21 +20,23 @@ div
     script(src=url_for(theme.CDN.snackbar))
 
   if theme.pangu.enable
-    !=partial('includes/third-party/pangu.pug', {}, {cache: true})
+    != partial("includes/third-party/pangu.pug", {}, { cache: true })
 
   //- search
   if theme.algolia_search.enable
+    script(src=url_for(theme.CDN.algolia_search_v4))
+    script(src=url_for(theme.CDN.instantsearch_v4))
     script(src=url_for(theme.CDN.algolia_js))
   else if theme.local_search.enable
     script(src=url_for(theme.CDN.local_search))
 
   if theme.preloader
-    !=partial('includes/loading/loading-js', {}, {cache: true})
+    != partial("includes/loading/loading-js", {}, { cache: true })
 
   .js-pjax
     if needLoadCountJs
-      !=partial('includes/third-party/card-post-count/index', {}, {cache: true})
-    
+      != partial("includes/third-party/card-post-count/index", {}, { cache: true })
+
     if loadSubJs
       include ./third-party/subtitle.pug
 
@@ -41,20 +45,20 @@ div
     if commentsJsLoad
       include ./third-party/comments/js.pug
 
-  !=partial('includes/third-party/prismjs', {}, {cache: true})
+  != partial("includes/third-party/prismjs", {}, { cache: true })
 
   if theme.aside.enable && theme.newest_comments.enable
     if theme.pjax.enable
-      !=partial('includes/third-party/newest-comments/index', {}, {cache: true})
+      != partial("includes/third-party/newest-comments/index", {}, { cache: true })
     else if (!is_post() && page.aside !== false)
-      !=partial('includes/third-party/newest-comments/index', {}, {cache: true})
+      != partial("includes/third-party/newest-comments/index", {}, { cache: true })
 
-  !=fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
+  != fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
 
-  !=partial('includes/third-party/effect', {}, {cache: true})
+  != partial("includes/third-party/effect", {}, { cache: true })
 
-  !=partial('includes/third-party/chat/index', {}, {cache: true})
-  
+  != partial("includes/third-party/chat/index", {}, { cache: true })
+
   if theme.aplayerInject && theme.aplayerInject.enable
     if theme.pjax.enable || theme.aplayerInject.per_page
       include ./third-party/aplayer.pug
@@ -62,7 +66,7 @@ div
       include ./third-party/aplayer.pug
 
   if theme.pjax.enable
-    !=partial('includes/third-party/pjax', {}, {cache: true})
-    
+    != partial("includes/third-party/pjax", {}, { cache: true })
+
   if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
     script(async data-pjax src=url_for(theme.CDN.busuanzi))

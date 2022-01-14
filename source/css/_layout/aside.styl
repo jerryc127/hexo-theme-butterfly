@@ -1,5 +1,5 @@
 #aside-content
-  width: 25%
+  width: 26%
 
   +minWidth900()
     if hexo-config('aside.position') == 'right'
@@ -14,20 +14,14 @@
     margin-top: 0
 
     +maxWidth900()
-      margin-top: 1rem
+      margin-top: 20px
 
   .card-widget
+    @extend .cardHover
     position: relative
     overflow: hidden
-    margin-top: 1rem
-    padding: 1rem 1.2rem
-    border-radius: 8px
-    background: var(--card-bg)
-    box-shadow: var(--card-box-shadow)
-    transition: box-shadow .3s
-
-    &:hover
-      box-shadow: var(--card-hover-box-shadow)
+    margin-top: 20px
+    padding: 20px 24px
 
     if hexo-config('aside.mobile') == false
       +maxWidth768()
@@ -41,11 +35,11 @@
         font-size: 1.57em
 
       &__description
-        margin-top: -.3rem
+        margin-top: -.42em
 
     .card-info-data
       display: table
-      margin: .7rem 0 .2rem
+      margin: 14px 0 4px
       width: 100%
       table-layout: fixed
 
@@ -59,18 +53,17 @@
             font-size: 1em
 
           .length-num
-            margin-top: -.3rem
+            margin-top: -.42em
             color: var(--text-highlight-color)
             font-size: 1.4em
 
     .card-info-social-icons
-      margin: .3rem 0 -.3rem
+      margin: 6px 0 -6px
 
       .social-icon
-        margin: 0 .5rem
+        margin: 0 10px
         color: var(--font-color)
         font-size: 1.4em
-        cursor: pointer
 
       i
         transition: all .3s
@@ -80,21 +73,24 @@
 
     #card-info-btn
       display: block
-      margin-top: .7rem
+      margin-top: 14px
       background-color: var(--btn-bg)
       color: var(--btn-color)
       text-align: center
       line-height: 2.4
 
+      &:hover
+        background-color: var(--btn-hover-color)
+
       span
-        padding-left: .5rem
+        padding-left: 10px
 
   .item-headline
-    padding-bottom: .3rem
+    padding-bottom: 6px
     font-size: 1.2em
 
     span
-      margin-left: .3rem
+      margin-left: 6px
 
   .sticky_layout
     +minWidth900()
@@ -106,7 +102,7 @@
   .card-tag-cloud
     a
       display: inline-block
-      padding: 0 .2rem
+      padding: 0 4px
 
       &:hover
         color: $text-hover !important
@@ -114,13 +110,13 @@
   .aside-list
     & > span
       display: block
-      margin-bottom: .5rem
+      margin-bottom: 10px
       text-align: center
 
     & > .aside-list-item
       display: flex
       align-items: center
-      padding: .3rem 0
+      padding: 6px 0
 
       &:first-child
         padding-top: 0
@@ -137,13 +133,7 @@
         height: w
 
         & > img
-          width: 100%
-          height: 100%
-          transition: all .6s
-          object-fit: cover
-
-          &:hover
-            transform: scale(1.1)
+          @extend .imgHover
 
       .content
         flex: 1
@@ -183,32 +173,26 @@
   .card-archives ul.card-archive-list > .card-archive-list-item,
   .card-categories ul.card-category-list > .card-category-list-item
     a
-      display: inline-block
-      padding: .15rem .5rem
-      width: 100%
+      display: flex
+      flex-direction: row
+      padding: 3px 10px
       color: var(--font-color)
       transition: all .4s
 
       &:hover
-        padding: .15rem .85rem
+        padding: 3px 17px
         background-color: var(--text-bg-hover)
 
       span
         @extend .limit-one-line
-        display: inline-block
-        vertical-align: bottom
 
         &:first-child
-          width: 80%
-
-        &:last-child
-          width: 20%
-          text-align: right
+          flex: 1
 
   .card-categories
     .card-category-list
       &.child
-        padding: 0 0 0 .8rem
+        padding: 0 0 0 16px
 
       > .parent
         > a
@@ -222,8 +206,8 @@
 
         i
           float: right
-          margin-right: -.35rem
-          padding: .35rem
+          margin-right: -.5em
+          padding: .5em
           transition: transform .3s
           transform: rotate(0)
 
@@ -239,12 +223,12 @@
       .webinfo-item
         display: flex
         align-items: center
-        padding: .1rem .5rem 0
+        padding: 2px 10px 0
 
         div
           &:first-child
             flex: 1
-            padding-right: 1rem
+            padding-right: 20px
 
   // toc
   #card-toc
@@ -256,28 +240,48 @@
       right: -100%
       bottom: 30px
       z-index: 100
+      max-width: $toc-mobile-maxWidth
       max-height: calc(100% - 60px)
       width: $toc-mobile-width
       opacity: 0
+      transition: initial
       transform-origin: right bottom
 
+    .toc-percentage
+      float: right
+      margin-top: -9px
+      color: #a9a9a9
+      font-style: italic
+      font-size: 140%
+
     .toc-content
-      overflow-y: auto
+      overflow-y: scroll
+      overflow-y: overlay
+      margin: 0 -24px
       max-height: calc(100vh - 120px)
 
       +maxWidth900()
         max-height: calc(100vh - 140px)
 
-      .toc-child
-        display: none
+      & > *
+        margin: 0 20px !important
 
-        +maxWidth900()
-          display: block !important
+        & > .toc-item > .toc-child
+          margin-left: 10px
+          padding-left: 10px
+          border-left: 1px solid var(--dark-grey)
 
-      .toc-item
-        &.active
-          .toc-child
-            display: block
+      &:not(.is-expand)
+        .toc-child
+          display: none
+
+          +maxWidth900()
+            display: block !important
+
+        .toc-item
+          &.active
+            .toc-child
+              display: block
 
       ol,
       li
@@ -288,28 +292,21 @@
 
       ol
         margin: 0
-        padding-left: .4rem
+        padding-left: 18px
 
       .toc-link
         display: block
-        padding-left: .3rem
-        border-left: 3px solid transparent
+        margin: 4px 0
+        padding: 1px 6px
         color: var(--toc-link-color)
         transition: all .2s ease-in-out
 
+        &:hover
+          color: $theme-color
+
         &.active
-          border-left-color: darken($theme-toc-color, 20%)
           background: $theme-toc-color
           color: $toc-active-color
-
-      &:before
-        position: absolute
-        top: .6rem
-        right: 1.2rem
-        color: #a9a9a9
-        content: attr(progress-percentage)
-        font-style: italic
-        font-size: 1.2rem
 
   :only-child
     > .card-widget
@@ -330,8 +327,9 @@
   border-radius: 70px
 
   img
+    width: 100%
     height: 100%
-    transition: all .5s
+    transition: filter 375ms ease-in .2s, transform .3s
     object-fit: cover
 
     &:hover

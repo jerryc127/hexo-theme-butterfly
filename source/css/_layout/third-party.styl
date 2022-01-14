@@ -24,7 +24,6 @@
   --waline-font-size: 1.1em
   --waline-theme-color: $button-bg
   --waline-active-color: $button-hover-color
-  --waline-avatar-size: 2.75rem
 
   .vuser
     transition: all .5s
@@ -62,16 +61,9 @@ if hexo-config('waline.bg')
 .medium-zoom-overlay
   z-index: 99999 !important
 
-.mermaid
-  overflow: auto
-  margin: 0 0 1rem
-  background: $white
+.mermaid-wrap
+  margin: 0 0 20px
   text-align: center
-  opacity: 0
-  transition: all .3s
-
-  &[data-processed]
-    opacity: 1
 
 .utterances,
 .fb-comments iframe
@@ -80,7 +72,7 @@ if hexo-config('waline.bg')
 #gitalk-container
   .gt-meta
     margin: 0 0 .8em
-    padding: .3rem 0 .8em
+    padding: 6px 0 16px
 
 .katex-wrap
   overflow: auto
@@ -100,7 +92,7 @@ mjx-container[display],
 
 #article-container
   .aplayer
-    margin: 0 0 1rem
+    margin: 0 0 20px
 
     if hexo-config('beautify.enable')
       ol,

@@ -1,16 +1,13 @@
 beautify()
   headStyle(fontsize)
-    padding-left: unit(fontsize + .4, 'rem')
-
-    code
-      font-size: unit(fontsize, 'rem')
+    padding-left: unit(fontsize + 12, 'px')
 
     &:before
-      margin-left: unit((-(fontsize + .2)), 'rem')
-      font-size: unit(fontsize, 'rem')
+      margin-left: unit((-(fontsize + 6)), 'px')
+      font-size: unit(fontsize, 'px')
 
     &:hover
-      padding-left: unit(fontsize + .6, 'rem')
+      padding-left: unit(fontsize + 18, 'px')
 
   h1,
   h2,
@@ -22,7 +19,7 @@ beautify()
 
     &:before
       position: absolute
-      top: calc(50% - .35rem)
+      top: calc(50% - 7px)
       color: $title-prefix-icon-color
       content: $title-prefix-icon
       line-height: 1
@@ -34,112 +31,40 @@ beautify()
         color: $light-blue
 
   h1
-    headStyle(1)
+    headStyle(20)
 
   h2
-    headStyle(.9)
+    headStyle(18)
 
   h3
-    headStyle(.8)
+    headStyle(16)
 
   h4
-    headStyle(.7)
+    headStyle(14)
 
   h5
-    headStyle(.6)
+    headStyle(12)
 
   h6
-    headStyle(.6)
+    headStyle(12)
 
   ol,
   ul
-    margin-top: .4rem
-    padding: 0 0 0 .8rem
-    list-style: none
-    counter-reset: li
-
-    +maxWidth768()
-      padding: 0 0 0 .4rem
-
     p
-      margin: 0 0 .5rem
+      margin: 0 0 8px
 
-    ol,
-    ul
-      padding-left: .6rem
+  li
+    &::marker
+      color: $light-blue
+      font-weight: 600
+      font-size: 1.05em
 
-      +maxWidth768()
-        padding-left: .2rem
+    &:hover
+      &::marker
+        color: var(--pseudo-hover)
 
-    li
-      &:not(.tab)
-        position: relative
-        margin: .2rem 0
-
-      &:hover
-        &:before
-          transform: rotate(360deg)
-
-      &:before
-        position: absolute
-        top: 0
-        left: 0
-        background: $light-blue
-        color: $white
-        cursor: pointer
-        transition: all .3s ease-out
-
-  ol
-    > li
-      &:not(.tab)
-        padding: .2em .2em .2em 1.8em
-
-      &:before
-        margin-top: .65em
-        width: w = 1.45em
-        height: h = w
-        border-radius: .5 * w
-        content: counter(li)
-        counter-increment: li
-        text-align: center
-        font-size: .85em
-        line-height: h
-
-  ul
-    > li:not(.tab)
-      padding: .2em .2em .2em 1.4em
-
-      &:hover
-        &:before
-          border-color: $pseudo-hover
-
-      &:before
-        $w = .42em
-        top: .78em
-        width: w = $w
-        height: h = w
-        border: .5 * w solid $light-blue
-        border-radius: w
-        background: transparent
-        content: ''
-        line-height: h
-
-no-beautify()
-  ol,
-  ul
-    margin-top: .4rem
-
-    p
-      margin: 0 0 .5rem
-
-    ol,
-    ul
-      padding-left: .5rem
-
-    li
-      position: relative
-      margin: .3rem 0
-      padding-left: .3rem
+  ul > li
+    list-style-type: circle
 
 #article-container
   word-wrap: break-word
@@ -153,13 +78,15 @@ no-beautify()
 
   img
     display: block
-    margin: 0 auto .8rem
+    margin: 0 auto 20px
+    max-width: 100%
+    transition: filter 375ms ease-in .2s
 
   p
-    margin: 0 0 .8rem
+    margin: 0 0 16px
 
   iframe
-    margin: 0 0 1rem
+    margin: 0 0 20px
 
   kbd
     margin: 0 3px
@@ -175,15 +102,50 @@ no-beautify()
     font-family: Monaco, 'Ubuntu Mono', monospace
     line-height: 1em
 
-  if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'site'
-    beautify()
-  else if hexo-config('beautify.enable') && hexo-config('beautify.field') == 'post'
-    no-beautify()
+  if hexo-config('anchor')
+    a.headerlink
+      &:after
+        @extend .fontawesomeIcon
+        float: right
+        color: var(--headline-presudo)
+        content: '\f0c1'
+        font-size: .95em
+        opacity: 0
+        transition: all .3s
 
-    &.post-content
+      &:hover
+        &:after
+          color: var(--pseudo-hover)
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+      &:hover
+        a.headerlink
+          &:after
+            opacity: 1
+
+  ol,
+  ul
+    ol,
+    ul
+      padding-left: 20px
+
+    li
+      margin: 4px 0
+
+    p
+      margin: 0 0 8px
+
+  if hexo-config('beautify.enable')
+    if hexo-config('beautify.field') == 'site'
       beautify()
-  else
-    no-beautify()
+    else if hexo-config('beautify.field') == 'post'
+      &.post-content
+        beautify()
 
   > :last-child
     margin-bottom: 0 !important
@@ -196,11 +158,11 @@ no-beautify()
 
       &__tags
         display: inline-block
-        margin: .4rem .4rem .4rem 0
-        padding: 0 .6rem
+        margin: 8px 8px 8px 0
+        padding: 0 12px
         width: fit-content
         border: 1px solid $light-blue
-        border-radius: .6rem
+        border-radius: 12px
         color: $light-blue
         font-size: .85em
         transition: all .2s ease-in-out
@@ -212,7 +174,7 @@ no-beautify()
     .post_share
       display: inline-block
       float: right
-      margin: .4rem 0
+      margin: 8px 0
       width: fit-content
 
       .social-share
@@ -227,19 +189,19 @@ no-beautify()
 
   .post-copyright
     position: relative
-    margin: 2rem 0 .5rem
-    padding: .5rem .8rem
+    margin: 40px 0 10px
+    padding: 10px 16px
     border: 1px solid var(--light-grey)
     transition: box-shadow .3s ease-in-out
 
     &:before
       @extend .fontawesomeIcon
       position: absolute
-      top: .1rem
-      right: .6rem
+      top: 2px
+      right: 12px
       color: $theme-color
       content: '\f1f9'
-      font-size: 1rem
+      font-size: 1.3em
 
     &:hover
       box-shadow: 0 0 8px 0 rgba(232, 237, 250, .6), 0 2px 4px 0 rgba(232, 237, 250, .5)
@@ -250,7 +212,7 @@ no-beautify()
         font-weight: bold
 
       &-info
-        padding-left: .3rem
+        padding-left: 6px
 
         a
           text-decoration: underline
@@ -261,7 +223,7 @@ no-beautify()
 
   .post-outdate-notice
     position: relative
-    margin: 0 0 1rem
+    margin: 0 0 20px
     padding: .5em 1.2em
     border-radius: 3px
     background-color: $noticeOutdate-bg
@@ -281,4 +243,4 @@ no-beautify()
         transform: translateY(-50%)
 
   .ads-wrap
-    margin: 2rem 0
+    margin: 40px 0

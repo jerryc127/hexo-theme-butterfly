@@ -17,6 +17,63 @@
   text-rendering: auto
   -webkit-font-smoothing: antialiased
 
+// card hover
+.cardHover
+  border-radius: 8px
+  background: var(--card-bg)
+  box-shadow: var(--card-box-shadow)
+  transition: all .3s
+
+  &:hover
+    box-shadow: var(--card-hover-box-shadow)
+
+.imgHover
+  width: 100%
+  height: 100%
+  transition: filter 375ms ease-in .2s, transform .6s
+  object-fit: cover
+
+  &:hover
+    transform: scale(1.1)
+
+.postImgHover
+  &:hover
+    img
+      opacity: .8
+      transform: scale(1.1)
+
+  img
+    position: absolute
+    width: 100%
+    height: 100%
+    opacity: .4
+    transition: all .6s, filter 375ms ease-in .2s
+    object-fit: cover
+
+.list-beauty
+  list-style: none
+
+  li
+    position: relative
+    padding 0.12em 0.4em 0.12em 1.4em
+
+    &:hover
+      &:before
+        border-color: var(--pseudo-hover)
+
+    &:before
+      position: absolute
+      top: .67em
+      left: 0
+      width: w = .43em
+      height: h = w
+      border: .5 * w solid $light-blue
+      border-radius: w
+      background: transparent
+      content: ''
+      cursor: pointer
+      transition: all .3s ease-out
+
 maxWidth600()
   @media screen and (max-width: 600px)
     {block}
@@ -60,7 +117,7 @@ if hexo-config('enter_transitions')
 
   #site-title,
   #site-subtitle
-    animation: titlescale 1s
+    animation: titleScale 1s
 
   #nav.show
     animation: headerNoOpacity 1s
@@ -123,14 +180,14 @@ if hexo-config('avatar.effect') == true
 
 @keyframes bottom-top
   0%
-    opacity: 0
     margin-top: 50px
+    opacity: 0
 
   100%
-    opacity: 1
     margin-top: 0
+    opacity: 1
 
-@keyframes titlescale
+@keyframes titleScale
   0%
     opacity: 0
     transform: scale(.7)

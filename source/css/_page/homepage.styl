@@ -1,47 +1,22 @@
 #recent-posts
   & > .recent-post-item:not(:first-child)
-    margin-top: 1rem
+    margin-top: 20px
 
   & > .recent-post-item
+    @extend .cardHover
     display: flex
     flex-direction: row
     align-items: center
-    height: 20em
-    border-radius: 12px 8px 8px 12px
-    background: var(--card-bg)
-    box-shadow: var(--card-box-shadow)
-    transition: all .3s
+    overflow: hidden
+    height: 18em
 
     +maxWidth768()
-      border-radius: 12px 12px 8px 8px
+      flex-direction: column
+      height: auto
 
     &:hover
-      box-shadow: var(--card-hover-box-shadow)
-
       img.post_bg
         transform: scale(1.1)
-
-    if hexo-config('cover.position') == 'both'
-      .left_radius
-        border-radius: 8px 0 0 8px
-
-      .right_radius
-        order: 2
-        border-radius: 0 8px 8px 0
-    else if hexo-config('cover.position') == 'left'
-      .left_radius
-        border-radius: 8px 0 0 8px
-
-      .right_radius
-        border-radius: 8px 0 0 8px
-    else if hexo-config('cover.position') == 'right'
-      .left_radius
-        order: 2
-        border-radius: 0 8px 8px 0
-
-      .right_radius
-        order: 2
-        border-radius: 0 8px 8px 0
 
     &.ads-wrap
       display: block !important
@@ -49,41 +24,52 @@
 
     .post_cover
       overflow: hidden
-      width: 45%
+      width: 44%
       height: 100%
-      -webkit-mask-image: -webkit-radial-gradient(white, black)
+
+      +maxWidth768()
+        width: 100%
+        height: 230px
 
       img.post_bg
-        width: 100%
-        height: 100%
-        transition: all .6s
-        object-fit: cover
+        @extend .imgHover
 
-        &:hover
-          transform: scale(1.1)
+      &.right
+        order: 1
+
+        +maxWidth768()
+          order: 0
 
     & >.recent-post-info
-      display: inline-block
-      overflow: hidden
       padding: 0 40px
-      width: 55%
+      width: 57%
+
+      +maxWidth768()
+        padding: 20px 20px 30px
+        width: 100%
 
       &.no-cover
         width: 100%
 
+        +maxWidth768()
+          padding: 30px 20px
+
       & > .article-title
         @extend .limit-more-line
-        margin-bottom: .3rem
         color: var(--text-highlight-color)
         font-size: 1.72em
         line-height: 1.4
         transition: all .2s ease-in-out
         -webkit-line-clamp: 2
 
+        +maxWidth768()
+          font-size: 1.43em
+
         &:hover
           color: $text-hover
 
       & > .article-meta-wrap
+        margin: 6px 0
         color: $theme-meta-color
         font-size: 90%
 
@@ -94,22 +80,19 @@
           color: $sticky-color
 
         i
-          margin: 0 .2rem 0 0
+          margin: 0 4px 0 0
 
         .article-meta-label
           if hexo-config('post_meta.page.label')
-            padding-right: .2rem
+            padding-right: 4px
           else
             display: none
 
-        .article-meta__separator
-          margin: 0 .3rem
+        .article-meta-separator
+          margin: 0 6px
 
-        .article-meta__link
-          margin: 0 .2rem
-
-        .fa-angle-right
-          margin: 0 .2rem
+        .article-meta-link
+          margin: 0 4px
 
         if hexo-config('post_meta.page.date_format') == 'relative'
           time
@@ -124,31 +107,4 @@
 
       & > .content
         @extend .limit-more-line
-        margin-top: .3rem
-        -webkit-line-clamp: 3
-
-+maxWidth768()
-  #recent-posts
-    .recent-post-item
-      flex-direction: column
-      height: auto !important
-
-      .post_cover
-        order: 1 !important
-        width: 100%
-        height: 230px
-        border-radius: 8px 8px 0 0
-
-      .recent-post-info
-        order: 2 !important
-        padding: 1rem 1rem 1.5rem
-        width: 100%
-
-        &.no-cover
-          padding: 1.5rem 1rem
-
-        .article-title
-          font-size: 1.43em
-
-        .content
-          height: auto
+        -webkit-line-clamp: 2

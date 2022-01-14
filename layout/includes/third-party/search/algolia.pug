@@ -1,13 +1,16 @@
 #algolia-search
   .search-dialog
-    #algolia-search-title.search-dialog__title Algolia
-    #algolia-input-panel
+    nav.search-nav
+      span.search-dialog-title= 'Algolia'
+      button.search-close-button
+        i.fas.fa-times
+
+    .search-wrap
       #algolia-search-input
-    hr
-    #algolia-search-results
-      #algolia-hits
-      #algolia-pagination
-      #algolia-stats
-    span.search-close-button
-      i.fas.fa-times
+      hr
+      #algolia-search-results
+        #algolia-hits
+        #algolia-pagination
+        #algolia-stats
+  
   #search-mask

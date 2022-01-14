@@ -1,61 +1,55 @@
 #article-container
   .btn-center
-    margin: 0 0 1rem
+    margin: 0 0 20px
     text-align: center
 
   .btn-beautify
     display: inline-block
-    margin: 0 .2rem .3rem
-    padding: 0 1rem
-    background-color: $btn-default-color
+    margin: 0 4px 6px
+    padding: 0 15px
+    background-color: var(--btn-beautify-color, $btn-default-color)
     color: $btn-color
     line-height: 2
 
+    for $type in $color-types
+      &.{$type}
+        --btn-beautify-color: lookup('$tagsP-' + $type + '-color')
+
+    &:hover
+      background-color: var(--btn-hover-color)
+
     i + span
-      margin-left: .3rem
+      margin-left: 6px
 
     &:not(.block) + .btn-beautify:not(.block)
-      margin: 0 .2rem 1rem
+      margin: 0 4px 20px
 
     &.block
       display: block
-      margin: 0 0 1rem
+      margin: 0 0 20px
       width: fit-content
       width: -moz-fit-content
 
       &.center
-        margin: 0 auto 1rem
+        margin: 0 auto 20px
 
       &.right
-        margin: 0 0 1rem auto
+        margin: 0 0 20px auto
 
     &.larger
-      padding: .3rem 1.3rem
+      padding: 6px 15px
 
     &:hover
       text-decoration: none
 
-    for $type in $tagsP-types
-      &.{$type}
-        background-color: lookup('$tagsP-' + $type + '-color')
-
     &.outline
       border: 1px solid transparent
-      border-color: $btn-default-color
+      border-color: var(--btn-beautify-color, $btn-default-color)
       background-color: transparent
-      color: $btn-default-color
-      transition: all .3s
+      color: var(--btn-beautify-color, $btn-default-color)
 
-      &.button--animated:before
-        background: $btn-default-color
+      &:hover
+        background-color: var(--btn-beautify-color, $btn-default-color)
 
       &:hover
         color: white !important
-
-      for $type in $tagsP-types
-        &.{$type}
-          border-color: lookup('$tagsP-' + $type + '-color')
-          color: lookup('$tagsP-' + $type + '-color')
-
-          &.button--animated:before
-            background: lookup('$tagsP-' + $type + '-color')

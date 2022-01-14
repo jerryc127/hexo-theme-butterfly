@@ -8,7 +8,7 @@
 const urlFor = require('hexo-util').url_for.bind(hexo)
 
 function gallery (args, content) {
-  return `<div class="justified-gallery">${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}
+  return `<div class="fj-gallery">${hexo.render.renderSync({ text: content, engine: 'markdown' }).split('\n').join('')}
           </div>`
 }
 
@@ -20,7 +20,7 @@ function galleryGroup (args) {
 
   return `
   <figure class="gallery-group">
-  <img class="gallery-group-img" src='${img}' alt="Group Image Gallery">
+  <img class="gallery-group-img no-lightbox" src='${img}' alt="Group Image Gallery">
   <figcaption>
   <div class="gallery-group-name">${name}</div>
   <p>${desrc}</p>

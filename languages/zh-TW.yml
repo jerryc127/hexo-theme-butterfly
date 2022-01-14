@@ -35,16 +35,18 @@ post:
   recommend: 相關推薦
   edit: 編輯
 
-search: 搜尋
-algolia_search:
-  input_placeholder: 搜尋文章
-  hits_empty: '找不到您查詢的內容：${query}'
-  hits_stats: '找到 ${hits} 條結果，用時 ${time} 毫秒'
+search:
+  title: 搜尋
+  load_data: 資料庫載入中
+  algolia_search:
+    input_placeholder: 搜尋文章
+    hits_empty: '找不到您查詢的內容：${query}'
+    hits_stats: '找到 ${hits} 條結果，用時 ${time} 毫秒'
 
-local_search:
-  label: 本地搜尋
-  input_placeholder: 搜尋文章
-  hits_empty: '找不到您查詢的內容：${query}'
+  local_search:
+    label: 本地搜尋
+    input_placeholder: 搜尋文章
+    hits_empty: '找不到您查詢的內容：${query}'
 
 pagination:
   prev: 上一篇
@@ -65,7 +67,7 @@ aside:
     headline: 網站資訊
     article_name: 文章數目
     runtime:
-      name: 已運行時間
+      name: 已執行時間
       unit: 天
     last_push_date:
       name: 最後更新時間
@@ -80,7 +82,7 @@ aside:
     zero: 沒有評論
     image: 圖片
     link: 連結
-    code: 代碼
+    code: 程式碼
   card_toc: 目錄
 
 date_suffix:
@@ -95,8 +97,6 @@ share: 分享
 
 rightside:
   readmode_title: 閱讀模式
-  font_plus_title: 放大字型
-  font_minus_title: 縮小字型
   translate_title: 簡繁轉換
   night_mode_title: 淺色和深色模式轉換
   back_to_top: 回到頂部
@@ -119,6 +119,4 @@ Snackbar:
 
 loading: 載入中...
 
-error404:
-  error_title: 頁面沒有找到
-  back_button: 回到主頁
+error404: 頁面沒有找到

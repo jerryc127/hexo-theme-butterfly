@@ -1,13 +1,15 @@
 #aside-content.aside-content
   //- post
   if is_post()
-    if showToc && theme.toc.style_simple
+    - const tocStyle = page.toc_style_simple
+    - const tocStyleVal = tocStyle === true || tocStyle === false ? tocStyle : theme.toc.style_simple
+    if showToc && tocStyleVal
       .sticky_layout
         include ./card_post_toc.pug
     else
       !=partial('includes/widget/card_author', {}, {cache: true})
       !=partial('includes/widget/card_announcement', {}, {cache: true})
-      !=partial('includes/widget/card_top_self', {}, {cache: true})      
+      !=partial('includes/widget/card_top_self', {}, {cache: true})
       .sticky_layout
         if showToc
           include ./card_post_toc.pug
@@ -20,6 +22,8 @@
     !=partial('includes/widget/card_top_self', {}, {cache: true})      
 
     .sticky_layout
+      if showToc
+        include ./card_post_toc.pug
       !=partial('includes/widget/card_recent_post', {}, {cache: true})
       !=partial('includes/widget/card_ad', {}, {cache: true})
       !=partial('includes/widget/card_newest_comment', {}, {cache: true})

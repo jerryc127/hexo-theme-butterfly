@@ -24,13 +24,12 @@ $hr-icon = $hrEnable && hexo-config('hr_icon.icon') ? hexo-config('hr_icon.icon'
 $hr-icon-top = $hrEnable && hexo-config('hr_icon.icon-top') ? convert(hexo-config('hr_icon.icon-top')) : -10px
 // page beatutify
 $beautifyEnable = hexo-config('beautify.enable')
-$title-prefix-icon = $beautifyEnable ? hexo-config('beautify.title-prefix-icon') : '\f0c1'
-$title-prefix-icon-color = $beautifyEnable ? convert(hexo-config('beautify.title-prefix-icon-color')) : $light-red
+$title-prefix-icon = $beautifyEnable && hexo-config('beautify.title-prefix-icon') ? hexo-config('beautify.title-prefix-icon') : '\f0c1'
+$title-prefix-icon-color = $beautifyEnable && hexo-config('beautify.title-prefix-icon-color') ? convert(hexo-config('beautify.title-prefix-icon-color')) : $light-red
 // Global Variables
 $font-size = hexo-config('font.global-font-size') ? convert(hexo-config('font.global-font-size')) : 14px
 $code-font-size = hexo-config('font.code-font-size') ? convert(hexo-config('font.code-font-size')) : var(--global-font-size)
 $font-color = #1F2D3D
-$rem = 20px
 $text-line-height = 2
 $web-bg = hexo-config('background') && unquote(hexo-config('background'))
 $index_top_img_height = hexo-config('index_top_img_height') ? convert(hexo-config('index_top_img_height')) : 100vh
@@ -40,6 +39,7 @@ $light-blue = $theme-color
 $dark-black = #000000
 $light-grey = #EEEEEE
 $grey = #858585
+$dark-grey = #cacaca
 $white = #FFFFFF
 $whitesmoke = #f5f5f5
 $font-black = #4C4948
@@ -62,13 +62,16 @@ $sidebar-background = #f6f8fa
 $sidebar-width = 300px
 // aside
 $toc-link-color = #666261
-$toc-mobile-width = 300px
+$toc-mobile-width = calc(100% - 80px)
+$toc-mobile-maxWidth = 380px
 $toc-active-color = #fff
 // Button
 $button-color = #fff
 $button-hover-color = $themeColorEnable && hexo-config('theme_color.button_hover') ? convert(hexo-config('theme_color.button_hover')) : $light-orange
 $button-bg = $theme-color
 $pseudo-hover = $button-hover-color
+// scrollbar
+$scrollbar-color= $themeColorEnable && hexo-config('theme_color.scrollbar_color') ? convert(hexo-config('theme_color.scrollbar_color')) : $theme-color
 // table
 $table-thead-bg = #99a9bf
 // reward
@@ -159,7 +162,7 @@ $note-modern-danger-bg = lighten(spin($note-modern-danger-border, 10), 35% + ($l
 $note-modern-danger-text = #a94442
 $note-modern-danger-hover = darken(spin($note-modern-danger-text, -10), 22%)
 // Tag Plugins - Button/note
-$tagsP-types = 'blue' 'pink' 'red' 'purple' 'orange' 'green'
+$color-types = 'blue' 'pink' 'red' 'purple' 'orange' 'green'
 $btn-color = #fff
 $btn-default-color = #777
 $tagsP-blue-color = #428bca
@@ -176,3 +179,5 @@ $tab-button-hover-bg = darken($tab-border-color, 8)
 $tab-active-border-color = $theme-color
 $tab-button-active-bg = $card-bg
 $tab-to-top-color = #99a9bf
+// Tag Plugins - timeline
+$timeline-default-color = $theme-color
