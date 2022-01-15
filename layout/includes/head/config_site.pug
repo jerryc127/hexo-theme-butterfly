@@ -7,7 +7,7 @@
   else isHighlightShrink = theme.highlight_shrink
 
   var showToc = false
-  if (theme.aside.enable) {
+  if (theme.aside.enable && page.aside !== false) {
     let tocEnable = false
     if (is_post()) {
       if (theme.toc.post) tocEnable = true

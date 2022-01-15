@@ -27,10 +27,11 @@ script.
   document.addEventListener('pjax:send', function () {
 
     // removeEventListener scroll 
-    window.removeEventListener('scroll', window.tocScrollFn)
-    window.removeEventListener('scroll', scrollCollect)
+    window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+    window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
 
     typeof preloader === 'object' && preloader.initLoading()
+    document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
     
     if (window.aplayers) {
       for (let i = 0; i < window.aplayers.length; i++) {
