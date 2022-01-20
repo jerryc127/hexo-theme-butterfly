@@ -1,0 +1,15 @@
+h1.page-title(style='display: inline;')= page.title
+
+#bber-loading
+#bber
+  .js-pjax
+    script(type='text/javascript', src='https://imgcache.qq.com/qcloud/cloudbase-js-sdk/1.4.0/cloudbase.full.js', data-pjax='')
+    script(type='text/javascript', src='https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js', data-pjax='')
+    script(type='text/javascript', src='https://unpkg.zhimg.com/qq-wechat-emotion-parser@1.0.4/dist/qq-wechat-emotion-parser.min.js', data-pjax='')
+
+    script.
+      const app = cloudbase.init({
+      env: 'free-7g88xhvve4df913d', //这里是你的环境id
+      //region: "ap-guangzhou"
+      })
+    script(type='text/javascript', src='https://unpkg.zhimg.com/bber-tsfc@1.0.0/bber.js', data-pjax='')
