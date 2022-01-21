@@ -3,5 +3,8 @@ extends includes/layout.pug
 block content
   include ./includes/mixins/post-ui.pug
   #recent-posts.recent-posts
+    #bber-talk
+      script(src='https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js')
+      script(src='https://cdn.bootcdn.net/ajax/libs/timeago.js/4.0.2/timeago.min.js')
     +postUI
     include includes/pagination.pug
