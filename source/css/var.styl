@@ -24,13 +24,8 @@ $hr-icon = $hrEnable && hexo-config('hr_icon.icon') ? hexo-config('hr_icon.icon'
 $hr-icon-top = $hrEnable && hexo-config('hr_icon.icon-top') ? convert(hexo-config('hr_icon.icon-top')) : -10px
 // page beatutify
 $beautifyEnable = hexo-config('beautify.enable')
-<<<<<<< HEAD
-$title-prefix-icon = $beautifyEnable ? hexo-config('beautify.title-prefix-icon') : '\f0e7'  //小标题图标自定义
-$title-prefix-icon-color = $beautifyEnable ? convert(hexo-config('beautify.title-prefix-icon-color')) : $light-red
-=======
 $title-prefix-icon = $beautifyEnable && hexo-config('beautify.title-prefix-icon') ? hexo-config('beautify.title-prefix-icon') : '\f0c1'
 $title-prefix-icon-color = $beautifyEnable && hexo-config('beautify.title-prefix-icon-color') ? convert(hexo-config('beautify.title-prefix-icon-color')) : $light-red
->>>>>>> 241f9b5873c04af746cb48ea43da284c5c822eba
 // Global Variables
 $font-size = hexo-config('font.global-font-size') ? convert(hexo-config('font.global-font-size')) : 14px
 $code-font-size = hexo-config('font.code-font-size') ? convert(hexo-config('font.code-font-size')) : var(--global-font-size)
