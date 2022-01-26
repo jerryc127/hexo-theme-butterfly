@@ -2,7 +2,7 @@
   &-list
     a
       display: inline-block
-      padding: 0 .4rem
+      padding: 0 8px
       transition: all .3s
 
       &:hover
@@ -17,3 +17,7 @@
 
     +maxWidth768()
       font-size: 2em
+
+h1.page-title
+  & + .tag-cloud-list
+    text-align: left

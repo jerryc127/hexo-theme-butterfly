@@ -1,22 +1,22 @@
 .note
   $note-icons = hexo-config('note.icons')
   position: relative
-  margin: 0 0 1rem
+  margin: 0 0 20px
   padding: 15px
 
   if hexo-config('note.border_radius') is a 'unit'
     border-radius: unit(hexo-config('note.border_radius'), px)
 
   &.icon
-    padding-left: 2.25rem
+    padding-left: 3em
 
   & > .note-icon
     position: absolute
-    top: calc(50% - .4rem)
-    left: .7rem
+    top: calc(50% - .5em)
+    left: .8em
     font-size: larger
 
-  for $type in $tagsP-types
+  for $type in $color-types
     &.{$type}
       &:not(.disabled)
         border-left-color: lookup('$tagsP-' + $type + '-color') !important
@@ -75,12 +75,12 @@
 
   if $note-icons
     &:not(.no-icon)
-      padding-left: 2.25rem
+      padding-left: 3em
 
       &::before
         position: absolute
-        top: calc(50% - .8rem)
-        left: .7rem
+        top: calc(50% - .95em)
+        left: .8em
         font-size: larger
         @extend .fontawesomeIcon
 

@@ -58,31 +58,15 @@ const btf = {
     }
   },
 
-  snackbarShow: (text, showAction, duration) => {
-    const sa = (typeof showAction !== 'undefined') ? showAction : false
-    const dur = (typeof duration !== 'undefined') ? duration : 2000
-    const position = GLOBAL_CONFIG.Snackbar.position
-    const bg = document.documentElement.getAttribute('data-theme') === 'light' ? GLOBAL_CONFIG.Snackbar.bgLight : GLOBAL_CONFIG.Snackbar.bgDark
+  snackbarShow: (text, showAction = false, duration = 2000) => {
+    const { position, bgLight, bgDark } = GLOBAL_CONFIG.Snackbar
+    const bg = document.documentElement.getAttribute('data-theme') === 'light' ? bgLight : bgDark
     Snackbar.show({
       text: text,
       backgroundColor: bg,
-      showAction: sa,
-      duration: dur,
+      showAction: showAction,
+      duration: duration,
       pos: position
-    })
-  },
-
-  initJustifiedGallery: function (selector) {
-    if (!(selector instanceof jQuery)) {
-      selector = $(selector)
-    }
-    selector.each(function (i, o) {
-      if ($(this).is(':visible')) {
-        $(this).justifiedGallery({
-          rowHeight: 220,
-          margins: 4
-        })
-      }
     })
   },
 
@@ -135,15 +119,11 @@ const btf = {
     }
   },
 
-  scrollToDest: (pos, time) => {
-    if (pos < 0 || time < 0) {
-      return
-    }
-
-    const currentPos = window.scrollY || window.screenTop
+  scrollToDest: (pos, time = 500) => {
+    const currentPos = window.pageYOffset
     if (currentPos > pos) pos = pos - 70
 
-    if ('CSS' in window && CSS.supports('scroll-behavior', 'smooth')) {
+    if ('scrollBehavior' in document.documentElement.style) {
       window.scrollTo({
         top: pos,
         behavior: 'smooth'
@@ -152,39 +132,35 @@ const btf = {
     }
 
     let start = null
-    time = time || 500
+    pos = +pos
     window.requestAnimationFrame(function step (currentTime) {
       start = !start ? currentTime : start
+      const progress = currentTime - start
       if (currentPos < pos) {
-        const progress = currentTime - start
         window.scrollTo(0, ((pos - currentPos) * progress / time) + currentPos)
-        if (progress < time) {
-          window.requestAnimationFrame(step)
-        } else {
-          window.scrollTo(0, pos)
-        }
       } else {
-        const progress = currentTime - start
         window.scrollTo(0, currentPos - ((currentPos - pos) * progress / time))
-        if (progress < time) {
-          window.requestAnimationFrame(step)
-        } else {
-          window.scrollTo(0, pos)
-        }
+      }
+      if (progress < time) {
+        window.requestAnimationFrame(step)
+      } else {
+        window.scrollTo(0, pos)
       }
     })
   },
 
-  fadeIn: (ele, time) => {
-    ele.style.cssText = `display:block;animation: to_show ${time}s`
+  animateIn: (ele, text) => {
+    ele.style.display = 'block'
+    ele.style.animation = text
   },
 
-  fadeOut: (ele, time) => {
+  animateOut: (ele, text) => {
     ele.addEventListener('animationend', function f () {
-      ele.style.cssText = "display: none; animation: '' "
+      ele.style.display = ''
+      ele.style.animation = ''
       ele.removeEventListener('animationend', f)
     })
-    ele.style.animation = `to_hide ${time}s`
+    ele.style.animation = text
   },
 
   getParents: (elem, selector) => {
@@ -204,7 +180,6 @@ const btf = {
   },
 
   /**
-   *
    * @param {*} selector
    * @param {*} eleType the type of create element
    * @param {*} options object key: value
@@ -226,14 +201,6 @@ const btf = {
     }
   },
 
-  isJqueryLoad: fn => {
-    if (typeof jQuery === 'undefined') {
-      getScript(GLOBAL_CONFIG.source.jQuery).then(fn)
-    } else {
-      fn()
-    }
-  },
-
   isHidden: ele => ele.offsetHeight === 0 && ele.offsetWidth === 0,
 
   getEleTop: ele => {
@@ -246,6 +213,65 @@ const btf = {
     }
 
     return actualTop
-  }
+  },
 
+  loadLightbox: ele => {
+    const service = GLOBAL_CONFIG.lightbox
+
+    if (service === 'mediumZoom') {
+      const zoom = mediumZoom(ele)
+      zoom.on('open', e => {
+        const photoBg = document.documentElement.getAttribute('data-theme') === 'dark' ? '#121212' : '#fff'
+        zoom.update({
+          background: photoBg
+        })
+      })
+    }
+
+    if (service === 'fancybox') {
+      ele.forEach(i => {
+        if (i.parentNode.tagName !== 'A') {
+          const dataSrc = i.dataset.lazySrc || i.src
+          const dataCaption = i.title || i.alt || ''
+          btf.wrap(i, 'a', { href: dataSrc, 'data-fancybox': 'gallery', 'data-caption': dataCaption, 'data-thumb': dataSrc })
+        }
+      })
+
+      if (!window.fancyboxRun) {
+        Fancybox.bind('[data-fancybox]', {
+          Hash: false,
+          Thumbs: {
+            autoStart: false
+          }
+        })
+        window.fancyboxRun = true
+      }
+    }
+  },
+
+  initJustifiedGallery: function (selector) {
+    selector.forEach(function (i) {
+      if (!btf.isHidden(i)) {
+        fjGallery(i, {
+          itemSelector: '.fj-gallery-item',
+          rowHeight: 220,
+          gutter: 4,
+          onJustify: function () {
+            this.$container.style.opacity = '1'
+          }
+        })
+      }
+    })
+  },
+
+  updateAnchor: (anchor) => {
+    if (anchor !== window.location.hash) {
+      if (!anchor) anchor = location.pathname
+      const title = GLOBAL_CONFIG_SITE.title
+      window.history.replaceState({
+        url: location.href,
+        title: title
+      }, title, anchor)
+    }
+  }
 }

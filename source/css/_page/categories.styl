@@ -1,62 +1,37 @@
-#page
-  .category-lists
-    padding: 1rem 0 1.5rem
+.category-lists
+  .category-title
+    font-size: 2.57em
 
     +maxWidth768()
-      padding: 0
+      font-size: 2em
 
-    .category-title
-      font-size: 2.57em
+  .category-list
+    margin-bottom: 0
 
-      +maxWidth768()
-        font-size: 2em
+    a
+      color: var(--font-color)
 
-    .category-list
-      a
-        color: var(--font-color)
+      &:hover
+        color: $text-hover
 
-        &:hover
-          color: $text-hover
+    .category-list-count
+      margin-left: 8px
+      color: $theme-meta-color
 
-      .category-list-count
-        margin-left: .4rem
-        color: $theme-meta-color
+      &:before
+        content: '('
 
-        &:before
-          content: '('
+      &:after
+        content: ')'
 
-        &:after
-          content: ')'
+  ul
+    padding: 0 0 0 20px
+    @extend .list-beauty
 
     ul
-      margin-top: .4rem
-      padding: 0 0 0 1rem
-      list-style: none
-      counter-reset: li
+      padding-left: 4px
 
-      ul
-        padding-left: .2rem
-
-      li
-        position: relative
-        margin: .3rem 0
-        padding: .12em .4em .12em 1.4em
-
-        &:before
-          position: absolute
-          left: 0
-          cursor: pointer
-          transition: all .3s ease-out
-          $w = .43em
-          top: .7em
-          width: w = $w
-          height: h = w
-          border: .5 * w solid $light-blue
-          border-radius: w
-          background: transparent
-          content: ''
-          // line-height: h
-
-        &:hover
-          &:before
-            border-color: $pseudo-hover
+    li
+      position: relative
+      margin: 6px 0
+      padding: .12em .4em .12em 1.4em

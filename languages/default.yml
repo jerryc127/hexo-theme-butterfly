@@ -34,16 +34,18 @@ post:
   recommend: Related Articles
   edit: Edited on
 
-search: Search
-algolia_search:
-  input_placeholder: Search for Posts
-  hits_empty: "We didn't find any results for the search: ${query}."
-  hits_stats: '${hits} results found in ${time} ms'
+search:
+  title: Search
+  load_data: Loading the Database
+  algolia_search:
+    input_placeholder: Search for Posts
+    hits_empty: "We didn't find any results for the search: ${query}."
+    hits_stats: '${hits} results found in ${time} ms'
 
-local_search:
-  label: Local search
-  input_placeholder: Search for Posts
-  hits_empty: "We didn't find any results for the search: ${query}"
+  local_search:
+    label: Local search
+    input_placeholder: Search for Posts
+    hits_empty: "We didn't find any results for the search: ${query}"
 
 pagination:
   prev: Previous Post
@@ -94,8 +96,6 @@ share: Share
 
 rightside:
   readmode_title: Read Mode
-  font_plus_title: Increase font size
-  font_minus_title: Decrease font size
   translate_title: Toggle Between Traditional Chinese And Simplified Chinese
   night_mode_title: Toggle Between Light And Dark Mode
   back_to_top: Back To Top
@@ -118,6 +118,4 @@ Snackbar:
 
 loading: Loading...
 
-error404:
-  error_title: Page not found
-  back_button: Go back home
+error404: Page not found

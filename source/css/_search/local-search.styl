@@ -6,23 +6,26 @@
       width: 100%
 
       input
-        padding: .25rem .7rem
+        padding: 5px 14px
         width: 100%
         outline: none
         border: 2px solid $search-color
-        border-radius: 2rem
+        border-radius: 40px
         background: var(--search-bg)
         color: var(--search-input-color)
         -webkit-appearance: none
 
+    .search-wrap
+      display: none
+
     .local-search__hit-item
       position: relative
-      padding-left: 1.2rem
+      padding-left: 24px
       line-height: 1.7
 
       &:hover
         &:before
-          border-color: $pseudo-hover
+          border-color: var(--pseudo-hover)
 
       &:before
         $w = .5em
@@ -31,7 +34,7 @@
         left: 0
         width: w = $w
         height: h = w
-        border: .15rem solid $search-color
+        border: 3px solid $search-color
         border-radius: w
         background: transparent
         content: ''
@@ -48,7 +51,7 @@
           color: $search-color
 
       .search-result
-        margin: 0 0 .4rem
+        margin: 0 0 8px
         word-break: break-all
 
       .search-keyword
@@ -57,8 +60,8 @@
 
     .search-result-list
       overflow-y: auto
-      max-height: 10.5rem
+      max-height: 210px
 
       +maxWidth768()
-        padding-bottom: 2rem
+        padding-bottom: 40px
         max-height: 75vh !important

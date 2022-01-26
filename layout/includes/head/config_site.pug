@@ -1,13 +1,22 @@
 -
+  const titleVal = pageTitle.replace(/'/ig,"\\'")
+
   let isHighlightShrink
   if (theme.highlight_shrink == 'none') isHighlightShrink = 'undefined'
   else if (page.highlight_shrink === true || page.highlight_shrink === false) isHighlightShrink = page.highlight_shrink
   else isHighlightShrink = theme.highlight_shrink
 
-  var pageToc = page.toc === true || page.toc === false ? page.toc : theme.toc.enable
-  var showToc = is_post() && theme.aside.enable && pageToc && (toc(page.content) !== '' || page.encrypt == true )
-
-  let titleVal = pageTitle.replace(/'/ig,"\\'")
+  var showToc = false
+  if (theme.aside.enable && page.aside !== false) {
+    let tocEnable = false
+    if (is_post()) {
+      if (theme.toc.post) tocEnable = true
+    } else if (is_page()) {
+      if (theme.toc.page) tocEnable = true
+    }
+    const pageToc = page.toc === true || page.toc === false ? page.toc : tocEnable
+    showToc = pageToc && (toc(page.content) !== '' || page.encrypt == true )
+  }
 -
 
 script#config-diff.

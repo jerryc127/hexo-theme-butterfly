@@ -1,38 +1,17 @@
 #pagination
-  overflow: hidden
-  margin-top: 1rem
-  width: 100%
-
   .pagination
+    margin-top: 20px
     text-align: center
 
   .page-number
-    display: inline-block
-    margin: 0 .2rem
-    min-width: w = 1.2rem
-    height: w
-    text-align: center
-    line-height: w
-    cursor: pointer
-
     &.current
       background: $theme-paginator-color
       color: var(--white)
-      cursor: default
-
-  img.prev-cover,
-  img.next-cover
-    position: absolute
-    width: 100%
-    height: 100%
-    opacity: .4
-    transition: all .6s
-    object-fit: cover
 
   .pagination-info
     position: absolute
     top: 50%
-    padding: 1rem 2rem
+    padding: 20px 40px
     width: 100%
     transform: translate(0, -50%)
 
@@ -57,6 +36,7 @@
 
   .prev-post,
   .next-post
+    @extend .postImgHover
     width: 50%
 
     +maxWidth768()
@@ -68,12 +48,35 @@
       overflow: hidden
       height: 150px
 
-    &:hover
-      img.prev-cover,
-      img.next-cover
-        opacity: .8
-        transform: scale(1.1)
-
   &.pagination-post
-    margin-top: 2rem
+    overflow: hidden
+    margin-top: 40px
     background: $dark-black
+
+.layout
+  & > .recent-posts
+    .pagination
+      & > *
+        display: inline-block
+        margin: 0 6px
+        width: w = 2.5em
+        height: w
+        line-height: w
+
+      & > *:not(.space)
+        @extend .cardHover
+
+        &:hover
+          background: var(--btn-hover-color)
+          color: var(--btn-color)
+
+  & > div:not(.recent-posts)
+    .pagination
+      .page-number
+        display: inline-block
+        margin: 0 4px
+        min-width: w = 24px
+        height: w
+        text-align: center
+        line-height: w
+        cursor: pointer

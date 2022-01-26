@@ -3,20 +3,18 @@ if theme.pjax.exclude
   each val in theme.pjax.exclude
     - pjaxExclude = pjaxExclude + `:not([href="${val}"])`
 
+- let pjaxSelectors = ['title','#config-diff','#body-wrap','#rightside-config-hide','#rightside-config-show','.js-pjax']
+
+- let choose = theme.comments.use
+if choose
+  if theme.Open_Graph_meta && (choose.includes('Livere') || choose.includes('Utterances') || choose.includes('Giscus'))
+    - pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+  if choose.includes('Utterances') || choose.includes('Giscus')
+    - pjaxSelectors.unshift('link[rel="canonical"]')
+
 script(src=url_for(theme.CDN.pjax))
 script.
-  let pjaxSelectors = [
-    'title',
-    '#config-diff',
-    '#body-wrap',
-    '#rightside-config-hide',
-    '#rightside-config-show',
-    '.js-pjax'
-  ]
-
-  if (!{Boolean(theme.Open_Graph_meta && theme.comments.use && theme.comments.use.includes('Livere'))}) {
-    pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
-  }
+  let pjaxSelectors = !{JSON.stringify(pjaxSelectors)}
 
   var pjax = new Pjax({
     elements: '!{pjaxExclude}',
@@ -29,10 +27,11 @@ script.
   document.addEventListener('pjax:send', function () {
 
     // removeEventListener scroll 
-    window.removeEventListener('scroll', window.tocScrollFn)
-    window.removeEventListener('scroll', scrollCollect)
+    window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+    window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
 
     typeof preloader === 'object' && preloader.initLoading()
+    document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
     
     if (window.aplayers) {
       for (let i = 0; i < window.aplayers.length; i++) {
@@ -73,11 +72,6 @@ script.
     typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
 
     typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
-
-    // Analytics
-    if (!{theme.tencent_analytics ? true : false}) {
-      MtaH5.pgv()
-    }
 
     // prismjs
     typeof Prism === 'object' && Prism.highlightAll()

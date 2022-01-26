@@ -1,107 +1,102 @@
-figure.gallery-group
-  position: relative
-  float: left
-  overflow: hidden
-  margin: .3rem .2rem
-  width: calc(50% - .4rem)
-  height: 250px
-  border-radius: 8px
-  background: $dark-black
-  -webkit-transform: translate3d(0, 0, 0)
-
-  +maxWidth600()
-    width: calc(100% - .4rem)
-
-  &:hover
-    img
-      opacity: .4
-      transform: translate3d(0, 0, 0)
-
-    .gallery-group-name::after
-      transform: translate3d(0, 0, 0)
-
-    p
-      opacity: 1
-      transform: translate3d(0, 0, 0)
-
-  img
+#article-container
+  figure.gallery-group
     position: relative
-    margin: 0 !important
-    max-width: none
-    width: calc(100% + 20px)
+    float: left
+    overflow: hidden
+    margin: 6px 4px
+    width: calc(50% - 8px)
     height: 250px
-    backface-visibility: hidden
-    opacity: .8
-    transition: opacity .35s, transform .35s
-    transform: translate3d(-10px, 0, 0)
-    object-fit: cover
+    border-radius: 8px
+    background: $dark-black
+    -webkit-transform: translate3d(0, 0, 0)
 
-  figcaption
-    position: absolute
-    top: 0
-    left: 0
-    padding: 1.5rem
-    width: 100%
-    height: 100%
-    color: $gallery-color
-    text-transform: uppercase
-    backface-visibility: hidden
+    +maxWidth600()
+      width: calc(100% - 8px)
 
-    & > a
+    &:hover
+      img
+        opacity: .4
+        transform: translate3d(0, 0, 0)
+
+      .gallery-group-name::after
+        transform: translate3d(0, 0, 0)
+
+      p
+        opacity: 1
+        transform: translate3d(0, 0, 0)
+
+    img
+      position: relative
+      margin: 0
+      max-width: none
+      width: calc(100% + 20px)
+      height: 250px
+      backface-visibility: hidden
+      opacity: .8
+      transition: all .3s, filter 375ms ease-in .2s
+      transform: translate3d(-10px, 0, 0)
+      object-fit: cover
+
+    figcaption
       position: absolute
       top: 0
-      right: 0
-      bottom: 0
       left: 0
-      z-index: 1000
-      opacity: 0
-
-  p
-    @extend .limit-more-line
-    margin: 0
-    padding: .4rem 0 0
-    letter-spacing: 1px
-    font-size: 1.1em
-    line-height: 1.5
-    opacity: 0
-    transition: opacity .35s, transform .35s
-    transform: translate3d(100%, 0, 0)
-    -webkit-line-clamp: 4
-
-  .gallery-group-name
-    @extend .limit-more-line
-    position: relative
-    margin: 0
-    padding: .4rem 0
-    font-weight: bold
-    font-size: 1.65em
-    line-height: 1.5
-    -webkit-line-clamp: 2
-
-    &:after
-      position: absolute
-      bottom: 0
-      left: 0
+      padding: 30px
       width: 100%
-      height: 2px
-      background: $gallery-color
-      content: ''
-      transition: transform .35s
-      transform: translate3d(-100%, 0, 0)
+      height: 100%
+      color: $gallery-color
+      text-transform: uppercase
+      backface-visibility: hidden
 
-.gallery-group-main
-  overflow: auto
-  padding: 0 0 .8rem
+      & > a
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        z-index: 1000
+        opacity: 0
 
-.justified-gallery
-  margin: 0 0 .8rem
+    p
+      @extend .limit-more-line
+      margin: 0
+      padding: 8px 0 0
+      letter-spacing: 1px
+      font-size: 1.1em
+      line-height: 1.5
+      opacity: 0
+      transition: opacity .35s, transform .35s
+      transform: translate3d(100%, 0, 0)
+      -webkit-line-clamp: 4
 
-  img
+    .gallery-group-name
+      @extend .limit-more-line
+      position: relative
+      margin: 0
+      padding: 8px 0
+      font-weight: bold
+      font-size: 1.65em
+      line-height: 1.5
+      -webkit-line-clamp: 2
+
+      &:after
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 2px
+        background: $gallery-color
+        content: ''
+        transition: transform .35s
+        transform: translate3d(-100%, 0, 0)
+
+  .gallery-group-main
+    overflow: auto
+    padding: 0 0 16px
+
+  .fj-gallery
+    margin: 0 0 16px
     opacity: 0
 
-  .img-alt
-    display: none
-
-  .fancybox
-    width: auto
-    text-align: inherit
+    .img-alt
+      display: none

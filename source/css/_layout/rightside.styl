@@ -1,29 +1,39 @@
 #rightside
   position: fixed
-  right: -38px
+  right: -48px
   bottom: $rightside-bottom
   z-index: 100
   opacity: 0
   transition: all .5s
 
   #rightside-config-hide
+    height: 0
+    opacity: 0
     transition: transform .4s
-    transform: translate(35px, 0)
+    transform: translate(45px, 0)
 
     &.show
-      transform: translate(0, 0) !important
+      height: auto
+      opacity: 1
+      transform: translate(0, 0)
+
+    &.status
+      height: auto
+      opacity: 1
 
   & > div
     & > button,
     & > a
       display: block
-      margin-bottom: 2px
-      width: 30px
-      height: 30px
+      margin-bottom: 5px
+      width: w = 35px
+      height: w
+      border-radius: 5px
       background-color: var(--btn-bg)
       color: var(--btn-color)
       text-align: center
       font-size: 16px
+      line-height: w
 
       &:hover
         background-color: var(--btn-hover-color)

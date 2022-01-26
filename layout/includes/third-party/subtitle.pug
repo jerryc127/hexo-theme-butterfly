@@ -1,29 +1,31 @@
-- let source = theme.subtitle.source
+- const { effect,loop,source,sub } = theme.subtitle
+- let subContent = sub || new Array()
 
 case source
   when 1
     script.
       function subtitleType () {
-        fetch('https://api.btstu.cn/yan/api.php?charset=utf-8&encode=json')
+        fetch('https://v1.hitokoto.cn')
           .then(response => response.json())
           .then(data => {
-            if (!{theme.subtitle.effect}) {
-              var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
-              var both = sub.unshift(data.text)
-              typed = new Typed('#subtitle', {
+            if (!{effect}) {
+              const from = '出自 ' + data.from
+              const sub = !{JSON.stringify(subContent)}
+              sub.unshift(data.hitokoto, from)
+              window.typed = new Typed('#subtitle', {
                 strings: sub,
                 startDelay: 300,
                 typeSpeed: 150,
-                loop: !{theme.subtitle.loop},
+                loop: !{loop},
                 backSpeed: 50,
               })
             } else {
-              document.getElementById('subtitle').innerHTML = data.text
+              document.getElementById('subtitle').innerHTML = data.hitokoto
             }
           })
       }
 
-      if (!{theme.subtitle.effect}) {
+      if (!{effect}) {
         if (typeof Typed === 'function') {
           subtitleType()
         } else {
@@ -36,27 +38,26 @@ case source
   when 2
     script.
       function subtitleType () {
-        fetch('https://v1.hitokoto.cn')
-          .then(response => response.json())
-          .then(data => {
-            if (!{theme.subtitle.effect}) {
-              var from = '出自 ' + data.from
-              var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
-              var both = sub.unshift(data.hitokoto, from)
-              var typed = new Typed('#subtitle', {
-                strings: sub,
-                startDelay: 300,
-                typeSpeed: 150,
-                loop: !{theme.subtitle.loop},
-                backSpeed: 50,
-              })
-            } else {
-              document.getElementById('subtitle').innerHTML = data.hitokoto
-            }
-          })
+        getScript('https://yijuzhan.com/api/word.php?m=js').then(() => {
+          const con = str[0]
+          if (!{effect}) {
+            const from = '出自 ' + str[1]
+            const sub = !{JSON.stringify(subContent)}
+            sub.unshift(con, from)
+            window.typed = new Typed('#subtitle', {
+              strings: sub,
+              startDelay: 300,
+              typeSpeed: 150,
+              loop: !{loop},
+              backSpeed: 50,
+            })
+          } else {
+            document.getElementById('subtitle').innerHTML = con
+          }
+        })
       }
 
-      if (!{theme.subtitle.effect}) {
+      if (!{effect}) {
         if (typeof Typed === 'function') {
           subtitleType()
         } else {
@@ -69,49 +70,17 @@ case source
   when 3
     script.
       function subtitleType () {
-        getScript('https://yijuzhan.com/api/word.php?m=js').then(() => {
-          var con = str[0]
-          if (!{theme.subtitle.effect}) {
-            var from = '出自 ' + str[1]
-            var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
-            var both = sub.unshift(con, from)
-            var typed = new Typed('#subtitle', {
-              strings: sub,
-              startDelay: 300,
-              typeSpeed: 150,
-              loop: !{theme.subtitle.loop},
-              backSpeed: 50,
-            })
-          } else {
-            document.getElementById('subtitle').innerHTML = con
-          }
-        })
-      }
-
-      if (!{theme.subtitle.effect}) {
-        if (typeof Typed === 'function') {
-          subtitleType()
-        } else {
-          getScript('!{url_for(theme.CDN.typed)}').then(subtitleType)
-        }
-      } else {
-        subtitleType()
-      }
-
-  when 4
-    script.
-      function subtitleType () {
         getScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js').then(() => {
-          jinrishici.load(function (result) {
-            if (!{theme.subtitle.effect}) {
-              var sub = "!{theme.subtitle.sub}".length == 0 ? new Array() : "!{theme.subtitle.sub}".split(',')
-              var content = result.data.content
-              var both = sub.unshift(content)
-              var typed = new Typed('#subtitle', {
+          jinrishici.load(result =>{
+            if (!{effect}) {
+              const sub = !{JSON.stringify(subContent)}
+              const content = result.data.content
+              sub.unshift(content)
+              window.typed = new Typed('#subtitle', {
                 strings: sub,
                 startDelay: 300,
                 typeSpeed: 150,
-                loop: !{theme.subtitle.loop},
+                loop: !{loop},
                 backSpeed: 50,
               })
             } else {
@@ -121,7 +90,7 @@ case source
         })
       }
 
-      if (!{theme.subtitle.effect}) {
+      if (!{effect}) {
         if (typeof Typed === 'function') {
           subtitleType()
         } else {
@@ -132,22 +101,23 @@ case source
       }
 
   default
+    - subContent = subContent.length ? subContent : new Array(config.subtitle)
     script.
       function subtitleType () {
-        if (!{theme.subtitle.effect}) { 
-          var typed = new Typed("#subtitle", {
-            strings: "!{theme.subtitle.sub}".split(","),
+        if (!{effect}) { 
+          window.typed = new Typed("#subtitle", {
+            strings: !{JSON.stringify(subContent)},
             startDelay: 300,
             typeSpeed: 150,
-            loop: !{theme.subtitle.loop},
+            loop: !{loop},
             backSpeed: 50
           })
         } else {
-          document.getElementById("subtitle").innerHTML = '!{theme.subtitle.sub[0]}'
+          document.getElementById("subtitle").innerHTML = '!{subContent[0]}'
         }
       }
 
-      if (!{theme.subtitle.effect}) {
+      if (!{effect}) {
         if (typeof Typed === 'function') {
           subtitleType()
         } else {

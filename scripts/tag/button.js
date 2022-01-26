@@ -21,7 +21,7 @@ function btn (args) {
   icon = icon.trim()
   option = option.trim()
 
-  return `<a class="btn-beautify button--animated ${option}" href="${urlFor(url)}" 
+  return `<a class="btn-beautify ${option}" href="${urlFor(url)}" 
   title="${text}">${icon.length ? `<i class="${icon}"></i>` : ''}${text.length ? `<span>${text}</span>` : ''}</a>`
 }
 

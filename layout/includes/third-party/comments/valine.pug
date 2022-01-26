@@ -9,18 +9,10 @@ script.
         el: '#vcomment',
         appId: '#{theme.valine.appId}',
         appKey: '#{theme.valine.appKey}',
-        placeholder: '#{theme.valine.placeholder}',
         avatar: '#{theme.valine.avatar}',
-        meta: '#{theme.valine.guest_info }'.split(','),
-        pageSize: '#{theme.valine.pageSize}',
-        lang: '#{theme.valine.lang}',
-        recordIP: #{theme.valine.recordIP},
         serverURLs: '#{theme.valine.serverURLs}',
-        emojiCDN: '#{theme.valine.emojiCDN}',
         emojiMaps: !{emojiMaps},
-        enableQQ: #{theme.valine.enableQQ},
         path: window.location.pathname,
-        requiredFields: [!{theme.valine.requiredFields ? JSON.stringify(theme.valine.requiredFields).split(',') : ''}],
         visitor: #{theme.valine.visitor}
       }, !{JSON.stringify(theme.valine.option)}))
     }

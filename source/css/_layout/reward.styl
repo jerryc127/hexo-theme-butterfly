@@ -1,18 +1,24 @@
 .post-reward
   position: relative
-  margin-top: 4rem
+  margin-top: 80px
   width: 100%
   text-align: center
+  pointer-events: none
+
+  & > *
+    pointer-events: auto
 
   .reward-button
     display: inline-block
-    padding: .2rem 1.2rem
+    padding: 4px 24px
     background: var(--btn-bg)
     color: var(--btn-color)
     cursor: pointer
-    transition: all .4s
 
   &:hover
+    .reward-button
+      background: var(--btn-hover-color)
+
     & > .reward-main
       display: block
 
@@ -28,7 +34,7 @@
     .reward-all
       display: inline-block
       margin: 0
-      padding: 1rem .5rem
+      padding: 20px 10px
       border-radius: 4px
       background: var(--reward-pop)
 
@@ -64,6 +70,5 @@
           height: 130px
 
         .post-qr-code-desc
-          padding-top: .4rem
           width: 130px
           color: $reward-pop-up-color

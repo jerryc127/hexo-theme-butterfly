@@ -1,7 +1,5 @@
 $highlight_theme = hexo-config('highlight_theme')
-$highlighEnable = hexo-config('highlight_settings') && hexo-config('highlight_settings.enable')
-$prismjsEnable = hexo-config('prismjs_settings') && hexo-config('prismjs_settings.enable')
-wordWrap = !hexo-config('highlight_settings.line_number') && hexo-config('code_word_wrap')
+wordWrap = $highlight_enable && !$highlight_line_number && hexo-config('code_word_wrap')
 
 @require 'theme'
 
@@ -15,15 +13,15 @@ wordWrap = !hexo-config('highlight_settings.line_number') && hexo-config('code_w
   --hlscrollbar-bg: $highlight-scrollbar
   --hlexpand-bg: linear-gradient(180deg, rgba($highlight-background, .6), rgba($highlight-background, .9))
 
-if $highlighEnable
+if $highlight_enable
   @require 'highlight/index'
 
-if $prismjsEnable
+if $prismjs_enable
   @require 'prismjs/index'
 
 $code-block
   overflow: auto
-  margin: 0 0 1rem
+  margin: 0 0 20px
   padding: 0
   background: var(--hl-bg)
   color: var(--hl-color)
@@ -33,28 +31,6 @@ $code-block
     counter-reset: line
     white-space: pre-wrap
 
-blockquote
-  margin: 0 0 1rem
-  padding: .1rem .8rem
-  border-left: .2rem solid $blockquote-padding-color
-  background-color: var(--blockquote-bg)
-  color: var(--blockquote-color)
-
-  a
-    word-break: break-all
-
-  p
-    margin: 0 !important
-    padding: .5rem 0
-
-  footer
-    padding: 0 0 .5rem
-
-    cite
-      &:before
-        padding: 0 .3em
-        content: '—'
-
 #article-container
   pre,
   code
@@ -62,7 +38,7 @@ blockquote
     font-family: $code-font-family !important
 
   code
-    padding: .1rem .2rem
+    padding: 2px 4px
     background: $code-background
     color: $code-foreground
 
@@ -87,7 +63,7 @@ blockquote
 
     figcaption,
     .caption
-      padding: .3rem 0 .1rem .7rem
+      padding: 6px 0 2px 14px
       font-size: $code-font-size
       line-height: 1em
 
@@ -104,7 +80,7 @@ blockquote
     display: flex
     align-items: center
     overflow: hidden
-    min-height: 1.2rem
+    min-height: 24px
     height: 2.15em
     background: var(--hltools-bg)
     color: var(--hltools-color)
@@ -115,12 +91,12 @@ blockquote
 
     .expand
       position: absolute
-      padding: .4rem .7rem
+      padding: .57em .7em
       cursor: pointer
       transition: transform .3s
 
       & + .code-lang
-        left: 1.7rem
+        left: 1.6em
 
       &.closed
         transition: all .3s
@@ -128,7 +104,7 @@ blockquote
 
     .code-lang
       position: absolute
-      left: .7rem
+      left: 14px
       text-transform: uppercase
       font-weight: bold
       font-size: 1.15em
@@ -136,13 +112,13 @@ blockquote
 
     .copy-notice
       position: absolute
-      right: 1.7rem
+      right: 2.1em
       opacity: 0
       transition: opacity .4s
 
     .copy-button
       position: absolute
-      right: .7rem
+      right: 14px
       cursor: pointer
       transition: color .2s
 
@@ -160,7 +136,7 @@ blockquote
 
   if $highlight_theme == 'mac' || ($highlight_theme == 'mac light')
     figure.highlight
-      margin: 0 0 1.2rem
+      margin: 0 0 24px
       border-radius: 7px
       box-shadow: 0 5px 10px 0 $highlight-mac-border
       -webkit-transform: translateZ(0)
@@ -168,7 +144,7 @@ blockquote
       .highlight-tools
         &:after
           position: absolute
-          left: .7rem
+          left: 14px
           width: 12px
           height: 12px
           border-radius: 50%
@@ -184,13 +160,13 @@ blockquote
             transform: rotate(90deg) !important
 
           & ~ .copy-notice
-            right: 2.8rem
+            right: 3.3em
 
           & ~ .copy-button
-            right: 1.8rem
+            right: 2.1em
 
         .code-lang
-          left: 3.8rem !important
+          left: 75px
 
   if hexo-config('highlight_height_limit')
     .code-expand-btn
@@ -204,12 +180,17 @@ blockquote
       cursor: pointer
 
       i
-        padding: .3rem 0
+        padding: 6px 0
         color: var(--hlnumber-color)
         animation: code-expand-key 1.2s infinite
 
       &.expand-done
-        display: none !important
+        & > i
+          transform: rotate(180deg)
+
+        & + table,
+        & + pre
+          margin-bottom: 1.8em
 
       &:not(.expand-done)
         & ~ table,

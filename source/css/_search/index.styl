@@ -1,15 +1,14 @@
 .search-dialog
   position: fixed
-  top: 5rem
+  top: 100px
   left: 50%
   z-index: 1001
   display: none
-  margin-left: -15rem
-  padding: 1rem
-  width: 30rem
+  margin-left: -300px
+  padding: 20px
+  width: 600px
   border-radius: 8px
   background: var(--search-bg)
-  animation: titlescale .5s
 
   +maxWidth768()
     top: 0
@@ -20,26 +19,24 @@
     border-radius: 0
 
   hr
-    margin: 1rem auto
+    margin: 20px auto
 
-  span.search-close-button
-    position: absolute
-    top: .8rem
-    right: 1rem
-    color: $grey
-    font-size: 1.4em
-    line-height: 1
-    cursor: pointer
-    transition: color .2s ease-in-out
-
-    &:hover
-      color: $search-color
-
-  &__title
-    padding: 0 0 .7rem
+  .search-nav
+    margin: 0 0 14px
     color: $search-color
     font-size: 1.4em
     line-height: 1
+
+    .search-dialog-title
+      margin-right: 10px
+
+    .search-close-button
+      float: right
+      color: $grey
+      transition: color .2s ease-in-out
+
+      &:hover
+        color: $search-color
 
 #search-mask
   position: fixed
