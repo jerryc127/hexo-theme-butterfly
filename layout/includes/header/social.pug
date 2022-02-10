@@ -1,4 +1,10 @@
-each url, icon in theme.social
-  a.social-icon(href=url_for(trim(url.split('||')[0])) target="_blank" 
-  title=url.split('||')[1] === undefined ? '' : trim(url.split('||')[1]))
-    i(class=icon)
+each value, title in theme.social
+  a.social-icon.faa-parent.animated-hover(href=url_for(trim(value.split('||')[0])) target="_blank" title=title === undefined ? '' : trim(title))
+    if value.split('||')[1]
+      - var icon_value = trim(value.split('||')[1])
+      - var anima_value = value.split('||')[2] ? trim(value.split('||')[2]) : 'faa-tada'
+      if icon_value.substring(0,2)=="fa"      
+        i.fa-fw(class=icon_value + ' ' + anima_value)
+      else if icon_value.substring(0,4)=="icon"          
+        svg.icon(aria-hidden="true" class=anima_value)
+          use(xlink:href=`#`+ icon_value)

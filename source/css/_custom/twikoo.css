@@ -1,0 +1,184 @@
+/* 自定义twikoo评论输入框高度 */
+.tk-input[data-v-619b4c52] .el-textarea__inner {
+  height: 130px !important;
+}
+/* 输入评论时自动隐藏输入框背景图片 */
+.tk-input[data-v-619b4c52] .el-textarea__inner:focus {
+  background-image: none !important;
+}
+/* 调整楼中楼样式 ，整体左移，贴合气泡化效果 */
+.tk-replies {
+  left: -70px;
+  width: calc(100% + 70px);
+}
+/* 头像宽度调整 rem单位与全局字体大小挂钩，需配合自己情况调整大小以保证头像显示完整*/
+.tk-avatar {
+  width: 3rem !important;
+  height: 3rem !important;
+}
+.tk-avatar img {
+  width: 3rem !important;
+  height: 3rem !important;
+}
+/* 回复框左移，避免窄屏时出框 */
+.tk-comments-container .tk-submit {
+  position: relative;
+  left: -70px;
+}
+/* 评论块气泡化修改 */
+.tk-content {
+  background: #00a6ff; /*默认模式访客气泡配色*/
+  padding: 10px;
+  left: 8px;
+  color: #fff; /*默认模式访客气泡字体配色*/
+  border-radius: 10px;
+  font-size: 16px !important;
+  width: fit-content;
+  max-width: 100%;
+  position: relative !important;
+  overflow: visible !important;
+  max-height: none !important;
+}
+/* 修复图片出框 */
+.tk-content img {
+  max-width: 100% !important;
+}
+/* 修复过长文本出框 */
+.tk-content pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.tk-content a {
+  color: #eeecaa; /*默认模式超链接配色*/
+}
+.tk-content p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.tk-content::before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 20px;
+  left: -13px;
+  border-top: 2px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 15px solid #00a6ff; /*默认模式访客气泡小三角配色*/
+  border-left: 0px solid transparent;
+}
+.tk-master .tk-content {
+  background: #ff8080; /*默认模式博主气泡配色*/
+  color: #fff; /*默认模式博主气泡字体配色*/
+  width: fit-content;
+  max-width: 100%;
+  left: 9px;
+}
+.tk-master .tk-content a {
+  color: #eeecaa;
+}
+.tk-master .tk-content::before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 20px;
+  left: -13px;
+  border-top: 2px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 15px solid #ff8080; /*默认模式博主气泡小三角配色*/
+  border-left: 0px solid transparent;
+}
+.tk-row[data-v-d82ce9a0] {
+  max-width: 100%;
+  width: fit-content;
+  margin-left: 10px;
+}
+.tk-avatar {
+  border-radius: 50%;
+  margin-top: 40px;
+}
+.tk-master .tk-avatar {
+  position: relative;
+  left: 6px;
+}
+
+/* 夜间模式配色，具体比照上方默认模式class */
+[data-theme="dark"] .tk-content {
+  background: #1d1d1f;
+  color: #fff;
+}
+[data-theme="dark"] .tk-content a {
+  color: #dfa036;
+}
+[data-theme="dark"] .tk-content::before {
+  border-right: 15px solid #1d1d1f;
+}
+[data-theme="dark"] .tk-master .tk-content {
+  background: #1c1c1e;
+  color: #fff;
+}
+[data-theme="dark"] .tk-master .tk-content a {
+  color: #dfa036;
+}
+[data-theme="dark"] .tk-master .tk-content::before {
+  border-top: 2px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 15px solid #1c1c1e;
+  border-left: 0px solid transparent;
+}
+
+.tk-master .tk-extras {
+  float: left;
+  margin-left: 10px;
+}
+.tk-extras {
+  margin-left: 10px;
+}
+
+.tk-comments-title[data-v-2619081a] {
+  margin-bottom: 0px;
+}
+
+/* 自适应内容 */
+@media screen and (min-width: 1024px) {
+  /* 设置宽度上限，避免挤压博主头像 */
+  .tk-content {
+    max-width: 75%;
+    width: fit-content;
+  }
+  .tk-master .tk-content {
+    width: fit-content;
+    float: right;
+    margin-right: 110px;
+  }
+  .tk-master .tk-content::before {
+    left: 100%;
+    border-left: 15px solid #ff8080;
+    border-right: 0px solid transparent;
+  }
+  .tk-master .tk-avatar {
+    position: relative;
+    left: calc(75% + 120px);
+  }
+  .tk-master .tk-row[data-v-d82ce9a0] {
+    position: relative;
+    top: 0px;
+    /* left: calc(55%); */
+    float: right;
+    margin-right: 100px;
+    margin-left: 200px;
+  }
+  .tk-master .tk-content[data-v-d82ce9a0] {
+    margin-top: 5px;
+  }
+  .tk-master .tk-extras {
+    float: right;
+    margin-right: 100px;
+    margin-left: 200px;
+  }
+  [data-theme="dark"] .tk-master .tk-content::before {
+    border-left: 15px solid #1c1c1e;
+    border-right: 0px solid transparent;
+  }
+}

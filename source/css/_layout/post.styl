@@ -88,20 +88,6 @@ beautify()
   iframe
     margin: 0 0 20px
 
-  kbd
-    margin: 0 3px
-    padding: 3px 5px
-    border: 1px solid #b4b4b4
-    border-radius: 3px
-    background-color: #f8f8f8
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .25), 0 2px 1px 0 rgba(255, 255, 255, .6) inset
-    color: #34495e
-    white-space: nowrap
-    font-weight: 600
-    font-size: .9em
-    font-family: Monaco, 'Ubuntu Mono', monospace
-    line-height: 1em
-
   if hexo-config('anchor')
     a.headerlink
       &:after
@@ -193,15 +179,19 @@ beautify()
     padding: 10px 16px
     border: 1px solid var(--light-grey)
     transition: box-shadow .3s ease-in-out
+    overflow: hidden
+    border-radius: 12px!important
+    background-color: rgb(239 241 243)
 
     &:before
-      @extend .fontawesomeIcon
-      position: absolute
-      top: 2px
-      right: 12px
-      color: $theme-color
-      content: '\f1f9'
-      font-size: 1.3em
+      background var(--heo-post-blockquote-bg)
+      position absolute
+      right -26px
+      top -120px
+      content '\f25e'
+      font-size 200px
+      font-family 'Font Awesome 5 Brands'
+      opacity .2
 
     &:hover
       box-shadow: 0 0 8px 0 rgba(232, 237, 250, .6), 0 2px 4px 0 rgba(232, 237, 250, .5)
@@ -215,11 +205,14 @@ beautify()
         padding-left: 6px
 
         a
-          text-decoration: underline
+          text-decoration: none
           word-break: break-word
 
           &:hover
             text-decoration: none
+
+  .post-copyright-cc-info
+    color: $theme-color;
 
   .post-outdate-notice
     position: relative
@@ -244,3 +237,28 @@ beautify()
 
   .ads-wrap
     margin: 40px 0
+.post-copyright-m-info
+  .post-copyright-a,
+  .post-copyright-c,
+  .post-copyright-u
+    display inline-block
+    width fit-content
+    padding 2px 5px
+[data-theme="dark"]
+  #post
+    .post-copyright
+      background-color #07080a
+      text-shadow #bfbeb8 0 0 2px
+      border 1px solid rgb(19 18 18 / 35%)
+      box-shadow 0 0 5px rgb(20, 120, 210)
+      animation flashlight 1s linear infinite alternate
+  .post-copyright-info
+    color #e0e0e4
+
+#post
+  .post-copyright__title
+    font-size 22px
+  .post-copyright__notice
+    font-size 15px
+  .post-copyright
+    box-shadow 2px 2px 5px

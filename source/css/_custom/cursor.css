@@ -1,0 +1,45 @@
+/* 
+
+        自定义鼠标指针
+        https://akilar.top/posts/ebf20e02/
+
+*/
+
+/* 全局默认鼠标指针 */
+body,
+html {
+  cursor: url("/cur/arrow.cur"), auto !important;
+}
+/* 悬停图片时的鼠标指针 */
+img {
+  cursor: url("/cur/btn.cur"), auto !important;
+}
+/* 选择链接标签时的鼠标指针 */
+a:hover {
+  cursor: url("/cur/link.cur"), auto;
+}
+/* 选中输入框时的鼠标指针 */
+text,
+input:hover {
+  cursor: url("/cur/input.cur"), auto;
+}
+/* 悬停按钮时的鼠标指针 */
+button:hover {
+  cursor: url("/cur/btn.cur"), auto;
+}
+/* 悬停列表标签时的鼠标指针 */
+i:hover {
+  cursor: url("/cur/link.cur"), auto;
+}
+/* 悬停页脚链接标签（例如页脚徽标）时的鼠标指针 */
+#footer-wrap a:hover {
+  cursor: url("/cur/hf.cur"), auto;
+}
+/* 悬停页码时的鼠标指针 */
+#pagination .page-number:hover {
+  cursor: url("/cur/arrow.cur"), auto;
+}
+/* 悬停菜单栏时的鼠标指针 */
+#nav .site-page:hover {
+  cursor: url("/cur/hf.cur"), auto;
+}

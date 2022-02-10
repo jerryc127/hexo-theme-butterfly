@@ -142,3 +142,81 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
 
     #operare_artitalk .c2
       background: #121212
+
+    /* Twikoo 评论 开始*/
+    /* 表单前标题 */
+    .el-input-group__append,
+    .el-input-group__prepend 
+      background-color #292b2c !important
+      color #B8B8B8 !important
+      border 0px solid #307af6 !important
+
+    /* 表单输入框 */
+    .el-input__inner 
+      background #000 !important
+      border 0px solid #307af6 !important
+      color #B8B8B8 !important
+
+    /* 评论输入框 */
+    .el-textarea__inner 
+      background #000 !important
+      border 0px solid #307af6 !important
+      color #B8B8B8 !important
+
+    /* 不显示评论数 */
+    .tk-comments-title 
+      display none
+
+    /* 加载时背景颜色 */
+    .el-loading-mask 
+      background-color #1d1f20 !important
+
+    /* 评论博主标签圆角 */
+    .tk-tag-green 
+      border-radius 4px
+      background-color #67c23a21 !important
+      border 0px solid #e1f3d8 !important
+
+    /* 预览按钮 */
+    .el-button 
+      background #252627 !important
+      border 0px solid #307af6 !important
+      color #B8B8B8 !important
+      &:hover 
+        background #307af6 !important
+
+    /* 发送按钮禁用状态 */
+    .el-button--primary.is-disabled,
+    .el-button--primary.is-disabled:active,
+    .el-button--primary.is-disabled:focus,
+    .el-button--primary.is-disabled:hover 
+      background-color #307AF621 !important
+      border-color rgba(0, 0, 0, 0) !important
+      color #999999 !important
+
+    /* 发送按钮正常状态 */
+    .el-button--primary 
+      background-color #307af6 !important
+      border-color #307af6 !important
+      color #B8B8B8 !important
+
+    /* 预览框 */
+    .tk-preview-container
+      color: #B8B8B8
+      border: 1px solid #f0f0f0
+
+    /* 更多评论的渐变遮罩 */
+    .tk-expand 
+      background linear-gradient(rgba(29, 31, 32, 0), rgba(29, 31, 32, 1)) !important
+      color #B8B8B8
+
+    /* 评论时间 */
+    .tk-time 
+      color #999999
+    
+    /* Twikoo 评论 结束*/
+
+    /* GitCalendar 瓷砖 开始*/
+
+
+

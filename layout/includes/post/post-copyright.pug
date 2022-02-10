@@ -1,17 +1,32 @@
 if theme.post_copyright.enable && page.copyright !== false
   - let author = page.copyright_author ? page.copyright_author : config.author
-  - let authorHref = page.copyright_author_href ? page.copyright_author_href : `mailto:${config.email}`
   - let url = page.copyright_url ? page.copyright_url : page.permalink
-  - let info = page.copyright_info ? page.copyright_info : _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
+  - let license = page.license ? page.license : theme.post_copyright.license
+  - let license_url = page.license_url ? page.license_url : theme.post_copyright.license_url
   .post-copyright
-    .post-copyright__author
-      span.post-copyright-meta= _p('post.copyright.author') + ": "
+    .post-copyright__title
       span.post-copyright-info
-        a(href=authorHref)=author
+        h #[=page.title]
     .post-copyright__type
-      span.post-copyright-meta= _p('post.copyright.link') + ": "
       span.post-copyright-info
         a(href=url_for(url))= theme.post_copyright.decode ? decodeURI(url) : url
-    .post-copyright__notice
-      span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-      span.post-copyright-info!= info
+    .post-copyright-m
+      .post-copyright-m-info
+        .post-copyright-a
+            h 作者
+            .post-copyright-cc-info
+                h=author
+        .post-copyright-c
+            h 发布于
+            .post-copyright-cc-info
+                h=date(page.date, config.date_format)
+        .post-copyright-u
+            h 更新于
+            .post-copyright-cc-info
+                h=date(page.updated, config.date_format)
+        .post-copyright-c
+            h 许可协议
+            .post-copyright-cc-info
+                a.icon(rel='noopener' target='_blank' title='Creative Commons' href='https://creativecommons.org/')
+                  i.fab.fa-creative-commons
+                a(rel='noopener' target='_blank' title=license href=url_for(license_url))=license
