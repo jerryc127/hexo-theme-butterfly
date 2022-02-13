@@ -776,7 +776,7 @@ snackbar:
   enable: false
   position: bottom-left
   bg_light: '#49b1f5' # The background color of Toast Notification in light mode
-  bg_dark: '#121212' # The background color of Toast Notification in dark mode
+  bg_dark: '#1f1f1f' # The background color of Toast Notification in dark mode
 
 # https://instant.page/
 # prefetch (預加載)
@@ -894,7 +894,7 @@ CDN:
   ClickShowText:
 
   # fontawesome
-  fontawesome:
+  fontawesomeV6:
 
   # Conversion between Traditional and Simplified Chinese
   translate:

@@ -14,7 +14,7 @@ block content
             a(href=url_for(item.path)).post-meta__tags #[=item.name]
       include includes/third-party/share/index.pug
         
-    if theme.reward.enable
+    if theme.reward.enable && theme.reward.QR_code
       !=partial('includes/post/reward', {}, {cache: true})
 
     //- ad
