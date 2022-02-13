@@ -47,7 +47,7 @@ if (theme.pwa && theme.pwa.enable)
 
 //- main css
 link(rel='stylesheet', href=url_for(theme.CDN.main_css))
-link(rel='stylesheet', href=url_for(theme.CDN.fontawesome) media="print" onload="this.media='all'")
+link(rel='stylesheet', href=url_for(theme.CDN.fontawesomeV6) media="print" onload="this.media='all'")
 
 if (theme.snackbar && theme.snackbar.enable)
   link(rel='stylesheet', href=url_for(theme.CDN.snackbar_css) media="print" onload="this.media='all'")

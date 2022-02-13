@@ -1,5 +1,7 @@
 #article-container
   .flink
+    margin-bottom: 20px
+
     .flink-list
       overflow: auto
       padding: 10px 10px 0
@@ -23,8 +25,9 @@
           width: calc(100% - 15px) !important
 
         &:hover
-          img
-            transform: rotate(360deg)
+          .flink-item-icon
+            margin-left: -10px
+            width: 0
 
         &:before
           position: absolute
@@ -54,25 +57,31 @@
             width: 60px
             height: 60px
             border-radius: 35px
+            transition: width .3s ease-out
 
             img
               width: 100%
               height: 100%
+              transition: filter 375ms ease-in .2s, transform .3s
               object-fit: cover
-              transition: filter 375ms ease-in 0.2s, transform .3s
 
           .img-alt
             display: none
 
-          .flink-item-name
-            @extend .limit-one-line
-            padding: 16px 10px 0 0
-            height: 40px
-            font-weight: bold
-            font-size: 1.43em
+    .flink-item-name
+      @extend .limit-one-line
+      padding: 16px 10px 0 0
+      height: 40px
+      font-weight: bold
+      font-size: 1.43em
 
-          .flink-item-desc
-            @extend .limit-one-line
-            padding: 16px 10px 16px 0
-            height: 50px
-            font-size: .93em
+    .flink-item-desc
+      @extend .limit-one-line
+      padding: 16px 10px 16px 0
+      height: 50px
+      font-size: .93em
+
+    .flink-name
+      margin-bottom: 5px
+      font-weight: bold
+      font-size: 1.5em

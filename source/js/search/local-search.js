@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
       datas = [...a.querySelectorAll('entry')].map(function (item) {
         return {
           title: item.querySelector('title').textContent,
-          content: item.querySelector('content').textContent,
+          content: item.querySelector('content') && item.querySelector('content').textContent,
           url: item.querySelector('url').textContent
         }
       })
@@ -76,15 +76,12 @@ window.addEventListener('load', () => {
 
       $resultContent.innerHTML = ''
       let str = '<div class="search-result-list">'
-      if (this.value.trim().length <= 0) return
+      if (keywords.length <= 0) return
       let count = 0
       // perform local searching
       datas.forEach(function (data) {
         let isMatch = true
-        if (!data.title || data.title.trim() === '') {
-          data.title = ''
-        }
-        let dataTitle = data.title.trim().toLowerCase()
+        let dataTitle = data.title ? data.title.trim().toLowerCase() : ''
         const dataContent = data.content ? data.content.trim().replace(/<[^>]+>/g, '').toLowerCase() : ''
         const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url
         let indexTitle = -1
@@ -112,11 +109,10 @@ window.addEventListener('load', () => {
 
         // show search results
         if (isMatch) {
-          const content = data.content.trim().replace(/<[^>]+>/g, '')
           if (firstOccur >= 0) {
             // cut out 130 characters
             // let start = firstOccur - 30 < 0 ? 0 : firstOccur - 30
-            // let end = firstOccur + 50 > content.length ? content.length : firstOccur + 50
+            // let end = firstOccur + 50 > dataContent.length ? dataContent.length : firstOccur + 50
             let start = firstOccur - 30
             let end = firstOccur + 100
 
@@ -128,11 +124,11 @@ window.addEventListener('load', () => {
               end = 100
             }
 
-            if (end > content.length) {
-              end = content.length
+            if (end > dataContent.length) {
+              end = dataContent.length
             }
 
-            let matchContent = content.substring(start, end)
+            let matchContent = dataContent.substring(start, end)
 
             // highlight all keywords
             keywords.forEach(function (keyword) {

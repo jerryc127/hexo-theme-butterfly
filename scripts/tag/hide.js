@@ -62,8 +62,7 @@ function hideToggle (args, content) {
   if (color) group += `color: ${color}`
   group += '"'
 
-  return `<div class="hide-toggle" ${border}><div class="hide-button toggle-title" ${group}><i class="fas fa-caret-right fa-fw"></i><span>${display}</span></div>
-    <div class="hide-content">${hexo.render.renderSync({ text: content, engine: 'markdown' })}</div></div>`
+  return `<details class="toggle" ${border}><summary class="toggle-button" ${group}>${display}</summary><div class="toggle-content">${hexo.render.renderSync({ text: content, engine: 'markdown' })}</div></details>`
 }
 
 hexo.extend.tag.register('hideInline', hideInline)

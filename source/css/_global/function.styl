@@ -11,9 +11,7 @@
 .fontawesomeIcon
   display: inline-block
   font-weight: 600
-  font-style: normal
-  font-variant: normal
-  font-family: 'Font Awesome 5 Free'
+  font-family: 'Font Awesome 6 Free'
   text-rendering: auto
   -webkit-font-smoothing: antialiased
 
@@ -55,7 +53,7 @@
 
   li
     position: relative
-    padding 0.12em 0.4em 0.12em 1.4em
+    padding: .12em .4em .12em 1.4em
 
     &:hover
       &:before
@@ -133,11 +131,7 @@ if hexo-config('enter_transitions')
     &.open
       for i in 1 2 3 4
         > :nth-child({i})
-          animation: sidebarItem (i / 5)s
-
-.card-announcement-animation
-  color: #FF0000
-  animation: announ_animation .8s linear infinite
+          animation: sidebarItem (i / 5) s
 
 .scroll-down-effects
   animation: scroll-down-effect 1.5s infinite
@@ -250,14 +244,6 @@ if hexo-config('avatar.effect') == true
   100%
     opacity: 1
     transform: translateY(0)
-
-@keyframes announ_animation
-  0%,
-  to
-    transform: scale(1)
-
-  50%
-    transform: scale(1.2)
 
 @keyframes sidebarItem
   0%

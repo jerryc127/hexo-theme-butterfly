@@ -80,7 +80,7 @@ hexo.extend.filter.register('before_generate', () => {
     ClickShowText: 'https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js',
 
     // fontawesome
-    fontawesome: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css',
+    fontawesomeV6: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css',
 
     // Conversion between Traditional and Simplified Chinese
     translate: '/js/tw_cn.js',
@@ -122,7 +122,7 @@ hexo.extend.filter.register('before_generate', () => {
     use = use.split(',')
   }
 
-  const newArray = use.map(item => item.toLowerCase().replace(/^\S/, s => s.toUpperCase()))
+  const newArray = use.map(item => item.toLowerCase().replace(/\b[a-z]/g, s => s.toUpperCase()))
 
   themeConfig.comments.use = newArray
 })
