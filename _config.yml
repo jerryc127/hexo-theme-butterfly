@@ -39,6 +39,7 @@ social:
   # fas fa-envelope: mailto:xxxxxx@gmail.com || Email
 
 # search (搜索)
+# see https://butterfly.js.org/posts/ceeb73f/#搜索系統
 # --------------------------------------
 
 # Algolia search
@@ -148,6 +149,7 @@ post_meta:
     label: true # true or false 顯示描述性文字
 
 # wordcount (字數統計)
+# see https://butterfly.js.org/posts/ceeb73f/#字數統計
 wordcount:
   enable: false
   post_wordcount: true
