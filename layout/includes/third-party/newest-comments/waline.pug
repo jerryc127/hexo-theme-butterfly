@@ -67,7 +67,7 @@ script.
       }
 
       if (typeof Waline === 'function') loadWaline() 
-      else getScript('!{url_for(theme.CDN.waline)}').then(loadWaline)
+      else getScript('!{url_for(theme.asset.waline)}').then(loadWaline)
     }
 
     const newestCommentInit = () => {

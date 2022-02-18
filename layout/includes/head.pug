@@ -46,14 +46,14 @@ if (theme.pwa && theme.pwa.enable)
   !=partial('includes/head/pwa', {}, {cache: true})
 
 //- main css
-link(rel='stylesheet', href=url_for(theme.CDN.main_css))
-link(rel='stylesheet', href=url_for(theme.CDN.fontawesomeV6) media="print" onload="this.media='all'")
+link(rel='stylesheet', href=url_for(theme.asset.main_css))
+link(rel='stylesheet', href=url_for(theme.asset.fontawesomeV6) media="print" onload="this.media='all'")
 
 if (theme.snackbar && theme.snackbar.enable)
-  link(rel='stylesheet', href=url_for(theme.CDN.snackbar_css) media="print" onload="this.media='all'")
+  link(rel='stylesheet', href=url_for(theme.asset.snackbar_css) media="print" onload="this.media='all'")
 
 if theme.fancybox
-  link(rel='stylesheet' href=url_for(theme.CDN.fancybox_css_v4) media="print" onload="this.media='all'")
+  link(rel='stylesheet' href=url_for(theme.asset.fancybox_css_v4) media="print" onload="this.media='all'")
 
 //- google_adsense
 !=partial('includes/head/google_adsense', {}, {cache: true})

@@ -5,7 +5,7 @@ script.
     let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? '!{themes.dark}' : '!{themes.light}'
 
     const config = Object.assign({
-      src: '!{theme.CDN.giscus}',
+      src: 'https://giscus.app/client.js',
       'data-repo': '!{repo}',
       'data-repo-id': '!{repo_id}',
       'data-category-id': '!{category_id}',

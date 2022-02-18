@@ -37,7 +37,7 @@ script.
         setTimeout(runFn,0)
         return
       } 
-      getScript('!{theme.CDN.twikoo}').then(runFn)
+      getScript('!{theme.asset.twikoo}').then(runFn)
     }
 
     if ('!{use[0]}' === 'Twikoo' || !!{lazyload}) {

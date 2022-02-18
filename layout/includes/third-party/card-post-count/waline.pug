@@ -10,7 +10,7 @@ script.
       }
 
       if (typeof Waline === 'function') initWaline() 
-      else getScript('!{url_for(theme.CDN.waline)}').then(initWaline)
+      else getScript('!{url_for(theme.asset.waline)}').then(initWaline)
     }
 
     window.pjax ? loadWaline() : window.addEventListener('load', loadWaline)

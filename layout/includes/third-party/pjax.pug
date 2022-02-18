@@ -12,7 +12,7 @@ if choose
   if choose.includes('Utterances') || choose.includes('Giscus')
     - pjaxSelectors.unshift('link[rel="canonical"]')
 
-script(src=url_for(theme.CDN.pjax))
+script(src=url_for(theme.asset.pjax))
 script.
   let pjaxSelectors = !{JSON.stringify(pjaxSelectors)}
 
