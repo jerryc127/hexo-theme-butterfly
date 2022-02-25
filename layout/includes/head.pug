@@ -16,7 +16,7 @@
 - else pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
 - var pageAuthor = config.email ? config.author + ',' + config.email : config.author
 - var pageCopyright = config.copyright || config.author
-- var themeColor = theme.display_mode === 'dark' ? '#0d0d0d' : '#ffffff'
+- var themeColor = theme.display_mode === 'dark' ? theme.theme_color.meta_theme_color_dark : theme.theme_color.meta_theme_color_light
 
 meta(charset='UTF-8')
 meta(http-equiv="X-UA-Compatible" content="IE=edge")
