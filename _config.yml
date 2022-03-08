@@ -183,6 +183,7 @@ toc:
 post_copyright:
   enable: true
   decode: false
+  author_href:
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
@@ -616,6 +617,7 @@ aside:
   button: true
   mobile: true # display on mobile
   position: right # left or right
+  archives: true
   card_author:
     enable: true
     description:
