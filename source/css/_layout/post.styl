@@ -152,6 +152,11 @@ beautify()
 
 #post
   .tag_share
+    &:after
+      display: block
+      clear: both
+      content: ''
+
     .post-meta
       &__tag-list
         display: inline-block
@@ -174,7 +179,7 @@ beautify()
     .post_share
       display: inline-block
       float: right
-      margin: 8px 0 20px
+      margin: 8px 0 0
       width: fit-content
 
       .social-share

@@ -183,6 +183,7 @@ toc:
 post_copyright:
   enable: true
   decode: false
+  author_href:
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
@@ -470,6 +471,8 @@ site_verification:
 #   blockquote_padding_color: "#49b1f5"
 #   blockquote_background_color: "#49b1f5"
 #   scrollbar_color: "#49b1f5"
+#   meta_theme_color_light: "ffffff"
+#   meta_theme_color_dark: "#0d0d0d"
 
 # The top_img settings of home page
 # default: top img - full screen, site info - middle (默認top_img全屏，site_info在中間)
@@ -616,6 +619,7 @@ aside:
   button: true
   mobile: true # display on mobile
   position: right # left or right
+  archives: true
   card_author:
     enable: true
     description:

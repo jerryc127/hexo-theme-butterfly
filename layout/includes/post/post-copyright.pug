@@ -1,8 +1,8 @@
 if theme.post_copyright.enable && page.copyright !== false
-  - let author = page.copyright_author ? page.copyright_author : config.author
-  - let authorHref = page.copyright_author_href ? page.copyright_author_href : `mailto:${config.email}`
-  - let url = page.copyright_url ? page.copyright_url : page.permalink
-  - let info = page.copyright_info ? page.copyright_info : _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
+  - let author = page.copyright_author || config.author
+  - let authorHref = page.copyright_author_href || theme.post_copyright.author_href || config.url
+  - let url = page.copyright_url || page.permalink
+  - let info = page.copyright_info || _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
   .post-copyright
     .post-copyright__author
       span.post-copyright-meta= _p('post.copyright.author') + ": "

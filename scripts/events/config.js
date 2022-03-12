@@ -80,7 +80,7 @@ hexo.extend.filter.register('before_generate', () => {
       local: '/js/lib/disqusjs/disqusjs.css'
     },
     twikoo: {
-      cdn: 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      cdn: 'https://cdn.jsdelivr.net/npm/twikoo@1/dist/twikoo.all.min.js',
       local: '/js/lib/twikoo/twikoo.all.min.js'
     },
     waline: {
@@ -88,7 +88,7 @@ hexo.extend.filter.register('before_generate', () => {
       local: '/js/lib/waline/Waline.min.js'
     },
     sharejs: {
-      cdn: 'https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js',
+      cdn: 'https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js',
       local: '/js/lib/social-share.js/dist/social-share.min.js'
     },
     sharejs_css: {

@@ -38,24 +38,7 @@
         margin-top: -.42em
 
     .card-info-data
-      display: table
       margin: 14px 0 4px
-      width: 100%
-      table-layout: fixed
-
-      & > .card-info-data-item
-        display: table-cell
-
-        a
-          .headline
-            @extend .limit-one-line
-            color: var(--font-color)
-            font-size: 1em
-
-          .length-num
-            margin-top: -.42em
-            color: var(--text-highlight-color)
-            font-size: 1.4em
 
     .card-info-social-icons
       margin: 6px 0 -6px
@@ -339,6 +322,30 @@
 
     &:hover
       transform: rotate(360deg)
+
+.site-data
+  display: table
+  width: 100%
+  table-layout: fixed
+
+  & > a
+    display: table-cell
+
+    div
+      transition: all .3s
+
+    &:hover
+      div
+        color: $theme-color !important
+
+    .headline
+      @extend .limit-one-line
+      color: var(--font-color)
+
+    .length-num
+      margin-top: -.32em
+      color: var(--text-highlight-color)
+      font-size: 1.4em
 
 @keyframes more-btn-move
   0%,
