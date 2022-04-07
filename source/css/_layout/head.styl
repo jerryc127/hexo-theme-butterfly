@@ -133,9 +133,11 @@
       position: fixed
       top: -60px
       z-index: 91
-      background: rgba(255, 255, 255, .8)
+      background: rgba(255, 255, 255, .6)
       box-shadow: 0 5px 6px -5px alpha($grey, .6)
       transition: transform .2s ease-in-out, opacity .2s ease-in-out
+      backdrop-filter: blur(32px)
+      -webkit-backdrop-filter: blur(32px)
 
       a,
       #site-name,
