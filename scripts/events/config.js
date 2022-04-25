@@ -79,6 +79,10 @@ hexo.extend.filter.register('before_generate', () => {
       cdn: 'https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css',
       local: '/js/lib/disqusjs/disqusjs.css'
     },
+    discuss: {
+      cdn: 'https://cdn.jsdelivr.net/npm/discuss/dist/Discuss.js',
+      local: '/js/lib/discuss/Discuss.js'
+    },
     twikoo: {
       cdn: 'https://cdn.jsdelivr.net/npm/twikoo@1/dist/twikoo.all.min.js',
       local: '/js/lib/twikoo/twikoo.all.min.js'

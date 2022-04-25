@@ -35,6 +35,8 @@ hr
             #waline-wrap
           when 'Giscus'
             #giscus-wrap
+          when 'Discuss'
+            #discuss-wrap
           when 'Facebook Comments'
             .fb-comments(data-colorscheme = theme.display_mode === 'dark' ? 'dark' : 'light'
                         data-numposts= theme.facebook_comments.pageSize || 10

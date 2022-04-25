@@ -71,6 +71,9 @@
         else if (comments.use.includes('Twikoo') && theme.twikoo.visitor)
           +pvBlock('','','')
             span#twikoo_visitors
+        else if (comments.use.includes('Discuss') && theme.discuss.visitor)
+          +pvBlock('','','')
+            span#Discuss-Visitors
 
       if comments.count && !comments.lazyload && page.comments !== false && comments.use
         - var whichCount = comments.use[0]
@@ -109,3 +112,7 @@
             +countBlock
               a(href=url_for(page.path) + '#post-comment')
                 span.fb-comments-count(data-href=urlNoIndex())
+          when 'Discuss'
+            +countBlock
+              a(href=url_for(page.path) + '#post-comment')
+                span#discuss-count

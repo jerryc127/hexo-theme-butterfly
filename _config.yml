@@ -259,7 +259,7 @@ addtoany:
 
 comments:
   # Up to two comments system, the first will be shown as default
-  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus
+  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Discuss
   use: # Valine,Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
@@ -342,6 +342,13 @@ twikoo:
   region:
   visitor: false
   option:
+
+# Discuss
+# https://discuss.js.org
+discuss:
+  serverURLs: # Discuss server address url
+  visitor: false
+  options: # https://discuss.js.org/Quick-Start.html#path
 
 # Giscus
 # https://giscus.app/
@@ -859,6 +866,7 @@ CDN:
     # valine:
     # disqusjs:
     # disqusjs_css:
+    # discuss:
     # twikoo:
     # waline:
     # sharejs:

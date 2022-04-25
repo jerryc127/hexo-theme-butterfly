@@ -1,0 +1,33 @@
+script.
+  (() => { 
+    const getCommentUrl = () => {
+      const eleGroup = document.querySelectorAll('#recent-posts .article-title')
+      let urlArray = []
+      eleGroup.forEach(i=>{
+        urlArray.push(i.getAttribute('href'))
+      })
+      return urlArray
+    }
+
+    const getCount = () => {
+      const runDiscuss = () => {
+        Discuss.CommentCount('!{theme.discuss.serverURLs}', getCommentUrl(), false)
+        .then((data) => {
+          document.querySelectorAll('#recent-posts .discuss-count').forEach((item,index) => {
+            item.innerText = data[index].count
+          })
+        }).catch(function (err) {
+          console.log(err)
+        })
+      }
+
+        if (typeof discuss === 'object') {
+          runDiscuss()
+        } else {
+          getScript('!{theme.asset.discuss}').then(runDiscuss)
+        }
+    }
+
+    window.pjax ? getCount() : window.addEventListener('load', getCount)
+
+  })()

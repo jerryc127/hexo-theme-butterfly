@@ -1,0 +1,43 @@
+- const { serverURLs, options } = theme.discuss
+- const { use, lazyload, count } = theme.comments
+
+script.
+  (()=>{
+    const init = () => {
+      Discuss.init(Object.assign({
+        el: '#discuss-wrap',
+        serverURLs: '!{serverURLs}'
+      }, !{JSON.stringify(options)}))
+    }
+
+    const getCount = () => {
+      Discuss.CommentCount('!{serverURLs}', [window.location.pathname], false)
+        .then(function (res) {
+          document.getElementById('discuss-count').innerText = res[0].count
+        }).catch(function (err) {
+          console.error(err);
+        });
+    }
+
+    const runFn = () => {
+      init()
+      !{count ? 'GLOBAL_CONFIG_SITE.isPost && getCount()' : ''}
+    }
+
+    const loadDisucss = () => {
+      if (typeof Discuss === 'object') {
+        setTimeout(runFn,0)
+        return
+      } 
+      getScript('!{theme.asset.discuss}').then(runFn)
+    }
+
+    if ('!{use[0]}' === 'Discuss' || !!{lazyload}) {
+      if (!{lazyload}) btf.loadComment(document.getElementById('discuss-wrap'), loadDisucss)
+      else loadDisucss()
+    } else {
+      window.loadOtherComment = () => {
+        loadDisucss()
+      }
+    }
+  })()
