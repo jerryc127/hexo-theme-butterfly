@@ -44,7 +44,6 @@ search:
     hits_stats: '找到 ${hits} 條結果，用時 ${time} 毫秒'
 
   local_search:
-    label: 本地搜尋
     input_placeholder: 搜尋文章
     hits_empty: '找不到您查詢的內容：${query}'
 

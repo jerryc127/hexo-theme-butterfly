@@ -61,16 +61,24 @@
           if block
             block
 
-      if theme.busuanzi.page_pv
+      - const commentUse = comments.use
+      if commentUse && !comments.lazyload
+        case commentUse[0]
+          when 'Valine'
+            if theme.valine.visitor
+              +pvBlock(url_for(page.path),'leancloud_visitors',page.title)
+                span.leancloud-visitors-count
+          when 'Waline'
+            if theme.waline.pageview
+              +pvBlock('','','')
+                span.waline-pageview-count(data-path=url_for(page.path))
+          when 'Twikoo'
+            if theme.twikoo.visitor
+              +pvBlock('','','')
+                span#twikoo_visitors
+      else if theme.busuanzi.page_pv
         +pvBlock('','post-meta-pv-cv','')
           span#busuanzi_value_page_pv
-      else if comments.use && !comments.lazyload
-        if (comments.use.includes('Valine') && theme.valine.visitor) || (comments.use.includes('Waline') && theme.waline.visitor)
-          +pvBlock(url_for(page.path),'leancloud_visitors',page.title)
-            span.leancloud-visitors-count
-        else if (comments.use.includes('Twikoo') && theme.twikoo.visitor)
-          +pvBlock('','','')
-            span#twikoo_visitors
 
       if comments.count && !comments.lazyload && page.comments !== false && comments.use
         - var whichCount = comments.use[0]
@@ -96,7 +104,7 @@
           when 'Waline'
             +countBlock
               a(href=url_for(page.path) + '#post-comment')
-                span.waline-comment-count(id=url_for(page.path))
+                span.waline-comment-count(data-path=url_for(page.path))
           when 'Gitalk'
             +countBlock
               a(href=url_for(page.path) + '#post-comment')

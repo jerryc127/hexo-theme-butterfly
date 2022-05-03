@@ -1,5 +1,3 @@
-- let { avatar,avatarCDN } = theme.waline
-
 script.
   window.addEventListener('load', () => {
     const changeContent = (content) => {
@@ -45,11 +43,11 @@ script.
 
     const getComment = () => {
       const loadWaline = () => {
-        Waline.Widget.RecentComments({
+        Waline.RecentComments({
           serverURL: '!{theme.waline.serverURL}',
           count: !{theme.newest_comments.limit}
-        }).then(res => {
-          const walineArray = res.comments.map(e => {
+        }).then(({comments}) => {
+          const walineArray = comments.map(e => {
             return {
               'content': changeContent(e.comment),
               'avatar': e.avatar,
@@ -67,7 +65,7 @@ script.
       }
 
       if (typeof Waline === 'function') loadWaline() 
-      else getScript('!{url_for(theme.asset.waline)}').then(loadWaline)
+      else getScript('!{url_for(theme.asset.waline_js)}').then(loadWaline)
     }
 
     const newestCommentInit = () => {

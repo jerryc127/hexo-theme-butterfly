@@ -313,7 +313,7 @@ valine:
 waline:
   serverURL: # Waline server address url
   bg: # waline background
-  visitor: false
+  pageview: false
   option:
 
 # utterances
@@ -860,7 +860,8 @@ CDN:
     # disqusjs:
     # disqusjs_css:
     # twikoo:
-    # waline:
+    # waline_js:
+    # waline_css:
     # sharejs:
     # sharejs_css:
     # mathjax:
