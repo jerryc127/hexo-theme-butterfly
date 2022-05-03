@@ -39,6 +39,7 @@ social:
   # fas fa-envelope: mailto:xxxxxx@gmail.com || Email
 
 # search (搜索)
+# see https://butterfly.js.org/posts/ceeb73f/#搜索系統
 # --------------------------------------
 
 # Algolia search
@@ -50,6 +51,8 @@ algolia_search:
 # Local search
 local_search:
   enable: false
+  preload: false
+  CDN:
 
 # Math (數學)
 # --------------------------------------
@@ -148,6 +151,7 @@ post_meta:
     label: true # true or false 顯示描述性文字
 
 # wordcount (字數統計)
+# see https://butterfly.js.org/posts/ceeb73f/#字數統計
 wordcount:
   enable: false
   post_wordcount: true
@@ -181,6 +185,7 @@ toc:
 post_copyright:
   enable: true
   decode: false
+  author_href:
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
@@ -308,7 +313,7 @@ valine:
 waline:
   serverURL: # Waline server address url
   bg: # waline background
-  visitor: false
+  pageview: false
   option:
 
 # utterances
@@ -468,6 +473,8 @@ site_verification:
 #   blockquote_padding_color: "#49b1f5"
 #   blockquote_background_color: "#49b1f5"
 #   scrollbar_color: "#49b1f5"
+#   meta_theme_color_light: "ffffff"
+#   meta_theme_color_dark: "#0d0d0d"
 
 # The top_img settings of home page
 # default: top img - full screen, site info - middle (默認top_img全屏，site_info在中間)
@@ -614,6 +621,7 @@ aside:
   button: true
   mobile: true # display on mobile
   position: right # left or right
+  archives: true
   card_author:
     enable: true
     description:
@@ -827,88 +835,62 @@ inject:
 # Don't modify the following settings unless you know how they work
 # 非必要請不要修改
 CDN:
-  # main
-  main_css:
-  main:
-  utils:
-
-  # pjax
-  pjax:
-
-  # comments
-  gitalk:
-  gitalk_css:
-  blueimp_md5:
-  valine:
-  disqusjs:
-  disqusjs_css:
-  utterances:
-  twikoo:
-  waline:
-  giscus:
-
-  # share
-  addtoany:
-  sharejs:
-  sharejs_css:
-
-  # search
-  local_search:
-  algolia_js:
-  algolia_search_v4:
-  instantsearch_v4:
-
-  # math
-  mathjax:
-  katex:
-  katex_copytex:
-  katex_copytex_css:
-  mermaid:
-
-  # count
-  busuanzi:
-
-  # background effect
-  canvas_ribbon:
-  canvas_fluttering_ribbon:
-  canvas_nest:
-
-  lazyload:
-  instantpage:
-  typed:
-  pangu:
-
-  # photo
-  fancybox_css_v4:
-  fancybox_v4:
-  medium_zoom:
-
-  # snackbar
-  snackbar_css:
-  snackbar:
-
-  # effect
-  activate_power_mode:
-  fireworks:
-  click_heart:
-  ClickShowText:
-
-  # fontawesome
-  fontawesomeV6:
-
-  # Conversion between Traditional and Simplified Chinese
-  translate:
-
-  # flickr-justified-gallery
-  flickr_justified_gallery_js:
-  flickr_justified_gallery_css:
-
-  # aplayer
-  aplayer_css:
-  aplayer_js:
-  meting_js:
-
-  # Prism.js
-  prismjs_js:
-  prismjs_lineNumber_js:
-  prismjs_autoloader:
+  # The CDN provider of internal scripts (主題內部 js 的 cdn 配置)
+  # option: local/jsdelivr
+  # Dev version cannot choose jsdelivr (dev版的主題不能設置為 jsdelivr)
+  internal_provider: local
+  # The CDN provider of third party scripts (第三方 js 的 cdn 配置)
+  # option: local/jsdelivr
+  # when set it to local, you need to install hexo-butterfly-extjs
+  third_party_provider: jsdelivr
+  option:
+    # main_css:
+    # main:
+    # utils:
+    # translate:
+    # local_search:
+    # algolia_js:
+    # algolia_search_v4:
+    # instantsearch_v4:
+    # pjax:
+    # gitalk:
+    # gitalk_css:
+    # blueimp_md5:
+    # valine:
+    # disqusjs:
+    # disqusjs_css:
+    # twikoo:
+    # waline_js:
+    # waline_css:
+    # sharejs:
+    # sharejs_css:
+    # mathjax:
+    # katex:
+    # katex_copytex:
+    # katex_copytex_css:
+    # mermaid:
+    # canvas_ribbon:
+    # canvas_fluttering_ribbon:
+    # canvas_nest:
+    # lazyload:
+    # instantpage:
+    # typed:
+    # pangu:
+    # fancybox_css_v4:
+    # fancybox_v4:
+    # medium_zoom:
+    # snackbar_css:
+    # snackbar:
+    # activate_power_mode:
+    # fireworks:
+    # click_heart:
+    # ClickShowText:
+    # fontawesomeV6:
+    # flickr_justified_gallery_js:
+    # flickr_justified_gallery_css:
+    # aplayer_css:
+    # aplayer_js:
+    # meting_js:
+    # prismjs_js:
+    # prismjs_lineNumber_js:
+    # prismjs_autoloader:

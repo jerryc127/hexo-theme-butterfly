@@ -43,7 +43,6 @@ search:
     hits_stats: '${hits} results found in ${time} ms'
 
   local_search:
-    label: Local search
     input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}"
 
