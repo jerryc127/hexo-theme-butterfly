@@ -34,9 +34,11 @@ hr
           when 'Waline'
             #waline-wrap
           when 'Giscus'
-            #giscus-wrap
+            #giscus-wrap  
           when 'Facebook Comments'
             .fb-comments(data-colorscheme = theme.display_mode === 'dark' ? 'dark' : 'light'
                         data-numposts= theme.facebook_comments.pageSize || 10
                         data-order-by= theme.facebook_comments.order_by || 'social'
                         data-width="100%")
+          when 'Remark42'
+            #remark42               

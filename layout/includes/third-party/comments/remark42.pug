@@ -1,0 +1,34 @@
+- const { host, siteId, language } = theme.remark42
+script.
+    var remark_config = {
+        host: '!{host}',
+        site_id: '!{siteId}',
+        components: ['embed'],
+        locale: '!{language}',
+        show_email_subscription: #{theme.remark42.showEmailSubscription},
+        simple_view: #{theme.remark42.simpleView}
+    }
+
+script.
+    function loadRemark42(){
+        !(function (e, n) {
+            for (var o = 0; o < e.length; o++) {
+                var r = n.createElement('script'),
+                    c = '.js',
+                    d = n.head || n.body
+                'noModule' in r ? ((r.type = 'module'), (c = '.mjs')) : (r.async = !0),
+                    (r.defer = !0),
+                    (r.src = remark_config.host + '/web/' + e[o] + c),
+                    d.appendChild(r)
+            }
+        })(remark_config.components || ['embed'], document)
+    }
+
+    if ('!{theme.comments.use[0]}' === 'Remark42' || !!{theme.comments.lazyload}) {
+        if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('remark42'), loadRemark42)
+        else loadRemark42()
+    } else {
+        function loadOtherComment () {
+            loadRemark42()
+        }
+    }
