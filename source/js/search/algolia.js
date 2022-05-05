@@ -95,7 +95,7 @@ window.addEventListener('load', () => {
           <a href="${link}" class="algolia-hit-item-link">
           ${data._highlightResult.title.value || 'no-title'}
           </a>
-          <p class="algolia-hit-item-content">${cutContent(data._highlightResult.contentStripTruncate.value)}</p>`
+          <p class="algolia-hit-item-content">${cutContent(data._highlightResult.contentStrip.value)}</p>`
       },
       empty: function (data) {
         return (
