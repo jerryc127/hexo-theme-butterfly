@@ -104,7 +104,7 @@ hexo.extend.filter.register('before_generate', () => {
           const data = path.join(hexo.plugin_dir,'hexo-butterfly-extjs/plugins.yml')
           result = hexo.render.renderSync({ path: data, engine: 'yaml'})
           Object.keys(result).map(key => {
-            result[key] = 'pluginsSrc/' + result[key]
+            result[key] = '/pluginsSrc/' + result[key]
           })
         } catch (e) {}
         return result
