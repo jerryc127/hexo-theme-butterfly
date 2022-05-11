@@ -360,9 +360,7 @@ remark42:
   host: # Your Host URL/你的Remark42的部署地址
   siteId: remark  # Your Site ID/你的站点ID 
   language: en # https://remark42.com/docs/configuration/frontend/#locales
-  showEmailSubscription: true # Show Email Subscription/是否显示邮件订阅 
-  simpleView: false # Turn On the Simple View Mode/简单模式
-  maxShownComments: 15 # The Max Shown Comments When the System loaded/默认加载时评论的显示数量
+  option:
 
 # Chat Services
 # --------------------------------------

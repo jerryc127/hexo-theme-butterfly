@@ -1,15 +1,12 @@
-- const { host, siteId, language } = theme.remark42
+- const { host, siteId, language, option } = theme.remark42
 script.
     let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
-    var remark_config = {
+    var remark_config = Object.assign({
         host: '!{host}',
         site_id: '!{siteId}',
         components: ['embed'],
         locale: '!{language}',
-        show_email_subscription: #{theme.remark42.showEmailSubscription},
-        theme: nowTheme,
-        simple_view: #{theme.remark42.simpleView}
-    }
+    },!{JSON.stringify(option)})
 
 script.
     function loadRemark42(){
