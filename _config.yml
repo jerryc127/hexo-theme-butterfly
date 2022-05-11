@@ -362,6 +362,7 @@ remark42:
   language: en # https://remark42.com/docs/configuration/frontend/#locales
   showEmailSubscription: true
   simpleView: false
+  maxShownComments: 15
 
 # Chat Services
 # --------------------------------------

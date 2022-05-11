@@ -1,11 +1,13 @@
 - const { host, siteId, language } = theme.remark42
 script.
+    let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
     var remark_config = {
         host: '!{host}',
         site_id: '!{siteId}',
         components: ['embed'],
         locale: '!{language}',
         show_email_subscription: #{theme.remark42.showEmailSubscription},
+        theme: nowTheme,
         simple_view: #{theme.remark42.simpleView}
     }
 
@@ -23,6 +25,16 @@ script.
             }
         })(remark_config.components || ['embed'], document)
     }
+
+    function changeRemark42Theme(){
+        let theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+        window.REMARK42.changeTheme(theme)
+    }
+
+    let themeBtn = document.getElementById('darkmode')
+    themeBtn.addEventListener('click',()=>{
+        changeRemark42Theme()
+    })
 
     if ('!{theme.comments.use[0]}' === 'Remark42' || !!{theme.comments.lazyload}) {
         if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('remark42'), loadRemark42)
