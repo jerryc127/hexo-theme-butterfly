@@ -355,11 +355,10 @@ giscus:
   option:
 
 # Remark42
-# https://remark42.com/docs/getting-started/installation/
+# https://remark42.com/docs/configuration/frontend/
 remark42:
-  host: # Your Host URL/你的Remark42的部署地址
-  siteId: remark  # Your Site ID/你的站点ID 
-  language: en # https://remark42.com/docs/configuration/frontend/#locales
+  host: # Your Host URL
+  siteId: # Your Site ID
   option:
 
 # Chat Services

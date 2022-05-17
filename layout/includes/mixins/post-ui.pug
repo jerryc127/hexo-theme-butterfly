@@ -91,7 +91,7 @@ mixin postUI(posts)
               when 'Remark42'
                 +countBlockInIndex
                   a(href=url_for(link) + '#post-comment')
-                    span(class="remark42__counter" data-url=urlNoIndex(article.permalink))
+                    span.remark42__counter(data-url=urlNoIndex(article.permalink))
 
         //- Display the article introduction on homepage
         case theme.index_post_content.method

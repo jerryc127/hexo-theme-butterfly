@@ -1,21 +1,18 @@
-- const { host, siteId, language, option } = theme.remark42
+- const { host, siteId, option } = theme.remark42
 
 script.
-    let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
-    var remark_config = Object.assign({
-        host: '!{host}',
-        site_id: '!{siteId}',
-        components: ['counter']
+  (()=>{
+    window.remark_config = Object.assign({
+      host: '!{host}',
+      site_id: '!{siteId}',
     },!{JSON.stringify(option)})
 
-script.
-    function loadRemark42(){
-        !function(e,r){
-            for(var o=r.head||r.body,n=0;n<e.length;n++){
-                var t=r.createElement("script"),m="noModule"in t,c=m?".mjs":".js";
-                m&&(t.type="module"),t.async=!0,t.defer=!0,t.src=remark_config.host+"/web/"+e[n]+c,o.appendChild(t)
-            }
-        }(remark_config.components||["embed"],document)
+    function getCount () {
+      const s = document.createElement('script')
+      s.src = remark_config.host + '/web/counter.js'
+      s.defer = true
+      document.head.appendChild(s)
     }
 
-    window.pjax ? loadRemark42() : window.addEventListener('load', loadRemark42)
+    window.pjax ? getCount() : window.addEventListener('load', getCount)
+  })()
