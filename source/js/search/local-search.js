@@ -2,11 +2,12 @@ window.addEventListener('load', () => {
   let loadFlag = false
   let dataObj = []
   const $searchMask = document.getElementById('search-mask')
+  const bodyStyle = document.body.style
 
   const openSearch = () => {
-    const bodyStyle = document.body.style
     bodyStyle.width = '100%'
     bodyStyle.overflow = 'hidden'
+    bodyStyle.paddingRight = '8px'
     btf.animateIn($searchMask, 'to_show 0.5s')
     btf.animateIn(document.querySelector('#local-search .search-dialog'), 'titleScale 0.5s')
     setTimeout(() => { document.querySelector('#local-search-input input').focus() }, 100)
@@ -24,9 +25,9 @@ window.addEventListener('load', () => {
   }
 
   const closeSearch = () => {
-    const bodyStyle = document.body.style
     bodyStyle.width = ''
     bodyStyle.overflow = ''
+    bodyStyle.paddingRight = ''
     btf.animateOut(document.querySelector('#local-search .search-dialog'), 'search_close .5s')
     btf.animateOut($searchMask, 'to_hide 0.5s')
   }
