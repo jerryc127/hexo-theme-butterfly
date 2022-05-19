@@ -76,6 +76,10 @@
             if theme.twikoo.visitor
               +pvBlock('','','')
                 span#twikoo_visitors
+          default
+            if theme.busuanzi.page_pv
+              +pvBlock('','post-meta-pv-cv','')
+                span#busuanzi_value_page_pv
       else if theme.busuanzi.page_pv
         +pvBlock('','post-meta-pv-cv','')
           span#busuanzi_value_page_pv

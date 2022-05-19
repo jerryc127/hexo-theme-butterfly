@@ -18,7 +18,7 @@ script.
       }
 
       const loadMermaid = () => {
-        window.loadMermaid ? runMermaid() : getScript('!{theme.asset.mermaid}').then(runMermaid)
+        window.loadMermaid ? runMermaid() : getScript('!{url_for(theme.asset.mermaid)}').then(runMermaid)
       }
 
       window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)

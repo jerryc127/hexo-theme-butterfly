@@ -3,7 +3,7 @@ if theme.pjax.exclude
   each val in theme.pjax.exclude
     - pjaxExclude = pjaxExclude + `:not([href="${val}"])`
 
-- let pjaxSelectors = ['title','#config-diff','#body-wrap','#rightside-config-hide','#rightside-config-show','.js-pjax']
+- let pjaxSelectors = ['head > title','#config-diff','#body-wrap','#rightside-config-hide','#rightside-config-show','.js-pjax']
 
 - let choose = theme.comments.use
 if choose
