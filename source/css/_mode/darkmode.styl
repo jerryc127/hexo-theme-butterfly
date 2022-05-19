@@ -118,8 +118,10 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         fill: alpha(#FFFFFF, .9) !important
 
     // Disqusjs 反代模式下的適配
-    #disqus_thread
+    #disqusjs
       #dsqjs
+        &:hover,
+        &:focus,
         .dsqjs-tab-active,
         .dsqjs-no-comment
           color: alpha(#FFFFFF, .7)
