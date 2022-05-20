@@ -6,6 +6,9 @@
   else if (page.highlight_shrink === true || page.highlight_shrink === false) isHighlightShrink = page.highlight_shrink
   else isHighlightShrink = theme.highlight_shrink
 
+  if (page.series)
+    var Series = page.series
+
   var showToc = false
   if (theme.aside.enable && page.aside !== false) {
     let tocEnable = false
