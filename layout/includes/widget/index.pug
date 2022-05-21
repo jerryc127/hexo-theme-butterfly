@@ -13,8 +13,6 @@
       .sticky_layout
         if showToc
           include ./card_post_toc.pug
-        if Series
-          include ./card_series_post.pug
         !=partial('includes/widget/card_recent_post', {}, {cache: true})
         !=partial('includes/widget/card_ad', {}, {cache: true})
   else
