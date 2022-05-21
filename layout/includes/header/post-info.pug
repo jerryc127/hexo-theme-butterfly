@@ -124,3 +124,7 @@
             +countBlock
               a(href=url_for(page.path) + '#post-comment')
                 span.fb-comments-count(data-href=urlNoIndex())
+          when 'Remark42'
+            +countBlock
+              a(href=url_for(page.path) + '#post-comment')
+                span.remark42__counter(data-url=urlNoIndex())
