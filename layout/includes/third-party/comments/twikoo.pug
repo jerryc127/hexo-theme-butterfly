@@ -15,13 +15,15 @@ script.
     }
 
     const getCount = () => {
+      const countELement = document.getElementById('twikoo-count')
+      if(!countELement) return
       twikoo.getCommentsCount({
         envId: '!{envId}',
         region: '!{region}',
         urls: [window.location.pathname],
         includeReply: false
       }).then(function (res) {
-        document.getElementById('twikoo-count').innerText = res[0].count
+        countELement.innerText = res[0].count
       }).catch(function (err) {
         console.error(err);
       });
@@ -37,7 +39,7 @@ script.
         setTimeout(runFn,0)
         return
       } 
-      getScript('!{theme.asset.twikoo}').then(runFn)
+      getScript('!{url_for(theme.asset.twikoo)}').then(runFn)
     }
 
     if ('!{use[0]}' === 'Twikoo' || !!{lazyload}) {
