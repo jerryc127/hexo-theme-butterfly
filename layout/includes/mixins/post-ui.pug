@@ -91,6 +91,10 @@ mixin postUI(posts)
                 +countBlockInIndex
                   a(href=url_for(link) + '#post-comment')
                     span.fb-comments-count(data-href=urlNoIndex(article.permalink))
+              when 'Remark42'
+                +countBlockInIndex
+                  a(href=url_for(link) + '#post-comment')
+                    span.remark42__counter(data-url=urlNoIndex(article.permalink))
 
         //- Display the article introduction on homepage
         case theme.index_post_content.method
