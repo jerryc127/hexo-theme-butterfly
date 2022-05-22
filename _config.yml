@@ -836,11 +836,11 @@ inject:
 # 非必要請不要修改
 CDN:
   # The CDN provider of internal scripts (主題內部 js 的 cdn 配置)
-  # option: local/jsdelivr
-  # Dev version cannot choose jsdelivr (dev版的主題不能設置為 jsdelivr)
+  # option: local/jsdelivr/unpkg
+  # Dev version cannot choose jsdelivr/unpkg (dev版的主題不能設置為 jsdelivr/unpkg)
   internal_provider: local
   # The CDN provider of third party scripts (第三方 js 的 cdn 配置)
-  # option: local/jsdelivr
+  # option: local/jsdelivr/unpkg
   # when set it to local, you need to install hexo-butterfly-extjs
   third_party_provider: jsdelivr
   option:

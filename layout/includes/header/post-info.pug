@@ -63,23 +63,18 @@
 
       - const commentUse = comments.use
       if commentUse && !comments.lazyload
-        case commentUse[0]
-          when 'Valine'
-            if theme.valine.visitor
-              +pvBlock(url_for(page.path),'leancloud_visitors',page.title)
-                span.leancloud-visitors-count
-          when 'Waline'
-            if theme.waline.pageview
-              +pvBlock('','','')
-                span.waline-pageview-count(data-path=url_for(page.path))
-          when 'Twikoo'
-            if theme.twikoo.visitor
-              +pvBlock('','','')
-                span#twikoo_visitors
-          default
-            if theme.busuanzi.page_pv
-              +pvBlock('','post-meta-pv-cv','')
-                span#busuanzi_value_page_pv
+        if commentUse[0] === 'Valine' && theme.valine.visitor
+          +pvBlock(url_for(page.path),'leancloud_visitors',page.title)
+            span.leancloud-visitors-count
+        else if commentUse[0] === 'Waline' && theme.waline.pageview
+          +pvBlock('','','')
+            span.waline-pageview-count(data-path=url_for(page.path))
+        else if commentUse[0] === 'Twikoo' && theme.twikoo.visitor
+          +pvBlock('','','')
+            span#twikoo_visitors
+        else if theme.busuanzi.page_pv
+          +pvBlock('','post-meta-pv-cv','')
+            span#busuanzi_value_page_pv
       else if theme.busuanzi.page_pv
         +pvBlock('','post-meta-pv-cv','')
           span#busuanzi_value_page_pv
