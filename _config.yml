@@ -843,13 +843,18 @@ inject:
 # 非必要請不要修改
 CDN:
   # The CDN provider of internal scripts (主題內部 js 的 cdn 配置)
-  # option: local/jsdelivr/unpkg
-  # Dev version cannot choose jsdelivr/unpkg (dev版的主題不能設置為 jsdelivr/unpkg)
+  # option: local/jsdelivr/unpkg/cdnjs/custom
+  # Dev version can only choose. ( dev版的主題只能設置為 local )
   internal_provider: local
   # The CDN provider of third party scripts (第三方 js 的 cdn 配置)
-  # option: local/jsdelivr/unpkg
+  # option: local/jsdelivr/unpkg/cdnjs/custom
   # when set it to local, you need to install hexo-butterfly-extjs
   third_party_provider: jsdelivr
+  # Custom format
+  # For example: https://cdn.staticfile.org/${cdnjs_name}/${version}/${min_cdnjs_file}
+  custom_format:
+  # Add version number to CDN, true or false  
+  version: false
   option:
     # main_css:
     # main:
@@ -874,7 +879,6 @@ CDN:
     # mathjax:
     # katex:
     # katex_copytex:
-    # katex_copytex_css:
     # mermaid:
     # canvas_ribbon:
     # canvas_fluttering_ribbon:
