@@ -5,7 +5,7 @@ algolia_search_v4:
 instantsearch_v4:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.41.0
+  version: 4.41.2
 pjax:
   name: pjax
   file: pjax.min.js
@@ -42,12 +42,12 @@ waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 2.5.1
+  version: 2.6.1
 waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 2.5.1
+  version: 2.6.1
 sharejs:
   name: butterfly-extsrc
   file: sharejs/dist/js/social-share.min.js
@@ -73,7 +73,7 @@ katex_copytex:
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
-  version: 9.1.1
+  version: 9.1.2
 canvas_ribbon:
   name: butterfly-extsrc
   file: dist/canvas-ribbon.min.js
@@ -122,10 +122,12 @@ fancybox_css_v4:
   name: '@fancyapps/ui'
   file: dist/fancybox.css
   version: 4.0.27
+  other_name: fancyapps-ui
 fancybox_v4:
   name: '@fancyapps/ui'
   file: dist/fancybox.umd.js
   version: 4.0.27
+  other_name: fancyapps-ui
 medium_zoom:
   name: medium-zoom
   file: dist/medium-zoom.min.js
@@ -146,11 +148,11 @@ fontawesomeV6:
 flickr_justified_gallery_js:
   name: flickr-justified-gallery
   file: dist/fjGallery.min.js
-  version: 2.0.0
+  version: 2.1.2
 flickr_justified_gallery_css:
   name: flickr-justified-gallery
   file: dist/fjGallery.css
-  version: 2.0.0
+  version: 2.1.2
 aplayer_css:
   name: aplayer
   file: dist/APlayer.min.css

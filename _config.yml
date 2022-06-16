@@ -628,7 +628,10 @@ aside:
   button: true
   mobile: true # display on mobile
   position: right # left or right
-  archives: true
+  display:
+    archive: true
+    tag: true
+    category: true
   card_author:
     enable: true
     description:
