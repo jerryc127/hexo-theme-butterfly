@@ -91,11 +91,19 @@ window.addEventListener('load', () => {
     templates: {
       item(data) {
         const link = data.permalink ? data.permalink : (GLOBAL_CONFIG.root + data.path)
+        const result = data._highlightResult
+        const content = result.contentStripTruncate
+                        ? cutContent(result.contentStripTruncate.value)
+                        : result.contentStrip
+                        ? cutContent(result.contentStrip.value)
+                        : result.content
+                        ? cutContent(result.content.value)
+                        : ''
         return `
           <a href="${link}" class="algolia-hit-item-link">
-          ${data._highlightResult.title.value || 'no-title'}
+          ${result.title.value || 'no-title'}
           </a>
-          <p class="algolia-hit-item-content">${cutContent(data._highlightResult.contentStripTruncate.value)}</p>`
+          <p class="algolia-hit-item-content">${content}</p>`
       },
       empty: function (data) {
         return (

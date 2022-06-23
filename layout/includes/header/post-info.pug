@@ -63,26 +63,26 @@
 
       - const commentUse = comments.use
       if commentUse && !comments.lazyload
-        case commentUse[0]
-          when 'Valine'
-            if theme.valine.visitor
-              +pvBlock(url_for(page.path),'leancloud_visitors',page.title)
-                span.leancloud-visitors-count
-          when 'Waline'
-            if theme.waline.pageview
-              +pvBlock('','','')
-                span.waline-pageview-count(data-path=url_for(page.path))
-          when 'Twikoo'
-            if theme.twikoo.visitor
-              +pvBlock('','','')
-                span#twikoo_visitors
-          default
-            if theme.busuanzi.page_pv
-              +pvBlock('','post-meta-pv-cv','')
-                span#busuanzi_value_page_pv
+        if commentUse[0] === 'Valine' && theme.valine.visitor
+          +pvBlock(url_for(page.path),'leancloud_visitors',page.title)
+            span.leancloud-visitors-count
+              i.fa-solid.fa-spinner.fa-spin
+        else if commentUse[0] === 'Waline' && theme.waline.pageview
+          +pvBlock('','','')
+            span.waline-pageview-count(data-path=url_for(page.path))
+              i.fa-solid.fa-spinner.fa-spin
+        else if commentUse[0] === 'Twikoo' && theme.twikoo.visitor
+          +pvBlock('','','')
+            span#twikoo_visitors
+              i.fa-solid.fa-spinner.fa-spin
+        else if theme.busuanzi.page_pv
+          +pvBlock('','post-meta-pv-cv','')
+            span#busuanzi_value_page_pv
+              i.fa-solid.fa-spinner.fa-spin
       else if theme.busuanzi.page_pv
         +pvBlock('','post-meta-pv-cv','')
           span#busuanzi_value_page_pv
+            i.fa-solid.fa-spinner.fa-spin
 
       if comments.count && !comments.lazyload && page.comments !== false && comments.use
         - var whichCount = comments.use[0]
@@ -97,27 +97,42 @@
         
         case whichCount
           when 'Disqus'
-          when 'Disqusjs'
             +countBlock
               span.disqus-comment-count
                 a(href=full_url_for(page.path) + '#disqus_thread')
+                  i.fa-solid.fa-spinner.fa-spin
+          when 'Disqusjs'
+            +countBlock
+              a(href=full_url_for(page.path) + '#disqusjs')
+                span.disqus-comment-count(data-disqus-url=full_url_for(page.path))
+                  i.fa-solid.fa-spinner.fa-spin
           when 'Valine'
             +countBlock
               a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
                 span.valine-comment-count(data-xid=url_for(page.path) itemprop="commentCount")
+                  i.fa-solid.fa-spinner.fa-spin
           when 'Waline'
             +countBlock
               a(href=url_for(page.path) + '#post-comment')
                 span.waline-comment-count(data-path=url_for(page.path))
+                  i.fa-solid.fa-spinner.fa-spin
           when 'Gitalk'
             +countBlock
               a(href=url_for(page.path) + '#post-comment')
                 span.gitalk-comment-count
+                  i.fa-solid.fa-spinner.fa-spin
           when 'Twikoo'
             +countBlock
               a(href=url_for(page.path) + '#post-comment')
                 span#twikoo-count
+                  i.fa-solid.fa-spinner.fa-spin
           when 'Facebook Comments'
             +countBlock
               a(href=url_for(page.path) + '#post-comment')
                 span.fb-comments-count(data-href=urlNoIndex())
+                  i.fa-solid.fa-spinner.fa-spin
+          when 'Remark42'
+            +countBlock
+              a(href=url_for(page.path) + '#post-comment')
+                span.remark42__counter(data-url=urlNoIndex())
+                  i.fa-solid.fa-spinner.fa-spin

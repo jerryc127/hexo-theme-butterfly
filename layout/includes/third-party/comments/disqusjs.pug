@@ -10,18 +10,27 @@ script.
     }
 
     function initDisqusjs () {
-      window.DISQUS = null
-      new DisqusJS(Object.assign({
+      window.disqusjs = null
+      disqusjs = new DisqusJS(Object.assign({
         shortname: '!{theme.disqusjs.shortname}',
-        identifier: '!{ page.path }',
+        identifier: '!{ url_for(page.path) }',
         url: '!{ page.permalink }',
         title: '!{ disqusjsPageTitle }',
         apikey: '!{theme.disqusjs.apikey}',
       },!{JSON.stringify(theme.disqusjs.option)}))
+
+      disqusjs.render(document.getElementById('disqusjs'))
+    }
+
+    const themeChange = () => {
+      const ele = document.getElementById('disqus_thread')
+      if(!ele) return
+      disqusjs.destroy()
+      initDisqusjs()
     }
 
 
-    window.disqusReset = initDisqusjs
+    document.getElementById('darkmode').addEventListener('click', themeChange)
 
     if (window.disqusJsLoad) initDisqusjs()
     else {
@@ -32,7 +41,7 @@ script.
   }
 
   if ('!{theme.comments.use[0]}' === 'Disqusjs' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('disqus_thread'), loadDisqusjs)
+    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('disqusjs'), loadDisqusjs)
     else loadDisqusjs()
   }
   else {

@@ -4,7 +4,7 @@ script.
   function loadDisqus () {
     var disqus_config = function () {
       this.page.url = '!{ page.permalink }'
-      this.page.identifier = '!{ page.path }'
+      this.page.identifier = '!{ url_for(page.path) }'
       this.page.title = '!{ disqusPageTitle }'
     };
 
@@ -24,6 +24,10 @@ script.
         (d.head || d.body).appendChild(s);
       })();
     }
+
+    document.getElementById('darkmode').addEventListener('click', () => {
+      setTimeout(() => window.disqusReset(), 200)
+    })
   }
 
   if ('!{theme.comments.use[0]}' === 'Disqus' || !!{theme.comments.lazyload}) {
