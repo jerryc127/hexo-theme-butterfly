@@ -5,7 +5,7 @@ algolia_search_v4:
 instantsearch_v4:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.41.2
+  version: 4.42.0
 pjax:
   name: pjax
   file: pjax.min.js
@@ -105,7 +105,7 @@ ClickShowText:
 lazyload:
   name: vanilla-lazyload
   file: dist/lazyload.iife.min.js
-  version: 17.8.2
+  version: 17.3.1
 instantpage:
   name: instant.page
   file: instantpage.js
