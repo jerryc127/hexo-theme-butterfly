@@ -62,7 +62,7 @@
             block
 
       - const commentUse = comments.use
-      if commentUse && !comments.lazyload
+      if page.comments !== false && commentUse && !comments.lazyload
         if commentUse[0] === 'Valine' && theme.valine.visitor
           +pvBlock(url_for(page.path),'leancloud_visitors',page.title)
             span.leancloud-visitors-count

@@ -1,9 +1,7 @@
 - var pageTitle
-- if (is_archive()) pageTitle = fragment_cache('findArchivesTitle', function(){return findArchivesTitle(theme.menu);})
-- else if (is_tag()) pageTitle = _p('page.tag') + ': ' + page.tag
+- is_archive() ? page.title = findArchivesTitle(page, theme.menu, date) : ''
+- if (is_tag()) pageTitle = _p('page.tag') + ': ' + page.tag
 - else if (is_category()) pageTitle = _p('page.category') + ': ' + page.category
-- else if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
-- else if (is_year()) pageTitle += ': ' + page.year
 - else if (is_current('/404.html', [strict])) pageTitle = _p('error404')
 - else pageTitle = page.title || config.title || ''
 
