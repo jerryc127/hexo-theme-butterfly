@@ -5,7 +5,7 @@ mixin postUI(posts)
         let link = article.link || article.path
         let title = article.title || _p('no_title')
         const position = theme.cover.position
-        let leftOrRight = position === 'both' 
+        let leftOrRight = position === 'both'
           ? index%2 == 0 ? 'left' : 'right'
           : position === 'left' ? 'left' : 'right'
         let post_cover = article.cover
@@ -70,24 +70,38 @@ mixin postUI(posts)
           if theme.comments.card_post_count
             case theme.comments.use[0]
               when 'Disqus'
-              when 'Disqusjs'
                 +countBlockInIndex
                   a(href=full_url_for(link) + '#disqus_thread')
+                    i.fa-solid.fa-spinner.fa-spin
+              when 'Disqusjs'
+                +countBlockInIndex
+                  a(href=full_url_for(link) + '#disqusjs')
+                    span.disqus-comment-count(data-disqus-url=full_url_for(link))
+                      i.fa-solid.fa-spinner.fa-spin
               when 'Valine'
                 +countBlockInIndex
-                  a(href=url_for(link) + '#post-comment' itemprop="discussionUrl")
-                    span.valine-comment-count(data-xid=url_for(link) itemprop="commentCount")
+                  a(href=url_for(link) + '#post-comment')
+                    span.valine-comment-count(data-xid=url_for(link))
+                      i.fa-solid.fa-spinner.fa-spin
               when 'Waline'
                 +countBlockInIndex
                   a(href=url_for(link) + '#post-comment')
                     span.waline-comment-count(id=url_for(link))
+                      i.fa-solid.fa-spinner.fa-spin
               when 'Twikoo'
                 +countBlockInIndex
                   a.twikoo-count(href=url_for(link) + '#post-comment')
+                    i.fa-solid.fa-spinner.fa-spin
               when 'Facebook Comments'
                 +countBlockInIndex
                   a(href=url_for(link) + '#post-comment')
                     span.fb-comments-count(data-href=urlNoIndex(article.permalink))
+                      i.fa-solid.fa-spinner.fa-spin
+              when 'Remark42'
+                +countBlockInIndex
+                  a(href=url_for(link) + '#post-comment')
+                    span.remark42__counter(data-url=urlNoIndex(article.permalink))
+                      i.fa-solid.fa-spinner.fa-spin
 
         //- Display the article introduction on homepage
         case theme.index_post_content.method

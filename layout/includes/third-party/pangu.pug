@@ -2,7 +2,7 @@ script.
   function panguFn () {
     if (typeof pangu === 'object') pangu.autoSpacingPage()
     else {
-      getScript('!{url_for(theme.CDN.pangu)}')
+      getScript('!{url_for(theme.asset.pangu)}')
         .then(() => {
           pangu.autoSpacingPage()
         })

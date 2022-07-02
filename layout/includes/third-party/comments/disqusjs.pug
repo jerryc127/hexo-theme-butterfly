@@ -5,34 +5,43 @@ script.
     function addDisqusjsCSS () {
       const ele = document.createElement('link')
       ele.rel = 'stylesheet'
-      ele.href= '!{url_for(theme.CDN.disqusjs_css)}'
+      ele.href= '!{url_for(theme.asset.disqusjs_css)}'
       document.getElementsByTagName('head')[0].appendChild(ele)
     }
 
     function initDisqusjs () {
-      window.DISQUS = null
-      new DisqusJS(Object.assign({
+      window.disqusjs = null
+      disqusjs = new DisqusJS(Object.assign({
         shortname: '!{theme.disqusjs.shortname}',
-        identifier: '!{ page.path }',
+        identifier: '!{ url_for(page.path) }',
         url: '!{ page.permalink }',
         title: '!{ disqusjsPageTitle }',
         apikey: '!{theme.disqusjs.apikey}',
       },!{JSON.stringify(theme.disqusjs.option)}))
+
+      disqusjs.render(document.getElementById('disqusjs'))
+    }
+
+    const themeChange = () => {
+      const ele = document.getElementById('disqus_thread')
+      if(!ele) return
+      disqusjs.destroy()
+      initDisqusjs()
     }
 
 
-    window.disqusReset = initDisqusjs
+    document.getElementById('darkmode').addEventListener('click', themeChange)
 
     if (window.disqusJsLoad) initDisqusjs()
     else {
       addDisqusjsCSS()
-      getScript('!{url_for(theme.CDN.disqusjs)}').then(initDisqusjs)
+      getScript('!{url_for(theme.asset.disqusjs)}').then(initDisqusjs)
       window.disqusJsLoad = true
     }
   }
 
   if ('!{theme.comments.use[0]}' === 'Disqusjs' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('disqus_thread'), loadDisqusjs)
+    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('disqusjs'), loadDisqusjs)
     else loadDisqusjs()
   }
   else {

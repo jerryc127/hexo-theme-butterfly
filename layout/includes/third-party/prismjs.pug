@@ -1,5 +1,5 @@
 if config.prismjs && config.prismjs.enable && !config.prismjs.preprocess
-  script(src=url_for(theme.CDN.prismjs_js))
-  script(src=url_for(theme.CDN.prismjs_autoloader))
+  script(src=url_for(theme.asset.prismjs_js))
+  script(src=url_for(theme.asset.prismjs_autoloader))
   if config.prismjs.line_number
-    script(src=url_for(theme.CDN.prismjs_lineNumber_js))
+    script(src=url_for(theme.asset.prismjs_lineNumber_js))

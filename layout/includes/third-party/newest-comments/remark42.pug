@@ -1,3 +1,5 @@
+- const { host, siteId } = theme.remark42
+
 script.
   window.addEventListener('load', () => {
     const changeContent = (content) => {
@@ -42,35 +44,29 @@ script.
     }
 
     const getComment = () => {
-      const loadWaline = () => {
-        Waline.RecentComments({
-          serverURL: '!{theme.waline.serverURL}',
-          count: !{theme.newest_comments.limit}
-        }).then(({comments}) => {
-          const walineArray = comments.map(e => {
+      fetch('!{host}/api/v1/last/!{theme.newest_comments.limit}?site=!{siteId}')
+        .then(response => response.json())
+        .then(data => {
+          const remark42 = data.map(function (e) {
             return {
-              'content': changeContent(e.comment),
-              'avatar': e.avatar,
-              'nick': e.nick,
-              'url': e.url + '#' + e.objectId,
-              'date': e.insertedAt,
+              'avatar': e.user.picture,
+              'content': changeContent(e.text),
+              'nick': e.user.name,
+              'url': e.locator.url,
+              'date': e.time,
             }
           })
-          saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), !{theme.newest_comments.storage}/(60*24))
-          generateHtml(walineArray)
+          saveToLocal.set('remark42-newest-comments', JSON.stringify(remark42), !{theme.newest_comments.storage}/(60*24))
+          generateHtml(remark42)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
           $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
-        }) 
-      }
-
-      if (typeof Waline === 'function') loadWaline() 
-      else getScript('!{url_for(theme.asset.waline_js)}').then(loadWaline)
+        })
     }
 
     const newestCommentInit = () => {
       if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = saveToLocal.get('waline-newest-comments')
+        const data = saveToLocal.get('remark42-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
@@ -80,6 +76,5 @@ script.
     }
 
     newestCommentInit()
-    
     document.addEventListener('pjax:complete', newestCommentInit)
   })

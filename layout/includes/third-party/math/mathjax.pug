@@ -37,7 +37,7 @@ script.
     }
     
     const script = document.createElement('script')
-    script.src = '!{theme.CDN.mathjax}'
+    script.src = '!{url_for(theme.asset.mathjax)}'
     script.id = 'MathJax-script'
     script.async = true
     document.head.appendChild(script)

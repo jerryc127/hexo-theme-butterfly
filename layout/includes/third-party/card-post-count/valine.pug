@@ -6,13 +6,14 @@ script.
           el: '#vcomment',
           appId: '#{theme.valine.appId}',
           appKey: '#{theme.valine.appKey}',
+          serverURLs: '#{theme.valine.serverURLs}'
         }
         
         const valine = new Valine(initData)
       }
 
       if (typeof Valine === 'function') initValine() 
-      else getScript('!{url_for(theme.CDN.valine)}').then(initValine)
+      else getScript('!{url_for(theme.asset.valine)}').then(initValine)
     }
 
     window.pjax ? loadValine() : window.addEventListener('load', loadValine)

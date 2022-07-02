@@ -18,7 +18,7 @@ script.
     }
 
     if (typeof Valine === 'function') initValine() 
-    else getScript('!{url_for(theme.CDN.valine)}').then(initValine)
+    else getScript('!{url_for(theme.asset.valine)}').then(initValine)
   }
 
   if ('!{theme.comments.use[0]}' === 'Valine' || !!{theme.comments.lazyload}) {

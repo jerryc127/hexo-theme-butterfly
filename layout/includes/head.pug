@@ -1,9 +1,7 @@
 - var pageTitle
-- if (is_archive()) pageTitle = fragment_cache('findArchivesTitle', function(){return findArchivesTitle(theme.menu);})
-- else if (is_tag()) pageTitle = _p('page.tag') + ': ' + page.tag
+- is_archive() ? page.title = findArchivesTitle(page, theme.menu, date) : ''
+- if (is_tag()) pageTitle = _p('page.tag') + ': ' + page.tag
 - else if (is_category()) pageTitle = _p('page.category') + ': ' + page.category
-- else if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
-- else if (is_year()) pageTitle += ': ' + page.year
 - else if (is_current('/404.html', [strict])) pageTitle = _p('error404')
 - else pageTitle = page.title || config.title || ''
 
@@ -16,7 +14,9 @@
 - else pageKeywords = Array.isArray(config.keywords) ? (config.keywords).join(','):  ([]).join(',') || config.keywords
 - var pageAuthor = config.email ? config.author + ',' + config.email : config.author
 - var pageCopyright = config.copyright || config.author
-- var themeColor = theme.display_mode === 'dark' ? '#0d0d0d' : '#ffffff'
+- var themeColorLight = theme.theme_color && theme.theme_color.enable && theme.theme_color.meta_theme_color_light || '#ffffff'
+- var themeColorDark = theme.theme_color && theme.theme_color.enable && theme.theme_color.meta_theme_color_dark || '#0d0d0d'
+- var themeColor = theme.display_mode === 'dark' ? themeColorDark : themeColorLight
 
 meta(charset='UTF-8')
 meta(http-equiv="X-UA-Compatible" content="IE=edge")
@@ -46,14 +46,14 @@ if (theme.pwa && theme.pwa.enable)
   !=partial('includes/head/pwa', {}, {cache: true})
 
 //- main css
-link(rel='stylesheet', href=url_for(theme.CDN.main_css))
-link(rel='stylesheet', href=url_for(theme.CDN.fontawesomeV6) media="print" onload="this.media='all'")
+link(rel='stylesheet', href=url_for(theme.asset.main_css))
+link(rel='stylesheet', href=url_for(theme.asset.fontawesomeV6) media="print" onload="this.media='all'")
 
 if (theme.snackbar && theme.snackbar.enable)
-  link(rel='stylesheet', href=url_for(theme.CDN.snackbar_css) media="print" onload="this.media='all'")
+  link(rel='stylesheet', href=url_for(theme.asset.snackbar_css) media="print" onload="this.media='all'")
 
 if theme.fancybox
-  link(rel='stylesheet' href=url_for(theme.CDN.fancybox_css_v4) media="print" onload="this.media='all'")
+  link(rel='stylesheet' href=url_for(theme.asset.fancybox_css_v4) media="print" onload="this.media='all'")
 
 //- google_adsense
 !=partial('includes/head/google_adsense', {}, {cache: true})

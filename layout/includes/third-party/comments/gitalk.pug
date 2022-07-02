@@ -2,7 +2,7 @@ script.
   function addGitalkSource () {
     const ele = document.createElement('link')
     ele.rel = 'stylesheet'
-    ele.href= '!{url_for(theme.CDN.gitalk_css)}'
+    ele.href= '!{url_for(theme.asset.gitalk_css)}'
     document.getElementsByTagName('head')[0].appendChild(ele)
   }
 
@@ -24,7 +24,7 @@ script.
     if (typeof Gitalk === 'function') initGitalk()
     else {
       addGitalkSource()
-      getScript('!{url_for(theme.CDN.gitalk)}').then(initGitalk)
+      getScript('!{url_for(theme.asset.gitalk)}').then(initGitalk)
     }
   }
   

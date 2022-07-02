@@ -9,7 +9,7 @@
 ![master version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly/master?color=%231ab1ad&label=master)
 ![master version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly/dev?label=dev)
 ![https://img.shields.io/npm/v/hexo-theme-butterfly?color=%09%23bf00ff](https://img.shields.io/npm/v/hexo-theme-butterfly?color=%09%23bf00ff)
-![hexo version](https://img.shields.io/badge/hexo-5.0+-0e83c)
+![hexo version](https://img.shields.io/badge/hexo-5.3.0+-0e83c)
 ![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly?color=FF5531)
 
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/theme-butterfly-readme.png)
@@ -79,7 +79,7 @@ npm i hexo-theme-butterfly
 - [x] Related articles
 - [x] Displays outdated notice for a post
 - [x] Share (AddThis/Sharejs/Addtoany)
-- [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus)
+- [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42)
 - [x] Multiple Comment System Support
 - [x] Online Chats (Chatra/Tidio/Daovoice/Gitter/Crisp)
 - [x] Web analytics

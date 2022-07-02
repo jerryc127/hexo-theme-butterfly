@@ -2,7 +2,7 @@ script.
   function loadUtterances () {
     let ele = document.createElement('script')
     ele.setAttribute('id', 'utterances_comment')
-    ele.setAttribute('src', '!{url_for(theme.CDN.utterances)}')
+    ele.setAttribute('src', 'https://utteranc.es/client.js')
     ele.setAttribute('repo', '!{theme.utterances.repo}')
     ele.setAttribute('issue-term', '!{theme.utterances.issue_term}')
     let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'

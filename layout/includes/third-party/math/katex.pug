@@ -1,6 +1,5 @@
-link(rel="stylesheet" type="text/css" href=theme.CDN.katex)
-script(src=url_for(theme.CDN.katex_copytex))
-link(rel="stylesheet" type="text/css" href=theme.CDN.katex_copytex_css)
+link(rel="stylesheet" type="text/css" href=url_for(theme.asset.katex))
+script(src=url_for(theme.asset.katex_copytex))
 script.
   (() => {
     document.querySelectorAll('#article-container span.katex-display').forEach(item => {
