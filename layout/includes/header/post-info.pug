@@ -75,6 +75,10 @@
           +pvBlock('','','')
             span#twikoo_visitors
               i.fa-solid.fa-spinner.fa-spin
+        else if commentUse[0] === 'Artalk' && theme.artalk.visitor
+          +pvBlock('','','')
+            span#ArtalkPV
+              i.fa-solid.fa-spinner.fa-spin
         else if theme.busuanzi.page_pv
           +pvBlock('','post-meta-pv-cv','')
             span#busuanzi_value_page_pv
@@ -130,9 +134,13 @@
             +countBlock
               a(href=url_for(page.path) + '#post-comment')
                 span.fb-comments-count(data-href=urlNoIndex())
-                  i.fa-solid.fa-spinner.fa-spin
           when 'Remark42'
             +countBlock
               a(href=url_for(page.path) + '#post-comment')
                 span.remark42__counter(data-url=urlNoIndex())
+                  i.fa-solid.fa-spinner.fa-spin
+          when 'Artalk'
+            +countBlock
+              a(href=url_for(page.path) + '#post-comment')
+                span.artalk-count
                   i.fa-solid.fa-spinner.fa-spin

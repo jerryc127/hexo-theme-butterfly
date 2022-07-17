@@ -96,11 +96,15 @@ mixin postUI(posts)
                 +countBlockInIndex
                   a(href=url_for(link) + '#post-comment')
                     span.fb-comments-count(data-href=urlNoIndex(article.permalink))
-                      i.fa-solid.fa-spinner.fa-spin
               when 'Remark42'
                 +countBlockInIndex
                   a(href=url_for(link) + '#post-comment')
                     span.remark42__counter(data-url=urlNoIndex(article.permalink))
+                      i.fa-solid.fa-spinner.fa-spin
+              when 'Artalk'
+                +countBlockInIndex
+                  a(href=url_for(link) + '#post-comment')
+                    span.artalk-count(data-page-key=url_for(link))
                       i.fa-solid.fa-spinner.fa-spin
 
         //- Display the article introduction on homepage
