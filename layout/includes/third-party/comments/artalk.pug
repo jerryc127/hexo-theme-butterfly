@@ -1,4 +1,4 @@
-- const { server, site } = theme.artalk
+- const { server, site, option } = theme.artalk
 
 script.
   function addArtalkSource () {
@@ -10,14 +10,14 @@ script.
 
   function loadArtalk () {
     function initArtalk () {
-      window.artalkItem = new Artalk({
+      window.artalkItem = new Artalk(Object.assign({
         el: '#artalk-wrap',
         server: '!{server}',
         site: '!{site}',
         pageKey: location.pathname,
         darkMode: document.documentElement.getAttribute('data-theme') === 'dark',
         countEl: '.artalk-count'
-      })
+      },!{JSON.stringify(option)}))
     }
 
     if (typeof window.artalkItem === 'object') setTimeout(()=>{initArtalk()},200)
