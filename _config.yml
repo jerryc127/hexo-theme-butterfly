@@ -349,6 +349,8 @@ giscus:
   repo:
   repo_id:
   category_id:
+  mapping: # pathname/url/title/og:title
+  input_position: # top/bottom
   theme:
     light: light
     dark: dark

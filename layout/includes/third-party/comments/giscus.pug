@@ -1,4 +1,4 @@
-- const { repo, repo_id, category_id, option } = theme.giscus
+- const { repo, repo_id, category_id, mapping, input_position, option } = theme.giscus
 - const themes = theme.giscus.theme
 script.
   function loadGiscus () {
@@ -9,7 +9,8 @@ script.
       'data-repo': '!{repo}',
       'data-repo-id': '!{repo_id}',
       'data-category-id': '!{category_id}',
-      'data-mapping': 'pathname',
+      'data-mapping': '!{mapping}',
+      'data-input-position': '!{input_position}',
       'data-theme': nowTheme,
       'data-reactions-enabled': '1',
       crossorigin: 'anonymous',
