@@ -619,6 +619,10 @@ subtitle:
   enable: false
   # Typewriter Effect (打字效果)
   effect: true
+  # Effect Speed Options (打字效果速度參數)
+  startDelay: 300 # time before typing starts in milliseconds
+  typeSpeed: 150 # type speed in milliseconds
+  backSpeed: 50 # backspacing speed in milliseconds
   # loop (循環打字)
   loop: true
   # source 調用第三方服務
@@ -630,6 +634,7 @@ subtitle:
   source: false
   # 如果關閉打字效果，subtitle 只會顯示 sub 的第一行文字
   sub:
+
 
 # Loading Animation (加載動畫)
 preloader: false

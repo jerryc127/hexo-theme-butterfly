@@ -1,4 +1,4 @@
-- const { effect,loop,source,sub } = theme.subtitle
+- const { effect,loop,source,sub,startDelay,typeSpeed,backSpeed } = theme.subtitle
 - let subContent = sub || new Array()
 
 case source
@@ -14,10 +14,10 @@ case source
               sub.unshift(data.hitokoto, from)
               window.typed = new Typed('#subtitle', {
                 strings: sub,
-                startDelay: 300,
-                typeSpeed: 150,
+                startDelay: !{startDelay},
+                typeSpeed: !{typeSpeed},
                 loop: !{loop},
-                backSpeed: 50,
+                backSpeed: !{backSpeed},
               })
             } else {
               document.getElementById('subtitle').innerHTML = data.hitokoto
@@ -46,10 +46,10 @@ case source
             sub.unshift(con, from)
             window.typed = new Typed('#subtitle', {
               strings: sub,
-              startDelay: 300,
-              typeSpeed: 150,
+              startDelay: !{startDelay},
+              typeSpeed: !{typeSpeed},
               loop: !{loop},
-              backSpeed: 50,
+              backSpeed: !{backSpeed},
             })
           } else {
             document.getElementById('subtitle').innerHTML = con
@@ -78,10 +78,10 @@ case source
               sub.unshift(content)
               window.typed = new Typed('#subtitle', {
                 strings: sub,
-                startDelay: 300,
-                typeSpeed: 150,
+                startDelay: !{startDelay},
+                typeSpeed: !{typeSpeed},
                 loop: !{loop},
-                backSpeed: 50,
+                backSpeed: !{backSpeed},
               })
             } else {
               document.getElementById('subtitle').innerHTML = result.data.content
@@ -107,10 +107,10 @@ case source
         if (!{effect}) { 
           window.typed = new Typed("#subtitle", {
             strings: !{JSON.stringify(subContent)},
-            startDelay: 300,
-            typeSpeed: 150,
+            startDelay: !{startDelay},
+            typeSpeed: !{typeSpeed},
             loop: !{loop},
-            backSpeed: 50
+            backSpeed: !{backSpeed}
           })
         } else {
           document.getElementById("subtitle").innerHTML = '!{subContent[0]}'
