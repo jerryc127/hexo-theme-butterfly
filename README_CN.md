@@ -79,9 +79,9 @@ theme: butterfly
 - [x] 顯示相關文章
 - [x] 過期文章提醒
 - [x] 多種分享系統（AddThis/Sharejs/Addtoany）
-- [X] 多種評論系統（Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42）
+- [X] 多種評論系統（Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/artalk）
 - [x] 支持雙評論部署
-- [x] 多種在線聊天（Chatra/Tidio/Daovoice/Gitter/Crisp）
+- [x] 多種在線聊天（Chatra/Tidio/Daovoice/Gitter/Crisp/messenger）
 - [x] 多種分析系統
 - [x] 谷歌廣告/手動廣告位置
 - [x] 各種站長驗證（Google/Bing/Baidu/360/Yandex）

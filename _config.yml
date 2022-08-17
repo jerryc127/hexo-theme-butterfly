@@ -635,7 +635,6 @@ subtitle:
   # 如果關閉打字效果，subtitle 只會顯示 sub 的第一行文字
   sub:
 
-
 # Loading Animation (加載動畫)
 preloader: false
 
