@@ -4,6 +4,11 @@ git remote add [upstream] => anyname https://github.com/jerryc127/hexo-theme-but
 git remote -v # see remotes 
 ```
 
+# use
+```shell
+git clone -b dev https://github.com/Kshao123/hexo-theme-butterfly.git themes/Butterfly
+```
+
 # CHANGELOG
 ## 0.1
 - 使用 config 内的 realTitle 来渲染站点的 title 解决备案域名的站点标题与当前不一致
