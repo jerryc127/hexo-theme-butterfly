@@ -4,7 +4,7 @@ if !theme.disable_top_img && page.top_img !== false
   else if is_page()
     - var top_img = page.top_img || theme.default_top_img
   else if is_tag()
-    - var top_img = theme.tag_per_img && theme.tag_per_img[page.tag] 
+    - var top_img = theme.tag_per_img && theme.tag_per_img[page.tag]
     - top_img = top_img ? top_img : (theme.tag_img !== false ? theme.tag_img || theme.default_top_img : false)
   else if is_category()
     - var top_img = theme.category_per_img && theme.category_per_img[page.category]
@@ -33,9 +33,9 @@ header#page-header(class=isHomeClass style=bg_img)
   if top_img !== false
     if is_post()
       include ./post-info.pug
-    else if is_home() 
+    else if is_home()
       #site-info
-        h1#site-title=site_title
+        h1#site-title=config.realTitle
         if theme.subtitle.enable
           - var loadSubJs = true
           #site-subtitle
@@ -47,4 +47,4 @@ header#page-header(class=isHomeClass style=bg_img)
         i.fas.fa-angle-down.scroll-down-effects
     else
       #page-site-info
-        h1#site-title=site_title
+        h1#site-title=site_realTitle
