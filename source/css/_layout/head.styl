@@ -1,3 +1,13 @@
+[data-theme='light'] #page-header
+  &.nav-nottop #nav
+    box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0.6)
+  &.not-top-img #nav a
+    color: var(--font-color) !important
+  #nav
+    background: rgba(255, 255, 255, 0.8)
+    a
+      color: var(--font-color)
+
 #page-header
   position: relative
   width: 100%
@@ -6,6 +16,25 @@
   background-size: cover
   background-repeat: no-repeat
   transition: all .5s
+
+  &:not(.nav-nottop)
+    &:not(.not-top-img) #nav
+      background: transparent
+      backdrop-filter: unset !important
+    #nav a
+      color: var(--light-grey)
+  
+  #nav
+    backdrop-filter: blur(2px)
+    position: fixed !important
+    top: 0 !important
+    transform: translateY(0)
+    a
+      color: var(--font-color)
+      text-shadow: none
+
+  &.nav-hidden #nav
+    transform: translateY(-60px)
 
   &:not(.not-top-img):before
     position: absolute
@@ -116,7 +145,6 @@
       padding: 0 22px
 
   &.not-top-img
-    margin-bottom: 10px
     height: 60px
     background: 0
 
@@ -127,34 +155,6 @@
       a
         color: var(--font-color)
         text-shadow: none
-
-  &.nav-fixed
-    #nav
-      position: fixed
-      top: -60px
-      z-index: 91
-      background: rgba(255, 255, 255, .8)
-      box-shadow: 0 5px 6px -5px alpha($grey, .6)
-      transition: transform .2s ease-in-out, opacity .2s ease-in-out
-
-      a,
-      #site-name,
-      #toggle-menu
-        color: var(--font-color)
-        text-shadow: none
-
-        &:hover
-          color: $light-blue
-
-  &.nav-visible
-    #nav
-      transition: all .5s
-      transform: translate3d(0, 100%, 0)
-
-    & + .layout
-      & > .aside-content > .sticky_layout
-        top: 70px
-        transition: top .5s
 
 #page
   h1.page-title

@@ -23,6 +23,9 @@
     margin-top: 20px
     padding: 20px 24px
 
+    + .sticky_layout
+      top: 80px
+
     if hexo-config('aside.mobile') == false
       +maxWidth768()
         &:not(#card-toc)
@@ -76,10 +79,11 @@
       margin-left: 6px
 
   .sticky_layout
+    top: 100px
+
     +minWidth900()
       position: sticky
       position: -webkit-sticky
-      top: 20px
       transition: top .3s
 
   .card-tag-cloud
@@ -241,7 +245,8 @@
       overflow-y: scroll
       overflow-y: overlay
       margin: 0 -24px
-      max-height: calc(100vh - 120px)
+      max-height: calc(100vh - 220px)
+      overscroll-behavior: contain
 
       +maxWidth900()
         max-height: calc(100vh - 140px)

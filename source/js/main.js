@@ -278,30 +278,30 @@ document.addEventListener('DOMContentLoaded', function () {
     const isChatBtnShow = typeof chatBtnShow === 'function'
 
     window.scrollCollect = () => {
-      return btf.throttle(function (e) {
+      return btf.throttle(function () {
         const currentTop = window.scrollY || document.documentElement.scrollTop
         const isDown = scrollDirection(currentTop)
         if (currentTop > 56) {
+          if (!$header.classList.contains('nav-nottop')) $header.classList.add('nav-nottop')
           if (isDown) {
-            if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
+            if (!$header.classList.contains('nav-hidden')) $header.classList.add('nav-hidden')
             if (isChatBtnShow && isChatShow === true) {
               chatBtnHide()
               isChatShow = false
             }
           } else {
-            if (!$header.classList.contains('nav-visible')) $header.classList.add('nav-visible')
+            if ($header.classList.contains('nav-hidden')) $header.classList.remove('nav-hidden')
             if (isChatBtnHide && isChatShow === false) {
               chatBtnShow()
               isChatShow = true
             }
           }
-          $header.classList.add('nav-fixed')
           if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
             $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
           }
         } else {
           if (currentTop === 0) {
-            $header.classList.remove('nav-fixed', 'nav-visible')
+            $header.classList.remove('nav-nottop', 'nav-hidden')
           }
           $rightside.style.cssText = "opacity: ''; transform: ''"
         }
