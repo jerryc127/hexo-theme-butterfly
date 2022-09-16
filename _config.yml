@@ -121,6 +121,8 @@ cover:
   # the position of cover in home page (封面顯示的位置)
   # left/right/both
   position: both
+  # Default_cover后缀（用于使用随机图片API时，可以让同一页面的图片不同）,支持 0(不使用后缀)；1(问号加随机数)；2(&加随机数)
+  suffix: 1
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
     # - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
