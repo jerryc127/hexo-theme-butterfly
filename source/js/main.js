@@ -277,6 +277,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const isChatBtnHide = typeof chatBtnHide === 'function'
     const isChatBtnShow = typeof chatBtnShow === 'function'
 
+    if ((document.documentElement.scrollTop || document.body.scrollTop) == 0) {
+      $header.classList.remove('nav-hidden')
+    }
+    setTimeout(() => {
+      $nav.style.cssText = 'transition: all 0.5s'
+    }, 0)
     window.scrollCollect = () => {
       return btf.throttle(function () {
         const currentTop = window.scrollY || document.documentElement.scrollTop

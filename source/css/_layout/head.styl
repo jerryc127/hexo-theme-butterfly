@@ -27,15 +27,6 @@
       backdrop-filter: unset
     #nav a
       color: var(--light-grey)
-  
-  #nav
-    backdrop-filter: blur(2px)
-    position: fixed
-    top: 0
-    transform: translateY(0)
-    a
-      color: var(--font-color)
-      text-shadow: none
 
   &.nav-hidden
     #nav
@@ -245,7 +236,7 @@
         display: none
 
 #nav
-  position: absolute
+  position: fixed
   top: 0
   z-index: 90
   display: flex
@@ -255,7 +246,8 @@
   height: 60px
   font-size: 1.3em
   opacity: 0
-  transition: all .5s
+  backdrop-filter: blur(2px)
+  transform: translateY(0)
 
   +maxWidth768()
     padding: 0 16px
@@ -275,7 +267,8 @@
       color: var(--white)
 
   a
-    color: var(--light-grey)
+    color: var(--font-color)
+    text-shadow: none
 
     &:hover
       color: var(--white)

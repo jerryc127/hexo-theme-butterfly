@@ -28,7 +28,7 @@ else
   - var top_img = false
   - var isHomeClass = 'not-top-img'
 
-header#page-header(class=isHomeClass style=bg_img)
+header#page-header.nav-hidden(class=isHomeClass style=bg_img)
   !=partial('includes/header/nav', {}, {cache: true})
   if top_img !== false
     if is_post()
