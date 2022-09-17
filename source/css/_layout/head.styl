@@ -1,0 +1,376 @@
+[data-theme='light'] #page-header
+  &.nav-nottop #nav
+    box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0.6)
+  &.not-top-img #nav a
+    color: var(--font-color) !important
+  #nav
+    background: rgba(255, 255, 255, 0.8)
+    a
+      color: var(--font-color)
+
+#page-header
+  position: relative
+  width: 100%
+  background-color: $light-blue
+  background-position: center center
+  background-size: cover
+  background-repeat: no-repeat
+  transition: all .5s
+
+  &:not(.nav-nottop)
+    &:not(.not-top-img) #nav
+      background: transparent
+      backdrop-filter: unset !important
+    #nav a
+      color: var(--light-grey)
+  
+  #nav
+    backdrop-filter: blur(2px)
+    position: fixed !important
+    top: 0 !important
+    transform: translateY(0)
+    a
+      color: var(--font-color)
+      text-shadow: none
+
+  &.nav-hidden #nav
+    transform: translateY(-60px)
+
+  &:not(.not-top-img):before
+    position: absolute
+    width: 100%
+    height: 100%
+    background-color: alpha($dark-black, .3)
+    content: ''
+
+  // index
+  &.full_page
+    height: $index_top_img_height
+    background-attachment: fixed
+
+    #site-info
+      position: absolute
+      top: $index_site_info_top
+      padding: 0 10px
+      width: 100%
+
+  #site-title,
+  #site-subtitle,
+  #scroll-down .scroll-down-effects
+    text-align: center
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .15)
+    line-height: 1.5
+
+  #site-title
+    margin: 0
+    color: var(--white)
+    font-size: 1.85em
+
+    +minWidth768()
+      font-size: 2.85em
+
+  #site-subtitle
+    color: var(--light-grey)
+    font-size: 1.15em
+
+    +minWidth768()
+      font-size: 1.72em
+
+  #site_social_icons
+    display: none
+    margin: 0 auto
+    width: 300px
+    text-align: center
+
+    +maxWidth768()
+      display: block
+
+    .social-icon
+      margin: 0 10px
+      color: var(--light-grey)
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, .15)
+      font-size: 1.43em
+
+  #scroll-down
+    position: absolute
+    bottom: 0
+    width: 100%
+    cursor: pointer
+
+    .scroll-down-effects
+      position: relative
+      width: 100%
+      color: var(--light-grey)
+      font-size: 30px
+
+  // page
+  &.not-home-page
+    height: 400px
+
+    +maxWidth768()
+      height: 280px
+
+  #page-site-info
+    position: absolute
+    top: 200px
+    padding: 0 10px
+    width: 100%
+
+    +maxWidth768()
+      top: 140px
+
+  // post
+  &.post-bg
+    height: 400px
+
+    +maxWidth768()
+      height: 360px
+
+    &:before
+      background-color: alpha($dark-black, .5)
+
+  #post-info
+    position: absolute
+    bottom: 100px
+    padding: 0 8%
+    width: 100%
+    text-align: center
+
+    +maxWidth900()
+      bottom: 30px
+      text-align: left
+
+    +maxWidth768()
+      bottom: 22px
+      padding: 0 22px
+
+  &.not-top-img
+    height: 60px
+    background: 0
+
+    #nav
+      background: rgba(255, 255, 255, .8)
+      box-shadow: 0 5px 6px -5px rgba(133, 133, 133, .6)
+
+      a
+        color: var(--font-color)
+        text-shadow: none
+
+#page
+  h1.page-title
+    margin: 8px 0 20px
+
+// for not top_img
+#post
+  & > #post-info
+    margin-bottom: 30px
+
+    .post-title
+      padding-bottom: 4px
+      border-bottom: 1px solid var(--light-grey)
+      color: var(--text-highlight-color)
+
+      .post-edit-link
+        float: right
+
+    #post-meta,
+    #post-meta a
+      color: #78818a
+
+#post-info
+  .post-title
+    @extend .limit-more-line
+    margin-bottom: 8px
+    color: var(--white)
+    font-weight: normal
+    font-size: 2.5em
+    line-height: 1.5
+    -webkit-line-clamp: 3
+
+    +maxWidth768()
+      font-size: 2.1em
+
+    .post-edit-link
+      padding-left: 10px
+
+  #post-meta
+    color: var(--light-grey)
+    font-size: 95%
+
+    +minWidth768()
+      > .meta-secondline
+        > span:first-child
+          display: none
+
+    +maxWidth768()
+      font-size: 90%
+
+      > .meta-firstline,
+      > .meta-secondline
+        display: inline
+
+    .post-meta
+      &-separator
+        margin: 0 5px
+
+      &-icon
+        margin-right: 4px
+
+      &-label
+        if hexo-config('post_meta.post.label')
+          margin-right: 4px
+        else
+          display: none
+
+    a
+      color: var(--light-grey)
+      transition: all .3s ease-out
+
+      &:hover
+        color: $text-hover
+        text-decoration: underline
+
+    if hexo-config('post_meta.post.date_format') == 'relative'
+      time
+        display: none
+
+#nav
+  position: absolute
+  top: 0
+  z-index: 90
+  display: flex
+  align-items: center
+  padding: 0 36px
+  width: 100%
+  height: 60px
+  font-size: 1.3em
+  opacity: 0
+  transition: all .5s
+
+  +maxWidth768()
+    padding: 0 16px
+
+  &.show
+    opacity: 1
+
+  #blog_name
+    flex: 1
+
+  #toggle-menu
+    display: none
+    padding: 2px 0 0 6px
+    vertical-align: top
+
+    &:hover
+      color: var(--white)
+
+  a
+    color: var(--light-grey)
+
+    &:hover
+      color: var(--white)
+
+  #site-name
+    text-shadow: 2px 2px 4px rgba($dark-black, .15)
+    font-weight: bold
+    cursor: pointer
+
+  .menus_items
+    display: inline
+
+    .menus_item
+      position: relative
+      display: inline-block
+      padding: 0 0 0 14px
+
+      &:hover
+        .menus_item_child
+          display: block
+
+        & > a > i:last-child
+          transform: rotate(180deg)
+
+      & > a > i:last-child
+        padding: 4px
+        transition: transform .3s
+
+      .menus_item_child
+        position: absolute
+        right: 0
+        display: none
+        margin-top: 8px
+        padding: 0
+        width: max-content
+        border-radius: 5px
+        background-color: var(--sidebar-bg)
+        box-shadow: 0 5px 20px -4px rgba($dark-black, .5)
+        animation: sub_menus .3s .1s ease both
+
+        &:before
+          position: absolute
+          top: -8px
+          left: 0
+          width: 100%
+          height: 20px
+          content: ''
+
+        li
+          list-style: none
+
+          &:hover
+            background: var(--text-bg-hover)
+
+          &:first-child
+            border-top-left-radius: 5px
+            border-top-right-radius: 5px
+
+          &:last-child
+            border-bottom-right-radius: 5px
+            border-bottom-left-radius: 5px
+
+          a
+            display: inline-block
+            padding: 8px 16px
+            width: 100%
+            color: var(--font-color) !important
+            text-shadow: none !important
+
+  &.hide-menu
+    #toggle-menu
+      display: inline-block !important
+
+      .site-page
+        font-size: inherit
+
+    .menus_items
+      display: none
+
+    #search-button span
+      display: none
+
+  #search-button
+    display: inline
+    padding: 0 0 0 14px
+
+  .site-page
+    position: relative
+    padding-bottom: 6px
+    text-shadow: 1px 1px 2px rgba($dark-black, .3)
+    font-size: .78em
+    cursor: pointer
+
+    &:not(.child)
+      &:after
+        position: absolute
+        bottom: 0
+        left: 0
+        z-index: -1
+        width: 0
+        height: 3px
+        background-color: lighten($theme-color, 30%)
+        content: ''
+        transition: all .3s ease-in-out
+
+      &:hover
+        &:after
+          width: 100%
