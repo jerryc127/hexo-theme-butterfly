@@ -5,7 +5,7 @@ algolia_search_v4:
 instantsearch_v4:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.45.0
+  version: 4.46.1
 pjax:
   name: pjax
   file: pjax.min.js
@@ -42,12 +42,12 @@ waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 2.6.3
+  version: 2.10.0
 waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 2.6.3
+  version: 2.10.0
 sharejs:
   name: butterfly-extsrc
   file: sharejs/dist/js/social-share.min.js
@@ -73,7 +73,7 @@ katex_copytex:
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
-  version: 9.1.6
+  version: 9.1.7
 canvas_ribbon:
   name: butterfly-extsrc
   file: dist/canvas-ribbon.min.js
@@ -188,3 +188,13 @@ artalk_css:
   name: artalk
   file: dist/Artalk.css
   version: 2.3.4
+pace_js:
+  name: pace-js
+  other_name: pace
+  file: pace.min.js
+  version: 1.2.4
+pace_default_css:
+  name: pace-js
+  other_name: pace
+  file: themes/blue/pace-theme-minimal.css
+  version: 1.2.4
