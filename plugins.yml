@@ -5,7 +5,7 @@ algolia_search_v4:
 instantsearch_v4:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.46.1
+  version: 4.46.3
 pjax:
   name: pjax
   file: pjax.min.js
@@ -42,12 +42,12 @@ waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 2.10.0
+  version: 2.11.3
 waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 2.10.0
+  version: 2.11.3
 sharejs:
   name: butterfly-extsrc
   file: sharejs/dist/js/social-share.min.js
@@ -183,11 +183,11 @@ prismjs_autoloader:
 artalk_js:
   name: artalk
   file: dist/Artalk.js
-  version: 2.3.4
+  version: 2.4.2
 artalk_css:
   name: artalk
   file: dist/Artalk.css
-  version: 2.3.4
+  version: 2.4.2
 pace_js:
   name: pace-js
   other_name: pace
