@@ -277,8 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const isChatBtnHide = typeof chatBtnHide === 'function'
     const isChatBtnShow = typeof chatBtnShow === 'function'
 
-    window.scrollCollect = () => {
-      return btf.throttle(function (e) {
+    const scrollTask = btf.throttle(() => {
         const currentTop = window.scrollY || document.documentElement.scrollTop
         const isDown = scrollDirection(currentTop)
         if (currentTop > 56) {
@@ -309,8 +308,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (document.body.scrollHeight <= innerHeight) {
           $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
         }
-      }, 200)()
-    }
+      }, 200)
+    
+    window.scrollCollect = scrollTask
 
     window.addEventListener('scroll', scrollCollect)
   }
