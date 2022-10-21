@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // handle some cases
       typeof utterancesTheme === 'function' && utterancesTheme()
       typeof changeGiscusTheme === 'function' && changeGiscusTheme()
-      typeof FB === 'object' && window.loadFBComment()
+      typeof FB === 'object' && window.loadFBComment && window.loadFBComment()
       typeof runMermaid === 'function' && window.runMermaid()
     },
     showOrHideBtn: (e) => { // rightside 點擊設置 按鈕 展開

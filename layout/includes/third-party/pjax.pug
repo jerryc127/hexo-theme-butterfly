@@ -7,7 +7,7 @@ if theme.pjax.exclude
 
 - let choose = theme.comments.use
 if choose
-  if theme.Open_Graph_meta && (choose.includes('Livere') || choose.includes('Utterances') || choose.includes('Giscus'))
+  if theme.Open_Graph_meta.enable && (choose.includes('Livere') || choose.includes('Utterances') || choose.includes('Giscus'))
     - pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
   if choose.includes('Utterances') || choose.includes('Giscus')
     - pjaxSelectors.unshift('link[rel="canonical"]')

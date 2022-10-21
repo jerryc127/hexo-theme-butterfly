@@ -5,7 +5,7 @@ algolia_search_v4:
 instantsearch_v4:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.46.3
+  version: 4.48.1
 pjax:
   name: pjax
   file: pjax.min.js
@@ -42,12 +42,12 @@ waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 2.11.3
+  version: 2.13.0
 waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 2.11.3
+  version: 2.13.0
 sharejs:
   name: butterfly-extsrc
   file: sharejs/dist/js/social-share.min.js

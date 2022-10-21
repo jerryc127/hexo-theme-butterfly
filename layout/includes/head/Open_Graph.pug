@@ -1,11 +1,13 @@
-if theme.Open_Graph_meta
-  - let contentType = is_post() ? 'article' : 'website'
-  - let metaImage = (page.cover || theme.avatar.img) ? full_url_for(page.cover || theme.avatar.img) : ''
-  - let fb_appId = theme.facebook_comments.app_id || ''
-  - let fb_admins = theme.facebook_comments.user_id || ''
-
-  != open_graph({type: contentType, image: metaImage, fb_admins: fb_admins, fb_app_id: fb_appId})
-
+if theme.Open_Graph_meta.enable
+  -
+    let ogOption = Object.assign({
+      type: is_post() ? 'article' : 'website',
+      image: (page.cover || theme.avatar.img) ? full_url_for(page.cover || theme.avatar.img) : '',
+      fb_admins: theme.facebook_comments.user_id || '',
+      fb_app_id: theme.facebook_comments.app_id || '',
+    }, theme.Open_Graph_meta.option)
+  -
+  != open_graph(ogOption)
 else
   meta(name="description" content=page_description())
 
