@@ -89,7 +89,7 @@ npm i hexo-theme-butterfly
 - [x] Typewriter Effect: activate_power_mode
 - [x] Background effects (Canvas ribbon/canvas_ribbon_piao/canvas_nest)
 - [x] Mouse click effects (Fireworks/Heart/Text)
-- [x] Preloader/Loading Animation
+- [x] Preloader/Loading Animation/pace.js
 - [x] Busuanzi visitor counter
 - [x] Medium Zoom/Fancybox
 - [x] Mermaid

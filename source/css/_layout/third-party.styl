@@ -25,11 +25,8 @@
   --waline-theme-color: $button-bg
   --waline-active-color: $button-hover-color
 
-  .vuser
-    transition: all .5s
-
-    &:hover
-      transform: rotate(360deg)
+  .wl-comment-actions > button:not(last-child)
+    padding-right: 4px
 
 if hexo-config('valine.bg')
   #vcomment

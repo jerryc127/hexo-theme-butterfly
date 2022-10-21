@@ -30,9 +30,6 @@ div
   else if theme.local_search.enable
     script(src=url_for(theme.asset.local_search))
 
-  if theme.preloader
-    != partial("includes/loading/loading-js", {}, { cache: true })
-
   .js-pjax
     if needLoadCountJs
       != partial("includes/third-party/card-post-count/index", {}, { cache: true })

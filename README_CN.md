@@ -89,7 +89,7 @@ theme: butterfly
 - [x] 打字特效 activate_power_mode
 - [x] 多種背景特效（靜止彩帶/動態彩帶/Canvas Nest）
 - [x] 多種鼠標點擊特效（煙花/文字/愛心）
-- [x] 內置一種 Preloader 加載動畫
+- [x] 內置一種 Preloader 加載動畫和 pace.js 加載動畫條
 - [x] 不蒜子訪問統計
 - [x] 兩種大圖模式（Medium Zoom/Fancybox）
 - [x] Mermaid 圖表顯示
@@ -97,7 +97,7 @@ theme: butterfly
 - [x] 圖片懶加載
 - [x] Instantpage/Pangu/Snackbar彈窗/PWA......
 
-## ✨ 贡献者
+## ✨ 貢獻者
 
 <a href="https://github.com/jerryc127/hexo-theme-butterfly/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=jerryc127/hexo-theme-butterfly" />

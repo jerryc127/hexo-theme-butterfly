@@ -1,5 +1,6 @@
 #article-container
   .flink
+    - let pageContent = page.content
     if page.flink_url
       script.
         (()=>{
@@ -63,6 +64,6 @@
 
           - result += `${className}${classDesc} <div class="flink-list">${listResult}</div>`
 
-        - page.content = result + page.content
-    != page.content
+        - pageContent = result + pageContent
+    != pageContent
 
