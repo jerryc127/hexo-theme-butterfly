@@ -5,7 +5,7 @@ algolia_search_v4:
 instantsearch_v4:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.48.1
+  version: 4.49.0
 pjax:
   name: pjax
   file: pjax.min.js
@@ -64,12 +64,12 @@ katex:
   name: katex
   file: dist/katex.min.css
   other_name: KaTeX
-  version: 0.16.2
+  version: 0.16.3
 katex_copytex:
   name: katex
   file: dist/contrib/copy-tex.min.js
   other_name: KaTeX
-  version: 0.16.2
+  version: 0.16.3
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
@@ -183,11 +183,11 @@ prismjs_autoloader:
 artalk_js:
   name: artalk
   file: dist/Artalk.js
-  version: 2.4.2
+  version: 2.4.3
 artalk_css:
   name: artalk
   file: dist/Artalk.css
-  version: 2.4.2
+  version: 2.4.3
 pace_js:
   name: pace-js
   other_name: pace

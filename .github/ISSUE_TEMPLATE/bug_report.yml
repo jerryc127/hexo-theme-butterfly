@@ -17,6 +17,16 @@ body:
       required: true
 
   - type: dropdown
+    id: modify
+    attributes:
+      label: 是否修改过主题文件？ || Has the theme files been modified?
+      options:
+        - 是 (Yes)
+        - 不是 (No)
+    validations:
+      required: true
+
+  - type: dropdown
     id: browser
     attributes:
       label: 使用的瀏覽器？ || What browse are you using?
