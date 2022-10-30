@@ -81,12 +81,16 @@ if hexo-config('waline.bg')
     &::-webkit-scrollbar
       display: none
 
-// mathjax
-mjx-container[display],
-.has-jax
+// Mathjax
+.mathjax-overflow
   overflow-x: auto
   overflow-y: hidden
-  line-height: normal !important
+
+span.mathjax-overflow
+  display: inline-block
+  padding: 0 2px
+  max-width: 100%
+  vertical-align: bottom
 
 .aplayer
   color: $font-black
