@@ -1,8 +1,6 @@
-const logger = hexo.log
-
 hexo.on('ready', () => {
   const { version } = require('../../package.json')
-  logger.info(`
+  hexo.log.info(`
   ===================================================================
 
       #####  #    # ##### ##### ###### #####  ###### #      #   #
