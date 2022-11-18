@@ -1,8 +1,7 @@
-const logger = hexo.log
-
 hexo.extend.filter.register('before_generate', () => {
   // Get first two digits of the Hexo version number
   const hexoVer = hexo.version.replace(/(^.*\..*)\..*/, '$1')
+  const logger = hexo.log
 
   if (hexoVer < 5.3) {
     logger.error('Please update Hexo to V5.3.0 or higher!')
