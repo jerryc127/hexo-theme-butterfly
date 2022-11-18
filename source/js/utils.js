@@ -88,7 +88,7 @@ const btf = {
       const minuteCount = dateDiff / minute
 
       if (monthCount > 12) {
-        result = datePost.toLocaleDateString().replace(/\//g, '-')
+        result = datePost.toISOString().slice(0,10)
       } else if (monthCount >= 1) {
         result = parseInt(monthCount) + ' ' + GLOBAL_CONFIG.date_suffix.month
       } else if (dayCount >= 1) {
@@ -274,5 +274,16 @@ const btf = {
         title: title
       }, title, anchor)
     }
+  },
+
+  getScrollPercent: (currentTop,ele) => {
+    const docHeight = ele.clientHeight
+    const winHeight = document.documentElement.clientHeight
+    const headerHeight = ele.offsetTop
+    const contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : (document.documentElement.scrollHeight - winHeight)
+    const scrollPercent = (currentTop - headerHeight) / (contentMath)
+    const scrollPercentRounded = Math.round(scrollPercent * 100)
+    const percentage = (scrollPercentRounded > 100) ? 100 : (scrollPercentRounded <= 0) ? 0 : scrollPercentRounded
+    return percentage
   }
 }

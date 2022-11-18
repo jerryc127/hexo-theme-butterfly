@@ -38,38 +38,6 @@ case source
   when 2
     script.
       function subtitleType () {
-        getScript('https://yijuzhan.com/api/word.php?m=js').then(() => {
-          const con = str[0]
-          if (!{effect}) {
-            const from = '出自 ' + str[1]
-            const sub = !{JSON.stringify(subContent)}
-            sub.unshift(con, from)
-            window.typed = new Typed('#subtitle', {
-              strings: sub,
-              startDelay: !{startDelay},
-              typeSpeed: !{typeSpeed},
-              loop: !{loop},
-              backSpeed: !{backSpeed},
-            })
-          } else {
-            document.getElementById('subtitle').innerHTML = con
-          }
-        })
-      }
-
-      if (!{effect}) {
-        if (typeof Typed === 'function') {
-          subtitleType()
-        } else {
-          getScript('!{url_for(theme.asset.typed)}').then(subtitleType)
-        }
-      } else {
-        subtitleType()
-      }
-
-  when 3
-    script.
-      function subtitleType () {
         getScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js').then(() => {
           jinrishici.load(result =>{
             if (!{effect}) {

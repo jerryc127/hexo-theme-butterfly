@@ -252,6 +252,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
+   * rightside scroll percent
+   */
+  const rightsideScrollPercent = currentTop => {
+    const perNum = btf.getScrollPercent(currentTop,document.body)
+    const $goUp = document.getElementById('go-up')
+    if ( perNum < 95 ) {
+      $goUp.classList.add('show-percent')
+      $goUp.querySelector('.scroll-percent').textContent = perNum
+    }
+    else {
+      $goUp.classList.remove('show-percent')
+    }
+  }
+
+  /**
    * 滾動處理
    */
   const scrollFn = function () {
@@ -276,6 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const $header = document.getElementById('page-header')
     const isChatBtnHide = typeof chatBtnHide === 'function'
     const isChatBtnShow = typeof chatBtnShow === 'function'
+    const isShowPercent = GLOBAL_CONFIG.percent.rightside
 
     const scrollTask = btf.throttle(() => {
         const currentTop = window.scrollY || document.documentElement.scrollTop
@@ -305,9 +321,12 @@ document.addEventListener('DOMContentLoaded', function () {
           $rightside.style.cssText = "opacity: ''; transform: ''"
         }
 
+        isShowPercent && rightsideScrollPercent(currentTop)
+
         if (document.body.scrollHeight <= innerHeight) {
           $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
         }
+
       }, 200)
     
     window.scrollCollect = scrollTask
@@ -325,25 +344,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!($article && (isToc || isAnchor))) return
 
-    let $tocLink, $cardToc, scrollPercent, autoScrollToc, isExpand
+    let $tocLink, $cardToc, autoScrollToc, $tocPercentage, isExpand
 
     if (isToc) {
       const $cardTocLayout = document.getElementById('card-toc')
       $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0]
       $tocLink = $cardToc.querySelectorAll('.toc-link')
-      const $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
+      $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
       isExpand = $cardToc.classList.contains('is-expand')
-
-      scrollPercent = currentTop => {
-        const docHeight = $article.clientHeight
-        const winHeight = document.documentElement.clientHeight
-        const headerHeight = $article.offsetTop
-        const contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : (document.documentElement.scrollHeight - winHeight)
-        const scrollPercent = (currentTop - headerHeight) / (contentMath)
-        const scrollPercentRounded = Math.round(scrollPercent * 100)
-        const percentage = (scrollPercentRounded > 100) ? 100 : (scrollPercentRounded <= 0) ? 0 : scrollPercentRounded
-        $tocPercentage.textContent = percentage
-      }
 
       window.mobileToc = {
         open: () => {
@@ -433,13 +441,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // main of scroll
-    window.tocScrollFn = function () {
-      return btf.throttle(function () {
+    window.tocScrollFn = btf.throttle(()=>{
         const currentTop = window.scrollY || document.documentElement.scrollTop
-        isToc && scrollPercent(currentTop)
+        if (isToc && GLOBAL_CONFIG.percent.toc) {
+          $tocPercentage.textContent = btf.getScrollPercent(currentTop,$article)
+        }
         findHeadPosition(currentTop)
-      }, 100)()
-    }
+      }, 100)
+    
     window.addEventListener('scroll', tocScrollFn)
   }
 
