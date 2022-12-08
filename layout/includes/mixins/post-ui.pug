@@ -1,5 +1,10 @@
 mixin postUI(posts)
   each article , index in page.posts.data
+    //- new front-matter option, to hide article from index page
+    //- boolean, default value is null/false
+    if article.hide_from_index
+      - continue
+
     .recent-post-item
       -
         let link = article.link || article.path
@@ -57,7 +62,7 @@ mixin postUI(posts)
                 a(href=url_for(item.path)).article-meta__tags #[=item.name]
                 if (index < article.tags.data.length - 1)
                   span.article-meta-link #[='•']
-          
+
           mixin countBlockInIndex
             - needLoadCountJs = true
             span.article-meta
@@ -66,7 +71,7 @@ mixin postUI(posts)
               if block
                 block
               span.article-meta-label= ' ' + _p('card_post_count')
-          
+
           if theme.comments.card_post_count
             case theme.comments.use[0]
               when 'Disqus'
@@ -118,12 +123,12 @@ mixin postUI(posts)
               .content!= article.description
             else
               - const content = strip_html(article.content)
-              - let expert = content.substring(0, theme.index_post_content.length) 
+              - let expert = content.substring(0, theme.index_post_content.length)
               - content.length > theme.index_post_content.length ? expert += ' ...' : ''
               .content!= expert
           default
             - const content = strip_html(article.content)
-            - let expert = content.substring(0, theme.index_post_content.length) 
+            - let expert = content.substring(0, theme.index_post_content.length)
             - content.length > theme.index_post_content.length ? expert += ' ...' : ''
             .content!= expert
 
