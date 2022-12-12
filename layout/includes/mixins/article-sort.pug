@@ -11,7 +11,10 @@ mixin articleSort(posts)
       .article-sort-item(class=no_cover)
         if article.cover && theme.cover.archives_enable
           a.article-sort-item-img(href=url_for(article.path) title=title)
-            img(src=url_for(article.cover) alt=title onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`)
+            if article.cover_type === 'img'
+              img(src=url_for(article.cover) alt=title onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`)
+            else
+              div(style=`background: ${article.cover}`)
         .article-sort-item-info
           .article-sort-item-time
             i.far.fa-calendar-alt

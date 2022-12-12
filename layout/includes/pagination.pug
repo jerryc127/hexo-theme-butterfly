@@ -13,19 +13,23 @@ if is_post()
     if(prev)
       - var hasPageNext = next ? 'pull-left' : 'pull-full'
       .prev-post(class=hasPageNext)
-        - var pagination_cover = prev.cover === false ? prev.randomcover : prev.cover
-        a(href=url_for(prev.path))
-          img.prev-cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of previous post')
+        a(href=url_for(prev.path) title=prev.title)
+          if prev.cover_type === 'img'
+            img.cover(src=url_for(prev.cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of previous post')
+          else
+            .cover(style=`background: ${prev.cover || 'var(--default-bg-color)'}`)
           .pagination-info
             .label=_p('pagination.prev')
             .prev_info=prev.title
           
     if(next)
       - var hasPagePrev = prev ? 'pull-right' : 'pull-full'
-      - var pagination_cover = next.cover == false ? next.randomcover : next.cover
       .next-post(class=hasPagePrev)
-        a(href=url_for(next.path))
-          img.next-cover(src=url_for(pagination_cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of next post')
+        a(href=url_for(next.path) title=next.title)
+          if next.cover_type === 'img'
+            img.cover(src=url_for(next.cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of next post')
+          else
+            .cover(style=`background: ${next.cover || 'var(--default-bg-color)'}`)
           .pagination-info
             .label=_p('pagination.next')
             .next_info=next.title

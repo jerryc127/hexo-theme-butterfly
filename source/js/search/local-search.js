@@ -84,8 +84,11 @@ window.addEventListener('load', () => {
     $input.addEventListener('input', function () {
       const keywords = this.value.trim().toLowerCase().split(/[\s]+/)
       if (keywords[0] !== '') $loadingStatus.innerHTML = '<i class="fas fa-spinner fa-pulse"></i>'
+      else {
+        $resultContent.innerHTML = ''
+        return
+      }
 
-      $resultContent.innerHTML = ''
       let str = '<div class="search-result-list">'
       if (keywords.length <= 0) return
       let count = 0
@@ -150,7 +153,12 @@ window.addEventListener('load', () => {
 
               // highlight all keywords
               keywords.forEach(keyword => {
-                const regS = new RegExp(keyword, 'gi')
+                let regexStr = keyword
+                const specialRegex = new RegExp("[^\\w\\s]+") // match special characters
+                if (keyword.length === 1 && specialRegex.test(keyword)) {
+                  regexStr = `\\${keyword}`
+                }
+                const regS = new RegExp(regexStr, 'gi')
                 matchContent = matchContent.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
                 dataTitle = dataTitle.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
               })

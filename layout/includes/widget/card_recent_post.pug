@@ -14,7 +14,10 @@ if theme.aside.card_recent_post.enable
         .aside-list-item(class=no_cover)
           if post_cover && theme.cover.aside_enable
             a.thumbnail(href=url_for(link) title=title)
-              img(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
+              if article.cover_type === 'img'
+                img(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
+              else
+                div(style=`background: ${post_cover}`)
           .content
             a.title(href=url_for(link) title=title)= title
             if theme.aside.card_recent_post.sort === 'updated'
