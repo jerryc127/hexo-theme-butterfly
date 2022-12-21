@@ -13,6 +13,10 @@ menu:
   # Link: /link/ || fas fa-link
   # About: /about/ || fas fa-heart
 
+nav_info:
+  logo: # image
+  display_title: true # true or false
+
 # Code Blocks (代碼相關)
 # --------------------------------------
 
@@ -397,7 +401,7 @@ tidio:
   public_key:
 
 # daovoice
-# http://daovoice.io/
+# http://dashboard.daovoice.io/app
 daovoice:
   enable: false
   app_id:
@@ -440,10 +444,6 @@ baidu_analytics:
 # Google Analytics
 # https://analytics.google.com/analytics/web/
 google_analytics:
-
-# CNZZ Analytics
-# https://www.umeng.com/
-cnzz_analytics:
 
 # Cloudflare Analytics
 # https://www.cloudflare.com/zh-tw/web-analytics/

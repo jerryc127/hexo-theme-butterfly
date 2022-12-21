@@ -1,21 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
-  let blogNameWidth, menusWidth, searchWidth, $nav
+  let headerContentWidth, $nav
   let mobileSidebarOpen = false
 
-  const adjustMenu = (init) => {
+  const adjustMenu = init => {
+    const getAllWidth = ele => {
+      let width = 0
+      ele.length && Array.from(ele).forEach(i => { width += i.offsetWidth })
+      return width
+    }
+
     if (init) {
-      blogNameWidth = document.getElementById('site-name').offsetWidth
-      const $menusEle = document.querySelectorAll('#menus .menus_item')
-      menusWidth = 0
-      $menusEle.length && $menusEle.forEach(i => { menusWidth += i.offsetWidth })
-      const $searchEle = document.querySelector('#search-button')
-      searchWidth = $searchEle ? $searchEle.offsetWidth : 0
+      const blogInfoWidth = getAllWidth(document.querySelector('#blog-info > a').children)
+      const menusWidth = getAllWidth(document.getElementById('menus').children)
+      headerContentWidth = blogInfoWidth + menusWidth
       $nav = document.getElementById('nav')
     }
 
     let hideMenuIndex = ''
     if (window.innerWidth <= 768) hideMenuIndex = true
-    else hideMenuIndex = blogNameWidth + menusWidth + searchWidth > $nav.offsetWidth - 120
+    else hideMenuIndex = headerContentWidth > $nav.offsetWidth - 120
 
     if (hideMenuIndex) {
       $nav.classList.add('hide-menu')

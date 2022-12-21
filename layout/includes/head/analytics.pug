@@ -16,9 +16,6 @@ if theme.google_analytics
     gtag('js', new Date());
     gtag('config', '!{theme.google_analytics}');
 
-if theme.cnzz_analytics
-  script(async data-pjax src=`https://s4.cnzz.com/z_stat.php?id=${theme.cnzz_analytics}&web_id=${theme.cnzz_analytics}`)
-
 if theme.cloudflare_analytics
   script(defer data-pjax src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon=`{"token": "${theme.cloudflare_analytics}"}`)
 

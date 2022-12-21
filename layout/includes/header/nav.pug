@@ -1,6 +1,10 @@
 nav#nav
-  span#blog_name
-    a#site-name(href=url_for('/')) #[=config.title]
+  span#blog-info
+    a(href=url_for('/') title=config.title)
+      if theme.nav_info.logo
+        img.site-icon(src=url_for(theme.nav_info.logo))
+      if theme.nav_info.display_title
+        span.site-name=config.title
     
   #menus
     if (theme.algolia_search.enable || theme.local_search.enable)

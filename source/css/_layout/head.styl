@@ -137,8 +137,16 @@
       box-shadow: 0 5px 6px -5px alpha($grey, .6)
       transition: transform .2s ease-in-out, opacity .2s ease-in-out
 
+      #blog-info
+        color: var(--font-color)
+
+        &:hover
+          color: $light-blue
+
+        .site-name
+          text-shadow: none
+
       a,
-      #site-name,
       #toggle-menu
         color: var(--font-color)
         text-shadow: none
@@ -253,8 +261,15 @@
   &.show
     opacity: 1
 
-  #blog_name
+  #blog-info
     flex: 1
+    color: var(--light-grey)
+    @extend .limit-one-line
+
+    .site-icon
+      margin-right: 6px
+      height: 36px
+      vertical-align: middle
 
   #toggle-menu
     display: none
@@ -270,10 +285,9 @@
     &:hover
       color: var(--white)
 
-  #site-name
+  .site-name
     text-shadow: 2px 2px 4px rgba($dark-black, .15)
     font-weight: bold
-    cursor: pointer
 
   .menus_items
     display: inline
