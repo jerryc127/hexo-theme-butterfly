@@ -17,7 +17,7 @@ if theme.aside.card_recent_post.enable
               if article.cover_type === 'img'
                 img(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
               else
-                div(style=`background: url('${post_cover}');`)
+                div(style=`background: url('${post_cover}');background-size: cover;background-position: center;`)
           .content
             a.title(href=url_for(link) title=title)= title
             if theme.aside.card_recent_post.sort === 'updated'
