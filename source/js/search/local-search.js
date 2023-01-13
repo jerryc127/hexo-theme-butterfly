@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
       const res = await response.text()
       const t = await new window.DOMParser().parseFromString(res, 'text/xml')
       const a = await t
-      data = [...a.querySelectorAll('entry')].map(item =>{
+      data = [...a.querySelectorAll('entry')].map(item => {
         return {
           title: item.querySelector('title').textContent,
           content: item.querySelector('content') && item.querySelector('content').textContent,
@@ -154,7 +154,7 @@ window.addEventListener('load', () => {
               // highlight all keywords
               keywords.forEach(keyword => {
                 let regexStr = keyword
-                const specialRegex = new RegExp("[^\\w\\s]+") // match special characters
+                const specialRegex = /[^\w\s]+/ // match special characters
                 if (keyword.length === 1 && specialRegex.test(keyword)) {
                   regexStr = `\\${keyword}`
                 }

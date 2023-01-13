@@ -13,9 +13,10 @@ menu:
   # Link: /link/ || fas fa-link
   # About: /about/ || fas fa-heart
 
-nav_info:
+nav:
   logo: # image
-  display_title: true # true or false
+  display_title: true
+  fixed: false # fixed navigation bar
 
 # Code Blocks (代碼相關)
 # --------------------------------------

@@ -12,7 +12,7 @@ hexo.extend.filter.register('before_generate', () => {
   const themeConfig = hexo.theme.config
   const { CDN } = themeConfig
 
-  const thirdPartySrc = hexo.render.renderSync({ path: path.join(hexo.theme_dir,'/plugins.yml'), engine: 'yaml'})
+  const thirdPartySrc = hexo.render.renderSync({ path: path.join(hexo.theme_dir, '/plugins.yml'), engine: 'yaml' })
   const internalSrc = {
     main: {
       name: 'hexo-theme-butterfly',
@@ -46,7 +46,7 @@ hexo.extend.filter.register('before_generate', () => {
   }
 
   const createCDNLink = (data, type, cond = '') => {
-    Object.keys(data).map(key => {
+    Object.keys(data).forEach(key => {
       let { name, version, file, other_name } = data[key]
 
       const min_file = minFile(file)
@@ -65,6 +65,7 @@ hexo.extend.filter.register('before_generate', () => {
         min_cdnjs_file,
         cdnjs_name
       }
+
       const cdnSource = {
         local: cond === 'internal' ? cdnjs_file : `/pluginsSrc/${name}/${file}`,
         jsdelivr: `https://cdn.jsdelivr.net/npm/${name}${verType}/${min_file}`,
@@ -72,11 +73,11 @@ hexo.extend.filter.register('before_generate', () => {
         cdnjs: `https://cdnjs.cloudflare.com/ajax/libs/${cdnjs_name}/${version}/${min_cdnjs_file}`,
         custom: (CDN.custom_format || '').replace(/\$\{(.+?)\}/g, (match, $1) => value[$1])
       }
-      
+
       data[key] = cdnSource[type]
     })
 
-    if (cond === 'internal') data['main_css'] = 'css/index.css'
+    if (cond === 'internal') data.main_css = 'css/index.css'
     return data
   }
 
@@ -89,6 +90,6 @@ hexo.extend.filter.register('before_generate', () => {
     return obj
   }
 
-  themeConfig.asset = Object.assign(createCDNLink(internalSrc,CDN.internal_provider,'internal'),
-  createCDNLink(thirdPartySrc,CDN.third_party_provider), deleteNullValue(CDN.option))
+  themeConfig.asset = Object.assign(createCDNLink(internalSrc, CDN.internal_provider, 'internal'),
+    createCDNLink(thirdPartySrc, CDN.third_party_provider), deleteNullValue(CDN.option))
 })

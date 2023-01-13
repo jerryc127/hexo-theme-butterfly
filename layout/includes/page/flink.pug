@@ -36,6 +36,7 @@
               }
 
               document.querySelector(".flink").insertAdjacentHTML("afterbegin", result)
+              window.lazyLoadInstance && window.lazyLoadInstance.update()
             })
         })()
 

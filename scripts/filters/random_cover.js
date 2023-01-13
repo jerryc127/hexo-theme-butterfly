@@ -24,7 +24,7 @@ hexo.extend.filter.register('before_post_render', function (data) {
     const num = Math.floor(Math.random() * theme.cover.default_cover.length)
     return theme.cover.default_cover[num]
   }
-  
+
   if (coverVal === false) return data
 
   // If cover is not set, use random cover

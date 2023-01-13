@@ -9,8 +9,8 @@ hexo.extend.helper.register('inject_head_js', function () {
   const { darkmode, aside } = this.theme
 
   const { theme_color } = hexo.theme.config
-  const themeColorLight = theme_color && theme_color.enable && theme_color.meta_theme_color_light || '#ffffff'
-  const themeColorDark = theme_color && theme_color.enable && theme_color.meta_theme_color_dark || '#0d0d0d'
+  const themeColorLight = (theme_color && theme_color.enable && theme_color.meta_theme_color_light) || '#ffffff'
+  const themeColorDark = (theme_color && theme_color.enable && theme_color.meta_theme_color_dark) || '#0d0d0d'
 
   const localStore = `
     win.saveToLocal = {

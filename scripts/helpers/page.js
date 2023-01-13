@@ -74,8 +74,8 @@ hexo.extend.helper.register('injectHtml', function (data) {
 hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
   if (page.year) {
     const dateStr = page.month ? `${page.year}-${page.month}` : `${page.year}`
-    const date_format = page.month ? hexo.theme.config.aside.card_archives.format : 'YYYY'
-    return date(dateStr, date_format)
+    const dateFormat = page.month ? hexo.theme.config.aside.card_archives.format : 'YYYY'
+    return date(dateStr, dateFormat)
   }
 
   const defaultTitle = this._p('page.archives')
