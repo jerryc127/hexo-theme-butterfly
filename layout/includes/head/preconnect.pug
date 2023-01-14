@@ -6,9 +6,6 @@ if theme.google_analytics
 if theme.baidu_analytics
   link(rel="preconnect" href="//hm.baidu.com")
 
-if theme.cnzz_analytics
-  link(rel="preconnect" href="//s4.cnzz.com")
-
 if theme.cloudflare_analytics
   link(rel="preconnect" href="//static.cloudflareinsights.com")
 
@@ -18,5 +15,5 @@ if theme.microsoft_clarity
 if theme.blog_title_font && theme.blog_title_font.font_link && theme.blog_title_font.font_link.indexOf('//fonts.googleapis.com') != -1
   link(rel="preconnect" href="//fonts.googleapis.com" crossorigin='')
 
-if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
+if !theme.asset.busuanzi && (theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv)
   link(rel="preconnect" href="//busuanzi.ibruce.info")

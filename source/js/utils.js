@@ -62,10 +62,10 @@ const btf = {
     const { position, bgLight, bgDark } = GLOBAL_CONFIG.Snackbar
     const bg = document.documentElement.getAttribute('data-theme') === 'light' ? bgLight : bgDark
     Snackbar.show({
-      text: text,
+      text,
       backgroundColor: bg,
-      showAction: showAction,
-      duration: duration,
+      showAction,
+      duration,
       pos: position,
       customClass: 'snackbar-css'
     })
@@ -88,7 +88,7 @@ const btf = {
       const minuteCount = dateDiff / minute
 
       if (monthCount > 12) {
-        result = datePost.toLocaleDateString().replace(/\//g, '-')
+        result = datePost.toISOString().slice(0, 10)
       } else if (monthCount >= 1) {
         result = parseInt(monthCount) + ' ' + GLOBAL_CONFIG.date_suffix.month
       } else if (dayCount >= 1) {
@@ -186,12 +186,12 @@ const btf = {
    * @param {*} options object key: value
    */
   wrap: (selector, eleType, options) => {
-    const creatEle = document.createElement(eleType)
+    const createEle = document.createElement(eleType)
     for (const [key, value] of Object.entries(options)) {
-      creatEle.setAttribute(key, value)
+      createEle.setAttribute(key, value)
     }
-    selector.parentNode.insertBefore(creatEle, selector)
-    creatEle.appendChild(selector)
+    selector.parentNode.insertBefore(createEle, selector)
+    createEle.appendChild(selector)
   },
 
   unwrap: el => {
@@ -255,7 +255,7 @@ const btf = {
       if (!btf.isHidden(i)) {
         fjGallery(i, {
           itemSelector: '.fj-gallery-item',
-          rowHeight: 220,
+          rowHeight: i.getAttribute('data-rowHeight'),
           gutter: 4,
           onJustify: function () {
             this.$container.style.opacity = '1'
@@ -271,8 +271,19 @@ const btf = {
       const title = GLOBAL_CONFIG_SITE.title
       window.history.replaceState({
         url: location.href,
-        title: title
+        title
       }, title, anchor)
     }
+  },
+
+  getScrollPercent: (currentTop, ele) => {
+    const docHeight = ele.clientHeight
+    const winHeight = document.documentElement.clientHeight
+    const headerHeight = ele.offsetTop
+    const contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : (document.documentElement.scrollHeight - winHeight)
+    const scrollPercent = (currentTop - headerHeight) / (contentMath)
+    const scrollPercentRounded = Math.round(scrollPercent * 100)
+    const percentage = (scrollPercentRounded > 100) ? 100 : (scrollPercentRounded <= 0) ? 0 : scrollPercentRounded
+    return percentage
   }
 }

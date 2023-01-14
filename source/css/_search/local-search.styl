@@ -51,15 +51,17 @@
           color: $search-color
 
       .search-result
-        margin: 0 8px 8px 0
-        word-break: break-all
+        margin: 0 0 8px
+        word-break: break-word
 
       .search-keyword
         color: $search-keyword-highlight
         font-weight: bold
 
     .search-result-list
-      overflow-y: auto
+      overflow-y: overlay
+      margin: 0 -20px
+      padding: 0 22px
       max-height: calc(80vh - 130px)
 
       +maxWidth768()

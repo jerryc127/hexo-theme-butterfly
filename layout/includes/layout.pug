@@ -33,7 +33,7 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
           if (footerBg === true)
             - var footer_bg = bg_img
           else
-            - var footer_bg = theme.footer_bg.indexOf('/') !== -1 ? `background-image: url('${url_for(footerBg)}')` : `background: ${footerBg}`
+            - var footer_bg = isImgOrUrl(theme.footer_bg) ? `background-image: url('${url_for(footerBg)}')` : `background: ${footerBg}`
         else
           - var footer_bg = ''
 

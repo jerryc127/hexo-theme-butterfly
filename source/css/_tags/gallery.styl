@@ -94,9 +94,46 @@
     overflow: auto
     padding: 0 0 16px
 
-  .fj-gallery
+  .gallery
     margin: 0 0 16px
-    opacity: 0
+    text-align: center
 
-    .img-alt
+    .fj-gallery
+      opacity: 0
+
+      .img-alt
+        display: none
+
+      &.lazyload
+        + button
+          display: inline-block
+
+      .gallery-data
+        display: none
+
+    button
       display: none
+      margin-top: 25px
+      padding: 10px
+      width: 9em
+      border-radius: 5px
+      background: var(--btn-bg)
+      color: var(--btn-color)
+      font-weight: bold
+      font-size: 1.1em
+      transition: all .3s
+
+      & > *
+        transition: all .4s
+
+      i
+        width: 0
+        opacity: 0
+
+      &:hover
+        background: var(--btn-hover-color)
+
+        i
+          margin-left: 2px
+          width: 20px
+          opacity: 1

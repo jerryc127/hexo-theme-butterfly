@@ -1,11 +1,11 @@
 algolia_search_v4:
   name: algoliasearch
   file: dist/algoliasearch-lite.umd.js
-  version: 4.14.2
+  version: 4.14.3
 instantsearch_v4:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.49.0
+  version: 4.49.4
 pjax:
   name: pjax
   file: pjax.min.js
@@ -37,17 +37,17 @@ disqusjs_css:
 twikoo:
   name: twikoo
   file: dist/twikoo.all.min.js
-  version: 1.6.7
+  version: 1.6.8
 waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 2.13.0
+  version: 2.14.7
 waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 2.13.0
+  version: 2.14.7
 sharejs:
   name: butterfly-extsrc
   file: sharejs/dist/js/social-share.min.js
@@ -64,16 +64,16 @@ katex:
   name: katex
   file: dist/katex.min.css
   other_name: KaTeX
-  version: 0.16.3
+  version: 0.16.4
 katex_copytex:
   name: katex
   file: dist/contrib/copy-tex.min.js
   other_name: KaTeX
-  version: 0.16.3
+  version: 0.16.4
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
-  version: 9.1.7
+  version: 9.3.0
 canvas_ribbon:
   name: butterfly-extsrc
   file: dist/canvas-ribbon.min.js
@@ -131,7 +131,7 @@ fancybox_v4:
 medium_zoom:
   name: medium-zoom
   file: dist/medium-zoom.min.js
-  version: 1.0.6
+  version: 1.0.8
 snackbar_css:
   name: node-snackbar
   file: dist/snackbar.min.css
@@ -144,7 +144,7 @@ fontawesomeV6:
   name: '@fortawesome/fontawesome-free'
   file: css/all.min.css
   other_name: font-awesome
-  version: 6.2.0
+  version: 6.2.1
 flickr_justified_gallery_js:
   name: flickr-justified-gallery
   file: dist/fjGallery.min.js
@@ -183,11 +183,11 @@ prismjs_autoloader:
 artalk_js:
   name: artalk
   file: dist/Artalk.js
-  version: 2.4.3
+  version: 2.4.4
 artalk_css:
   name: artalk
   file: dist/Artalk.css
-  version: 2.4.3
+  version: 2.4.4
 pace_js:
   name: pace-js
   other_name: pace
