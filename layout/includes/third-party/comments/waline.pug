@@ -3,13 +3,6 @@
 
 script.
   function loadWaline () {
-    function insertCSS () {
-      const link = document.createElement("link")
-      link.rel = "stylesheet"
-      link.href = "!{url_for(theme.asset.waline_css)}"
-      document.head.appendChild(link)
-    }
-
     function initWaline () {
       const waline = Waline.init(Object.assign({
         el: '#waline-wrap',
@@ -21,10 +14,11 @@ script.
       }, !{JSON.stringify(option)}))
     }
 
-    if (typeof Waline === 'function') initWaline()
+    if (typeof Waline === 'object') initWaline()
     else {
-      insertCSS()
-      getScript('!{url_for(theme.asset.waline_js)}').then(initWaline)
+      getCSS('!{url_for(theme.asset.waline_css)}').then(() => {
+        getScript('!{url_for(theme.asset.waline_js)}').then(initWaline)
+      })
     }
   }
 

@@ -275,10 +275,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return
     }
 
-    const newEle = document.createElement('link')
-    newEle.rel = 'stylesheet'
-    newEle.href = GLOBAL_CONFIG.source.justifiedGallery.css
-    document.body.appendChild(newEle)
+    getCSS(`${GLOBAL_CONFIG.source.justifiedGallery.css}`)
     getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`).then(() => { btf.initJustifiedGallery(ele) })
   }
 

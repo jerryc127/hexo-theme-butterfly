@@ -1,13 +1,6 @@
 - const { server, site, option } = theme.artalk
 
 script.
-  function addArtalkSource () {
-    const ele = document.createElement('link')
-    ele.rel = 'stylesheet'
-    ele.href= '!{theme.asset.artalk_css}'
-    document.getElementsByTagName('head')[0].appendChild(ele)
-  }
-
   function loadArtalk () {
     function initArtalk () {
       window.artalkItem = new Artalk(Object.assign({
@@ -22,7 +15,7 @@ script.
 
     if (typeof window.artalkItem === 'object') setTimeout(()=>{initArtalk()},200)
     else {
-      addArtalkSource()
+      getCSS('!{theme.asset.artalk_css}')
       typeof Artalk !== 'function' ? getScript('!{theme.asset.artalk_js}').then(initArtalk)
                                   : setTimeout(()=>{initArtalk()},200)
     }

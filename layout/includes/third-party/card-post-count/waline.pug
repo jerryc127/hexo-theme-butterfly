@@ -10,7 +10,7 @@ script.
         const waline = Waline.init(initData)
       }
 
-      if (typeof Waline === 'function') initWaline() 
+      if (typeof Waline === 'object') initWaline() 
       else getScript('!{url_for(theme.asset.waline_js)}').then(initWaline)
     }
 

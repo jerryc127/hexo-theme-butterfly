@@ -64,7 +64,7 @@ script.
         }) 
       }
 
-      if (typeof Waline === 'function') loadWaline() 
+      if (typeof Waline === 'object') loadWaline()
       else getScript('!{url_for(theme.asset.waline_js)}').then(loadWaline)
     }
 

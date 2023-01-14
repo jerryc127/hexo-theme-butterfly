@@ -60,6 +60,17 @@ hexo.extend.helper.register('inject_head_js', function () {
     })
   `
 
+  const getCSS = `
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  `
+
   let darkmodeJs = ''
   if (darkmode.enable) {
     darkmodeJs = `
@@ -144,5 +155,5 @@ hexo.extend.helper.register('inject_head_js', function () {
     detectApple()
     `
 
-  return `<script>(win=>{${localStore + getScript + darkmodeJs + asideStatus + detectApple}})(window)</script>`
+  return `<script>(win=>{${localStore + getScript + getCSS + darkmodeJs + asideStatus + detectApple}})(window)</script>`
 })
