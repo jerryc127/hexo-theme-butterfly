@@ -1,5 +1,29 @@
-- const { effect,loop,source,sub,startDelay,typeSpeed,backSpeed } = theme.subtitle
+- const { effect,source,sub,typed_option } = theme.subtitle
 - let subContent = sub || new Array()
+
+script.
+  window.typedJSFn = {
+    init: (str) => {
+      window.typed = new Typed('#subtitle', Object.assign({
+        strings: str,
+        startDelay: 300,
+        typeSpeed: 150,
+        loop: true,
+        backSpeed: 50,
+      }, !{JSON.stringify(typed_option)}))
+    },
+    run: (subtitleType) => {
+      if (!{effect}) {
+        if (typeof Typed === 'function') {
+          subtitleType()
+        } else {
+          getScript('!{url_for(theme.asset.typed)}').then(subtitleType)
+        }
+      } else {
+        subtitleType()
+      }
+    }
+  }
 
 case source
   when 1
@@ -12,28 +36,13 @@ case source
               const from = '出自 ' + data.from
               const sub = !{JSON.stringify(subContent)}
               sub.unshift(data.hitokoto, from)
-              window.typed = new Typed('#subtitle', {
-                strings: sub,
-                startDelay: !{startDelay},
-                typeSpeed: !{typeSpeed},
-                loop: !{loop},
-                backSpeed: !{backSpeed},
-              })
+              typedJSFn.init(sub)
             } else {
               document.getElementById('subtitle').innerHTML = data.hitokoto
             }
           })
       }
-
-      if (!{effect}) {
-        if (typeof Typed === 'function') {
-          subtitleType()
-        } else {
-          getScript('!{url_for(theme.asset.typed)}').then(subtitleType)
-        }
-      } else {
-        subtitleType()
-      }
+      typedJSFn.run(subtitleType)
 
   when 2
     script.
@@ -44,28 +53,13 @@ case source
             const from = '出自 ' + str[1]
             const sub = !{JSON.stringify(subContent)}
             sub.unshift(con, from)
-            window.typed = new Typed('#subtitle', {
-              strings: sub,
-              startDelay: !{startDelay},
-              typeSpeed: !{typeSpeed},
-              loop: !{loop},
-              backSpeed: !{backSpeed},
-            })
+            typedJSFn.init(sub)
           } else {
             document.getElementById('subtitle').innerHTML = con
           }
         })
       }
-
-      if (!{effect}) {
-        if (typeof Typed === 'function') {
-          subtitleType()
-        } else {
-          getScript('!{url_for(theme.asset.typed)}').then(subtitleType)
-        }
-      } else {
-        subtitleType()
-      }
+      typedJSFn.run(subtitleType)
 
   when 3
     script.
@@ -76,53 +70,23 @@ case source
               const sub = !{JSON.stringify(subContent)}
               const content = result.data.content
               sub.unshift(content)
-              window.typed = new Typed('#subtitle', {
-                strings: sub,
-                startDelay: !{startDelay},
-                typeSpeed: !{typeSpeed},
-                loop: !{loop},
-                backSpeed: !{backSpeed},
-              })
+              typedJSFn.init(sub)
             } else {
               document.getElementById('subtitle').innerHTML = result.data.content
             }
           })
         })
       }
-
-      if (!{effect}) {
-        if (typeof Typed === 'function') {
-          subtitleType()
-        } else {
-          getScript('!{url_for(theme.asset.typed)}').then(subtitleType)
-        }
-      } else {
-        subtitleType()
-      }
+      typedJSFn.run(subtitleType)
 
   default
     - subContent = subContent.length ? subContent : new Array(config.subtitle)
     script.
       function subtitleType () {
-        if (!{effect}) { 
-          window.typed = new Typed("#subtitle", {
-            strings: !{JSON.stringify(subContent)},
-            startDelay: !{startDelay},
-            typeSpeed: !{typeSpeed},
-            loop: !{loop},
-            backSpeed: !{backSpeed}
-          })
+        if (!{effect}) {
+          typedJSFn.init(!{JSON.stringify(subContent)})
         } else {
           document.getElementById("subtitle").innerHTML = '!{subContent[0]}'
         }
       }
-
-      if (!{effect}) {
-        if (typeof Typed === 'function') {
-          subtitleType()
-        } else {
-          getScript('!{url_for(theme.asset.typed)}').then(subtitleType)
-        }
-      } else {
-        subtitleType()
-      }
+      typedJSFn.run(subtitleType)

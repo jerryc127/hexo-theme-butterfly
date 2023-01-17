@@ -28,7 +28,9 @@ else
   - var top_img = false
   - var isHomeClass = 'not-top-img'
 
-header#page-header(class=isHomeClass style=bg_img)
+- const isFixedClass = theme.nav.fixed ? ' fixed' : ''
+
+header#page-header(class=`${isHomeClass+isFixedClass}` style=bg_img)
   !=partial('includes/header/nav', {}, {cache: true})
   if top_img !== false
     if is_post()

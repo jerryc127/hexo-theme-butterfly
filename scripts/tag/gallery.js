@@ -15,7 +15,7 @@ function gallery (args, content) {
   const rowHeight = args[1] || 220
   const limit = args[2] || 10
   const lazyload = args[0] === 'true'
-  const regex = /!\[(.*?)\]\((.*?)\s*(?:["'](.*?)["']?)?\s*\)/g
+  const regex = /!\[(.*?)\]\(([^\s]*)\s*(?:["'](.*?)["']?)?\s*\)/g
   const lazyloadClass = lazyload ? 'lazyload' : ''
   let m
   const arr = []
