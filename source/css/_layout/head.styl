@@ -124,7 +124,8 @@
       background: rgba(255, 255, 255, .8)
       box-shadow: 0 5px 6px -5px rgba(133, 133, 133, .6)
 
-      a
+      a,
+      .site-name
         color: var(--font-color)
         text-shadow: none
 
@@ -136,10 +137,6 @@
       background: rgba(255, 255, 255, .8)
       box-shadow: 0 5px 6px -5px alpha($grey, .6)
       transition: transform .2s ease-in-out, opacity .2s ease-in-out
-
-      &.fixed
-        top: 0
-        transition: all .5s
 
       #blog-info
         color: var(--font-color)
@@ -158,8 +155,13 @@
         &:hover
           color: $light-blue
 
-  &.nav-visible
-    #nav:not(.fixed)
+    &.fixed
+      #nav
+        top: 0
+        transition: all .5s
+
+  &.nav-visible:not(.fixed)
+    #nav
       transition: all .5s
       transform: translate3d(0, 100%, 0)
 
@@ -167,6 +169,19 @@
       & > .aside-content > .sticky_layout
         top: 70px
         transition: top .5s
+
+  &.fixed
+    #nav
+      position: fixed
+
+    & + .layout
+      & > .aside-content > .sticky_layout
+        top: 70px
+        transition: top .5s
+
+      #card-toc
+        .toc-content
+          max-height: calc(100vh - 170px)
 
 #page
   h1.page-title
@@ -264,9 +279,6 @@
 
   &.show
     opacity: 1
-
-  &.fixed
-    position: fixed
 
   #blog-info
     flex: 1
