@@ -220,7 +220,7 @@ window.addEventListener('load', () => {
                     splitTags = splitTags.concat(splitT[i])
                   }else{
                     if(space===0){
-                      splitTags = splitTags + '</span></i><i class="fas fa-tag"><span style="font-family:times">'
+                      splitTags = splitTags + '</span></i>&nbsp &nbsp<i class="fas fa-tag"><span style="font-family:times">'
                       space = 1
                     }
                   }         
