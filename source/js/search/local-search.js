@@ -100,7 +100,7 @@ window.addEventListener('load', () => {
           let dataTitle = data.title ? data.title.trim().toLowerCase() : ''  //获取标题
           const dataContent = data.content ? data.content.trim().replace(/<[^>]+>/g, '').toLowerCase() : '' //获取正文,其中【.replace(/<[^>]+>/g, '')】去掉了网页标签
           const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url //获取链接
-          const dataTags = data.tags ? data.tags.trim().toLowerCase() : ''  //获取标签
+          const dataTags = data.tags ? data.tags : ''  //获取标签
           let indexTitle = -1
           let indexContent = -1
           let firstOccur = -1
@@ -182,16 +182,17 @@ window.addEventListener('load', () => {
                 dataTitle = dataTitle.replace(regS, '<span class="search-keyword">' + keyword + '</span>')
               })
 
-              str += '<div class="local-search__hit-item"><a href="' + dataUrl + '" class="search-result-title" target="_blank">' + dataTitle + '</a>'
+              str += '<div class="local-search__hit-item"><a href="' + dataUrl + '" class="search-result-title"' + dataTitle + '</a>'
               count += 1
-
+              
               if (dataContent !== '') {
                 //- 自定义开始：生成的搜索结果框里，加入显示tags
                 let splitT = '' 
                 //- 第一步：下面是去掉dataTags里非汉字和字母（数字）的部分，然后用两个汉字分号'；；'把各个tags分隔开（保存在spliT变量里）
                 let space=0
                 for (let i=0;i<dataTags.length;i++){
-                  if (/^[\u4e00-\u9fa5a-zA-Z]*$/.test(dataTags[i])){
+                  if (/\S/.test(dataTags[i])){ 
+                    // \S 匹配Unicode非空白
                     space = 0
                     splitT = splitT.concat(dataTags[i])
                   }else{
@@ -200,6 +201,18 @@ window.addEventListener('load', () => {
                       space = 1
                     } 
                   }          
+                }
+                //去掉splitT开头和结尾的；；
+                for(let i=0;i<splitT.length;i++){
+                  if(splitT[0]=='；' && splitT.length>1){
+                    splitT = splitT.substring(1)
+                  }
+                }
+                for(let i=0;i<splitT.length;i++){
+                  let l = splitT.length
+                  if(splitT[l-1]=='；' && l>1){
+                    splitT = splitT.substring(0,l-2)
+                  }
                 }
                 
                 //- 第二步： highlight all keywords
