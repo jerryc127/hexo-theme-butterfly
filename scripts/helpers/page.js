@@ -24,11 +24,8 @@ hexo.extend.helper.register('page_description', function () {
 
 hexo.extend.helper.register('cloudTags', function (options = {}) {
   const env = this
-  let source = options.source
-  const minfontsize = options.minfontsize
-  const maxfontsize = options.maxfontsize
-  const limit = options.limit
-  const unit = options.unit || 'px'
+  let { source, minfontsize, maxfontsize, limit, unit, orderby, order } = options
+  unit = unit || 'px'
 
   let result = ''
   if (limit > 0) {
@@ -43,7 +40,7 @@ hexo.extend.helper.register('cloudTags', function (options = {}) {
   })
 
   const length = sizes.length - 1
-  source.forEach(tag => {
+  source.sort(orderby, order).forEach(tag => {
     const ratio = length ? sizes.indexOf(tag.length) / length : 0
     const size = minfontsize + ((maxfontsize - minfontsize) * ratio)
     let style = `font-size: ${parseFloat(size.toFixed(2))}${unit};`

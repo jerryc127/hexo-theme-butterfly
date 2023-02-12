@@ -61,12 +61,18 @@ hexo.extend.helper.register('inject_head_js', function () {
   `
 
   const getCSS = `
-    win.getCSS = url => new Promise((resolve, reject) => {
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
       const link = document.createElement('link')
       link.rel = 'stylesheet'
       link.href = url
-      link.onload = () => resolve()
-      link.onerror = () => reject()
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
       document.head.appendChild(link)
     })
   `

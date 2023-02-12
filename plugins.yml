@@ -198,3 +198,13 @@ pace_default_css:
   other_name: pace
   file: themes/blue/pace-theme-minimal.css
   version: 1.2.4
+docsearch_js:
+  name: '@docsearch/js'
+  other_name: docsearch-js
+  file: dist/umd/index.js
+  version: 3.3.2
+docsearch_css:
+  name: '@docsearch/css'
+  other_name: docsearch-css
+  file: dist/style.css
+  version: 3.3.2
