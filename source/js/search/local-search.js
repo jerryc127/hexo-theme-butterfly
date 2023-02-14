@@ -192,7 +192,10 @@ window.addEventListener('load', () => {
                 //- 自定义开始：生成的搜索结果框里，加入显示tags
                 let splitT = '' 
                 //- 第一步：下面是去掉dataTags里非汉字和字母（数字）的部分，然后用两个汉字分号'；；'把各个tags分隔开（保存在spliT变量里）
-                let space=0
+                // for(let i=0;i<dataTags.length;i++){
+                //   splitT = splitT.concat(dataTags[i])+'；；'
+                // }
+                let space = 1
                 for (let i=0;i<dataTags.length;i++){
                   if (/\S/.test(dataTags[i])){ 
                     // \S 匹配Unicode非空白
@@ -205,12 +208,7 @@ window.addEventListener('load', () => {
                     } 
                   }          
                 }
-                //去掉splitT开头和结尾的；；
-                for(let i=0;i<splitT.length;i++){
-                  if(splitT[0]=='；' && splitT.length>1){
-                    splitT = splitT.substring(1)
-                  }
-                }
+                //去掉splitT末尾的双分号；；
                 for(let i=0;i<splitT.length;i++){
                   let l = splitT.length
                   if(splitT[l-1]=='；' && l>1){
@@ -229,7 +227,7 @@ window.addEventListener('load', () => {
 
                 //- 第三步：由于第一步生产的为纯文本且包括双分号，此步骤去掉分号且加上fas fa-tag、控制字体（保存在splitTags里）
                 let splitTags = '<br/><i class="fas fa-tag"><span style="font-family:times">'
-                space = 0
+                space = 1
                 for(let i=0;i<splitT.length;i++){
                   if(splitT[i] !== '；'){
                     space = 0
