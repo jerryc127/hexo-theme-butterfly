@@ -97,15 +97,15 @@ window.addEventListener('load', () => {
       dataObj.then(data => {
         data.forEach(data => {
           let isMatch = true
-          let dataTitle = data.title ? data.title.trim().toLowerCase() : ''  //获取标题
-          const dataContent = data.content ? data.content.trim().replace(/<[^>]+>/g, '').toLowerCase() : '' //获取正文,其中【.replace(/<[^>]+>/g, '')】去掉了网页标签
-          const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url //获取链接
-          const dataTags = data.tags ? data.tags : ''  //获取标签
+          let dataTitle = data.title ? data.title.trim().toLowerCase() : ''  //- 获取标题
+          const dataContent = data.content ? data.content.trim().replace(/<[^>]+>/g, '').toLowerCase() : '' //- 获取正文,其中【.replace(/<[^>]+>/g, '')】去掉了网页标签
+          const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url //- 获取链接
+          const dataTags = data.tags ? data.tags : ''  //- 获取标签
           let indexTitle = -1
           let indexContent = -1
           let firstOccur = -1
           let indexTag = -1	//- +++添加标签定位变量
-          let l_keywords = keywords.toString().split('').length //- +++获取搜索关键词的长度
+          let l_keywords = keywords.toString().split('').length //- 获取搜索关键词的长度
           // only match articles with not empty titles and contents
           if (dataTitle !== '' || dataContent !== '') {
             keywords.forEach((keyword, i) => {
@@ -114,7 +114,10 @@ window.addEventListener('load', () => {
                 //如果关键词第一个字符是#且长度大于1，那么进行tag搜索
                 keyword = keyword.substring(1) // 将关键词第一个#去掉后再匹配
                 //- 定义dataTags0的意义：去掉tags里面的网页标签代码，否则会把网页标签里面的代码（非正文内容）也匹配
-                let dataTags0 = dataTags.replace(/<[^>]+>/g, '')
+                let dataTags0 = ''
+                for(let i=0; i<dataTags.length;i++){
+                  dataTags0 = dataTags0.concat(dataTags[i].replace(/<[^>]+>/g, ''))
+                }
                 indexTag = dataTags0.indexOf(keyword)
                 if ( indexTag < 0 ){
                   isMatch = false
@@ -240,7 +243,7 @@ window.addEventListener('load', () => {
                 }
                 splitTags = splitTags + '</span></i>'
                 
-                post = dataTags!== '' ? post  + splitTags : post
+                post = dataTags === [] ?  post : post  + splitTags
                 //- 自定义结束
               
                 str += '<p class="search-result">' + pre + matchContent + post + '</p>'
