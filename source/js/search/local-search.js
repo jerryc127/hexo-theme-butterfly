@@ -192,9 +192,6 @@ window.addEventListener('load', () => {
                 //- 自定义开始：生成的搜索结果框里，加入显示tags
                 let splitT = '' 
                 //- 第一步：下面是去掉dataTags里非汉字和字母（数字）的部分，然后用两个汉字分号'；；'把各个tags分隔开（保存在spliT变量里）
-                // for(let i=0;i<dataTags.length;i++){
-                //   splitT = splitT.concat(dataTags[i])+'；；'
-                // }
                 let space = 1
                 for (let i=0;i<dataTags.length;i++){
                   if (/\S/.test(dataTags[i])){ 
