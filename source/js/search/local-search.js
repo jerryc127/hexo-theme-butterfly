@@ -118,6 +118,7 @@ window.addEventListener('load', () => {
                 for(let i=0; i<dataTags.length;i++){
                   dataTags0 = dataTags0.concat(dataTags[i].replace(/<[^>]+>/g, ''))
                 }
+                dataTags0 = dataTags0.trim().toLowerCase()
                 indexTag = dataTags0.indexOf(keyword)
                 if ( indexTag < 0 ){
                   isMatch = false
