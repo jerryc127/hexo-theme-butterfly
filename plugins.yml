@@ -120,12 +120,12 @@ pangu:
   version: 4.0.7
 fancybox_css_v4:
   name: '@fancyapps/ui'
-  file: dist/fancybox.css
+  file: dist/fancybox/fancybox.css
   version: 4.0.31
   other_name: fancyapps-ui
 fancybox_v4:
   name: '@fancyapps/ui'
-  file: dist/fancybox.umd.js
+  file: dist/fancybox/fancybox.umd.js
   version: 4.0.31
   other_name: fancyapps-ui
 medium_zoom:
