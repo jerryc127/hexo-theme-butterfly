@@ -416,12 +416,6 @@ daovoice:
   enable: false
   app_id:
 
-# gitter
-# https://gitter.im/
-gitter:
-  enable: false
-  room:
-
 # crisp
 # https://crisp.chat/en/
 crisp:
@@ -907,7 +901,7 @@ CDN:
   # when set it to local, you need to install hexo-butterfly-extjs
   third_party_provider: jsdelivr
 
-  # Add version number to CDN, true or false
+  # Add version number to url, true or false
   version: false
 
   # Custom format
@@ -921,8 +915,8 @@ CDN:
     # translate:
     # local_search:
     # algolia_js:
-    # algolia_search_v4:
-    # instantsearch_v4:
+    # algolia_search:
+    # instantsearch:
     # docsearch_js:
     # docsearch_css:
     # pjax:
@@ -948,8 +942,8 @@ CDN:
     # instantpage:
     # typed:
     # pangu:
-    # fancybox_css_v4:
-    # fancybox_v4:
+    # fancybox_css:
+    # fancybox:
     # medium_zoom:
     # snackbar_css:
     # snackbar:
@@ -957,7 +951,7 @@ CDN:
     # fireworks:
     # click_heart:
     # ClickShowText:
-    # fontawesomeV6:
+    # fontawesome:
     # flickr_justified_gallery_js:
     # flickr_justified_gallery_css:
     # aplayer_css:
