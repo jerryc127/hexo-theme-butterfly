@@ -756,6 +756,9 @@ darkmode:
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
   # autoChangeMode: false
   autoChangeMode: false
+  # Set the switch time. The value is between 0 and 12. If not set, the default value is 6
+  am: # 8
+  pm: # 10
 
 # show scroll percent in scroll-to-top button
 rightside_scroll_percent: false
