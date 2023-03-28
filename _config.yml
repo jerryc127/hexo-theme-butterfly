@@ -862,6 +862,13 @@ lazyload:
 #   favicon_16_16: /pwa/16.png
 #   mask_icon: /pwa/safari-pinned-tab.svg
 
+# abcjs (樂譜渲染)
+# See https://github.com/paulrosen/abcjs
+# ---------------
+abcjs:
+  enable: false
+  per_page: false
+
 # Open graph meta tags
 # https://developers.facebook.com/docs/sharing/webmasters/
 Open_Graph_meta:

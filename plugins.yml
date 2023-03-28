@@ -208,3 +208,8 @@ docsearch_css:
   other_name: docsearch-css
   file: dist/style.css
   version: 3.3.3
+abcjs_basic_js:
+  name: abcjs
+  other_name: abcjs-basic
+  file: dist/abcjs-basic-min.js
+  version: 6.1.9
