@@ -45,6 +45,7 @@ search:
   local_search:
     input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}"
+    hits_stats: '${hits} results found'
 
 pagination:
   prev: Previous Post

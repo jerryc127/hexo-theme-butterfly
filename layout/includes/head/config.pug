@@ -21,9 +21,12 @@
     localSearch = JSON.stringify({
       path: theme.local_search.CDN ? theme.local_search.CDN : config.root + config.search.path,
       preload: theme.local_search.preload,
+      top_n_per_article: theme.local_search.top_n_per_article,
+      unescape: theme.local_search.unescape,
       languages: {
         // search languages
         hits_empty: _p("search.local_search.hits_empty"),
+        hits_stats: _p("search.local_search.hits_stats"),
       }
     })
   }

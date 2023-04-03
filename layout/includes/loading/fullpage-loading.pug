@@ -11,15 +11,16 @@
 script.
   const preloader = {
     endLoading: () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
       document.getElementById('loading-box').classList.add("loaded")
     },
     initLoading: () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = 'hidden';
       document.getElementById('loading-box').classList.remove("loaded")
-
     }
   }
+
+  preloader.initLoading()
   window.addEventListener('load',()=> { preloader.endLoading() })
 
   if (!{theme.pjax && theme.pjax.enable}) {

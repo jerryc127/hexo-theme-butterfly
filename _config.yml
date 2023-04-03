@@ -56,11 +56,15 @@ algolia_search:
 # Local search
 local_search:
   enable: false
+  # Preload the search data when the page loads.
   preload: false
+  # Show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
+  # Unescape html strings to the readable one.
+  unescape: false
   CDN:
 
 # Docsearch
-# https://docsearch.algolia.com/
 docsearch:
   enable: false
   appId:
@@ -777,7 +781,7 @@ rightside_item_order:
 medium_zoom: false
 
 # fancybox
-# http://fancyapps.com/fancybox/3/
+# https://fancyapps.com/fancybox/
 fancybox: true
 
 # Tag Plugins settings (標籤外掛)
