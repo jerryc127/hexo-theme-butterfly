@@ -787,6 +787,13 @@ fancybox: true
 # Tag Plugins settings (標籤外掛)
 # --------------------------------------
 
+# abcjs (樂譜渲染)
+# See https://github.com/paulrosen/abcjs
+# ---------------
+abcjs:
+  enable: false
+  per_page: true
+
 # mermaid
 # see https://github.com/mermaid-js/mermaid
 mermaid:
@@ -967,3 +974,4 @@ CDN:
     # artalk_js:
     # artalk_css:
     # busuanzi:
+    # abcjs_basic_js:

@@ -1,0 +1,15 @@
+script.
+  (() => {
+    function abcjsInit() {
+      function abcjsFn() {
+        for (let abcContainer of document.getElementsByClassName("abc-music-sheet")) {
+          ABCJS.renderAbc(abcContainer, abcContainer.innerHTML, {responsive: 'resize'})
+        }
+      }
+      
+      typeof ABCJS === 'object' ? abcjsFn()
+        : getScript('!{url_for(theme.asset.abcjs_basic_js)}').then(abcjsFn)
+    }
+
+    window.pjax ? abcjsInit() : document.addEventListener('DOMContentLoaded', abcjsInit)
+  })()
