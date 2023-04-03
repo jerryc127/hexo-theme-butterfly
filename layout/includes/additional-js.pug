@@ -31,6 +31,8 @@ div
 
     include ./third-party/math/index.pug
 
+    include ./third-party/abcjs/index.pug
+
     if commentsJsLoad
       include ./third-party/comments/js.pug
 
@@ -61,10 +63,3 @@ div
     script(async data-pjax src= theme.asset.busuanzi || '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js')
 
   !=partial('includes/third-party/search/index', {}, {cache: true})
-
-  if theme.abcjs && theme.abcjs.enable
-    if theme.abcjs.per_page
-      if is_post() || is_page()
-        include ./third-party/abcjs.pug
-    else if page.abcjs
-        include ./third-party/abcjs.pug

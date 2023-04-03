@@ -788,7 +788,7 @@ fancybox: true
 # ---------------
 abcjs:
   enable: false
-  per_page: false
+  per_page: true
 
 # mermaid
 # see https://github.com/mermaid-js/mermaid
@@ -970,3 +970,4 @@ CDN:
     # artalk_js:
     # artalk_css:
     # busuanzi:
+    # abcjs_basic_js:
