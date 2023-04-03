@@ -62,11 +62,9 @@ div
 
   !=partial('includes/third-party/search/index', {}, {cache: true})
 
-  if theme.abcjs.enable
+  if theme.abcjs && theme.abcjs.enable
     if theme.abcjs.per_page
       if is_post() || is_page()
-        script(src=url_for(theme.asset.abcjs_basic_js))
         include ./third-party/abcjs.pug
     else if page.abcjs
-        script(src=url_for(theme.asset.abcjs_basic_js))
         include ./third-party/abcjs.pug

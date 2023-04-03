@@ -783,6 +783,13 @@ fancybox: true
 # Tag Plugins settings (標籤外掛)
 # --------------------------------------
 
+# abcjs (樂譜渲染)
+# See https://github.com/paulrosen/abcjs
+# ---------------
+abcjs:
+  enable: false
+  per_page: false
+
 # mermaid
 # see https://github.com/mermaid-js/mermaid
 mermaid:
@@ -861,13 +868,6 @@ lazyload:
 #   favicon_32_32: /pwa/32.png
 #   favicon_16_16: /pwa/16.png
 #   mask_icon: /pwa/safari-pinned-tab.svg
-
-# abcjs (樂譜渲染)
-# See https://github.com/paulrosen/abcjs
-# ---------------
-abcjs:
-  enable: false
-  per_page: false
 
 # Open graph meta tags
 # https://developers.facebook.com/docs/sharing/webmasters/

@@ -210,6 +210,5 @@ docsearch_css:
   version: 3.3.3
 abcjs_basic_js:
   name: abcjs
-  other_name: abcjs-basic
   file: dist/abcjs-basic-min.js
   version: 6.1.9
