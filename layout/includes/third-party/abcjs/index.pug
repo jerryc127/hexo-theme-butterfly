@@ -1,0 +1,6 @@
+if theme.abcjs.enable
+  if theme.abcjs.per_page
+    if is_post() || is_page()
+      include ./abcjs.pug
+  else if page.abcjs
+    include ./abcjs.pug
