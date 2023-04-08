@@ -79,6 +79,7 @@ const btf = {
     const hour = minute * 60
     const day = hour * 24
     const month = day * 30
+    const { dateSuffix } = GLOBAL_CONFIG
 
     if (!more) return parseInt(dateDiff / day)
 
@@ -88,11 +89,11 @@ const btf = {
     const minuteCount = dateDiff / minute
 
     if (monthCount > 12) return datePost.toISOString().slice(0, 10)
-    if (monthCount >= 1) return parseInt(monthCount) + ' ' + GLOBAL_CONFIG.date_suffix.month
-    if (dayCount >= 1) return parseInt(dayCount) + ' ' + GLOBAL_CONFIG.date_suffix.day
-    if (hourCount >= 1) return parseInt(hourCount) + ' ' + GLOBAL_CONFIG.date_suffix.hour
-    if (minuteCount >= 1) return parseInt(minuteCount) + ' ' + GLOBAL_CONFIG.date_suffix.min
-    return GLOBAL_CONFIG.date_suffix.just
+    if (monthCount >= 1) return `${parseInt(monthCount)} ${dateSuffix.month}`
+    if (dayCount >= 1) return `${parseInt(dayCount)} ${dateSuffix.day}`
+    if (hourCount >= 1) return `${parseInt(hourCount)} ${dateSuffix.hour}`
+    if (minuteCount >= 1) return `${parseInt(minuteCount)} ${dateSuffix.min}`
+    return dateSuffix.just
   },
 
   loadComment: (dom, callback) => {
