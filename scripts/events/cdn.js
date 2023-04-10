@@ -48,12 +48,11 @@ hexo.extend.filter.register('before_generate', () => {
   const createCDNLink = (data, type, cond = '') => {
     Object.keys(data).forEach(key => {
       let { name, version, file, other_name } = data[key]
-
-      const min_file = minFile(file)
       const cdnjs_name = other_name || name
       const cdnjs_file = file.replace(/^[lib|dist]*\/|browser\//g, '')
       const min_cdnjs_file = minFile(cdnjs_file)
       if (cond === 'internal') file = `source/${file}`
+      const min_file = minFile(file)
       const verType = CDN.version ? (type === 'local' ? `?v=${version}` : `@${version}`) : ''
 
       const value = {
