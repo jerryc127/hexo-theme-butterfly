@@ -6,7 +6,7 @@
 'use strict'
 
 hexo.extend.filter.register('before_post_render', function (data) {
-  const imgTestReg = /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/
+  const imgTestReg = /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/i
   let randomCover
   let coverVal = data.cover
 

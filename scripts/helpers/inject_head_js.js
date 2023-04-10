@@ -7,7 +7,8 @@
 
 hexo.extend.helper.register('inject_head_js', function () {
   const { darkmode, aside } = this.theme
-
+  const start = darkmode.start ? darkmode.start : 6
+  const end = darkmode.end ? darkmode.end : 18
   const { theme_color } = hexo.theme.config
   const themeColorLight = (theme_color && theme_color.enable && theme_color.meta_theme_color_light) || '#ffffff'
   const themeColorDark = (theme_color && theme_color.enable && theme_color.meta_theme_color_dark) || '#0d0d0d'
@@ -110,7 +111,7 @@ hexo.extend.helper.register('inject_head_js', function () {
             else if (isNotSpecified || hasNoSupport) {
               const now = new Date()
               const hour = now.getHours()
-              const isNight = hour <= 6 || hour >= 18
+              const isNight = hour <= ${start} || hour >= ${end}
               isNight ? activateDarkMode() : activateLightMode()
             }
             window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
@@ -125,7 +126,7 @@ hexo.extend.helper.register('inject_head_js', function () {
       darkmodeJs += `
           const now = new Date()
           const hour = now.getHours()
-          const isNight = hour <= 6 || hour >= 18
+          const isNight = hour <= ${start} || hour >= ${end}
           if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
           else if (t === 'light') activateLightMode()
           else activateDarkMode()

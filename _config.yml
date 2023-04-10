@@ -1,7 +1,13 @@
-# Main menu navigation (導航目錄)
-# see https://butterfly.js.org/posts/4aa8abbe/#導航菜單
+# Navigation bar settings (導航欄設置)
+# see https://butterfly.js.org/posts/4aa8abbe/##導航欄設置-Navigation-bar-settings
 # --------------------------------------
 
+nav:
+  logo: # image
+  display_title: true
+  fixed: false # fixed navigation bar
+
+# Menu 目錄
 menu:
   # Home: / || fas fa-home
   # Archives: /archives/ || fas fa-archive
@@ -13,11 +19,6 @@ menu:
   # Link: /link/ || fas fa-link
   # About: /about/ || fas fa-heart
 
-nav:
-  logo: # image
-  display_title: true
-  fixed: false # fixed navigation bar
-
 # Code Blocks (代碼相關)
 # --------------------------------------
 
@@ -28,63 +29,12 @@ highlight_shrink: false # true: shrink the code blocks / false: expand the code 
 highlight_height_limit: false # unit: px
 code_word_wrap: false
 
-# copy settings
-# copyright: Add the copyright information after copied content (複製的內容後面加上版權信息)
-copy:
-  enable: true
-  copyright:
-    enable: false
-    limit_count: 50
-
-# social settings (社交圖標設置)
+# Social Settings (社交圖標設置)
 # formal:
-#   icon: link || the description
+#   icon: link || the description || color
 social:
-  # fab fa-github: https://github.com/xxxxx || Github
-  # fas fa-envelope: mailto:xxxxxx@gmail.com || Email
-
-# search (搜索)
-# see https://butterfly.js.org/posts/ceeb73f/#搜索系統
-# --------------------------------------
-
-# Algolia search
-algolia_search:
-  enable: false
-  hits:
-    per_page: 6
-
-# Local search
-local_search:
-  enable: false
-  preload: false
-  CDN:
-
-# Docsearch
-# https://docsearch.algolia.com/
-docsearch:
-  enable: false
-  appId:
-  apiKey:
-  indexName:
-  option:
-
-# Math (數學)
-# --------------------------------------
-# About the per_page
-# if you set it to true, it will load mathjax/katex script in each page (true 表示每一頁都加載js)
-# if you set it to false, it will load mathjax/katex script according to your setting (add the 'mathjax: true' in page's front-matter)
-# (false 需要時加載，須在使用的 Markdown Front-matter 加上 mathjax: true)
-
-# MathJax
-mathjax:
-  enable: false
-  per_page: false
-
-# KaTeX
-katex:
-  enable: false
-  per_page: false
-  hide_scrollbar: true
+  # fab fa-github: https://github.com/xxxxx || Github || '#24292e'
+  # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'
 
 # Image (圖片設置)
 # --------------------------------------
@@ -164,14 +114,6 @@ post_meta:
     tags: true # true or false 文章頁是否顯示標籤
     label: true # true or false 顯示描述性文字
 
-# wordcount (字數統計)
-# see https://butterfly.js.org/posts/ceeb73f/#字數統計
-wordcount:
-  enable: false
-  post_wordcount: true
-  min2read: true
-  total_wordcount: true
-
 # Display the article introduction on homepage
 # 1: description
 # 2: both (if the description exists, it will show description, or show the auto_excerpt)
@@ -188,6 +130,17 @@ anchor:
     always_show: false
     icon: # the unicode value of Font Awesome icon, such as '\3423'
   auto_update: false # when you scroll in post, the URL will update according to header id.
+
+# figcaption (圖片描述文字)
+photofigcaption: false
+
+# copy settings
+# copyright: Add the copyright information after copied content (複製的內容後面加上版權信息)
+copy:
+  enable: true
+  copyright:
+    enable: false
+    limit_count: 50
 
 # Post
 # --------------------------------------
@@ -233,9 +186,6 @@ related_post:
   limit: 6 # Number of posts displayed
   date_type: created # or created or updated 文章日期顯示創建日或者更新日
 
-# figcaption (圖片描述文字)
-photofigcaption: false
-
 # post_pagination (分頁)
 # value: 1 || 2 || false
 # 1: The 'next post' will link to old post
@@ -252,7 +202,183 @@ noticeOutdate:
   message_prev: It has been
   message_next: days since the last update, the content of the article may be outdated.
 
-# Share System (分享功能)
+# Footer Settings
+# --------------------------------------
+footer:
+  owner:
+    enable: true
+    since: 2020
+  custom_text:
+  copyright: true # Copyright of theme and framework
+
+# aside (側邊欄)
+# --------------------------------------
+
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true # display on mobile
+  position: right # left or right
+  display:
+    archive: true
+    tag: true
+    category: true
+  card_author:
+    enable: true
+    description:
+    button:
+      enable: true
+      icon: fab fa-github
+      text: Follow Me
+      link: https://github.com/xxxxxx
+  card_announcement:
+    enable: true
+    content: This is my Blog
+  card_recent_post:
+    enable: true
+    limit: 5 # if set 0 will show all
+    sort: date # date or updated
+    sort_order: # Don't modify the setting unless you know how it works
+  card_categories:
+    enable: true
+    limit: 8 # if set 0 will show all
+    expand: none # none/true/false
+    sort_order: # Don't modify the setting unless you know how it works
+  card_tags:
+    enable: true
+    limit: 40 # if set 0 will show all
+    color: false
+    orderby: random # Order of tags, random/name/length
+    order: 1 # Sort of order. 1, asc for ascending; -1, desc for descending
+    sort_order: # Don't modify the setting unless you know how it works
+  card_archives:
+    enable: true
+    type: monthly # yearly or monthly
+    format: MMMM YYYY # eg: YYYY年MM月
+    order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
+    limit: 8 # if set 0 will show all
+    sort_order: # Don't modify the setting unless you know how it works
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: true
+    sort_order: # Don't modify the setting unless you know how it works
+
+# busuanzi count for PV / UV in site
+# 訪問人數
+busuanzi:
+  site_uv: true
+  site_pv: true
+  page_pv: true
+
+# Time difference between publish date and now (網頁運行時間)
+# Formal: Month/Day/Year Time or Year/Month/Day Time
+runtimeshow:
+  enable: false
+  publish_date:
+
+# Aside widget - Newest Comments
+newest_comments:
+  enable: false
+  sort_order: # Don't modify the setting unless you know how it works
+  limit: 6
+  storage: 10 # unit: mins, save data to localStorage
+  avatar: true
+
+# Bottom right button (右下角按鈕)
+# --------------------------------------
+
+# Conversion between Traditional and Simplified Chinese (簡繁轉換)
+translate:
+  enable: false
+  # The text of a button
+  default: 繁
+  # the language of website (1 - Traditional Chinese/ 2 - Simplified Chinese）
+  defaultEncoding: 2
+  # Time delay
+  translateDelay: 0
+  # The text of the button when the language is Simplified Chinese
+  msgToTraditionalChinese: '繁'
+  # The text of the button when the language is Traditional Chinese
+  msgToSimplifiedChinese: '簡'
+
+# Read Mode (閲讀模式)
+readmode: true
+
+# dark mode
+darkmode:
+  enable: true
+  # Toggle Button to switch dark/light mode
+  button: true
+  # Switch dark/light mode automatically (自動切換 dark mode和 light mode)
+  # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
+  # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
+  # autoChangeMode: false
+  autoChangeMode: false
+  # Set the light mode time. The value is between 0 and 24. If not set, the default value is 6 and 18
+  start: # 8
+  end: # 22
+
+# show scroll percent in scroll-to-top button
+rightside_scroll_percent: false
+
+# Don't modify the following settings unless you know how they work (非必要請不要修改 )
+# Choose: readmode,translate,darkmode,hideAside,toc,chat,comment
+# Don't repeat 不要重複
+rightside_item_order:
+  enable: false
+  hide: # readmode,translate,darkmode,hideAside
+  show: # toc,chat,comment
+
+# Math (數學)
+# --------------------------------------
+# About the per_page
+# if you set it to true, it will load mathjax/katex script in each page (true 表示每一頁都加載js)
+# if you set it to false, it will load mathjax/katex script according to your setting (add the 'mathjax: true' in page's front-matter)
+# (false 需要時加載，須在使用的 Markdown Front-matter 加上 mathjax: true)
+
+# MathJax
+mathjax:
+  enable: false
+  per_page: false
+
+# KaTeX
+katex:
+  enable: false
+  per_page: false
+  hide_scrollbar: true
+
+# search (搜索)
+# see https://butterfly.js.org/posts/ceeb73f/#搜索系統
+# --------------------------------------
+
+# Algolia search
+algolia_search:
+  enable: false
+  hits:
+    per_page: 6
+
+# Local search
+local_search:
+  enable: false
+  # Preload the search data when the page loads.
+  preload: false
+  # Show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
+  # Unescape html strings to the readable one.
+  unescape: false
+  CDN:
+
+# Docsearch
+docsearch:
+  enable: false
+  appId:
+  apiKey:
+  indexName:
+  option:
+
+# Share System (分享)
 # --------------------------------------
 
 # AddThis
@@ -416,12 +542,6 @@ daovoice:
   enable: false
   app_id:
 
-# gitter
-# https://gitter.im/
-gitter:
-  enable: false
-  room:
-
 # crisp
 # https://crisp.chat/en/
 crisp:
@@ -434,15 +554,6 @@ messenger:
   enable: false
   pageID:
   lang: zh_TW # Language en_US/zh_CN/zh_TW and so on
-
-# Footer Settings
-# --------------------------------------
-footer:
-  owner:
-    enable: true
-    since: 2020
-  custom_text:
-  copyright: true # Copyright of theme and framework
 
 # Analysis
 # --------------------------------------
@@ -540,6 +651,14 @@ rightside-bottom:
 # Enter transitions (開啓網頁進入效果)
 enter_transitions: true
 
+# Typewriter Effect (打字效果)
+# https://github.com/disjukr/activate-power-mode
+activate_power_mode:
+  enable: false
+  colorful: true # open particle animation (冒光特效)
+  shake: true #  open shake (抖動特效)
+  mobile: false
+
 # Background effects (背景特效)
 # --------------------------------------
 
@@ -566,14 +685,6 @@ canvas_nest:
   opacity: 0.7 # the opacity of line (0~1), default: 0.5.
   zIndex: -1 # z-index property of the background, default: -1.
   count: 99 # the number of lines, default: 99.
-  mobile: false
-
-# Typewriter Effect (打字效果)
-# https://github.com/disjukr/activate-power-mode
-activate_power_mode:
-  enable: false
-  colorful: true # open particle animation (冒光特效)
-  shake: true #  open shake (抖動特效)
   mobile: false
 
 # Mouse click effects: fireworks (鼠標點擊效果: 煙火特效)
@@ -657,122 +768,13 @@ preloader:
   # pace theme (see https://codebyzach.github.io/pace/)
   pace_css_url:
 
-# aside (側邊欄)
-# --------------------------------------
-
-aside:
-  enable: true
-  hide: false
-  button: true
-  mobile: true # display on mobile
-  position: right # left or right
-  display:
-    archive: true
-    tag: true
-    category: true
-  card_author:
-    enable: true
-    description:
-    button:
-      enable: true
-      icon: fab fa-github
-      text: Follow Me
-      link: https://github.com/xxxxxx
-  card_announcement:
-    enable: true
-    content: This is my Blog
-  card_recent_post:
-    enable: true
-    limit: 5 # if set 0 will show all
-    sort: date # date or updated
-    sort_order: # Don't modify the setting unless you know how it works
-  card_categories:
-    enable: true
-    limit: 8 # if set 0 will show all
-    expand: none # none/true/false
-    sort_order: # Don't modify the setting unless you know how it works
-  card_tags:
-    enable: true
-    limit: 40 # if set 0 will show all
-    color: false
-    orderby: random # Order of tags, random/name/length
-    order: 1 # Sort of order. 1, asc for ascending; -1, desc for descending
-    sort_order: # Don't modify the setting unless you know how it works
-  card_archives:
-    enable: true
-    type: monthly # yearly or monthly
-    format: MMMM YYYY # eg: YYYY年MM月
-    order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
-    limit: 8 # if set 0 will show all
-    sort_order: # Don't modify the setting unless you know how it works
-  card_webinfo:
-    enable: true
-    post_count: true
-    last_push_date: true
-    sort_order: # Don't modify the setting unless you know how it works
-
-# busuanzi count for PV / UV in site
-# 訪問人數
-busuanzi:
-  site_uv: true
-  site_pv: true
-  page_pv: true
-
-# Time difference between publish date and now (網頁運行時間)
-# Formal: Month/Day/Year Time or Year/Month/Day Time
-runtimeshow:
+# wordcount (字數統計)
+# see https://butterfly.js.org/posts/ceeb73f/#字數統計
+wordcount:
   enable: false
-  publish_date:
-
-# Aside widget - Newest Comments
-newest_comments:
-  enable: false
-  sort_order: # Don't modify the setting unless you know how it works
-  limit: 6
-  storage: 10 # unit: mins, save data to localStorage
-  avatar: true
-
-# Bottom right button (右下角按鈕)
-# --------------------------------------
-
-# Conversion between Traditional and Simplified Chinese (簡繁轉換)
-translate:
-  enable: false
-  # The text of a button
-  default: 繁
-  # the language of website (1 - Traditional Chinese/ 2 - Simplified Chinese）
-  defaultEncoding: 2
-  # Time delay
-  translateDelay: 0
-  # The text of the button when the language is Simplified Chinese
-  msgToTraditionalChinese: '繁'
-  # The text of the button when the language is Traditional Chinese
-  msgToSimplifiedChinese: '簡'
-
-# Read Mode (閲讀模式)
-readmode: true
-
-# dark mode
-darkmode:
-  enable: true
-  # Toggle Button to switch dark/light mode
-  button: true
-  # Switch dark/light mode automatically (自動切換 dark mode和 light mode)
-  # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
-  # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
-  # autoChangeMode: false
-  autoChangeMode: false
-
-# show scroll percent in scroll-to-top button
-rightside_scroll_percent: false
-
-# Don't modify the following settings unless you know how they work (非必要請不要修改 )
-# Choose: readmode,translate,darkmode,hideAside,toc,chat,comment
-# Don't repeat 不要重複
-rightside_item_order:
-  enable: false
-  hide: # readmode,translate,darkmode,hideAside
-  show: # toc,chat,comment
+  post_wordcount: true
+  min2read: true
+  total_wordcount: true
 
 # Lightbox (圖片大圖查看模式)
 # --------------------------------------
@@ -783,11 +785,17 @@ rightside_item_order:
 medium_zoom: false
 
 # fancybox
-# http://fancyapps.com/fancybox/3/
+# https://fancyapps.com/fancybox/
 fancybox: true
 
 # Tag Plugins settings (標籤外掛)
 # --------------------------------------
+
+# abcjs (樂譜渲染)
+# See https://github.com/paulrosen/abcjs
+abcjs:
+  enable: false
+  per_page: true
 
 # mermaid
 # see https://github.com/mermaid-js/mermaid
@@ -907,7 +915,7 @@ CDN:
   # when set it to local, you need to install hexo-butterfly-extjs
   third_party_provider: jsdelivr
 
-  # Add version number to CDN, true or false
+  # Add version number to url, true or false
   version: false
 
   # Custom format
@@ -921,8 +929,8 @@ CDN:
     # translate:
     # local_search:
     # algolia_js:
-    # algolia_search_v4:
-    # instantsearch_v4:
+    # algolia_search:
+    # instantsearch:
     # docsearch_js:
     # docsearch_css:
     # pjax:
@@ -935,6 +943,7 @@ CDN:
     # twikoo:
     # waline_js:
     # waline_css:
+    # giscus:
     # sharejs:
     # sharejs_css:
     # mathjax:
@@ -948,8 +957,8 @@ CDN:
     # instantpage:
     # typed:
     # pangu:
-    # fancybox_css_v4:
-    # fancybox_v4:
+    # fancybox_css:
+    # fancybox:
     # medium_zoom:
     # snackbar_css:
     # snackbar:
@@ -957,7 +966,7 @@ CDN:
     # fireworks:
     # click_heart:
     # ClickShowText:
-    # fontawesomeV6:
+    # fontawesome:
     # flickr_justified_gallery_js:
     # flickr_justified_gallery_css:
     # aplayer_css:
@@ -969,3 +978,4 @@ CDN:
     # artalk_js:
     # artalk_css:
     # busuanzi:
+    # abcjs_basic_js:

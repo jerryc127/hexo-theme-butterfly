@@ -114,3 +114,15 @@ span.mathjax-overflow
 
 .snackbar-css
   border-radius: 5px !important
+
+.abc-music-sheet
+  margin: 0 0 20px
+  opacity: 0
+  transition: opacity .3s
+
+  &.abcjs-container
+    opacity: 1
+
++maxWidth768()
+  .fancybox__toolbar__column.is-middle
+    display: none

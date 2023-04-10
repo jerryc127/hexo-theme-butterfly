@@ -15,7 +15,7 @@
 
 meta(charset='UTF-8')
 meta(http-equiv="X-UA-Compatible" content="IE=edge")
-meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+meta(name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover")
 title= tabTitle
 meta(name="author" content=pageAuthor)
 meta(name="copyright" content=pageCopyright)
@@ -40,13 +40,13 @@ if (theme.pwa && theme.pwa.enable)
 
 //- main css
 link(rel='stylesheet', href=url_for(theme.asset.main_css))
-link(rel='stylesheet', href=url_for(theme.asset.fontawesomeV6) media="print" onload="this.media='all'")
+link(rel='stylesheet', href=url_for(theme.asset.fontawesome) media="print" onload="this.media='all'")
 
 if (theme.snackbar && theme.snackbar.enable)
   link(rel='stylesheet', href=url_for(theme.asset.snackbar_css) media="print" onload="this.media='all'")
 
 if theme.fancybox
-  link(rel='stylesheet' href=url_for(theme.asset.fancybox_css_v4) media="print" onload="this.media='all'")
+  link(rel='stylesheet' href=url_for(theme.asset.fancybox_css) media="print" onload="this.media='all'")
 
 //- google_adsense
 !=partial('includes/head/google_adsense', {}, {cache: true})

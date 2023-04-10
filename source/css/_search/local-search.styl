@@ -18,7 +18,7 @@
     .search-wrap
       display: none
 
-    .local-search__hit-item
+    .local-search-hit-item
       position: relative
       padding-left: 24px
       line-height: 1.7
@@ -55,16 +55,20 @@
         margin: 0 0 8px
         word-break: break-word
 
-      .search-keyword
-        color: $search-keyword-highlight
-        font-weight: bold
-
     .search-result-list
       overflow-y: overlay
       margin: 0 -20px
       padding: 0 22px
-      max-height: calc(80vh - 130px)
+      max-height: calc(80vh - 200px)
 
       +maxWidth768()
-        padding-bottom: 40px
-        max-height: 75vh !important
+        max-height: calc(var(--search-height) - 220px) !important
+
+    .no-result
+      & + #local-search-stats-wrap
+        display: none
+
+.search-keyword
+  background: transparent
+  color: $search-keyword-highlight
+  font-weight: bold

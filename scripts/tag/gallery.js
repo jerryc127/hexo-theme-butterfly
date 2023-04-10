@@ -15,18 +15,10 @@ function gallery (args, content) {
   args = args.join(' ').split(',')
   let rowHeight, limit, lazyload, type, dataStr
 
-  // url,[link],[lazyload],[rowHeight],[limit]
   if (args[0] === 'url') {
-    dataStr = args[1]
-    lazyload = args[2] === 'true'
-    rowHeight = args[3] || 220
-    limit = args[4] || 10
-    type = ' url'
+    [type, dataStr, lazyload, rowHeight = 220, limit = 10] = args // url,[link],[lazyload],[rowHeight],[limit]
   } else {
-    rowHeight = args[1] || 220
-    limit = args[2] || 10
-    lazyload = args[0] === 'true'
-    type = ' data'
+    [lazyload, rowHeight = 220, limit = 10] = args // [lazyload],[rowHeight],[limit]
     const regex = /!\[(.*?)\]\(([^\s]*)\s*(?:["'](.*?)["']?)?\s*\)/g
     let m
     const arr = []
@@ -44,7 +36,8 @@ function gallery (args, content) {
     dataStr = JSON.stringify(arr)
   }
 
-  const lazyloadClass = lazyload ? 'lazyload' : ''
+  type = type ? ' url' : ' data'
+  const lazyloadClass = lazyload === 'true' ? 'lazyload' : ''
 
   return `<div class="gallery">
     <div class="fj-gallery ${lazyloadClass + type}" data-rowHeight="${rowHeight}" data-limit="${limit}">

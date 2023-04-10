@@ -8,7 +8,7 @@ div
   if theme.medium_zoom
     script(src=url_for(theme.asset.medium_zoom))
   else if theme.fancybox
-    script(src=url_for(theme.asset.fancybox_v4))
+    script(src=url_for(theme.asset.fancybox))
 
   if theme.instantpage
     script(src=url_for(theme.asset.instantpage), type='module')
@@ -30,6 +30,8 @@ div
       include ./third-party/subtitle.pug
 
     include ./third-party/math/index.pug
+
+    include ./third-party/abcjs/index.pug
 
     if commentsJsLoad
       include ./third-party/comments/js.pug
@@ -59,3 +61,5 @@ div
 
   if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
     script(async data-pjax src= theme.asset.busuanzi || '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js')
+
+  !=partial('includes/third-party/search/index', {}, {cache: true})
