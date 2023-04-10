@@ -1,11 +1,11 @@
 algolia_search:
   name: algoliasearch
   file: dist/algoliasearch-lite.umd.js
-  version: 4.16.0
+  version: 4.17.0
 instantsearch:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.53.0
+  version: 4.54.0
 pjax:
   name: pjax
   file: pjax.min.js
@@ -37,7 +37,7 @@ disqusjs_css:
 twikoo:
   name: twikoo
   file: dist/twikoo.all.min.js
-  version: 1.6.11
+  version: 1.6.14
 waline_js:
   name: '@waline/client'
   file: dist/waline.js
@@ -121,12 +121,12 @@ pangu:
 fancybox_css:
   name: '@fancyapps/ui'
   file: dist/fancybox/fancybox.css
-  version: 5.0.14
+  version: 5.0.15
   other_name: fancyapps-ui
 fancybox:
   name: '@fancyapps/ui'
   file: dist/fancybox/fancybox.umd.js
-  version: 5.0.14
+  version: 5.0.15
   other_name: fancyapps-ui
 medium_zoom:
   name: medium-zoom
@@ -183,11 +183,11 @@ prismjs_autoloader:
 artalk_js:
   name: artalk
   file: dist/Artalk.js
-  version: 2.5.2
+  version: 2.5.4
 artalk_css:
   name: artalk
   file: dist/Artalk.css
-  version: 2.5.2
+  version: 2.5.4
 pace_js:
   name: pace-js
   other_name: pace
