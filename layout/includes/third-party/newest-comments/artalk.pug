@@ -48,12 +48,18 @@ script.
     const headerList = {
       method: 'POST',
       headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
         'Origin': window.location.origin
-      }
+      },
+      body: new URLSearchParams({
+        'site_name': '!{site}',
+        'limit': '!{theme.newest_comments.limit}',
+        'type':'latest_comments'
+      })
     }
 
     const getComment = () => {
-      fetch('!{server}/api/stat?type=latest_comments&limit=!{theme.newest_comments.limit}&site_name=!{site}', headerList)
+      fetch('!{server}/api/stat', headerList)
         .then(response => response.json())
         .then(d => {
           const artalk = d.data.map(function (e) {
