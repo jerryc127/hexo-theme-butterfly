@@ -1,6 +1,6 @@
 - const { server, site, option } = theme.artalk
-- const avatarCdn = option !== null && option.gravatar ? option.gravatar.mirror : 'https://sdn.geekzu.org/avatar/'
-- const avatarDefault = option !== null && option.gravatar ? option.gravatar.default : 'mp'
+- const avatarCdn = option !== null && option.gravatar && option.gravatar.mirror
+- const avatarDefault = option !== null && option.gravatar && option.gravatar.default
 
 script.
   window.addEventListener('load', () => {
@@ -45,32 +45,51 @@ script.
       window.pjax && window.pjax.refresh($dom)
     }
 
-    const headerList = {
-      method: 'POST',
-      headers: {
-        'Origin': window.location.origin
+    const getSetting = async () => {
+      try {
+        const res = await fetch('!{server}/api/conf', { method: 'GET' })
+        return await res.json()
+      } catch (e) {
+        console.log(e)
       }
     }
 
-    const getComment = () => {
-      fetch('!{server}/api/stat?type=latest_comments&limit=!{theme.newest_comments.limit}&site_name=!{site}', headerList)
-        .then(response => response.json())
-        .then(d => {
-          const artalk = d.data.map(function (e) {
-            return {
-              'avatar': '!{avatarCdn}' + e.email_encrypted + '?d=!{avatarDefault}',
-              'content': changeContent(e.content_marked),
-              'nick': e.nick,
-              'url': e.page_url,
-              'date': e.date,
-            }
-          })
-          saveToLocal.set('artalk-newest-comments', JSON.stringify(artalk), !{theme.newest_comments.storage}/(60*24))
-          generateHtml(artalk)
-        }).catch(e => {
-          const $dom = document.querySelector('#card-newest-comments .aside-list')
-          $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
+    const headerList = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Origin': window.location.origin
+      },
+      body: new URLSearchParams({
+        'site_name': '!{site}',
+        'limit': '!{theme.newest_comments.limit}',
+        'type':'latest_comments'
+      })
+    }
+
+    const getComment = async () => {
+      try {
+        const res = await fetch('!{server}/api/stat', headerList)
+        const result = await res.json()
+        const avatarStr = await getSetting()
+        const avatarCdn = !{avatarCdn} || avatarStr.data.frontend_conf.gravatar.mirror
+        const avatarDefault = !{avatarDefault} || avatarStr.data.frontend_conf.gravatar.default
+        const artalk = result.data.map(function (e) {
+          return {
+            'avatar': `${avatarCdn}${e.email_encrypted}?d=${avatarDefault}`,
+            'content': changeContent(e.content_marked),
+            'nick': e.nick,
+            'url': e.page_url,
+            'date': e.date,
+          }
         })
+        saveToLocal.set('artalk-newest-comments', JSON.stringify(artalk), !{theme.newest_comments.storage}/(60*24))
+        generateHtml(artalk)
+      } catch (e) {
+        console.log(e)
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
+      }
     }
 
     const newestCommentInit = () => {

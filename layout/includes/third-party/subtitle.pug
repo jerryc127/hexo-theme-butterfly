@@ -38,7 +38,7 @@ case source
               sub.unshift(data.hitokoto, from)
               typedJSFn.init(sub)
             } else {
-              document.getElementById('subtitle').innerHTML = data.hitokoto
+              document.getElementById('subtitle').textContent = data.hitokoto
             }
           })
       }
@@ -55,7 +55,7 @@ case source
             sub.unshift(con, from)
             typedJSFn.init(sub)
           } else {
-            document.getElementById('subtitle').innerHTML = con
+            document.getElementById('subtitle').textContent = con
           }
         })
       }
@@ -72,7 +72,7 @@ case source
               sub.unshift(content)
               typedJSFn.init(sub)
             } else {
-              document.getElementById('subtitle').innerHTML = result.data.content
+              document.getElementById('subtitle').textContent = result.data.content
             }
           })
         })
@@ -86,7 +86,7 @@ case source
         if (!{effect}) {
           typedJSFn.init(!{JSON.stringify(subContent)})
         } else {
-          document.getElementById("subtitle").innerHTML = '!{subContent[0]}'
+          document.getElementById("subtitle").textContent = '!{subContent[0]}'
         }
       }
       typedJSFn.run(subtitleType)

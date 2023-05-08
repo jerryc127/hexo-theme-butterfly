@@ -2,18 +2,20 @@
 
 script.
   function loadDisqus () {
-    var disqus_config = function () {
+    const disqus_config = function () {
       this.page.url = '!{ page.permalink }'
       this.page.identifier = '!{ url_for(page.path) }'
       this.page.title = '!{ disqusPageTitle }'
-    };
+    }
 
-    window.disqusReset = () => {
+    const disqusReset = () => {
       DISQUS.reset({
         reload: true,
         config: disqus_config
       })
     }
+
+    btf.addModeChange('disqus', disqusReset)
 
     if (window.DISQUS) disqusReset()
     else {
@@ -24,10 +26,6 @@ script.
         (d.head || d.body).appendChild(s);
       })();
     }
-
-    document.getElementById('darkmode').addEventListener('click', () => {
-      setTimeout(() => window.disqusReset(), 200)
-    })
   }
 
   if ('!{theme.comments.use[0]}' === 'Disqus' || !!{theme.comments.lazyload}) {

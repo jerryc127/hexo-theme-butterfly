@@ -282,7 +282,7 @@ window.addEventListener('load', () => {
       window.pjax && window.pjax.refresh(container)
     }
 
-    $loadingStatus.innerHTML = ''
+    $loadingStatus.textContent = ''
   }
 
   let loadFlag = false

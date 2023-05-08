@@ -23,7 +23,7 @@ script.
     }
 
 
-    document.getElementById('darkmode').addEventListener('click', themeChange)
+    btf.addModeChange('disqusjs', themeChange)
 
     if (window.disqusJsLoad) initDisqusjs()
     else {

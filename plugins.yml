@@ -5,7 +5,7 @@ algolia_search:
 instantsearch:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.54.0
+  version: 4.55.0
 pjax:
   name: pjax
   file: pjax.min.js
@@ -37,17 +37,17 @@ disqusjs_css:
 twikoo:
   name: twikoo
   file: dist/twikoo.all.min.js
-  version: 1.6.14
+  version: 1.6.16
 waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 2.14.9
+  version: 2.15.4
 waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 2.14.9
+  version: 2.15.4
 sharejs:
   name: butterfly-extsrc
   file: sharejs/dist/js/social-share.min.js
@@ -64,12 +64,12 @@ katex:
   name: katex
   file: dist/katex.min.css
   other_name: KaTeX
-  version: 0.16.4
+  version: 0.16.7
 katex_copytex:
   name: katex
   file: dist/contrib/copy-tex.min.js
   other_name: KaTeX
-  version: 0.16.4
+  version: 0.16.7
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
@@ -113,7 +113,7 @@ instantpage:
 typed:
   name: typed.js
   file: dist/typed.umd.js
-  version: 2.0.15
+  version: 2.0.16
 pangu:
   name: pangu
   file: dist/browser/pangu.min.js
@@ -121,12 +121,12 @@ pangu:
 fancybox_css:
   name: '@fancyapps/ui'
   file: dist/fancybox/fancybox.css
-  version: 5.0.15
+  version: 5.0.17
   other_name: fancyapps-ui
 fancybox:
   name: '@fancyapps/ui'
   file: dist/fancybox/fancybox.umd.js
-  version: 5.0.15
+  version: 5.0.17
   other_name: fancyapps-ui
 medium_zoom:
   name: medium-zoom
@@ -202,13 +202,13 @@ docsearch_js:
   name: '@docsearch/js'
   other_name: docsearch-js
   file: dist/umd/index.js
-  version: 3.3.3
+  version: 3.3.4
 docsearch_css:
   name: '@docsearch/css'
   other_name: docsearch-css
   file: dist/style.css
-  version: 3.3.3
+  version: 3.3.4
 abcjs_basic_js:
   name: abcjs
   file: dist/abcjs-basic-min.js
-  version: 6.2.0
+  version: 6.2.2

@@ -11,22 +11,35 @@ script.
         darkMode: document.documentElement.getAttribute('data-theme') === 'dark',
         countEl: '.artalk-count'
       },!{JSON.stringify(option)}))
+
+      if (GLOBAL_CONFIG.lightbox === 'null') return
+      window.artalkItem.use(ctx => {
+        ctx.on('list-loaded', () => {
+          ctx.getCommentList().forEach(comment => {
+            const $content = comment.getRender().$content
+            btf.loadLightbox($content.querySelectorAll('img:not([atk-emoticon])'))
+          })
+        })
+      })
     }
 
     if (typeof window.artalkItem === 'object') setTimeout(()=>{initArtalk()},200)
     else {
-      getCSS('!{theme.asset.artalk_css}')
-      typeof Artalk !== 'function' ? getScript('!{theme.asset.artalk_js}').then(initArtalk)
-                                  : setTimeout(()=>{initArtalk()},200)
+      getCSS('!{theme.asset.artalk_css}').then(()=>{
+        typeof Artalk !== 'function' ? getScript('!{theme.asset.artalk_js}').then(initArtalk)
+                            : setTimeout(()=>{initArtalk()},200)
+      })
     }
   }
 
-  document.getElementById('darkmode').addEventListener('click',()=> {
-    if (typeof window.artalkItem !== 'object') return
-    let isDark = document.documentElement.getAttribute('data-theme') === 'dark'
-    window.artalkItem.setDarkMode(!isDark)
-  })
+  function artalkChangeMode (theme) {
+    const artalkWrap = document.getElementById('artalk-wrap')
+    if (!(artalkWrap && artalkWrap.children.length)) return
+    const isDark = theme === 'dark'
+    window.artalkItem.setDarkMode(isDark)
+  }
 
+  btf.addModeChange('artalk', artalkChangeMode)
   
   if ('!{theme.comments.use[0]}' === 'Artalk' || !!{theme.comments.lazyload}) {
     if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('artalk-wrap'), loadArtalk)
