@@ -22,8 +22,18 @@ script.
       ele.setAttribute('crossorigin', 'anonymous')
       ele.setAttribute('id', 'facebook-jssdk')
       document.getElementById('fb-root').insertAdjacentElement('afterbegin',ele)
-    }   
+    }
   }
+
+  function fbModeChange (theme) {
+    const $fbComment = document.getElementsByClassName('fb-comments')[0]
+    if ($fbComment && typeof FB === 'object') {
+      $fbComment.setAttribute('data-colorscheme',theme)
+      FB.XFBML.parse(document.getElementById('post-comment'))
+    }
+  }
+
+  btf.addModeChange('facebook_comments', fbModeChange)
 
   if ('!{theme.comments.use[0]}' === 'Facebook Comments' || !!{theme.comments.lazyload}) {
     if (!{theme.comments.lazyload}) btf.loadComment(document.querySelector('#post-comment .fb-comments'), loadFBComment)

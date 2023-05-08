@@ -75,6 +75,14 @@ $code-block
         &:hover
           border-bottom-color: var(--hl-color)
 
+    &.copy-true
+      user-select: all
+
+      & > table,
+      & > pre
+        display: block !important
+        opacity: 0
+
   .highlight-tools
     position: relative
     display: flex

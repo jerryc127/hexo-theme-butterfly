@@ -51,11 +51,12 @@ script.
     }
   }
 
-  document.getElementById('darkmode').addEventListener('click',()=>{
+  function remarkChangeMode (theme) {
     if (!window.REMARK42) return
-    let theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
     window.REMARK42.changeTheme(theme)
-  })
+  }
+
+  btf.addModeChange('remark42', remarkChangeMode)
 
   if ('!{theme.comments.use[0]}' === 'Remark42' || !!{theme.comments.lazyload}) {
     if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('remark42'), loadRemark42)

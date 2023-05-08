@@ -88,7 +88,7 @@
   }
 
 script.
-  const GLOBAL_CONFIG = { 
+  const GLOBAL_CONFIG = {
     root: '!{config.root}',
     algolia: !{algolia},
     localSearch: !{localSearch},
@@ -127,5 +127,6 @@ script.
     percent: {
       toc: !{theme.toc.scroll_percent},
       rightside: !{theme.rightside_scroll_percent},
-    }
+    },
+    autoDarkmode: !{theme.darkmode.enable && theme.darkmode.autoChangeMode === 1}
   }

@@ -23,7 +23,7 @@ script.
         urls: [window.location.pathname],
         includeReply: false
       }).then(function (res) {
-        countELement.innerText = res[0].count
+        countELement.textContent = res[0].count
       }).catch(function (err) {
         console.error(err);
       });
