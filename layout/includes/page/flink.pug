@@ -2,7 +2,6 @@
   .flink
     - let pageContent = page.content
     if page.flink_url
-      - let pageRandom = page.random
       script.
         (()=>{
           const replaceSymbol = (str) => {
@@ -20,7 +19,7 @@
                 
                 let listResult = ""
                 const lists = str[i].link_list
-                if (!{pageRandom}) {
+                if (!{page.random}) {
                   lists.sort(() => Math.random() - 0.5)
                 }
                 for(let j = 0; j < lists.length; j++){
