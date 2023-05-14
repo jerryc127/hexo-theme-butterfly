@@ -2,6 +2,7 @@
   .flink
     - let pageContent = page.content
     if page.flink_url
+      - let pageRandom = page.random
       script.
         (()=>{
           const replaceSymbol = (str) => {
@@ -19,6 +20,9 @@
                 
                 let listResult = ""
                 const lists = str[i].link_list
+                if (!{pageRandom}) {
+                  lists.sort(() => Math.random() - 0.5)
+                }
                 for(let j = 0; j < lists.length; j++){
                   listResult += `
                     <div class="flink-list-item">
@@ -48,8 +52,8 @@
           - let classDesc = i.class_desc ? `<div class="flink-desc">${i.class_desc}</div>` : ""
 
           - let listResult = ""
-
-          each j in i.link_list
+          - let list = page.random ? i.link_list.slice().sort(() => Math.random() - 0.5) : i.link_list
+          each j in list
             - 
               listResult += `
                 <div class="flink-list-item">
