@@ -40,7 +40,7 @@
             window.lazyLoadInstance && window.lazyLoadInstance.update()
           }
 
-          const linkData = !{JSON.stringify(site.data.link || {})}
+          const linkData = !{JSON.stringify(site.data.link || null)}
           if ("!{page.flink_url}") {
             fetch("!{url_for(page.flink_url)}")
               .then(response => response.json())
