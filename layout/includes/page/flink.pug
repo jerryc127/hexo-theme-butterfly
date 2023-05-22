@@ -1,7 +1,10 @@
 #article-container
   .flink
-    - let pageContent = page.content
-    if page.flink_url || page.random
+    - let { content, random, flink_url } = page
+    - let pageContent = content
+
+    if flink_url || random
+      - const linkData = flink_url ? false : site.data.link || false
       script.
         (()=>{
           const replaceSymbol = (str) => {
@@ -17,7 +20,7 @@
 
               let listResult = ""
               const lists = str[i].link_list
-              if (!{page.random === true}) {
+              if (!{random === true}) {
                 lists.sort(() => Math.random() - 0.5)
               }
               for(let j = 0; j < lists.length; j++){
@@ -40,9 +43,9 @@
             window.lazyLoadInstance && window.lazyLoadInstance.update()
           }
 
-          const linkData = !{JSON.stringify(site.data.link || null)}
-          if ("!{page.flink_url}") {
-            fetch("!{url_for(page.flink_url)}")
+          const linkData = !{JSON.stringify(linkData)}
+          if (!{Boolean(flink_url)}) {
+            fetch("!{url_for(flink_url)}")
               .then(response => response.json())
               .then(add)
           } else if (linkData) {
