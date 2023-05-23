@@ -24,11 +24,8 @@ hexo.extend.helper.register('page_description', function () {
 
 hexo.extend.helper.register('cloudTags', function (options = {}) {
   const env = this
-  let source = options.source
-  const minfontsize = options.minfontsize
-  const maxfontsize = options.maxfontsize
-  const limit = options.limit
-  const unit = options.unit || 'px'
+  let { source, minfontsize, maxfontsize, limit, unit, orderby, order } = options
+  unit = unit || 'px'
 
   let result = ''
   if (limit > 0) {
@@ -43,7 +40,7 @@ hexo.extend.helper.register('cloudTags', function (options = {}) {
   })
 
   const length = sizes.length - 1
-  source.forEach(tag => {
+  source.sort(orderby, order).forEach(tag => {
     const ratio = length ? sizes.indexOf(tag.length) / length : 0
     const size = minfontsize + ((maxfontsize - minfontsize) * ratio)
     let style = `font-size: ${parseFloat(size.toFixed(2))}${unit};`
@@ -54,8 +51,8 @@ hexo.extend.helper.register('cloudTags', function (options = {}) {
   return result
 })
 
-hexo.extend.helper.register('urlNoIndex', function (url = null) {
-  return prettyUrls(url || this.url, { trailing_index: false, trailing_html: false })
+hexo.extend.helper.register('urlNoIndex', function (url = null, trailingIndex = false, trailingHtml = false) {
+  return prettyUrls(url || this.url, { trailing_index: trailingIndex, trailing_html: trailingHtml })
 })
 
 hexo.extend.helper.register('md5', function (path) {
@@ -74,8 +71,8 @@ hexo.extend.helper.register('injectHtml', function (data) {
 hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
   if (page.year) {
     const dateStr = page.month ? `${page.year}-${page.month}` : `${page.year}`
-    const date_format = page.month ? hexo.theme.config.aside.card_archives.format : 'YYYY'
-    return date(dateStr, date_format)
+    const dateFormat = page.month ? hexo.theme.config.aside.card_archives.format : 'YYYY'
+    return date(dateStr, dateFormat)
   }
 
   const defaultTitle = this._p('page.archives')
@@ -94,4 +91,12 @@ hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
   }
 
   return loop(menu) || defaultTitle
+})
+
+hexo.extend.helper.register('isImgOrUrl', function (path) {
+  const imgTestReg = /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/i
+  if (path.indexOf('//') !== -1 || imgTestReg.test(path)) {
+    return true
+  }
+  return false
 })

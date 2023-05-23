@@ -47,3 +47,22 @@
   +maxWidth900()
     #hide-aside-btn
       display: none
+
+  if hexo-config('rightside_scroll_percent')
+    #go-up
+      .scroll-percent
+        display: none
+
+      &.show-percent
+        .scroll-percent
+          display: block
+
+          & + i
+            display: none
+
+      &:hover
+        .scroll-percent
+          display: none
+
+          & + i
+            display: block

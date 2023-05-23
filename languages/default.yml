@@ -45,6 +45,7 @@ search:
   local_search:
     input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}"
+    hits_stats: '${hits} results found'
 
 pagination:
   prev: Previous Post
@@ -117,5 +118,6 @@ Snackbar:
   night_to_day: Light Mode Activated Manually
 
 loading: Loading...
+load_more: Load More
 
 error404: Page not found

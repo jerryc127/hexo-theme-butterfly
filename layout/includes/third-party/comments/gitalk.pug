@@ -1,11 +1,4 @@
 script.
-  function addGitalkSource () {
-    const ele = document.createElement('link')
-    ele.rel = 'stylesheet'
-    ele.href= '!{url_for(theme.asset.gitalk_css)}'
-    document.getElementsByTagName('head')[0].appendChild(ele)
-  }
-
   function loadGitalk () {
     function initGitalk () {
       var gitalk = new Gitalk(Object.assign({
@@ -23,7 +16,7 @@ script.
 
     if (typeof Gitalk === 'function') initGitalk()
     else {
-      addGitalkSource()
+      getCSS('!{url_for(theme.asset.gitalk_css)}')
       getScript('!{url_for(theme.asset.gitalk)}').then(initGitalk)
     }
   }
@@ -31,7 +24,7 @@ script.
   function commentCount(n){
     let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
     if (isCommentCount) {
-      isCommentCount.innerHTML= n
+      isCommentCount.textContent= n
     }
   }
 

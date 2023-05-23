@@ -2,13 +2,6 @@
 
 script.
   function loadDisqusjs () {
-    function addDisqusjsCSS () {
-      const ele = document.createElement('link')
-      ele.rel = 'stylesheet'
-      ele.href= '!{url_for(theme.asset.disqusjs_css)}'
-      document.getElementsByTagName('head')[0].appendChild(ele)
-    }
-
     function initDisqusjs () {
       window.disqusjs = null
       disqusjs = new DisqusJS(Object.assign({
@@ -30,11 +23,11 @@ script.
     }
 
 
-    document.getElementById('darkmode').addEventListener('click', themeChange)
+    btf.addModeChange('disqusjs', themeChange)
 
     if (window.disqusJsLoad) initDisqusjs()
     else {
-      addDisqusjsCSS()
+      getCSS('!{url_for(theme.asset.disqusjs_css)}')
       getScript('!{url_for(theme.asset.disqusjs)}').then(initDisqusjs)
       window.disqusJsLoad = true
     }

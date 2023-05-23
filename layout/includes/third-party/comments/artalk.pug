@@ -1,13 +1,6 @@
 - const { server, site, option } = theme.artalk
 
 script.
-  function addArtalkSource () {
-    const ele = document.createElement('link')
-    ele.rel = 'stylesheet'
-    ele.href= '!{theme.asset.artalk_css}'
-    document.getElementsByTagName('head')[0].appendChild(ele)
-  }
-
   function loadArtalk () {
     function initArtalk () {
       window.artalkItem = new Artalk(Object.assign({
@@ -18,22 +11,35 @@ script.
         darkMode: document.documentElement.getAttribute('data-theme') === 'dark',
         countEl: '.artalk-count'
       },!{JSON.stringify(option)}))
+
+      if (GLOBAL_CONFIG.lightbox === 'null') return
+      window.artalkItem.use(ctx => {
+        ctx.on('list-loaded', () => {
+          ctx.getCommentList().forEach(comment => {
+            const $content = comment.getRender().$content
+            btf.loadLightbox($content.querySelectorAll('img:not([atk-emoticon])'))
+          })
+        })
+      })
     }
 
     if (typeof window.artalkItem === 'object') setTimeout(()=>{initArtalk()},200)
     else {
-      addArtalkSource()
-      typeof Artalk !== 'function' ? getScript('!{theme.asset.artalk_js}').then(initArtalk)
-                                  : setTimeout(()=>{initArtalk()},200)
+      getCSS('!{theme.asset.artalk_css}').then(()=>{
+        typeof Artalk !== 'function' ? getScript('!{theme.asset.artalk_js}').then(initArtalk)
+                            : setTimeout(()=>{initArtalk()},200)
+      })
     }
   }
 
-  document.getElementById('darkmode').addEventListener('click',()=> {
-    if (typeof window.artalkItem !== 'object') return
-    let isDark = document.documentElement.getAttribute('data-theme') === 'dark'
-    window.artalkItem.setDarkMode(!isDark)
-  })
+  function artalkChangeMode (theme) {
+    const artalkWrap = document.getElementById('artalk-wrap')
+    if (!(artalkWrap && artalkWrap.children.length)) return
+    const isDark = theme === 'dark'
+    window.artalkItem.setDarkMode(isDark)
+  }
 
+  btf.addModeChange('artalk', artalkChangeMode)
   
   if ('!{theme.comments.use[0]}' === 'Artalk' || !!{theme.comments.lazyload}) {
     if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('artalk-wrap'), loadArtalk)

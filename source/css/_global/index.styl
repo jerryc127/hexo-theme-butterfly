@@ -6,7 +6,7 @@
   --hr-before-color: lighten($theme-hr-color, 30%)
   --search-bg: $search-bg
   --search-input-color: $search-input-color
-  --search-result-title: $search-result-title
+  --search-a-color: $search-a-color
   --preloader-bg: $preloader-bg
   --preloader-color: $preloader-word-color
   --tab-border-color: $tab-border-color
@@ -33,6 +33,7 @@
   --pseudo-hover: $pseudo-hover
   --headline-presudo: #a0a0a0
   --scrollbar-color: $scrollbar-color
+  --default-bg-color: $theme-color
 
 body
   position: relative
@@ -49,8 +50,8 @@ body
 
 // scrollbar - chrome/safari
 *::-webkit-scrollbar
-  width: 8px
-  height: 8px
+  width: 5px
+  height: 5px
 
 *::-webkit-scrollbar-thumb
   background: var(--scrollbar-color)
@@ -165,16 +166,13 @@ a
 if $site-name-font
   #site-title,
   #site-subtitle,
-  #site-name,
+  .site-name,
   #aside-content .author-info__name,
   #aside-content .author-info__description
     font-family: $site-name-font
 
 .is-center
   text-align: center
-
-.copy-true
-  user-select: all
 
 .pull-left
   float: left

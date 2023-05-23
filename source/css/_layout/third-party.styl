@@ -25,11 +25,8 @@
   --waline-theme-color: $button-bg
   --waline-active-color: $button-hover-color
 
-  .vuser
-    transition: all .5s
-
-    &:hover
-      transform: rotate(360deg)
+  .wl-comment-actions > button:not(last-child)
+    padding-right: 4px
 
 if hexo-config('valine.bg')
   #vcomment
@@ -84,12 +81,16 @@ if hexo-config('waline.bg')
     &::-webkit-scrollbar
       display: none
 
-// mathjax
-mjx-container[display],
-.has-jax
+// Mathjax
+.mathjax-overflow
   overflow-x: auto
   overflow-y: hidden
-  line-height: normal !important
+
+span.mathjax-overflow
+  display: inline-block
+  padding: 0 2px
+  max-width: 100%
+  vertical-align: bottom
 
 .aplayer
   color: $font-black
@@ -113,3 +114,15 @@ mjx-container[display],
 
 .snackbar-css
   border-radius: 5px !important
+
+.abc-music-sheet
+  margin: 0 0 20px
+  opacity: 0
+  transition: opacity .3s
+
+  &.abcjs-container
+    opacity: 1
+
++maxWidth768()
+  .fancybox__toolbar__column.is-middle
+    display: none

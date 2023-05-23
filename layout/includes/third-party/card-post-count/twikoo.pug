@@ -18,7 +18,7 @@ script.
           includeReply: false
         }).then(function (res) {
           document.querySelectorAll('#recent-posts .twikoo-count').forEach((item,index) => {
-            item.innerText = res[index].count
+            item.textContent = res[index].count
           })
         }).catch(function (err) {
           console.log(err)

@@ -102,31 +102,35 @@ beautify()
     font-family: Monaco, 'Ubuntu Mono', monospace
     line-height: 1em
 
-  if hexo-config('anchor')
+  if hexo-config('anchor.button.enable')
     a.headerlink
       &:after
         @extend .fontawesomeIcon
         float: right
         color: var(--headline-presudo)
-        content: '\f0c1'
+        content: $archor-button-icon
         font-size: .95em
-        opacity: 0
         transition: all .3s
 
       &:hover
         &:after
           color: var(--pseudo-hover)
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6
-      &:hover
-        a.headerlink
-          &:after
-            opacity: 1
+    if !hexo-config('anchor.button.always_show')
+      a.headerlink
+        &:after
+          opacity: 0
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6
+        &:hover
+          a.headerlink
+            &:after
+              opacity: 1
 
   ol,
   ul
@@ -140,15 +144,26 @@ beautify()
     p
       margin: 0 0 8px
 
+  > :last-child
+    margin-bottom: 0 !important
+
+  hr
+    margin: 20px 0
+
   if hexo-config('beautify.enable')
     if hexo-config('beautify.field') == 'site'
       beautify()
     else if hexo-config('beautify.field') == 'post'
       &.post-content
         beautify()
+  else
+    hr
+      margin: 20px 0
+      border: 1px inset
+      width 100%
 
-  > :last-child
-    margin-bottom: 0 !important
+      &:before
+        content: none
 
 #post
   .tag_share

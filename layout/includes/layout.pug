@@ -8,8 +8,8 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
   head
     include ./head.pug
   body
-    if theme.preloader
-      !=partial('includes/loading/loading', {}, {cache: true})
+    if theme.preloader.enable
+      !=partial('includes/loading/index', {}, {cache: true})
 
     if theme.background
       #web_bg
@@ -33,7 +33,7 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
           if (footerBg === true)
             - var footer_bg = bg_img
           else
-            - var footer_bg = theme.footer_bg.indexOf('/') !== -1 ? `background-image: url('${url_for(footerBg)}')` : `background: ${footerBg}`
+            - var footer_bg = isImgOrUrl(theme.footer_bg) ? `background-image: url('${url_for(footerBg)}')` : `background: ${footerBg}`
         else
           - var footer_bg = ''
 
@@ -44,5 +44,4 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
       include ./404.pug
 
     include ./rightside.pug
-    !=partial('includes/third-party/search/index', {}, {cache: true})
     include ./additional-js.pug

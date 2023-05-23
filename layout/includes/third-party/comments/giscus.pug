@@ -1,16 +1,20 @@
-- const { repo, repo_id, category_id, option } = theme.giscus
-- const themes = theme.giscus.theme
-script.
-  function loadGiscus () {
-    let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? '!{themes.dark}' : '!{themes.light}'
+- const { repo, repo_id, category_id, theme:themes, option } = theme.giscus
+- const giscusUrl = theme.asset.giscus || 'https://giscus.app/client.js'
+- const giscusOriginUrl = new URL(giscusUrl).origin
 
+script.
+  function getGiscusTheme (theme) {
+    return theme === 'dark' ? '!{themes.dark}' : '!{themes.light}'
+  }
+
+  function loadGiscus () {
     const config = Object.assign({
-      src: 'https://giscus.app/client.js',
+      src: '!{giscusUrl}',
       'data-repo': '!{repo}',
       'data-repo-id': '!{repo_id}',
       'data-category-id': '!{category_id}',
       'data-mapping': 'pathname',
-      'data-theme': nowTheme,
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
       'data-reactions-enabled': '1',
       crossorigin: 'anonymous',
       async: true
@@ -23,21 +27,21 @@ script.
     document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
   }
 
-  function changeGiscusTheme () {
-    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '!{themes.dark}' : '!{themes.light}'
-
+  function changeGiscusTheme (theme) {
     function sendMessage(message) {
-      const iframe = document.querySelector('iframe.giscus-frame');
-      if (!iframe) return;
-      iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      const iframe = document.querySelector('iframe.giscus-frame')
+      if (!iframe) return
+      iframe.contentWindow.postMessage({ giscus: message }, '!{giscusOriginUrl}')
     }
 
     sendMessage({
       setConfig: {
-        theme: theme
+        theme: getGiscusTheme(theme)
       }
     });
   }
+
+  btf.addModeChange('giscus', changeGiscusTheme)
 
   if ('!{theme.comments.use[0]}' === 'Giscus' || !!{theme.comments.lazyload}) {
     if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)

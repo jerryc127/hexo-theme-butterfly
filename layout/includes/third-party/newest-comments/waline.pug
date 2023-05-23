@@ -60,11 +60,11 @@ script.
           generateHtml(walineArray)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
-          $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
+          $dom.textContent= "!{_p('aside.card_newest_comments.error')}"
         }) 
       }
 
-      if (typeof Waline === 'function') loadWaline() 
+      if (typeof Waline === 'object') loadWaline()
       else getScript('!{url_for(theme.asset.waline_js)}').then(loadWaline)
     }
 

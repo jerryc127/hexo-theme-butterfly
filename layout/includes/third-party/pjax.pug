@@ -7,7 +7,7 @@ if theme.pjax.exclude
 
 - let choose = theme.comments.use
 if choose
-  if theme.Open_Graph_meta && (choose.includes('Livere') || choose.includes('Utterances') || choose.includes('Giscus'))
+  if theme.Open_Graph_meta.enable && (choose.includes('Livere') || choose.includes('Utterances') || choose.includes('Giscus'))
     - pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
   if choose.includes('Utterances') || choose.includes('Giscus')
     - pjaxSelectors.unshift('link[rel="canonical"]')
@@ -30,7 +30,6 @@ script.
     window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
     window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
 
-    typeof preloader === 'object' && preloader.initLoading()
     document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
     
     if (window.aplayers) {
@@ -76,8 +75,6 @@ script.
 
     // prismjs
     typeof Prism === 'object' && Prism.highlightAll()
-
-    typeof preloader === 'object' && preloader.endLoading()
   })
 
   document.addEventListener('pjax:error', (e) => {

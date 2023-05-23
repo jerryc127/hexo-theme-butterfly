@@ -52,7 +52,7 @@
         transition: all .3s
 
         &:hover
-          transform: rotate(540deg)
+          transform: rotate(360deg)
 
     #card-info-btn
       display: block
@@ -115,7 +115,7 @@
         width: w = 4.2em
         height: w
 
-        & > img
+        :first-child
           @extend .imgHover
 
       .content
@@ -291,8 +291,8 @@
           background: $theme-toc-color
           color: $toc-active-color
 
-  :only-child
-    > .card-widget
+  .sticky_layout:only-child
+    > :first-child
       margin-top: 0
 
   .card-more-btn

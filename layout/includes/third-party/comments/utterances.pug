@@ -12,10 +12,10 @@ script.
     document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
   }
 
-  function utterancesTheme () {
+  function utterancesTheme (theme) {
     const iframe = document.querySelector('.utterances-frame')
     if (iframe) {
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
+      const theme = theme === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
       const message = {
         type: 'set-theme',
         theme: theme
@@ -23,6 +23,8 @@ script.
       iframe.contentWindow.postMessage(message, 'https://utteranc.es');
     }
   }
+
+  btf.addModeChange('utterances', utterancesTheme)
 
   if ('!{theme.comments.use[0]}' === 'Utterances' || !!{theme.comments.lazyload}) {
     if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
