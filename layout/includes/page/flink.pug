@@ -1,7 +1,10 @@
 #article-container
   .flink
-    - let pageContent = page.content
-    if page.flink_url
+    - let { content, random, flink_url } = page
+    - let pageContent = content
+
+    if flink_url || random
+      - const linkData = flink_url ? false : site.data.link || false
       script.
         (()=>{
           const replaceSymbol = (str) => {
@@ -9,35 +12,45 @@
           }
 
           let result = ""
-          fetch("!{url_for(page.flink_url)}")
-            .then(response => response.json())
-            .then(str => {
-              for(let i = 0; i < str.length; i++){
-                const replaceClassName = replaceSymbol(str[i].class_name)
-                const className = str[i].class_name ? `<h2 id="${replaceClassName}"><a href="#${replaceClassName}" class="headerlink" title="${str[i].class_name}"></a>${str[i].class_name}</h2>` : ""
-                const classDesc = str[i].class_desc ? `<div class="flink-desc">${str[i].class_desc}</div>` : ""
-                
-                let listResult = ""
-                const lists = str[i].link_list
-                for(let j = 0; j < lists.length; j++){
-                  listResult += `
-                    <div class="flink-list-item">
-                      <a href="${lists[j].link}" title="${lists[j].name}" target="_blank">
-                        <div class="flink-item-icon">
-                          <img class="no-lightbox" src="${lists[j].avatar}" onerror='this.onerror=null;this.src="!{url_for(theme.error_img.flink)}"' alt="${lists[j].name}" />
-                        </div>
-                        <div class="flink-item-name">${lists[j].name}</div> 
-                        <div class="flink-item-desc" title="${lists[j].descr}">${lists[j].descr}</div>
-                      </a>
-                    </div>`
-                }
+          const add = (str) => {
+            for(let i = 0; i < str.length; i++){
+              const replaceClassName = replaceSymbol(str[i].class_name)
+              const className = str[i].class_name ? `<h2 id="${replaceClassName}"><a href="#${replaceClassName}" class="headerlink" title="${str[i].class_name}"></a>${str[i].class_name}</h2>` : ""
+              const classDesc = str[i].class_desc ? `<div class="flink-desc">${str[i].class_desc}</div>` : ""
 
-                result += `${className}${classDesc} <div class="flink-list">${listResult}</div>`
+              let listResult = ""
+              const lists = str[i].link_list
+              if (!{random === true}) {
+                lists.sort(() => Math.random() - 0.5)
+              }
+              for(let j = 0; j < lists.length; j++){
+                listResult += `
+                  <div class="flink-list-item">
+                    <a href="${lists[j].link}" title="${lists[j].name}" target="_blank">
+                      <div class="flink-item-icon">
+                        <img class="no-lightbox" src="${lists[j].avatar}" onerror='this.onerror=null;this.src="!{url_for(theme.error_img.flink)}"' alt="${lists[j].name}" />
+                      </div>
+                      <div class="flink-item-name">${lists[j].name}</div> 
+                      <div class="flink-item-desc" title="${lists[j].descr}">${lists[j].descr}</div>
+                    </a>
+                  </div>`
               }
 
-              document.querySelector(".flink").insertAdjacentHTML("afterbegin", result)
-              window.lazyLoadInstance && window.lazyLoadInstance.update()
-            })
+              result += `${className}${classDesc} <div class="flink-list">${listResult}</div>`
+            }
+
+            document.querySelector(".flink").insertAdjacentHTML("afterbegin", result)
+            window.lazyLoadInstance && window.lazyLoadInstance.update()
+          }
+
+          const linkData = !{JSON.stringify(linkData)}
+          if (!{Boolean(flink_url)}) {
+            fetch("!{url_for(flink_url)}")
+              .then(response => response.json())
+              .then(add)
+          } else if (linkData) {
+            add(linkData)
+          }
         })()
 
     else
@@ -67,4 +80,3 @@
 
         - pageContent = result + pageContent
     != pageContent
-
