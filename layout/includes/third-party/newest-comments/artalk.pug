@@ -1,6 +1,6 @@
 - const { server, site, option } = theme.artalk
 - const avatarCdn = option !== null && option.gravatar && option.gravatar.mirror
-- const avatarDefault = option !== null && option.gravatar && option.gravatar.default
+- const avatarDefault = option !== null && option.gravatar && (option.gravatar.params || option.gravatar.default)
 
 script.
   window.addEventListener('load', () => {
@@ -72,11 +72,13 @@ script.
         const res = await fetch('!{server}/api/stat', headerList)
         const result = await res.json()
         const avatarStr = await getSetting()
-        const avatarCdn = !{avatarCdn} || avatarStr.data.frontend_conf.gravatar.mirror
-        const avatarDefault = !{avatarDefault} || avatarStr.data.frontend_conf.gravatar.default
+        const { mirror, params, default:defaults } = avatarStr.data.frontend_conf.gravatar
+        const avatarCdn = !{avatarCdn} || mirror
+        let avatarDefault = !{avatarDefault} || params || defaults
+        avatarDefault = avatarDefault.startsWith('d=') ? avatarDefault : `d=${avatarDefault}`
         const artalk = result.data.map(function (e) {
           return {
-            'avatar': `${avatarCdn}${e.email_encrypted}?d=${avatarDefault}`,
+            'avatar': `${avatarCdn}${e.email_encrypted}?${avatarDefault}`,
             'content': changeContent(e.content_marked),
             'nick': e.nick,
             'url': e.page_url,

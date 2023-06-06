@@ -65,6 +65,9 @@ beautify()
 
   ul > li
     list-style-type: circle
+  
+  hr
+    @extend .custom-hr
 
 #article-container
   word-wrap: break-word
@@ -156,14 +159,6 @@ beautify()
     else if hexo-config('beautify.field') == 'post'
       &.post-content
         beautify()
-  else
-    hr
-      margin: 20px 0
-      border: 1px inset
-      width 100%
-
-      &:before
-        content: none
 
 #post
   .tag_share

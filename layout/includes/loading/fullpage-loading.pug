@@ -9,21 +9,25 @@
     .loading-word= _p('loading')
 
 script.
-  const preloader = {
-    endLoading: () => {
-      document.body.style.overflow = '';
-      document.getElementById('loading-box').classList.add("loaded")
-    },
-    initLoading: () => {
-      document.body.style.overflow = 'hidden';
-      document.getElementById('loading-box').classList.remove("loaded")
+  (()=>{
+    const $loadingBox = document.getElementById('loading-box')
+    const $body = document.body
+    const preloader = {
+      endLoading: () => {
+        $body.style.overflow = ''
+        $loadingBox.classList.add('loaded')
+      },
+      initLoading: () => {
+        $body.style.overflow = 'hidden'
+        $loadingBox.classList.remove('loaded')
+      }
     }
-  }
 
-  preloader.initLoading()
-  window.addEventListener('load',()=> { preloader.endLoading() })
+    preloader.initLoading()
+    window.addEventListener('load',() => { preloader.endLoading() })
 
-  if (!{theme.pjax && theme.pjax.enable}) {
-    document.addEventListener('pjax:send', () => { preloader.initLoading() })
-    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
-  }
+    if (!{theme.pjax && theme.pjax.enable}) {
+      document.addEventListener('pjax:send', () => { preloader.initLoading() })
+      document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+    }
+  })()

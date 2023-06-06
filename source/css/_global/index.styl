@@ -34,6 +34,8 @@
   --headline-presudo: #a0a0a0
   --scrollbar-color: $scrollbar-color
   --default-bg-color: $theme-color
+  --zoom-bg: #fff
+  --mark-bg: alpha($dark-black, .3)
 
 body
   position: relative
@@ -95,30 +97,6 @@ h6
 
 *
   box-sizing: border-box
-
-hr
-  position: relative
-  margin: 40px auto
-  border: 2px dashed var(--hr-border)
-
-  if hexo-config('hr_icon.enable')
-    width: calc(100% - 4px)
-
-    &:hover
-      &:before
-        left: calc(95% - 20px)
-
-    &:before
-      position: absolute
-      top: $hr-icon-top
-      left: 5%
-      z-index: 1
-      color: var(--hr-before-color)
-      content: $hr-icon
-      font-size: 20px
-      line-height: 1
-      transition: all 1s ease-in-out
-      @extend .fontawesomeIcon
 
 .table-wrap
   overflow-x: scroll

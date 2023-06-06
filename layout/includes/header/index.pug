@@ -44,7 +44,7 @@ header#page-header(class=`${isHomeClass+isFixedClass}` style=bg_img)
             span#subtitle
         if(theme.social)
           #site_social_icons
-            !=fragment_cache('social', function(){return partial('includes/header/social')})
+            !=partial('includes/header/social', {}, {cache: true})
       #scroll-down
         i.fas.fa-angle-down.scroll-down-effects
     else
