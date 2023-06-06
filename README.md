@@ -1,7 +1,5 @@
 <div align="right">
-  Language:
-  🇺🇸
-  <a title="Chinese" href="/README_CN.md">🇨🇳</a>
+<a title="Chinese" href="/README_CN.md">中文</a>
 </div>
 
 # hexo-theme-butterfly
@@ -14,7 +12,7 @@
 
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/theme-butterfly-readme.png)
 
-Demo: 👍 [Butterfly](https://butterfly.js.org/)  ||   🤞 [CrazyWong](https://crazywong.com/)
+Demo: 👍 [Butterfly](https://butterfly.js.org/)  ||   🤞 [CrazyWong](https://blog.crazywong.com/)
 
 Docs: 📖 [Butterfly Docs](https://butterfly.js.org/posts/21cfbf15/)
 
@@ -62,17 +60,17 @@ npm i hexo-theme-butterfly
 
 - [x] Card UI Design
 - [X] Support sub-menu
-- [x] Two Column designs
+- [x] Two-column layout
 - [x] Responsive Web Design
 - [x] Dark Mode
 - [x] Pjax
 - [x] Read Mode
 - [x] Conversion between Traditional and Simplified Chinese
 - [X] TOC catalog is available for both computers and mobile phones
-- [X] Color themes (darker/pale night/light/ocean/mac/mac light), support custom colors
+- [X] Built-in Syntax Highlighting Themes (darker/pale night/light/ocean/mac/mac light), also support customization
 - [X] Code Blocks (Display code language/close or expand Code Blocks/Copy Button/word wrap)
 - [X] Disable copy/Add a Copyright Notice to the Copied Text
-- [X] Search (Algolia SearchZ/Local Search)
+- [X] Search (Algolia Search/Local Search)
 - [x] Mathjax and Katex
 - [x] Built-in 404 page
 - [x] WordCount

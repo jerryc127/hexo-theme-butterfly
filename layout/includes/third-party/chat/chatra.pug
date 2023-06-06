@@ -1,33 +1,50 @@
 //- https://chatra.io/help/api/
 script.
-  (function(d, w, c) {
-      w.ChatraID = '#{theme.chatra.id}';
-      var s = d.createElement('script');
-      w[c] = w[c] || function() {
-          (w[c].q = w[c].q || []).push(arguments);
-      };
-      s.async = true;
-      s.src = 'https://call.chatra.io/chatra.js';
-      if (d.head) d.head.appendChild(s);
-  })(document, window, 'Chatra');
+  (() => {
+    const isChatBtn = !{theme.chat_btn}
+    const isChatHideShow = !{theme.chat_hide_show}
 
-  if (!{theme.chat_btn}) {
-    var chatBtnFn = () => {
-      var chatBtn = document.getElementById("chat_btn")
-      chatBtn.addEventListener("click", function(){
-        Chatra('openChat')
-      });
-    }
-    chatBtnFn()
-  } else {
-    if (!{theme.chat_hide_show}) {
-      function chatBtnHide () {
+    if (isChatBtn) {
+      const close = () => {
+        Chatra('minimizeWidget')
         Chatra('hide')
       }
-      function chatBtnShow () {
+
+      const open = () => {
+        Chatra('openChat', true)
         Chatra('show')
       }
+
+      window.ChatraSetup = {
+        startHidden: true
+      }
+    
+      window.chatBtnFn = () => {
+        const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+        isShow ? close() : open()
+      }
+    } else if (isChatHideShow) {
+      window.chatBtn = {
+        hide: () => {
+          Chatra('hide')
+        },
+        show: () => {
+          Chatra('show')
+        }
+      }
     }
-  }
+
+    (function(d, w, c) {
+      w.ChatraID = '#{theme.chatra.id}'
+      var s = d.createElement('script')
+      w[c] = w[c] || function() {
+          (w[c].q = w[c].q || []).push(arguments)
+      }
+      s.async = true
+      s.src = 'https://call.chatra.io/chatra.js'
+      if (d.head) d.head.appendChild(s)
+    })(document, window, 'Chatra')
+
+  })()
 
 

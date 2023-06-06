@@ -3,7 +3,7 @@ script.
   if (!window.MathJax) {
     window.MathJax = {
       tex: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]],
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
         tags: 'ams'
       },
       chtml: {
@@ -21,16 +21,7 @@ script.
               math.end = {node: text, delim: '', n: 0}
               doc.math.push(math)
             }
-          }, ''],
-          insertScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              if (node.hasAttribute('display')) {
-                btf.wrap(node, 'div', { class: 'mathjax-overflow' })
-              } else {
-                btf.wrap(node, 'span', { class: 'mathjax-overflow' })
-              }
-            });
-          }, '', false]
+          }, '']
         }
       }
     }

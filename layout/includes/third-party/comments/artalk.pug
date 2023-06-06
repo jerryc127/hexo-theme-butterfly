@@ -23,11 +23,10 @@ script.
       })
     }
 
-    if (typeof window.artalkItem === 'object') setTimeout(()=>{initArtalk()},200)
+    if (typeof window.artalkItem === 'object') initArtalk()
     else {
       getCSS('!{theme.asset.artalk_css}').then(()=>{
-        typeof Artalk !== 'function' ? getScript('!{theme.asset.artalk_js}').then(initArtalk)
-                            : setTimeout(()=>{initArtalk()},200)
+        getScript('!{theme.asset.artalk_js}').then(initArtalk)
       })
     }
   }

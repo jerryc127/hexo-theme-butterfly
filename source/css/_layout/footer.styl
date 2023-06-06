@@ -5,12 +5,12 @@
   background-position: bottom
   background-size: cover
 
-  if hexo-config('footer_bg') != false
+  if hexo-config('footer_bg') != false && hexo-config('mask.footer')
     &:before
       position: absolute
       width: 100%
       height: 100%
-      background-color: alpha($dark-black, .5)
+      background-color: var(--mark-bg)
       content: ''
 
 #footer-wrap

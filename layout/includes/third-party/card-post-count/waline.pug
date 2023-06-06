@@ -1,17 +1,19 @@
 script.
   (() => {
-    function loadWaline () {
-      function initWaline () {
-        let initData = {
-          el: null,
-          serverURL: '!{theme.waline.serverURL}',
-          comment: true
-        }
-        const waline = Waline.init(initData)
-      }
+    async function loadWaline () {
+      try {
+        const eleGroup = document.querySelectorAll('#recent-posts .waline-comment-count')
+        const keyArray = Array.from(eleGroup).map(i => i.getAttribute('data-path'))
 
-      if (typeof Waline === 'object') initWaline() 
-      else getScript('!{url_for(theme.asset.waline_js)}').then(initWaline)
+        const res = await fetch(`!{theme.waline.serverURL}/api/comment?type=count&url=${keyArray}`, { method: 'GET' })
+        const result = await res.json()
+        
+        result.data.forEach((count, index) => {
+          eleGroup[index].textContent = count
+        })
+      } catch (err) {
+        console.error(err)
+      }
     }
 
     window.pjax ? loadWaline() : window.addEventListener('load', loadWaline)

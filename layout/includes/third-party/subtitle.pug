@@ -86,7 +86,7 @@ case source
         if (!{effect}) {
           typedJSFn.init(!{JSON.stringify(subContent)})
         } else {
-          document.getElementById("subtitle").textContent = '!{subContent[0]}'
+          document.getElementById("subtitle").textContent = !{JSON.stringify(subContent[0])}
         }
       }
       typedJSFn.run(subtitleType)

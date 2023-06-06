@@ -1,11 +1,11 @@
 algolia_search:
   name: algoliasearch
   file: dist/algoliasearch-lite.umd.js
-  version: 4.17.0
+  version: 4.17.1
 instantsearch:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.55.0
+  version: 4.56.1
 pjax:
   name: pjax
   file: pjax.min.js
@@ -42,12 +42,12 @@ waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 2.15.4
+  version: 2.15.5
 waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 2.15.4
+  version: 2.15.5
 sharejs:
   name: butterfly-extsrc
   file: sharejs/dist/js/social-share.min.js
@@ -73,7 +73,7 @@ katex_copytex:
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
-  version: 9.4.3
+  version: 10.2.2
 canvas_ribbon:
   name: butterfly-extsrc
   file: dist/canvas-ribbon.min.js
@@ -121,12 +121,12 @@ pangu:
 fancybox_css:
   name: '@fancyapps/ui'
   file: dist/fancybox/fancybox.css
-  version: 5.0.17
+  version: 5.0.19
   other_name: fancyapps-ui
 fancybox:
   name: '@fancyapps/ui'
   file: dist/fancybox/fancybox.umd.js
-  version: 5.0.17
+  version: 5.0.19
   other_name: fancyapps-ui
 medium_zoom:
   name: medium-zoom
@@ -183,11 +183,11 @@ prismjs_autoloader:
 artalk_js:
   name: artalk
   file: dist/Artalk.js
-  version: 2.5.4
+  version: 2.5.5
 artalk_css:
   name: artalk
   file: dist/Artalk.css
-  version: 2.5.4
+  version: 2.5.5
 pace_js:
   name: pace-js
   other_name: pace
@@ -202,12 +202,12 @@ docsearch_js:
   name: '@docsearch/js'
   other_name: docsearch-js
   file: dist/umd/index.js
-  version: 3.3.4
+  version: 3.4.0
 docsearch_css:
   name: '@docsearch/css'
   other_name: docsearch-css
   file: dist/style.css
-  version: 3.3.4
+  version: 3.4.0
 abcjs_basic_js:
   name: abcjs
   file: dist/abcjs-basic-min.js

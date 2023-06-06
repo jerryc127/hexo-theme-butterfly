@@ -38,6 +38,10 @@
 
       &:hover
         color: $search-color
+  
+  hr
+    margin: 20px auto
+    @extend .custom-hr
 
 #search-mask
   position: fixed
@@ -48,3 +52,9 @@
   z-index: 1000
   display: none
   background: rgba($dark-black, .6)
+
+if hexo-config('algolia_search.enable')
+  @require 'algolia'
+
+if hexo-config('local_search.enable')
+  @require 'local-search'

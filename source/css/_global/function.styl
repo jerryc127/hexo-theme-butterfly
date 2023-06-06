@@ -72,6 +72,30 @@
       cursor: pointer
       transition: all .3s ease-out
 
+.custom-hr
+  position: relative
+  margin: 40px auto
+  border: 2px dashed var(--hr-border)
+
+  if hexo-config('hr_icon.enable')
+    width: calc(100% - 4px)
+
+    &:hover
+      &:before
+        left: calc(95% - 20px)
+
+    &:before
+      position: absolute
+      top: $hr-icon-top
+      left: 5%
+      z-index: 1
+      color: var(--hr-before-color)
+      content: $hr-icon
+      font-size: 20px
+      line-height: 1
+      transition: all 1s ease-in-out
+      @extend .fontawesomeIcon
+
 maxWidth600()
   @media screen and (max-width: 600px)
     {block}

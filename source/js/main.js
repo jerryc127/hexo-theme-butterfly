@@ -301,8 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let initTop = 0
     let isChatShow = true
     const $header = document.getElementById('page-header')
-    const isChatBtnHide = typeof chatBtnHide === 'function'
-    const isChatBtnShow = typeof chatBtnShow === 'function'
+    const isChatBtn = typeof chatBtn !== 'undefined'
     const isShowPercent = GLOBAL_CONFIG.percent.rightside
 
     // 當滾動條小于 56 的時候
@@ -324,14 +323,14 @@ document.addEventListener('DOMContentLoaded', function () {
       if (currentTop > 56) {
         if (isDown) {
           if ($header.classList.contains('nav-visible')) $header.classList.remove('nav-visible')
-          if (isChatBtnShow && isChatShow === true) {
-            chatBtnHide()
+          if (isChatBtn && isChatShow === true) {
+            window.chatBtn.hide()
             isChatShow = false
           }
         } else {
           if (!$header.classList.contains('nav-visible')) $header.classList.add('nav-visible')
-          if (isChatBtnHide && isChatShow === false) {
-            chatBtnShow()
+          if (isChatBtn && isChatShow === false) {
+            window.chatBtn.show()
             isChatShow = true
           }
         }
@@ -545,10 +544,12 @@ document.addEventListener('DOMContentLoaded', function () {
       saveToLocal.set('aside-status', saveStatus, 2)
       $htmlDom.toggle('hide-aside')
     },
-
     runMobileToc: () => {
       if (window.getComputedStyle(document.getElementById('card-toc')).getPropertyValue('opacity') === '0') window.mobileToc.open()
       else window.mobileToc.close()
+    },
+    toggleChatDisplay: () => {
+      window.chatBtnFn()
     }
   }
 
@@ -572,6 +573,9 @@ document.addEventListener('DOMContentLoaded', function () {
         break
       case 'hide-aside-btn':
         rightSideFn.hideAsideBtn()
+        break
+      case 'chat-btn':
+        rightSideFn.toggleChatDisplay()
         break
       default:
         break

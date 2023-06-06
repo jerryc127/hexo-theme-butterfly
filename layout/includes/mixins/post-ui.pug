@@ -70,7 +70,7 @@ mixin postUI(posts)
                 block
               span.article-meta-label= ' ' + _p('card_post_count')
           
-          if theme.comments.card_post_count
+          if theme.comments.card_post_count && theme.comments.use
             case theme.comments.use[0]
               when 'Disqus'
                 +countBlockInIndex
@@ -89,7 +89,7 @@ mixin postUI(posts)
               when 'Waline'
                 +countBlockInIndex
                   a(href=url_for(link) + '#post-comment')
-                    span.waline-comment-count(id=url_for(link))
+                    span.waline-comment-count(data-path=url_for(link))
                       i.fa-solid.fa-spinner.fa-spin
               when 'Twikoo'
                 +countBlockInIndex

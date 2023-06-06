@@ -38,10 +38,10 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --hlexpand-bg: linear-gradient(180deg, rgba(lighten(#121212, 2), .6), rgba(lighten(#121212, 2), .9))
     --scrollbar-color: lighten(#121212, 5)
     --timeline-bg: lighten(#121212, 5)
+    --zoom-bg: #121212
+    --mark-bg: alpha($dark-black, .6)
 
-    #web_bg:before,
-    #footer:before,
-    #page-header:before
+    #web_bg:before
       position: absolute
       width: 100%
       height: 100%

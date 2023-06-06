@@ -1,41 +1,45 @@
 script(src=`//code.tidio.co/${theme.tidio.public_key}.js` async)
+script.
+  (() => {
+    const isChatBtn = !{theme.chat_btn}
+    const isChatHideShow = !{theme.chat_hide_show}
 
-if theme.chat_btn
-  script.
-    function onTidioChatApiReady() {
-      window.tidioChatApi.hide();
-      window.tidioChatApi.on("close", function() {
-        window.tidioChatApi.hide();
-      });
-    }
-    if (window.tidioChatApi) {
-      window.tidioChatApi.on("ready", onTidioChatApiReady);
-    } else {
-      document.addEventListener("tidioChat-ready", onTidioChatApiReady);
-    }
+    if (isChatBtn) {
+      let isShow = false
+      const close = () => {
+        window.tidioChatApi.hide()
+        isShow = false
+      }
+      
+      const open = () => {
+        window.tidioChatApi.open()
+        window.tidioChatApi.show()
+        isShow = true
+      }
 
-    var chatBtnFn = () => {
-      document.getElementById("chat_btn").addEventListener("click", function(){
-        window.tidioChatApi.show();
-        window.tidioChatApi.open();
-      });
-    }
-    chatBtnFn()
-
-else if theme.chat_hide_show
-  script.
-    function chatBtnHide () {
+      const onTidioChatApiReady = () => {
+        window.tidioChatApi.hide()
+        window.tidioChatApi.on("close", close)
+      }
       if (window.tidioChatApi) {
-        //- window.tidioChatApi.hide();
-        document.getElementById('tidio-chat').style.display= 'none'
+        window.tidioChatApi.on("ready", onTidioChatApiReady)
+      } else {
+        document.addEventListener("tidioChat-ready", onTidioChatApiReady)
+      }
+
+      window.chatBtnFn = () => {
+        if (!window.tidioChatApi) return
+        isShow ? close() : open()
+      }
+    } else if (isChatHideShow) {
+      window.chatBtn = {
+        hide: () => {
+          window.tidioChatApi && window.tidioChatApi.hide()
+        },
+        show: () => {
+          window.tidioChatApi && window.tidioChatApi.show()
+        }
       }
     }
-
-    function chatBtnShow () {
-      if (window.tidioChatApi) {
-        //- window.tidioChatApi.show();
-        document.getElementById('tidio-chat').style.display= 'block'
-      } 
-    }
-
+  })()
 

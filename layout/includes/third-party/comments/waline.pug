@@ -14,13 +14,9 @@ script.
       }, !{JSON.stringify(option)}))
     }
 
-    const walineCSSLoad = document.getElementById('waline-css')
-
-    if (typeof Waline === 'object') {
-      walineCSSLoad ? initWaline() : getCSS('!{url_for(theme.asset.waline_css)}','waline-css').then(initWaline)
-    }
+    if (typeof Waline === 'object') initWaline()
     else {
-      getCSS('!{url_for(theme.asset.waline_css)}','waline-css').then(() => {
+      getCSS('!{url_for(theme.asset.waline_css)}').then(() => {
         getScript('!{url_for(theme.asset.waline_js)}').then(initWaline)
       })
     }

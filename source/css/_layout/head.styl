@@ -7,12 +7,13 @@
   background-repeat: no-repeat
   transition: all .5s
 
-  &:not(.not-top-img):before
-    position: absolute
-    width: 100%
-    height: 100%
-    background-color: alpha($dark-black, .3)
-    content: ''
+  if hexo-config('mask.header')
+    &:not(.not-top-img):before
+      position: absolute
+      width: 100%
+      height: 100%
+      background-color: var(--mark-bg)
+      content: ''
 
   // index
   &.full_page
@@ -96,9 +97,6 @@
 
     +maxWidth768()
       height: 360px
-
-    &:before
-      background-color: alpha($dark-black, .5)
 
   #post-info
     position: absolute
