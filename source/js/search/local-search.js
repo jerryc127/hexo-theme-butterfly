@@ -103,14 +103,59 @@ class LocalSearch {
 
   getResultItems (keywords) {
     const resultItems = []
-    this.datas.forEach(({ title, content, url }) => {
+    let l_keywords = keywords[0].split('').length //- 获取搜索关键词的长度
+    //- 将#标签搜索的判断放在循环之外！！！
+    let tagSearch = 0
+    if(keywords[0][0] === '#' && l_keywords > 1 && keywords[0][1] !== '#'){
+      tagSearch = 1
+      keywords[0] = keywords[0].substring(1)
+    }
+    //- 将@标题搜索的判断放在循环之外！！！
+    let titleSearch = 0
+    if(keywords[0][0] === '@' && l_keywords > 1 && keywords[0][1] !== '@'){
+      titleSearch = 1
+      keywords[0] = keywords[0].substring(1)
+    }
+    this.datas.forEach(({ title, content, tags, url }) => {  
       // The number of different keywords included in the article.
-      const [indexOfTitle, keysOfTitle] = this.getIndexByWord(keywords, title)
-      const [indexOfContent, keysOfContent] = this.getIndexByWord(keywords, content)
-      const includedCount = new Set([...keysOfTitle, ...keysOfContent]).size
+      let [indexOfTitle, keysOfTitle] = this.getIndexByWord(keywords, title)
+      let [indexOfContent, keysOfContent] = this.getIndexByWord(keywords, content)
+      // let [indexOfTags, keysOfTags] = this.getIndexByWord(keywords,tags)
+      let includedCount = new Set([...keysOfTitle, ...keysOfContent]).size
+////////////////////////////////////////////////////////////////////////////////////////
+//---------------------定义了tags-------------------------------------------------------
+      let tags0 = ''
+      let space = 1
+      //-以双分号；；分割一篇文章内的标签
+      for(let i=0;i<tags.length;i++){
+        if(/\S/.test(tags[i])){
+          space = 0
+          tags0 += tags[i]
+        }else{
+          if(space === 0){
+            tags0 += '；；'
+            space = 1
+          }
+        }
+      }
 
+      //增加Tags片断
+      // let [indexOfTags, keysOfTags] = this.getIndexByWord(keywords,tags)
+      let [indexOfTags0, keysOfTags0] = this.getIndexByWord(keywords,tags0)
+//--------------------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////////////
       // Show search results
-      const hitCount = indexOfTitle.length + indexOfContent.length
+      let hitCount = 0
+      if(tagSearch){
+        hitCount =  indexOfTags0.length
+      }else if(titleSearch){
+        hitCount =  indexOfTitle.length
+      }else{
+        hitCount = indexOfTitle.length + indexOfContent.length + indexOfTags0.length
+      }
+      // const hitCount = indexOfTitle.length + indexOfContent.length + indexOfTags0.length
+
+
       if (hitCount === 0) return
 
       const slicesOfTitle = []
@@ -149,17 +194,69 @@ class LocalSearch {
       url = new URL(url, location.origin)
       url.searchParams.append('highlight', keywords.join(' '))
 
+      //----------------------给标题的关键字强调------------------------------
       if (slicesOfTitle.length !== 0) {
-        resultItem += `<div class="local-search-hit-item"><a href="${url.href}"><span class="search-result-title">${this.highlightKeyword(title, slicesOfTitle[0])}</span>`
+        resultItem += `<div class="local-search-hit-item"><a href="${url.href}" target="_blank"><span class="search-result-title">${this.highlightKeyword(title, slicesOfTitle[0])}</span></a>`
       } else {
-        resultItem += `<div class="local-search-hit-item"><a href="${url.href}"><span class="search-result-title">${title}</span>`
+        resultItem += `<div class="local-search-hit-item"><a href="${url.href}" target="_blank"><span class="search-result-title">${title}</span></a>`
+      }
+      // slicesOfContent.forEach(slice => {
+      //   resultItem += `<p class="search-result">${this.highlightKeyword(content, slice)}...</p></a>`
+      // })
+
+      //----------------------给正文片断的关键字强调------------------------------
+      if(slicesOfContent.length !== 0){
+        slicesOfContent.forEach(slice => {
+          resultItem += `<p class="search-result">${this.highlightKeyword(content, slice)}...<br>`
+        })
+      } else{
+        resultItem += `<p class="search-result">${content.substring(0,Math.min(120,content.length))}...<br>`
       }
 
-      slicesOfContent.forEach(slice => {
-        resultItem += `<p class="search-result">${this.highlightKeyword(content, slice)}...</p></a>`
-      })
+      //----------------------给tags的关键字强调------------------------------
+      let slicesOfTags0 = []
+      //将新生成的（带标签标志的）splitTags生成一个slice
+      while(indexOfTags0.length !== 0){
+        slicesOfTags0.push(this.mergeIntoSlice(0,tags0.length,indexOfTags0))
+      }
+      //将新的slice中的关键字强调
+      if(slicesOfTags0.length !== 0){
+        slicesOfTags0.forEach(slice => {
+          resultItem += `${this.highlightKeyword(tags0, slice)}</p>`
+        })
+      } else{
+        resultItem += `${tags0}</p>`
+      }
 
-      resultItem += '</div>'
+      let index = resultItem.indexOf("...<br>")
+      //以"...</br>"为界，把要展示的结果一分为二；
+      let resultItem1 = resultItem.substring(0, index+7)
+      let resultItem2 = resultItem.substring(index+7,resultItem.length)
+      //下面只改resultItem2，给tags前面加上标签符号
+
+      // // 去掉标签后面的分号；；，再在每个标签前面加一个图标
+      let indexTermin = resultItem2.indexOf("</p>") //终止位置
+      let resultItem21 = ""
+      if(indexTermin){
+        space = 1
+        resultItem21 = resultItem21.concat(`<i class="fas fa-tag"><span style="font-family:times,kaiti">`)
+        for(let i=0;i<indexTermin;i++){
+          if(resultItem2[i] !== '；'){
+            space = 0
+            resultItem21 = resultItem21.concat(resultItem2[i])         
+          }else{
+            if(space === 0)
+            resultItem21 += '</span></i>&nbsp &nbsp<i class="fas fa-tag"><span style="font-family:times,kaiti">'
+            space = 1          
+          }
+        }
+        resultItem21 += '</span></i>'
+      }else{
+        resultItem21 = resultItem2
+      }
+
+      resultItem = resultItem1 + resultItem21 + `</div>`   
+
       resultItems.push({
         item: resultItem,
         id: resultItems.length,
@@ -180,8 +277,9 @@ class LocalSearch {
         this.datas = isXml
           ? [...new DOMParser().parseFromString(res, 'text/xml').querySelectorAll('entry')].map(element => ({
               title: element.querySelector('title').textContent,
-              content: element.querySelector('content').textContent,
-              url: element.querySelector('url').textContent
+              content: element.querySelector('content') && element.querySelector('content').textContent,
+              url: element.querySelector('url').textContent,
+              tags: element.querySelector('tags') && element.querySelector('tags').textContent
             }))
           : JSON.parse(res)
         // Only match articles with non-empty titles
@@ -189,6 +287,7 @@ class LocalSearch {
           data.title = data.title.trim()
           data.content = data.content ? data.content.trim().replace(/<[^>]+>/g, '') : ''
           data.url = decodeURIComponent(data.url).replace(/\/{2,}/g, '/')
+          data.tags = data.tags ? data.tags.trim().replace(/<[^>]+>/g, '') : ''
           return data
         })
         // Remove loading animation
