@@ -105,23 +105,22 @@ class LocalSearch {
     const resultItems = []
     let l_keywords = keywords[0].split('').length //- 获取搜索关键词的长度
     //- 将#标签搜索的判断放在循环之外！！！
-    let tagSearch = 0
+    let tagSearch = 0 //-判断是否为标签搜索
     if(keywords[0][0] === '#' && l_keywords > 1 && keywords[0][1] !== '#'){
       tagSearch = 1
       keywords[0] = keywords[0].substring(1)
     }
     //- 将@标题搜索的判断放在循环之外！！！
-    let titleSearch = 0
+    let titleSearch = 0 //-判断是否为标题搜索
     if(keywords[0][0] === '@' && l_keywords > 1 && keywords[0][1] !== '@'){
       titleSearch = 1
       keywords[0] = keywords[0].substring(1)
     }
+    //- 从下面一行开始，是文章遍历
     this.datas.forEach(({ title, content, tags, url }) => {  
       // The number of different keywords included in the article.
-      let [indexOfTitle, keysOfTitle] = this.getIndexByWord(keywords, title)
-      let [indexOfContent, keysOfContent] = this.getIndexByWord(keywords, content)
-      // let [indexOfTags, keysOfTags] = this.getIndexByWord(keywords,tags)
-      let includedCount = new Set([...keysOfTitle, ...keysOfContent]).size
+      const [indexOfTitle, keysOfTitle] = this.getIndexByWord(keywords, title)
+      const [indexOfContent, keysOfContent] = this.getIndexByWord(keywords, content)
 ////////////////////////////////////////////////////////////////////////////////////////
 //---------------------定义了tags-------------------------------------------------------
       let tags0 = ''
@@ -140,8 +139,8 @@ class LocalSearch {
       }
 
       //增加Tags片断
-      // let [indexOfTags, keysOfTags] = this.getIndexByWord(keywords,tags)
-      let [indexOfTags0, keysOfTags0] = this.getIndexByWord(keywords,tags0)
+      const [indexOfTags0, keysOfTags0] = this.getIndexByWord(keywords,tags0)
+      const includedCount = new Set([...keysOfTitle, ...keysOfContent, ...keysOfTags0]).size
 //--------------------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////////////////////////////////
       // Show search results
@@ -154,8 +153,6 @@ class LocalSearch {
         hitCount = indexOfTitle.length + indexOfContent.length + indexOfTags0.length
       }
       // const hitCount = indexOfTitle.length + indexOfContent.length + indexOfTags0.length
-
-
       if (hitCount === 0) return
 
       const slicesOfTitle = []
