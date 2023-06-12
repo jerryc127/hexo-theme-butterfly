@@ -1,6 +1,6 @@
 #footer
   position: relative
-  background-color: $light-blue
+  background-color:  if (footer_bg && !(isImgOrUrl(footer_bg)))?footer_bg:$light-blue
   background-attachment: scroll
   background-position: bottom
   background-size: cover
