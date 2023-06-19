@@ -1,12 +1,17 @@
-#loading-box
-  .loading-left-bg
-  .loading-right-bg
-  .spinner-box
-    .configure-border-1
-      .configure-core
-    .configure-border-2
-      .configure-core
-    .loading-word= _p('loading')
+if theme.preloader.enable
+  case theme.preloader.load_style    
+    when 'gear'
+      include ./load_style/gear.pug
+    when 'wizard'
+      include ./load_style/wizard.pug
+    when 'cat'
+      include ./load_style/cat.pug
+    when 'pokeball'
+      include ./load_style/pokeball.pug
+    when 'image'
+      include ./load_style/image.pug
+    default
+      include ./load_style/default.pug
 
 script.
   (()=>{
