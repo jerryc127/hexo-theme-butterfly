@@ -1,0 +1,68 @@
+if is_home()
+    #home_top
+        .recent-top-post-group#recent-top-post-group
+            .recent-post-top#recent-post-top
+                #bannerGroup
+                    #banners
+                        .banners-title
+                            .banners-title-big 无限活力
+                            .banners-title-big 与热爱生活
+                            .banners-title-small GUKAIFENG.CN
+                        .tags-group-all
+                            .tags-group-wrapper
+                                each i in site.data.creativity
+                                    - const evenNum = i.creativity_list.filter((x, index) => index % 2 === 0);
+                                    - const oddNum = i.creativity_list.filter((x, index) => index % 2 === 1);
+                                    each item, index in i.creativity_list
+                                        if ((index + 1 <= evenNum.length) && (index + 1 <= oddNum.length))
+                                            .tags-group-icon-pair
+                                                .tags-group-icon(style=`background: ${evenNum[index].color}`)
+                                                    img(src=evenNum[index].icon, onerror='this.onerror=null,this.src="/img/friend_404.gif"', title=evenNum[index].name, alt=evenNum[index].name)
+                                                .tags-group-icon(style=`background: ${oddNum[index].color}`)
+                                                    img(src=oddNum[index].icon, onerror='this.onerror=null,this.src="/img/friend_404.gif"', title=oddNum[index].name, alt=oddNum[index].name)
+                                each i in site.data.creativity
+                                    - const evenNum = i.creativity_list.filter((x, index) => index % 2 === 0);
+                                    - const oddNum = i.creativity_list.filter((x, index) => index % 2 === 1);
+                                    each item, index in i.creativity_list
+                                        if ((index + 1 <= evenNum.length) && (index + 1 <= oddNum.length))
+                                            .tags-group-icon-pair
+                                                .tags-group-icon(style=`background: ${evenNum[index].color}`)
+                                                    img(src=evenNum[index].icon, onerror='this.onerror=null,this.src="/img/friend_404.gif"', title=evenNum[index].name, alt=evenNum[index].name)
+                                                .tags-group-icon(style=`background: ${oddNum[index].color}`)
+                                                    img(src=oddNum[index].icon, onerror='this.onerror=null,this.src="/img/friend_404.gif"', title=oddNum[index].name, alt=oddNum[index].name)
+                        a#banner-hover(onclick='randomPost()')
+                            span.bannerText 随便逛逛
+                            i.fas.fa-arrow-right.banner-righticon
+                    .categoryGroup
+                        .categoryItem(style='box-shadow:var(--bywind-shadow-blue)')
+                            a.categoryButton.CB1.bikan(href='/')
+                                span.categoryButtonText 必看精选
+                                i.fas.fa-dove
+                        .categoryItem(style='box-shadow:var(--bywind-shadow-red)')
+                            a.categoryButton.remen(href='/')
+                                span.categoryButtonText 热门文章
+                                i.fas.fa-burn
+                        .categoryItem(style='box-shadow:var(--bywind-shadow-green)')
+                            a.categoryButton.shiyong(href='/')
+                                span.categoryButtonText 实用教程
+                                i.fas.fa-book
+                .topGroup
+                    if site.data.slider
+                        each i in site.data.slider
+                            .recent-post-item
+                                #banners
+                                    .banners-title
+                                        .banners-title-big(title=i.title class="top-title")=i.title
+                                        .banners-title-small=i.desp
+                                    img.post_bg.entered.loaded(src=url_for(i.cover) onerror="this.onerror=null,this.src='/img/404.png'" width="200px")
+                                    a#banner-hover(href=url_for(i.link))
+                                        span.bannerText 阅读更多
+                                        i.fas.fa-arrow-right.banner-righticon
+                        //-     .post_cover.left_radius
+                        //-         .recent-post-info(onclick=`pjax.loadUrl("`+i.link+`")`)
+                        //-             a.article-title(href=url_for(i.link), title=i.title class="top-title")= i.title
+                        //-             a.article-title(href=url_for(i.link), class="top-desp")= i.desp
+                        //-         a(href=url_for(i.link), title=i.title)
+                        //-             //- span.recent-post-top-text(onclick=`pjax.loadUrl("`+i.link+`")`) 荐
+                        //-             img.post_bg.entered.loaded(src=url_for(i.cover) onerror="this.onerror=null,this.src='/img/404.png'")
+                                        

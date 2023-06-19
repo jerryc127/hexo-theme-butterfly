@@ -19,6 +19,7 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
     if page.type !== '404'
       #body-wrap(class=pageType)
         include ./header/index.pug
+        include ./hometop.pug
 
         main#content-inner.layout(class=hideAside)
           if body

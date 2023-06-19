@@ -7,9 +7,16 @@ div.recent-post-item,
 div.card-widget,
 div#post,
 div.search-dialog {
-    border-radius: 18px !important
+    border-radius: 12px !important
 }
 
-a.blog-slider__img {
-  display: none
+// a.blog-slider__img {
+//   display: none
+// }
+
+.cardHover, .layout > div:first-child:not(.recent-posts), #recent-posts > .recent-post-item, #aside-content .card-widget, .layout > .recent-posts .pagination > *:not(.space), {
+  box-shadow: none
+  &:hover {
+    box-shadow: none
+  }
 }
