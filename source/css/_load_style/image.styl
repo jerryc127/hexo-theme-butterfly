@@ -1,0 +1,46 @@
+.loading-bg
+  position fixed
+  z-index 1000
+  width 50%
+  height 100%
+  background var(--preloader-bg)
+#loading-box
+  .loading-left-bg
+    @extend .loading-bg
+    left 0
+  .loading-right-bg
+    @extend .loading-bg
+    right 0
+  &.loaded
+    z-index -1000
+    .loading-left-bg
+      transition all 1.0s
+      transform translate(-100%, 0)
+    .loading-right-bg
+      transition all 1.0s
+      transform translate(100%, 0)
+#loading-box
+  position fixed
+  z-index 1000
+  display -webkit-box
+  display flex
+  -webkit-box-align center
+  align-items center
+  -webkit-box-pack center
+  justify-content center
+  -webkit-box-orient vertical
+  -webkit-box-direction normal
+  flex-direction column
+  flex-wrap wrap
+  width 100vw
+  height 100vh
+  overflow hidden
+
+  .load-image
+    position fixed
+    z-index 1001
+    display flex
+
+  &.loaded
+    .load-image
+      display none

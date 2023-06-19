@@ -98,7 +98,8 @@ $gallery-color = #fff
 $tag-hide-bg = $theme-color
 $tag-hide-toggle-bg = #f0f0f0
 // preloader
-$preloader-bg = #37474f
+// $preloader-bg = #37474f
+$preloader-bg = hexo-config('preloader.enable') && hexo-config('preloader.load_color') ? convert(hexo-config('preloader.load_color')) : #37474f
 $preloader-word-color = #fff
 // rightside
 $rightside-bottom = hexo-config('rightside-bottom') ? convert(hexo-config('rightside-bottom')) : 40px
