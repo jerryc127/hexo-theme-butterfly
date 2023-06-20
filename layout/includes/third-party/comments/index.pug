@@ -12,7 +12,10 @@ hr.custom-hr
         span.switch-btn
         span.second-comment=theme.comments.use[1]
 
-
+  if theme.comments.description != ''
+      .comment-desp 
+        p.comment-desp-p!=theme.comments.description
+      br
   .comment-wrap
     each name in theme.comments.use
       div
