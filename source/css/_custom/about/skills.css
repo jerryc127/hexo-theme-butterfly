@@ -1,0 +1,103 @@
+.author-content-item.skills {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 50%;
+    min-height: 450px;
+  }
+  
+  .author-content-item.skills .skills-style-group {
+    position: relative;
+  }
+  
+  .author-content-item.skills .tags-group-all {
+    display: flex;
+    transform: rotate(0);
+    transition: 0.3s;
+  }
+  .author-content-item.skills .tags-group-wrapper {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: nowrap;
+    animation: rowup 60s linear infinite;
+  }
+  .tags-group-icon-pair {
+    margin-left: 1rem;
+  }
+  .tags-group-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 66px;
+    font-weight: 700;
+    box-shadow: 0 2px 16px -3px rgba(0, 0, 0, 0.15);
+    width: 120px;
+    height: 120px;
+    border-radius: 30px;
+  }
+  .tags-group-icon img {
+    width: 60%;
+    margin: 0 auto !important;
+  }
+  .tags-group-icon-pair .tags-group-icon:nth-child(even) {
+    margin-top: 1rem;
+    transform: translate(-60px);
+  }
+  .author-content-item.skills .skills-list {
+    display: flex;
+    opacity: 0;
+    transition: 0.3s;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 10px;
+  }
+  .author-content-item.skills .skill-info {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-top: 10px;
+    background: #f7f9fe;
+    border-radius: 40px;
+    padding: 4px 12px 4px 8px;
+    border: var(--style-border);
+    box-shadow: 0 8px 16px -4px #2c2d300c;
+  }
+  .author-content-item.skills .skill-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+  }
+  .author-content-item.skills .skill-icon img {
+    width: 18px;
+    height: 18px;
+    margin: 0 auto !important;
+  }
+  .author-content-item.skills .etc {
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  
+  @keyframes rowup {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .author-content-item.skills:hover .skills-style-group .tags-group-all {
+    opacity: 0;
+  }
+  .author-content-item.skills:hover .skills-style-group .skills-list {
+    opacity: 1;
+  }

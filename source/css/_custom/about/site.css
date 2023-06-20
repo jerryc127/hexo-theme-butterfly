@@ -1,0 +1,156 @@
+.site-card-group .site-card .info {
+    margin-top: 0;
+  }
+  .site-card-group > a {
+    width: calc(100% / 4 - 0.5rem);
+    height: 150px;
+    position: relative;
+    display: block;
+    margin: 0.5rem 0.25rem;
+    float: left;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 8px;
+    -webkit-transition: all 0.3s ease 0s, -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    -moz-transition: all 0.3s ease 0s, -moz-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    -o-transition: all 0.3s ease 0s, -o-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    -ms-transition: all 0.3s ease 0s, -ms-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    transition: all 0.3s ease 0s, transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: var(--style-border) !important;
+  }
+  
+  .site-card-group > a .wrapper {
+    position: relative;
+  }
+  
+  .site-card-group > a .cover {
+    width: 100%;
+    -webkit-transition: -webkit-transform 0.5s ease-out;
+    -moz-transition: -moz-transform 0.5s ease-out;
+    -o-transition: -o-transform 0.5s ease-out;
+    -ms-transition: -ms-transform 0.5s ease-out;
+    transition: transform 0.5s ease-out;
+  }
+  
+  .site-card-group > a .info,
+  .site-card-group > a .wrapper .cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .site-card-group > a .info {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -o-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -o-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.7);
+    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    -moz-transition: -moz-transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    -o-transition: -o-transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    -ms-transition: -ms-transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    transition: transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+  }
+  
+  .site-card-group > a .info img {
+    position: relative;
+    top: 45px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    z-index: 1;
+    text-align: center;
+    pointer-events: none;
+  }
+  
+  .site-card-group > a .info span {
+    padding: 20px 10% 60px 10%;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    background-color: rgba(255, 255, 255, 0.7);
+    color: var(--font-color);
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+  
+  .site-card-group .site-card:hover {
+    border-color: #3b70fc !important;
+    background-color: #3b70fc !important;
+    -webkit-box-shadow: 0 8px 12px -3px #4259ef23 !important;
+    box-shadow: 0 8px 12px -3px #4259ef23 !important;
+  }
+  .site-card-group > a:hover .wrapper img {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  
+  .site-card-group > a .cover {
+    width: 100%;
+    -webkit-transition: -webkit-transform 0.5s ease-out;
+    -moz-transition: -moz-transform 0.5s ease-out;
+    -o-transition: -o-transform 0.5s ease-out;
+    -ms-transition: -ms-transform 0.5s ease-out;
+    transition: transform 0.5s ease-out;
+  }
+  .site-card-group > a .wrapper img {
+    height: 150px;
+    pointer-events: none;
+  }
+  .site-card-group .site-card .wrapper img {
+    -webkit-transition: -webkit-transform 0.5s ease-out !important;
+    -moz-transition: -moz-transform 0.5s ease-out !important;
+    -o-transition: -o-transform 0.5s ease-out !important;
+    -ms-transition: -ms-transform 0.5s ease-out !important;
+    transition: transform 0.5s ease-out !important;
+  }
+  .site-card-group > a .wrapper .fadeIn {
+    -webkit-animation: coverIn 0.8s ease-out forwards;
+    -moz-animation: coverIn 0.8s ease-out forwards;
+    -o-animation: coverIn 0.8s ease-out forwards;
+    -ms-animation: coverIn 0.8s ease-out forwards;
+    animation: coverIn 0.8s ease-out forwards;
+  }
+  
+  .site-card-group > a:hover .info {
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }

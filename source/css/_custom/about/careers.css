@@ -1,0 +1,39 @@
+.author-content-item.careers {
+    min-height: 400px;
+  }
+  .author-content-item.careers .careers-group {
+    margin-top: 12px;
+  }
+  .author-content-item.careers .careers-item {
+    display: flex;
+    align-items: center;
+  }
+  .author-content-item.careers .careers-item .circle {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border-radius: 16px;
+  }
+  .author-content-item.careers .careers-item .name {
+    color: rgba(60, 60, 67, 0.6);
+  }
+  .author-content-item.careers .careers-item {
+    display: flex;
+    align-items: center;
+  }
+  .author-content-item.careers .careers-item .circle {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border-radius: 16px;
+  }
+  .author-content-item.careers .careers-item .name {
+    color: rgba(60, 60, 67, 0.6);
+  }
+  .author-content-item.careers img {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+    transition: 0.6s;
+  }

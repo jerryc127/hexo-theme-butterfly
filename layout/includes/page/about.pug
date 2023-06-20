@@ -1,0 +1,365 @@
+#about-page
+  .author-box
+    .author-img
+      img.no-lightbox(src='https://avatars.githubusercontent.com/u/25950021')
+    .image-dot
+  .author-content
+    .author-content-item.myInfoAndSayHello
+      .title1 你好，很高兴认识你👋
+      .title2
+        | 我是
+        span.inline-word 顾凯峰
+      .title1
+        | 是一名 程序员、玩家、博主、
+        span.inline-word 独立开发者
+    .aboutsiteTips.author-content-item
+      .author-content-item-tips 追求
+      h2
+        | 源于
+        br
+        | 热爱而去
+        span.inline-word 感受
+        .mask
+          span.first-tips 学习
+          |
+          span 生活
+          |
+          span(data-up) 程序
+          |
+          span(data-show) 体验
+
+  .hello-about
+    .cursor(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
+    .shapes
+      .shape.shape-1(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
+      .shape.shape-2(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
+      .shape.shape-3(style='translate:none;rotate:none;scale:none;transform:translate(721px,180px)')
+    .content
+      h1 Hello
+
+  .author-content
+    .author-content-item.skills
+      .card-content
+        .author-content-item-tips 技能
+        span.author-content-item-title 极致创造
+        .skills-style-group
+          .tags-group-all
+            .tags-group-wrapper
+              each i in site.data.creativity
+                - const evenNum = i.creativity_list.filter((x, index) => index % 2 === 0);
+                - const oddNum = i.creativity_list.filter((x, index) => index % 2 === 1);
+                each item, index in i.creativity_list
+                  if ((index+1 <= evenNum.length) && (index+1 <= oddNum.length))
+                    .tags-group-icon-pair
+                      .tags-group-icon(style=`background: ${evenNum[index].color}`)
+                        img.no-lightbox(title=evenNum[index].name, src=evenNum[index].icon)
+                      .tags-group-icon(style=`background: ${oddNum[index].color}`)
+                        img.no-lightbox(title=oddNum[index].name, src=oddNum[index].icon)
+          .skills-list
+            each i in site.data.creativity
+              each item, index in i.creativity_list
+                .skill-info
+                  .skill-icon(style=`background: ${item.color}`)
+                    img.no-lightbox(title=item.name, src=item.icon)
+                  .skill-name
+                    span=item.name
+            .etc ...
+    .author-content-item.careers
+      .card-content
+        .author-content-item-tips 生涯
+        span.author-content-item-title 无限进步
+        .careers-group
+          .careers-item
+            .circle(style='background:#357ef5')
+            .name EDU
+        img.author-content-img.no-lightbox(alt='生涯', src='https://opeach.cn/about/edu.webp')
+
+  .author-content
+    .about-statistic.author-content-item
+      .card-content
+        .author-content-item-tips 数据
+        span.author-content-item-title 访问统计
+        #statistic
+        .post-tips
+          | 统计信息来自
+          a(href='https://invite.51.la/1NzKqTeb?target=V6', target='_blank', rel='noopener nofollow') 51la网站统计
+        .banner-button-group
+          a.banner-button(onclick='pjax.loadUrl("/archives/")', data-pjax-state)
+            i.fa-solid.fa-paper-plane
+            |
+            span.banner-button-text 文章隧道
+    .author-content-item-group.column.mapAndInfo
+      .author-content-item.map.single
+        span.map-title
+          | 我现在住在
+          b 中国，北京市
+      .author-content-item.selfInfo.single
+        div
+          span.selfInfo-title 生日（农历）
+          |
+          span.selfInfo-content(style='color:#43a6c6') 09月29日
+        div
+          span.selfInfo-title 星座
+          |
+          span.selfInfo-content(style='color:#c69043') 天蝎座
+        div
+          span.selfInfo-title 职业
+          |
+          span.selfInfo-content(style='color:#b04fe6') 程序员
+
+  .author-content
+    .author-content-item.personalities
+      .author-content-item-tips 性格
+      span.author-content-item-title 物流师
+      .title2(style='color:#ac899c') ISTJ-A
+      .post-tips
+        | 在 
+        a(href='https://www.16personalities.com/', target='_blank', rel='noopener nofollow') 16Personalities 
+        | 了解关于 
+        a(target='_blank', rel='noopener external nofollow', href='https://www.16personalities.com/ch/istj-%E4%BA%BA%E6%A0%BC') 物流师
+        | 的更多信息
+      .image
+        img.no-lightbox(src='https://www.16personalities.com/static/images/personality-types/avatars/email/large/ISTJ_male.png')
+    .author-content-item.myphoto
+      img.author-content-img.no-lightbox(alt='img', src='https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/36f37b0b4f87058f96021649b97e1f9b.jpg')
+
+  .author-content
+    .author-content-item.maxim
+      .author-content-item-tips 座右铭
+      span.maxim-title
+        span(style='opacity:.6;margin-bottom:8px') 最神奇的魔法就是，
+        |
+        span 切实的努力。
+    .author-content-item.buff
+      .card-content
+        .author-content-item-tips 特长
+        span.buff-title
+          span(style='opacity:.6;margin-bottom:8px')
+            | 写写博客
+            span.inline-word 胡乱折腾
+          |
+          span
+            | 自驱能力
+            span.inline-word MAX
+      .card-background-icon
+        i.fa-solid.fa-dice-d20
+
+  .author-content
+    .author-content-item.game-yuanshen
+      .card-content
+        .author-content-item-tips 爱好游戏
+        span.author-content-item-title 原神
+        .content-bottom
+          .tips.game-yuanshen-uid ID: 208247299
+    .author-content-item.comic-content
+      .card-content
+        .author-content-item-tips 爱好电影
+        span.author-content-item-title 看不见的客人
+        .content-bottom
+          .banner-button-group
+            a.banner-button(onclick='window.open("https://v.qq.com/x/cover/8lvnb7aiio1crpd/i002515xdcm.html")', data-pjax-state)
+              i.fa-solid.fa-play
+              |
+              span.banner-button-text 立即观看
+
+  .author-content
+    .author-content-item.like-technology
+      .card-content
+        .author-content-item-tips 关注偏好
+        span.author-content-item-title 数码科技
+        .content-bottom
+          .tips 手机、电脑软硬件
+    .author-content-item.like-music
+      .card-content
+        .author-content-item-tips 音乐偏好
+        span.author-content-item-title 纯音乐
+        |
+        span.author-content-item-title 民谣、话语流行
+        .content-bottom
+          .tips 跟 GuKaifeng 一起欣赏更多音乐
+        .banner-button-group
+          a.banner-button(onclick='window.open("https://i.y.qq.com/n2/m/share/details/taoge.html?id=2609435321")', data-pjax-state)
+            i.fa-solid.fa-music
+            |
+            span.banner-button-text 更多推荐
+
+  .author-content
+    .create-site-post.author-content-item.single
+      .author-content-item-tips 心路历程
+
+  .author-content
+    .author-content-item.single.reward
+      .author-content-item-tips 致谢
+      span.author-content-item-title 赞赏名单
+      .author-content-item-description 因为有你，让我更有创作动力
+        each i in site.data.reward
+          - let rawData = [...i.reward_list]
+          .reward-list-all
+            - let reward_list_amount = i.reward_list.sort((a,b)=>b.amount -  a.amount)
+            each item, index in reward_list_amount
+              .reward-list-item
+                .reward-list-item-name=item.name
+                .reward-list-bottom-group
+                  if item.amount >= 50
+                    .reward-list-item-money(style='background: #ffc93e')=`¥${item.amount}`
+                  else
+                    .reward-list-item-money=`¥${item.amount + (item.suffix ? item.suffix : "")}`
+                  .datatime.reward-list-item-time(datatime=item.datatime)=new Date(item.datatime).toISOString().slice(0, -14)
+          .reward-list-updateDate
+            | 更新时间：
+            time.datatime.reward-list-updateDate-time(datatime=rawData[0].datatime)=new Date(rawData[0].datatime).toISOString().slice(0, -14)
+      .post-reward
+        #con
+        #TA-con(type='button', onclick='reward()')
+          #text-con
+            #linght
+            #TA 为 TA 充电
+        #tube-con
+          svg(viewBox='0 0 1028 385', fill='none', xmlns='http://www.w3.org/2000/svg')
+            path(d='M1 77H234.226L307.006 24H790', stroke='#e5e9ef', stroke-width='20')
+            path(d='M0 140H233.035L329.72 71H1028', stroke='#e5e9ef', stroke-width='20')
+            path(d='M1 255H234.226L307.006 307H790', stroke='#e5e9ef', stroke-width='20')
+            path(d='M0 305H233.035L329.72 375H1028', stroke='#e5e9ef', stroke-width='20')
+            rect(y='186', width='236', height='24', fill='#e5e9ef')
+            ellipse(cx='790', cy='25.5', rx='25', ry='25.5', fill='#e5e9ef')
+            circle(r='14', transform='matrix(1 0 0 -1 790 25)', fill='white')
+            ellipse(cx='790', cy='307.5', rx='25', ry='25.5', fill='#e5e9ef')
+            circle(r='14', transform='matrix(1 0 0 -1 790 308)', fill='white')
+          #mask
+            svg(viewBox='0 0 1028 385', fill='none', xmlns='http://www.w3.org/2000/svg')
+              path(d='M1 77H234.226L307.006 24H790', stroke='#f25d8e', stroke-width='20')
+              path(d='M0 140H233.035L329.72 71H1028', stroke='#f25d8e', stroke-width='20')
+              path(d='M1 255H234.226L307.006 307H790', stroke='#f25d8e', stroke-width='20')
+              path(d='M0 305H233.035L329.72 375H1028', stroke='#f25d8e', stroke-width='20')
+              rect(y='186', width='236', height='24', fill='#f25d8e')
+              ellipse(cx='790', cy='25.5', rx='25', ry='25.5', fill='#f25d8e')
+              circle(r='14', transform='matrix(1 0 0 -1 790 25)', fill='white')
+              ellipse(cx='790', cy='307.5', rx='25', ry='25.5', fill='#f25d8e')
+              circle(r='14', transform='matrix(1 0 0 -1 790 308)', fill='white')
+          #orange-mask
+            svg(viewBox='0 0 1028 385', fill='none', xmlns='http://www.w3.org/2000/svg')
+              path(d='M1 77H234.226L307.006 24H790', stroke='#ffd52b', stroke-width='20')
+              path(d='M0 140H233.035L329.72 71H1028', stroke='#ffd52b', stroke-width='20')
+              path(d='M1 255H234.226L307.006 307H790', stroke='#ffd52b', stroke-width='20')
+              path(d='M0 305H233.035L329.72 375H1028', stroke='#ffd52b', stroke-width='20')
+              rect(y='186', width='236', height='24', fill='#ffd52b')
+              ellipse(cx='790', cy='25.5', rx='25', ry='25.5', fill='#ffd52b')
+              circle(r='14', transform='matrix(1 0 0 -1 790 25)', fill='white')
+              ellipse(cx='790', cy='307.5', rx='25', ry='25.5', fill='#ffd52b')
+              circle(r='14', transform='matrix(1 0 0 -1 790 308)', fill='white')
+          p#people
+            | 共 
+            b #{site.data.reward[0].reward_list.length}
+            |  人次
+//- script(src=url_for(theme.CDN.option.countup_js))
+script(src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/gsap/3.9.1/gsap.min.js")
+script.
+  (() => {
+    function isInViewPortOfOne(el) {
+      if (!el) return;
+      const viewPortHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      const offsetTop = el.offsetTop;
+      const scrollTop = document.documentElement.scrollTop;
+      const top = offsetTop - scrollTop;
+      return top <= viewPortHeight;
+    }
+    fetch('https://v6-widget.51.la/v6/3F2P5PzIqKIKJnvm/quote.js').then(res => res.text()).then((data) => {
+        let title = ['最近活跃', '今日人数', '今日访问', '昨日人数', '昨日访问', '本月访问', '总访问量']
+        let num = data.match(/(<\/span><span>).*?(\/span><\/p>)/g)
+
+        num = num.map((el) => {
+          let val = el.replace(/(<\/span><span>)/g, '')
+          let str = val.replace(/(<\/span><\/p>)/g, '')
+          return str
+        })
+
+        let statisticEl = document.getElementById('statistic')
+
+        // 自定义不显示哪个或者显示哪个，如下为不显示 最近活跃访客 和 总访问量
+        let statistic = []
+        for (let i = 0; i < num.length; i++) {
+            if (!statisticEl) return
+            if (i == 0 || i == num.length - 1) continue;
+            statisticEl.innerHTML += '<div><span>' + title[i] + '</span><span id='+ title[i] + '>' + num[i] + '</span></div>'
+            queueMicrotask(()=> {
+              statistic.push(new CountUp(title[i], 0, num[i], 0, 2, {
+                  useEasing: true,
+                  useGrouping: true,
+                  separator: ',',
+                  decimal: '.',
+                  prefix: '',
+                  suffix: ''
+              }))
+            })
+        }
+
+        function statisticUP () {
+          let statisticElment = document.querySelector('.about-statistic.author-content-item');
+          if(isInViewPortOfOne(statisticElment)) {
+            for (let i = 0; i < num.length; i++) {
+              if (i == 0 || i == num.length - 1) continue;
+              statistic[i-1].start();
+            }
+            document.removeEventListener('scroll', throttleStatisticUP);
+          }
+        }
+
+        const selfInfoContentYear = new CountUp('selfInfo-content-year', 0, 2002, 0, 2, {
+          useEasing: true,
+          useGrouping: false,
+          separator: ',',
+          decimal: '.',
+          prefix: '',
+          suffix: ''
+        })
+
+        function scrollSelfInfoContentYear() {
+          let selfInfoContentYearElment = document.querySelector('.author-content-item.selfInfo.single');
+          if (selfInfoContentYearElment && isInViewPortOfOne(selfInfoContentYearElment)) {
+            selfInfoContentYear.start()
+            document.removeEventListener('scroll', throttleScrollSelfInfoContentYear);
+          }
+        }
+        const throttleStatisticUP = btf.throttle(statisticUP, 200)
+        document.addEventListener('scroll', throttleStatisticUP, {passive: true})
+
+        const throttleScrollSelfInfoContentYear = btf.throttle(scrollSelfInfoContentYear, 200)
+        document.addEventListener('scroll', throttleScrollSelfInfoContentYear, {passive: true})
+    });
+
+    var pursuitInterval = null;
+      pursuitInterval = setInterval(function () {
+        const show = document.querySelector('span[data-show]')
+        const next = show.nextElementSibling || document.querySelector('.first-tips')
+        const up = document.querySelector('span[data-up]')
+
+        if (up) {
+          up.removeAttribute('data-up')
+        }
+
+        show.removeAttribute('data-show')
+        show.setAttribute('data-up', '')
+
+        next.setAttribute('data-show', '')
+      }, 2000)
+
+      document.addEventListener('pjax:send', function(){
+        clearInterval(pursuitInterval);
+      });
+
+      var helloAboutEl = document.querySelector('.hello-about')
+      helloAboutEl.addEventListener("mousemove", evt => {
+        const mouseX = evt.offsetX;
+        const mouseY = evt.offsetY;
+        gsap.set(".cursor", {
+          x: mouseX,
+          y: mouseY,
+        })
+
+        gsap.to(".shape", {
+          x: mouseX,
+          y: mouseY,
+          stagger: -0.1
+        })
+      })
+  })()

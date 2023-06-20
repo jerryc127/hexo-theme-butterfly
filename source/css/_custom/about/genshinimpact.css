@@ -1,0 +1,122 @@
+:root {
+    --loadingbar-background-color: #2c2b30;
+    --loadingbar-prospect-color: #ece5d8;
+  }
+  
+  /* html.dark body {
+    background-color: #161d22;
+  } */
+  
+  .loading-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 62.5px;
+    transform: translate(-25%, -50%) scale(0.5);
+    transition: all 0.5s;
+    user-select: none;
+    overflow: hidden;
+  }
+  
+  .loading-bar img {
+    position: absolute;
+    top: 500px;
+    left: 0;
+    filter: drop-shadow(0 -500px 0 var(--loadingbar-background-color));
+  }
+  
+  .loading-bar::after {
+    content: "";
+    position: absolute;
+    top: 500px;
+    left: 0;
+    filter: drop-shadow(0 -500px 0 var(--loadingbar-prospect-color));
+    width: 500px;
+    height: 62.5px;
+    background: url("https://yuanshen.site/imgs/loading-bar.png") no-repeat left 100%;
+    background-size: 500px 62.5px;
+    background-position-x: 0;
+  }
+  .author-content-item.game-yuanshen:hover .loading-bar::after {
+    animation: loading-bar 3.5s cubic-bezier(0.28, 0.11, 0.32, 1) infinite forwards;
+  }
+  
+  @media screen and (max-width: 719px) {
+    .loading-bar .loading-bar {
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 719px) and (orientation: landscape) {
+    .loading-bar .loading-bar {
+      display: block !important;
+      transform: translate(-50%, -50%) scale(0.7) !important;
+    }
+  }
+  
+  @supports not (filter: drop-shadow(0 0 0 #fff)) {
+    .loading-bar:before {
+      content: "Your browser does not support the animation";
+    }
+  }
+  
+  @keyframes loading-bar {
+    0% {
+      width: 0;
+      background-size: 500px 62.5px;
+    }
+    16.6% {
+    }
+    33.2% {
+    }
+    49.8% {
+    }
+    66.4% {
+    }
+    83% {
+      width: 475px;
+    }
+    83.1% {
+      width: 475px;
+    }
+    83.2% {
+      width: 475px;
+    }
+    83.3% {
+      width: 475px;
+    }
+    83.4% {
+      width: 475px;
+    }
+    83.5% {
+      width: 475px;
+    }
+    83.6% {
+      width: 475px;
+    }
+    83.7% {
+      width: 475px;
+    }
+    83.8% {
+      width: 475px;
+    }
+    83.9% {
+      width: 475px;
+    }
+    84% {
+      width: 475px;
+    }
+    85% {
+      width: 475px;
+    }
+    86% {
+      width: 475px;
+    }
+    87% {
+      width: 475px;
+    }
+    100% {
+      width: 500px;
+    }
+  }

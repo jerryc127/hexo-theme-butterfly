@@ -1,0 +1,103 @@
+.hello-about {
+    margin: 20px auto;
+    border-radius: 24px;
+    background: #fff;
+    border: var(--style-border-always);
+    box-shadow: 0 8px 16px -4px #2c2d300c;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+  }
+  
+  .shapes {
+    position: relative;
+    height: 315px;
+    width: 100%;
+    background: #2128bd;
+    overflow: hidden;
+  }
+  
+  .shape {
+    will-change: transform;
+    position: absolute;
+    border-radius: 50%;
+  }
+  
+  .shape.shape-1 {
+    background: #005ffe;
+    width: 650px;
+    height: 650px;
+    margin: -325px 0 0 -325px;
+  }
+  
+  .shape.shape-2 {
+    background: #ffe5e3;
+    width: 440px;
+    height: 440px;
+    margin: -220px 0 0 -220px;
+  }
+  
+  .shape.shape-3 {
+    background: #ffcc57;
+    width: 270px;
+    height: 270px;
+    margin: -135px 0 0 -135px;
+  }
+  
+  .hello-about .content {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 315px;
+    width: 100%;
+    background: #fff;
+    mix-blend-mode: screen;
+  }
+  [data-theme="dark"] .hello-about .content {
+    background: transparent;
+  }
+  [data-theme="dark"] .hello-about h1 {
+    color: #fff;
+  }
+  
+  .hello-about h1 {
+    font-size: 200px;
+    color: #000;
+    margin: 0;
+    text-align: center;
+    font: inherit;
+    vertical-align: baseline;
+    line-height: 1;
+    font-size: calc((0.0989119683 * 100vw + (58.5558852621px)));
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 419px) {
+    .hello-about h1 {
+      font-size: calc((0.0989119683 * 100vw + (58.5558852621px)));
+    }
+  }
+  
+  .cursor {
+    position: absolute;
+    background: #2128bd;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border-radius: 50%;
+    will-change: transform;
+    user-select: none;
+    pointer-events: none;
+    z-index: 3;
+  }
+  
+  ::selection {
+    color: #fff;
+    background: #2128bd;
+  }
