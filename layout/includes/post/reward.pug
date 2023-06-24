@@ -1,7 +1,7 @@
 .post-reward
   .reward-button
     i.fas.fa-qrcode
-    = ' ' + _p('donate')
+    = theme.reward.text || _p('donate')
   .reward-main
     ul.reward-all
       each item in theme.reward.QR_code

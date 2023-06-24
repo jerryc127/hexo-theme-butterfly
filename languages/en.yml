@@ -15,7 +15,6 @@ page:
 
 card_post_count: comments
 
-sticky: Sticky
 no_title: No title
 
 post:
@@ -83,6 +82,7 @@ aside:
     link: link
     code: code
   card_toc: Catalog
+  card_post_series: Series
 
 date_suffix:
   just: Just

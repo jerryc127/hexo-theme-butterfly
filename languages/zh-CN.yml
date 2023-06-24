@@ -15,7 +15,6 @@ page:
 
 card_post_count: 条评论
 
-sticky: 置顶
 no_title: 无题
 
 post:
@@ -84,6 +83,7 @@ aside:
     link: 链接
     code: 代码
   card_toc: 目录
+  card_post_series: 系列文章
 
 date_suffix:
   just: 刚刚

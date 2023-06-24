@@ -264,6 +264,10 @@ aside:
     post_count: true
     last_push_date: true
     sort_order: # Don't modify the setting unless you know how it works
+  card_post_series:
+    enable: true
+    orderBy: 'date' # Order by title or date
+    order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
 
 # busuanzi count for PV / UV in site
 # 訪問人數
@@ -380,12 +384,6 @@ docsearch:
 
 # Share System (分享)
 # --------------------------------------
-
-# AddThis
-# https://www.addthis.com/
-addThis:
-  enable: false
-  pubid:
 
 # Share.js
 # https://github.com/overtrue/share.js
@@ -651,7 +649,7 @@ mask:
   footer: true
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
-rightside-bottom:
+rightside_bottom:
 
 # Enter transitions (開啓網頁進入效果)
 enter_transitions: true
@@ -795,6 +793,13 @@ fancybox: true
 
 # Tag Plugins settings (標籤外掛)
 # --------------------------------------
+
+# series (系列文章)
+series:
+  enable: true
+  orderBy: 'title' # Order by title or date
+  order: 1 # Sort of order. 1, asc for ascending; -1, desc for descending
+  number: true
 
 # abcjs (樂譜渲染)
 # See https://github.com/paulrosen/abcjs

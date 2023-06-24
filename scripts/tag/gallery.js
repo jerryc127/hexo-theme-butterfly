@@ -10,7 +10,7 @@
 
 const urlFor = require('hexo-util').url_for.bind(hexo)
 
-function gallery (args, content) {
+const gallery = (args, content) => {
   const { data, languages } = hexo.theme.i18n
   args = args.join(' ').split(',')
   let rowHeight, limit, lazyload, type, dataStr
@@ -47,19 +47,18 @@ function gallery (args, content) {
     </div>`
 }
 
-function galleryGroup (args) {
-  const name = args[0]
-  const descr = args[1]
-  const url = urlFor(args[2])
-  const img = urlFor(args[3])
+const galleryGroup = args => {
+  const [name, descr, url, img] = args
+  const imgUrl = urlFor(img)
+  const urlLink = urlFor(url)
 
   return `
   <figure class="gallery-group">
-  <img class="gallery-group-img no-lightbox" src='${img}' alt="Group Image Gallery">
+  <img class="gallery-group-img no-lightbox" src='${imgUrl}' alt="Group Image Gallery">
   <figcaption>
   <div class="gallery-group-name">${name}</div>
   <p>${descr}</p>
-  <a href='${url}'></a>
+  <a href='${urlLink}'></a>
   </figcaption>
   </figure>
   `

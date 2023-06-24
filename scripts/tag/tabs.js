@@ -6,13 +6,11 @@
 
 'use strict'
 
-function postTabs (args, content) {
+const postTabs = (args, content) => {
   const tabBlock = /<!--\s*tab (.*?)\s*-->\n([\w\W\s\S]*?)<!--\s*endtab\s*-->/g
-
   args = args.join(' ').split(',')
   const tabName = args[0]
   const tabActive = Number(args[1]) || 0
-
   const matches = []
   let match
   let tabId = 0
@@ -22,8 +20,7 @@ function postTabs (args, content) {
   !tabName && hexo.log.warn('Tabs block must have unique name!')
 
   while ((match = tabBlock.exec(content)) !== null) {
-    matches.push(match[1])
-    matches.push(match[2])
+    matches.push(match[1], match[2])
   }
 
   for (let i = 0; i < matches.length; i += 2) {

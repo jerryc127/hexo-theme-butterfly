@@ -15,7 +15,6 @@ page:
 
 card_post_count: 條評論
 
-sticky: 置頂
 no_title: 無題
 
 post:
@@ -84,6 +83,7 @@ aside:
     link: 連結
     code: 程式碼
   card_toc: 目錄
+  card_post_series: 系列文章
 
 date_suffix:
   just: 剛剛

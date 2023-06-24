@@ -76,7 +76,7 @@ npm i hexo-theme-butterfly
 - [x] WordCount
 - [x] Related articles
 - [x] Displays outdated notice for a post
-- [x] Share (AddThis/Sharejs/Addtoany)
+- [x] Share (Sharejs/Addtoany)
 - [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/artalk)
 - [x] Multiple Comment System Support
 - [x] Online Chats (Chatra/Tidio/Daovoice/Crisp/messenger)

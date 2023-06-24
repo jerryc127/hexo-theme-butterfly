@@ -76,7 +76,7 @@ theme: butterfly
 - [x] 顯示字數統計
 - [x] 顯示相關文章
 - [x] 過期文章提醒
-- [x] 多種分享系統（AddThis/Sharejs/Addtoany）
+- [x] 多種分享系統（Sharejs/Addtoany）
 - [X] 多種評論系統（Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/artalk）
 - [x] 支持雙評論部署
 - [x] 多種在線聊天（Chatra/Tidio/Daovoice/Crisp/messenger）
