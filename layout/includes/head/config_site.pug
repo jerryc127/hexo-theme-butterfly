@@ -17,6 +17,27 @@
     const pageToc = page.toc === true || page.toc === false ? page.toc : tocEnable
     showToc = pageToc && (toc(page.content) !== '' || page.encrypt == true )
   }
+
+  function selectLangAttributes(global, curr) {
+    function convertLangNames(set) {
+      if (set === undefined) return undefined
+      if (Array.isArray(set)) {
+        return set.join(',');
+      } else if (set == '') {
+        return ''
+      } else {
+        return set + ''
+      }
+    }
+    global = convertLangNames(global)
+    curr = convertLangNames(curr)
+    if (curr !== undefined) return curr
+    else if (global !== undefined) return global
+    return ''
+  }
+  let highlightLangAlwaysExpand = selectLangAttributes(theme.highlight_always_expand, page.highlight_always_expand)
+  let highlightLangAlwaysCollapse = selectLangAttributes(theme.highlight_always_collapse, page.highlight_always_collapse)
+
 -
 
 script#config-diff.
@@ -26,5 +47,7 @@ script#config-diff.
     isHome: !{is_home()},
     isHighlightShrink: !{isHighlightShrink},
     isToc: !{showToc},
-    postUpdate: '!{full_date(page.updated)}'
+    postUpdate: '!{full_date(page.updated)}',
+    highlightLangExpand: '!{highlightLangAlwaysExpand}',
+    highlightLangCollapse: '!{highlightLangAlwaysCollapse}'
   }

@@ -28,6 +28,10 @@ highlight_lang: true # show the code language
 highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
 highlight_height_limit: false # unit: px
 code_word_wrap: false
+highlight_always_expand: # always expand the code blocks for specific languages
+  # - cpp
+  # - java
+highlight_always_collapse: # always collapse the code blocks for specific languages
 
 # Social Settings (社交圖標設置)
 # formal:

@@ -72,15 +72,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const { highlightCopy, highlightLang, highlightHeightLimit, plugin } = highLight
     const isHighlightShrink = GLOBAL_CONFIG_SITE.isHighlightShrink
+    const highlightLangExpand = GLOBAL_CONFIG_SITE.highlightLangExpand.split(',')
+    const highlightLangCollapse = GLOBAL_CONFIG_SITE.highlightLangCollapse.split(',')
     const isShowTool = highlightCopy || highlightLang || isHighlightShrink !== undefined
     const $figureHighlight = plugin === 'highlighjs' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]')
 
     if (!((isShowTool || highlightHeightLimit) && $figureHighlight.length)) return
 
     const isPrismjs = plugin === 'prismjs'
-    const highlightShrinkClass = isHighlightShrink === true ? 'closed' : ''
-    const highlightShrinkEle = isHighlightShrink !== undefined ? `<i class="fas fa-angle-down expand ${highlightShrinkClass}"></i>` : ''
-    const highlightCopyEle = highlightCopy ? '<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>' : ''
 
     const copy = (text, ctx) => {
       if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
@@ -138,8 +137,16 @@ document.addEventListener('DOMContentLoaded', function () {
       this.classList.toggle('expand-done')
     }
 
-    function createEle (lang, item, service) {
+    function createEle (lang, langName, item, service) {
       const fragment = document.createDocumentFragment()
+      var isHighlightShrinkLocal = isHighlightShrink
+      if (isHighlightShrinkLocal !== undefined) {
+        if (highlightLangExpand.includes(langName)) isHighlightShrinkLocal = false
+        else if (highlightLangCollapse.includes(langName)) isHighlightShrinkLocal = true
+      }
+      const highlightShrinkClass = isHighlightShrinkLocal === true ? 'closed' : ''
+      const highlightShrinkEle = isHighlightShrinkLocal !== undefined ? `<i class="fas fa-angle-down expand ${highlightShrinkClass}"></i>` : ''
+      const highlightCopyEle = highlightCopy ? '<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>' : ''
 
       if (isShowTool) {
         const hlTools = document.createElement('div')
@@ -170,10 +177,10 @@ document.addEventListener('DOMContentLoaded', function () {
           const langName = item.getAttribute('data-language') || 'Code'
           const highlightLangEle = `<div class="code-lang">${langName}</div>`
           btf.wrap(item, 'figure', { class: 'highlight' })
-          createEle(highlightLangEle, item)
+          createEle(highlightLangEle, langName, item)
         } else {
           btf.wrap(item, 'figure', { class: 'highlight' })
-          createEle('', item)
+          createEle('', '', item)
         }
       })
     } else {
@@ -182,9 +189,9 @@ document.addEventListener('DOMContentLoaded', function () {
           let langName = item.getAttribute('class').split(' ')[1]
           if (langName === 'plain' || langName === undefined) langName = 'Code'
           const highlightLangEle = `<div class="code-lang">${langName}</div>`
-          createEle(highlightLangEle, item, 'hl')
+          createEle(highlightLangEle, langName, item, 'hl')
         } else {
-          createEle('', item, 'hl')
+          createEle('', '', item, 'hl')
         }
       })
     }
@@ -264,8 +271,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const addJustifiedGallery = () => {
       ele.forEach(item => {
         item.classList.contains('url')
-          ? fetchUrl(item.textContent).then(res => { runJustifiedGallery(item, res) })
-          : runJustifiedGallery(item, JSON.parse(item.textContent))
+            ? fetchUrl(item.textContent).then(res => { runJustifiedGallery(item, res) })
+            : runJustifiedGallery(item, JSON.parse(item.textContent))
       })
     }
 
@@ -358,8 +365,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
-  * toc,anchor
-  */
+   * toc,anchor
+   */
   const scrollFnToDo = function () {
     const isToc = GLOBAL_CONFIG_SITE.isToc
     const isAnchor = GLOBAL_CONFIG.isAnchor
@@ -395,8 +402,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const target = e.target.classList
         if (target.contains('toc-content')) return
         const $target = target.contains('toc-link')
-          ? e.target
-          : e.target.parentElement
+            ? e.target
+            : e.target.parentElement
         btf.scrollToDest(btf.getEleTop(document.getElementById(decodeURI($target.getAttribute('href')).replace('#', ''))), 300)
         if (window.innerWidth < 900) {
           window.mobileToc.close()
@@ -595,8 +602,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /**
- * 複製時加上版權信息
- */
+   * 複製時加上版權信息
+   */
   const addCopyright = () => {
     const copyright = GLOBAL_CONFIG.copyright
     document.body.oncopy = (e) => {
