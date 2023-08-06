@@ -32,7 +32,7 @@ script.
       window.loadMermaid ? runMermaid() : getScript('!{url_for(theme.asset.mermaid)}').then(runMermaid)
     }
 
-    btf.addModeChange('mermaid', runMermaid)
+    btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
 
     window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
   })()

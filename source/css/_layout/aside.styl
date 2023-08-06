@@ -179,6 +179,13 @@
 
       > .parent
         > a
+          &.expand
+            i
+              transform: rotate(-90deg)
+
+            & + .child
+              display: block
+
           .card-category-list
             &-name
               width: 70% !important
@@ -187,15 +194,12 @@
               width: calc(100% - 70% - 20px)
               text-align: right
 
-        i
-          float: right
-          margin-right: -.5em
-          padding: .5em
-          transition: transform .3s
-          transform: rotate(0)
-
-          &.expand
-            transform: rotate(-90deg)
+          i
+            float: right
+            margin-right: -.5em
+            padding: .5em
+            transition: transform .3s
+            transform: rotate(0)
 
         if hexo-config('aside.card_categories.expand') == false
           > .child
@@ -220,15 +224,18 @@
 
     +maxWidth900()
       position: fixed
-      right: -100%
+      right: 55px
       bottom: 30px
       z-index: 100
       max-width: $toc-mobile-maxWidth
       max-height: calc(100% - 60px)
       width: $toc-mobile-width
-      opacity: 0
-      transition: initial
+      transition: transform .3s
+      transform: scale(0)
       transform-origin: right bottom
+
+      &.open
+        transform: scale(1)
 
     .toc-percentage
       float: right
@@ -242,6 +249,7 @@
       overflow-y: overlay
       margin: 0 -24px
       max-height: calc(100vh - 120px)
+      width: calc(100% + 48px)
 
       +maxWidth900()
         max-height: calc(100vh - 140px)

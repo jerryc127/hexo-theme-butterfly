@@ -1,3 +1,5 @@
+- const serverURL = theme.waline.serverURL.replace(/\/$/, '')
+
 script.
   window.addEventListener('load', () => {
     const changeContent = content => {
@@ -43,7 +45,7 @@ script.
 
     const getComment = async () => {
       try {
-        const res = await fetch('!{theme.waline.serverURL}/api/comment?type=recent&count=!{theme.newest_comments.limit}', { method: 'GET' })
+        const res = await fetch('!{serverURL}/api/comment?type=recent&count=!{theme.newest_comments.limit}', { method: 'GET' })
         const result = await res.json()
         const walineArray = result.data.map(e => {
           return {

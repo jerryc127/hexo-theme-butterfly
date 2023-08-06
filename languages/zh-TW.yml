@@ -15,7 +15,7 @@ page:
 
 card_post_count: 條評論
 
-no_title: 無題
+no_title: 無標題
 
 post:
   created: 發表於
@@ -83,7 +83,7 @@ aside:
     link: 連結
     code: 程式碼
   card_toc: 目錄
-  card_post_series: 系列文章
+  card_post_series: 文章系列
 
 date_suffix:
   just: 剛剛
@@ -92,14 +92,14 @@ date_suffix:
   day: 天前
   month: 個月前
 
-donate: 打賞
+donate: 贊助
 share: 分享
 
 rightside:
   readmode_title: 閱讀模式
   translate_title: 簡繁轉換
   night_mode_title: 淺色和深色模式轉換
-  back_to_top: 回到頂部
+  back_to_top: 返回頂部
   toc: 目錄
   scroll_to_comment: 直達評論
   setting: 設定
@@ -110,11 +110,11 @@ copy_copyright:
   author: 作者
   link: 連結
   source: 來源
-  info: 著作權歸作者所有。商業轉載請聯絡作者獲得授權，非商業轉載請註明出處。
+  info: 著作權歸作者所有。商業轉載請聯繫作者獲得授權，非商業轉載請註明出處。
 
 Snackbar:
-  chs_to_cht: 你已切換為繁體
-  cht_to_chs: 你已切換為簡體
+  chs_to_cht: 你已切換為繁體中文
+  cht_to_chs: 你已切換為簡體中文
   day_to_night: 你已切換為深色模式
   night_to_day: 你已切換為淺色模式
 

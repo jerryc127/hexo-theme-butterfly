@@ -115,11 +115,9 @@ script.
     copyright: !{copyright},
     lightbox: '!{ theme.medium_zoom ? "mediumZoom" : (theme.fancybox ? "fancybox" : "null" )}',
     Snackbar: !{Snackbar},
-    source: {
-      justifiedGallery: {
-        js: '!{url_for(theme.asset.flickr_justified_gallery_js)}',
-        css: '!{url_for(theme.asset.flickr_justified_gallery_css)}'
-      }
+    infinitegrid: {
+      js: '!{url_for(theme.asset.egjs_infinitegrid)}',
+      buttonText: '!{_p("load_more")}'
     },
     isPhotoFigcaption: !{theme.photofigcaption},
     islazyload: !{theme.lazyload.enable},

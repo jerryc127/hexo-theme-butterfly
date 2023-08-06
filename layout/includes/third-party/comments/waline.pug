@@ -2,8 +2,8 @@
 - const { lazyload, count, use } = theme.comments
 
 script.
-  function loadWaline () {
-    function initWaline () {
+  (() => {
+    const initWaline = () => {
       const waline = Waline.init(Object.assign({
         el: '#waline-wrap',
         serverURL: '!{serverURL}',
@@ -14,21 +14,20 @@ script.
       }, !{JSON.stringify(option)}))
     }
 
-    if (typeof Waline === 'object') initWaline()
-    else {
-      getCSS('!{url_for(theme.asset.waline_css)}').then(() => {
-        getScript('!{url_for(theme.asset.waline_js)}').then(initWaline)
-      })
+    const loadWaline = async () => {
+      if (typeof Waline === 'object') initWaline()
+      else {
+        await getCSS('!{url_for(theme.asset.waline_css)}')
+        await getScript('!{url_for(theme.asset.waline_js)}')
+        initWaline()
+      }
     }
-  }
 
-  if ('!{use[0]}' === 'Waline' || !!{lazyload}) {
-    if (!{lazyload}) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
-    else setTimeout(loadWaline, 0)
-  } else {
-    function loadOtherComment () {
-      loadWaline()
+    if ('!{use[0]}' === 'Waline' || !!{lazyload}) {
+      if (!{lazyload}) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+      else setTimeout(loadWaline, 0)
+    } else {
+      window.loadOtherComment = loadWaline
     }
-  }
-  
+  })()
 

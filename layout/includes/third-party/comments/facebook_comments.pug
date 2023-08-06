@@ -2,45 +2,45 @@
 - const fbSDK = theme.messenger.enable ? `https://connect.facebook.net/${theme.facebook_comments.lang}/sdk/xfbml.customerchat.js#xfbml=1&version=${fbSDKVer}` : `https://connect.facebook.net/${theme.facebook_comments.lang}/sdk.js#xfbml=1&version=${fbSDKVer}`
 
 script.
-  function loadFBComment () {
-    document.getElementById('fb-root') ? '' : document.body.insertAdjacentHTML('afterend', '<div id="fb-root"></div>')
+  (()=>{
+    const loadFBComment = () => {
+      document.getElementById('fb-root') ? '' : document.body.insertAdjacentHTML('afterend', '<div id="fb-root"></div>')
 
-    const themeNow = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
-    const $fbComment = document.getElementsByClassName('fb-comments')[0]
-    $fbComment.setAttribute('data-colorscheme',themeNow)
-    $fbComment.setAttribute('data-href', '!{urlNoIndex(page.permalink)}')
+      const themeNow = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+      const $fbComment = document.getElementsByClassName('fb-comments')[0]
+      $fbComment.setAttribute('data-colorscheme',themeNow)
+      $fbComment.setAttribute('data-href', '!{urlNoIndex(page.permalink)}')
 
-    if (typeof FB === 'object') {
-      FB.XFBML.parse(document.getElementsByClassName('post-meta-commentcount')[0])
-      FB.XFBML.parse(document.getElementById('post-comment'))
+      if (typeof FB === 'object') {
+        FB.XFBML.parse(document.getElementsByClassName('post-meta-commentcount')[0])
+        FB.XFBML.parse(document.getElementById('post-comment'))
+      }
+      else {
+        let ele = document.createElement('script')
+        ele.setAttribute('src','!{fbSDK}')
+        ele.setAttribute('async', 'true')
+        ele.setAttribute('defer', 'true')
+        ele.setAttribute('crossorigin', 'anonymous')
+        ele.setAttribute('id', 'facebook-jssdk')
+        document.getElementById('fb-root').insertAdjacentElement('afterbegin',ele)
+      }
     }
-    else {
-      let ele = document.createElement('script')
-      ele.setAttribute('src','!{fbSDK}')
-      ele.setAttribute('async', 'true')
-      ele.setAttribute('defer', 'true')
-      ele.setAttribute('crossorigin', 'anonymous')
-      ele.setAttribute('id', 'facebook-jssdk')
-      document.getElementById('fb-root').insertAdjacentElement('afterbegin',ele)
-    }
-  }
 
-  function fbModeChange (theme) {
-    const $fbComment = document.getElementsByClassName('fb-comments')[0]
-    if ($fbComment && typeof FB === 'object') {
-      $fbComment.setAttribute('data-colorscheme',theme)
-      FB.XFBML.parse(document.getElementById('post-comment'))
+    const fbModeChange = theme => {
+      const $fbComment = document.getElementsByClassName('fb-comments')[0]
+      if ($fbComment && typeof FB === 'object') {
+        $fbComment.setAttribute('data-colorscheme',theme)
+        FB.XFBML.parse(document.getElementById('post-comment'))
+      }
     }
-  }
 
-  btf.addModeChange('facebook_comments', fbModeChange)
+    btf.addGlobalFn('themeChange', fbModeChange, 'facebook_comments')
 
-  if ('!{theme.comments.use[0]}' === 'Facebook Comments' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) btf.loadComment(document.querySelector('#post-comment .fb-comments'), loadFBComment)
-    else loadFBComment()
-  } else {
-    function loadOtherComment () {
-      loadFBComment()
+    if ('!{theme.comments.use[0]}' === 'Facebook Comments' || !!{theme.comments.lazyload}) {
+      if (!{theme.comments.lazyload}) btf.loadComment(document.querySelector('#post-comment .fb-comments'), loadFBComment)
+      else loadFBComment()
+    } else {
+      window.loadOtherComment = loadFBComment
     }
-  }
+  })()
 

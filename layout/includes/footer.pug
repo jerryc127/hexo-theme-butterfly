@@ -4,9 +4,9 @@
     - var nowYear = now.getFullYear()
     if theme.footer.owner.since != false
       if theme.footer.owner.since != nowYear
-         .copyright!= `&copy;${theme.footer.owner.since} - ${nowYear} By ${config.author}`
+        .copyright!= `&copy;${theme.footer.owner.since} - ${nowYear} By ${config.author}`
       else
-         .copyright!= `&copy;${nowYear} By ${config.author}`
+        .copyright!= `&copy;${nowYear} By ${config.author}`
   if theme.footer.copyright
     .framework-info
       span= _p('footer.framework') + ' '

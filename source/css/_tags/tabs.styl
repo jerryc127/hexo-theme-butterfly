@@ -15,43 +15,36 @@
       background: var(--tab-botton-bg)
 
       > .tab
-        margin: 0
-        padding: 0
-        list-style: none
+        flex-grow: 1
+        padding: 8px 18px
+        border-top: 2px solid var(--tab-border-color)
+        background: var(--tab-botton-bg)
+        color: var(--tab-botton-color)
+        line-height: 2
+        transition: all .4s
 
-        +maxWidth768()
-          flex-grow: 1
-
-        button
-          display: block
-          padding: 8px 18px
-          width: 100%
-          border-top: 2px solid var(--tab-border-color)
-          background: var(--tab-botton-bg)
-          color: var(--tab-botton-color)
-          line-height: 2
-          transition: all .4s
-
-          i
-            width: 1.5em
+        i
+          width: 1.5em
 
         &.active
-          button
-            border-top: 2px solid $tab-active-border-color
-            background: var(--tab-button-active-bg)
-            cursor: default
+          border-top: 2px solid $tab-active-border-color
+          background: var(--tab-button-active-bg)
+          cursor: default
 
         &:not(.active)
-          button
-            &:hover
-              border-top: 2px solid var(--tab-button-hover-bg)
-              background: var(--tab-button-hover-bg)
+          &:hover
+            border-top: 2px solid var(--tab-button-hover-bg)
+            background: var(--tab-button-hover-bg)
+
+      &.no-default
+        & ~ .tab-to-top
+          display: none
 
     > .tab-contents
       .tab-item-content
         position: relative
         display: none
-        padding: 36px 24px
+        padding: 36px 24px 10px
 
         +maxWidth768()
           padding: 24px 14px
@@ -60,11 +53,16 @@
           display: block
           animation: tabshow .5s
 
-    .tab-to-top
-      position: absolute
-      right: 15px
-      display: block
-      color: $tab-to-top-color
+    > .tab-to-top
+      padding: 0 16px 10px 0
+      width: 100%
+      text-align: right
+
+      button
+        color: $tab-to-top-color
+
+        &:hover
+          color: $tab-to-top-hover-color
 
 @keyframes tabshow
   0%

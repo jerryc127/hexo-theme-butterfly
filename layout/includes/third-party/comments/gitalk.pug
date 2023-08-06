@@ -1,41 +1,44 @@
+- const { client_id, client_secret, repo, owner, admin, option } = theme.gitalk
+
 script.
-  function loadGitalk () {
-    function initGitalk () {
-      var gitalk = new Gitalk(Object.assign({
-        clientID: '!{theme.gitalk.client_id}',
-        clientSecret: '!{theme.gitalk.client_secret}',
-        repo: '!{theme.gitalk.repo}',
-        owner: '!{theme.gitalk.owner}',
-        admin: ['!{theme.gitalk.admin}'],
+  (() => {
+    const initGitalk = () => {
+      const gitalk = new Gitalk(Object.assign({
+        clientID: '!{client_id}',
+        clientSecret: '!{client_secret}',
+        repo: '!{repo}',
+        owner: '!{owner}',
+        admin: ['!{admin}'],
         id: '!{md5(page.path)}',
         updateCountCallback: commentCount
-      },!{JSON.stringify(theme.gitalk.option)}))
+      },!{JSON.stringify(option)}))
 
       gitalk.render('gitalk-container')
     }
 
-    if (typeof Gitalk === 'function') initGitalk()
-    else {
-      getCSS('!{url_for(theme.asset.gitalk_css)}')
-      getScript('!{url_for(theme.asset.gitalk)}').then(initGitalk)
+    const loadGitalk = async() => {
+      if (typeof Gitalk === 'function') initGitalk()
+      else {
+        await getCSS('!{url_for(theme.asset.gitalk_css)}')
+        await getScript('!{url_for(theme.asset.gitalk)}')
+        initGitalk()
+      }
     }
-  }
-  
-  function commentCount(n){
-    let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
-    if (isCommentCount) {
-      isCommentCount.textContent= n
+    
+    const commentCount = n => {
+      const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+      if (isCommentCount) {
+        isCommentCount.textContent= n
+      }
     }
-  }
 
-  if ('!{theme.comments.use[0]}' === 'Gitalk' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
-    else loadGitalk()
-  } else {
-    function loadOtherComment () {
-      loadGitalk()
+    if ('!{theme.comments.use[0]}' === 'Gitalk' || !!{theme.comments.lazyload}) {
+      if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+      else loadGitalk()
+    } else {
+      window.loadOtherComment = loadGitalk
     }
-  }
+  })()
 
 
 

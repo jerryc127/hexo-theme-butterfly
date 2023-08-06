@@ -3,7 +3,6 @@ extends includes/layout.pug
 block content
   include ./includes/mixins/article-sort.pug
   #archive
-    - const archiveLength = findArchiveLength(fragment_cache)
-    .article-sort-title= _p('page.articles') + ' - ' + archiveLength
+    .article-sort-title= `${_p('page.articles')} - ${getArchiveLength()}`
     +articleSort(page.posts)
     include includes/pagination.pug

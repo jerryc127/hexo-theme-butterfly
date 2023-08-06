@@ -2,16 +2,21 @@
 - const { use, lazyload, count } = theme.comments
 
 script.
-  (()=>{
+  (() => {
     const init = () => {
       twikoo.init(Object.assign({
         el: '#twikoo-wrap',
         envId: '!{envId}',
         region: '!{region}',
-        onCommentLoaded: function () {
+        onCommentLoaded: () => {
           btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
         }
       }, !{JSON.stringify(option)}))
+    }
+
+    const loadTwikoo = () => {
+      if (typeof twikoo === 'object') setTimeout(init,0)
+      else getScript('!{url_for(theme.asset.twikoo)}').then(init)
     }
 
     const getCount = () => {
@@ -22,32 +27,20 @@ script.
         region: '!{region}',
         urls: [window.location.pathname],
         includeReply: false
-      }).then(function (res) {
+      }).then(res => {
         countELement.textContent = res[0].count
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-
-    const runFn = () => {
-      init()
-      !{count ? 'GLOBAL_CONFIG_SITE.isPost && getCount()' : ''}
-    }
-
-    const loadTwikoo = () => {
-      if (typeof twikoo === 'object') {
-        setTimeout(runFn,0)
-        return
-      } 
-      getScript('!{url_for(theme.asset.twikoo)}').then(runFn)
+      }).catch(err => {
+        console.error(err)
+      })
     }
 
     if ('!{use[0]}' === 'Twikoo' || !!{lazyload}) {
       if (!{lazyload}) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
-      else loadTwikoo()
-    } else {
-      window.loadOtherComment = () => {
+      else {
         loadTwikoo()
+        !{count ? 'GLOBAL_CONFIG_SITE.isPost && getCount()' : ''}
       }
+    } else {
+      window.loadOtherComment = loadTwikoo
     }
   })()

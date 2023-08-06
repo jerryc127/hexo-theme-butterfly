@@ -13,6 +13,16 @@ wordWrap = $highlight_enable && !$highlight_line_number && hexo-config('code_wor
   --hlscrollbar-bg: $highlight-scrollbar
   --hlexpand-bg: linear-gradient(180deg, rgba($highlight-background, .6), rgba($highlight-background, .9))
 
+[data-theme='dark']
+  --hl-color: alpha(#FFFFFF, .7)
+  --hl-bg: lighten(#121212, 2)
+  --hltools-bg: lighten(#121212, 3)
+  --hltools-color: #90a4ae
+  --hlnumber-bg: lighten(#121212, 2)
+  --hlnumber-color: alpha(#FFFFFF, .4)
+  --hlscrollbar-bg: lighten(#121212, 5)
+  --hlexpand-bg: linear-gradient(180deg, rgba(lighten(#121212, 2), .6), rgba(lighten(#121212, 2), .9))
+
 if $highlight_enable
   @require 'highlight/index'
 
@@ -94,8 +104,13 @@ $code-block
     color: var(--hltools-color)
     font-size: $code-font-size
 
-    &.closed ~ *
-      display: none
+    &.closed
+      & ~ *
+        display: none
+
+      .expand
+        transition: all .3s
+        transform: rotate(-90deg) !important
 
     .expand
       position: absolute
@@ -105,10 +120,6 @@ $code-block
 
       & + .code-lang
         left: 1.7em
-
-      &.closed
-        transition: all .3s
-        transform: rotate(-90deg) !important
 
     .code-lang
       position: absolute

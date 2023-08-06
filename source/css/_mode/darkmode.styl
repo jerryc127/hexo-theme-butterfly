@@ -28,15 +28,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --blockquote-bg: lighten(#121212, 10)
     --reward-pop: lighten(#121212, 10)
     --toc-link-color: alpha(#FFFFFF, .6)
-    --hl-color: alpha(#FFFFFF, .7)
-    --hl-bg: lighten(#121212, 2)
-    --hltools-bg: lighten(#121212, 3)
-    --hltools-color: #90a4ae
-    --hlnumber-bg: lighten(#121212, 2)
-    --hlnumber-color: alpha(#FFFFFF, .4)
-    --hlscrollbar-bg: lighten(#121212, 5)
-    --hlexpand-bg: linear-gradient(180deg, rgba(lighten(#121212, 2), .6), rgba(lighten(#121212, 2), .9))
-    --scrollbar-color: lighten(#121212, 5)
+    --scrollbar-color: lighten(#121212, 25)
     --timeline-bg: lighten(#121212, 5)
     --zoom-bg: #121212
     --mark-bg: alpha($dark-black, .6)
@@ -78,11 +70,11 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0)
 
     #post-comment
-      #comment-switch
+      .comment-switch
         if hexo-config('comments.text')
           background: #2c2c2c !important
 
-        .switch-btn
+        #switch-btn
           filter: brightness(.8)
 
     // note

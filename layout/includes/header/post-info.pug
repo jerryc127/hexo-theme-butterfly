@@ -102,14 +102,12 @@
         case whichCount
           when 'Disqus'
             +countBlock
-              span.disqus-comment-count
-                a(href=full_url_for(page.path) + '#disqus_thread')
-                  i.fa-solid.fa-spinner.fa-spin
+              a.disqus-comment-count(href=full_url_for(page.path) + '#post-comment')
+                i.fa-solid.fa-spinner.fa-spin
           when 'Disqusjs'
             +countBlock
-              a(href=full_url_for(page.path) + '#disqusjs')
-                span.disqus-comment-count(data-disqus-url=full_url_for(page.path))
-                  i.fa-solid.fa-spinner.fa-spin
+              a.disqusjs-comment-count(href=full_url_for(page.path) + '#post-comment')
+                i.fa-solid.fa-spinner.fa-spin
           when 'Valine'
             +countBlock
               a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
