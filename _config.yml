@@ -622,6 +622,16 @@ site_verification:
 #   meta_theme_color_light: "ffffff"
 #   meta_theme_color_dark: "#0d0d0d"
 
+# Modify the width of different pages
+# Notice: width value must in double quotes like "1400px" or may cause error!
+
+# pages_width:
+#   enable: true
+#   homepage: "1400px"
+#   categories: "1400px"
+#   tags: "1400px"
+#   archives: "1400px"
+
 # The top_img settings of home page
 # default: top img - full screen, site info - middle (默認top_img全屏，site_info在中間)
 # The position of site info, eg: 300px/300em/300rem/10% (主頁標題距離頂部距離)
