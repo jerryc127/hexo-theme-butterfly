@@ -11,6 +11,18 @@
   max-width: 1200px
   width: 100%
 
+  .page:has(#recent-posts) &
+    max-width: var(--homepage-width)
+
+  .page:has(.article-sort) &
+    max-width: var(--archives-width)
+
+  .page:has(.category-lists) &
+    max-width: var(--categories-width)
+
+  .page:has(.tag-cloud-list) &
+    max-width: var(--tags-width)
+
   +maxWidth900()
     flex-direction: column
 
