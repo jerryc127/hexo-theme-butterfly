@@ -184,3 +184,9 @@ $tab-to-top-hover-color = $theme-color
 $timeline-default-color = $theme-color
 // archor
 $archor-button-icon = hexo-config('anchor.button.icon') ? hexo-config('anchor.button.icon') : '\f0c1'
+// width
+$pagesWidthEnable = hexo-config('pages_width') && hexo-config('pages_width.enable')
+$homepage-width = $pagesWidthEnable && hexo-config('pages_width.homepage') ? convert(hexo-config('pages_width.homepage')) : 1200px
+$categories-width = $pagesWidthEnable && hexo-config('pages_width.categories') ? convert(hexo-config('pages_width.categories')) : 1200px
+$tags-width = $pagesWidthEnable && hexo-config('pages_width.tags') ? convert(hexo-config('pages_width.tags')) : 1200px
+$archives-width = $pagesWidthEnable && hexo-config('pages_width.archives') ? convert(hexo-config('pages_width.archives')) : 1200px
