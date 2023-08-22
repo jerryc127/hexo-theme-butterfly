@@ -1,0 +1,26 @@
+#snippets
+  each entry in site.data.snippets
+    each item, index in entry.snippets_list
+      .snippet-card
+        .snippet-content
+          != markdown(item.content)
+        hr
+        .snippet-bottom
+          .snippet-info
+            if item.date
+              .snippet-info-time
+                i.fa-solid.fa-calendar-days
+                - var datetime = new Date(item.date).toISOString()
+                time(datetime = item.date)
+                  = datetime
+            if item.links
+              each link, index in item.links
+                a.snippet-info-link(
+                  href=link.href
+                  rel="external nofollow"
+                  target="_blank"
+                )
+                  i.fa-solid.fa-link
+                  = link.desc
+
+  script(src="/js/snippets.js")

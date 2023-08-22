@@ -1,7 +1,7 @@
 extends includes/layout.pug
 
 block content
-  #page
+  div(id=pageId)
     if top_img === false
       h1.page-title= page.title
 
@@ -12,6 +12,8 @@ block content
         include includes/page/flink.pug
       when 'categories'
         include includes/page/categories.pug
+      when 'snippets'
+        include includes/page/snippets.pug
       default
         include includes/page/default-page.pug
 

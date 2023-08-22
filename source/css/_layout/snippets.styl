@@ -1,0 +1,78 @@
+#snippets
+  margin: -50px -40px 0
+
+  +maxWidth768()
+    margin: -36px -14px 0
+
+.snippet-card
+  border: 1px solid #e3e8f7
+  border-radius: 12px
+  width: 32%
+  margin-right: 2%
+  margin-bottom: 1rem
+  padding: 1rem
+  padding-bottom: 0.5rem
+  transition: 0.3s
+  display: flex
+  flex-direction: column
+  flex-wrap: nowrap
+  justify-content: space-between
+  align-items: flex-start
+  background: #ffffff
+  box-shadow: 0 8px 16px -4px #2c2d300c
+
+  +maxWidth1024()
+    width: 49%
+    margin-right: 1%
+
+  +maxWidth768()
+    width: 100%
+    margin-right: 0
+    padding: 16px 20px
+
+  & > hr
+    width: 100%
+    border: 1px dashed #4259ef23
+    list-style: none
+    line-height: 2
+
+.snippet-card img
+  max-width: 100%
+
+.snippet-content
+  & > p
+    margin: 0
+    margin-bottom: 0.5rem
+
+.snippet-bottom
+  display: flex
+  justify-content: space-between
+  width: 100%
+
+.snippet-info
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+
+.snippet-info-link
+.snippet-info-time
+  & > i
+    font-size: 0.6rem
+    margin-right: 0.3rem
+
+  color: var(--font-color)
+  font-size: 0.7rem
+  background-color: #9999992b
+  padding: 0 8px
+  margin-right: 0.3rem
+  margin-bottom: 0.3rem
+  border-radius: 20px
+  cursor: default
+  display: flex
+  align-items: center
+  white-space: nowrap
+
+.snippet-info-link
+  color: #f56c6c !important
+  background-color: rgba(245,108,108,.13) !important
+  cursor: pointer !important

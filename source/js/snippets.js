@@ -1,0 +1,13 @@
+/**
+ * waterfall.min.js
+ * https://blog.zhheo.com/js/waterfall/waterfall.min.js
+ */
+function waterfall(a){function b(a,b){var c=window.getComputedStyle(b);return parseFloat(c["margin"+a])||0}function c(a){return a+"px"}function d(a){return parseFloat(a.style.top)}function e(a){return parseFloat(a.style.left)}function f(a){return a.clientWidth}function g(a){return a.clientHeight}function h(a){return d(a)+g(a)+b("Bottom",a)}function i(a){return e(a)+f(a)+b("Right",a)}function j(a){a=a.sort(function(a,b){return h(a)===h(b)?e(b)-e(a):h(b)-h(a)})}function k(b){f(a)!=t&&(b.target.removeEventListener(b.type,arguments.callee),waterfall(a))}"string"==typeof a&&(a=document.querySelector(a));var l=[].map.call(a.children,function(a){return a.style.position="absolute",a});a.style.position="relative";var m=[];l.length&&(l[0].style.top="0px",l[0].style.left=c(b("Left",l[0])),m.push(l[0]));for(var n=1;n<l.length;n++){var o=l[n-1],p=l[n],q=i(o)+f(p)<=f(a);if(!q)break;p.style.top=o.style.top,p.style.left=c(i(o)+b("Left",p)),m.push(p)}for(;n<l.length;n++){j(m);var p=l[n],r=m.pop();p.style.top=c(h(r)+b("Top",p)),p.style.left=c(e(r)),m.push(p)}j(m);var s=m[0];a.style.height=c(h(s)+b("Bottom",s));var t=f(a);window.addEventListener?window.addEventListener("resize",k):document.body.onresize=k}
+waterfall("#snippets")
+/**
+ * Lately.min.js 2.5.2
+ * MIT License - http://www.opensource.org/licenses/mit-license.php
+ * https://tokinx.github.io/lately/
+ */
+!function(){window.Lately=new function(){var t=this;this.lang={second:"秒",minute:"分钟",hour:"小时",day:"天",month:"个月",year:"年",ago:"前",error:"NaN"};var e=function(e){e=new Date(n(e));var r=new function(){this.second=(Date.now()-e.getTime())/1e3,this.minute=this.second/60,this.hour=this.minute/60,this.day=this.hour/24,this.month=this.day/30,this.year=this.month/12},i=Object.keys(r).reverse().find(function(t){return r[t]>=1});return(i?function(t,e){return Math.floor(t)+e}(r[i],t.lang[i]):t.lang.error)+t.lang.ago},n=function(t){return t=new Date(t&&("number"==typeof t?t:t.replace(/-/g,"/").replace("T"," "))),!isNaN(t.getTime())&&t.getTime()};return{init:function(){var r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},i=r.target,a=void 0===i?"time":i,o=r.lang;o&&(t.lang=o);var u=!0,h=!1,l=void 0;try{for(var s,c=document.querySelectorAll(a)[Symbol.iterator]();!(u=(s=c.next()).done);u=!0){var f=s.value,g=n(f.dateTime)||n(f.title)||n(f.innerHTML)||0;if(!g)return;f.title=new Date(g).toLocaleString(),f.innerHTML=e(g)}}catch(t){h=!0,l=t}finally{try{!u&&c.return&&c.return()}finally{if(h)throw l}}},format:e}}}();
+Lately.init()
