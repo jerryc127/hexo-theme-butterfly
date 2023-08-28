@@ -18,7 +18,7 @@
   flex-wrap: nowrap
   justify-content: space-between
   align-items: flex-start
-  background: #ffffff
+  background: var(--card-bg)
   box-shadow: 0 8px 16px -4px #2c2d300c
 
   +maxWidth1024()
@@ -32,15 +32,22 @@
 
   & > hr
     width: 100%
-    border: 1px dashed #4259ef23
+    border: 1px dashed var(--hr-border)
     list-style: none
     line-height: 2
+
+.snippet-card:hover
+  border: 1px solid #24a7ff !important
 
 .snippet-card img
   max-width: 100%
 
 .snippet-content
   & > p
+    margin: 0
+    margin-bottom: 0.5rem
+
+  & > table
     margin: 0
     margin-bottom: 0.5rem
 
@@ -73,6 +80,6 @@
   white-space: nowrap
 
 .snippet-info-link
-  color: #f56c6c !important
-  background-color: rgba(245,108,108,.13) !important
+  color: #0398fc !important
+  background-color: rgba(73, 177, 245, 0.1) !important
   cursor: pointer !important
