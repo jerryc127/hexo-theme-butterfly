@@ -95,6 +95,16 @@
   &.post-bg
     height: 400px
 
+    // darken the background to make the title visible
+    &::before
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+
     +maxWidth768()
       height: 360px
 
