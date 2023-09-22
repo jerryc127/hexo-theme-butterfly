@@ -1,13 +1,12 @@
 beautify()
   headStyle(fontsize)
-    padding-left: unit(fontsize + 12, 'px')
+    padding-left: unit(fontsize + 8, 'px')
 
     &:before
-      margin-left: unit((-(fontsize + 6)), 'px')
-      font-size: unit(fontsize, 'px')
+      font-size: unit(fontsize - 2, 'px')
 
     &:hover
-      padding-left: unit(fontsize + 18, 'px')
+      padding-left: unit(fontsize + 12, 'px')
 
   h1,
   h2,
@@ -22,6 +21,7 @@ beautify()
       top: calc(50% - 7px)
       color: $title-prefix-icon-color
       content: $title-prefix-icon
+      left: 0
       line-height: 1
       transition: all .2s ease-out
       @extend .fontawesomeIcon
@@ -106,35 +106,15 @@ beautify()
     font-family: Monaco, 'Ubuntu Mono', monospace
     line-height: 1em
 
-  if hexo-config('anchor.button.enable')
+  if hexo-config('anchor.click_to_scroll')
     a.headerlink
-      &:after
-        @extend .fontawesomeIcon
-        float: right
-        color: var(--headline-presudo)
-        content: $archor-button-icon
-        font-size: .95em
-        transition: all .3s
-
-      &:hover
-        &:after
-          color: var(--pseudo-hover)
-
-    if !hexo-config('anchor.button.always_show')
-      a.headerlink
-        &:after
-          opacity: 0
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6
-        &:hover
-          a.headerlink
-            &:after
-              opacity: 1
+      position: absolute
+      top: 0
+      right: 0
+      left 0
+      bottom: 0
+      width 100%
+      height: 100%
 
   ol,
   ul

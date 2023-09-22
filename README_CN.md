@@ -12,9 +12,9 @@
 
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/theme-butterfly-readme.png)
 
-預覽: 👍 [Butterfly](https://butterfly.js.org/)  ||  🤞 [CrazyWong](https://blog.crazywong.com/)
+📢 預覽: [Butterfly](https://butterfly.js.org/) || [CrazyWong](https://blog.crazywong.com/)
 
-文檔: 📖 [Butterfly Docs](https://butterfly.js.org/posts/21cfbf15/)
+📖 文檔: [中文](https://butterfly.js.org/posts/21cfbf15/) || [English](https://butterfly.js.org/en/posts/butterfly-docs-en-get-started/)
 
 一款基於[hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody)修改的主題
 
