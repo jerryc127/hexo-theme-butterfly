@@ -4,7 +4,7 @@
     'jsdelivr': '//cdn.jsdelivr.net',
     'cdnjs': '//cdnjs.cloudflare.com',
     'unpkg': '//unpkg.com',
-    'custom': custom_format.match(/^((https?:)?(\/\/[^/]+)|([^/]+))(\/|$)/)[1]
+    'custom': custom_format && custom_format.match(/^((https?:)?(\/\/[^/]+)|([^/]+))(\/|$)/)[1]
   }
 -
 
