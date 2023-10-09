@@ -13,11 +13,12 @@
         container: '#docsearch',
       }, !{JSON.stringify(option)}))
 
+      const handleClick = () => {
+        document.querySelector('.DocSearch-Button').click()
+      }
 
       const searchClickFn = () => {
-        document.querySelector('#search-button > .search').addEventListener('click', () => {
-          document.querySelector('.DocSearch-Button').click()
-        })
+        btf.addEventListenerPjax(document.querySelector('#search-button > .search'), 'click', handleClick)
       }
 
       searchClickFn()

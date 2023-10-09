@@ -24,12 +24,12 @@ if theme.activate_power_mode.enable
 if theme.click_heart && theme.click_heart.enable
   script#click-heart(src=url_for(theme.asset.click_heart) async mobile=`${theme.click_heart.mobile}`)
 
-if theme.ClickShowText && theme.ClickShowText.enable
+if theme.clickShowText && theme.clickShowText.enable
   script#click-show-text(
-    src= url_for(theme.asset.ClickShowText)
-    data-mobile= `${theme.ClickShowText.mobile}`
-    data-text= theme.ClickShowText.text.join(",")
-    data-fontsize= theme.ClickShowText.fontSize
-    data-random= `${theme.ClickShowText.random}`
+    src= url_for(theme.asset.clickShowText)
+    data-mobile= `${theme.clickShowText.mobile}`
+    data-text= theme.clickShowText.text.join(",")
+    data-fontsize= theme.clickShowText.fontSize
+    data-random= `${theme.clickShowText.random}`
     async
   )

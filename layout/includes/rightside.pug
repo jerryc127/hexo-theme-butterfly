@@ -42,15 +42,15 @@ mixin rightsideItem(array)
   #rightside-config-show
     if enable
       if hide
-        button#rightside_config(type="button" title=_p("rightside.setting"))
+        button#rightside-config(type="button" title=_p("rightside.setting"))
           i.fas.fa-cog.fa-spin
     else
       if is_post()
         if (readmode || translate.enable || (darkmode.enable && darkmode.button))
-          button#rightside_config(type="button" title=_p("rightside.setting"))
+          button#rightside-config(type="button" title=_p("rightside.setting"))
             i.fas.fa-cog.fa-spin
       else if translate.enable || (darkmode.enable && darkmode.button)
-        button#rightside_config(type="button" title=_p("rightside.setting"))
+        button#rightside-config(type="button" title=_p("rightside.setting"))
           i.fas.fa-cog.fa-spin
 
     if showArray

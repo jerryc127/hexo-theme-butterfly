@@ -55,14 +55,13 @@ if theme.fancybox
 !=partial('includes/head/analytics', {}, {cache: true})
 
 //- font
-if theme.blog_title_font &&　theme.blog_title_font.font_link
+if theme.blog_title_font && theme.blog_title_font.font_link
   link(rel='stylesheet' href=url_for(theme.blog_title_font.font_link) media="print" onload="this.media='all'")
 
 //- global config
 !=partial('includes/head/config', {}, {cache: true})
 
 include ./head/config_site.pug
-include ./head/noscript.pug
 
 !=fragment_cache('injectHeadJs', function(){return inject_head_js()})
 

@@ -134,7 +134,7 @@ if hexo-config('enter_transitions')
   #footer
     animation: bottom-top 1s
 
-  #page-header
+  #page-header:not(.full_page)
     animation: header-effect 1s
 
   #site-title,
@@ -155,7 +155,7 @@ if hexo-config('enter_transitions')
     &.open
       for i in 1 2 3 4
         > :nth-child({i})
-          animation: sidebarItem (i / 5)s
+          animation: sidebarItem (i / 5s)
 
 .scroll-down-effects
   animation: scroll-down-effect 1.5s infinite
@@ -169,16 +169,16 @@ if hexo-config('avatar.effect') == true
 
 @keyframes scroll-down-effect
   0%
-    top: 0
     opacity: .4
+    transform: translate(0, 0)
 
   50%
-    top: -16px
     opacity: 1
+    transform: translate(0, -16px)
 
   100%
-    top: 0
     opacity: .4
+    transform: translate(0, 0)
 
 @keyframes header-effect
   0%
@@ -198,12 +198,12 @@ if hexo-config('avatar.effect') == true
 
 @keyframes bottom-top
   0%
-    margin-top: 50px
     opacity: 0
+    transform: translateY(50px)
 
   100%
-    margin-top: 0
     opacity: 1
+    transform: translateY(0)
 
 @keyframes titleScale
   0%

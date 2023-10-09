@@ -5,15 +5,15 @@
 
 'use strict'
 
-function timeLineFn (args, content) {
+const timeLineFn = (args, content) => {
   const tlBlock = /<!--\s*timeline (.*?)\s*-->\n([\w\W\s\S]*?)<!--\s*endtimeline\s*-->/g
 
   let result = ''
   let color = ''
+  let text = ''
   if (args.length) {
-    args = args.join(' ').split(',')
-    color = args[1]
-    const mdContent = hexo.render.renderSync({ text: args[0], engine: 'markdown' })
+    [text, color] = args.join(' ').split(',')
+    const mdContent = hexo.render.renderSync({ text, engine: 'markdown' })
     result += `<div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'>${mdContent}</div></div></div>`
   }
 

@@ -16,51 +16,46 @@
 
 'use strict'
 
-function hideInline (args) {
-  args = args.join(' ').split(',')
-  const content = args[0]
-  const display = args[1] || 'Click'
-  const bg = args[2] || false
-  const color = args[3] || false
-  let group = 'style="'
+const parseArgs = args => {
+  return args.join(' ').split(',')
+}
 
-  if (bg) group += `background-color: ${bg};`
-  if (color) group += `color: ${color}`
-  group += '"'
+const generateStyle = (bg, color) => {
+  let style = 'style="'
+  if (bg) {
+    style += `background-color: ${bg};`
+  }
+  if (color) {
+    style += `color: ${color}`
+  }
+  style += '"'
+  return style
+}
+
+const hideInline = args => {
+  const [content, display = 'Click', bg = false, color = false] = parseArgs(args)
+  const group = generateStyle(bg, color)
 
   return `<span class="hide-inline"><button type="button" class="hide-button" ${group}>${display}
   </button><span class="hide-content">${content}</span></span>`
 }
 
-function hideBlock (args, content) {
-  args = args.join(' ').split(',')
-  const display = args[0] || 'Click'
-  const bg = args[1] || false
-  const color = args[2] || false
-  let group = 'style="'
-
-  if (bg) group += `background-color: ${bg};`
-  if (color) group += `color: ${color}`
-  group += '"'
+const hideBlock = (args, content) => {
+  const [display = 'Click', bg = false, color = false] = parseArgs(args)
+  const group = generateStyle(bg, color)
 
   return `<div class="hide-block"><button type="button" class="hide-button" ${group}>${display}
     </button><div class="hide-content">${hexo.render.renderSync({ text: content, engine: 'markdown' })}</div></div>`
 }
 
-function hideToggle (args, content) {
-  args = args.join(' ').split(',')
-  const display = args[0]
-  const bg = args[1] || false
-  const color = args[2] || false
-  let group = 'style="'
+const hideToggle = (args, content) => {
+  const [display, bg = false, color = false] = parseArgs(args)
+  const group = generateStyle(bg, color)
   let border = ''
 
   if (bg) {
     border = `style="border: 1px solid ${bg}"`
-    group += `background-color: ${bg};`
   }
-  if (color) group += `color: ${color}`
-  group += '"'
 
   return `<details class="toggle" ${border}><summary class="toggle-button" ${group}>${display}</summary><div class="toggle-content">${hexo.render.renderSync({ text: content, engine: 'markdown' })}</div></details>`
 }

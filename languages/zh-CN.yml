@@ -15,7 +15,6 @@ page:
 
 card_post_count: 条评论
 
-sticky: 置顶
 no_title: 无题
 
 post:
@@ -84,6 +83,7 @@ aside:
     link: 链接
     code: 代码
   card_toc: 目录
+  card_post_series: 系列文章
 
 date_suffix:
   just: 刚刚
@@ -92,7 +92,7 @@ date_suffix:
   day: 天前
   month: 个月前
 
-donate: 打赏
+donate: 赞助
 share: 分享
 
 rightside:
@@ -113,8 +113,8 @@ copy_copyright:
   info: 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 Snackbar:
-  chs_to_cht: 你已切换为繁体
-  cht_to_chs: 你已切换为简体
+  chs_to_cht: 你已切换为繁体中文
+  cht_to_chs: 你已切换为简体中文
   day_to_night: 你已切换为深色模式
   night_to_day: 你已切换为浅色模式
 

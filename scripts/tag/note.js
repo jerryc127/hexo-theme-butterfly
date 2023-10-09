@@ -6,10 +6,10 @@
 
 'use strict'
 
-function postNote (args, content) {
+const postNote = (args, content) => {
   const styleConfig = hexo.theme.config.note.style
-  const lastArgs = args[args.length - 1]
-  if (!(lastArgs === 'flat' || lastArgs === 'modern' || lastArgs === 'simple' || lastArgs === 'disabled')) {
+  const noteTag = ['flat', 'modern', 'simple', 'disabled']
+  if (!noteTag.includes(args[args.length - 1])) {
     args.push(styleConfig)
   }
 

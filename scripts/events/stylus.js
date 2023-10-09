@@ -1,15 +1,16 @@
 /**
- * stylus
+ * Stylus renderer
  */
 
 'use strict'
 
-hexo.extend.filter.register('stylus:renderer', function (style) {
-  const { highlight, prismjs } = hexo.config
-  style
-    .define('$highlight_enable', highlight && highlight.enable)
-    .define('$highlight_line_number', highlight && highlight.line_number)
-    .define('$prismjs_enable', prismjs && prismjs.enable)
-    .define('$prismjs_line_number', prismjs && prismjs.line_number)
-    // .import(this.source_dir.replace(/\\/g, '/') + '_data/css/*')
+hexo.extend.filter.register('stylus:renderer', style => {
+  const { enable: highlightEnable, line_number: highlightLineNumber } = hexo.config.highlight
+  const { enable: prismjsEnable, line_number: prismjsLineNumber } = hexo.config.prismjs
+
+  style.define('$highlight_enable', highlightEnable)
+    .define('$highlight_line_number', highlightLineNumber)
+    .define('$prismjs_enable', prismjsEnable)
+    .define('$prismjs_line_number', prismjsLineNumber)
+  // .import(`${this.source_dir.replace(/\\/g, '/')}_data/css/*`)
 })

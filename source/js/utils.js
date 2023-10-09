@@ -1,38 +1,35 @@
 const btf = {
-  debounce: function (func, wait, immediate) {
+  debounce: (func, wait = 0, immediate = false) => {
     let timeout
-    return function () {
-      const context = this
-      const args = arguments
-      const later = function () {
+    return (...args) => {
+      const later = () => {
         timeout = null
-        if (!immediate) func.apply(context, args)
+        if (!immediate) func(...args)
       }
       const callNow = immediate && !timeout
       clearTimeout(timeout)
       timeout = setTimeout(later, wait)
-      if (callNow) func.apply(context, args)
+      if (callNow) func(...args)
     }
   },
 
-  throttle: function (func, wait, options) {
+  throttle: function (func, wait, options = {}) {
     let timeout, context, args
     let previous = 0
-    if (!options) options = {}
 
-    const later = function () {
+    const later = () => {
       previous = options.leading === false ? 0 : new Date().getTime()
       timeout = null
       func.apply(context, args)
       if (!timeout) context = args = null
     }
 
-    const throttled = function () {
+    const throttled = (...params) => {
       const now = new Date().getTime()
       if (!previous && options.leading === false) previous = now
       const remaining = wait - (now - previous)
       context = this
-      args = arguments
+      args = params
       if (remaining <= 0 || remaining > wait) {
         if (timeout) {
           clearTimeout(timeout)
@@ -155,27 +152,6 @@ const btf = {
     ele.style.animation = text
   },
 
-  getParents: (elem, selector) => {
-    for (; elem && elem !== document; elem = elem.parentNode) {
-      if (elem.matches(selector)) return elem
-    }
-    return null
-  },
-
-  siblings: (ele, selector) => {
-    return [...ele.parentNode.children].filter((child) => {
-      if (selector) {
-        return child !== ele && child.matches(selector)
-      }
-      return child !== ele
-    })
-  },
-
-  /**
-   * @param {*} selector
-   * @param {*} eleType the type of create element
-   * @param {*} options object key: value
-   */
   wrap: (selector, eleType, options) => {
     const createEle = document.createElement(eleType)
     for (const [key, value] of Object.entries(options)) {
@@ -183,13 +159,6 @@ const btf = {
     }
     selector.parentNode.insertBefore(createEle, selector)
     createEle.appendChild(selector)
-  },
-
-  unwrap: el => {
-    const parent = el.parentNode
-    if (parent && parent !== document.body) {
-      parent.replaceChild(el, parent)
-    }
   },
 
   isHidden: ele => ele.offsetHeight === 0 && ele.offsetWidth === 0,
@@ -214,7 +183,7 @@ const btf = {
     }
 
     if (service === 'fancybox') {
-      ele.forEach(i => {
+      Array.from(ele).forEach(i => {
         if (i.parentNode.tagName !== 'A') {
           const dataSrc = i.dataset.lazySrc || i.src
           const dataCaption = i.title || i.alt || ''
@@ -257,22 +226,20 @@ const btf = {
     }
   },
 
-  initJustifiedGallery: function (selector) {
-    const runJustifiedGallery = i => {
-      if (!btf.isHidden(i)) {
-        fjGallery(i, {
-          itemSelector: '.fj-gallery-item',
-          rowHeight: i.getAttribute('data-rowHeight'),
-          gutter: 4,
-          onJustify: function () {
-            this.$container.style.opacity = '1'
-          }
-        })
-      }
+  setLoading: {
+    add: ele => {
+      const html = `
+        <div class="loading-container">
+          <div class="loading-item">
+            <div></div><div></div><div></div><div></div><div></div>
+          </div>
+        </div>
+      `
+      ele.insertAdjacentHTML('afterend', html)
+    },
+    remove: ele => {
+      ele.nextElementSibling.remove()
     }
-
-    if (Array.from(selector).length === 0) runJustifiedGallery(selector)
-    else selector.forEach(i => { runJustifiedGallery(i) })
   },
 
   updateAnchor: (anchor) => {
@@ -297,11 +264,33 @@ const btf = {
     return percentage
   },
 
-  addModeChange: (name, fn) => {
-    if (window.themeChange && window.themeChange[name]) return
-    window.themeChange = {
-      ...window.themeChange,
-      [name]: fn
-    }
+  addGlobalFn: (key, fn, name = false, parent = window) => {
+    const globalFn = parent.globalFn || {}
+    const keyObj = globalFn[key] || {}
+
+    if (name && keyObj[name]) return
+
+    name = name || Object.keys(keyObj).length
+    keyObj[name] = fn
+    globalFn[key] = keyObj
+    parent.globalFn = globalFn
+  },
+
+  addEventListenerPjax: (ele, event, fn, option = false) => {
+    ele.addEventListener(event, fn, option)
+    btf.addGlobalFn('pjax', () => {
+      ele.removeEventListener(event, fn, option)
+    })
+  },
+
+  removeGlobalFnEvent: (key, parent = window) => {
+    const { globalFn = {} } = parent
+    const keyObj = globalFn[key] || {}
+    const keyArr = Object.keys(keyObj)
+    if (!keyArr.length) return
+    keyArr.forEach(i => {
+      keyObj[i]()
+    })
+    delete parent.globalFn[key]
   }
 }

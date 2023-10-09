@@ -26,11 +26,11 @@ script.
 
   document.addEventListener('pjax:send', function () {
 
-    // removeEventListener scroll 
-    window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
-    window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjax')
+    btf.removeGlobalFnEvent('themeChange')
 
-    document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+    document.getElementById('rightside').classList.remove('rightside-show')
     
     if (window.aplayers) {
       for (let i = 0; i < window.aplayers.length; i++) {
@@ -76,8 +76,8 @@ script.
     typeof Prism === 'object' && Prism.highlightAll()
   })
 
-  document.addEventListener('pjax:error', (e) => {
+  document.addEventListener('pjax:error', e => {
     if (e.request.status === 404) {
-      pjax.loadUrl('/404.html')
+      pjax.loadUrl('!{url_for("/404.html")}')
     }
   })
