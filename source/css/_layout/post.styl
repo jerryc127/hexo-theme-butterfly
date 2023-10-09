@@ -72,7 +72,9 @@ beautify()
 #article-container
   word-wrap: break-word
   overflow-wrap: break-word
-  text-align: justify
+
+  if hexo-config('text_align_justify')
+    text-align: justify
 
   a
     color: $theme-link-color

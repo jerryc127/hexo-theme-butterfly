@@ -595,12 +595,10 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     'mobile-toc-button': item => { // Show mobile toc
       const tocEle = document.getElementById('card-toc')
-      tocEle.style.transformOrigin = `right ${item.getBoundingClientRect().top + 17}px`
       tocEle.style.transition = 'transform 0.3s ease-in-out'
       tocEle.classList.toggle('open')
       tocEle.addEventListener('transitionend', () => {
         tocEle.style.transition = ''
-        tocEle.style.transformOrigin = ''
       }, { once: true })
     },
     'chat-btn': () => { // Show chat

@@ -163,6 +163,7 @@ post_copyright:
 # Sponsor/reward
 reward:
   enable: false
+  text:
   QR_code:
     # - img: /img/wechat.jpg
     #   link:
@@ -634,6 +635,9 @@ index_top_img_height:
 category_ui: # 留空或 index
 tag_ui: # 留空或 index
 
+# Stretches the lines so that each line has equal width（文字向兩側對齊，對最後一行無效）
+text_align_justify: false
+
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
@@ -701,7 +705,7 @@ click_heart:
   mobile: false
 
 # Mouse click effects: words (鼠標點擊效果: 文字)
-ClickShowText:
+clickShowText:
   enable: false
   text:
     # - I
@@ -946,7 +950,7 @@ CDN:
     # canvas_nest:
     # canvas_ribbon:
     # click_heart:
-    # ClickShowText:
+    # clickShowText:
     # disqusjs:
     # disqusjs_css:
     # docsearch_css:
