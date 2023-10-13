@@ -53,8 +53,16 @@ hexo.extend.helper.register('md5', function (path) {
 })
 
 hexo.extend.helper.register('injectHtml', function (data) {
-  if (!data) return ''
-  return data.join('')
+  switch (true) {
+    case typeof data === 'string':
+      return data
+
+    case  Array.isArray(data):
+      return data.join('')
+
+    default:
+      return ''
+  }
 })
 
 hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
