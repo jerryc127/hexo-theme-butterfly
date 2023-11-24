@@ -69,7 +69,7 @@ script.
       }
 
       let $dom = document.querySelector('#card-newest-comments .aside-list')
-      $dom.innerHTML= result
+      $dom && ($dom.innerHTML= result)
       window.lazyLoadInstance && window.lazyLoadInstance.update()
       window.pjax && window.pjax.refresh($dom)
     }

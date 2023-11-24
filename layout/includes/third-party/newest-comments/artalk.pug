@@ -40,7 +40,7 @@ script.
       }
 
       let $dom = document.querySelector('#card-newest-comments .aside-list')
-      $dom.innerHTML= result
+      $dom && ($dom && ($dom.innerHTML= result))
       window.lazyLoadInstance && window.lazyLoadInstance.update()
       window.pjax && window.pjax.refresh($dom)
     }
@@ -90,7 +90,7 @@ script.
       } catch (e) {
         console.log(e)
         const $dom = document.querySelector('#card-newest-comments .aside-list')
-        $dom.innerHTML= "!{_p('aside.card_newest_comments.error')}"
+        $dom.textContent= "!{_p('aside.card_newest_comments.error')}"
       }
     }
 

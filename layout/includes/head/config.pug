@@ -78,9 +78,11 @@
   }
 
   let highlight = 'undefined';
-  if ((config.highlight && config.highlight.enable) || (config.prismjs && config.prismjs.enable)) {
+  let syntaxHighlighter = config.syntax_highlighter;
+  let highlightEnable = syntaxHighlighter ? ['highlight.js', 'prismjs'].includes(syntaxHighlighter) : (config.highlight.enable || config.prismjs.enable);
+  if (highlightEnable) {
     highlight = JSON.stringify({
-      plugin: config.highlight.enable ? 'highlighjs' : 'prismjs',
+      plugin: syntaxHighlighter ? syntaxHighlighter : config.highlight.enable ? 'highlight.js' : 'prismjs',
       highlightCopy: theme.highlight_copy,
       highlightLang: theme.highlight_lang,
       highlightHeightLimit: theme.highlight_height_limit

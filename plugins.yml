@@ -5,7 +5,7 @@ algolia_search:
 instantsearch:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.57.0
+  version: 4.60.0
 pjax:
   name: pjax
   file: pjax.min.js
@@ -37,7 +37,7 @@ disqusjs_css:
 twikoo:
   name: twikoo
   file: dist/twikoo.all.min.js
-  version: 1.6.22
+  version: 1.6.25
 waline_js:
   name: '@waline/client'
   file: dist/waline.js
@@ -73,7 +73,7 @@ katex_copytex:
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
-  version: 10.5.0
+  version: 10.6.1
 canvas_ribbon:
   name: butterfly-extsrc
   file: dist/canvas-ribbon.min.js
@@ -105,7 +105,7 @@ clickShowText:
 lazyload:
   name: vanilla-lazyload
   file: dist/lazyload.iife.min.js
-  version: 17.8.4
+  version: 17.8.5
 instantpage:
   name: instant.page
   file: instantpage.js
@@ -113,7 +113,7 @@ instantpage:
 typed:
   name: typed.js
   file: dist/typed.umd.js
-  version: 2.0.16
+  version: 2.1.0
 pangu:
   name: pangu
   file: dist/browser/pangu.min.js
@@ -121,17 +121,17 @@ pangu:
 fancybox_css:
   name: '@fancyapps/ui'
   file: dist/fancybox/fancybox.css
-  version: 5.0.24
+  version: 5.0.28
   other_name: fancyapps-ui
 fancybox:
   name: '@fancyapps/ui'
   file: dist/fancybox/fancybox.umd.js
-  version: 5.0.24
+  version: 5.0.28
   other_name: fancyapps-ui
 medium_zoom:
   name: medium-zoom
   file: dist/medium-zoom.min.js
-  version: 1.0.8
+  version: 1.1.0
 snackbar_css:
   name: node-snackbar
   file: dist/snackbar.min.css
@@ -145,11 +145,19 @@ fontawesome:
   file: css/all.min.css
   other_name: font-awesome
   version: 6.4.2
+flickr_justified_gallery_js:
+  name: flickr-justified-gallery
+  file: dist/fjGallery.min.js
+  version: 2.1.2
+flickr_justified_gallery_css:
+  name: flickr-justified-gallery
+  file: dist/fjGallery.css
+  version: 2.1.2
 egjs_infinitegrid:
   name: '@egjs/infinitegrid'
   other_name: egjs-infinitegrid
   file: dist/infinitegrid.min.js
-  version: 4.10.1
+  version: 4.11.0
 aplayer_css:
   name: aplayer
   file: dist/APlayer.min.css
@@ -180,11 +188,11 @@ prismjs_autoloader:
 artalk_js:
   name: artalk
   file: dist/Artalk.js
-  version: 2.6.3
+  version: 2.6.4
 artalk_css:
   name: artalk
   file: dist/Artalk.css
-  version: 2.6.3
+  version: 2.6.4
 pace_js:
   name: pace-js
   other_name: pace
@@ -208,4 +216,4 @@ docsearch_css:
 abcjs_basic_js:
   name: abcjs
   file: dist/abcjs-basic-min.js
-  version: 6.2.2
+  version: 6.2.3

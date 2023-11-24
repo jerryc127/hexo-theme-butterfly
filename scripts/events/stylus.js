@@ -5,8 +5,15 @@
 'use strict'
 
 hexo.extend.filter.register('stylus:renderer', style => {
-  const { enable: highlightEnable, line_number: highlightLineNumber } = hexo.config.highlight
-  const { enable: prismjsEnable, line_number: prismjsLineNumber } = hexo.config.prismjs
+  const { syntax_highlighter: syntaxHighlighter, highlight, prismjs } = hexo.config
+  let { enable: highlightEnable, line_number: highlightLineNumber } = highlight
+  let { enable: prismjsEnable, line_number: prismjsLineNumber } = prismjs
+
+  // for hexo > 7.0
+  if (syntaxHighlighter) {
+    highlightEnable = syntaxHighlighter === 'highlight.js'
+    prismjsEnable = syntaxHighlighter === 'prismjs'
+  }
 
   style.define('$highlight_enable', highlightEnable)
     .define('$highlight_line_number', highlightLineNumber)
