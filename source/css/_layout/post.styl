@@ -109,14 +109,24 @@ beautify()
     line-height: 1em
 
   if hexo-config('anchor.click_to_scroll')
-    a.headerlink
-      position: absolute
-      top: 0
-      right: 0
-      left 0
-      bottom: 0
-      width 100%
-      height: 100%
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6
+      a:not(.headerlink)
+        position relative
+        z-index 10
+
+      a.headerlink
+        position: absolute
+        top: 0
+        right: 0
+        left 0
+        bottom: 0
+        width 100%
+        height: 100%
 
   ol,
   ul

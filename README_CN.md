@@ -82,7 +82,7 @@ theme: butterfly
 - [x] 多種在線聊天（Chatra/Tidio/Daovoice/Crisp/messenger）
 - [x] 多種分析系統
 - [x] 谷歌廣告/手動廣告位置
-- [x] 各種站長驗證（Google/Bing/Baidu/360/Yandex）
+- [x] 各種站長驗證
 - [x] 修改網站配色
 - [x] 打字特效 activate_power_mode
 - [x] 多種背景特效（靜止彩帶/動態彩帶/Canvas Nest）
