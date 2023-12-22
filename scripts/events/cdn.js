@@ -68,6 +68,7 @@ hexo.extend.filter.register('before_generate', () => {
       const cdnSource = {
         local: cond === 'internal' ? `${cdnjs_file + verType}` : `/pluginsSrc/${name}/${file + verType}`,
         jsdelivr: `https://cdn.jsdelivr.net/npm/${name}${verType}/${min_file}`,
+        fastly_jsdelivr: `https://fastly.jsdelivr.net/npm/${name}${verType}/${min_file}`,
         unpkg: `https://unpkg.com/${name}${verType}/${file}`,
         cdnjs: `https://cdnjs.cloudflare.com/ajax/libs/${cdnjs_name}/${version}/${min_cdnjs_file}`,
         custom: (CDN.custom_format || '').replace(/\$\{(.+?)\}/g, (match, $1) => value[$1])
