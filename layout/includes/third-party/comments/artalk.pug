@@ -3,8 +3,9 @@
 
 script.
   (() => {
+    let artalkItem = null
     const initArtalk = () => {
-      window.artalkItem = new Artalk(Object.assign({
+      artalkItem = Artalk.init(Object.assign({
         el: '#artalk-wrap',
         server: '!{server}',
         site: '!{site}',
@@ -14,18 +15,22 @@ script.
       },!{JSON.stringify(option)}))
 
       if (GLOBAL_CONFIG.lightbox === 'null') return
-      window.artalkItem.use(ctx => {
-        ctx.on('list-loaded', () => {
-          ctx.getCommentList().forEach(comment => {
-            const $content = comment.getRender().$content
-            btf.loadLightbox($content.querySelectorAll('img:not([atk-emoticon])'))
-          })
+      artalkItem.on('list-loaded', () => {
+        artalkItem.ctx.get('list').getCommentNodes().forEach(comment => {
+          const $content = comment.getRender().$content
+          btf.loadLightbox($content.querySelectorAll('img:not([atk-emoticon])'))
         })
       })
+
+      const destroyArtalk = () => {
+        artalkItem.destroy()
+      }
+
+      btf.addGlobalFn('pjax', destroyArtalk, 'destroyArtalk')
     }
 
     const loadArtalk = async () => {
-      if (typeof window.artalkItem === 'object') initArtalk()
+      if (typeof Artalk === 'object') initArtalk()
       else {
         await getCSS('!{theme.asset.artalk_css}')
         await getScript('!{theme.asset.artalk_js}')
@@ -37,12 +42,11 @@ script.
       const artalkWrap = document.getElementById('artalk-wrap')
       if (!(artalkWrap && artalkWrap.children.length)) return
       const isDark = theme === 'dark'
-      window.artalkItem.setDarkMode(isDark)
+      artalkItem.setDarkMode(isDark)
     }
-  
 
     btf.addGlobalFn('themeChange', artalkChangeMode, 'artalk')
-    
+
     if ('!{use[0]}' === 'Artalk' || !!{lazyload}) {
       if (!{lazyload}) btf.loadComment(document.getElementById('artalk-wrap'), loadArtalk)
       else loadArtalk()

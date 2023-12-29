@@ -17,7 +17,10 @@ script.
     const findTrueUrl = (array) => {
       Promise.all(array.map(item =>
         fetch(item.url).then(resp => resp.json()).then(data => {
-          const urlArray = data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig)
+          let urlArray = data.body ? data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig) : []
+          if (!Array.isArray(urlArray) || urlArray.length === 0) {
+            urlArray = [`${data.html_url}`]
+          }
           if (data.user.login === 'utterances-bot') {
             return urlArray.pop()
           } else {
@@ -48,7 +51,7 @@ script.
           const githubArray = data.map(item => {
             return {
               'avatar': item.user.avatar_url,
-              'content': changeContent(item.body_html),
+              'content': changeContent(item.body_html || item.body),
               'nick': item.user.login,
               'url': item.issue_url,
               'date': item.updated_at,

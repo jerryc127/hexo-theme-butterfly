@@ -266,6 +266,7 @@ aside:
     sort_order: # Don't modify the setting unless you know how it works
   card_post_series:
     enable: true
+    series_title: false # The title shows the series name
     orderBy: 'date' # Order by title or date
     order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
 
@@ -929,7 +930,7 @@ CDN:
   third_party_provider: jsdelivr
 
   # Add version number to url, true or false
-  version: false
+  version: true
 
   # Custom format
   # For example: https://cdn.staticfile.org/${cdnjs_name}/${version}/${min_cdnjs_file}

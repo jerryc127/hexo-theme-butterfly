@@ -12,6 +12,13 @@ script.
         path: window.location.pathname,
         comment: !{lazyload ? false : count},
       }, !{JSON.stringify(option)}))
+
+      const destroyWaline = () => {
+        waline.destroy()
+      }
+
+      btf.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+
     }
 
     const loadWaline = async () => {
