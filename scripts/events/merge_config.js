@@ -181,6 +181,7 @@ hexo.extend.filter.register('before_generate', () => {
       },
       card_post_series: {
         enable: true,
+        series_title: false,
         orderBy: 'date',
         order: -1
       }
@@ -534,7 +535,7 @@ hexo.extend.filter.register('before_generate', () => {
     CDN: {
       internal_provider: 'local',
       third_party_provider: 'jsdelivr',
-      version: false,
+      version: true,
       custom_format: null,
       option: null
     }

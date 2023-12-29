@@ -3,7 +3,7 @@ if theme.aside.card_post_series.enable
   .card-widget.card-post-series
     .item-headline
       i.fa-solid.fa-layer-group
-      span= _p('aside.card_post_series')
+      span= theme.aside.card_post_series.series_title ? page.series : _p('aside.card_post_series')
     .aside-list
       each item in array[page.series]
         - const { path, title = _p('no_title'), cover, cover_type, date:dateA } = item
