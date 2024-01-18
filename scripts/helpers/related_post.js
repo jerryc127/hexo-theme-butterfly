@@ -8,29 +8,32 @@
 
 hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   let relatedPosts = []
-  currentPost.tags.forEach(function (tag) {
-    allPosts.forEach(function (post) {
-      if (isTagRelated(tag.name, post.tags)) {
-        const relatedPost = {
-          title: post.title,
-          path: post.path,
-          cover: post.cover,
-          cover_type: post.cover_type,
-          weight: 1,
-          updated: post.updated,
-          created: post.date
-        }
-        const index = findItem(relatedPosts, 'path', post.path)
-        if (index !== -1) {
-          relatedPosts[index].weight += 1
-        } else {
-          if (currentPost.path !== post.path) {
-            relatedPosts.push(relatedPost)
+  if (currentPost.tags) {
+    currentPost.tags.forEach(function (tag) {
+      allPosts.forEach(function (post) {
+        if (isTagRelated(tag.name, post.tags)) {
+          const relatedPost = {
+            title: post.title,
+            path: post.path,
+            cover: post.cover,
+            cover_type: post.cover_type,
+            weight: 1,
+            updated: post.updated,
+            created: post.date,
+          }
+          const index = findItem(relatedPosts, 'path', post.path)
+          if (index !== -1) {
+            relatedPosts[index].weight += 1
+          } else {
+            if (currentPost.path !== post.path) {
+              relatedPosts.push(relatedPost)
+            }
           }
         }
-      }
+      })
     })
-  })
+  }
+
   if (relatedPosts.length === 0) {
     return ''
   }
@@ -72,7 +75,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   }
 })
 
-function isTagRelated (tagName, TBDtags) {
+function isTagRelated(tagName, TBDtags) {
   let result = false
   TBDtags.forEach(function (tag) {
     if (tagName === tag.name) {
@@ -82,7 +85,7 @@ function isTagRelated (tagName, TBDtags) {
   return result
 }
 
-function findItem (arrayToSearch, attr, val) {
+function findItem(arrayToSearch, attr, val) {
   for (let i = 0; i < arrayToSearch.length; i++) {
     if (arrayToSearch[i][attr] === val) {
       return i
@@ -91,7 +94,7 @@ function findItem (arrayToSearch, attr, val) {
   return -1
 }
 
-function compare (attr) {
+function compare(attr) {
   return function (a, b) {
     const val1 = a[attr]
     const val2 = b[attr]
