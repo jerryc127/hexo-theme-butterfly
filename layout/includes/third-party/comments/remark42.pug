@@ -56,7 +56,7 @@ script.
     window.REMARK42.changeTheme(theme)
   }
 
-  btf.addModeChange('remark42', remarkChangeMode)
+  btf.addGlobalFn('themeChange', remarkChangeMode, 'remark42')
 
   if ('!{theme.comments.use[0]}' === 'Remark42' || !!{theme.comments.lazyload}) {
     if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('remark42'), loadRemark42)

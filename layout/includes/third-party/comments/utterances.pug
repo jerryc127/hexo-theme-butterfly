@@ -1,36 +1,39 @@
+- const { use, lazyload } = theme.comments
+- const { repo, issue_term, light_theme, dark_theme } = theme.utterances
+
 script.
-  function loadUtterances () {
-    let ele = document.createElement('script')
-    ele.setAttribute('id', 'utterances_comment')
-    ele.setAttribute('src', 'https://utteranc.es/client.js')
-    ele.setAttribute('repo', '!{theme.utterances.repo}')
-    ele.setAttribute('issue-term', '!{theme.utterances.issue_term}')
-    let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
-    ele.setAttribute('theme', nowTheme)
-    ele.setAttribute('crossorigin', 'anonymous')
-    ele.setAttribute('async', 'true')
-    document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
-  }
-
-  function utterancesTheme (theme) {
-    const iframe = document.querySelector('.utterances-frame')
-    if (iframe) {
-      const theme = theme === 'dark' ? '#{theme.utterances.dark_theme}' : '#{theme.utterances.light_theme}'
-      const message = {
-        type: 'set-theme',
-        theme: theme
-      };
-      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  (() => {
+    const loadUtterances = () => {
+      let ele = document.createElement('script')
+      ele.id = 'utterances_comment'
+      ele.src = 'https://utteranc.es/client.js'
+      ele.setAttribute('repo', '!{repo}')
+      ele.setAttribute('issue-term', '!{issue_term}')
+      const nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? '#{dark_theme}' : '#{light_theme}'
+      ele.setAttribute('theme', nowTheme)
+      ele.crossOrigin = 'anonymous'
+      ele.async = true
+      document.getElementById('utterances-wrap').appendChild(ele)
     }
-  }
 
-  btf.addModeChange('utterances', utterancesTheme)
-
-  if ('!{theme.comments.use[0]}' === 'Utterances' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
-    else loadUtterances()
-  } else {
-    function loadOtherComment () {
-      loadUtterances()
+    const utterancesTheme = theme => {
+      const iframe = document.querySelector('.utterances-frame')
+      if (iframe) {
+        const theme = theme === 'dark' ? '#{dark_theme}' : '#{light_theme}'
+        const message = {
+          type: 'set-theme',
+          theme: theme
+        };
+        iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+      }
     }
-  }
+
+    btf.addGlobalFn('themeChange', utterancesTheme, 'utterances')
+
+    if ('!{use[0]}' === 'Utterances' || !!{lazyload}) {
+      if (!{lazyload}) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+      else loadUtterances()
+    } else {
+      window.loadOtherComment = loadUtterances
+    }
+  })()

@@ -1,18 +1,19 @@
 - let disqusjsPageTitle = page.title.replace(/'/ig,"\\'")
+- const { shortname:dqShortname, apikey:dqApikey, option:dqOption } = theme.disqusjs
 
 script.
-  function loadDisqusjs () {
-    function initDisqusjs () {
+  (() => {
+    const initDisqusjs = () => {
       window.disqusjs = null
       disqusjs = new DisqusJS(Object.assign({
-        shortname: '!{theme.disqusjs.shortname}',
+        shortname: '!{dqShortname}',
         identifier: '!{ url_for(page.path) }',
         url: '!{ page.permalink }',
         title: '!{ disqusjsPageTitle }',
-        apikey: '!{theme.disqusjs.apikey}',
-      },!{JSON.stringify(theme.disqusjs.option)}))
+        apikey: '!{dqApikey}',
+      },!{JSON.stringify(dqOption)}))
 
-      disqusjs.render(document.getElementById('disqusjs'))
+      disqusjs.render(document.getElementById('disqusjs-wrap'))
     }
 
     const themeChange = () => {
@@ -22,36 +23,42 @@ script.
       initDisqusjs()
     }
 
+    btf.addGlobalFn('themeChange', themeChange, 'disqusjs')
 
-    btf.addModeChange('disqusjs', themeChange)
-
-    if (window.disqusJsLoad) initDisqusjs()
-    else {
-      getCSS('!{url_for(theme.asset.disqusjs_css)}')
-      getScript('!{url_for(theme.asset.disqusjs)}').then(initDisqusjs)
-      window.disqusJsLoad = true
+    const loadDisqusjs = async() => {
+      if (window.disqusJsLoad) initDisqusjs()
+      else {
+        await getCSS('!{url_for(theme.asset.disqusjs_css)}')
+        await getScript('!{url_for(theme.asset.disqusjs)}')
+        initDisqusjs()
+        window.disqusJsLoad = true
+      }
     }
-  }
 
-  if ('!{theme.comments.use[0]}' === 'Disqusjs' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('disqusjs'), loadDisqusjs)
-    else loadDisqusjs()
-  }
-  else {
-    function loadOtherComment () {
-      loadDisqusjs()
+    const getCount = async() => {
+      try {
+        const eleGroup = document.querySelector('#post-meta .disqusjs-comment-count')
+        if (!eleGroup) return
+        const cleanedLinks = eleGroup.href.replace(/#post-comment$/, '')
+
+        const res = await fetch(`https://disqus.com/api/3.0/threads/set.json?forum=!{dqShortname}&api_key=!{dqApikey}&thread:link=${cleanedLinks}`,{
+          method: 'GET'
+        })
+        const result = await res.json()
+        const count = result.response.length ? result.response[0].posts : 0
+        eleGroup.textContent = count
+      } catch (err) {
+        console.error(err)
+      }
     }
-  }
 
-
-if is_post() && !theme.comments.lazyload && theme.comments.count && theme.comments.use[0] === 'Disqusjs'
-  script.
-    if (window.DISQUSWIDGETS === undefined) {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://!{theme.disqus.shortname}.disqus.com/count.js';
-      s.id = 'dsq-count-scr';
-      (d.head || d.body).appendChild(s);
+    if ('!{theme.comments.use[0]}' === 'Disqusjs' || !!{theme.comments.lazyload}) {
+      if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('disqusjs-wrap'), loadDisqusjs)
+      else {
+        loadDisqusjs()
+        !{ theme.comments.count ? 'GLOBAL_CONFIG_SITE.isPost && getCount()' : '' }
+      }
     } else {
-      DISQUSWIDGETS.getCount({reset: true});
+      window.loadOtherComment = loadDisqusjs
     }
-
+  })()

@@ -1,4 +1,20 @@
-link(rel="preconnect" href="//cdn.jsdelivr.net")
+-
+  const { internal_provider, third_party_provider, custom_format } = theme.CDN
+  const providers = {
+    'jsdelivr': '//cdn.jsdelivr.net',
+    'cdnjs': '//cdnjs.cloudflare.com',
+    'unpkg': '//unpkg.com',
+    'custom': custom_format && custom_format.match(/^((https?:)?(\/\/[^/]+)|([^/]+))(\/|$)/)[1]
+  }
+-
+
+if internal_provider === third_party_provider && internal_provider !== 'local'
+  link(rel="preconnect" href=providers[internal_provider])
+else 
+  if internal_provider !== 'local'
+    link(rel="preconnect" href=providers[internal_provider])
+  if third_party_provider !== 'local'
+  link(rel="preconnect" href=providers[third_party_provider])
 
 if theme.google_analytics
   link(rel="preconnect" href="//www.google-analytics.com" crossorigin='')

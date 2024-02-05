@@ -82,15 +82,22 @@ if hexo-config('waline.bg')
       display: none
 
 // Mathjax
-.mathjax-overflow
+mjx-container
   overflow-x: auto
   overflow-y: hidden
-
-span.mathjax-overflow
-  display: inline-block
-  padding: 0 2px
+  padding-bottom: 4px
   max-width: 100%
-  vertical-align: bottom
+
+  &[display]
+    display: block !important
+    min-width: auto !important
+
+  &:not([display])
+    display: inline-grid !important
+
+mjx-assistive-mml
+  right: 0
+  bottom: 0
 
 .aplayer
   color: $font-black

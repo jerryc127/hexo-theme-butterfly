@@ -54,6 +54,15 @@ body:
       required: true
 
   - type: textarea
+    id: dependencies
+    attributes:
+      label: 依賴插件 | Package dependencies Information
+      description: 在 Hexo 根目錄下執行`npm ls --depth 0` | Run `npm ls --depth 0` in Hexo root directory
+      render: Text
+    validations:
+      required: true
+
+  - type: textarea
     id: description
     attributes:
       label: 問題描述 | Describe the bug

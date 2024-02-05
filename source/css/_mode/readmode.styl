@@ -54,8 +54,7 @@ if hexo-config('readmode')
       display: none
 
     #page-header.post-bg
-      background-color: transparent
-      background-image: none !important
+      background: none !important
 
       &:before
         opacity: 0
@@ -146,18 +145,7 @@ if hexo-config('readmode')
           background: transparent
 
           > .tab
-            border-bottom: 0
-
-            button
-              border-top: none !important
-              background: transparent
-
-              &:hover
-                background: none !important
-
-            &.active
-              button
-                text-decoration: underline
+            border-top: none !important
 
         > .tab-contents .tab-item-content.active
           animation: none

@@ -2,19 +2,34 @@
 
 script.
   (() => {
-    const getArtalkCount = () => {
-      const runWidget = () => {
-        Artalk.loadCountWidget({
-          server: '!{server}',
-          site: '!{site}',
-          countEl: '.artalk-count'
+    const getArtalkCount = async() => {
+      try {
+        const eleGroup = document.querySelectorAll('#recent-posts .artalk-count')
+        const keyArray = Array.from(eleGroup).map(i => i.getAttribute('data-page-key'))
+
+        const headerList = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': window.location.origin
+          },
+          body: new URLSearchParams({
+            'site_name': '!{site}',
+            'type':'page_comment',
+            'page_keys': keyArray
+          })
+        }
+
+        const res = await fetch('!{server}/api/stat', headerList)
+        const result = await res.json()
+
+        keyArray.forEach((key, index) => {
+          eleGroup[index].textContent = result.data[key] || 0
         })
+      } catch (err) {
+        console.error(err)
       }
-
-      if (typeof Artalk === 'function') runWidget()
-      else getScript('!{theme.asset.artalk_js}').then(runWidget)
     }
-
 
     window.pjax ? getArtalkCount() : window.addEventListener('load', getArtalkCount)
   })()

@@ -1,5 +1,5 @@
 - let defaultComment = theme.comments.use[0]
-hr
+hr.custom-hr
 #post-comment
   .comment-head
     .comment-headline
@@ -7,9 +7,9 @@ hr
       span= ' ' + _p('comment')
     
     if theme.comments.use.length > 1
-      #comment-switch
+      .comment-switch
         span.first-comment=defaultComment
-        span.switch-btn
+        span#switch-btn
         span.second-comment=theme.comments.use[1]
 
 
@@ -22,7 +22,7 @@ hr
           when 'Valine'
             #vcomment.vcomment
           when 'Disqusjs'
-            #disqusjs
+            #disqusjs-wrap
           when 'Livere'
             #lv-container(data-id="city" data-uid=theme.livere.uid)
           when 'Gitalk'

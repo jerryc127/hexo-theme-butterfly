@@ -31,6 +31,7 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
     if (parent) { query.parent = parent } else { query.parent = { $exists: false } }
     return categories.find(query).sort(orderby, order).filter((cat) => cat.length)
   }
+  let expandBtn = ''
 
   const hierarchicalList = (t, level, parent, topparent = true) => {
     let result = ''
@@ -59,6 +60,7 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
           }
 
           if (isExpand && isTopParent && child) {
+            expandBtn = ' expandBtn'
             result += `<i class="fas fa-caret-left ${expandClass}"></i>`
           }
 
@@ -91,7 +93,7 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
             <span>${this._p('aside.card_categories')}</span>
             ${moreButton()}
             </div>
-            <ul class="card-category-list" id="aside-cat-list">
+            <ul class="card-category-list${expandBtn}" id="aside-cat-list">
             ${list[0]}
             </ul>`
 })

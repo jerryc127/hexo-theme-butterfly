@@ -7,12 +7,13 @@
   background-repeat: no-repeat
   transition: all .5s
 
-  &:not(.not-top-img):before
-    position: absolute
-    width: 100%
-    height: 100%
-    background-color: alpha($dark-black, .3)
-    content: ''
+  if hexo-config('mask.header')
+    &:not(.not-top-img):before
+      position: absolute
+      width: 100%
+      height: 100%
+      background-color: var(--mark-bg)
+      content: ''
 
   // index
   &.full_page
@@ -50,7 +51,6 @@
   #site_social_icons
     display: none
     margin: 0 auto
-    width: 300px
     text-align: center
 
     +maxWidth768()
@@ -64,7 +64,7 @@
 
   #scroll-down
     position: absolute
-    bottom: 0
+    bottom: 10px
     width: 100%
     cursor: pointer
 
@@ -72,7 +72,7 @@
       position: relative
       width: 100%
       color: var(--light-grey)
-      font-size: 30px
+      font-size: 20px
 
   // page
   &.not-home-page
@@ -96,9 +96,6 @@
 
     +maxWidth768()
       height: 360px
-
-    &:before
-      background-color: alpha($dark-black, .5)
 
   #post-info
     position: absolute

@@ -13,7 +13,8 @@
     right: -($sidebar-width)
     z-index: 103
     overflow-x: hidden
-    overflow-y: auto
+    overflow-y: scroll
+    padding-left: 5px
     width: $sidebar-width
     height: 100%
     background: var(--sidebar-bg)
@@ -32,15 +33,16 @@
       margin: 20px auto
 
     .menus_items
-      padding: 0 10px 40px
+      padding: 0 10px
 
       .site-page
         @extend .limit-one-line
         position: relative
         display: block
-        padding: 6px 30px 6px 22px
+        padding: 3px 28px 3px 20px
         color: var(--font-color)
         font-size: 1.15em
+        border-radius: 6px
 
         &:hover
           background: var(--text-bg-hover)
@@ -53,7 +55,7 @@
           & > i:last-child
             position: absolute
             top: .78em
-            right: 18px
+            right: 13px
             transition: transform .3s
 
           &.hide
@@ -65,4 +67,5 @@
 
       .menus_item_child
         margin: 0
+        padding-left: 25px
         list-style: none

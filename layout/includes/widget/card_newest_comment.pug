@@ -1,4 +1,4 @@
-if theme.newest_comments.enable && !['Livere','Facebook Comments','Giscus'].includes(theme.comments.use[0])
+if theme.newest_comments.enable && theme.comments.use && !['Livere','Facebook Comments','Giscus'].includes(theme.comments.use[0])
   .card-widget#card-newest-comments
     .item-headline
       i.fas.fa-comment-dots
