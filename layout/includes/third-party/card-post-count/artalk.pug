@@ -8,19 +8,15 @@ script.
         const keyArray = Array.from(eleGroup).map(i => i.getAttribute('data-page-key'))
 
         const headerList = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': window.location.origin
-          },
-          body: new URLSearchParams({
-            'site_name': '!{site}',
-            'type':'page_comment',
-            'page_keys': keyArray
-          })
+          method: 'GET',
         }
 
-        const res = await fetch('!{server}/api/stat', headerList)
+        const searchParams = new URLSearchParams({
+          'site_name': '!{site}',
+          'page_keys': keyArray
+        })
+
+        const res = await fetch(`!{server}/api/v2/stats/page_comment?${searchParams}`, headerList)
         const result = await res.json()
 
         keyArray.forEach((key, index) => {

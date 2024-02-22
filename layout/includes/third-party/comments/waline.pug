@@ -3,8 +3,10 @@
 
 script.
   (() => {
-    const initWaline = () => {
-      const waline = Waline.init(Object.assign({
+    let initFn = window.walineFn || null
+
+    const initWaline = (Fn) => {
+      const waline = Fn(Object.assign({
         el: '#waline-wrap',
         serverURL: '!{serverURL}',
         pageview: !{lazyload ? false : pageview},
@@ -18,15 +20,16 @@ script.
       }
 
       btf.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
-
     }
 
     const loadWaline = async () => {
-      if (typeof Waline === 'object') initWaline()
+      if (initFn) initWaline(initFn)
       else {
         await getCSS('!{url_for(theme.asset.waline_css)}')
-        await getScript('!{url_for(theme.asset.waline_js)}')
-        initWaline()
+        const { init } = await import('!{url_for(theme.asset.waline_js)}')
+        initFn = init || Waline.init
+        initWaline(initFn)
+        window.walineFn = initFn
       }
     }
 
