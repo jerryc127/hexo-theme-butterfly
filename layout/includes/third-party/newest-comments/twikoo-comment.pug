@@ -32,7 +32,7 @@ script.
             }
           })
 
-          saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), !{theme.newest_comments.storage}/(60*24))
+          btf.saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), !{theme.newest_comments.storage}/(60*24))
           generateHtml(twikooArray)
         }).catch(function (err) {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
@@ -43,7 +43,7 @@ script.
       if (typeof twikoo === 'object') {
         runTwikoo()
       } else {
-        getScript('!{url_for(theme.asset.twikoo)}').then(runTwikoo)
+        btf.getScript('!{url_for(theme.asset.twikoo)}').then(runTwikoo)
       }
     }
 
@@ -76,7 +76,7 @@ script.
 
     const newestCommentInit = () => {
       if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = saveToLocal.get('twikoo-newest-comments')
+        const data = btf.saveToLocal.get('twikoo-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
@@ -86,7 +86,7 @@ script.
     }
 
     newestCommentInit()
-    document.addEventListener('pjax:complete', newestCommentInit)
+    btf.addGlobalFn('pjaxComplete', newestCommentInit, 'twikoo_newestComment')
   })
 
 

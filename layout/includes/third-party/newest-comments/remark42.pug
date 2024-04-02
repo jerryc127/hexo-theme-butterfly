@@ -56,7 +56,7 @@ script.
               'date': e.time,
             }
           })
-          saveToLocal.set('remark42-newest-comments', JSON.stringify(remark42), !{theme.newest_comments.storage}/(60*24))
+          btf.saveToLocal.set('remark42-newest-comments', JSON.stringify(remark42), !{theme.newest_comments.storage}/(60*24))
           generateHtml(remark42)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
@@ -66,7 +66,7 @@ script.
 
     const newestCommentInit = () => {
       if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = saveToLocal.get('remark42-newest-comments')
+        const data = btf.saveToLocal.get('remark42-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
@@ -76,5 +76,5 @@ script.
     }
 
     newestCommentInit()
-    document.addEventListener('pjax:complete', newestCommentInit)
+    btf.addGlobalFn('pjaxComplete', newestCommentInit, 'remark42_newestComment')
   })

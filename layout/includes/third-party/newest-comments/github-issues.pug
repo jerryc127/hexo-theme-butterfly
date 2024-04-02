@@ -35,7 +35,7 @@ script.
             }
           })
 
-          saveToLocal.set('github-newest-comments', JSON.stringify(array), !{theme.newest_comments.storage}/(60*24))
+          btf.saveToLocal.set('github-newest-comments', JSON.stringify(array), !{theme.newest_comments.storage}/(60*24))
           generateHtml(array)
       });
     }
@@ -94,7 +94,7 @@ script.
 
     const newestCommentInit = () => {
       if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = saveToLocal.get('github-newest-comments')
+        const data = btf.saveToLocal.get('github-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
@@ -104,7 +104,7 @@ script.
     }
 
     newestCommentInit()
-    document.addEventListener('pjax:complete', newestCommentInit)
+    btf.addGlobalFn('pjaxComplete', newestCommentInit, 'github_newestComment')
   })
 
 

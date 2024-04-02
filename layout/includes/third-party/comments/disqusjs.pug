@@ -28,8 +28,8 @@ script.
     const loadDisqusjs = async() => {
       if (window.disqusJsLoad) initDisqusjs()
       else {
-        await getCSS('!{url_for(theme.asset.disqusjs_css)}')
-        await getScript('!{url_for(theme.asset.disqusjs)}')
+        await btf.getCSS('!{url_for(theme.asset.disqusjs_css)}')
+        await btf.getScript('!{url_for(theme.asset.disqusjs)}')
         initDisqusjs()
         window.disqusJsLoad = true
       }

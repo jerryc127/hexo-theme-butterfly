@@ -81,7 +81,7 @@ script.
             'date': e.date,
           }
         })
-        saveToLocal.set('artalk-newest-comments', JSON.stringify(artalk), !{theme.newest_comments.storage}/(60*24))
+        btf.saveToLocal.set('artalk-newest-comments', JSON.stringify(artalk), !{theme.newest_comments.storage}/(60*24))
         generateHtml(artalk)
       } catch (e) {
         console.log(e)
@@ -92,7 +92,7 @@ script.
 
     const newestCommentInit = () => {
       if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = saveToLocal.get('artalk-newest-comments')
+        const data = btf.saveToLocal.get('artalk-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
@@ -102,5 +102,6 @@ script.
     }
 
     newestCommentInit()
-    document.addEventListener('pjax:complete', newestCommentInit)
+    btf.addGlobalFn('pjaxComplete', newestCommentInit, 'artalk_newestComment')
+
   })

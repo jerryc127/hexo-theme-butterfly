@@ -28,7 +28,7 @@ script.
             }
           })
 
-          saveToLocal.set('disqus-newest-comments', JSON.stringify(disqusArray), !{theme.newest_comments.storage}/(60*24))
+          btf.saveToLocal.set('disqus-newest-comments', JSON.stringify(disqusArray), !{theme.newest_comments.storage}/(60*24))
           generateHtml(disqusArray)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
@@ -65,7 +65,7 @@ script.
 
     const newestCommentInit = () => {
       if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = saveToLocal.get('disqus-newest-comments')
+        const data = btf.saveToLocal.get('disqus-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
@@ -75,7 +75,7 @@ script.
     }
 
     newestCommentInit()
-    document.addEventListener('pjax:complete', newestCommentInit)
+    btf.addGlobalFn('pjaxComplete', newestCommentInit, 'disqus_newestComment')
   })
 
 

@@ -13,7 +13,7 @@ script.
       }
 
       if (typeof Valine === 'function') initValine() 
-      else getScript('!{url_for(theme.asset.valine)}').then(initValine)
+      else btf.getScript('!{url_for(theme.asset.valine)}').then(initValine)
     }
 
     window.pjax ? loadValine() : window.addEventListener('load', loadValine)

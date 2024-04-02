@@ -12,7 +12,7 @@ if theme.menu
         .menus_item
           - const labelArray = label.split('||')
           - const hideClass = labelArray[2] && trim(labelArray[2]) === 'hide' ? 'hide' : ''
-          a.site-page.group(class=`${hideClass}` href='javascript:void(0);')
+          span.site-page.group(class=`${hideClass}`)
             if labelArray[1]
               i.fa-fw(class=trim(labelArray[1]))
             span=' '+ trim(labelArray[0])

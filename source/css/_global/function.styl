@@ -134,15 +134,13 @@ if hexo-config('enter_transitions')
   #footer
     animation: bottom-top 1s
 
-  #page-header:not(.full_page)
+  #page-header:not(.full_page),
+  #nav.show
     animation: header-effect 1s
 
   #site-title,
   #site-subtitle
     animation: titleScale 1s
-
-  #nav.show
-    animation: headerNoOpacity 1s
 
   canvas:not(#ribbon-canvas),
   #web_bg
@@ -182,27 +180,16 @@ if hexo-config('avatar.effect') == true
 
 @keyframes header-effect
   0%
-    opacity: 0
-    transform: translateY(-50px)
-
-  100%
-    opacity: 1
-    transform: translateY(0)
-
-@keyframes headerNoOpacity
-  0%
-    transform: translateY(-50px)
+    transform: translateY(-35px)
 
   100%
     transform: translateY(0)
 
 @keyframes bottom-top
   0%
-    opacity: 0
-    transform: translateY(50px)
+    transform: translateY(35px)
 
   100%
-    opacity: 1
     transform: translateY(0)
 
 @keyframes titleScale

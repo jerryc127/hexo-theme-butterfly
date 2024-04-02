@@ -75,7 +75,7 @@ script.
               'date': e.updatedAt,
             }
           })
-          saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), !{theme.newest_comments.storage}/(60*24))
+          btf.saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), !{theme.newest_comments.storage}/(60*24))
           generateHtml(valineArray)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')
@@ -85,7 +85,7 @@ script.
 
     const newestCommentInit = () => {
       if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = saveToLocal.get('valine-newest-comments')
+        const data = btf.saveToLocal.get('valine-newest-comments')
         if (data) {
           generateHtml(JSON.parse(data))
         } else {
@@ -95,5 +95,5 @@ script.
     }
 
     newestCommentInit()
-    document.addEventListener('pjax:complete', newestCommentInit)
+    btf.addGlobalFn('pjaxComplete', newestCommentInit, 'valine_newestComment')
   })

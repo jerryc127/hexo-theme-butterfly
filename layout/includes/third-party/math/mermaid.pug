@@ -1,12 +1,10 @@
 script.
   (() => {
-    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
-    if ($mermaid.length === 0) return
-    const runMermaid = () => {
+    const runMermaid = (ele) => {
       window.loadMermaid = true
       const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '!{theme.mermaid.theme.dark}' : '!{theme.mermaid.theme.light}'
 
-      Array.from($mermaid).forEach((item, index) => {
+      Array.from(ele).forEach((item, index) => {
         const mermaidSrc = item.firstElementChild
         const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
         const mermaidID = 'mermaid-' + index
@@ -29,10 +27,14 @@ script.
     }
 
     const loadMermaid = () => {
-      window.loadMermaid ? runMermaid() : getScript('!{url_for(theme.asset.mermaid)}').then(runMermaid)
+      const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+      if ($mermaid.length === 0) return
+
+      const runMermaidFn = () => runMermaid($mermaid)
+      btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+      window.loadMermaid ? runMermaidFn() : btf.getScript('!{url_for(theme.asset.mermaid)}').then(runMermaidFn)
     }
-
-    btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
-
+    
+    btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
     window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
   })()

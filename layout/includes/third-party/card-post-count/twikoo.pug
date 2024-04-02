@@ -28,7 +28,7 @@ script.
         if (typeof twikoo === 'object') {
           runTwikoo()
         } else {
-          getScript('!{url_for(theme.asset.twikoo)}').then(runTwikoo)
+          btf.getScript('!{url_for(theme.asset.twikoo)}').then(runTwikoo)
         }
     }
 

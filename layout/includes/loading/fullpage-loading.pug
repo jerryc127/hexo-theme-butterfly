@@ -27,7 +27,7 @@ script.
     window.addEventListener('load',() => { preloader.endLoading() })
 
     if (!{theme.pjax && theme.pjax.enable}) {
-      document.addEventListener('pjax:send', () => { preloader.initLoading() })
-      document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+      btf.addGlobalFn('pjaxSend', () => { preloader.initLoading() }, 'preloader_init')
+      btf.addGlobalFn('pjaxComplete', () => { preloader.endLoading() }, 'preloader_end')
     }
   })()

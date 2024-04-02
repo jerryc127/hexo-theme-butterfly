@@ -23,7 +23,7 @@ script.
     const loadValine = async () => {
       if (typeof Valine === 'function') initValine()
       else {
-        await getScript('!{url_for(theme.asset.valine)}')
+        await btf.getScript('!{url_for(theme.asset.valine)}')
         initValine()
       }
     }

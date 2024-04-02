@@ -31,8 +31,8 @@ script.
     const loadArtalk = async () => {
       if (typeof Artalk === 'object') initArtalk()
       else {
-        await getCSS('!{theme.asset.artalk_css}')
-        await getScript('!{theme.asset.artalk_js}')
+        await btf.getCSS('!{theme.asset.artalk_css}')
+        await btf.getScript('!{theme.asset.artalk_js}')
         initArtalk()
       }
     }

@@ -3,13 +3,15 @@ script.
     const abcjsInit = () => {
       const abcjsFn = () => {
         document.querySelectorAll(".abc-music-sheet").forEach(ele => {
+          if (ele.children.length > 0) return
           ABCJS.renderAbc(ele, ele.innerHTML, {responsive: 'resize'})
         })
       }
       
       typeof ABCJS === 'object' ? abcjsFn()
-        : getScript('!{url_for(theme.asset.abcjs_basic_js)}').then(abcjsFn)
+        : btf.getScript('!{url_for(theme.asset.abcjs_basic_js)}').then(abcjsFn)
     }
 
     window.pjax ? abcjsInit() : window.addEventListener('load', abcjsInit)
+    btf.addGlobalFn('encrypt', abcjsInit, 'abcjs')
   })()

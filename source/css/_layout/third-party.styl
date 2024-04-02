@@ -74,8 +74,9 @@ if hexo-config('waline.bg')
     margin: 0 0 .8em
     padding: 6px 0 16px
 
-.katex-wrap
-  overflow: auto
+.katex-display
+  overflow: auto hidden
+  padding: 5px
 
   if hexo-config('katex') && hexo-config('katex.hide_scrollbar')
     &::-webkit-scrollbar

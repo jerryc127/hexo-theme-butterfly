@@ -117,6 +117,7 @@
       box-shadow: 0 5px 6px -5px rgba(133, 133, 133, .6)
 
       a,
+      span.site-page,
       .site-name
         color: var(--font-color)
         text-shadow: none
@@ -140,6 +141,7 @@
           text-shadow: none
 
       a,
+      span.site-page,
       #toggle-menu
         color: var(--font-color)
         text-shadow: none
@@ -290,7 +292,8 @@
     &:hover
       color: var(--white)
 
-  a
+  a,
+  span.site-page
     color: var(--light-grey)
 
     &:hover
@@ -312,10 +315,10 @@
         .menus_item_child
           display: block
 
-        & > a > i:last-child
+        & > span > i:last-child
           transform: rotate(180deg)
 
-      & > a > i:last-child
+      & > span > i:last-child
         padding: 4px
         transition: transform .3s
 
@@ -370,7 +373,7 @@
     .menus_items
       display: none
 
-    #search-button span
+    #search-button span:not(.site-page)
       display: none
 
   #search-button
