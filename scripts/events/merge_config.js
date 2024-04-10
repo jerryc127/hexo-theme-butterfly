@@ -487,6 +487,7 @@ hexo.extend.filter.register('before_generate', () => {
     },
     mermaid: {
       enable: false,
+      code_write: false,
       theme: {
         light: 'default',
         dark: 'dark'

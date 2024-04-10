@@ -811,11 +811,13 @@ abcjs:
   enable: false
   per_page: true
 
-# mermaid
-# see https://github.com/mermaid-js/mermaid
+# Mermaid
+# See https://github.com/mermaid-js/mermaid
 mermaid:
-  enable: false
-  # built-in themes: default/forest/dark/neutral
+  enable: true
+  # Write Mermaid diagrams using code blocks （以代碼塊形式書寫 Mermaid）
+  code_write: false 
+  # Built-in themes: default/forest/dark/neutral
   theme:
     light: default
     dark: dark

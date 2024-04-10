@@ -26,7 +26,20 @@ script.
       })
     }
 
+    const codeToMermaid = () => {
+      const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+      if (codeMermaidEle.length === 0) return
+      
+      codeMermaidEle.forEach(ele => {
+        const newEle = document.createElement('div')
+        newEle.className = 'mermaid-wrap'
+        newEle.innerHTML = `<pre class="mermaid-src" hidden>${ele.textContent}</pre>`
+        ele.parentNode.replaceWith(newEle)
+      })
+    }
+
     const loadMermaid = () => {
+      if (!{theme.mermaid.code_write}) codeToMermaid()
       const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
       if ($mermaid.length === 0) return
 

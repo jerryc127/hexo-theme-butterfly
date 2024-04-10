@@ -58,12 +58,17 @@ if hexo-config('waline.bg')
 .medium-zoom-overlay
   z-index: 99999 !important
 
-.mermaid-wrap
-  margin: 0 0 20px
-  text-align: center
+if hexo-config('mermaid.enable')
+  .mermaid-wrap
+    margin: 0 0 20px
+    text-align: center
 
-  & > svg
-    height: 100%
+    & > svg
+      height: 100%
+
+  if hexo-config('mermaid.code_write')
+    pre > code.mermaid
+      display: none
 
 .utterances,
 .fb-comments iframe
