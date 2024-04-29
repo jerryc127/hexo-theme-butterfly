@@ -99,13 +99,29 @@
 
   #post-info
     position: absolute
-    bottom: 30px
-    padding: 0 8%
     width: 100%
 
-    +maxWidth768()
-      bottom: 22px
-      padding: 0 22px
+    if hexo-config('post_meta.post.position') == 'center'
+      top: calc(50% + 30px)
+      padding: 0 8%
+      text-align: center
+      transform: translateY(-50%)
+
+      +maxWidth768()
+        padding: 0 15px
+    else
+      bottom: 30px
+
+      & > *
+        margin: 0 auto
+        padding: 0 15px
+        max-width: 1200px
+
+        @media screen and (min-width: 768px) and (max-width: 1300px)
+          padding: 0 30px
+
+        +minWidth2000()
+          max-width: 70%
 
   &.not-top-img
     margin-bottom: 10px

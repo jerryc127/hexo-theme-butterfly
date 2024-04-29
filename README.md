@@ -67,7 +67,7 @@ npm i hexo-theme-butterfly
 - [x] Read Mode
 - [x] Conversion between Traditional and Simplified Chinese
 - [X] TOC catalog is available for both computers and mobile phones
-- [X] Built-in Syntax Highlighting Themes (darker/pale night/light/ocean/mac/mac light), also support customization
+- [X] Built-in Syntax Highlighting Themes (darker/pale night/light/ocean), also support customization
 - [X] Code Blocks (Display code language/close or expand Code Blocks/Copy Button/word wrap)
 - [X] Disable copy/Add a Copyright Notice to the Copied Text
 - [X] Search (Algolia Search/Local Search)
