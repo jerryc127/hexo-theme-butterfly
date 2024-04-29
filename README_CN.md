@@ -67,7 +67,7 @@ theme: butterfly
 - [x] 文章閲讀模式
 - [x] 簡體和繁體轉換
 - [X] 電腦和手機都可查看TOC目錄
-- [X] 內置多種代碼配色（darker/pale night/light/ocean/mac/mac light），可自定義代碼配色
+- [X] 內置多種代碼配色（darker/pale night/light/ocean），可自定義代碼配色
 - [X] 代碼塊顯示代碼語言/關閉或展開代碼塊/代碼複製/代碼自動換行
 - [X] 可關閉文字複製/可開啟內容複製增加版權信息）
 - [X] 兩種搜索（ Algolia 搜索和本地搜索）

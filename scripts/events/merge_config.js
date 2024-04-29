@@ -7,9 +7,11 @@ hexo.extend.filter.register('before_generate', () => {
     },
     menu: null,
     highlight_theme: 'light',
+    highlight_theme_macStyle: false,
     highlight_copy: true,
     highlight_lang: true,
     highlight_shrink: false,
+    highlight_fullpage: true,
     highlight_height_limit: false,
     code_word_wrap: false,
     social: null,
@@ -51,6 +53,7 @@ hexo.extend.filter.register('before_generate', () => {
         label: true
       },
       post: {
+        position: 'left',
         date_type: 'both',
         date_format: 'date',
         categories: true,

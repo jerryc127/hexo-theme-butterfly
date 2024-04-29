@@ -22,12 +22,16 @@ menu:
 # Code Blocks (代碼相關)
 # --------------------------------------
 
-highlight_theme: light #  darker / pale night / light / ocean / mac / mac light / false
+highlight_theme: light # darker / pale night / light / ocean / false
+highlight_height_limit: false # unit: px
+code_word_wrap: false
+
+# highlight toolbar
+highlight_theme_macStyle: false # use mac style
 highlight_copy: true # copy button
 highlight_lang: true # show the code language
 highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
-highlight_height_limit: false # unit: px
-code_word_wrap: false
+highlight_fullpage: true # true: add button to toggle full page
 
 # Social Settings (社交圖標設置)
 # formal:
@@ -108,6 +112,7 @@ post_meta:
     tags: false # true or false 主頁是否顯示標籤
     label: true # true or false 顯示描述性文字
   post:
+    position: left # left or center 文章頁標題位置
     date_type: both # created or updated or both 文章頁日期是創建日或者更新日或都顯示
     date_format: date # date/relative 顯示日期還是相對日期
     categories: true # true or false 文章頁是否顯示分類

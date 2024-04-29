@@ -1,4 +1,5 @@
 $highlight_theme = hexo-config('highlight_theme')
+$highlight_macstyle = hexo-config('highlight_theme_macStyle')
 wordWrap = $highlight_enable && !$highlight_line_number && hexo-config('code_word_wrap')
 
 @require 'theme'
@@ -95,36 +96,38 @@ $code-block
         opacity: 0
 
   .highlight-tools
-    position: relative
     display: flex
     align-items: center
-    overflow: hidden
+    padding: 0 8px
     min-height: 24px
     height: 2.15em
     background: var(--hltools-bg)
     color: var(--hltools-color)
     font-size: $code-font-size
 
+    & > *
+      margin: 0 3px
+
+    i
+      cursor: pointer
+      transition: all .3s
+
+      &:hover
+        color: $theme-color
+
     &.closed
       & ~ *
         display: none
 
       .expand
-        transition: all .3s
-        transform: rotate(-90deg) !important
+        transform: rotate(-90deg)
 
-    .expand
-      position: absolute
-      padding: .57em .7em
-      cursor: pointer
-      transition: transform .3s
-
-      & + .code-lang
-        left: 1.7em
+    if !$highlight_macstyle
+      & > .macStyle
+        margin: 0
 
     .code-lang
-      position: absolute
-      left: 14px
+      flex: 1
       text-transform: uppercase
       font-weight: bold
       font-size: 1.15em
@@ -132,19 +135,19 @@ $code-block
       -webkit-user-select: none
 
     .copy-notice
-      position: absolute
-      right: 2.4em
+      padding-right: 2px
       opacity: 0
       transition: opacity .4s
 
-    .copy-button
-      position: absolute
-      right: 14px
-      cursor: pointer
-      transition: color .2s
-
-      &:hover
-        color: $theme-color
+    if hexo-config('highlight_lang')
+      .code-lang
+        flex: 1
+    else if (!$highlight_macstyle && hexo-config('highlight_shrink') != 'none')
+      & > div:nth-child(2)
+        flex: 1
+    else
+      .macStyle
+        flex: 1
 
   .gutter
     user-select: none
@@ -156,7 +159,8 @@ $code-block
     td
       border: none
 
-  if $highlight_theme == 'mac' || ($highlight_theme == 'mac light')
+if $highlight_macstyle
+  #article-container
     figure.highlight
       margin: 0 0 24px
       border-radius: 7px
@@ -164,33 +168,39 @@ $code-block
       -webkit-transform: translateZ(0)
 
       .highlight-tools
-        &:after
-          position: absolute
-          left: 14px
-          width: 12px
-          height: 12px
-          border-radius: 50%
-          background: #fc625d
-          box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b
-          content: ' '
+        padding: 0 10px
 
-        .expand
-          right: 0
+        .macStyle
+          display: flex
+
+          & > *
+            margin-right: 8px
+            width: 12px
+            height: 12px
+            border-radius: 50%
+
+          & > :last-child
+            margin-right: 5px
+
+          .mac-close
+            background: #fc625d
+
+          .mac-minimize
+            background: #fdbc40
+
+          .mac-maximize
+            background: #35cd4b
+
+        if hexo-config('highlight_shrink') != 'none'
+          & > div:nth-child(2)
+            order: 8
 
           &.closed
-            transition: all .3s
-            transform: rotate(90deg) !important
+            .expand
+              transform: rotate(90deg)
 
-          & ~ .copy-notice
-            right: 3.45em
-
-          & ~ .copy-button
-            right: 2.1em
-
-        .code-lang
-          left: 75px
-
-  if hexo-config('highlight_height_limit')
+if hexo-config('highlight_height_limit')
+  #article-container
     .code-expand-btn
       position: absolute
       bottom: 0
@@ -219,13 +229,51 @@ $code-block
         & ~ pre
           overflow: hidden
           height: unit(hexo-config('highlight_height_limit'), px)
+  
+  @keyframes code-expand-key
+    0%
+      opacity: .6
 
-@keyframes code-expand-key
-  0%
-    opacity: .6
+    50%
+      opacity: .1
 
-  50%
-    opacity: .1
+    100%
+      opacity: .6
 
-  100%
-    opacity: .6
+if hexo-config('highlight_fullpage')
+  #article-container
+    figure.highlight.code-fullpage
+      position: fixed
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      z-index: 9999
+      margin: 0
+      border-radius: 0
+      animation: code-fullpage .3s
+
+      .code-expand-btn,
+      .expand
+        display: none
+
+      .highlight-tools
+        & ~ pre,
+        & ~ table
+          display: block
+          overflow: auto
+          height: calc(100vh - 2.15em)
+          margin-bottom: 0
+
+  @keyframes code-fullpage
+    0%,
+    100%
+      transform: translateX(0)
+
+    20%,
+    60%
+      transform: translateX(-5px)
+
+    40%,
+    80%
+      transform: translateX(5px)

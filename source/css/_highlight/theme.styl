@@ -1,4 +1,4 @@
-if $highlight_theme == 'darker' || ($highlight_theme == 'mac')
+if $highlight_theme == 'darker'
   $highlight-background = #212121
   $highlight-selection = #61616150
   $highlight-foreground = #EEFFFF
@@ -29,6 +29,7 @@ if $highlight_theme == 'pale night'
   $highlight-background = #292D3E
   $highlight-selection = #717CB450
   $highlight-foreground = #A6ACCD
+  $highlight-mac-border = rgba($highlight-background, .4)
   $highlight-gutter = {
     color: alpha($highlight-foreground, .5),
     bg-color: $highlight-background
@@ -55,6 +56,7 @@ if $highlight_theme == 'ocean'
   $highlight-background = #0F111A
   $highlight-selection = #717CB450
   $highlight-foreground = #8F93A2
+  $highlight-mac-border = rgba($highlight-background, .4)
   $highlight-gutter = {
     color: alpha($highlight-foreground, .5),
     bg-color: $highlight-background
@@ -77,7 +79,7 @@ if $highlight_theme == 'ocean'
     $highlight-deletion = #BF42BF
     $highlight-addition = #105EDE
 
-if $highlight_theme == 'light' || ($highlight_theme == 'mac light')
+if $highlight_theme == 'light'
   $highlight-background = #F6F8FA
   $highlight-selection = #80CBC440
   $highlight-foreground = #90A4AE

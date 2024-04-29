@@ -63,26 +63,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const highLight = GLOBAL_CONFIG.highlight
     if (!highLight) return
 
-    const { highlightCopy, highlightLang, highlightHeightLimit, plugin } = highLight
+    const { highlightCopy, highlightLang, highlightHeightLimit, highlightFullpage, highlightMacStyle, plugin } = highLight
     const isHighlightShrink = GLOBAL_CONFIG_SITE.isHighlightShrink
-    const isShowTool = highlightCopy || highlightLang || isHighlightShrink !== undefined
+    const isShowTool = highlightCopy || highlightLang || isHighlightShrink !== undefined || highlightFullpage || highlightMacStyle
     const $figureHighlight = plugin === 'highlight.js' ? document.querySelectorAll('figure.highlight') : document.querySelectorAll('pre[class*="language-"]')
 
     if (!((isShowTool || highlightHeightLimit) && $figureHighlight.length)) return
 
     const isPrismjs = plugin === 'prismjs'
     const highlightShrinkClass = isHighlightShrink === true ? 'closed' : ''
-    const highlightShrinkEle = isHighlightShrink !== undefined ? '<i class="fas fa-angle-down expand"></i>' : ''
+    const highlightShrinkEle = isHighlightShrink !== undefined ? '<div><i class="fas fa-angle-down expand"></i></div>' : ''
     const highlightCopyEle = highlightCopy ? '<div class="copy-notice"></div><i class="fas fa-paste copy-button"></i>' : ''
+    const highlightMacStyleEle = '<div class="macStyle"><div class="mac-close"></div><div class="mac-minimize"></div><div class="mac-maximize"></div></div>'
+    const highlightFullpageEle = highlightFullpage ? '<i class="fa-solid fa-up-right-and-down-left-from-center fullpage-button"></i>' : ''
 
     const alertInfo = (ele, text) => {
       if (GLOBAL_CONFIG.Snackbar !== undefined) {
         btf.snackbarShow(text)
       } else {
-        const prevEle = ele.previousElementSibling
-        prevEle.textContent = text
-        prevEle.style.opacity = 1
-        setTimeout(() => { prevEle.style.opacity = 0 }, 800)
+        ele.textContent = text
+        ele.style.opacity = 1
+        setTimeout(() => { ele.style.opacity = 0 }, 800)
       }
     }
 
@@ -96,16 +97,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // click events
-    const highlightCopyFn = ele => {
+    const highlightCopyFn = (ele, clickEle) => {
       const $buttonParent = ele.parentNode
       $buttonParent.classList.add('copy-true')
       const selection = window.getSelection()
       const range = document.createRange()
       const preCodeSelector = isPrismjs ? 'pre code' : 'table .code pre'
-      range.selectNodeContents($buttonParent.querySelectorAll(`${preCodeSelector}`)[0])
+      range.selectNodeContents($buttonParent.querySelector(`${preCodeSelector}`))
       selection.removeAllRanges()
       selection.addRange(range)
-      copy(ele.lastChild)
+      copy(clickEle.previousElementSibling)
       selection.removeAllRanges()
       $buttonParent.classList.remove('copy-true')
     }
@@ -114,23 +115,33 @@ document.addEventListener('DOMContentLoaded', function () {
       ele.classList.toggle('closed')
     }
 
+    const codeFullpage = (item, clickEle) => {
+      const wrapEle = item.closest('figure.highlight')
+      const isFullpage = wrapEle.classList.toggle('code-fullpage')
+
+      document.body.style.overflow = isFullpage ? 'hidden' : ''
+      clickEle.classList.toggle('fa-down-left-and-up-right-to-center', isFullpage)
+      clickEle.classList.toggle('fa-up-right-and-down-left-from-center', !isFullpage)
+    }
+
     const highlightToolsFn = function (e) {
       const $target = e.target.classList
       if ($target.contains('expand')) highlightShrinkFn(this)
-      else if ($target.contains('copy-button')) highlightCopyFn(this)
+      else if ($target.contains('copy-button')) highlightCopyFn(this, e.target)
+      else if ($target.contains('fullpage-button')) codeFullpage(this, e.target)
     }
 
     const expandCode = function () {
       this.classList.toggle('expand-done')
     }
 
-    const createEle = (lang, item, service) => {
+    const createEle = (lang, item) => {
       const fragment = document.createDocumentFragment()
 
       if (isShowTool) {
         const hlTools = document.createElement('div')
         hlTools.className = `highlight-tools ${highlightShrinkClass}`
-        hlTools.innerHTML = highlightShrinkEle + lang + highlightCopyEle
+        hlTools.innerHTML = highlightMacStyleEle + highlightShrinkEle + lang + highlightCopyEle + highlightFullpageEle
         btf.addEventListenerPjax(hlTools, 'click', highlightToolsFn)
         fragment.appendChild(hlTools)
       }
@@ -143,37 +154,26 @@ document.addEventListener('DOMContentLoaded', function () {
         fragment.appendChild(ele)
       }
 
-      if (service === 'hl') {
-        item.insertBefore(fragment, item.firstChild)
-      } else {
-        item.parentNode.insertBefore(fragment, item)
-      }
+      isPrismjs ? item.parentNode.insertBefore(fragment, item) : item.insertBefore(fragment, item.firstChild)
     }
 
-    if (isPrismjs) {
-      $figureHighlight.forEach(item => {
-        if (highlightLang) {
-          const langName = item.getAttribute('data-language') || 'Code'
-          const highlightLangEle = `<div class="code-lang">${langName}</div>`
-          btf.wrap(item, 'figure', { class: 'highlight' })
-          createEle(highlightLangEle, item)
-        } else {
-          btf.wrap(item, 'figure', { class: 'highlight' })
-          createEle('', item)
-        }
-      })
-    } else {
-      $figureHighlight.forEach(item => {
-        if (highlightLang) {
-          let langName = item.getAttribute('class').split(' ')[1]
-          if (langName === 'plain' || langName === undefined) langName = 'Code'
-          const highlightLangEle = `<div class="code-lang">${langName}</div>`
-          createEle(highlightLangEle, item, 'hl')
-        } else {
-          createEle('', item, 'hl')
-        }
-      })
-    }
+    $figureHighlight.forEach(item => {
+      let langName = ''
+      if (isPrismjs) btf.wrap(item, 'figure', { class: 'highlight' })
+
+      if (!highlightLang) {
+        createEle('', item)
+        return
+      }
+
+      if (isPrismjs) {
+        langName = item.getAttribute('data-language') || 'Code'
+      } else {
+        langName = item.getAttribute('class').split(' ')[1]
+        if (langName === 'plain' || langName === undefined) langName = 'Code'
+      }
+      createEle(`<div class="code-lang">${langName}</div>`, item)
+    })
   }
 
   /**
