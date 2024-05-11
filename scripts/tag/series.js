@@ -15,6 +15,12 @@ const groups = {}
 hexo.extend.filter.register('before_post_render', data => {
   if (!hexo.theme.config.series.enable) return data
   const { layout, series } = data
+  // clear the groups map to avoid duplicated post list
+  for (let key in groups) {
+    if (groups.hasOwnProperty(key)) {
+      delete groups[key]
+    }
+  }
   if (layout === 'post' && series) {
     groups[series] = groups[series] || []
     groups[series].push({
