@@ -21,11 +21,11 @@ aplayer_js:
 artalk_css:
   name: artalk
   file: dist/Artalk.css
-  version: 2.8.3
+  version: 2.8.6
 artalk_js:
   name: artalk
   file: dist/Artalk.js
-  version: 2.8.3
+  version: 2.8.6
 blueimp_md5:
   name: blueimp-md5
   file: js/md5.min.js
