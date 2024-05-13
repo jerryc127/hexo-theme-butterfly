@@ -135,6 +135,40 @@ document.addEventListener('DOMContentLoaded', function () {
       this.classList.toggle('expand-done')
     }
 
+    // 获取隐藏状态下元素的真实高度
+    const getActualHeight = function (item) {
+      let tmp = []
+      let hidden = []
+      function fix() {
+      
+          let current = item
+          while (current !== document.body && current != null) {
+              if (window.getComputedStyle(current).display === 'none') {
+                  hidden.push(current)
+              }
+              current = current.parentNode
+          }
+          let style = 'visibility: hidden !important; display: block !important; '
+  
+          hidden.forEach(function (elem) {
+              var thisStyle = elem.getAttribute('style') || ''
+              tmp.push(thisStyle)
+              elem.setAttribute('style', thisStyle ? thisStyle + ';' + style : style)
+          })
+      }
+      function restore() {
+          hidden.forEach((elem, idx) => {
+              let _tmp = tmp[idx]
+              if( _tmp === '' ) elem.removeAttribute('style')
+              else elem.setAttribute('style', _tmp)
+          })
+      }
+      fix()
+      let height = item.offsetHeight
+      restore()
+      return height
+    }
+
     const createEle = (lang, item) => {
       const fragment = document.createDocumentFragment()
 
@@ -146,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fragment.appendChild(hlTools)
       }
 
-      if (highlightHeightLimit && item.offsetHeight > highlightHeightLimit + 30) {
+      if (highlightHeightLimit && getActualHeight(item) > highlightHeightLimit + 30) {
         const ele = document.createElement('div')
         ele.className = 'code-expand-btn'
         ele.innerHTML = '<i class="fas fa-angle-double-down"></i>'
