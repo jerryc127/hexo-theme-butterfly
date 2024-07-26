@@ -1,6 +1,6 @@
 - const { server, site, option } = theme.artalk
-- const avatarCdn = option !== null && option.gravatar && option.gravatar.mirror
-- const avatarDefault = option !== null && option.gravatar && (option.gravatar.params || option.gravatar.default)
+- const avatarCdn = (option !== null && option.gravatar && option.gravatar.mirror) || ''
+- const avatarDefault = (option !== null && option.gravatar && (option.gravatar.params || option.gravatar.default)) || ''
 
 script.
   window.addEventListener('load', () => {
