@@ -8,9 +8,10 @@
 
 hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   let relatedPosts = []
-  currentPost.tags.forEach(function (tag) {
+  const tagsData = currentPost.tags
+  tagsData.length && tagsData.forEach(function (tag) {
     allPosts.forEach(function (post) {
-      if (isTagRelated(tag.name, post.tags)) {
+      if (currentPost.path !== post.path && isTagRelated(tag.name, post.tags)) {
         const relatedPost = {
           title: post.title,
           path: post.path,
@@ -24,13 +25,12 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
         if (index !== -1) {
           relatedPosts[index].weight += 1
         } else {
-          if (currentPost.path !== post.path) {
-            relatedPosts.push(relatedPost)
-          }
+          relatedPosts.push(relatedPost)
         }
       }
     })
   })
+
   if (relatedPosts.length === 0) {
     return ''
   }
@@ -52,7 +52,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
     for (let i = 0; i < Math.min(relatedPosts.length, limitNum); i++) {
       const cover = relatedPosts[i].cover || 'var(--default-bg-color)'
       const title = this.escape_html(relatedPosts[i].title)
-      result += `<div><a href="${this.url_for(relatedPosts[i].path)}" title="${title}">`
+      result += `<a href="${this.url_for(relatedPosts[i].path)}" title="${title}">`
       if (relatedPosts[i].cover_type === 'img') {
         result += `<img class="cover" src="${this.url_for(cover)}" alt="cover">`
       } else {
@@ -64,7 +64,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
         result += `<div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> ${this.date(relatedPosts[i].updated, hexoConfig.date_format)}</div>`
       }
       result += `<div class="title">${title}</div>`
-      result += '</div></a></div>'
+      result += '</div></a>'
     }
 
     result += '</div></div>'
@@ -72,29 +72,14 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
   }
 })
 
-function isTagRelated (tagName, TBDtags) {
-  let result = false
-  TBDtags.forEach(function (tag) {
-    if (tagName === tag.name) {
-      result = true
-    }
-  })
-  return result
+function isTagRelated (tagName, tags) {
+  return tags.some(tag => tag.name === tagName)
 }
 
 function findItem (arrayToSearch, attr, val) {
-  for (let i = 0; i < arrayToSearch.length; i++) {
-    if (arrayToSearch[i][attr] === val) {
-      return i
-    }
-  }
-  return -1
+  return arrayToSearch.findIndex(item => item[attr] === val)
 }
 
 function compare (attr) {
-  return function (a, b) {
-    const val1 = a[attr]
-    const val2 = b[attr]
-    return val2 - val1
-  }
+  return (a, b) => b[attr] - a[attr]
 }

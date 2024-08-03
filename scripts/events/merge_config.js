@@ -1,3 +1,5 @@
+const { deepMerge } = require('hexo-util')
+
 hexo.extend.filter.register('before_generate', () => {
   const defaultConfig = {
     nav: {
@@ -6,33 +8,36 @@ hexo.extend.filter.register('before_generate', () => {
       fixed: false
     },
     menu: null,
-    highlight_theme: 'light',
-    highlight_theme_macStyle: false,
-    highlight_copy: true,
-    highlight_lang: true,
-    highlight_shrink: false,
-    highlight_fullpage: true,
-    highlight_height_limit: false,
-    code_word_wrap: false,
+    code_blocks: {
+      theme: 'light',
+      macStyle: false,
+      height_limit: false,
+      word_wrap: false,
+      copy: true,
+      language: true,
+      shrink: false,
+      fullpage: false
+    },
     social: null,
     favicon: '/img/favicon.png',
     avatar: {
-      img: 'https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png',
+      img: '/img/butterfly-icon.png',
       effect: false
     },
     disable_top_img: false,
-    index_img: null,
     default_top_img: null,
+    index_img: null,
     archive_img: null,
     tag_img: null,
     tag_per_img: null,
     category_img: null,
     category_per_img: null,
+    footer_img: false,
+    background: null,
     cover: {
       index_enable: true,
       aside_enable: true,
       archives_enable: true,
-      position: 'both',
       default_cover: null
     },
     error_img: {
@@ -42,7 +47,7 @@ hexo.extend.filter.register('before_generate', () => {
     error_404: {
       enable: false,
       subtitle: 'Page Not Found',
-      background: 'https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png'
+      background: '/img/error-page.png'
     },
     post_meta: {
       page: {
@@ -61,21 +66,19 @@ hexo.extend.filter.register('before_generate', () => {
         label: true
       }
     },
+    index_site_info_top: null,
+    index_top_img_height: null,
+    subtitle: {
+      enable: false,
+      effect: true,
+      typed_option: null,
+      source: false,
+      sub: null
+    },
+    index_layout: 3,
     index_post_content: {
       method: 3,
       length: 500
-    },
-    anchor: {
-      auto_update: false,
-      click_to_scroll: false
-    },
-    photofigcaption: false,
-    copy: {
-      enable: true,
-      copyright: {
-        enable: false,
-        limit_count: 50
-      }
     },
     toc: {
       post: true,
@@ -110,7 +113,7 @@ hexo.extend.filter.register('before_generate', () => {
     noticeOutdate: {
       enable: false,
       style: 'flat',
-      limit_day: 500,
+      limit_day: 365,
       position: 'top',
       message_prev: 'It has been',
       message_next: 'days since the last update, the content of the article may be outdated.'
@@ -118,7 +121,7 @@ hexo.extend.filter.register('before_generate', () => {
     footer: {
       owner: {
         enable: true,
-        since: 2020
+        since: 2019
       },
       custom_text: null,
       copyright: true
@@ -154,6 +157,13 @@ hexo.extend.filter.register('before_generate', () => {
         sort: 'date',
         sort_order: null
       },
+      card_newest_comments: {
+        enable: false,
+        sort_order: null,
+        limit: 6,
+        storage: 10,
+        avatar: true
+      },
       card_categories: {
         enable: true,
         limit: 8,
@@ -176,35 +186,21 @@ hexo.extend.filter.register('before_generate', () => {
         limit: 8,
         sort_order: null
       },
-      card_webinfo: {
-        enable: true,
-        post_count: true,
-        last_push_date: true,
-        sort_order: null
-      },
       card_post_series: {
         enable: true,
         series_title: false,
         orderBy: 'date',
         order: -1
+      },
+      card_webinfo: {
+        enable: true,
+        post_count: true,
+        last_push_date: true,
+        sort_order: null,
+        runtime_date: null
       }
     },
-    busuanzi: {
-      site_uv: true,
-      site_pv: true,
-      page_pv: true
-    },
-    runtimeshow: {
-      enable: false,
-      publish_date: null
-    },
-    newest_comments: {
-      enable: false,
-      sort_order: null,
-      limit: 6,
-      storage: 10,
-      avatar: true
-    },
+    rightside_bottom: null,
     translate: {
       enable: false,
       default: '繁',
@@ -227,42 +223,68 @@ hexo.extend.filter.register('before_generate', () => {
       hide: null,
       show: null
     },
-    mathjax: {
-      enable: false,
-      per_page: false
+    anchor: {
+      auto_update: false,
+      click_to_scroll: false
     },
-    katex: {
-      enable: false,
-      per_page: false,
-      hide_scrollbar: true
-    },
-    algolia_search: {
-      enable: false,
-      hits: {
-        per_page: 6
+    photofigcaption: false,
+    copy: {
+      enable: true,
+      copyright: {
+        enable: false,
+        limit_count: 150
       }
     },
-    local_search: {
+    wordcount: {
       enable: false,
-      preload: false,
-      top_n_per_article: 1,
-      unescape: false,
-      CDN: null
+      post_wordcount: true,
+      min2read: true,
+      total_wordcount: true
     },
-    docsearch: {
-      enable: false,
-      appId: null,
-      apiKey: null,
-      indexName: null,
-      option: null
+    busuanzi: {
+      site_uv: true,
+      site_pv: true,
+      page_pv: true
     },
-    sharejs: {
-      enable: true,
-      sites: 'facebook,twitter,wechat,weibo,qq'
+    math: {
+      use: null,
+      per_page: true,
+      hide_scrollbar: false,
+      mathjax: {
+        enableMenu: true,
+        tags: 'none'
+      },
+      katex: {
+        copy_tex: false
+      }
     },
-    addtoany: {
-      enable: false,
-      item: 'facebook,twitter,wechat,sina_weibo,facebook_messenger,email,copy_link'
+    search: {
+      use: null,
+      placeholder: null,
+      algolia_search: {
+        hitsPerPage: 6
+      },
+      local_search: {
+        preload: false,
+        top_n_per_article: 1,
+        unescape: false,
+        CDN: null
+      },
+      docsearch: {
+        appId: null,
+        apiKey: null,
+        indexName: null,
+        option: null
+      }
+    },
+    share: {
+      use: 'sharejs',
+      sharejs: {
+        sites: 'facebook,twitter,wechat,weibo,qq'
+      },
+      addtoany: {
+        item: 'facebook,twitter,wechat,sina_weibo,facebook_messenger,email,copy_link'
+      }
     },
     comments: {
       use: null,
@@ -310,7 +332,9 @@ hexo.extend.filter.register('before_generate', () => {
       repo: null,
       issue_term: 'pathname',
       light_theme: 'github-light',
-      dark_theme: 'photon-dark'
+      dark_theme: 'photon-dark',
+      js: null,
+      option: null
     },
     facebook_comments: {
       app_id: null,
@@ -329,10 +353,9 @@ hexo.extend.filter.register('before_generate', () => {
       repo: null,
       repo_id: null,
       category_id: null,
-      theme: {
-        light: 'light',
-        dark: 'dark'
-      },
+      light_theme: 'light',
+      dark_theme: 'dark',
+      js: null,
       option: null
     },
     remark42: {
@@ -346,26 +369,24 @@ hexo.extend.filter.register('before_generate', () => {
       visitor: false,
       option: null
     },
-    chat_btn: false,
-    chat_hide_show: false,
+    chat: {
+      use: null,
+      rightside_button: false,
+      button_hide_show: false
+    },
     chatra: {
-      enable: false,
       id: null
     },
     tidio: {
-      enable: false,
       public_key: null
     },
     daovoice: {
-      enable: false,
       app_id: null
     },
     crisp: {
-      enable: false,
       website_id: null
     },
     messenger: {
-      enable: false,
       pageID: null,
       lang: 'zh_TW'
     },
@@ -380,20 +401,48 @@ hexo.extend.filter.register('before_generate', () => {
       client: null,
       enable_page_level_ads: true
     },
+    ad: {
+      index: null,
+      aside: null,
+      post: null
+    },
     site_verification: null,
-    index_site_info_top: null,
-    index_top_img_height: null,
     category_ui: null,
     tag_ui: null,
+    rounded_corners_ui: true,
     text_align_justify: false,
-    background: null,
-    footer_bg: false,
     mask: {
       header: true,
       footer: true
     },
-    rightside_bottom: null,
+    preloader: {
+      enable: false,
+      source: 1,
+      pace_css_url: null
+    },
     enter_transitions: true,
+    display_mode: 'light',
+    beautify: {
+      enable: false,
+      field: 'post',
+      'title-prefix-icon': null,
+      'title-prefix-icon-color': null
+    },
+    font: {
+      'global-font-size': null,
+      'code-font-size': null,
+      'font-family': null,
+      'code-font-family': null
+    },
+    blog_title_font: {
+      font_link: null,
+      'font-family': null
+    },
+    hr_icon: {
+      enable: true,
+      icon: null,
+      'icon-top': null
+    },
     activate_power_mode: {
       enable: false,
       colorful: true,
@@ -436,50 +485,9 @@ hexo.extend.filter.register('before_generate', () => {
       random: false,
       mobile: false
     },
-    display_mode: 'light',
-    beautify: {
-      enable: false,
-      field: 'post',
-      'title-prefix-icon': null,
-      'title-prefix-icon-color': null
-    },
-    font: {
-      'global-font-size': null,
-      'code-font-size': null,
-      'font-family': null,
-      'code-font-family': null
-    },
-    blog_title_font: {
-      font_link: null,
-      'font-family': null
-    },
-    hr_icon: {
-      enable: true,
-      icon: null,
-      'icon-top': null
-    },
-    subtitle: {
-      enable: false,
-      effect: true,
-      typed_option: null,
-      source: false,
-      sub: null
-    },
-    preloader: {
-      enable: false,
-      source: 1,
-      pace_css_url: null
-    },
-    wordcount: {
-      enable: false,
-      post_wordcount: true,
-      min2read: true,
-      total_wordcount: true
-    },
-    medium_zoom: false,
-    fancybox: true,
+    lightbox: null,
     series: {
-      enable: true,
+      enable: false,
       orderBy: 'title',
       order: 1,
       number: true
@@ -527,6 +535,14 @@ hexo.extend.filter.register('before_generate', () => {
       placeholder: null,
       blur: false
     },
+    pwa: {
+      enable: false,
+      manifest: null,
+      apple_touch_icon: null,
+      favicon_32_32: null,
+      favicon_16_16: null,
+      mask_icon: null
+    },
     Open_Graph_meta: {
       enable: true,
       option: null
@@ -539,11 +555,11 @@ hexo.extend.filter.register('before_generate', () => {
     CDN: {
       internal_provider: 'local',
       third_party_provider: 'jsdelivr',
-      version: true,
+      version: false,
       custom_format: null,
       option: null
     }
   }
 
-  hexo.theme.config = Object.assign(defaultConfig, hexo.theme.config)
+  hexo.theme.config = deepMerge(defaultConfig, hexo.theme.config)
 }, 1)

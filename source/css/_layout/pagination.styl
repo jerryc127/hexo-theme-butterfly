@@ -37,47 +37,40 @@
   .prev-post,
   .next-post
     @extend .postImgHover
+    position: relative
+    overflow: hidden
     width: 50%
+    height: 150px
 
     +maxWidth768()
       width: 100%
-
-    a
-      position: relative
-      display: block
-      overflow: hidden
-      height: 150px
 
   &.pagination-post
     overflow: hidden
     margin-top: 40px
     width: 100%
     background: $dark-black
+    addBorderRadius()
 
 .layout
-  & > .recent-posts
-    .pagination
-      & > *
-        display: inline-block
-        margin: 0 6px
-        width: w = 2.5em
-        height: w
-        line-height: w
+  .pagination
+    & > *
+      display: inline-block
+      margin: 0 6px
+      width: w = 2.5em
+      height: w
+      line-height: w
 
-      & > *:not(.space)
-        @extend .cardHover
+    & > *:not(.space)
+      @extend .cardHover
 
-        &:hover
-          background: var(--btn-hover-color)
-          color: var(--btn-color)
+      &:hover
+        background: var(--btn-hover-color)
+        color: var(--btn-color)
 
-  & > div:not(.recent-posts)
-    .pagination
-      .page-number
-        display: inline-block
-        margin: 0 4px
-        min-width: w = 24px
-        height: w
-        text-align: center
-        line-height: w
-        cursor: pointer
+#archive
+  .pagination
+    margin-top: 30px
+
+    & > *:not(.space)
+      box-shadow: none

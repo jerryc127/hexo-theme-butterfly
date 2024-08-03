@@ -87,6 +87,7 @@ beautify()
     margin: 0 auto 20px
     max-width: 100%
     transition: filter 375ms ease-in .2s
+    addBorderRadius()
 
   p
     margin: 0 0 16px
@@ -98,7 +99,6 @@ beautify()
     margin: 0 3px
     padding: 3px 5px
     border: 1px solid #b4b4b4
-    border-radius: 3px
     background-color: #f8f8f8
     box-shadow: 0 1px 3px rgba(0, 0, 0, .25), 0 2px 1px 0 rgba(255, 255, 255, .6) inset
     color: #34495e
@@ -107,6 +107,7 @@ beautify()
     font-size: .9em
     font-family: Monaco, 'Ubuntu Mono', monospace
     line-height: 1em
+    addBorderRadius(3)
 
   if hexo-config('anchor.click_to_scroll')
     h1,
@@ -181,7 +182,7 @@ beautify()
           background: $light-blue
           color: var(--white)
 
-    .post_share
+    .post-share
       display: inline-block
       float: right
       margin: 8px 0 0
@@ -203,6 +204,7 @@ beautify()
     padding: 10px 16px
     border: 1px solid var(--light-grey)
     transition: box-shadow .3s ease-in-out
+    addBorderRadius()
 
     &:before
       @extend .fontawesomeIcon
@@ -238,9 +240,9 @@ beautify()
     position: relative
     margin: 0 0 20px
     padding: .5em 1.2em
-    border-radius: 3px
     background-color: $noticeOutdate-bg
     color: $noticeOutdate-color
+    addBorderRadius(3)
 
     if hexo-config('noticeOutdate.style') == 'flat'
       padding: .5em 1em .5em 2.6em

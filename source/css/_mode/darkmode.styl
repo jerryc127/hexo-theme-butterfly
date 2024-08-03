@@ -16,6 +16,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --tab-button-active-bg: #121212
     --card-bg: #121212
     --sidebar-bg: #121212
+    --sidebar-menu-bg: lighten(#121212, 5)
     --btn-hover-color: lighten(#121212, 40)
     --btn-color: alpha(#FFFFFF, .7)
     --btn-bg: lighten(#121212, 5)
@@ -140,3 +141,20 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     #card-toc
       +maxWidth900()
         background: lighten(#121212, 5)
+
+    // artalk
+    .artalk.atk-dark-mode,
+    .atk-layer-wrap.atk-dark-mode
+      --at-color-font: alpha(#FFFFFF, .7)
+      --at-color-meta: alpha(#FFFFFF, .7)
+      --at-color-grey: alpha(#FFFFFF, .7)
+    
+    .atk-send-btn,
+    .atk-badge
+      color: alpha(#FFFFFF, .7) !important
+
+    // waline
+    #waline-wrap
+      --waline-color: alpha(#FFFFFF, .7)
+      --waline-dark-grey: alpha(#FFFFFF, .7)
+      --waline-info-color: alpha(#FFFFFF, .5)

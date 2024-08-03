@@ -14,10 +14,10 @@ if theme.pjax.enable
         }
       }
 
-      const loadMeting = () => {
+      const runMetingJS = () => {
         typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
       }
 
       btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
-      btf.addGlobalFn('pjaxComplete', loadMeting, 'loadMeting')
+      btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
     })()

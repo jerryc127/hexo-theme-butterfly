@@ -1,10 +1,11 @@
-if theme.chatra && theme.chatra.enable
-  include ./chatra.pug
-else if theme.tidio && theme.tidio.enable
-  include ./tidio.pug
-else if theme.daovoice && theme.daovoice.enable
-  include ./daovoice.pug
-else if theme.crisp && theme.crisp.enable
-  include ./crisp.pug
-else if theme.messenger && theme.messenger.enable
-  include ./messenger.pug
+case theme.chat.use
+  when 'chatra'
+    include ./chatra.pug
+  when 'tidio'
+    include ./tidio.pug
+  when 'daovoice'
+    include ./daovoice.pug
+  when 'crisp'
+    include ./crisp.pug
+  when 'messenger'
+    include ./messenger.pug

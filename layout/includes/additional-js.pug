@@ -5,9 +5,9 @@ div
   if theme.translate.enable
     script(src=url_for(theme.asset.translate))
 
-  if theme.medium_zoom
+  if theme.lightbox === 'medium_zoom'
     script(src=url_for(theme.asset.medium_zoom))
-  else if theme.fancybox
+  else if theme.lightbox === 'fancybox'
     script(src=url_for(theme.asset.fancybox))
 
   if theme.instantpage
@@ -38,7 +38,7 @@ div
 
   != partial("includes/third-party/prismjs", {}, { cache: true })
 
-  if theme.aside.enable && theme.newest_comments.enable
+  if theme.aside.enable && theme.aside.card_newest_comments.enable
     if theme.pjax.enable
       != partial("includes/third-party/newest-comments/index", {}, { cache: true })
     else if (!is_post() && page.aside !== false)

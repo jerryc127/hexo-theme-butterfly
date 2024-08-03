@@ -5,17 +5,18 @@ nav#nav
         img.site-icon(src=url_for(theme.nav.logo) alt='Logo')
       if theme.nav.display_title
         span.site-name=config.title
-    
+
   #menus
-    if (theme.algolia_search.enable || theme.local_search.enable || theme.docsearch.enable)
+    if (theme.search.use)
       #search-button
         span.site-page.social-icon.search
           i.fas.fa-search.fa-fw
           span=' '+_p('search.title')
-    !=partial('includes/header/menu_item', {}, {cache: true})
+    if theme.menu
+      !=partial('includes/header/menu_item', {}, {cache: true})
 
-    #toggle-menu
-      span.site-page
-        i.fas.fa-bars.fa-fw
+      #toggle-menu
+        span.site-page
+          i.fas.fa-bars.fa-fw
 
 

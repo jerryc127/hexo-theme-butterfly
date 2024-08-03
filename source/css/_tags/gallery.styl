@@ -6,12 +6,15 @@
     margin: 6px 4px
     width: calc(50% - 8px)
     height: 250px
-    border-radius: 8px
+    border-radius: 10px
     background: $dark-black
     -webkit-transform: translate3d(0, 0, 0)
 
     +maxWidth600()
       width: calc(100% - 8px)
+
+    +minWidth1024()
+      width: calc(100% / 3 - 8px)
 
     &:hover
       img
@@ -95,8 +98,12 @@
     padding: 0 0 16px
 
   .gallery-container
-    margin: 0 0 16px
+    margin: 0 0 20px
     text-align: center
+    opacity: 0
+
+    &.loaded
+      opacity: 1
 
     img
       display: initial
@@ -109,17 +116,19 @@
 
     button
       margin-top: 25px
-      padding: 10px
-      width: 9em
-      border-radius: 5px
+      padding: 8px 14px
       background: var(--btn-bg)
       color: var(--btn-color)
       font-weight: bold
       font-size: 1.1em
       transition: all .3s
+      addBorderRadius(5)
 
       &:hover
         background: var(--btn-hover-color)
+
+      i
+        margin-left: 4px
 
   .loading-container
     display: inline-block

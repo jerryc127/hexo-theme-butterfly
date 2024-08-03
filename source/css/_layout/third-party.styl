@@ -79,31 +79,45 @@ if hexo-config('mermaid.enable')
     margin: 0 0 .8em
     padding: 6px 0 16px
 
-.katex-display
-  overflow: auto hidden
-  padding: 5px
+if hexo-config('math.use')
+  .katex-display
+    overflow: auto hidden
+    padding: 5px
 
-  if hexo-config('katex') && hexo-config('katex.hide_scrollbar')
-    &::-webkit-scrollbar
-      display: none
+    .katex-show
+      display: block
 
-// Mathjax
-mjx-container
-  overflow-x: auto
-  overflow-y: hidden
-  padding-bottom: 4px
-  max-width: 100%
+  .katex
+    display: none
 
-  &[display]
-    display: block !important
-    min-width: auto !important
+    &.katex-show
+      display: inline
 
-  &:not([display])
-    display: inline-grid !important
+  if hexo-config('math.hide_scrollbar')
+    .katex-display,
+    mjx-container
+      scrollbar-width: none
 
-mjx-assistive-mml
-  right: 0
-  bottom: 0
+      &::-webkit-scrollbar
+        display: none
+
+  // Mathjax
+  mjx-container
+    overflow-x: auto
+    overflow-y: hidden
+    padding-bottom: 4px
+    max-width: 100%
+
+    &[display]
+      display: block !important
+      min-width: auto !important
+
+    &:not([display])
+      display: inline-grid !important
+
+  mjx-assistive-mml
+    right: 0
+    bottom: 0
 
 .aplayer
   color: $font-black

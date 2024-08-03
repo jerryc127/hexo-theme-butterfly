@@ -8,10 +8,10 @@ if theme.aside.card_webinfo.enable
         .webinfo-item
           .item-name= _p('aside.card_webinfo.article_name') + " :"
           .item-count= site.posts.length
-      if theme.runtimeshow.enable
+      if theme.aside.card_webinfo.runtime_date
         .webinfo-item
           .item-name= _p('aside.card_webinfo.runtime.name') + " :"
-          .item-count#runtimeshow(data-publishDate=date_xml(theme.runtimeshow.publish_date))
+          .item-count#runtimeshow(data-publishDate=date_xml(theme.aside.card_webinfo.runtime_date))
             i.fa-solid.fa-spinner.fa-spin
       if theme.wordcount.enable && theme.wordcount.total_wordcount
         .webinfo-item

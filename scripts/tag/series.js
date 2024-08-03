@@ -63,7 +63,7 @@ function series (args) {
     result += `<li><a href="${urlFor(ele.path)}" title="${ele.title}">${ele.title}</a></li>`
   })
 
-  return series.number ? `<ol>${result}</ol>` : `<ul>${result}</ul>`
+  return series.number ? `<ol class="series-items">${result}</ol>` : `<ul class="series-items">${result}</ul>`
 }
 
 hexo.extend.tag.register('series', series, { ends: false })

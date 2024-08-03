@@ -1,4 +1,5 @@
 //- Mathjax 3
+- const { tags, enableMenu } = theme.math.mathjax
 script.
   (() => {
     const loadMathjax = () => {
@@ -6,12 +7,13 @@ script.
         window.MathJax = {
           tex: {
             inlineMath: [['$', '$'], ['\\(', '\\)']],
-            tags: 'ams'
+            tags: '!{tags}',
           },
           chtml: {
             scale: 1.1
           },
           options: {
+            enableMenu: !{enableMenu},
             renderActions: {
               findScript: [10, doc => {
                 for (const node of document.querySelectorAll('script[type^="math/tex"]')) {

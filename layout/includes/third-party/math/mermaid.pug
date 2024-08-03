@@ -11,18 +11,12 @@ script.
         const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
 
         const renderFn = mermaid.render(mermaidID, mermaidDefinition)
-
-        const renderV10 = () => {
-          renderFn.then(({svg}) => {
-            mermaidSrc.insertAdjacentHTML('afterend', svg)
-          })
-        }
-
-        const renderV9 = svg => {
+        const renderMermaid = svg => {
           mermaidSrc.insertAdjacentHTML('afterend', svg)
         }
 
-        typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+        // mermaid v9 and v10 compatibility
+        typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({svg}) => renderMermaid(svg))
       })
     }
 
@@ -31,9 +25,13 @@ script.
       if (codeMermaidEle.length === 0) return
       
       codeMermaidEle.forEach(ele => {
+        const preEle = document.createElement('pre')
+        preEle.className = 'mermaid-src'
+        preEle.hidden = true
+        preEle.textContent = ele.textContent
         const newEle = document.createElement('div')
         newEle.className = 'mermaid-wrap'
-        newEle.innerHTML = `<pre class="mermaid-src" hidden>${ele.textContent}</pre>`
+        newEle.appendChild(preEle)
         ele.parentNode.replaceWith(newEle)
       })
     }

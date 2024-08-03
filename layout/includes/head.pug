@@ -45,7 +45,7 @@ link(rel='stylesheet', href=url_for(theme.asset.fontawesome))
 if (theme.snackbar && theme.snackbar.enable)
   link(rel='stylesheet', href=url_for(theme.asset.snackbar_css) media="print" onload="this.media='all'")
 
-if theme.fancybox
+if theme.lightbox === 'fancybox'
   link(rel='stylesheet' href=url_for(theme.asset.fancybox_css) media="print" onload="this.media='all'")
 
 !=fragment_cache('injectHeadJs', function(){return inject_head_js()})

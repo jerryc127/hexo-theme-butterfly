@@ -1,0 +1,103 @@
+//- - author:
+//-   avatar:
+//-   date:
+//-   content:
+//-   tags:
+//-     - tag1
+//-     - tag2
+
+
+- page.comments = false
+- page.toc = false
+#article-container
+  if page.shuoshuo_url
+    script.
+      (() => {
+        const loadShuoshuo = async () => {
+          try {
+            const fetchContent = await fetch('!{url_for(page.shuoshuo_url)}')
+            const shuoshuo = await fetchContent.json()
+
+            let start = 0
+            const container = document.getElementById('article-container')
+
+            const addData = data => {
+              const cLength = data.length
+              const end = start + 10 > cLength ? cLength : start + 10
+              let result = ''
+              data.slice(start, end).forEach((item) => {
+                result += `
+                      <div class="shuoshuo-item">
+                        <div class="shuoshuo-item-header">
+                          <div class="shuoshuo-avatar">
+                            <img class="no-lightbox" src="${item.avatar || '!{url_for(theme.avatar.img)}'}">
+                          </div>
+                          <div class="shuoshuo-info">
+                            <div class="shuoshuo-author">${item.author || '!{config.author}'}</div>
+                            <div class="shuoshuo-date">${btf.diffDate(item.date, true)}</div>
+                          </div>
+                        </div>
+                        <div class="shuoshuo-content">
+                          ${item.content}
+                        </div>
+                        <div class="shuoshuo-footer">
+                          <div class="shuoshuo-tags">
+                            ${item.tags.map(tag => `<span class="shuoshuo-tag">${tag}</span>`).join('')}
+                          </div>
+                        </div>
+                      </div>
+                      `
+              })
+
+              start = end
+              container.insertAdjacentHTML('beforeend', result)
+
+              if (start >= cLength) {
+                observer.disconnect()
+              } else {
+                setTimeout(() => observer.observe(container.lastElementChild), 100)
+              }
+
+              window.lazyLoadInstance.update()
+              btf.loadLightbox(document.querySelectorAll('#article-container img:not(.no-lightbox)'))
+            }
+
+            addData(shuoshuo)
+
+            const observer = new IntersectionObserver((entries) => {
+              if (entries[0].isIntersecting) {
+                observer.unobserve(entries[0].target)
+                addData(shuoshuo)
+              }
+            }, {
+              root: null,
+              rootMargin: '0px',
+              threshold: 1.0
+            })
+
+            if (container.lastElementChild) {
+              observer.observe(container.lastElementChild)
+            }
+          } catch (e) {
+            console.error(e)
+          }
+        }
+
+        window.pjax ? loadShuoshuo() : window.addEventListener('load', loadShuoshuo)
+      })()
+  else
+    if site.data.shuoshuo
+      each i in site.data.shuoshuo
+        .shuoshuo-item
+          .shuoshuo-item-header
+            .shuoshuo-avatar
+              img.no-lightbox(src=i.avatar || url_for(theme.avatar.img))
+            .shuoshuo-info
+              .shuoshuo-author=i.author || config.author
+              .shuoshuo-date=relative_date(i.date)
+          .shuoshuo-content
+            !=markdown(i.content)
+          .shuoshuo-footer
+            .shuoshuo-tags
+              each tag in i.tags
+                span.shuoshuo-tag=tag

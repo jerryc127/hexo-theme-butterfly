@@ -36,13 +36,11 @@ post:
 search:
   title: Search
   load_data: Loading the Database
+  input_placeholder: Search for Posts
   algolia_search:
-    input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}."
     hits_stats: '${hits} results found in ${time} ms'
-
   local_search:
-    input_placeholder: Search for Posts
     hits_empty: "We didn't find any results for the search: ${query}"
     hits_stats: '${hits} results found'
 

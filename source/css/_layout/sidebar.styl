@@ -26,27 +26,33 @@
     & > .avatar-img
       margin: 20px auto
 
-    .sidebar-site-data
+    .site-data
       padding: 0 10px
 
     hr
       margin: 20px auto
 
     .menus_items
-      padding: 0 10px
+      margin: 20px
+      padding: 15px
+      background: var(--sidebar-menu-bg)
+      box-shadow: 0 0 1px 1px rgba(7, 17, 27, .05)
+      addBorderRadius(10)
 
       .site-page
         @extend .limit-one-line
         position: relative
         display: block
-        padding: 3px 28px 3px 20px
-        border-radius: 6px
+        margin: 4px 0
+        padding: 2px 23px 2px 15px
         color: var(--font-color)
         font-size: 1.15em
         cursor: pointer
+        addBorderRadius(6)
 
         &:hover
           background: var(--text-bg-hover)
+          color: var(--white)
 
         i:first-child
           width: 15%
@@ -55,8 +61,8 @@
         &.group
           & > i:last-child
             position: absolute
-            top: .78em
-            right: 13px
+            top: .6em
+            right: 10px
             transition: transform .3s
 
           &.hide

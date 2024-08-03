@@ -2,6 +2,10 @@
 <a title="Chinese" href="/README_CN.md">中文</a>
 </div>
 
+<div align="center">
+
+<img src="./source/img/butterfly-icon.png" width="150" height="150" />
+
 # hexo-theme-butterfly
 
 ![master version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly/master?color=%231ab1ad&label=master)
@@ -10,13 +14,15 @@
 ![hexo version](https://img.shields.io/badge/hexo-5.3.0+-0e83c)
 ![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly?color=FF5531)
 
+📢 Demo: [Butterfly](https://butterfly.js.org/) / [CrazyWong](https://blog.crazywong.com/)
+
+📖 Docs: [English](https://butterfly.js.org/en/posts/butterfly-docs-en-get-started/) / [Chinese](https://butterfly.js.org/posts/21cfbf15/)
+
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/theme-butterfly-readme.png)
 
-📢 Demo: [Butterfly](https://butterfly.js.org/) || [CrazyWong](https://blog.crazywong.com/)
+</div>
 
-📖 Docs: [English](https://butterfly.js.org/en/posts/butterfly-docs-en-get-started/) || [Chinese](https://butterfly.js.org/posts/21cfbf15/)
-
-Based on [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) theme.
+---
 
 ## 💻 Installation
 
@@ -59,6 +65,7 @@ npm i hexo-theme-butterfly
 ## 🎉 Features
 
 - [x] Card UI Design
+- [x] Rounded Design/Squared Design
 - [X] Support sub-menu
 - [x] Two-column layout
 - [x] Responsive Web Design

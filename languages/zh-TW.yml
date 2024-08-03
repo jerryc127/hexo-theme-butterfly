@@ -15,7 +15,7 @@ page:
 
 card_post_count: 條評論
 
-no_title: 無標題
+no_title: 無題
 
 post:
   created: 發表於
@@ -28,8 +28,8 @@ post:
   copyright:
     author: 文章作者
     link: 文章連結
-    copyright_notice: 版權聲明
-    copyright_content: '本部落格所有文章除特別聲明外，均採用
+    copyright_notice: 版權宣告
+    copyright_content: '本部落格所有文章除特別宣告外，均採用
       <a href="%s" target="_blank">%s</a> 許可協議。轉載請註明來自 <a href="%s" target="_blank">%s</a>！'
   recommend: 相關推薦
   edit: 編輯
@@ -37,16 +37,14 @@ post:
 search:
   title: 搜尋
   load_data: 資料庫載入中
+  input_placeholder: 搜尋文章
   algolia_search:
-    input_placeholder: 搜尋文章
     hits_empty: '找不到您查詢的內容：${query}'
     hits_stats: '找到 ${hits} 條結果，用時 ${time} 毫秒'
-
   local_search:
-    input_placeholder: 搜尋文章
     hits_empty: '找不到您查詢的內容：${query}'
     hits_stats: '共找到 ${hits} 篇文章'
-    
+
 pagination:
   prev: 上一篇
   next: 下一篇
@@ -83,7 +81,7 @@ aside:
     link: 連結
     code: 程式碼
   card_toc: 目錄
-  card_post_series: 文章系列
+  card_post_series: 系列文章
 
 date_suffix:
   just: 剛剛
@@ -99,7 +97,7 @@ rightside:
   readmode_title: 閱讀模式
   translate_title: 簡繁轉換
   night_mode_title: 淺色和深色模式轉換
-  back_to_top: 返回頂部
+  back_to_top: 回到頂部
   toc: 目錄
   scroll_to_comment: 直達評論
   setting: 設定
@@ -110,7 +108,7 @@ copy_copyright:
   author: 作者
   link: 連結
   source: 來源
-  info: 著作權歸作者所有。商業轉載請聯繫作者獲得授權，非商業轉載請註明出處。
+  info: 著作權歸作者所有。商業轉載請聯絡作者獲得授權，非商業轉載請註明出處。
 
 Snackbar:
   chs_to_cht: 你已切換為繁體中文

@@ -2,6 +2,10 @@
   <a title="English" href="/README.md">English</a>
 </div>
 
+<div align="center">
+
+<img src="./source/img/butterfly-icon.png" width="150" height="150" />
+
 # hexo-theme-butterfly
 
 ![master version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly/master?color=%231ab1ad&label=master)
@@ -10,13 +14,15 @@
 ![hexo version](https://img.shields.io/badge/hexo-5.3.0+-0e83c)
 ![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly?color=FF5531)
 
+📢 預覽: [Butterfly](https://butterfly.js.org/) / [CrazyWong](https://blog.crazywong.com/)
+
+📖 文檔: [中文](https://butterfly.js.org/posts/21cfbf15/) / [English](https://butterfly.js.org/en/posts/butterfly-docs-en-get-started/)
+
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/theme-butterfly-readme.png)
 
-📢 預覽: [Butterfly](https://butterfly.js.org/) || [CrazyWong](https://blog.crazywong.com/)
+</div>
 
-📖 文檔: [中文](https://butterfly.js.org/posts/21cfbf15/) || [English](https://butterfly.js.org/en/posts/butterfly-docs-en-get-started/)
-
-一款基於[hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody)修改的主題
+---
 
 ## 💻 安裝
 
@@ -59,6 +65,7 @@ theme: butterfly
 ## 🎉 特色
 
 - [x] 卡片化設計
+- [x] 圓角化設計/直角化設計
 - [X] 支持二級目錄
 - [x] 雙欄設計
 - [x] 響應式主題

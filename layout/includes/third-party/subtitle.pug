@@ -3,7 +3,7 @@
 
 script.
   window.typedJSFn = {
-    init: (str) => {
+    init: str => {
       window.typed = new Typed('#subtitle', Object.assign({
         strings: str,
         startDelay: 300,
@@ -12,7 +12,7 @@ script.
         backSpeed: 50,
       }, !{JSON.stringify(typed_option)}))
     },
-    run: (subtitleType) => {
+    run: subtitleType => {
       if (!{effect}) {
         if (typeof Typed === 'function') {
           subtitleType()
@@ -24,7 +24,7 @@ script.
       }
     }
   }
-  btf.addGlobalFn('pjaxSend', () => { typed.destroy() }, 'typedDestroy')
+  btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
 
 case source
   when 1

@@ -146,6 +146,7 @@
       background: rgba(255, 255, 255, .8)
       box-shadow: 0 5px 6px -5px alpha($grey, .6)
       transition: transform .2s ease-in-out, opacity .2s ease-in-out
+      will-change: transform
 
       #blog-info
         color: var(--font-color)
@@ -345,10 +346,10 @@
         margin-top: 8px
         padding: 0
         width: max-content
-        border-radius: 5px
         background-color: var(--sidebar-bg)
         box-shadow: 0 5px 20px -4px rgba($dark-black, .5)
         animation: sub_menus .3s .1s ease both
+        addBorderRadius(5)
 
         &:before
           position: absolute
@@ -364,13 +365,14 @@
           &:hover
             background: var(--text-bg-hover)
 
-          &:first-child
-            border-top-left-radius: 5px
-            border-top-right-radius: 5px
+          if hexo-config('rounded_corners_ui')
+            &:first-child
+              border-top-left-radius: 5px
+              border-top-right-radius: 5px
 
-          &:last-child
-            border-bottom-right-radius: 5px
-            border-bottom-left-radius: 5px
+            &:last-child
+              border-bottom-right-radius: 5px
+              border-bottom-left-radius: 5px
 
           a
             display: inline-block

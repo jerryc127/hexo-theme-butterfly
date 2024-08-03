@@ -32,7 +32,7 @@ script.
   document.addEventListener('pjax:send', function () {
 
     // removeEventListener
-    btf.removeGlobalFnEvent('pjax')
+    btf.removeGlobalFnEvent('pjaxSendOnce')
     btf.removeGlobalFnEvent('themeChange')
 
     //reset readmode
@@ -43,6 +43,7 @@ script.
   })
 
   document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
     document.querySelectorAll('script[data-pjax]').forEach(item => {
       const newScript = document.createElement('script')
       const content = item.text || item.textContent || item.innerHTML || ""

@@ -1,6 +1,6 @@
-$highlight_theme = hexo-config('highlight_theme')
-$highlight_macstyle = hexo-config('highlight_theme_macStyle')
-wordWrap = $highlight_enable && !$highlight_line_number && hexo-config('code_word_wrap')
+$highlight_theme = hexo-config('code_blocks.theme')
+$highlight_macstyle = hexo-config('code_blocks.macStyle')
+wordWrap = $highlight_enable && !$highlight_line_number && hexo-config('code_blocks.word_wrap')
 
 @require 'theme'
 
@@ -47,9 +47,10 @@ $code-block
   code
     font-size: $code-font-size
     font-family: $code-font-family !important
+    addBorderRadius()
 
   code
-    padding: 2px 4px
+    padding: 2px 5px
     background: $code-background
     color: $code-foreground
 
@@ -66,6 +67,7 @@ $code-block
   figure.highlight
     @extend $code-block
     position: relative
+    addBorderRadius()
 
     pre
       margin: 0
@@ -104,9 +106,10 @@ $code-block
     background: var(--hltools-bg)
     color: var(--hltools-color)
     font-size: $code-font-size
+    overflow: hidden
 
     & > *
-      margin: 0 3px
+      padding: 5px
 
     i
       cursor: pointer
@@ -124,7 +127,7 @@ $code-block
 
     if !$highlight_macstyle
       & > .macStyle
-        margin: 0
+        padding: 0
 
     .code-lang
       flex: 1
@@ -133,16 +136,17 @@ $code-block
       font-size: 1.15em
       user-select: none
       -webkit-user-select: none
+      padding 2px
 
     .copy-notice
       padding-right: 2px
       opacity: 0
       transition: opacity .4s
 
-    if hexo-config('highlight_lang')
+    if hexo-config('code_blocks.language')
       .code-lang
         flex: 1
-    else if (!$highlight_macstyle && hexo-config('highlight_shrink') != 'none')
+    else if (!$highlight_macstyle && hexo-config('code_blocks.shrink') != 'none')
       & > div:nth-child(2)
         flex: 1
     else
@@ -168,8 +172,6 @@ if $highlight_macstyle
       -webkit-transform: translateZ(0)
 
       .highlight-tools
-        padding: 0 10px
-
         .macStyle
           display: flex
 
@@ -191,15 +193,15 @@ if $highlight_macstyle
           .mac-maximize
             background: #35cd4b
 
-        if hexo-config('highlight_shrink') != 'none'
-          & > div:nth-child(2)
+        if hexo-config('code_blocks.shrink') != 'none'
+          & > :nth-child(2)
             order: 8
 
           &.closed
             .expand
               transform: rotate(90deg)
 
-if hexo-config('highlight_height_limit')
+if hexo-config('code_blocks.height_limit')
   #article-container
     .code-expand-btn
       position: absolute
@@ -228,7 +230,7 @@ if hexo-config('highlight_height_limit')
         & ~ table,
         & ~ pre
           overflow: hidden
-          height: unit(hexo-config('highlight_height_limit'), px)
+          height: unit(hexo-config('code_blocks.height_limit'), px)
   
   @keyframes code-expand-key
     0%
@@ -240,7 +242,7 @@ if hexo-config('highlight_height_limit')
     100%
       opacity: .6
 
-if hexo-config('highlight_fullpage')
+if hexo-config('code_blocks.fullpage')
   #article-container
     figure.highlight.code-fullpage
       position: fixed

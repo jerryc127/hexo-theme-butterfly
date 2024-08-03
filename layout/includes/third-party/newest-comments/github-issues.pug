@@ -35,13 +35,13 @@ script.
             }
           })
 
-          btf.saveToLocal.set('github-newest-comments', JSON.stringify(array), !{theme.newest_comments.storage}/(60*24))
+          btf.saveToLocal.set('github-newest-comments', JSON.stringify(array), !{theme.aside.card_newest_comments.storage}/(60*24))
           generateHtml(array)
       });
     }
 
     const getComment = () => {
-      fetch('https://api.github.com/repos/!{userRepo}/issues/comments?sort=updated&direction=desc&per_page=!{theme.newest_comments.limit}&page=1',{
+      fetch('https://api.github.com/repos/!{userRepo}/issues/comments?sort=updated&direction=desc&per_page=!{theme.aside.card_newest_comments.limit}&page=1',{
         "headers": {
           Accept: 'application/vnd.github.v3.html+json'
         }
@@ -72,7 +72,7 @@ script.
         for (let i = 0; i < array.length; i++) {
           result += '<div class=\'aside-list-item\'>'
 
-          if (!{theme.newest_comments.avatar}) {
+          if (!{theme.aside.card_newest_comments.avatar}) {
             const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
             result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
           }

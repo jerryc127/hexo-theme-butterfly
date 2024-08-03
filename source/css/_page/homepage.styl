@@ -1,21 +1,39 @@
+$indexLayout = hexo-config('index_layout') || 1
+$indexEnable = hexo-config('cover.index_enable')
+
 #recent-posts
-  & > .recent-post-item:not(:first-child)
-    margin-top: 20px
-
-  & > .recent-post-item
+  .recent-post-item
     @extend .cardHover
-    display: flex
-    flex-direction: row
-    align-items: center
+    position: relative
     overflow: hidden
-    height: 16.8em
+    margin-bottom: 20px
 
-    +maxWidth768()
-      flex-direction: column
-      height: auto
+    if $indexLayout == 6 || ($indexLayout == 7)
+      display: inline-block
+      width: calc(100% / 2 - 8px)
+      vertical-align: top
+
+      +maxWidth768()
+        width: 100%
+
+      +minWidth2000()
+        width: calc(100% / 3 - 8px)
+
+    if $indexLayout == 1 || ($indexLayout == 2 || ($indexLayout == 3))
+      display: flex
+      flex-direction: row
+      align-items: center
+      height: 16.8em
+
+      +maxWidth768()
+        flex-direction: column
+        height: auto
+
+      +minWidth2000()
+        height: 18.8em
 
     &:hover
-      img.post-bg
+      .post-bg
         transform: scale(1.1)
 
     &.ads-wrap
@@ -24,35 +42,76 @@
 
     .post_cover
       overflow: hidden
-      width: 42%
-      height: 100%
 
-      +maxWidth768()
+      if ($indexLayout != 5 && ($indexLayout != 7))
+        +maxWidth768()
+          width: 100%
+          height: 230px
+
+      if $indexLayout == 1 || ($indexLayout == 2 || ($indexLayout == 3))
+        width: 42%
+        height: 100%
+
+        &.right
+          order: 1
+
+          +maxWidth768()
+            order: 0
+
+      if $indexLayout == 4 || ($indexLayout == 5 || ($indexLayout == 6 || ($indexLayout == 7)))
         width: 100%
-        height: 230px
+
+        if ($indexLayout == 5 || ($indexLayout == 7))
+          height: 17em
+        else
+          height: 230px
+
+      if ($indexLayout == 5 || ($indexLayout == 7)) && $indexEnable
+        &:before
+          position: absolute
+          z-index: 1
+          width: 100%
+          height: 100%
+          background-color: rgba(18, 18, 18, .4)
+          content: ''
+          backdrop-filter: blur(3px)
 
       .post-bg
+        z-index: -4
         @extend .imgHover
 
-      &.right
-        order: 1
-
-        +maxWidth768()
-          order: 0
-
     & >.recent-post-info
-      padding: 0 40px
-      width: 58%
-
       +maxWidth768()
         padding: 20px 20px 30px
         width: 100%
 
-      &.no-cover
-        width: 100%
+      if $indexLayout == 1 || ($indexLayout == 2 || ($indexLayout == 3))
+        padding: 0 40px
+        width: 58%
 
+      if $indexLayout == 4 || ($indexLayout == 5 || ($indexLayout == 6 || ($indexLayout == 7)))
+        padding: 30px 30px 25px
+
+      if ($indexLayout == 5 || ($indexLayout == 7)) && $indexEnable
+        &:not(.no-cover)
+          position: absolute
+          top: 50%
+          z-index: 2
+          width: 100%
+          color: var(--text-highlight-color)
+          transform: translateY(-50%)
+          --text-highlight-color: rgba(255, 255, 255, 1)
+          --card-meta: rgba(255, 255, 255, .7)
+
+      &.no-cover
         +maxWidth768()
           padding: 30px 20px
+
+        if $indexLayout == 1 || ($indexLayout == 2 || ($indexLayout == 3))
+          width: 100%
+
+        if $indexLayout == 4 || ($indexLayout == 5 || ($indexLayout == 6 || ($indexLayout == 7)))
+          padding: 35px 30px
 
       & > .article-title
         @extend .limit-more-line
@@ -75,7 +134,7 @@
 
       & > .article-meta-wrap
         margin: 6px 0
-        color: $theme-meta-color
+        color: var(--card-meta)
         font-size: .9em
 
         & > .post-meta-date
@@ -104,7 +163,7 @@
             display: none
 
         a
-          color: $theme-meta-color
+          color: var(--card-meta)
 
           &:hover
             color: $text-hover

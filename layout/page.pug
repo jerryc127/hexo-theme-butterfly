@@ -1,20 +1,32 @@
 extends includes/layout.pug
 
 block content
-  #page
-    if top_img === false
+  - const noCardLayout = ['shuoshuo', '404'].includes(page.type) ? 'nc' : ''
+  - var commentsJsLoad = false 
+
+  mixin commentLoad
+    if page.comments !== false && theme.comments.use
+      - commentsJsLoad = true
+      !=partial('includes/third-party/comments/index', {}, {cache: true})
+
+  #page(class=noCardLayout)
+    if top_img === false && page.title
       h1.page-title= page.title
 
     case page.type
       when 'tags'
         include includes/page/tags.pug
+        +commentLoad
       when 'link'
         include includes/page/flink.pug
+        +commentLoad
       when 'categories'
         include includes/page/categories.pug
+        +commentLoad
+      when '404'
+        include includes/page/404.pug
+      when 'shuoshuo'
+        include includes/page/shuoshuo.pug
       default
         include includes/page/default-page.pug
-
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
+        +commentLoad

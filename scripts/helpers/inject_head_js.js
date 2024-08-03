@@ -1,6 +1,12 @@
 /**
  * Butterfly
  * inject js to head
+ *
+ * addGlobalFn
+ *  pjaxSendOnce - remove in pjaxSend
+ *  pjaxCompleteOnce - remove in pjaxComplete
+ *  pjaxSend - run in pjaxSend
+ *  pjaxComplete - run in pjaxComplete
  */
 
 'use strict'

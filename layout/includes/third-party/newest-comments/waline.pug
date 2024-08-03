@@ -23,7 +23,7 @@ script.
         for (let i = 0; i < array.length; i++) {
           result += '<div class=\'aside-list-item\'>'
 
-          if (!{theme.newest_comments.avatar}) {
+          if (!{theme.aside.card_newest_comments.avatar}) {
             const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
             result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
           }
@@ -45,7 +45,7 @@ script.
 
     const getComment = async () => {
       try {
-        const res = await fetch('!{serverURL}/api/comment?type=recent&count=!{theme.newest_comments.limit}', { method: 'GET' })
+        const res = await fetch('!{serverURL}/api/comment?type=recent&count=!{theme.aside.card_newest_comments.limit}', { method: 'GET' })
         const result = await res.json()
         const walineArray = result.data.map(e => {
           return {
@@ -56,7 +56,7 @@ script.
             'date': e.time || e.insertedAt
           }
         })
-        btf.saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), !{theme.newest_comments.storage}/(60*24))
+        btf.saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), !{theme.aside.card_newest_comments.storage}/(60*24))
         generateHtml(walineArray)
       } catch (err) {
         console.error(err)

@@ -15,12 +15,16 @@
   text-rendering: auto
   -webkit-font-smoothing: antialiased
 
+addBorderRadius(x = 6)
+  if hexo-config('rounded_corners_ui')
+    border-radius: unit(x, 'px')
+
 // card hover
 .cardHover
-  border-radius: 8px
   background: var(--card-bg)
   box-shadow: var(--card-box-shadow)
   transition: all .3s
+  addBorderRadius(8)
 
   &:hover
     box-shadow: var(--card-hover-box-shadow)
@@ -37,11 +41,10 @@
 .postImgHover
   &:hover
     .cover
-      opacity: .8
+      opacity: .7
       transform: scale(1.1)
 
   .cover
-    position: absolute
     width: 100%
     height: 100%
     opacity: .4
@@ -96,6 +99,12 @@
       transition: all 1s ease-in-out
       @extend .fontawesomeIcon
 
+.verticalCenter
+  position: absolute
+  top: 50%
+  width: 100%
+  transform: translate(0, -50%)
+
 maxWidth600()
   @media screen and (max-width: 600px)
     {block}
@@ -110,6 +119,10 @@ minWidth768()
 
 maxWidth1024()
   @media screen and (max-width: 1024px)
+    {block}
+
+minWidth1024()
+  @media screen and (min-width: 1024px)
     {block}
 
 maxWidth900()

@@ -23,7 +23,7 @@ script.
         for (let i = 0; i < array.length; i++) {
           result += '<div class=\'aside-list-item\'>'
 
-          if (!{theme.newest_comments.avatar}) {
+          if (!{theme.aside.card_newest_comments.avatar}) {
             const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
             result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
           }
@@ -44,7 +44,7 @@ script.
     }
 
     const getComment = () => {
-      fetch('!{host}/api/v1/last/!{theme.newest_comments.limit}?site=!{siteId}')
+      fetch('!{host}/api/v1/last/!{theme.aside.card_newest_comments.limit}?site=!{siteId}')
         .then(response => response.json())
         .then(data => {
           const remark42 = data.map(function (e) {
@@ -56,7 +56,7 @@ script.
               'date': e.time,
             }
           })
-          btf.saveToLocal.set('remark42-newest-comments', JSON.stringify(remark42), !{theme.newest_comments.storage}/(60*24))
+          btf.saveToLocal.set('remark42-newest-comments', JSON.stringify(remark42), !{theme.aside.card_newest_comments.storage}/(60*24))
           generateHtml(remark42)
         }).catch(e => {
           const $dom = document.querySelector('#card-newest-comments .aside-list')

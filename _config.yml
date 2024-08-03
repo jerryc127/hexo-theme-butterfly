@@ -1,99 +1,109 @@
-# Navigation bar settings (導航欄設置)
-# see https://butterfly.js.org/posts/4aa8abbe/##導航欄設置-Navigation-bar-settings
+# --------------------------------------
+# Hexo Butterfly Theme Configuration
+# If you have any questions, please refer to the documentation
+# Chinese: https://butterfly.js.org/
+# English: https://butterfly.js.org/en/
+# --------------------------------------
+
+# --------------------------------------
+# Navigation Settings
 # --------------------------------------
 
 nav:
-  logo: # image
+  # Navigation bar logo image
+  logo:
   display_title: true
-  fixed: false # fixed navigation bar
+  # Whether to fix navigation bar
+  fixed: false
 
-# Menu 目錄
 menu:
   # Home: / || fas fa-home
-  # Archives: /archives/ || fas fa-archive
-  # Tags: /tags/ || fas fa-tags
-  # Categories: /categories/ || fas fa-folder-open
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video
-  # Link: /link/ || fas fa-link
-  # About: /about/ || fas fa-heart
 
-# Code Blocks (代碼相關)
+# --------------------------------------
+# Code Blocks Settings
 # --------------------------------------
 
-highlight_theme: light # darker / pale night / light / ocean / false
-highlight_height_limit: false # unit: px
-code_word_wrap: false
+code_blocks:
+  # Code block theme: darker / pale night / light / ocean / false
+  theme: light
+  macStyle: false
+  # Code block height limit (unit: px)
+  height_limit: false
+  word_wrap: false
 
-# highlight toolbar
-highlight_theme_macStyle: false # use mac style
-highlight_copy: true # copy button
-highlight_lang: true # show the code language
-highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
-highlight_fullpage: true # true: add button to toggle full page
+  # Toolbar
+  copy: true
+  language: true
+  # true: shrink the code blocks | false: expand the code blocks | none: expand code blocks and hide the button
+  shrink: false
+  fullpage: false
 
-# Social Settings (社交圖標設置)
-# formal:
+# Social media links
+# Formal:
 #   icon: link || the description || color
 social:
   # fab fa-github: https://github.com/xxxxx || Github || '#24292e'
   # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'
 
-# Image (圖片設置)
+# --------------------------------------
+# Image Settings
 # --------------------------------------
 
-# Favicon（網站圖標）
 favicon: /img/favicon.png
 
-# Avatar (頭像)
 avatar:
-  img: https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png
+  img: /img/butterfly-icon.png
   effect: false
 
-# Disable all banner image
+# Disable all banner images
 disable_top_img: false
 
-# The banner image of home page
-index_img:
-
-# If the banner of page not setting, it will show the top_img
+# If the banner of page not setting, it will show the default_top_img
 default_top_img:
+
+# The banner image of index page
+index_img:
 
 # The banner image of archive page
 archive_img:
 
-# If the banner of tag page not setting, it will show the top_img
-# note: tag page, not tags page (子標籤頁面的 top_img)
+# Note: tag page, not tags page
 tag_img:
 
-# The banner image of tag page
-# format:
+# The banner image of tag page, you can set the banner image for each tag
+# Format:
 #  - tag name: xxxxx
 tag_per_img:
 
-# If the banner of category page not setting, it will show the top_img
-# note: category page, not categories page (子分類頁面的 top_img)
+# Note: category page, not categories page
 category_img:
 
-# The banner image of category page
-# format:
+# The banner image of category page, you can set the banner image for each category
+# Format:
 #  - category name: xxxxx
 category_per_img:
 
+# The background image of footer
+footer_img: false
+
+# Website Background
+# Can set it to color or image
+# The formal of image: url(http://xxxxxx.com/xxx.jpg)
+background:
+
 cover:
-  # display the cover or not (是否顯示文章封面)
+  # Disable the cover or not
   index_enable: true
   aside_enable: true
   archives_enable: true
-  # the position of cover in home page (封面顯示的位置)
-  # left/right/both
-  position: both
-  # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
+  # When cover is not set, the default cover is displayed
   default_cover:
-    # - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
+    # - xxx.jpg
 
-# Replace Broken Images (替換無法顯示的圖片)
+# Replace Broken Images
 error_img:
   flink: /img/friend_404.gif
   post_page: /img/404.jpg
@@ -102,22 +112,68 @@ error_img:
 error_404:
   enable: false
   subtitle: 'Page Not Found'
-  background: https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png
+  background: /img/error-page.png
 
 post_meta:
-  page: # Home Page
-    date_type: created # created or updated or both 主頁文章日期是創建日或者更新日或都顯示
-    date_format: date # date/relative 顯示日期還是相對日期
-    categories: true # true or false 主頁是否顯示分類
-    tags: false # true or false 主頁是否顯示標籤
-    label: true # true or false 顯示描述性文字
+  # Home Page
+  page:
+    # Choose: created / updated / both
+    date_type: created
+    # Choose: date / relative
+    date_format: date
+    categories: true
+    tags: false
+    label: true
   post:
-    position: left # left or center 文章頁標題位置
-    date_type: both # created or updated or both 文章頁日期是創建日或者更新日或都顯示
-    date_format: date # date/relative 顯示日期還是相對日期
-    categories: true # true or false 文章頁是否顯示分類
-    tags: true # true or false 文章頁是否顯示標籤
-    label: true # true or false 顯示描述性文字
+    # Choose: left / center
+    position: left
+    # Choose: created / updated / both
+    date_type: both
+    # Choose: date / relative
+    date_format: date
+    categories: true
+    tags: true
+    label: true
+
+# --------------------------------------
+# Index page settings
+# --------------------------------------
+
+# The top_img settings of home page
+# default: top img - full screen, site info - middle
+# The position of site info, eg: 300px/300em/300rem/10%
+index_site_info_top:
+# The height of top_img, eg: 300px/300em/300rem
+index_top_img_height:
+
+# The subtitle on homepage
+subtitle:
+  enable: false
+  # Typewriter Effect
+  effect: true
+  # Customize typed.js
+  # https://github.com/mattboldt/typed.js/#customization
+  typed_option:
+  # Source - Call the third-party service API (Chinese only)
+  # It will show the source first, then show the content of sub
+  # Choose: false/1/2/3
+  # false - disable the function
+  # 1 - hitokoto.cn
+  # 2 - yijuzhan.com
+  # 3 - jinrishici.com
+  source: false
+  # If you close the typewriter effect, the subtitle will only show the first line of sub
+  sub:
+
+# Article layout on the homepage
+# 1: Cover on the left, info on the right
+# 2: Cover on the right, info on the left
+# 3: Cover and info alternate between left and right
+# 4: Cover on top, info on the bottom
+# 5: Info displayed on the cover
+# 6: Masonry layout - Cover on top, info on the bottom
+# 7: Masonry layout - Info displayed on the cover
+index_layout: 3
 
 # Display the article introduction on homepage
 # 1: description
@@ -126,36 +182,20 @@ post_meta:
 # false: do not show the article introduction
 index_post_content:
   method: 3
-  length: 500 # if you set method to 2 or 3, the length need to config
+  # If you set method to 2 or 3, the length need to config
+  length: 500
 
-# anchor
-anchor:
-  # when you scroll, the URL will update according to header id.
-  auto_update: false
-  # Click the headline to scroll and update the anchor
-  click_to_scroll: false
-
-# figcaption (圖片描述文字)
-photofigcaption: false
-
-# copy settings
-# copyright: Add the copyright information after copied content (複製的內容後面加上版權信息)
-copy:
-  enable: true
-  copyright:
-    enable: false
-    limit_count: 50
-
-# Post
+# --------------------------------------
+# Post Settings
 # --------------------------------------
 
-# toc (目錄)
 toc:
   post: true
   page: false
   number: true
   expand: false
-  style_simple: false # for post
+  # Only for post
+  style_simple: false
   scroll_percent: true
 
 post_copyright:
@@ -188,43 +228,52 @@ post_edit:
 # Related Articles
 related_post:
   enable: true
-  limit: 6 # Number of posts displayed
-  date_type: created # or created or updated 文章日期顯示創建日或者更新日
+  # Number of posts displayed
+  limit: 6
+  # Choose: created / updated
+  date_type: created
 
-# post_pagination (分頁)
-# value: 1 || 2 || false
+# Choose: 1 / 2 / false
 # 1: The 'next post' will link to old post
 # 2: The 'next post' will link to new post
 # false: disable pagination
 post_pagination: 1
 
-# Displays outdated notice for a post (文章過期提醒)
+# Displays outdated notice for a post
 noticeOutdate:
   enable: false
-  style: flat # style: simple/flat
-  limit_day: 500 # When will it be shown
-  position: top # position: top/bottom
+  # Style: simple / flat
+  style: flat
+  # When will it be shown
+  limit_day: 365
+  # Position: top / bottom
+  position: top
   message_prev: It has been
   message_next: days since the last update, the content of the article may be outdated.
 
+# --------------------------------------
 # Footer Settings
 # --------------------------------------
 footer:
   owner:
     enable: true
-    since: 2020
+    since: 2019
   custom_text:
-  copyright: true # Copyright of theme and framework
+  # Copyright of theme and framework
+  copyright: true
 
-# aside (側邊欄)
+# --------------------------------------
+# Aside Settings
 # --------------------------------------
 
 aside:
   enable: true
   hide: false
+  # Show the button to hide the aside in bottom right button
   button: true
-  mobile: true # display on mobile
-  position: right # left or right
+  mobile: true
+  # Position: left / right
+  position: right
   display:
     archive: true
     tag: true
@@ -242,64 +291,72 @@ aside:
     content: This is my Blog
   card_recent_post:
     enable: true
-    limit: 5 # if set 0 will show all
-    sort: date # date or updated
-    sort_order: # Don't modify the setting unless you know how it works
+    # If set 0 will show all
+    limit: 5
+    # Sort: date / updated
+    sort: date
+    sort_order:
+  card_newest_comments:
+    enable: false
+    sort_order:
+    limit: 6
+    # Unit: mins, save data to localStorage
+    storage: 10
+    avatar: true
   card_categories:
     enable: true
-    limit: 8 # if set 0 will show all
-    expand: none # none/true/false
-    sort_order: # Don't modify the setting unless you know how it works
+    # If set 0 will show all
+    limit: 8
+    # Choose: none / true / false
+    expand: none
+    sort_order:
   card_tags:
     enable: true
-    limit: 40 # if set 0 will show all
+    # If set 0 will show all
+    limit: 40
     color: false
-    orderby: random # Order of tags, random/name/length
-    order: 1 # Sort of order. 1, asc for ascending; -1, desc for descending
-    sort_order: # Don't modify the setting unless you know how it works
+    # Order of tags, random/name/length
+    orderby: random
+    # Sort of order. 1, asc for ascending; -1, desc for descending
+    order: 1
+    sort_order:
   card_archives:
     enable: true
-    type: monthly # yearly or monthly
-    format: MMMM YYYY # eg: YYYY年MM月
-    order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
-    limit: 8 # if set 0 will show all
-    sort_order: # Don't modify the setting unless you know how it works
+    # Type: monthly / yearly
+    type: monthly
+    # Eg: YYYY年MM月
+    format: MMMM YYYY
+    # Sort of order. 1, asc for ascending; -1, desc for descending
+    order: -1
+    # If set 0 will show all
+    limit: 8
+    sort_order:
+  card_post_series:
+    enable: true
+    # The title shows the series name
+    series_title: false
+    # Order by title or date
+    orderBy: 'date'
+    # Sort of order. 1, asc for ascending; -1, desc for descending
+    order: -1
   card_webinfo:
     enable: true
     post_count: true
     last_push_date: true
-    sort_order: # Don't modify the setting unless you know how it works
-  card_post_series:
-    enable: true
-    series_title: false # The title shows the series name
-    orderBy: 'date' # Order by title or date
-    order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
+    sort_order:
+    # Time difference between publish date and now
+    # Formal: Month/Day/Year Time or Year/Month/Day Time
+    # Leave it empty if you don't enable this feature
+    runtime_date:
 
-# busuanzi count for PV / UV in site
-# 訪問人數
-busuanzi:
-  site_uv: true
-  site_pv: true
-  page_pv: true
-
-# Time difference between publish date and now (網頁運行時間)
-# Formal: Month/Day/Year Time or Year/Month/Day Time
-runtimeshow:
-  enable: false
-  publish_date:
-
-# Aside widget - Newest Comments
-newest_comments:
-  enable: false
-  sort_order: # Don't modify the setting unless you know how it works
-  limit: 6
-  storage: 10 # unit: mins, save data to localStorage
-  avatar: true
-
-# Bottom right button (右下角按鈕)
+# --------------------------------------
+# Bottom right button
 # --------------------------------------
 
-# Conversion between Traditional and Simplified Chinese (簡繁轉換)
+# The distance between the bottom right button and the bottom (default unit: px)
+rightside_bottom:
+
+# Conversion between Traditional and Simplified Chinese
 translate:
   enable: false
   # The text of a button
@@ -313,130 +370,187 @@ translate:
   # The text of the button when the language is Traditional Chinese
   msgToSimplifiedChinese: '簡'
 
-# Read Mode (閲讀模式)
+# Read Mode
 readmode: true
 
-# dark mode
+# Dark Mode
 darkmode:
   enable: true
   # Toggle Button to switch dark/light mode
   button: true
-  # Switch dark/light mode automatically (自動切換 dark mode和 light mode)
+  # Switch dark/light mode automatically
   # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
   # autoChangeMode: false
   autoChangeMode: false
   # Set the light mode time. The value is between 0 and 24. If not set, the default value is 6 and 18
-  start: # 8
-  end: # 22
+  start:
+  end:
 
-# show scroll percent in scroll-to-top button
+# Show scroll percent in scroll-to-top button
 rightside_scroll_percent: false
 
-# Don't modify the following settings unless you know how they work (非必要請不要修改 )
+# Don't modify the following settings unless you know how they work
 # Choose: readmode,translate,darkmode,hideAside,toc,chat,comment
-# Don't repeat 不要重複
+# Don't repeat the same value
 rightside_item_order:
   enable: false
-  hide: # readmode,translate,darkmode,hideAside
-  show: # toc,chat,comment
+  # Default: readmode,translate,darkmode,hideAside
+  hide:
+  # Default: toc,chat,comment
+  show:
 
-# Math (數學)
 # --------------------------------------
-# About the per_page
-# if you set it to true, it will load mathjax/katex script in each page (true 表示每一頁都加載js)
-# if you set it to false, it will load mathjax/katex script according to your setting (add the 'mathjax: true' in page's front-matter)
-# (false 需要時加載，須在使用的 Markdown Front-matter 加上 mathjax: true)
-
-# MathJax
-mathjax:
-  enable: false
-  per_page: false
-
-# KaTeX
-katex:
-  enable: false
-  per_page: false
-  hide_scrollbar: true
-
-# search (搜索)
-# see https://butterfly.js.org/posts/ceeb73f/#搜索系統
+# Global Settings
 # --------------------------------------
 
-# Algolia search
-algolia_search:
-  enable: false
-  hits:
-    per_page: 6
+anchor:
+  # When you scroll, the URL will update according to header id.
+  auto_update: false
+  # Click the headline to scroll and update the anchor
+  click_to_scroll: false
 
-# Local search
-local_search:
-  enable: false
-  # Preload the search data when the page loads.
-  preload: false
-  # Show top n results per article, show all results by setting to -1
-  top_n_per_article: 1
-  # Unescape html strings to the readable one.
-  unescape: false
-  CDN:
+photofigcaption: false
 
-# Docsearch
-docsearch:
-  enable: false
-  appId:
-  apiKey:
-  indexName:
-  option:
-
-# Share System (分享)
-# --------------------------------------
-
-# Share.js
-# https://github.com/overtrue/share.js
-sharejs:
+copy:
   enable: true
-  sites: facebook,twitter,wechat,weibo,qq
+  # Add the copyright information after copied content
+  copyright:
+    enable: false
+    limit_count: 150
 
-# AddToAny
-# https://www.addtoany.com/
-addtoany:
+# Need to install the hexo-wordcount plugin
+wordcount:
   enable: false
-  item: facebook,twitter,wechat,sina_weibo,facebook_messenger,email,copy_link
+  # Display the word count of the article in post meta
+  post_wordcount: true
+  # Display the time to read the article in post meta
+  min2read: true
+  # Display the total word count of the website in aside's webinfo
+  total_wordcount: true
 
+# Busuanzi count for PV / UV in site
+busuanzi:
+  site_uv: true
+  site_pv: true
+  page_pv: true
+
+# --------------------------------------
+# Math
+# --------------------------------------
+
+# About the per_page
+# if you set it to true, it will load mathjax/katex script in each page
+# if you set it to false, it will load mathjax/katex script according to your setting (add the 'mathjax: true' or 'katex: true' in page's front-matter)
+math:
+  # Choose: mathjax, katex
+  # Leave it empty if you don't need math
+  use:
+  per_page: true
+  hide_scrollbar: false
+
+  mathjax:
+    # Enable the contextual menu
+    enableMenu: true
+    # Choose: all / ams / none, This controls whether equations are numbered and how
+    tags: none
+
+  katex:
+    # Enable the copy KaTeX formula
+    copy_tex: false
+
+# --------------------------------------
+# Search
+# --------------------------------------
+
+search:
+  # Choose: algolia_search / local_search / docsearch
+  # leave it empty if you don't need search
+  use:
+  placeholder:
+
+  # Algolia Search
+  algolia_search:
+    # Number of search results per page
+    hitsPerPage: 6
+
+  # Local Search
+  local_search:
+    # Preload the search data when the page loads.
+    preload: false
+    # Show top n results per article, show all results by setting to -1
+    top_n_per_article: 1
+    # Unescape html strings to the readable one.
+    unescape: false
+    CDN:
+
+  # Docsearch
+  # https://docsearch.algolia.com/
+  docsearch:
+    appId:
+    apiKey:
+    indexName:
+    option:
+
+# --------------------------------------
+# Share System
+# --------------------------------------
+
+share:
+  # Choose: sharejs / addtoany
+  # Leave it empty if you don't need share
+  use: sharejs
+
+  # Share.js
+  # https://github.com/overtrue/share.js
+  sharejs:
+    sites: facebook,twitter,wechat,weibo,qq
+
+  # AddToAny
+  # https://www.addtoany.com/
+  addtoany:
+    item: facebook,twitter,wechat,sina_weibo,facebook_messenger,email,copy_link
+
+# --------------------------------------
 # Comments System
 # --------------------------------------
 
 comments:
   # Up to two comments system, the first will be shown as default
+  # Leave it empty if you don't need comments
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
-  use: # Valine,Disqus
-  text: true # Display the comment name next to the button
-  # lazyload: The comment system will be load when comment element enters the browser's viewport.
+  # Format of two comments system : Disqus,Waline
+  use:
+  # Display the comment name next to the button
+  text: true
+  # Lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
   lazyload: false
-  count: false # Display comment count in post's top_img
-  card_post_count: false # Display comment count in Home Page
+  # Display comment count in post's top_img
+  count: false
+  # Display comment count in Home Page
+  card_post_count: false
 
-# disqus
+# Disqus
 # https://disqus.com/
 disqus:
   shortname:
-  apikey: # For newest comments widget
+  # For newest comments widget
+  apikey:
 
 # Alternative Disqus - Render comments with Disqus API
-# DisqusJS 評論系統，可以實現在網路審查地區載入 Disqus 評論列表，兼容原版
 # https://github.com/SukkaW/DisqusJS
 disqusjs:
   shortname:
   apikey:
   option:
 
-# livere (來必力)
+# Livere
 # https://www.livere.com/
 livere:
   uid:
 
-# gitalk
+# Gitalk
 # https://github.com/gitalk/gitalk
 gitalk:
   client_id:
@@ -446,26 +560,29 @@ gitalk:
   admin:
   option:
 
-# valine
+# Valine
 # https://valine.js.org
 valine:
-  appId: # leancloud application app id
-  appKey: # leancloud application app key
-  avatar: monsterid # gravatar style https://valine.js.org/#/avatar
-  serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-  bg: # valine background
+  appId:
+  appKey:
+  avatar: monsterid
+  # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
+  serverURLs:
+  bg:
+  # Use Valine visitor count as the page view count
   visitor: false
   option:
 
-# waline - A simple comment system with backend support fork from Valine
+# Waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
 waline:
-  serverURL: # Waline server address url
-  bg: # waline background
+  serverURL:
+  bg:
+  # Use Waline pageview count as the page view count
   pageview: false
   option:
 
-# utterances
+# Utterances
 # https://utteranc.es/
 utterances:
   repo:
@@ -474,21 +591,26 @@ utterances:
   # Theme: github-light/github-dark/github-dark-orange/icy-dark/dark-blue/photon-dark
   light_theme: github-light
   dark_theme: photon-dark
+  js:
+  option:
 
 # Facebook Comments Plugin
 # https://developers.facebook.com/docs/plugins/comments/
 facebook_comments:
   app_id:
-  user_id: # optional
-  pageSize: 10 # The number of comments to show
-  order_by: social # social/time/reverse_time
-  lang: zh_TW # Language en_US/zh_CN/zh_TW and so on
+  # optional
+  user_id:
+  pageSize: 10
+  # Choose: social / time / reverse_time
+  order_by: social
+  lang: zh_TW
 
 # Twikoo
 # https://github.com/imaegoo/twikoo
 twikoo:
   envId:
   region:
+  # Use Twikoo visitor count as the page view count
   visitor: false
   option:
 
@@ -498,16 +620,16 @@ giscus:
   repo:
   repo_id:
   category_id:
-  theme:
-    light: light
-    dark: dark
+  light_theme: light
+  dark_theme: dark
+  js:
   option:
 
 # Remark42
 # https://remark42.com/docs/configuration/frontend/
 remark42:
-  host: # Your Host URL
-  siteId: # Your Site ID
+  host:
+  siteId:
   option:
 
 # Artalk
@@ -515,73 +637,66 @@ remark42:
 artalk:
   server:
   site:
+  # Use Artalk visitor count as the page view count
   visitor: false
   option:
 
+# --------------------------------------
 # Chat Services
 # --------------------------------------
 
-# Chat Button [recommend]
-# It will create a button in the bottom right corner of website, and hide the origin button
-chat_btn: false
+chat:
+  # Choose: chatra/tidio/daovoice/crisp/messenger
+  # Leave it empty if you don't need chat
+  use:
+  # Chat Button [recommend]
+  # It will create a button in the bottom right corner of website, and hide the origin button
+  rightside_button: false
+  # The origin chat button is displayed when scrolling up, and the button is hidden when scrolling down
+  button_hide_show: false
 
-# The origin chat button is displayed when scrolling up, and the button is hidden when scrolling down
-chat_hide_show: false
-
-# chatra
 # https://chatra.io/
 chatra:
-  enable: false
   id:
 
-# tidio
 # https://www.tidio.com/
 tidio:
-  enable: false
   public_key:
 
-# daovoice
 # http://dashboard.daovoice.io/app
 daovoice:
-  enable: false
   app_id:
 
-# crisp
 # https://crisp.chat/en/
 crisp:
-  enable: false
   website_id:
 
-# messenger
 # https://developers.facebook.com/docs/messenger-platform/discovery/facebook-chat-plugin/
 messenger:
-  enable: false
   pageID:
-  lang: zh_TW # Language en_US/zh_CN/zh_TW and so on
+  lang: zh_TW
 
+# --------------------------------------
 # Analysis
 # --------------------------------------
 
-# Baidu Analytics
 # https://tongji.baidu.com/web/welcome/login
 baidu_analytics:
 
-# Google Analytics
 # https://analytics.google.com/analytics/web/
 google_analytics:
 
-# Cloudflare Analytics
 # https://www.cloudflare.com/zh-tw/web-analytics/
 cloudflare_analytics:
 
-# Microsoft Clarity
 # https://clarity.microsoft.com/
 microsoft_clarity:
 
+# --------------------------------------
 # Advertisement
 # --------------------------------------
 
-# Google Adsense (谷歌廣告)
+# Google Adsense
 google_adsense:
   enable: false
   auto_ads: true
@@ -589,13 +704,18 @@ google_adsense:
   client:
   enable_page_level_ads: true
 
-# Insert ads manually (手動插入廣告)
-# ad:
-#   index:
-#   aside:
-#   post:
+# Insert ads manually
+# Leave it empty if you don't need ads
+ad:
+  # Insert ads in the index (every three posts)
+  index:
+  # Insert ads in aside
+  aside:
+  # Insert ads in the post (before pagination)
+  post:
 
-# Verification (站長驗證)
+# --------------------------------------
+# Verification
 # --------------------------------------
 
 site_verification:
@@ -604,7 +724,8 @@ site_verification:
   # - name: baidu-site-verification
   #   content: xxxxxxx
 
-# Beautify/Effect (美化/效果)
+# --------------------------------------
+# Beautify / Effect
 # --------------------------------------
 
 # Theme color for customize
@@ -628,63 +749,93 @@ site_verification:
 #   meta_theme_color_light: "ffffff"
 #   meta_theme_color_dark: "#0d0d0d"
 
-# The top_img settings of home page
-# default: top img - full screen, site info - middle (默認top_img全屏，site_info在中間)
-# The position of site info, eg: 300px/300em/300rem/10% (主頁標題距離頂部距離)
-index_site_info_top:
-# The height of top_img, eg: 300px/300em/300rem (主頁top_img高度)
-index_top_img_height:
+# The user interface setting of category and tag page
+# Choose: index - same as Homepage UI / default - same as archives UI
+# leave it empty or index
+category_ui:
+tag_ui:
 
-# The user interface setting of category and tag page (category和tag頁的UI設置)
-# index - same as Homepage UI (index 值代表 UI將與首頁的UI一樣)
-# default - same as archives UI 默認跟archives頁面UI一樣
-category_ui: # 留空或 index
-tag_ui: # 留空或 index
+# Rounded corners for UI elements
+rounded_corners_ui: true
 
-# Stretches the lines so that each line has equal width（文字向兩側對齊，對最後一行無效）
+# Stretches the lines so that each line has equal width
 text_align_justify: false
 
-# Website Background (設置網站背景)
-# can set it to color or image (可設置圖片 或者 顔色)
-# The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background:
-
-# Footer Background
-footer_bg: false
-
-# Add mask to header or footer (为 header 或 footer 添加黑色半透遮罩)
+# Add a mask to the header and footer
 mask:
   header: true
   footer: true
 
-# the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
-rightside_bottom:
+# Loading Animation
+preloader:
+  enable: false
+  # source
+  # 1. fullpage-loading
+  # 2. pace (progress bar)
+  source: 1
+  # pace theme (see https://codebyzach.github.io/pace/)
+  pace_css_url:
 
-# Enter transitions (開啓網頁進入效果)
+# Page Transition
 enter_transitions: true
 
-# Typewriter Effect (打字效果)
+# Default display mode - light (default) / dark
+display_mode: light
+
+# Configuration for beautifying the content of the article
+beautify:
+  enable: false
+  # Specify the field to beautify (site or post)
+  field: post
+  # Specify the icon to be used as a prefix for the title, such as '\f0c1'
+  title-prefix-icon:
+  # Specify the color of the title prefix icon, such as '#F47466'
+  title-prefix-icon-color:
+
+# Global font settings
+# Don't modify the following settings unless you know how they work
+font:
+  global-font-size:
+  code-font-size:
+  font-family:
+  code-font-family:
+
+# Font settings for the site title and site subtitle
+blog_title_font:
+  font_link:
+  font-family:
+
+# The setting of divider icon
+hr_icon:
+  enable: true
+  # The unicode value of Font Awesome icon, such as '\3423'
+  icon:
+  icon-top:
+
+# Typewriter Effect
 # https://github.com/disjukr/activate-power-mode
 activate_power_mode:
   enable: false
-  colorful: true # open particle animation (冒光特效)
-  shake: true #  open shake (抖動特效)
+  colorful: true
+  shake: true
   mobile: false
 
-# Background effects (背景特效)
+# Background effects
 # --------------------------------------
 
-# canvas_ribbon (靜止彩帶背景)
+# canvas_ribbon
 # See: https://github.com/hustcc/ribbon.js
 canvas_ribbon:
   enable: false
+  # The size of ribbon
   size: 150
+  # The opacity of ribbon (0 ~ 1)
   alpha: 0.6
   zIndex: -1
   click_to_change: false
   mobile: false
 
-# Fluttering Ribbon (動態彩帶)
+# Fluttering Ribbon
 canvas_fluttering_ribbon:
   enable: false
   mobile: false
@@ -693,24 +844,28 @@ canvas_fluttering_ribbon:
 # https://github.com/hustcc/canvas-nest.js
 canvas_nest:
   enable: false
-  color: '0,0,255' #color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
-  opacity: 0.7 # the opacity of line (0~1), default: 0.5.
-  zIndex: -1 # z-index property of the background, default: -1.
-  count: 99 # the number of lines, default: 99.
+  # Color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
+  color: '0,0,255'
+  # The opacity of line (0~1)
+  opacity: 0.7
+  # The z-index property of the background
+  zIndex: -1
+  # The number of lines
+  count: 99
   mobile: false
 
-# Mouse click effects: fireworks (鼠標點擊效果: 煙火特效)
+# Mouse click effects: fireworks
 fireworks:
   enable: false
-  zIndex: 9999 # -1 or 9999
+  zIndex: 9999
   mobile: false
 
-# Mouse click effects: Heart symbol (鼠標點擊效果: 愛心)
+# Mouse click effects: Heart symbol
 click_heart:
   enable: false
   mobile: false
 
-# Mouse click effects: words (鼠標點擊效果: 文字)
+# Mouse click effects: words
 clickShowText:
   enable: false
   text:
@@ -721,113 +876,47 @@ clickShowText:
   random: false
   mobile: false
 
-# Default display mode (網站默認的顯示模式)
-# light (default) / dark
-display_mode: light
-
-# Beautify (美化頁面顯示)
-beautify:
-  enable: false
-  field: post # site/post
-  title-prefix-icon: # '\f0c1'
-  title-prefix-icon-color: # '#F47466'
-
-# Global font settings
-# Don't modify the following settings unless you know how they work (非必要不要修改)
-font:
-  global-font-size:
-  code-font-size:
-  font-family:
-  code-font-family:
-
-# Font settings for the site title and site subtitle
-# 左上角網站名字 主頁居中網站名字
-blog_title_font:
-  font_link:
-  font-family:
-
-# The setting of divider icon (水平分隔線圖標設置)
-hr_icon:
-  enable: true
-  icon: # the unicode value of Font Awesome icon, such as '\3423'
-  icon-top:
-
-# the subtitle on homepage (主頁subtitle)
-subtitle:
-  enable: false
-  # Typewriter Effect (打字效果)
-  effect: true
-  # Customize typed.js (配置typed.js)
-  # https://github.com/mattboldt/typed.js/#customization
-  typed_option:
-  # source 調用第三方服務
-  # source: false 關閉調用
-  # source: 1  調用一言網的一句話（簡體） https://hitokoto.cn/
-  # source: 2  調用一句網（簡體） https://yijuzhan.com/
-  # source: 3  調用今日詩詞（簡體） https://www.jinrishici.com/
-  # subtitle 會先顯示 source , 再顯示 sub 的內容
-  source: false
-  # 如果關閉打字效果，subtitle 只會顯示 sub 的第一行文字
-  sub:
-
-# Loading Animation (加載動畫)
-preloader:
-  enable: false
-  # source
-  # 1. fullpage-loading
-  # 2. pace (progress bar)
-  source: 1
-  # pace theme (see https://codebyzach.github.io/pace/)
-  pace_css_url:
-
-# wordcount (字數統計)
-# see https://butterfly.js.org/posts/ceeb73f/#字數統計
-wordcount:
-  enable: false
-  post_wordcount: true
-  min2read: true
-  total_wordcount: true
-
-# Lightbox (圖片大圖查看模式)
 # --------------------------------------
-# You can only choose one, or neither (只能選擇一個 或者 兩個都不選)
+# Lightbox Settings
+# --------------------------------------
 
-# medium-zoom
+# Choose: fancybox / medium_zoom
 # https://github.com/francoischalifour/medium-zoom
-medium_zoom: false
-
-# fancybox
 # https://fancyapps.com/fancybox/
-fancybox: true
+# Leave it empty if you don't need lightbox
+lightbox:
 
-# Tag Plugins settings (標籤外掛)
+# --------------------------------------
+# Tag Plugins settings
 # --------------------------------------
 
-# series (系列文章)
+# Series
 series:
-  enable: true
-  orderBy: 'title' # Order by title or date
-  order: 1 # Sort of order. 1, asc for ascending; -1, desc for descending
+  enable: false
+  # Order by title or date
+  orderBy: 'title'
+  # Sort of order. 1, asc for ascending; -1, desc for descending
+  order: 1
   number: true
 
-# abcjs (樂譜渲染)
-# See https://github.com/paulrosen/abcjs
+# ABCJS - The ABC Music Notation Plugin
+# https://github.com/paulrosen/abcjs
 abcjs:
   enable: false
   per_page: true
 
 # Mermaid
-# See https://github.com/mermaid-js/mermaid
+# https://github.com/mermaid-js/mermaid
 mermaid:
-  enable: true
-  # Write Mermaid diagrams using code blocks （以代碼塊形式書寫 Mermaid）
-  code_write: false 
-  # Built-in themes: default/forest/dark/neutral
+  enable: false
+  # Write Mermaid diagrams using code blocks
+  code_write: false
+  # built-in themes: default / forest / dark / neutral
   theme:
     light: default
     dark: dark
 
-# Note (Bootstrap Callout)
+# Note - Bootstrap Callout
 note:
   # Note tag style values:
   #  - simple    bs-callout old alert style. Default.
@@ -841,64 +930,65 @@ note:
   # Offset also applied to label tag variables. This option can work with disabled note tag.
   light_bg_offset: 0
 
-# other
+# --------------------------------------
+# Other Settings
 # --------------------------------------
 
-# Pjax
-# It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
 pjax:
   enable: false
+  # Exclude the specified pages from pjax, such as '/music/'
   exclude:
-    # - xxxx
-    # - xxxx
+    # - /xxxxxx/
 
 # Inject the css and script (aplayer/meting)
 aplayerInject:
   enable: false
   per_page: true
 
-# Snackbar (Toast Notification 彈窗)
+# Snackbar - Toast Notification
 # https://github.com/polonel/SnackBar
-# position 彈窗位置
-# 可選 top-left / top-center / top-right / bottom-left / bottom-center / bottom-right
+# position: top-left / top-center / top-right / bottom-left / bottom-center / bottom-right
 snackbar:
   enable: false
   position: bottom-left
-  bg_light: '#49b1f5' # The background color of Toast Notification in light mode
-  bg_dark: '#1f1f1f' # The background color of Toast Notification in dark mode
+  # The background color of Toast Notification in light mode and dark mode
+  bg_light: '#49b1f5'
+  bg_dark: '#1f1f1f'
 
+# Instant.page
 # https://instant.page/
-# prefetch (預加載)
 instantpage: false
 
+# Pangu - Insert a space between Chinese character and English character
 # https://github.com/vinta/pangu.js
-# Insert a space between Chinese character and English character (中英文之間添加空格)
 pangu:
   enable: false
-  field: site # site/post
+  # Specify the field to use pangu (site or post)
+  field: site
 
-# Lazyload (圖片懶加載)
+# Lazyload
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
   enable: false
-  field: site # site/post
+  # Specify the field to use lazyload (site or post)
+  field: site
   placeholder:
   blur: false
 
 # PWA
 # See https://github.com/JLHwung/hexo-offline
 # ---------------
-# pwa:
-#   enable: false
-#   manifest: /pwa/manifest.json
-#   apple_touch_icon: /pwa/apple-touch-icon.png
-#   favicon_32_32: /pwa/32.png
-#   favicon_16_16: /pwa/16.png
-#   mask_icon: /pwa/safari-pinned-tab.svg
+pwa:
+  enable: false
+  manifest:
+  apple_touch_icon:
+  favicon_32_32:
+  favicon_16_16:
+  mask_icon:
 
 # Open graph meta tags
-# https://developers.facebook.com/docs/sharing/webmasters/
+# https://hexo.io/docs/helpers#open-graph
 Open_Graph_meta:
   enable: true
   option:
@@ -915,29 +1005,24 @@ css_prefix: true
 
 # Inject
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)
-# 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
     # - <script src="xxxx"></script>
 
-# CDN
+# CDN Settings
 # Don't modify the following settings unless you know how they work
-# 非必要請不要修改
 CDN:
-  # The CDN provider of internal scripts (主題內部 js 的 cdn 配置)
-  # option: local/jsdelivr/unpkg/cdnjs/custom
-  # Dev version can only choose. ( dev版的主題只能設置為 local )
+  # The CDN provider for internal and third-party scripts
+  # Options for both: local/jsdelivr/unpkg/cdnjs/custom
+  # Note: Dev version can only use 'local' for internal scripts
+  # Note: When setting third-party scripts to 'local', you need to install hexo-butterfly-extjs
   internal_provider: local
-
-  # The CDN provider of third party scripts (第三方 js 的 cdn 配置)
-  # option: local/jsdelivr/unpkg/cdnjs/custom
-  # when set it to local, you need to install hexo-butterfly-extjs
   third_party_provider: jsdelivr
 
   # Add version number to url, true or false
-  version: true
+  version: false
 
   # Custom format
   # For example: https://cdn.staticfile.org/${cdnjs_name}/${version}/${min_cdnjs_file}

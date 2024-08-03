@@ -15,7 +15,9 @@
   --tab-button-hover-bg: $tab-button-hover-bg
   --tab-button-active-bg: $tab-button-active-bg
   --card-bg: $card-bg
+  --card-meta: $theme-meta-color
   --sidebar-bg: $sidebar-background
+  --sidebar-menu-bg: $white
   --btn-hover-color: $button-hover-color
   --btn-color: $button-color
   --btn-bg: $button-bg
@@ -39,6 +41,7 @@
 
 body
   position: relative
+  overflow-y: scroll
   min-height: 100%
   background: var(--global-bg)
   color: var(--font-color)
@@ -52,6 +55,12 @@ body
     user-select: none
     -webkit-user-select: none
 
+// scrollbar - firefox
+@-moz-document url-prefix()
+  *
+    scrollbar-width: thin
+    scrollbar-color: var(--scrollbar-color) transparent
+
 // scrollbar - chrome/safari
 *::-webkit-scrollbar
   width: 5px
@@ -62,11 +71,6 @@ body
 
 *::-webkit-scrollbar-track
   background-color: transparent
-
-// scrollbar - firefox
-*
-  scrollbar-width: thin
-  scrollbar-color: var(--scrollbar-color) transparent
 
 input::placeholder
   color: var(--font-color)
@@ -104,11 +108,34 @@ h6
   overflow-x: scroll
   margin: 0 0 20px
 
+  if hexo-config('rounded_corners_ui')
+    $borderRadius = 5px
+    border-radius: $borderRadius
+
+    table
+      border-radius: $borderRadius
+
+      thead > tr:first-child
+        th:first-child
+          border-top-left-radius: $borderRadius
+
+        th:last-child
+          border-top-right-radius: $borderRadius
+
+      tbody > tr:last-child
+        td:first-child
+          border-bottom-left-radius: $borderRadius
+
+        td:last-child
+          border-bottom-right-radius: $borderRadius
+
 table
   display: table
   width: 100%
   border-spacing: 0
-  border-collapse: collapse
+  border-collapse: separate
+  border-top: 1px solid var(--light-grey)
+  border-left: 1px solid var(--light-grey)
   empty-cells: show
 
   thead
@@ -118,6 +145,8 @@ table
   td
     padding: 6px 12px
     border: 1px solid var(--light-grey)
+    border-top: none
+    border-left: none
     vertical-align: middle
 
 *::selection
@@ -147,8 +176,8 @@ if $site-name-font
   #site-title,
   #site-subtitle,
   .site-name,
-  #aside-content .author-info__name,
-  #aside-content .author-info__description
+  #aside-content .author-info-name,
+  #aside-content .author-info-description
     font-family: $site-name-font
 
 .is-center
@@ -183,10 +212,11 @@ if hexo-config('lazyload.enable') && hexo-config('lazyload.blur') && !hexo-confi
 
 blockquote
   margin: 0 0 20px
-  padding: 12px 15px
-  border-left: 3px solid $blockquote-padding-color
+  padding: 7px 15px
+  border-left: 4px solid $blockquote-padding-color
   background-color: var(--blockquote-bg)
   color: var(--blockquote-color)
+  addBorderRadius()
 
   footer
     cite
