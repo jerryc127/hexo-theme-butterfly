@@ -75,13 +75,12 @@ body
 input::placeholder
   color: var(--font-color)
 
-if $web-bg
+if hexo-config('background')
   #web_bg
     position: fixed
     z-index: -999
     width: 100%
     height: 100%
-    background: $web-bg
     background-attachment: local
     background-position: center
     background-size: cover

@@ -13,7 +13,7 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
       !=partial('includes/loading/index', {}, {cache: true})
 
     if theme.background
-      #web_bg
+      #web_bg(style=getBgPath(theme.background))
       
     !=partial('includes/sidebar', {}, {cache: true})
 
@@ -28,15 +28,8 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
           if theme.aside.enable && page.aside !== false
             include widget/index.pug
 
-      - var footerBg = theme.footer_img
-      if (footerBg)
-        if (footerBg === true)
-          - var footer_bg = bg_img
-        else
-          - var footer_bg = isImgOrUrl(theme.footer_bg) ? `background-image: url('${url_for(footerBg)}')` : `background: ${footerBg}`
-      else
-        - var footer_bg = ''
-
+      - const footerBg = theme.footer_img
+      - const footer_bg = footerBg ? footerBg === true ? bg_img : getBgPath(footerBg) : ''
       footer#footer(style=footer_bg)
         !=partial('includes/footer', {}, {cache: true})
 

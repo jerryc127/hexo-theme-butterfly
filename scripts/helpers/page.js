@@ -87,7 +87,18 @@ hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
   return loop(menu) || defaultTitle
 })
 
-hexo.extend.helper.register('isImgOrUrl', function (path) {
-  const imgTestReg = /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/i
-  return path.includes('//') || imgTestReg.test(path)
+hexo.extend.helper.register('getBgPath', function (path) {
+  if (!path) return ''
+
+  const absoluteUrlPattern = /^(?:[a-z][a-z\d+.-]*:)?\/\//i
+  const relativeUrlPattern = /^(\.\/|\.\.\/|\/|[^/]+\/).*$/
+  const colorPattern = /^(#|rgb|rgba|hsl|hsla|linear-gradient|radial-gradient)/i
+
+  if (colorPattern.test(path)) {
+    return `background-color: ${path};`
+  } else if (absoluteUrlPattern.test(path) || relativeUrlPattern.test(path)) {
+    return `background-image: url(${path});`
+  } else {
+    return `background: ${path};`
+  }
 })

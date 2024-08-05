@@ -90,8 +90,7 @@ category_per_img:
 footer_img: false
 
 # Website Background
-# Can set it to color or image
-# The formal of image: url(http://xxxxxx.com/xxx.jpg)
+# Can set it to color or image url
 background:
 
 cover:
