@@ -41,6 +41,17 @@
     +minWidth768()
       font-size: 2.85em
 
+    &.hidden-home-title
+      position: absolute
+      clip: rect(1px, 1px, 1px, 1px)
+      -webkit-clip-path: inset(0px 0px 99.9% 99.9%)
+      clip-path: inset(0px 0px 99.9% 99.9%)
+      overflow: hidden
+      height: 1px
+      width: 1px
+      padding: 0
+      border: 0
+
   #site-subtitle
     color: var(--light-grey)
     font-size: 1.15em
@@ -99,29 +110,13 @@
 
   #post-info
     position: absolute
+    bottom: 30px
+    padding: 0 8%
     width: 100%
 
-    if hexo-config('post_meta.post.position') == 'center'
-      top: calc(50% + 30px)
-      padding: 0 8%
-      text-align: center
-      transform: translateY(-50%)
-
-      +maxWidth768()
-        padding: 0 15px
-    else
-      bottom: 30px
-
-      & > *
-        margin: 0 auto
-        padding: 0 15px
-        max-width: 1200px
-
-        @media screen and (min-width: 768px) and (max-width: 1300px)
-          padding: 0 30px
-
-        +minWidth2000()
-          max-width: 70%
+    +maxWidth768()
+      bottom: 22px
+      padding: 0 22px
 
   &.not-top-img
     margin-bottom: 10px
@@ -133,7 +128,6 @@
       box-shadow: 0 5px 6px -5px rgba(133, 133, 133, .6)
 
       a,
-      span.site-page,
       .site-name
         color: var(--font-color)
         text-shadow: none
@@ -146,7 +140,6 @@
       background: rgba(255, 255, 255, .8)
       box-shadow: 0 5px 6px -5px alpha($grey, .6)
       transition: transform .2s ease-in-out, opacity .2s ease-in-out
-      will-change: transform
 
       #blog-info
         color: var(--font-color)
@@ -158,7 +151,6 @@
           text-shadow: none
 
       a,
-      span.site-page,
       #toggle-menu
         color: var(--font-color)
         text-shadow: none
@@ -309,8 +301,7 @@
     &:hover
       color: var(--white)
 
-  a,
-  span.site-page
+  a
     color: var(--light-grey)
 
     &:hover
@@ -332,10 +323,10 @@
         .menus_item_child
           display: block
 
-        & > span > i:last-child
+        & > a > i:last-child
           transform: rotate(180deg)
 
-      & > span > i:last-child
+      & > a > i:last-child
         padding: 4px
         transition: transform .3s
 
@@ -346,10 +337,10 @@
         margin-top: 8px
         padding: 0
         width: max-content
+        border-radius: 5px
         background-color: var(--sidebar-bg)
         box-shadow: 0 5px 20px -4px rgba($dark-black, .5)
         animation: sub_menus .3s .1s ease both
-        addBorderRadius(5)
 
         &:before
           position: absolute
@@ -365,14 +356,13 @@
           &:hover
             background: var(--text-bg-hover)
 
-          if hexo-config('rounded_corners_ui')
-            &:first-child
-              border-top-left-radius: 5px
-              border-top-right-radius: 5px
+          &:first-child
+            border-top-left-radius: 5px
+            border-top-right-radius: 5px
 
-            &:last-child
-              border-bottom-right-radius: 5px
-              border-bottom-left-radius: 5px
+          &:last-child
+            border-bottom-right-radius: 5px
+            border-bottom-left-radius: 5px
 
           a
             display: inline-block
@@ -391,7 +381,7 @@
     .menus_items
       display: none
 
-    #search-button span:not(.site-page)
+    #search-button span
       display: none
 
   #search-button
