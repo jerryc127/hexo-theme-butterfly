@@ -26,6 +26,7 @@ if !theme.disable_top_img && page.top_img !== false
     - var isHomeClass = 'not-top-img'
     if is_home()
       - var site_title = config.title
+      - var hideHomeTitleClass = 'hidden-home-title'
 
 else
   - var top_img = false
@@ -56,4 +57,4 @@ header#page-header(class=`${isHomeClass+isFixedClass}` style=bg_img)
   else
    if is_home()
       #page-site-info
-        h1#site-title=site_title
+        h1#site-title(class=hideHomeTitleClass)= site_title
