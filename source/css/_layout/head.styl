@@ -128,6 +128,9 @@
     height: 60px
     background: 0
 
+    .title-seo
+      display: none
+
     #nav
       background: rgba(255, 255, 255, .8)
       box-shadow: 0 5px 6px -5px rgba(133, 133, 133, .6)
@@ -156,6 +159,12 @@
 
         .site-name
           text-shadow: none
+
+        & > a:first-child
+          display: none
+
+        & > a:last-child
+          display: inline
 
       a,
       span.site-page,
@@ -195,8 +204,10 @@
           max-height: calc(100vh - 170px)
 
 #page
-  h1.page-title
-    margin: 8px 0 20px
+  .page-title
+    margin: 0 0 10px
+    font-weight: bold
+    font-size: 2em
 
 // for not top_img
 #post
@@ -300,6 +311,9 @@
       margin-right: 6px
       height: 36px
       vertical-align: middle
+
+    .nav-page-title
+      display: none
 
   #toggle-menu
     display: none

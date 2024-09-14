@@ -24,10 +24,10 @@ script.
     }
 
     preloader.initLoading()
-    window.addEventListener('load',() => { preloader.endLoading() })
+    window.addEventListener('load', preloader.endLoading)
 
     if (!{theme.pjax && theme.pjax.enable}) {
-      btf.addGlobalFn('pjaxSend', () => { preloader.initLoading() }, 'preloader_init')
-      btf.addGlobalFn('pjaxComplete', () => { preloader.endLoading() }, 'preloader_end')
+      btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+      btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
     }
   })()

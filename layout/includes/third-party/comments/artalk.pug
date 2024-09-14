@@ -48,7 +48,7 @@ script.
 
     if ('!{use[0]}' === 'Artalk' || !!{lazyload}) {
       if (!{lazyload}) btf.loadComment(document.getElementById('artalk-wrap'), loadArtalk)
-      else loadArtalk()
+      else setTimeout(loadArtalk, 100)
     } else {
       window.loadOtherComment = loadArtalk
     }

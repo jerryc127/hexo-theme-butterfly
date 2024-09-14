@@ -25,11 +25,10 @@ if !theme.disable_top_img && page.top_img !== false
 
   if top_img !== false
     - bg_img = getBgPath(top_img)
-    - headerClassName = is_home() ? 'full_page' : 'not-home-page'
-    - headerClassName = is_post() ? 'post-bg' : headerClassName
+    - headerClassName = is_home() ? 'full_page' : is_post() ? 'post-bg' : 'not-home-page'
 
-header#page-header(class=`${headerClassName+isFixedClass}` style=bg_img)
-  !=partial('includes/header/nav', {}, {cache: true})
+header#page-header(class=`${headerClassName + isFixedClass}` style=bg_img)
+  include ./nav.pug
   if top_img !== false
     if is_post()
       include ./post-info.pug
@@ -40,7 +39,7 @@ header#page-header(class=`${headerClassName+isFixedClass}` style=bg_img)
           - var loadSubJs = true
           #site-subtitle
             span#subtitle
-        if(theme.social)
+        if theme.social
           #site_social_icons
             !=partial('includes/header/social', {}, {cache: true})
       #scroll-down
@@ -48,3 +47,7 @@ header#page-header(class=`${headerClassName+isFixedClass}` style=bg_img)
     else
       #page-site-info
         h1#site-title=page.title || page.tag || page.category
+  else
+    //- improvement seo
+    if !is_post()
+      h1.title-seo=page.title || page.tag || page.category || config.title

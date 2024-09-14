@@ -645,7 +645,7 @@ artalk:
 # --------------------------------------
 
 chat:
-  # Choose: chatra/tidio/daovoice/crisp/messenger
+  # Choose: chatra/tidio/daovoice/crisp
   # Leave it empty if you don't need chat
   use:
   # Chat Button [recommend]
@@ -670,11 +670,6 @@ daovoice:
 crisp:
   website_id:
 
-# https://developers.facebook.com/docs/messenger-platform/discovery/facebook-chat-plugin/
-messenger:
-  pageID:
-  lang: zh_TW
-
 # --------------------------------------
 # Analysis
 # --------------------------------------
@@ -690,6 +685,20 @@ cloudflare_analytics:
 
 # https://clarity.microsoft.com/
 microsoft_clarity:
+
+# https://umami.is/
+umami_analytics:
+  enable: false
+  # For self-hosted setups, configure the hostname of the Umami instance
+  serverURL:
+  website_id:
+  option:
+  UV_PV:
+    site_uv: false
+    site_pv: false
+    page_pv: false
+    # Umami Cloud (API key) / self-hosted Umami (token)
+    token:
 
 # --------------------------------------
 # Advertisement
@@ -787,29 +796,29 @@ beautify:
   # Specify the field to beautify (site or post)
   field: post
   # Specify the icon to be used as a prefix for the title, such as '\f0c1'
-  title-prefix-icon:
+  title_prefix_icon:
   # Specify the color of the title prefix icon, such as '#F47466'
-  title-prefix-icon-color:
+  title_prefix_icon_color:
 
 # Global font settings
 # Don't modify the following settings unless you know how they work
 font:
-  global-font-size:
-  code-font-size:
-  font-family:
-  code-font-family:
+  global_font_size:
+  code_font_size:
+  font_family:
+  code_font_family:
 
 # Font settings for the site title and site subtitle
 blog_title_font:
   font_link:
-  font-family:
+  font_family:
 
 # The setting of divider icon
 hr_icon:
   enable: true
   # The unicode value of Font Awesome icon, such as '\3423'
   icon:
-  icon-top:
+  icon_top:
 
 # Typewriter Effect
 # https://github.com/disjukr/activate-power-mode

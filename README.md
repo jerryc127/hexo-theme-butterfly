@@ -86,7 +86,7 @@ npm i hexo-theme-butterfly
 - [x] Share (Sharejs/Addtoany)
 - [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/artalk)
 - [x] Multiple Comment System Support
-- [x] Online Chats (Chatra/Tidio/Daovoice/Crisp/messenger)
+- [x] Online Chats (Chatra/Tidio/Daovoice/Crisp)
 - [x] Web analytics
 - [x] Google AdSense
 - [x] Webmaster Verification

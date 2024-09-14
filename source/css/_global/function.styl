@@ -15,9 +15,12 @@
   text-rendering: auto
   -webkit-font-smoothing: antialiased
 
-addBorderRadius(x = 6)
+addBorderRadius(x = 6, hide = false)
   if hexo-config('rounded_corners_ui')
     border-radius: unit(x, 'px')
+
+    if hide
+      overflow: hidden
 
 // card hover
 .cardHover

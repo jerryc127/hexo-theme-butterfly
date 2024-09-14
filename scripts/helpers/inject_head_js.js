@@ -1,14 +1,3 @@
-/**
- * Butterfly
- * inject js to head
- *
- * addGlobalFn
- *  pjaxSendOnce - remove in pjaxSend
- *  pjaxCompleteOnce - remove in pjaxComplete
- *  pjaxSend - run in pjaxSend
- *  pjaxComplete - run in pjaxComplete
- */
-
 'use strict'
 
 hexo.extend.helper.register('inject_head_js', function () {
@@ -16,93 +5,62 @@ hexo.extend.helper.register('inject_head_js', function () {
   const start = darkmode.start || 6
   const end = darkmode.end || 18
   const { theme_color } = hexo.theme.config
-  const themeColorLight = (theme_color && theme_color.enable && theme_color.meta_theme_color_light) || '#ffffff'
-  const themeColorDark = (theme_color && theme_color.enable && theme_color.meta_theme_color_dark) || '#0d0d0d'
+  const themeColorLight = theme_color && theme_color.enable ? theme_color.meta_theme_color_light : '#ffffff'
+  const themeColorDark = theme_color && theme_color.enable ? theme_color.meta_theme_color_dark : '#0d0d0d'
 
-  const createCustonJs = () => {
-    return `
-      const saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
+  const createCustomJs = () => `
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
         }
+        return value
       }
-      
-      window.btf = {
-        saveToLocal: saveToLocal,
-        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
-          const script = document.createElement('script')
-          script.src = url
-          script.async = true
-          script.onerror = reject
-          script.onload = script.onreadystatechange = function() {
-            const loadState = this.readyState
-            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-            script.onload = script.onreadystatechange = null
-            resolve()
-          }
+    }
 
-          Object.keys(attr).forEach(key => {
-            script.setAttribute(key, attr[key])
-          })
-
-          document.head.appendChild(script)
-        }),
-
-        getCSS: (url, id = false) => new Promise((resolve, reject) => {
-          const link = document.createElement('link')
-          link.rel = 'stylesheet'
-          link.href = url
-          if (id) link.id = id
-          link.onerror = reject
-          link.onload = link.onreadystatechange = function() {
-            const loadState = this.readyState
-            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-            link.onload = link.onreadystatechange = null
-            resolve()
-          }
-          document.head.appendChild(link)
-        }),
-
-        addGlobalFn: (key, fn, name = false, parent = window) => {
-          const pjaxEnable = ${pjax.enable}
-          if (!pjaxEnable && key.startsWith('pjax')) return
-
-          const globalFn = parent.globalFn || {}
-          const keyObj = globalFn[key] || {}
-    
-          if (name && keyObj[name]) return
-    
-          name = name || Object.keys(keyObj).length
-          keyObj[name] = fn
-          globalFn[key] = keyObj
-          parent.globalFn = globalFn
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
         }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!${pjax.enable} && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
       }
-    `
-  }
+    }
+  `
 
   const createDarkmodeJs = () => {
     if (!darkmode.enable) return ''
@@ -123,80 +81,76 @@ hexo.extend.helper.register('inject_head_js', function () {
 
       btf.activateDarkMode = activateDarkMode
       btf.activateLightMode = activateLightMode
-      
-      const t = saveToLocal.get('theme')
+
+      const theme = saveToLocal.get('theme')
     `
 
-    const autoChangeMode = darkmode.autoChangeMode
-
-    if (autoChangeMode === 1) {
-      darkmodeJs += `
-          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
-
-          if (t === undefined) {
-            if (isLightMode) activateLightMode()
-            else if (isDarkMode) activateDarkMode()
-            else if (isNotSpecified || hasNoSupport) {
-              const now = new Date()
-              const hour = now.getHours()
+    switch (darkmode.autoChangeMode) {
+      case 1:
+        darkmodeJs += `
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
               const isNight = hour <= ${start} || hour >= ${end}
               isNight ? activateDarkMode() : activateLightMode()
             }
-            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+            mediaQueryDark.addEventListener('change', () => {
               if (saveToLocal.get('theme') === undefined) {
                 e.matches ? activateDarkMode() : activateLightMode()
               }
             })
-          } else if (t === 'light') activateLightMode()
-          else activateDarkMode()
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
         `
-    } else if (autoChangeMode === 2) {
-      darkmodeJs += `
-          const now = new Date()
-          const hour = now.getHours()
+        break
+      case 2:
+        darkmodeJs += `
+          const hour = new Date().getHours()
           const isNight = hour <= ${start} || hour >= ${end}
-          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
-          else if (t === 'light') activateLightMode()
-          else activateDarkMode()
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
         `
-    } else {
-      darkmodeJs += `
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      `
+        break
+      default:
+        darkmodeJs += `
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        `
     }
 
     return darkmodeJs
   }
 
-  const createAsideStatus = () => {
+  const createAsideStatusJs = () => {
     if (!aside.enable || !aside.button) return ''
-
     return `
       const asideStatus = saveToLocal.get('aside-status')
       if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
       }
     `
   }
 
-  const createDetectApple = () => {
-    return `
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
+  const createDetectAppleJs = () => `
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
       }
-      detectApple()
-    `
-  }
+    }
+    detectApple()
+  `
 
-  return `<script>(()=>{${createCustonJs() + createDarkmodeJs() + createAsideStatus() + createDetectApple()}})()</script>`
+  return `<script>
+    (() => {
+      ${createCustomJs()}
+      ${createDarkmodeJs()}
+      ${createAsideStatusJs()}
+      ${createDetectAppleJs()}
+    })()
+  </script>`
 })

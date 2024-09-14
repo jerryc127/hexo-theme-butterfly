@@ -1,9 +1,9 @@
 - var pjaxExclude = 'a:not([target="_blank"])'
 if theme.pjax.exclude
   each val in theme.pjax.exclude
-    - pjaxExclude = pjaxExclude + `:not([href="${val}"])`
+    - pjaxExclude += `:not([href="${val}"])`
 
-- let pjaxSelectors = ['head > title','#config-diff','#body-wrap','#rightside-config-hide','#rightside-config-show','.js-pjax']
+- let pjaxSelectors = ['head > title', '#config-diff', '#body-wrap', '#rightside-config-hide', '#rightside-config-show', '.js-pjax']
 
 - let choose = theme.comments.use
 if choose
@@ -14,49 +14,50 @@ if choose
 
 script(src=url_for(theme.asset.pjax))
 script.
-  let pjaxSelectors = !{JSON.stringify(pjaxSelectors)}
+  (() => {
+    const pjaxSelectors = !{JSON.stringify(pjaxSelectors)}
 
-  var pjax = new Pjax({
-    elements: '!{pjaxExclude}',
-    selectors: pjaxSelectors,
-    cacheBust: false,
-    analytics: !{theme.google_analytics ? true : false},
-    scrollRestoration: false
-  })
-
-  const triggerPjaxFn = (val) => {
-    if (!val) return
-    Object.values(val).forEach(fn => { fn() })
-  }
-
-  document.addEventListener('pjax:send', function () {
-
-    // removeEventListener
-    btf.removeGlobalFnEvent('pjaxSendOnce')
-    btf.removeGlobalFnEvent('themeChange')
-
-    //reset readmode
-    const $bodyClassList = document.body.classList
-    $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
-
-    triggerPjaxFn(window.globalFn.pjaxSend)
-  })
-
-  document.addEventListener('pjax:complete', () => {
-    btf.removeGlobalFnEvent('pjaxCompleteOnce')
-    document.querySelectorAll('script[data-pjax]').forEach(item => {
-      const newScript = document.createElement('script')
-      const content = item.text || item.textContent || item.innerHTML || ""
-      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
-      newScript.appendChild(document.createTextNode(content))
-      item.parentNode.replaceChild(newScript, item)
+    window.pjax = new Pjax({
+      elements: '!{pjaxExclude}',
+      selectors: pjaxSelectors,
+      cacheBust: false,
+      analytics: !{theme.google_analytics ? true : false},
+      scrollRestoration: false
     })
 
-    triggerPjaxFn(window.globalFn.pjaxComplete)
-  })
-
-  document.addEventListener('pjax:error', e => {
-    if (e.request.status === 404) {
-      pjax.loadUrl('!{url_for("/404.html")}')
+    const triggerPjaxFn = (val) => {
+      if (!val) return
+      Object.values(val).forEach(fn => fn())
     }
-  })
+
+    document.addEventListener('pjax:send', () => {
+      // removeEventListener
+      btf.removeGlobalFnEvent('pjaxSendOnce')
+      btf.removeGlobalFnEvent('themeChange')
+
+      // reset readmode
+      const $bodyClassList = document.body.classList
+      if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+      triggerPjaxFn(window.globalFn.pjaxSend)
+    })
+
+    document.addEventListener('pjax:complete', () => {
+      btf.removeGlobalFnEvent('pjaxCompleteOnce')
+      document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+      })
+
+      triggerPjaxFn(window.globalFn.pjaxComplete)
+    })
+
+    document.addEventListener('pjax:error', e => {
+      if (e.request.status === 404) {
+        pjax.loadUrl('!{url_for("/404.html")}')
+      }
+    })
+  })()

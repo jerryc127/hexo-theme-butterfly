@@ -20,19 +20,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const translateBody = (fobj) => {
-    const objs = typeof fobj === 'object' ? fobj.childNodes : document.body.childNodes
-    for (let i = 0; i < objs.length; i++) {
-      const obj = objs.item(i)
-      if ('BR|HR'.includes(obj.tagName) || obj === translateButtonObject) continue
+    const nodes = typeof fobj === 'object' ? fobj.childNodes : document.body.childNodes
 
-      if (obj.title) obj.title = translateText(obj.title)
-      if (obj.alt) obj.alt = translateText(obj.alt)
-      if (obj.placeholder) obj.placeholder = translateText(obj.placeholder)
-      if (obj.tagName === 'INPUT' && obj.value && obj.type !== 'text' && obj.type !== 'hidden') {
-        obj.value = translateText(obj.value)
+    for (const node of nodes) {
+      // Skip BR, HR tags, or the translate button object
+      if (['BR', 'HR'].includes(node.tagName) || node === translateButtonObject) continue
+
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        const { tagName, title, alt, placeholder, value, type } = node
+
+        // Translate title, alt, placeholder
+        if (title) node.title = translateText(title)
+        if (alt) node.alt = translateText(alt)
+        if (placeholder) node.placeholder = translateText(placeholder)
+
+        // Translate input value except text and hidden types
+        if (tagName === 'INPUT' && value && type !== 'text' && type !== 'hidden') {
+          node.value = translateText(value)
+        }
+
+        // Recursively translate child nodes
+        translateBody(node)
+      } else if (node.nodeType === Node.TEXT_NODE) {
+        // Translate text node data
+        node.data = translateText(node.data)
       }
-      if (obj.nodeType === 3) obj.data = translateText(obj.data)
-      else translateBody(obj)
     }
   }
 

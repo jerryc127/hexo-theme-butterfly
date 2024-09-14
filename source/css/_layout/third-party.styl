@@ -139,8 +139,9 @@ if hexo-config('math.use')
           &:before
             content: none
 
-.snackbar-css
-  border-radius: 5px !important
+.snackbar-container.snackbar-css
+  addBorderRadius(5)
+  opacity: .85 !important
 
 .abc-music-sheet
   margin: 0 0 20px

@@ -1,20 +1,11 @@
+!= partial("includes/third-party/newest-comments/common.pug", {}, { cache: true })
+
 script.
   window.addEventListener('load', () => {
-    const changeContent = (content) => {
-      if (content === '') return content
+    const keyName = 'github-newest-comments'
+    const { changeContent, generateHtml, run } = window.newestComments
 
-      content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
-      content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[!{_p("aside.card_newest_comments.link")}]') // replace url
-      content = content.replace(/<pre><code>.*?<\/pre>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
-      content = content.replace(/<[^>]+>/g,"") // remove html tag
-
-      if (content.length > 150) {
-        content = content.substring(0,150) + '...'
-      }
-      return content
-    }
-
-    const findTrueUrl = (array) => {
+    const findTrueUrl = (array, ele) => {
       Promise.all(array.map(item =>
         fetch(item.url).then(resp => resp.json()).then(data => {
           let urlArray = data.body ? data.body.match(/(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/ig) : []
@@ -35,12 +26,12 @@ script.
             }
           })
 
-          btf.saveToLocal.set('github-newest-comments', JSON.stringify(array), !{theme.aside.card_newest_comments.storage}/(60*24))
-          generateHtml(array)
+          btf.saveToLocal.set(keyName, JSON.stringify(array), !{theme.aside.card_newest_comments.storage}/(60*24))
+          generateHtml(array, ele)
       });
     }
 
-    const getComment = () => {
+    const getComment = ele => {
       fetch('https://api.github.com/repos/!{userRepo}/issues/comments?sort=updated&direction=desc&per_page=!{theme.aside.card_newest_comments.limit}&page=1',{
         "headers": {
           Accept: 'application/vnd.github.v3.html+json'
@@ -54,57 +45,16 @@ script.
               'content': changeContent(item.body_html || item.body),
               'nick': item.user.login,
               'url': item.issue_url,
-              'date': item.updated_at,
-              'githubUrl': item.html_url
+              'date': item.updated_at
             }
           })
-          findTrueUrl(githubArray)
+          findTrueUrl(githubArray, ele)
         }).catch(e => {
-          const $dom = document.querySelector('#card-newest-comments .aside-list')
-          $dom.textContent= "!{_p('aside.card_newest_comments.error')}"
+          console.error(e)
+          ele.textContent= "!{_p('aside.card_newest_comments.error')}"
         })
     }
-
-    const generateHtml = array => {
-      let result = ''
-
-      if (array.length) {
-        for (let i = 0; i < array.length; i++) {
-          result += '<div class=\'aside-list-item\'>'
-
-          if (!{theme.aside.card_newest_comments.avatar}) {
-            const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
-            result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
-          }
-
-          result += `<div class='content'>
-          <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
-          <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
-          </div></div>`
-        }
-      } else {
-        result += '!{_p("aside.card_newest_comments.zero")}'
-      }
-
-      let $dom = document.querySelector('#card-newest-comments .aside-list')
-      $dom && ($dom.innerHTML= result)
-      window.lazyLoadInstance && window.lazyLoadInstance.update()
-      window.pjax && window.pjax.refresh($dom)
-    }
-
-    const newestCommentInit = () => {
-      if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = btf.saveToLocal.get('github-newest-comments')
-        if (data) {
-          generateHtml(JSON.parse(data))
-        } else {
-          getComment()
-        }
-      }
-    }
-
-    newestCommentInit()
-    btf.addGlobalFn('pjaxComplete', newestCommentInit, 'github_newestComment')
+    run(keyName, getComment)
   })
 
 

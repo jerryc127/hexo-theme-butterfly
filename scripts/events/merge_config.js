@@ -386,14 +386,22 @@ hexo.extend.filter.register('before_generate', () => {
     crisp: {
       website_id: null
     },
-    messenger: {
-      pageID: null,
-      lang: 'zh_TW'
-    },
     baidu_analytics: null,
     google_analytics: null,
     cloudflare_analytics: null,
     microsoft_clarity: null,
+    umami_analytics: {
+      enable: false,
+      serverURL: null,
+      website_id: null,
+      option: null,
+      UV_PV: {
+        site_uv: false,
+        site_pv: false,
+        page_pv: false,
+        token: null
+      }
+    },
     google_adsense: {
       enable: false,
       auto_ads: true,
@@ -425,23 +433,23 @@ hexo.extend.filter.register('before_generate', () => {
     beautify: {
       enable: false,
       field: 'post',
-      'title-prefix-icon': null,
-      'title-prefix-icon-color': null
+      title_prefix_icon: null,
+      title_prefix_icon_color: null
     },
     font: {
-      'global-font-size': null,
-      'code-font-size': null,
-      'font-family': null,
-      'code-font-family': null
+      global_font_size: null,
+      code_font_size: null,
+      font_family: null,
+      code_font_family: null
     },
     blog_title_font: {
       font_link: null,
-      'font-family': null
+      font_family: null
     },
     hr_icon: {
       enable: true,
       icon: null,
-      'icon-top': null
+      icon_top: null
     },
     activate_power_mode: {
       enable: false,

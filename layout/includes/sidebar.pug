@@ -6,7 +6,7 @@ if theme.menu
         img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar")
       .site-data.is-center
         a(href=url_for(config.archive_dir) + '/')
-          .headline= _p('aside.articles') 
+          .headline= _p('aside.articles')
           .length-num= site.posts.length
         a(href=url_for(config.tag_dir) + '/' )
           .headline= _p('aside.tags')

@@ -33,12 +33,8 @@ script.
       }
     } else if (isChatHideShow) {
       window.chatBtn = {
-        hide: () => {
-          window.tidioChatApi && window.tidioChatApi.hide()
-        },
-        show: () => {
-          window.tidioChatApi && window.tidioChatApi.show()
-        }
+        hide: () => window.tidioChatApi && window.tidioChatApi.hide(),
+        show: () => window.tidioChatApi && window.tidioChatApi.show()
       }
     }
   })()

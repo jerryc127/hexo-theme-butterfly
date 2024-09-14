@@ -1,20 +1,11 @@
+!= partial("includes/third-party/newest-comments/common.pug", {}, { cache: true })
+
 script.
   window.addEventListener('load', () => {
-    const changeContent = (content) => {
-      if (content === '') return content
+    const keyName = 'disqus-newest-comments'
+    const { changeContent, generateHtml, run } = window.newestComments
 
-      content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
-      content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[!{_p("aside.card_newest_comments.link")}]') // replace url
-      content = content.replace(/<code>.*?<\/code>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
-      content = content.replace(/<[^>]+>/g,"") // remove html tag
-
-      if (content.length > 150) {
-        content = content.substring(0,150) + '...'
-      }
-      return content
-    }
-
-    const getComment = () => {
+    const getComment = ele => {
       fetch('https://disqus.com/api/3.0/forums/listPosts.json?forum=!{forum}&related=thread&limit=!{theme.aside.card_newest_comments.limit}&api_key=!{apiKey}')
         .then(response => response.json())
         .then(data => {
@@ -28,54 +19,15 @@ script.
             }
           })
 
-          btf.saveToLocal.set('disqus-newest-comments', JSON.stringify(disqusArray), !{theme.aside.card_newest_comments.storage}/(60*24))
-          generateHtml(disqusArray)
+          btf.saveToLocal.set(keyName, JSON.stringify(disqusArray), !{theme.aside.card_newest_comments.storage}/(60*24))
+          generateHtml(disqusArray, ele)
         }).catch(e => {
-          const $dom = document.querySelector('#card-newest-comments .aside-list')
-          $dom.textContent= "!{_p('aside.card_newest_comments.error')}"
+          console.error(e)
+          ele.textContent= "!{_p('aside.card_newest_comments.error')}"
         })
     }
 
-    const generateHtml = array => {
-      let result = ''
-
-      if (array.length) {
-        for (let i = 0; i < array.length; i++) {
-          result += '<div class=\'aside-list-item\'>'
-
-          if (!{theme.aside.card_newest_comments.avatar}) {
-            const name = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
-            result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
-          }
-          
-          result += `<div class='content'>
-          <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
-          <div class='name'><span>${array[i].nick}</span><time> / ${btf.diffDate(array[i].date, true)}</time></div>
-          </div></div>`
-        }
-      } else {
-        result += '!{_p("aside.card_newest_comments.zero")}'
-      }
-
-      let $dom = document.querySelector('#card-newest-comments .aside-list')
-      $dom && ($dom.innerHTML= result)
-      window.lazyLoadInstance && window.lazyLoadInstance.update()
-      window.pjax && window.pjax.refresh($dom)
-    }
-
-    const newestCommentInit = () => {
-      if (document.querySelector('#card-newest-comments .aside-list')) {
-        const data = btf.saveToLocal.get('disqus-newest-comments')
-        if (data) {
-          generateHtml(JSON.parse(data))
-        } else {
-          getComment()
-        }
-      }
-    }
-
-    newestCommentInit()
-    btf.addGlobalFn('pjaxComplete', newestCommentInit, 'disqus_newestComment')
+    run(keyName, getComment)
   })
 
 

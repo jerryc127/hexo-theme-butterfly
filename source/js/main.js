@@ -82,11 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    const copy = ctx => {
-      if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
-        document.execCommand('copy')
+    const copy = async (text, ctx) => {
+      try {
+        await navigator.clipboard.writeText(text)
         alertInfo(ctx, GLOBAL_CONFIG.copy.success)
-      } else {
+      } catch (err) {
+        console.error('Failed to copy: ', err)
         alertInfo(ctx, GLOBAL_CONFIG.copy.noSupport)
       }
     }
@@ -95,14 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const highlightCopyFn = (ele, clickEle) => {
       const $buttonParent = ele.parentNode
       $buttonParent.classList.add('copy-true')
-      const selection = window.getSelection()
-      const range = document.createRange()
       const preCodeSelector = isPrismjs ? 'pre code' : 'table .code pre'
-      range.selectNodeContents($buttonParent.querySelector(`${preCodeSelector}`))
-      selection.removeAllRanges()
-      selection.addRange(range)
-      copy(clickEle.previousElementSibling)
-      selection.removeAllRanges()
+      const codeElement = $buttonParent.querySelector(preCodeSelector)
+      if (!codeElement) return
+      copy(codeElement.innerText, clickEle.previousElementSibling)
       $buttonParent.classList.remove('copy-true')
     }
 
@@ -238,8 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
       gap: 5,
       isConstantSize: true,
       sizeRange: [150, 600],
-      useResizeObserver: true,
-      observeChildren: true,
+      // useResizeObserver: true,
+      // observeChildren: true,
       useTransform: true
       // useRecycle: false
     })

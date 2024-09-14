@@ -4,11 +4,11 @@ footer:
 
 copy:
   success: Copy Successful
-  error: Copy Error
+  error: Copy Failed
   noSupport: Browser Not Supported
 
 page:
-  articles: Articles
+  articles: All Articles
   tag: Tag
   category: Category
   archives: Archives
@@ -29,26 +29,26 @@ post:
     author: Author
     link: Link
     copyright_notice: Copyright Notice
-    copyright_content: 'All articles in this blog are licensed under <a href="%s">%s</a> unless stating additionally.'
+    copyright_content: 'All articles on this blog are licensed under <a href="%s">%s</a> unless otherwise stated.'
   recommend: Related Articles
-  edit: Edited on
+  edit: Edit
 
 search:
   title: Search
-  load_data: Loading the Database
+  load_data: Loading Database
   input_placeholder: Search for Posts
   algolia_search:
-    hits_empty: "We didn't find any results for the search: ${query}."
+    hits_empty: 'No results found for: ${query}'
     hits_stats: '${hits} results found in ${time} ms'
   local_search:
-    hits_empty: "We didn't find any results for the search: ${query}"
-    hits_stats: '${hits} results found'
+    hits_empty: 'No results found for: ${query}'
+    hits_stats: '${hits} articles found'
 
 pagination:
   prev: Previous
   next: Next
 
-comment: Comment
+comment: Comments
 
 aside:
   articles: Articles
@@ -58,29 +58,29 @@ aside:
   card_categories: Categories
   card_tags: Tags
   card_archives: Archives
-  card_recent_post: Recent Post
+  card_recent_post: Recent Posts
   card_webinfo:
-    headline: Info
-    article_name: Article
+    headline: Website Info
+    article_name: Article Count
     runtime:
       name: Runtime
       unit: days
     last_push_date:
       name: Last Update
-    site_wordcount: Total Count
-    site_uv_name: UV
-    site_pv_name: PV
+    site_wordcount: Total Word Count
+    site_uv_name: Unique Visitors
+    site_pv_name: Page Views
   more_button: View More
   card_newest_comments:
     headline: Latest Comments
-    loading_text: loading...
+    loading_text: Loading...
     error: Unable to retrieve comments, please check the configuration
     zero: No comments
-    image: image
-    link: link
-    code: code
+    image: Image
+    link: Link
+    code: Code
   card_toc: Contents
-  card_post_series: Series
+  card_post_series: Post Series
 
 date_suffix:
   just: Just now
@@ -93,21 +93,21 @@ donate: Sponsor
 share: Share
 
 rightside:
-  readmode_title: Read Mode
-  translate_title: Toggle Between Traditional Chinese And Simplified Chinese
-  night_mode_title: Toggle Between Light And Dark Mode
-  back_to_top: Back To Top
-  toc: Table Of Contents
-  scroll_to_comment: Scroll To Comments
-  setting: Setting
-  aside: Toggle between Single-column and Double-column
+  readmode_title: Reading Mode
+  translate_title: Toggle Between Traditional and Simplified Chinese
+  night_mode_title: Toggle Between Light and Dark Mode
+  back_to_top: Back to Top
+  toc: Table of Contents
+  scroll_to_comment: Scroll to Comments
+  setting: Settings
+  aside: Toggle Between Single-column and Double-column
   chat: Chat
 
 copy_copyright:
   author: Author
   link: Link
   source: Source
-  info: Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+  info: Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source.
 
 Snackbar:
   chs_to_cht: You have switched to Traditional Chinese

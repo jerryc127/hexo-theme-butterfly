@@ -14,9 +14,10 @@ const groups = {}
 
 hexo.extend.filter.register('before_post_render', data => {
   if (!hexo.theme.config.series.enable) return data
+
   const { layout, series } = data
   if (layout === 'post' && series) {
-    groups[series] = groups[series] || []
+    if (!groups[series]) groups[series] = []
     groups[series].push({
       title: data.title,
       path: data.path,
@@ -47,23 +48,16 @@ function series (args) {
     const itemA = isSortByTitle ? a.title.toUpperCase() : a.date
     const itemB = isSortByTitle ? b.title.toUpperCase() : b.date
 
-    if (itemA < itemB) {
-      return isAsc ? -1 : 1
-    }
-    if (itemA > itemB) {
-      return isAsc ? 1 : -1
-    }
-    return 0
+    return itemA < itemB ? (isAsc ? -1 : 1) : itemA > itemB ? (isAsc ? 1 : -1) : 0
   }
 
   seriesArr.sort(compareFn)
 
-  let result = ''
-  seriesArr.forEach(ele => {
-    result += `<li><a href="${urlFor(ele.path)}" title="${ele.title}">${ele.title}</a></li>`
-  })
+  const listItems = seriesArr.map(ele =>
+    `<li><a href="${urlFor(ele.path)}" title="${ele.title}">${ele.title}</a></li>`
+  ).join('')
 
-  return series.number ? `<ol class="series-items">${result}</ol>` : `<ul class="series-items">${result}</ul>`
+  return series.number ? `<ol class="series-items">${listItems}</ol>` : `<ul class="series-items">${listItems}</ul>`
 }
 
 hexo.extend.tag.register('series', series, { ends: false })

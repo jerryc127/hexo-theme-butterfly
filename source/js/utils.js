@@ -98,10 +98,10 @@
 
       if (!more) return Math.floor(diffDay)
 
-      if (diffMonth > 24) return datePost.toISOString().slice(0, 10)
-      if (diffMonth >= 3) return `${Math.floor(diffMonth)} ${dateSuffix.month}`
-      if (diffDay >= 3) return `${Math.floor(diffDay)} ${dateSuffix.day}`
-      if (diffHour >= 3) return `${Math.floor(diffHour)} ${dateSuffix.hour}`
+      if (diffMonth > 12) return datePost.toISOString().slice(0, 10)
+      if (diffMonth >= 1) return `${Math.floor(diffMonth)} ${dateSuffix.month}`
+      if (diffDay >= 1) return `${Math.floor(diffDay)} ${dateSuffix.day}`
+      if (diffHour >= 1) return `${Math.floor(diffHour)} ${dateSuffix.hour}`
       if (diffMin >= 1) return `${Math.floor(diffMin)} ${dateSuffix.min}`
       return dateSuffix.just
     },
@@ -145,18 +145,19 @@
       requestAnimationFrame(animate)
     },
 
-    animateIn: (ele, text) => {
+    animateIn: (ele, animation) => {
       ele.style.display = 'block'
-      ele.style.animation = text
+      ele.style.animation = animation
     },
 
-    animateOut: (ele, text) => {
-      ele.addEventListener('animationend', function f () {
+    animateOut: (ele, animation) => {
+      const handleAnimationEnd = () => {
         ele.style.display = ''
         ele.style.animation = ''
-        ele.removeEventListener('animationend', f)
-      })
-      ele.style.animation = text
+        ele.removeEventListener('animationend', handleAnimationEnd)
+      }
+      ele.addEventListener('animationend', handleAnimationEnd)
+      ele.style.animation = animation
     },
 
     wrap: (selector, eleType, options) => {

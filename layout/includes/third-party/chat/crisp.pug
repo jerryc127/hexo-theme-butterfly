@@ -20,26 +20,18 @@ script.
         $crisp.push(["do", "chat:open"])
       }
 
-      const close = () => {
-        $crisp.push(["do", "chat:hide"])
-      }
+      const close = () => $crisp.push(["do", "chat:hide"])
 
       close()
-      $crisp.push(["on", "chat:closed", function() {
-        close()
-      }])
 
-      window.chatBtnFn = () => {
-        $crisp.is("chat:visible") ? close() : open()
-      }
+      $crisp.push(["on", "chat:closed", close])
+
+      window.chatBtnFn = () => $crisp.is("chat:visible") ? close() : open()
+
     } else if (isChatHideShow) {
       window.chatBtn = {
-        hide: () => {
-          $crisp.push(["do", "chat:hide"])
-        },
-        show: () => {
-          $crisp.push(["do", "chat:show"])
-        }
+        hide: () => $crisp.push(["do", "chat:hide"]),
+        show: () => $crisp.push(["do", "chat:show"])
       }
     }
   })()
