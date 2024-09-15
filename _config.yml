@@ -820,6 +820,11 @@ mermaid:
     light: default
     dark: dark
 
+# chartjs
+# see https://www.chartjs.org/docs/latest/
+chartjs:
+  enable: true
+
 # Note (Bootstrap Callout)
 note:
   # Note tag style values:

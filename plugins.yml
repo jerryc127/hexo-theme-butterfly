@@ -209,3 +209,7 @@ abcjs_basic_js:
   name: abcjs
   file: dist/abcjs-basic-min.js
   version: 6.3.0
+chartjs:
+  name: chart.js
+  file: dist/chart.umd.min.js
+  version: 4.4.4

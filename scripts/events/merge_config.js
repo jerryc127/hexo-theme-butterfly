@@ -492,6 +492,9 @@ hexo.extend.filter.register('before_generate', () => {
         dark: 'dark'
       }
     },
+    chartjs: {
+      enable: false
+    },
     note: {
       style: 'flat',
       icons: true,
