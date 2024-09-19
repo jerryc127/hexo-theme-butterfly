@@ -5,17 +5,22 @@ script.
   (() => {
     const getCount = () => {
       const countELement = document.getElementById('twikoo-count')
-      if(!countELement) return
-      twikoo.getCommentsCount({
-        envId: '!{envId}',
-        region: '!{region}',
-        urls: [window.location.pathname],
-        includeReply: false
-      }).then(res => {
-        countELement.textContent = res[0].count
-      }).catch(err => {
-        console.error(err)
-      })
+        if(!countELement) return
+          const timer = setInterval(()=>{
+            if(window.twikoo){
+              clearInterval(timer)
+                  twikoo.getCommentsCount({
+                envId: '!{envId}',
+                region: '!{region}',
+                urls: [window.location.pathname],
+                includeReply: false
+              }).then(res => {
+                countELement.textContent = res[0].count
+              }).catch(err => {
+                console.error(err)
+              })
+            }   
+        },100)
     }
 
     const init = () => {
