@@ -13,6 +13,20 @@ script.
         dark: 'html[data-theme="dark"]',
         path: window.location.pathname,
         comment: !{lazyload ? false : count},
+        imageUploader: (file) => {
+          let formData = new FormData();
+          let headers = new Headers();
+
+          formData.append('file', file);
+          headers.append('Authorization', '!{theme.waline.imageUploader.token}');
+          headers.append('Accept', 'application/json');
+
+          return fetch('!{theme.waline.imageUploader.url}', {
+            method: 'POST',
+            headers: headers,
+            body: formData
+          }).then(resp => resp.json()).then(resp => resp.data.links.url);
+        },
       }, !{JSON.stringify(option)}))
 
       const destroyWaline = () => {
