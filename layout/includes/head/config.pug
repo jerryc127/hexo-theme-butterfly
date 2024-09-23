@@ -1,28 +1,30 @@
 -
-  let algolia = 'undefined';
-  let env = process.env;
-  if (theme.algolia_search.enable) {
+  let algolia = 'undefined'
+  if (theme.search.use === 'algolia_search') {
+    const { ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_INDEX_NAME } = process.env
+    const { appId, applicationID, apiKey, indexName } = config.algolia
     algolia = JSON.stringify({
-      appId: env.ALGOLIA_APP_ID || config.algolia.appId || config.algolia.applicationID,
-      apiKey: env.ALGOLIA_API_KEY || config.algolia.apiKey,
-      indexName: env.ALGOLIA_INDEX_NAME || config.algolia.indexName,
-      hits: theme.algolia_search.hits,
+      appId: ALGOLIA_APP_ID || appId || applicationID,
+      apiKey: ALGOLIA_API_KEY || apiKey,
+      indexName: ALGOLIA_INDEX_NAME || indexName,
+      hitsPerPage: theme.search.algolia_search.hitsPerPage,
       // search languages
       languages: {
-        input_placeholder: _p("search.algolia_search.input_placeholder"),
+        input_placeholder: theme.search.placeholder || _p("search.input_placeholder"),
         hits_empty: _p("search.algolia_search.hits_empty"),
         hits_stats: _p("search.algolia_search.hits_stats"),
       }
     })
   }
 
-  let localSearch = 'undefined';
-  if (theme.local_search && theme.local_search.enable) {
+  let localSearch = 'undefined'
+  if (theme.search.use === 'local_search') {
+    const { CDN, preload, top_n_per_article, unescape } = theme.search.local_search
     localSearch = JSON.stringify({
-      path: theme.local_search.CDN ? theme.local_search.CDN : config.root + config.search.path,
-      preload: theme.local_search.preload,
-      top_n_per_article: theme.local_search.top_n_per_article,
-      unescape: theme.local_search.unescape,
+      path: CDN || config.root + config.search.path,
+      preload,
+      top_n_per_article,
+      unescape,
       languages: {
         // search languages
         hits_empty: _p("search.local_search.hits_empty"),
@@ -31,7 +33,7 @@
     })
   }
 
-  let translate = 'undefined';
+  let translate = 'undefined'
   if (theme.translate && theme.translate.enable){
     translate = JSON.stringify({
       defaultEncoding: theme.translate.defaultEncoding,
@@ -41,7 +43,7 @@
     })
   }
 
-  let copyright = 'undefined';
+  let copyright = 'undefined'
   if (theme.copy.enable && theme.copy.copyright.enable){
     copyright = JSON.stringify({
       limitCount: theme.copy.copyright.limit_count,
@@ -54,7 +56,7 @@
     })
   }
 
-  let Snackbar = 'undefined';
+  let Snackbar = 'undefined'
   if (theme.snackbar && theme.snackbar.enable) {
     Snackbar = JSON.stringify({
       chs_to_cht: _p("Snackbar.chs_to_cht"),
@@ -67,7 +69,7 @@
     })
   }
 
-  let noticeOutdate = 'undefined';
+  let noticeOutdate = 'undefined'
   if (theme.noticeOutdate && theme.noticeOutdate.enable) {
     noticeOutdate = JSON.stringify({
       limitDay: theme.noticeOutdate.limit_day,
@@ -77,15 +79,18 @@
     })
   }
 
-  let highlight = 'undefined';
-  let syntaxHighlighter = config.syntax_highlighter;
-  let highlightEnable = syntaxHighlighter ? ['highlight.js', 'prismjs'].includes(syntaxHighlighter) : (config.highlight.enable || config.prismjs.enable);
+  let highlight = 'undefined'
+  let syntaxHighlighter = config.syntax_highlighter
+  let highlightEnable = syntaxHighlighter ? ['highlight.js', 'prismjs'].includes(syntaxHighlighter) : (config.highlight.enable || config.prismjs.enable)
   if (highlightEnable) {
+    const { copy, language, height_limit, fullpage, macStyle } = theme.code_blocks
     highlight = JSON.stringify({
       plugin: syntaxHighlighter ? syntaxHighlighter : config.highlight.enable ? 'highlight.js' : 'prismjs',
-      highlightCopy: theme.highlight_copy,
-      highlightLang: theme.highlight_lang,
-      highlightHeightLimit: theme.highlight_height_limit
+      highlightCopy: copy,
+      highlightLang: language,
+      highlightHeightLimit: height_limit,
+      highlightFullpage: fullpage,
+      highlightMacStyle: macStyle
     })
   }
 
@@ -106,7 +111,7 @@ script.
       homepage: !{theme.post_meta.page.date_format === 'relative'},
       post: !{theme.post_meta.post.date_format === 'relative'}
     },
-    runtime: '!{theme.runtimeshow.enable ? _p("aside.card_webinfo.runtime.unit") : ""}',
+    runtime: '!{theme.aside.card_webinfo.runtime_date ? _p("aside.card_webinfo.runtime.unit") : ""}',
     dateSuffix: {
       just: '!{_p("date_suffix.just")}',
       min: '!{_p("date_suffix.min")}',
@@ -115,7 +120,7 @@ script.
       month: '!{_p("date_suffix.month")}'
     },
     copyright: !{copyright},
-    lightbox: '!{ theme.medium_zoom ? "mediumZoom" : (theme.fancybox ? "fancybox" : "null" )}',
+    lightbox: '!{ theme.lightbox || 'null' }',
     Snackbar: !{Snackbar},
     infinitegrid: {
       js: '!{url_for(theme.asset.egjs_infinitegrid)}',

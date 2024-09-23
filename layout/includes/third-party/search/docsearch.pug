@@ -1,4 +1,4 @@
-- const { appId, apiKey, indexName, option } = theme.docsearch
+- const { placeholder, docsearch: { appId, apiKey, indexName, option } } = theme.search
 
 .docsearch-wrap
   #docsearch(style="display:none")
@@ -11,6 +11,7 @@
         apiKey: '!{apiKey}',
         indexName: '!{indexName}',
         container: '#docsearch',
+        placeholder: '!{ placeholder || _p("search.input_placeholder")}',
       }, !{JSON.stringify(option)}))
 
       const handleClick = () => {

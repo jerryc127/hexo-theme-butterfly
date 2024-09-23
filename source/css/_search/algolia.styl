@@ -10,6 +10,11 @@
         background: var(--search-bg)
         color: var(--search-input-color)
 
+      .ais-SearchBox-loadingIndicator
+        position: absolute
+        top: 18px
+        left: 67px
+
     .ais-Hits-list
       margin: 0
       padding: 0
@@ -66,7 +71,7 @@
 
     #algolia-hits
       > div
-        overflow-y: scroll
+        overflow-y: overlay
         margin: 0 -20px
         padding: 0 22px
         max-height: calc(80vh - 240px)

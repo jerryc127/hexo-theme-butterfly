@@ -45,8 +45,10 @@ link(rel='stylesheet', href=url_for(theme.asset.fontawesome))
 if (theme.snackbar && theme.snackbar.enable)
   link(rel='stylesheet', href=url_for(theme.asset.snackbar_css) media="print" onload="this.media='all'")
 
-if theme.fancybox
+if theme.lightbox === 'fancybox'
   link(rel='stylesheet' href=url_for(theme.asset.fancybox_css) media="print" onload="this.media='all'")
+
+!=fragment_cache('injectHeadJs', function(){return inject_head_js()})
 
 //- google_adsense
 !=partial('includes/head/google_adsense', {}, {cache: true})
@@ -62,7 +64,5 @@ if theme.blog_title_font && theme.blog_title_font.font_link
 !=partial('includes/head/config', {}, {cache: true})
 
 include ./head/config_site.pug
-
-!=fragment_cache('injectHeadJs', function(){return inject_head_js()})
 
 !=fragment_cache('injectHead', function(){return injectHtml(theme.inject.head)})

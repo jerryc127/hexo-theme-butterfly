@@ -13,25 +13,27 @@ $code-foreground = $themeColorEnable && hexo-config('theme_color.code_foreground
 $code-background = $themeColorEnable && hexo-config('theme_color.code_background') ? convert(hexo-config('theme_color.code_background')) : rgba(27, 31, 35, .05)
 $theme-toc-color = $themeColorEnable && hexo-config('theme_color.toc_color') ? convert(hexo-config('theme_color.toc_color')) : $strong-cyan
 // font
-$dafault-font-family = -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif
-$dafault-code-font = consolas, Menlo, 'PingFang SC', 'Microsoft YaHei', sans-serif
-$font-family = hexo-config('font.font-family') ? unquote(hexo-config('font.font-family')) : $dafault-font-family
-$code-font-family = hexo-config('font.code-font-family') ? unquote(hexo-config('font.code-font-family')) : $dafault-code-font
-$site-name-font = hexo-config('blog_title_font.font-family') && unquote(hexo-config('blog_title_font.font-family'))
+
+$chinseFont = $language == 'zh-CN' ? 'Microsoft YaHei' : 'Microsoft JhengHei'
+$dafault-font-family = -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', $chinseFont, sans-serif
+$dafault-code-font = consolas, Menlo, 'PingFang SC', $chinseFont, sans-serif
+
+$font-family = hexo-config('font.font_family') ? unquote(hexo-config('font.font_family')) : $dafault-font-family
+$code-font-family = hexo-config('font.code_font_family') ? unquote(hexo-config('font.code_font_family')) : $dafault-code-font
+$site-name-font = hexo-config('blog_title_font.font_family') && unquote(hexo-config('blog_title_font.font_family'))
 // hr
 $hrEnable = hexo-config('hr_icon') && hexo-config('hr_icon.enable')
 $hr-icon = $hrEnable && hexo-config('hr_icon.icon') ? hexo-config('hr_icon.icon') : '\f0c4'
-$hr-icon-top = $hrEnable && hexo-config('hr_icon.icon-top') ? convert(hexo-config('hr_icon.icon-top')) : -10px
+$hr-icon-top = $hrEnable && hexo-config('hr_icon.icon_top') ? convert(hexo-config('hr_icon.icon_top')) : -10px
 // page beatutify
 $beautifyEnable = hexo-config('beautify.enable')
-$title-prefix-icon = $beautifyEnable && hexo-config('beautify.title-prefix-icon') ? hexo-config('beautify.title-prefix-icon') : '\f0c1'
-$title-prefix-icon-color = $beautifyEnable && hexo-config('beautify.title-prefix-icon-color') ? convert(hexo-config('beautify.title-prefix-icon-color')) : $light-red
+$title-prefix-icon = $beautifyEnable && hexo-config('beautify.title_prefix_icon') ? hexo-config('beautify.title_prefix_icon') : '\f0c1'
+$title-prefix-icon-color = $beautifyEnable && hexo-config('beautify.title_prefix_icon_color') ? convert(hexo-config('beautify.title_prefix_icon_color')) : $light-red
 // Global Variables
-$font-size = hexo-config('font.global-font-size') ? convert(hexo-config('font.global-font-size')) : 14px
-$code-font-size = hexo-config('font.code-font-size') ? convert(hexo-config('font.code-font-size')) : var(--global-font-size)
+$font-size = hexo-config('font.global_font_size') ? convert(hexo-config('font.global_font_size')) : 14px
+$code-font-size = hexo-config('font.code_font_size') ? convert(hexo-config('font.code_font_size')) : var(--global-font-size)
 $font-color = #1F2D3D
 $text-line-height = 2
-$web-bg = hexo-config('background') && unquote(hexo-config('background'))
 $index_top_img_height = hexo-config('index_top_img_height') ? convert(hexo-config('index_top_img_height')) : 100vh
 $index_site_info_top = hexo-config('index_site_info_top') ? convert(hexo-config('index_site_info_top')) : 43%
 // Global color & SVG
@@ -59,7 +61,7 @@ $sticky-color = $light-orange
 $theme-meta-color = $themeColorEnable && hexo-config('theme_color.meta_color') ? convert(hexo-config('theme_color.meta_color')) : #858585
 // sidebar
 $sidebar-background = #f6f8fa
-$sidebar-width = 300px
+$sidebar-width = 330px
 // aside
 $toc-link-color = #666261
 $toc-mobile-width = calc(100% - 80px)

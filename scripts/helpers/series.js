@@ -2,14 +2,14 @@
 
 hexo.extend.helper.register('groupPosts', function () {
   const getGroupArray = array => {
-    const groups = {}
-    array.forEach(item => {
-      const Key = item.series
-      if (!Key) return
-      groups[Key] = groups[Key] || []
-      groups[Key].push(item)
-    })
-    return groups
+    return array.reduce((groups, item) => {
+      const key = item.series
+      if (key) {
+        groups[key] = groups[key] || []
+        groups[key].push(item)
+      }
+      return groups
+    }, {})
   }
 
   const sortPosts = posts => {
