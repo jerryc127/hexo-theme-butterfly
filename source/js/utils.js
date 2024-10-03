@@ -49,9 +49,7 @@
 
     overflowPaddingR: {
       add: () => {
-        const innerWidth = window.innerWidth
-        const clientWidth = document.body.clientWidth
-        const paddingRight = innerWidth - clientWidth
+        const paddingRight = window.innerWidth - document.body.clientWidth
 
         if (paddingRight > 0) {
           document.body.style.paddingRight = `${paddingRight}px`

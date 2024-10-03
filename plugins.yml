@@ -1,15 +1,15 @@
 abcjs_basic_js:
   name: abcjs
   file: dist/abcjs-basic-min.js
-  version: 6.4.1
+  version: 6.4.3
 activate_power_mode:
   name: butterfly-extsrc
   file: dist/activate-power-mode.min.js
-  version: 1.1.3
+  version: 1.1.4
 algolia_search:
   name: algoliasearch
   file: dist/algoliasearch-lite.umd.js
-  version: 4.24.0
+  version: 5.7.0
 aplayer_css:
   name: aplayer
   file: dist/APlayer.min.css
@@ -21,11 +21,11 @@ aplayer_js:
 artalk_css:
   name: artalk
   file: dist/Artalk.css
-  version: 2.8.7
+  version: 2.9.1
 artalk_js:
   name: artalk
   file: dist/Artalk.js
-  version: 2.8.7
+  version: 2.9.1
 blueimp_md5:
   name: blueimp-md5
   file: js/md5.min.js
@@ -33,23 +33,23 @@ blueimp_md5:
 canvas_fluttering_ribbon:
   name: butterfly-extsrc
   file: dist/canvas-fluttering-ribbon.min.js
-  version: 1.1.3
+  version: 1.1.4
 canvas_nest:
   name: butterfly-extsrc
   file: dist/canvas-nest.min.js
-  version: 1.1.3
+  version: 1.1.4
 canvas_ribbon:
   name: butterfly-extsrc
   file: dist/canvas-ribbon.min.js
-  version: 1.1.3
+  version: 1.1.4
 clickShowText:
   name: butterfly-extsrc
   file: dist/click-show-text.min.js
-  version: 1.1.3
+  version: 1.1.4
 click_heart:
   name: butterfly-extsrc
   file: dist/click-heart.min.js
-  version: 1.1.3
+  version: 1.1.4
 disqusjs:
   name: disqusjs
   file: dist/browser/disqusjs.es2015.umd.min.js
@@ -62,12 +62,12 @@ docsearch_css:
   name: '@docsearch/css'
   other_name: docsearch-css
   file: dist/style.css
-  version: 3.6.1
+  version: 3.6.2
 docsearch_js:
   name: '@docsearch/js'
   other_name: docsearch-js
   file: dist/umd/index.js
-  version: 3.6.1
+  version: 3.6.2
 egjs_infinitegrid:
   name: '@egjs/infinitegrid'
   other_name: egjs-infinitegrid
@@ -86,7 +86,7 @@ fancybox_css:
 fireworks:
   name: butterfly-extsrc
   file: dist/fireworks.min.js
-  version: 1.1.3
+  version: 1.1.4
 fontawesome:
   name: '@fortawesome/fontawesome-free'
   file: css/all.min.css
@@ -107,7 +107,7 @@ instantpage:
 instantsearch:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.73.3
+  version: 4.74.2
 katex:
   name: katex
   file: dist/katex.min.css
@@ -133,11 +133,11 @@ medium_zoom:
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
-  version: 10.9.1
+  version: 11.2.1
 meting_js:
   name: butterfly-extsrc
   file: metingjs/dist/Meting.min.js
-  version: 1.1.3
+  version: 1.1.4
 pace_default_css:
   name: pace-js
   other_name: pace
@@ -174,11 +174,11 @@ prismjs_lineNumber_js:
 sharejs:
   name: butterfly-extsrc
   file: sharejs/dist/js/social-share.min.js
-  version: 1.1.3
+  version: 1.1.4
 sharejs_css:
   name: butterfly-extsrc
   file: sharejs/dist/css/share.min.css
-  version: 1.1.3
+  version: 1.1.4
 snackbar:
   name: node-snackbar
   file: dist/snackbar.min.js
@@ -190,7 +190,7 @@ snackbar_css:
 twikoo:
   name: twikoo
   file: dist/twikoo.all.min.js
-  version: 1.6.38
+  version: 1.6.39
 typed:
   name: typed.js
   file: dist/typed.umd.js
@@ -203,9 +203,9 @@ waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 3.3.0
+  version: 3.3.2
 waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 3.3.0
+  version: 3.3.2
