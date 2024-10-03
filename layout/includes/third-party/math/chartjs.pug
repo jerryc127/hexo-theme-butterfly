@@ -3,6 +3,18 @@ script.
         const $chartjs = document.querySelectorAll('#article-container .chartjs-wrap')
         if ($chartjs.length === 0) return
 
+        const applyThemeDefaultsConfig = (theme) => {
+            if (theme === 'dark-mode') {
+                Chart.defaults.color = "!{theme.chartjs.color.dark}"
+                Chart.defaults.borderColor = "!{theme.chartjs.borderColor.dark}"
+                Chart.defaults.scale.ticks.backdropColor = "!{theme.chartjs.scale.ticks.backdropColor.dark}"
+            } else {
+                Chart.defaults.color = "!{theme.chartjs.color.light}"
+                Chart.defaults.borderColor = "!{theme.chartjs.borderColor.light}"
+                Chart.defaults.scale.ticks.backdropColor = "!{theme.chartjs.scale.ticks.backdropColor.light}"
+            }
+        }
+
         // 递归遍历 config 对象，自动根据当前主题选择双模式配色方案
         const applyThemeConfig = (obj, theme) => {
             if (typeof obj !== 'object' || obj === null) return
@@ -45,6 +57,9 @@ script.
 
                 // 根据当前主题选择相应的配色方案
                 const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark-mode' : 'light-mode'
+
+                // 设置默认样式（默认初始化）
+                applyThemeDefaultsConfig(theme)
 
                 // 自动遍历 config，应用双模式配色方案
                 applyThemeConfig(config, theme)

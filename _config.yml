@@ -824,6 +824,19 @@ mermaid:
 # see https://www.chartjs.org/docs/latest/
 chartjs:
   enable: true
+  # 下面的設置是正對 ChartJS 的預設樣式設置，非必要請勿修改，除非你理解他們是如何工作的
+  # 當然，樣式會以具體的 MD 語法設置優先，其次為該預設設置，最後為 ChartJS 本身的預設設置
+  color:  # 表格通用字體顏色
+    light: "rgba(0, 0, 0, 0.8)" # 淺色模式
+    dark: "rgba(255, 255, 255, 0.8)" # 深色模式
+  borderColor: # 表格通用邊框顏色
+    light: "rgba(0, 0, 0, 0.1)"
+    dark: "rgba(255, 255, 255, 0.2)"
+  scale:
+    ticks:
+      backdropColor:  # 針對雷達圖和極地圖的刻度標籤背景色
+        light: "transparent"
+        dark: "transparent"
 
 # Note (Bootstrap Callout)
 note:
