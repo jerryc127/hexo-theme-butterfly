@@ -8,19 +8,14 @@
       padding-right: 15px
 
   +maxWidth900()
+    margin-top: 20px
     width: 100%
-
-  > .card-widget:first-child
-    margin-top: 0
-
-    +maxWidth900()
-      margin-top: 20px
 
   .card-widget
     @extend .cardHover
     position: relative
     overflow: hidden
-    margin-top: 20px
+    margin-bottom: 20px
     padding: 20px 24px
 
     if hexo-config('aside.mobile') == false
@@ -28,16 +23,19 @@
         &:not(#card-toc)
           display: none
 
+    &:last-child
+      margin-bottom: 0
+
   .card-info
     .author-info
-      &__name
+      &-name
         font-weight: 500
         font-size: 1.57em
 
-      &__description
+      &-description
         margin-top: -.42em
 
-    .card-info-data
+    .site-data
       margin: 14px 0 4px
 
     .card-info-social-icons
@@ -61,6 +59,7 @@
       color: var(--btn-color)
       text-align: center
       line-height: 2.4
+      addBorderRadius(7)
 
       &:hover
         background-color: var(--btn-hover-color)
@@ -86,6 +85,7 @@
     a
       display: inline-block
       padding: 0 4px
+      line-height: 1.8
 
       &:hover
         color: $text-hover !important
@@ -112,8 +112,9 @@
 
       .thumbnail
         overflow: hidden
-        width: w = 4.2em
+        width: w = 4em
         height: w
+        addBorderRadius()
 
         :first-child
           @extend .imgHover
@@ -130,14 +131,14 @@
         & > time,
         & > .name
           display: block
-          color: $theme-meta-color
-          font-size: 85%
+          color: var(--card-meta)
+          font-size: .85em
 
         & > .title,
         & > .comment
           @extend .limit-more-line
           color: var(--font-color)
-          font-size: 95%
+          // font-size: 95%
           line-height: 1.5
           -webkit-line-clamp: 2
 
@@ -158,13 +159,16 @@
     a
       display: flex
       flex-direction: row
-      padding: 3px 10px
+      padding: 2px 8px
+      margin: 2px 0
       color: var(--font-color)
-      transition: all .4s
+      transition: all .3s
+      addBorderRadius()
 
       &:hover
-        padding: 3px 17px
+        padding: 2px 12px
         background-color: var(--text-bg-hover)
+        color: var(--white)
 
       span
         @extend .limit-one-line
@@ -288,9 +292,10 @@
       .toc-link
         display: block
         margin: 4px 0
-        padding: 1px 6px
+        padding: 1px 8px
         color: var(--toc-link-color)
         transition: all .2s ease-in-out
+        addBorderRadius()
 
         &:hover
           color: $theme-color
@@ -397,9 +402,9 @@
     .card-recent-post
       order: hexo-config('aside.card_recent_post.sort_order')
 
-  if hexo-config('newest_comments.sort_order')
+  if hexo-config('aside.card_newest_comments.sort_order')
     #card-newest-comments
-      order: hexo-config('newest_comments.sort_order')
+      order: hexo-config('aside.card_newest_comments.sort_order')
 
   if hexo-config('aside.card_categories.sort_order')
     .card-categories

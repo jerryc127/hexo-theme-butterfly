@@ -19,17 +19,19 @@ script.
         waline.destroy()
       }
 
-      btf.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+      btf.addGlobalFn('pjaxSendOnce', destroyWaline, 'destroyWaline')
     }
 
-    const loadWaline = async () => {
+    const loadWaline = () => {
       if (initFn) initWaline(initFn)
       else {
-        await getCSS('!{url_for(theme.asset.waline_css)}')
-        const { init } = await import('!{url_for(theme.asset.waline_js)}')
-        initFn = init || Waline.init
-        initWaline(initFn)
-        window.walineFn = initFn
+        btf.getCSS('!{url_for(theme.asset.waline_css)}')
+          .then(() => import('!{url_for(theme.asset.waline_js)}'))
+          .then(({ init }) => {
+            initFn = init || Waline.init
+            initWaline(initFn)
+            window.walineFn = initFn
+          })
       }
     }
 

@@ -35,7 +35,7 @@ const timeLineFn = (args, content) => {
     result += `<div class='timeline-item'>${tlTitleHtml + tlContentHtml}</div>`
   }
 
-  return `<div class="timeline ${color}">${result}</div>`
+  return `<div class="timeline ${color || ''}">${result}</div>`
 }
 
 hexo.extend.tag.register('timeline', timeLineFn, { ends: true })

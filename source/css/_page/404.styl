@@ -1,69 +1,66 @@
 if hexo-config('error_404.enable')
-  .error404
-    #error-wrap
-      position: absolute
-      top: 50%
-      right: 0
-      left: 0
-      margin: 0 auto
-      padding: 60px 20px 0
-      max-width: 1000px
-      transform: translate(0, -50%)
+  .type-404
+    .error-content
+      @extend .cardHover
+      overflow: hidden
+      margin: 0 20px
+      height: 360px
 
-      .error-content
-        @extend .cardHover
+      +maxWidth768()
+        margin: 0
+        height: 500px
+
+      .error-img
+        display: inline-block
         overflow: hidden
-        margin: 0 20px
-        height: 360px
+        width: 50%
+        height: 100%
 
         +maxWidth768()
-          margin: 0
-          height: 500px
+          width: 100%
+          height: 45%
 
-        .error-img
-          display: inline-block
-          overflow: hidden
-          width: 50%
-          height: 100%
+        img
+          @extend .imgHover
+          background-color: $theme-color
 
-          +maxWidth768()
-            width: 100%
-            height: 45%
+      .error-info
+        display: inline-flex
+        flex-direction: column
+        justify-content: center
+        align-content: center
+        width: 50%
+        height: 100%
+        vertical-align: top
+        text-align: center
 
-          img
-            @extend .imgHover
-            background-color: $theme-color
+        if $site-name-font
+          font-family: $site-name-font
 
-        .error-info
-          display: inline-flex
-          flex-direction: column
-          justify-content: center
-          align-content: center
-          width: 50%
-          height: 100%
-          vertical-align: top
-          text-align: center
+        +maxWidth768()
+          width: 100%
+          height: 55%
 
-          if $site-name-font
-            font-family: $site-name-font
+        .error_title
+          margin-top: -.6em
+          font-size: 9em
 
           +maxWidth768()
-            width: 100%
-            height: 55%
+            font-size: 8em
 
-          .error_title
-            margin-top: -.6em
-            font-size: 9em
+        .error_subtitle
+          @extend .limit-more-line
+          margin-top: -3em
+          word-break: break-word
+          font-size: 1.6em
+          -webkit-line-clamp: 2
 
-            +maxWidth768()
-              font-size: 8em
+    .nc
+      margin-top: 5%
+      padding: 0 20px
 
-          .error_subtitle
-            @extend .limit-more-line
-            margin-top: -3em
-            word-break: break-word
-            font-size: 1.6em
-            -webkit-line-clamp: 2
+    #footer
+      display: none
 
     & + #rightside
       display: none

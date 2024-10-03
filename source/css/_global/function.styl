@@ -15,12 +15,19 @@
   text-rendering: auto
   -webkit-font-smoothing: antialiased
 
+addBorderRadius(x = 6, hide = false)
+  if hexo-config('rounded_corners_ui')
+    border-radius: unit(x, 'px')
+
+    if hide
+      overflow: hidden
+
 // card hover
 .cardHover
-  border-radius: 8px
   background: var(--card-bg)
   box-shadow: var(--card-box-shadow)
   transition: all .3s
+  addBorderRadius(8)
 
   &:hover
     box-shadow: var(--card-hover-box-shadow)
@@ -37,11 +44,10 @@
 .postImgHover
   &:hover
     .cover
-      opacity: .8
+      opacity: .7
       transform: scale(1.1)
 
   .cover
-    position: absolute
     width: 100%
     height: 100%
     opacity: .4
@@ -96,6 +102,12 @@
       transition: all 1s ease-in-out
       @extend .fontawesomeIcon
 
+.verticalCenter
+  position: absolute
+  top: 50%
+  width: 100%
+  transform: translate(0, -50%)
+
 maxWidth600()
   @media screen and (max-width: 600px)
     {block}
@@ -110,6 +122,10 @@ minWidth768()
 
 maxWidth1024()
   @media screen and (max-width: 1024px)
+    {block}
+
+minWidth1024()
+  @media screen and (min-width: 1024px)
     {block}
 
 maxWidth900()
@@ -134,15 +150,13 @@ if hexo-config('enter_transitions')
   #footer
     animation: bottom-top 1s
 
-  #page-header:not(.full_page)
+  #page-header:not(.full_page),
+  #nav.show
     animation: header-effect 1s
 
   #site-title,
   #site-subtitle
     animation: titleScale 1s
-
-  #nav.show
-    animation: headerNoOpacity 1s
 
   canvas:not(#ribbon-canvas),
   #web_bg
@@ -182,27 +196,16 @@ if hexo-config('avatar.effect') == true
 
 @keyframes header-effect
   0%
-    opacity: 0
-    transform: translateY(-50px)
-
-  100%
-    opacity: 1
-    transform: translateY(0)
-
-@keyframes headerNoOpacity
-  0%
-    transform: translateY(-50px)
+    transform: translateY(-35px)
 
   100%
     transform: translateY(0)
 
 @keyframes bottom-top
   0%
-    opacity: 0
-    transform: translateY(50px)
+    transform: translateY(35px)
 
   100%
-    opacity: 1
     transform: translateY(0)
 
 @keyframes titleScale

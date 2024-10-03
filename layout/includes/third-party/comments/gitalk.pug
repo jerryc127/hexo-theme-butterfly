@@ -19,8 +19,8 @@ script.
     const loadGitalk = async() => {
       if (typeof Gitalk === 'function') initGitalk()
       else {
-        await getCSS('!{url_for(theme.asset.gitalk_css)}')
-        await getScript('!{url_for(theme.asset.gitalk)}')
+        await btf.getCSS('!{url_for(theme.asset.gitalk_css)}')
+        await btf.getScript('!{url_for(theme.asset.gitalk)}')
         initGitalk()
       }
     }

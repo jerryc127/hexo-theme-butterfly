@@ -1,6 +1,7 @@
-if theme.algolia_search.enable
-  include ./algolia.pug
-else if theme.local_search.enable
-  include ./local-search.pug
-else if theme.docsearch.enable
-  include ./docsearch.pug
+case theme.search.use
+  when 'algolia_search'
+    include ./algolia.pug
+  when 'local_search'
+    include ./local-search.pug
+  when 'docsearch'
+    include ./docsearch.pug

@@ -6,9 +6,12 @@ hexo.extend.filter.register('before_generate', () => {
   const themeConfig = hexo.theme.config
   let { use } = themeConfig.comments
   if (!use) return
-  if (typeof use === 'string') {
-    use = use.split(',')
-  }
-  const newArray = use.map(item => item.toLowerCase().replace(/\b[a-z]/g, s => s.toUpperCase()))
-  themeConfig.comments.use = newArray
+
+  // 確保 use 是一個陣列
+  use = Array.isArray(use) ? use : use.split(',')
+
+  // 將每個項目轉換為小寫並將首字母大寫
+  themeConfig.comments.use = use.map(item =>
+    item.trim().toLowerCase().replace(/\b[a-z]/g, s => s.toUpperCase())
+  )
 })

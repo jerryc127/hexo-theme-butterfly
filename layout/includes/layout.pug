@@ -2,46 +2,35 @@
 - page.aside = is_archive() ? theme.aside.display.archive: is_category() ? theme.aside.display.category : is_tag() ? theme.aside.display.tag : page.aside
 - var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
 - var pageType = is_post() ? 'post' : 'page'
+- pageType = page.type ? pageType + ' type-' + page.type : pageType
 
 doctype html
 html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside)
   head
     include ./head.pug
   body
-    if theme.preloader.enable
-      !=partial('includes/loading/index', {}, {cache: true})
+    !=partial('includes/loading/index', {}, {cache: true})
 
     if theme.background
-      #web_bg
+      #web_bg(style=getBgPath(theme.background))
       
     !=partial('includes/sidebar', {}, {cache: true})
 
-    if page.type !== '404'
-      #body-wrap(class=pageType)
-        include ./header/index.pug
+    #body-wrap(class=pageType)
+      include ./header/index.pug
 
-        main#content-inner.layout(class=hideAside)
-          if body
-            div!= body
-          else
-            block content
-            if theme.aside.enable && page.aside !== false
-              include widget/index.pug
-
-        - var footerBg = theme.footer_bg
-        if (footerBg)
-          if (footerBg === true)
-            - var footer_bg = bg_img
-          else
-            - var footer_bg = isImgOrUrl(theme.footer_bg) ? `background-image: url('${url_for(footerBg)}')` : `background: ${footerBg}`
+      main#content-inner.layout(class=hideAside)
+        if body
+          div!= body
         else
-          - var footer_bg = ''
+          block content
+          if theme.aside.enable && page.aside !== false
+            include widget/index.pug
 
-        footer#footer(style=footer_bg)
-          !=partial('includes/footer', {}, {cache: true})
-
-    else
-      include ./404.pug
+      - const footerBg = theme.footer_img
+      - const footer_bg = footerBg ? footerBg === true ? bg_img : getBgPath(footerBg) : ''
+      footer#footer(style=footer_bg)
+        !=partial('includes/footer', {}, {cache: true})
 
     include ./rightside.pug
     include ./additional-js.pug

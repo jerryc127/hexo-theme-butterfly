@@ -1,0 +1,65 @@
+- let { serverURL, website_id, option, UV_PV } = theme.umami_analytics
+- const isServerURL = !!serverURL
+- const baseURL = serverURL ? serverURL.replace(/\/$/, '') : 'https://cloud.umami.is'
+- const apiUrl = serverURL ? serverURL.replace(/\/$/, '') + '/api' : 'https://api.umami.is/v1'
+
+script.
+  (() => {
+    const option = !{JSON.stringify(option)}
+    const config = !{JSON.stringify(UV_PV)}
+
+    const runTrack = () => {
+      umami.track(props => ({ ...props, url: window.location.pathname, title: GLOBAL_CONFIG_SITE.title }))
+    }
+
+    const loadUmamiJS = () => {
+      btf.getScript('!{baseURL}/script.js', {
+        'data-website-id': '!{website_id}',
+        'data-auto-track': 'false',
+        ...option
+      }).then(runTrack)
+    }
+
+    const getData = async (isPost) => {
+      const now = Date.now()
+      const keyUrl = isPost ? `&url=${window.location.pathname}` : ''
+      const headerList = { 'Accept': 'application/json' }
+      if (!{isServerURL}) headerList['Authorization'] = `Bearer ${config.token}`
+      else headerList['x-umami-api-key'] = config.token
+      const res = await fetch(`!{apiUrl}/websites/!{website_id}/stats?startAt=0000000000&endAt=${now}${keyUrl}`, {
+        method: "GET",
+        headers: headerList
+      })
+      return await res.json()
+    }
+
+    const insertData = async () => {
+      try {
+        if (GLOBAL_CONFIG_SITE.isPost && config.page_pv) {
+          const pagePV = document.getElementById('umamiPV')
+          if (pagePV) {
+            const data = await getData(true)
+            pagePV.textContent = data.pageviews.value
+          }
+        } else {
+          const data = (config.site_uv || config.site_pv) && await getData()
+          if (config.site_uv) {
+            const siteUV = document.getElementById('umami-site-uv')
+            if (siteUV) siteUV.textContent = data.visitors.value
+          }
+          if (config.site_pv) {
+            const sitePV = document.getElementById('umami-site-pv')
+            if (sitePV) sitePV.textContent = data.pageviews.value
+          }
+        }
+      } catch (e) {
+        console.error('Failed to load Umami Analytics:', e)
+      }
+    }
+
+    btf.addGlobalFn('pjaxComplete', runTrack, 'umami_analytics_run_track')
+    btf.addGlobalFn('pjaxComplete', insertData, 'umami_analytics_insert')
+
+    loadUmamiJS()
+    insertData()
+  })()

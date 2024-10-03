@@ -2,20 +2,17 @@
   const titleVal = pageTitle.replace(/'/ig,"\\'")
 
   let isHighlightShrink
-  if (theme.highlight_shrink == 'none') isHighlightShrink = 'undefined'
-  else if (page.highlight_shrink === true || page.highlight_shrink === false) isHighlightShrink = page.highlight_shrink
-  else isHighlightShrink = theme.highlight_shrink
+  if (theme.code_blocks.shrink == 'none') isHighlightShrink = 'undefined'
+  else if (typeof page.highlight_shrink == 'boolean') isHighlightShrink = page.highlight_shrink
+  else isHighlightShrink = theme.code_blocks.shrink
 
   var showToc = false
   if (theme.aside.enable && page.aside !== false) {
     let tocEnable = false
-    if (is_post()) {
-      if (theme.toc.post) tocEnable = true
-    } else if (is_page()) {
-      if (theme.toc.page) tocEnable = true
-    }
-    const pageToc = page.toc === true || page.toc === false ? page.toc : tocEnable
-    showToc = pageToc && (toc(page.content) !== '' || page.encrypt == true )
+    if (is_post() && theme.toc.post) tocEnable = true
+    else if (is_page() && theme.toc.page) tocEnable = true
+    const pageToc = typeof page.toc === 'boolean' ? page.toc : tocEnable
+    showToc = pageToc && (toc(page.content) !== '' || page.encrypt === true)
   }
 -
 

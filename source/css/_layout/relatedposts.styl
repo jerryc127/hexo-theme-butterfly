@@ -7,7 +7,7 @@
     font-size: 1.43em
 
   & > .relatedPosts-list
-    & > div
+    & > a
       position: relative
       display: inline-block
       overflow: hidden
@@ -17,6 +17,7 @@
       background: $dark-black
       vertical-align: bottom
       @extend .postImgHover
+      addBorderRadius()
 
       +maxWidth768()
         margin: 2px
@@ -27,11 +28,8 @@
         width: calc(100% - 4px)
 
     .content
-      position: absolute
-      top: 50%
       padding: 0 20px
-      width: 100%
-      transform: translate(0, -50%)
+      @extend .verticalCenter
 
       .date
         color: var(--light-grey)
