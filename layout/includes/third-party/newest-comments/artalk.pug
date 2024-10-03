@@ -3,6 +3,7 @@
 - const avatarDefault = (option !== null && option.gravatar && (option.gravatar.params || option.gravatar.default)) || ''
 
 != partial("includes/third-party/newest-comments/common.pug", {}, { cache: true })
+
 script.
   window.addEventListener('load', () => {
     const keyName = 'artalk-newest-comments'
@@ -40,18 +41,9 @@ script.
       try {
         const res = await fetch(`!{server}/api/v2/stats/latest_comments?${searchParams}`)
         const result = await res.json()
-<<<<<<< HEAD
-        const avatarStr = await getSetting()
-        const { mirror, params, default:defaults } = avatarStr.frontend_conf.gravatar
-        const avatarCdn = '!{avatarCdn}' || mirror
-        let avatarDefault = '!{avatarDefault}' || params || defaults
-        avatarDefault = avatarDefault.startsWith('d=') ? avatarDefault : `d=${avatarDefault}`
-        const artalk = result.data.map(function (e) {
-=======
         const { avatarCdn, avatarDefault } = await getAvatarValue()
         const artalk = result.data.map(e => {
           const avatar = avatarCdn && e.email_encrypted ? `${avatarCdn}${e.email_encrypted}?${avatarDefault}` : ''
->>>>>>> dev
           return {
             'avatar': avatar,
             'content': changeContent(e.content_marked),
