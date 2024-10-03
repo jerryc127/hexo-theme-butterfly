@@ -1,46 +1,41 @@
 'use strict'
 
-const { stripHTML, escapeHTML, prettyUrls } = require('hexo-util')
+const { stripHTML, prettyUrls, truncate } = require('hexo-util')
 const crypto = require('crypto')
 
-hexo.extend.helper.register('page_description', function () {
-  const { config, page } = this
-  let description = page.description || page.content || page.title || config.description
-
-  if (description) {
-    description = escapeHTML(stripHTML(description).substring(0, 150)
-      .trim()
-    ).replace(/\n/g, ' ')
-    return description
-  }
+hexo.extend.helper.register('truncate', (content, length) => {
+  return truncate(stripHTML(content), { length, separator: ' ' }).replace(/\n/g, ' ')
 })
 
 hexo.extend.helper.register('cloudTags', function (options = {}) {
   const env = this
-  let { source, minfontsize, maxfontsize, limit, unit, orderby, order } = options
-  unit = unit || 'px'
+  let { source, minfontsize, maxfontsize, limit, unit = 'px', orderby, order } = options
 
-  let result = ''
   if (limit > 0) {
     source = source.limit(limit)
   }
 
-  const sizes = []
-  source.sort('length').forEach(tag => {
-    const { length } = tag
-    if (sizes.includes(length)) return
-    sizes.push(length)
-  })
+  const sizes = [...new Set(source.map(tag => tag.length).sort((a, b) => a - b))]
+
+  const getRandomColor = () => {
+    const randomColor = () => Math.floor(Math.random() * 201)
+    const r = randomColor()
+    const g = randomColor()
+    const b = randomColor()
+    return `rgb(${Math.max(r, 50)}, ${Math.max(g, 50)}, ${Math.max(b, 50)})`
+  }
+
+  const generateStyle = (size, unit) =>
+    `font-size: ${parseFloat(size.toFixed(2)) + unit}; color: ${getRandomColor()};`
 
   const length = sizes.length - 1
-  source.sort(orderby, order).forEach(tag => {
+  const result = source.sort(orderby, order).map(tag => {
     const ratio = length ? sizes.indexOf(tag.length) / length : 0
     const size = minfontsize + ((maxfontsize - minfontsize) * ratio)
-    let style = `font-size: ${parseFloat(size.toFixed(2))}${unit};`
-    const color = 'rgb(' + Math.floor(Math.random() * 201) + ', ' + Math.floor(Math.random() * 201) + ', ' + Math.floor(Math.random() * 201) + ')' // 0,0,0 -> 200,200,200
-    style += ` color: ${color}`
-    result += `<a href="${env.url_for(tag.path)}" style="${style}">${tag.name}</a>`
-  })
+    const style = generateStyle(size, unit)
+    return `<a href="${env.url_for(tag.path)}" style="${style}">${tag.name}</a>`
+  }).join('')
+
   return result
 })
 
@@ -52,9 +47,8 @@ hexo.extend.helper.register('md5', function (path) {
   return crypto.createHash('md5').update(decodeURI(this.url_for(path))).digest('hex')
 })
 
-hexo.extend.helper.register('injectHtml', function (data) {
-  if (!data) return ''
-  return data.join('')
+hexo.extend.helper.register('injectHtml', data => {
+  return data ? data.join('') : ''
 })
 
 hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
@@ -70,7 +64,8 @@ hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
   const loop = (m) => {
     for (const key in m) {
       if (typeof m[key] === 'object') {
-        loop(m[key])
+        const result = loop(m[key])
+        if (result) return result
       }
 
       if (/\/archives\//.test(m[key])) {
@@ -82,7 +77,18 @@ hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
   return loop(menu) || defaultTitle
 })
 
-hexo.extend.helper.register('isImgOrUrl', function (path) {
-  const imgTestReg = /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/i
-  return path.indexOf('//') !== -1 || imgTestReg.test(path)
+hexo.extend.helper.register('getBgPath', path => {
+  if (!path) return ''
+
+  const absoluteUrlPattern = /^(?:[a-z][a-z\d+.-]*:)?\/\//i
+  const relativeUrlPattern = /^(\.\/|\.\.\/|\/|[^/]+\/).*$/
+  const colorPattern = /^(#|rgb|rgba|hsl|hsla|linear-gradient|radial-gradient)/i
+
+  if (colorPattern.test(path)) {
+    return `background-color: ${path};`
+  } else if (absoluteUrlPattern.test(path) || relativeUrlPattern.test(path)) {
+    return `background-image: url(${path});`
+  } else {
+    return `background: ${path};`
+  }
 })

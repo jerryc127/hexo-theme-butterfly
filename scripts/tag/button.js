@@ -10,11 +10,12 @@
 const urlFor = require('hexo-util').url_for.bind(hexo)
 
 const btn = args => {
-  args = args.join(' ').split(',')
-  const [url = '', text = '', icon = '', option = ''] = args.map(arg => arg.trim())
+  const [url = '', text = '', icon = '', option = ''] = args.join(' ').split(',').map(arg => arg.trim())
 
-  return `<a class="btn-beautify ${option}" href="${urlFor(url)}" 
-  title="${text}">${icon.length ? `<i class="${icon}"></i>` : ''}${text.length ? `<span>${text}</span>` : ''}</a>`
+  const iconHTML = icon ? `<i class="${icon}"></i>` : ''
+  const textHTML = text ? `<span>${text}</span>` : ''
+
+  return `<a class="btn-beautify ${option}" href="${urlFor(url)}" title="${text}">${iconHTML}${textHTML}</a>`
 }
 
 hexo.extend.tag.register('btn', btn, { ends: false })

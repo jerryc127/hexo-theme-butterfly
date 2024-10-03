@@ -33,7 +33,7 @@ script.
 
     const loadTwikoo = () => {
       if (typeof twikoo === 'object') setTimeout(init,0)
-      else getScript('!{url_for(theme.asset.twikoo)}').then(init)
+      else btf.getScript('!{url_for(theme.asset.twikoo)}').then(init)
     }
 
     if ('!{use[0]}' === 'Twikoo' || !!{lazyload}) {

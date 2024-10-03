@@ -1,4 +1,4 @@
-- const { readmode, translate, darkmode, aside, chat_btn } = theme
+- const { readmode, translate, darkmode, aside, chat } = theme
 mixin rightsideItem(array)
   each item in array
     case item
@@ -22,9 +22,9 @@ mixin rightsideItem(array)
           button#mobile-toc-button.close(type="button" title=_p("rightside.toc"))
             i.fas.fa-list-ul
       when 'chat'
-        if chat_btn
+        if chat.rightside_button && chat.use
           button#chat-btn(type="button" title=_p("rightside.chat"))
-            i.fas.fa-sms
+            i.fas.fa-message
       when 'comment'
         if commentsJsLoad
           a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))

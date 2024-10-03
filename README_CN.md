@@ -2,6 +2,10 @@
   <a title="English" href="/README.md">English</a>
 </div>
 
+<div align="center">
+
+<img src="./source/img/butterfly-icon.png" width="150" height="150" />
+
 # hexo-theme-butterfly
 
 ![master version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly/master?color=%231ab1ad&label=master)
@@ -10,13 +14,15 @@
 ![hexo version](https://img.shields.io/badge/hexo-5.3.0+-0e83c)
 ![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly?color=FF5531)
 
+📢 預覽: [Butterfly](https://butterfly.js.org/) / [CrazyWong](https://blog.crazywong.com/)
+
+📖 文檔: [中文](https://butterfly.js.org/posts/21cfbf15/) / [English](https://butterfly.js.org/en/posts/butterfly-docs-en-get-started/)
+
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/theme-butterfly-readme.png)
 
-📢 預覽: [Butterfly](https://butterfly.js.org/) || [CrazyWong](https://blog.crazywong.com/)
+</div>
 
-📖 文檔: [中文](https://butterfly.js.org/posts/21cfbf15/) || [English](https://butterfly.js.org/en/posts/butterfly-docs-en-get-started/)
-
-一款基於[hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody)修改的主題
+---
 
 ## 💻 安裝
 
@@ -59,6 +65,7 @@ theme: butterfly
 ## 🎉 特色
 
 - [x] 卡片化設計
+- [x] 圓角化設計/直角化設計
 - [X] 支持二級目錄
 - [x] 雙欄設計
 - [x] 響應式主題
@@ -67,7 +74,7 @@ theme: butterfly
 - [x] 文章閲讀模式
 - [x] 簡體和繁體轉換
 - [X] 電腦和手機都可查看TOC目錄
-- [X] 內置多種代碼配色（darker/pale night/light/ocean/mac/mac light），可自定義代碼配色
+- [X] 內置多種代碼配色（darker/pale night/light/ocean），可自定義代碼配色
 - [X] 代碼塊顯示代碼語言/關閉或展開代碼塊/代碼複製/代碼自動換行
 - [X] 可關閉文字複製/可開啟內容複製增加版權信息）
 - [X] 兩種搜索（ Algolia 搜索和本地搜索）
@@ -79,7 +86,7 @@ theme: butterfly
 - [x] 多種分享系統（Sharejs/Addtoany）
 - [X] 多種評論系統（Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/artalk）
 - [x] 支持雙評論部署
-- [x] 多種在線聊天（Chatra/Tidio/Daovoice/Crisp/messenger）
+- [x] 多種在線聊天（Chatra/Tidio/Daovoice/Crisp）
 - [x] 多種分析系統
 - [x] 谷歌廣告/手動廣告位置
 - [x] 各種站長驗證
@@ -107,5 +114,3 @@ theme: butterfly
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-2.jpg)
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-3.jpg)
 ![](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-4.jpg)
-![](https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/theme-butterfly-readme-homepage-1.png)
-![](https://cdn.jsdelivr.net/gh/jerryc127/CDN/img/theme-butterfly-readme-homepage-2.png)

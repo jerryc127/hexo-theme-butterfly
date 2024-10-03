@@ -1,12 +1,11 @@
 if theme.aside.card_author.enable
-  .card-widget.card-info
-    .is-center
-      .avatar-img
-        img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
-      .author-info__name= config.author
-      .author-info__description!= theme.aside.card_author.description || config.description
+  .card-widget.card-info.is-center
+    .avatar-img
+      img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+    .author-info-name= config.author
+    .author-info-description!= theme.aside.card_author.description || config.description
 
-    .card-info-data.site-data.is-center
+    .site-data
       a(href=url_for(config.archive_dir) + '/')
         .headline= _p('aside.articles')
         .length-num= site.posts.length
@@ -23,5 +22,5 @@ if theme.aside.card_author.enable
         span=theme.aside.card_author.button.text
   
     if(theme.social)
-        .card-info-social-icons.is-center
-          !=partial('includes/header/social', {}, {cache: true})
+      .card-info-social-icons
+        !=partial('includes/header/social', {}, {cache: true})

@@ -3,25 +3,25 @@ if theme.menu
     each value, label in theme.menu
       if typeof value !== 'object'
         .menus_item
-          - const valueArray = value.split('||')
-          a.site-page(href=url_for(trim(valueArray[0])))
-            if valueArray[1]
-              i.fa-fw(class=trim(valueArray[1]))
-            span=' '+label
+          - const [link, icon] = value.split('||').map(part => trim(part))
+          a.site-page(href=url_for(link))
+            if icon
+              i.fa-fw(class=icon)
+            span= ' ' + label
       else
         .menus_item
-          - const labelArray = label.split('||')
-          - const hideClass = labelArray[2] && trim(labelArray[2]) === 'hide' ? 'hide' : ''
-          a.site-page.group(class=`${hideClass}` href='javascript:void(0);')
-            if labelArray[1]
-              i.fa-fw(class=trim(labelArray[1]))
-            span=' '+ trim(labelArray[0])
+          - const [groupLabel, groupIcon, groupClass] = label.split('||').map(part => trim(part))
+          - const hideClass = groupClass === 'hide' ? 'hide' : ''
+          span.site-page.group(class=hideClass)
+            if groupIcon
+              i.fa-fw(class=groupIcon)
+            span= ' ' + groupLabel
             i.fas.fa-chevron-down
           ul.menus_item_child
-            each val,lab in value 
-              - const valArray = val.split('||')
+            each val, lab in value
+              - const [childLink, childIcon] = val.split('||').map(part => trim(part))
               li
-                a.site-page.child(href=url_for(trim(valArray[0])))
-                  if valArray[1]
-                    i.fa-fw(class=trim(valArray[1]))
-                  span=' '+ lab
+                a.site-page.child(href=url_for(childLink))
+                  if childIcon
+                    i.fa-fw(class=childIcon)
+                  span= ' ' + lab

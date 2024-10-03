@@ -19,5 +19,6 @@ hexo.extend.filter.register('stylus:renderer', style => {
     .define('$highlight_line_number', highlightLineNumber)
     .define('$prismjs_enable', prismjsEnable)
     .define('$prismjs_line_number', prismjsLineNumber)
+    .define('$language', hexo.config.language)
   // .import(`${this.source_dir.replace(/\\/g, '/')}_data/css/*`)
 })

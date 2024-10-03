@@ -25,14 +25,14 @@ script.
         artalkItem.destroy()
       }
 
-      btf.addGlobalFn('pjax', destroyArtalk, 'destroyArtalk')
+      btf.addGlobalFn('pjaxSendOnce', destroyArtalk, 'destroyArtalk')
     }
 
     const loadArtalk = async () => {
       if (typeof Artalk === 'object') initArtalk()
       else {
-        await getCSS('!{theme.asset.artalk_css}')
-        await getScript('!{theme.asset.artalk_js}')
+        await btf.getCSS('!{theme.asset.artalk_css}')
+        await btf.getScript('!{theme.asset.artalk_js}')
         initArtalk()
       }
     }
@@ -48,7 +48,7 @@ script.
 
     if ('!{use[0]}' === 'Artalk' || !!{lazyload}) {
       if (!{lazyload}) btf.loadComment(document.getElementById('artalk-wrap'), loadArtalk)
-      else loadArtalk()
+      else setTimeout(loadArtalk, 100)
     } else {
       window.loadOtherComment = loadArtalk
     }

@@ -5,10 +5,8 @@ div
   if theme.translate.enable
     script(src=url_for(theme.asset.translate))
 
-  if theme.medium_zoom
-    script(src=url_for(theme.asset.medium_zoom))
-  else if theme.fancybox
-    script(src=url_for(theme.asset.fancybox))
+  if theme.lightbox
+    script(src=url_for(theme.asset[theme.lightbox]))
 
   if theme.instantpage
     script(src=url_for(theme.asset.instantpage), type='module')
@@ -30,7 +28,6 @@ div
       include ./third-party/subtitle.pug
 
     include ./third-party/math/index.pug
-
     include ./third-party/abcjs/index.pug
 
     if commentsJsLoad
@@ -38,28 +35,26 @@ div
 
   != partial("includes/third-party/prismjs", {}, { cache: true })
 
-  if theme.aside.enable && theme.newest_comments.enable
-    if theme.pjax.enable
-      != partial("includes/third-party/newest-comments/index", {}, { cache: true })
-    else if (!is_post() && page.aside !== false)
+  if theme.aside.enable && theme.aside.card_newest_comments.enable
+    if theme.pjax.enable || (!is_post() && page.aside !== false)
       != partial("includes/third-party/newest-comments/index", {}, { cache: true })
 
   != fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})
 
   != partial("includes/third-party/effect", {}, { cache: true })
-
   != partial("includes/third-party/chat/index", {}, { cache: true })
 
   if theme.aplayerInject && theme.aplayerInject.enable
-    if theme.pjax.enable || theme.aplayerInject.per_page
-      include ./third-party/aplayer.pug
-    else if page.aplayer
+    if theme.pjax.enable || theme.aplayerInject.per_page || page.aplayer
       include ./third-party/aplayer.pug
 
   if theme.pjax.enable
     != partial("includes/third-party/pjax", {}, { cache: true })
 
+  if theme.umami_analytics.enable
+    != partial("includes/third-party/umami_analytics", {}, { cache: true })
+
   if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
     script(async data-pjax src= theme.asset.busuanzi || '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js')
 
-  !=partial('includes/third-party/search/index', {}, {cache: true})
+  != partial('includes/third-party/search/index', {}, { cache: true })

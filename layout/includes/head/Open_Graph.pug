@@ -10,5 +10,7 @@ if theme.Open_Graph_meta.enable
   -
   != open_graph(ogOption)
 else
-  meta(name="description" content=page_description())
+  - const description = page.description || page.content || page.title || config.description
+  if description
+    meta(name="description" content=truncate(description, 150))
 
