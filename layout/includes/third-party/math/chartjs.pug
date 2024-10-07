@@ -1,0 +1,79 @@
+script.
+    (() => {
+        const $chartjs = document.querySelectorAll('#article-container .chartjs-wrap')
+        if ($chartjs.length === 0) return
+
+        const applyThemeDefaultsConfig = (theme) => {
+            if (theme === 'dark-mode') {
+                Chart.defaults.color = "!{theme.chartjs.color.dark}"
+                Chart.defaults.borderColor = "!{theme.chartjs.borderColor.dark}"
+                Chart.defaults.scale.ticks.backdropColor = "!{theme.chartjs.scale.ticks.backdropColor.dark}"
+            } else {
+                Chart.defaults.color = "!{theme.chartjs.color.light}"
+                Chart.defaults.borderColor = "!{theme.chartjs.borderColor.light}"
+                Chart.defaults.scale.ticks.backdropColor = "!{theme.chartjs.scale.ticks.backdropColor.light}"
+            }
+        }
+
+        // 递归遍历 config 对象，自动根据当前主题选择双模式配色方案
+        const applyThemeConfig = (obj, theme) => {
+            if (typeof obj !== 'object' || obj === null) return
+            
+            Object.keys(obj).forEach(key => {
+                const value = obj[key]
+                // 如果属性是对象，并且有与主题相关的选项，进行应用
+                if (typeof value === 'object' && value !== null) {
+                    if (value[theme]) {
+                        obj[key] = value[theme] // 应用当前主题的值
+                    } else {
+                        // 递归处理子对象
+                        applyThemeConfig(value, theme)
+                    }
+                }
+            })
+        }
+
+        const runChartJS = () => {
+            window.loadChartJS = true
+
+            Array.from($chartjs).forEach((item, index) => {
+                const chartSrc = item.firstElementChild
+                const chartID = item.getAttribute('data-chartjs-id') || ('chartjs-' + index) // 使用自定义 ID 或默认 ID
+                const existingCanvas = document.getElementById(chartID)
+
+                // 如果已经存在 canvas，先将其移除，避免重复渲染
+                if (existingCanvas) {
+                    existingCanvas.remove()
+                }
+
+                const chartDefinition = chartSrc.textContent
+                const canvas = document.createElement('canvas')
+                canvas.id = chartID
+                chartSrc.insertAdjacentElement('afterend', canvas)
+
+                const ctx = document.getElementById(chartID).getContext('2d')
+
+                const config = JSON.parse(chartDefinition)
+
+                // 根据当前主题选择相应的配色方案
+                const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark-mode' : 'light-mode'
+
+                // 设置默认样式（默认初始化）
+                applyThemeDefaultsConfig(theme)
+
+                // 自动遍历 config，应用双模式配色方案
+                applyThemeConfig(config, theme)
+
+                new Chart(ctx, config)
+            })
+        }
+
+        const loadChartJS = () => {
+            window.loadChartJS ? runChartJS() : btf.getScript('!{url_for(theme.asset.chartjs)}').then(runChartJS)
+        }
+
+        // 监听主题切换
+        btf.addGlobalFn('themeChange', runChartJS, 'chartjs')
+
+        window.pjax ? loadChartJS() : document.addEventListener('DOMContentLoaded', loadChartJS)
+    })()

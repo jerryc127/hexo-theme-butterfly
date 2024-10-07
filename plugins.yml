@@ -134,6 +134,10 @@ mermaid:
   name: mermaid
   file: dist/mermaid.min.js
   version: 11.2.1
+chartjs:
+  name: chart.js
+  file: dist/chart.umd.min.js
+  version: 4.4.4
 meting_js:
   name: butterfly-extsrc
   file: metingjs/dist/Meting.min.js
