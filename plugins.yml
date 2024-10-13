@@ -42,6 +42,10 @@ canvas_ribbon:
   name: butterfly-extsrc
   file: dist/canvas-ribbon.min.js
   version: 1.1.4
+chartjs:
+  name: chart.js
+  file: dist/chart.umd.min.js
+  version: 4.4.4
 clickShowText:
   name: butterfly-extsrc
   file: dist/click-show-text.min.js
