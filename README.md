@@ -98,6 +98,7 @@ npm i hexo-theme-butterfly
 - [x] Busuanzi visitor counter
 - [x] Medium Zoom/Fancybox
 - [x] Mermaid
+- [x] Chart.js
 - [x] Justified Gallery
 - [x] Lazyload images
 - [x] Instantpage/Pangu/Snackbar notification toast/PWA......

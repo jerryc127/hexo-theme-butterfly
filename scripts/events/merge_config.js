@@ -341,7 +341,7 @@ hexo.extend.filter.register('before_generate', () => {
       user_id: null,
       pageSize: 10,
       order_by: 'social',
-      lang: 'zh_TW'
+      lang: 'en_US'
     },
     twikoo: {
       envId: null,
@@ -514,21 +514,17 @@ hexo.extend.filter.register('before_generate', () => {
     },
     chartjs: {
       enable: false,
-      color: {
-        light: "rgba(0, 0, 0, 0.8)",
-        dark: "rgba(255, 255, 255, 0.8)"
+      fontColor: {
+        light: 'rgba(0, 0, 0, 0.8)',
+        dark: 'rgba(255, 255, 255, 0.8)'
       },
       borderColor: {
-        light: "rgba(0, 0, 0, 0.1)",
-        dark: "rgba(255, 255, 255, 0.2)"
+        light: 'rgba(0, 0, 0, 0.1)',
+        dark: 'rgba(255, 255, 255, 0.2)'
       },
-      scale: {
-        ticks: {
-          backdropColor: {
-            light: "transparent",
-            dark: "transparent"
-          }
-        }
+      scale_ticks_backdropColor: {
+        light: 'transparent',
+        dark: 'transparent'
       }
     },
     note: {
