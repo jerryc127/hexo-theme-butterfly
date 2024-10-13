@@ -82,7 +82,7 @@ hexo.extend.helper.register('getBgPath', path => {
 
   const absoluteUrlPattern = /^(?:[a-z][a-z\d+.-]*:)?\/\//i
   const relativeUrlPattern = /^(\.\/|\.\.\/|\/|[^/]+\/).*$/
-  const colorPattern = /^(#|rgb|rgba|hsl|hsla|linear-gradient|radial-gradient)/i
+  const colorPattern = /^(#|rgb|rgba|hsl|hsla)/i
 
   if (colorPattern.test(path)) {
     return `background-color: ${path};`
