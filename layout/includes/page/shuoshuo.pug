@@ -41,9 +41,12 @@
                           ${item.content}
                         </div>
                         <div class="shuoshuo-footer">
-                          <div class="shuoshuo-tags">
-                            ${item.tags.map(tag => `<span class="shuoshuo-tag">${tag}</span>`).join('')}
-                          </div>
+                          ${item.tags && item.tags.length ? `
+                            <div class="shuoshuo-footer">
+                              <div class="shuoshuo-tags">
+                                ${item.tags.map(tag => `<span class="shuoshuo-tag">${tag}</span>`).join('')}
+                              </div>
+                          </div>` : ''}
                         </div>
                       </div>
                       `
@@ -98,6 +101,7 @@
           .shuoshuo-content
             !=markdown(i.content)
           .shuoshuo-footer
-            .shuoshuo-tags
-              each tag in i.tags
-                span.shuoshuo-tag=tag
+            if i.tags
+              .shuoshuo-tags
+                each tag in i.tags
+                  span.shuoshuo-tag=tag

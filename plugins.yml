@@ -8,8 +8,8 @@ activate_power_mode:
   version: 1.1.4
 algolia_search:
   name: algoliasearch
-  file: dist/algoliasearch-lite.umd.js
-  version: 5.7.0
+  file: dist/lite/builds/browser.umd.js
+  version: 5.8.1
 aplayer_css:
   name: aplayer
   file: dist/APlayer.min.css
@@ -111,7 +111,7 @@ instantpage:
 instantsearch:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.74.2
+  version: 4.75.0
 katex:
   name: katex
   file: dist/katex.min.css
@@ -137,7 +137,7 @@ medium_zoom:
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
-  version: 11.2.1
+  version: 11.3.0
 meting_js:
   name: butterfly-extsrc
   file: metingjs/dist/Meting.min.js
