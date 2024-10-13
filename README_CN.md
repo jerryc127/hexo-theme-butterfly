@@ -98,6 +98,7 @@ theme: butterfly
 - [x] 不蒜子訪問統計
 - [x] 兩種大圖模式（Medium Zoom/Fancybox）
 - [x] Mermaid 圖表顯示
+- [x] Chart.js 圖表顯示
 - [x] 照片牆
 - [x] 圖片懶加載
 - [x] Instantpage/Pangu/Snackbar彈窗/PWA......
