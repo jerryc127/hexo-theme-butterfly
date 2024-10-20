@@ -1,10 +1,13 @@
 'use strict'
 
-const { stripHTML, prettyUrls, truncate } = require('hexo-util')
+const { truncateContent, postDesc } = require('../common/postDesc')
+const { prettyUrls } = require('hexo-util')
 const crypto = require('crypto')
 
-hexo.extend.helper.register('truncate', (content, length) => {
-  return truncate(stripHTML(content), { length, separator: ' ' }).replace(/\n/g, ' ')
+hexo.extend.helper.register('truncate', truncateContent)
+
+hexo.extend.helper.register('postDesc', data => {
+  return postDesc(data, hexo)
 })
 
 hexo.extend.helper.register('cloudTags', function (options = {}) {

@@ -645,7 +645,7 @@ artalk:
 # --------------------------------------
 
 chat:
-  # Choose: chatra/tidio/daovoice/crisp
+  # Choose: chatra/tidio/crisp
   # Leave it empty if you don't need chat
   use:
   # Chat Button [recommend]
@@ -661,10 +661,6 @@ chatra:
 # https://www.tidio.com/
 tidio:
   public_key:
-
-# http://dashboard.daovoice.io/app
-daovoice:
-  app_id:
 
 # https://crisp.chat/en/
 crisp:

@@ -1,12 +1,12 @@
 script.
   (() => {
     const abcjsInit = () => {
-      const abcjsFn = () => {
+      const abcjsFn = () => setTimeout(() => {
         document.querySelectorAll(".abc-music-sheet").forEach(ele => {
           if (ele.children.length > 0) return
           ABCJS.renderAbc(ele, ele.innerHTML, {responsive: 'resize'})
         })
-      }
+      }, 100)
       
       typeof ABCJS === 'object' ? abcjsFn()
         : btf.getScript('!{url_for(theme.asset.abcjs_basic_js)}').then(abcjsFn)

@@ -105,15 +105,9 @@ mixin indexPostUI()
                           i.fa-solid.fa-spinner.fa-spin
 
             //- Display the article introduction on homepage
-            case theme.index_post_content.method
-              when false
-                - break
-              when 1
-                .content!= article.description
-              when 2
-                .content!= article.description || truncate(article.content, theme.index_post_content.length)
-              default
-                .content!= truncate(article.content, theme.index_post_content.length)
+            - const content = postDesc(article)
+            if content
+              .content!=content
 
         if theme.ad && theme.ad.index
           if (index + 1) % 3 === 0

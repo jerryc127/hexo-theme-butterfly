@@ -380,9 +380,6 @@ hexo.extend.filter.register('before_generate', () => {
     tidio: {
       public_key: null
     },
-    daovoice: {
-      app_id: null
-    },
     crisp: {
       website_id: null
     },

@@ -19,9 +19,9 @@ beautify()
     &:before
       position: absolute
       top: calc(50% - 7px)
+      left: 0
       color: $title-prefix-icon-color
       content: $title-prefix-icon
-      left: 0
       line-height: 1
       transition: all .2s ease-out
       @extend .fontawesomeIcon
@@ -65,7 +65,7 @@ beautify()
 
   ul > li
     list-style-type: circle
-  
+
   hr
     @extend .custom-hr
 
@@ -119,16 +119,16 @@ beautify()
       width: fit-content
 
       a:not(.headerlink)
-        position relative
-        z-index 10
+        position: relative
+        z-index: 10
 
       a.headerlink
         position: absolute
         top: 0
         right: 0
-        left 0
         bottom: 0
-        width 100%
+        left: 0
+        width: 100%
         height: 100%
 
   ol,

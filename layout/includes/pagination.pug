@@ -7,30 +7,28 @@
   }
 
 if is_post()
-  - let prev = theme.post_pagination === 1 ? page.prev : page.next
-  - let next = theme.post_pagination === 1 ? page.next : page.prev
+  - let paginationOrder = theme.post_pagination === 1 ? { prev: page.prev, next: page.next } : { prev: page.next, next: page.prev }
+
   nav#pagination.pagination-post
-    if(prev)
-      - var hasPageNext = next ? 'pull-left' : 'pull-full'
-      a.prev-post(class=hasPageNext href=url_for(prev.path) title=prev.title)
-        if prev.cover_type === 'img'
-          img.cover(src=url_for(prev.cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of previous post')
-        else
-          .cover(style=`background: ${prev.cover || 'var(--default-bg-color)'}`)
-        .pagination-info
-          .label=_p('pagination.prev')
-          .prev_info=prev.title
+    each direction, key in paginationOrder
+      if direction
+        - const getPostDesc = direction.postDesc || postDesc(direction)
+        - let className = key === 'prev' ? (paginationOrder.next ? '' : 'full-width') : (paginationOrder.prev ? '' : 'full-width')
+        - className = getPostDesc ? className : className + ' no-desc'
+        
+        a.pagination-related(class=className href=url_for(direction.path) title=direction.title)
+          if direction.cover_type === 'img'
+            img.cover(src=url_for(direction.cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt=`cover of ${key === 'prev' ? 'previous' : 'next'} post`)
+          else
+            .cover(style=`background: ${direction.cover || 'var(--default-bg-color)'}`)
           
-    if(next)
-      - var hasPagePrev = prev ? 'pull-right' : 'pull-full'
-      a.next-post(class=hasPagePrev href=url_for(next.path) title=next.title)
-        if next.cover_type === 'img'
-          img.cover(src=url_for(next.cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of next post')
-        else
-          .cover(style=`background: ${next.cover || 'var(--default-bg-color)'}`)
-        .pagination-info
-          .label=_p('pagination.next')
-          .next_info=next.title
+          .info(class=key === 'prev' ? '' : 'text-right')
+            .info-1
+              .info-item-1=_p(`pagination.${key}`)
+              .info-item-2!=direction.title
+            if getPostDesc
+              .info-2
+                .info-item-1!=getPostDesc
 else
   nav#pagination
     .pagination
