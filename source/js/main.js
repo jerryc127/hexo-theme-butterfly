@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const altValue = item.title || item.alt
       if (!altValue) return
       const ele = document.createElement('div')
-      ele.className = 'img-alt is-center'
+      ele.className = 'img-alt text-center'
       ele.textContent = altValue
       item.insertAdjacentElement('afterend', ele)
     })

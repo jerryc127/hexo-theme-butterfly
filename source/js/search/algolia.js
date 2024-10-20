@@ -85,9 +85,10 @@ window.addEventListener('load', () => {
     document.querySelector('#algolia-info .algolia-stats')
   ]
 
+  const searchClient = typeof algoliasearch === 'function' ? algoliasearch : window['algoliasearch/lite'].liteClient
   const search = instantsearch({
     indexName,
-    searchClient: algoliasearch(appId, apiKey),
+    searchClient: searchClient(appId, apiKey),
     searchFunction (helper) {
       disableDiv.forEach(item => {
         item.style.display = helper.state.query ? '' : 'none'

@@ -8,49 +8,28 @@
       background: $theme-paginator-color
       color: var(--white)
 
-  .pagination-info
-    position: absolute
-    top: 50%
-    padding: 20px 40px
-    width: 100%
-    transform: translate(0, -50%)
-
-  .prev_info,
-  .next_info
-    @extend .limit-one-line
-    color: var(--white)
-    font-weight: 500
-
-  .next-post
-    .pagination-info
-      text-align: right
-
-  .pull-full
+  .full-width
     width: 100% !important
 
-  .prev-post .label,
-  .next-post .label
-    color: var(--light-grey)
-    text-transform: uppercase
-    font-size: 90%
-
-  .prev-post,
-  .next-post
-    @extend .postImgHover
-    position: relative
-    display: block
-    overflow: hidden
+  .pagination-related
     width: 50%
     height: 150px
 
     +maxWidth768()
       width: 100%
 
+    .info-1
+      .info-item-2
+        -webkit-line-clamp: 1
+
+    .info-2
+      .info-item-1
+        -webkit-line-clamp: 2
+
   &.pagination-post
     overflow: hidden
     margin-top: 40px
     width: 100%
-    background: $dark-black
     addBorderRadius()
 
 .layout
@@ -75,3 +54,50 @@
 
     & > *:not(.space)
       box-shadow: none
+
+.pagination-related
+  position: relative
+  display: inline-block
+  overflow: hidden
+  background: $dark-black
+  vertical-align: bottom
+  @extend .postImgHover
+
+  &.next-post
+    .info
+      text-align: right
+
+  .info
+    .info-1,
+    .info-2
+      @extend .verticalCenter
+      padding: 20px 40px
+      color: var(--white)
+      transition: transform .3s, opacity .3s
+
+    .info-1
+      .info-item-1
+        color: var(--light-grey)
+        text-transform: uppercase
+        font-size: 90%
+
+      .info-item-2
+        @extend .limit-more-line
+        color: var(--white)
+        font-weight: 500
+
+    .info-2
+      opacity: 0
+      transform: translate(0, 0)
+
+      .info-item-1
+        @extend .limit-more-line
+
+  &:not(.no-desc):hover
+    .info-1
+      opacity: 0
+      transform: translate(0, -100%)
+
+    .info-2
+      opacity: 1
+      transform: translate(0, -50%)

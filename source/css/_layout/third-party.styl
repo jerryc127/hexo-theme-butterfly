@@ -75,6 +75,32 @@ if hexo-config('mermaid.enable')
     pre > code.mermaid
       display: none
 
+if hexo-config('chartjs.enable')
+  .chartjs-container
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    margin: 0 0 20px
+    text-align: center
+    gap: 20px
+
+    +maxWidth600()
+      .chartjs-wrap
+        width: 100% !important
+
+    &.chartjs-abreast
+      flex-direction: row
+
+      +maxWidth600()
+        flex-direction: column
+
+    .chartjs-wrap
+      width: -webkit-fill-available
+
+    canvas
+      display: inline-block !important
+
 .utterances,
 .fb-comments iframe
   width: 100% !important

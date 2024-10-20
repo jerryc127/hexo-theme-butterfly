@@ -146,10 +146,11 @@
       position: fixed
       top: -60px
       z-index: 91
-      background: rgba(255, 255, 255, .8)
+      background: rgba(255, 255, 255, .7)
       box-shadow: 0 5px 6px -5px alpha($grey, .6)
       transition: transform .2s ease-in-out, opacity .2s ease-in-out
       will-change: transform
+      backdrop-filter: blur(7px)
 
       #blog-info
         color: var(--font-color)
@@ -430,6 +431,7 @@
         background-color: lighten($theme-color, 30%)
         content: ''
         transition: all .3s ease-in-out
+        addBorderRadius()
 
       &:hover
         &:after

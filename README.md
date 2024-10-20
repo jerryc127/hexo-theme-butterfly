@@ -86,7 +86,7 @@ npm i hexo-theme-butterfly
 - [x] Share (Sharejs/Addtoany)
 - [X] Comment (Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/artalk)
 - [x] Multiple Comment System Support
-- [x] Online Chats (Chatra/Tidio/Daovoice/Crisp)
+- [x] Online Chats (Chatra/Tidio/Crisp)
 - [x] Web analytics
 - [x] Google AdSense
 - [x] Webmaster Verification
@@ -98,6 +98,7 @@ npm i hexo-theme-butterfly
 - [x] Busuanzi visitor counter
 - [x] Medium Zoom/Fancybox
 - [x] Mermaid
+- [x] Chart.js
 - [x] Justified Gallery
 - [x] Lazyload images
 - [x] Instantpage/Pangu/Snackbar notification toast/PWA......

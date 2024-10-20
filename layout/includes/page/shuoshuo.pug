@@ -21,6 +21,8 @@
             let start = 0
             const container = document.getElementById('article-container')
 
+            const showDateAndTine = date => new Date(date).toLocaleString()
+
             const addData = data => {
               const cLength = data.length
               const end = start + 10 > cLength ? cLength : start + 10
@@ -34,16 +36,19 @@
                           </div>
                           <div class="shuoshuo-info">
                             <div class="shuoshuo-author">${item.author || '!{config.author}'}</div>
-                            <div class="shuoshuo-date">${btf.diffDate(item.date, true)}</div>
+                            <time class="shuoshuo-date" title="${showDateAndTine(item.date)}">${btf.diffDate(item.date, true)}</time>
                           </div>
                         </div>
                         <div class="shuoshuo-content">
                           ${item.content}
                         </div>
                         <div class="shuoshuo-footer">
-                          <div class="shuoshuo-tags">
-                            ${item.tags.map(tag => `<span class="shuoshuo-tag">${tag}</span>`).join('')}
-                          </div>
+                          ${item.tags && item.tags.length ? `
+                            <div class="shuoshuo-footer">
+                              <div class="shuoshuo-tags">
+                                ${item.tags.map(tag => `<span class="shuoshuo-tag">${tag}</span>`).join('')}
+                              </div>
+                          </div>` : ''}
                         </div>
                       </div>
                       `
@@ -94,10 +99,11 @@
               img.no-lightbox(src=i.avatar || url_for(theme.avatar.img))
             .shuoshuo-info
               .shuoshuo-author=i.author || config.author
-              .shuoshuo-date=relative_date(i.date)
+              time.shuoshuo-date(title=full_date(i.date))=date(i.date)
           .shuoshuo-content
             !=markdown(i.content)
           .shuoshuo-footer
-            .shuoshuo-tags
-              each tag in i.tags
-                span.shuoshuo-tag=tag
+            if i.tags
+              .shuoshuo-tags
+                each tag in i.tags
+                  span.shuoshuo-tag=tag

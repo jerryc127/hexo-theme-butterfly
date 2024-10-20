@@ -86,7 +86,7 @@ theme: butterfly
 - [x] 多種分享系統（Sharejs/Addtoany）
 - [X] 多種評論系統（Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/artalk）
 - [x] 支持雙評論部署
-- [x] 多種在線聊天（Chatra/Tidio/Daovoice/Crisp）
+- [x] 多種在線聊天（Chatra/Tidio/Crisp）
 - [x] 多種分析系統
 - [x] 谷歌廣告/手動廣告位置
 - [x] 各種站長驗證
@@ -98,6 +98,7 @@ theme: butterfly
 - [x] 不蒜子訪問統計
 - [x] 兩種大圖模式（Medium Zoom/Fancybox）
 - [x] Mermaid 圖表顯示
+- [x] Chart.js 圖表顯示
 - [x] 照片牆
 - [x] 圖片懶加載
 - [x] Instantpage/Pangu/Snackbar彈窗/PWA......

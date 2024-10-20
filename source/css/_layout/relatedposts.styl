@@ -8,15 +8,9 @@
 
   & > .relatedPosts-list
     & > a
-      position: relative
-      display: inline-block
-      overflow: hidden
       margin: 3px
       width: calc(33.333% - 6px)
       height: 200px
-      background: $dark-black
-      vertical-align: bottom
-      @extend .postImgHover
       addBorderRadius()
 
       +maxWidth768()
@@ -27,15 +21,11 @@
       +maxWidth600()
         width: calc(100% - 4px)
 
-    .content
-      padding: 0 20px
-      @extend .verticalCenter
+    .info
+      .info-1
+        .info-item-2
+          -webkit-line-clamp: 2
 
-      .date
-        color: var(--light-grey)
-        font-size: 90%
-
-      .title
-        @extend .limit-more-line
-        color: var(--white)
-        -webkit-line-clamp: 2
+      .info-2
+        .info-item-1
+          -webkit-line-clamp: 3
