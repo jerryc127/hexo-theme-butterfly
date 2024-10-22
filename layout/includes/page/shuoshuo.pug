@@ -21,13 +21,35 @@
             let start = 0
             const container = document.getElementById('article-container')
 
-            const showDateAndTine = date => new Date(date).toLocaleString()
+            const getTimeZoneDate = date => {
+              if (date.length === 10) {
+                date = date + ' 00:00:00'
+              }
+
+              const visitorTimeZone = '#{config.timezone}' || Intl.DateTimeFormat().resolvedOptions().timeZone
+              const options = {
+                timeZone: visitorTimeZone,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+              }
+
+              const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(new Date(date))
+
+              const [day, month, year, hour, minute, second] = formattedDate.match(/\d+/g)
+              return `${year}-${month}-${day} ${hour}:${minute}:${second}`
+            }
 
             const addData = data => {
               const cLength = data.length
               const end = start + 10 > cLength ? cLength : start + 10
               let result = ''
               data.slice(start, end).forEach((item) => {
+                const getDate = getTimeZoneDate(item.date)
                 result += `
                       <div class="shuoshuo-item">
                         <div class="shuoshuo-item-header">
@@ -36,7 +58,7 @@
                           </div>
                           <div class="shuoshuo-info">
                             <div class="shuoshuo-author">${item.author || '!{config.author}'}</div>
-                            <time class="shuoshuo-date" title="${showDateAndTine(item.date)}">${btf.diffDate(item.date, true)}</time>
+                            <time class="shuoshuo-date" title="${getDate}">${btf.diffDate(getDate, true)}</time>
                           </div>
                         </div>
                         <div class="shuoshuo-content">
@@ -99,7 +121,8 @@
               img.no-lightbox(src=i.avatar || url_for(theme.avatar.img))
             .shuoshuo-info
               .shuoshuo-author=i.author || config.author
-              time.shuoshuo-date(title=full_date(i.date))=date(i.date)
+              - const getDate = getTimeZoneDate(i.date)
+              time.shuoshuo-date(title=getDate)=date(getDate)
           .shuoshuo-content
             !=markdown(i.content)
           .shuoshuo-footer

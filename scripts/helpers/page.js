@@ -3,6 +3,14 @@
 const { truncateContent, postDesc } = require('../common/postDesc')
 const { prettyUrls } = require('hexo-util')
 const crypto = require('crypto')
+const moment = require('moment-timezone')
+
+hexo.extend.helper.register('getTimeZoneDate', date => {
+  // This is a hack method, because hexo treats time as UTC time
+  // so you need to manually convert the time zone
+  const utcDate = moment.utc(date).format('YYYY-MM-DD HH:mm:ss')
+  return moment.tz(utcDate, hexo.config.timezone).format('YYYY-MM-DD HH:mm:ss')
+})
 
 hexo.extend.helper.register('truncate', truncateContent)
 
