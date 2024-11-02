@@ -4,35 +4,51 @@
 script.
   (() => {
     let initFn = window.walineFn || null
+    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const option = !{JSON.stringify(option)}
 
-    const initWaline = (Fn) => {
-      const waline = Fn(Object.assign({
-        el: '#waline-wrap',
+    const destroyWaline = ele => ele.destroy()
+
+    const initWaline = (Fn, el = document, path = window.location.pathname) => {
+      const waline = Fn({
+        el: el.querySelector('#waline-wrap'),
         serverURL: '!{serverURL}',
         pageview: !{lazyload ? false : pageview},
         dark: 'html[data-theme="dark"]',
-        path: window.location.pathname,
         comment: !{lazyload ? false : count},
-      }, !{JSON.stringify(option)}))
+        ...option,
+        path: isShuoshuo ? path : (option && option.path) || path
+      })
 
-      const destroyWaline = () => {
-        waline.destroy()
+      if (isShuoshuo) {
+        window.shuoshuoComment.destroyWaline = () => {
+          destroyWaline(waline)
+          if (el.children.length) {
+            el.innerHTML = ''
+            el.classList.add('no-comment')
+          }
+        }
       }
-
-      btf.addGlobalFn('pjaxSendOnce', destroyWaline, 'destroyWaline')
     }
 
-    const loadWaline = () => {
-      if (initFn) initWaline(initFn)
+    const loadWaline = (el, path) => {
+      if (initFn) initWaline(initFn, el, path)
       else {
         btf.getCSS('!{url_for(theme.asset.waline_css)}')
           .then(() => import('!{url_for(theme.asset.waline_js)}'))
           .then(({ init }) => {
             initFn = init || Waline.init
-            initWaline(initFn)
+            initWaline(initFn, el, path)
             window.walineFn = initFn
           })
       }
+    }
+
+    if (isShuoshuo) {
+      '!{use[0]}' === 'Waline'
+        ? window.shuoshuoComment = { loadComment: loadWaline } 
+        : window.loadOtherComment = loadWaline
+      return
     }
 
     if ('!{use[0]}' === 'Waline' || !!{lazyload}) {

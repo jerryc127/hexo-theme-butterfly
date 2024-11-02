@@ -4,29 +4,43 @@
 
 script.
   (() => {
-    const disqus_config = function () {
-      this.page.url = '!{ page.permalink }'
-      this.page.identifier = '!{ url_for(page.path) }'
-      this.page.title = '!{ disqusPageTitle }'
-    }
+    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
 
-    const disqusReset = () => {
+    const disqusReset = conf => {
       window.DISQUS && window.DISQUS.reset({
         reload: true,
-        config: disqus_config
+        config: conf
       })
     }
 
-    btf.addGlobalFn('themeChange', disqusReset, 'disqus')
+    const loadDisqus = (el, path) => {
+      if (isShuoshuo) {
+        window.shuoshuoComment.destroyDisqus = () => {
+          if (el.children.length) {
+            el.innerHTML = ''
+            el.classList.add('no-comment')
+          }
+        }
+      }
 
-    const loadDisqus = () =>{
-      if (window.DISQUS) disqusReset()
+      window.disqus_identifier = isShuoshuo ? path : '!{ url_for(page.path) }'
+      window.disqus_url = isShuoshuo ? location.origin + path : '!{ page.permalink }'
+
+      const disqus_config = function () {
+        this.page.url = disqus_url
+        this.page.identifier = disqus_identifier
+        this.page.title = '!{ disqusPageTitle }'
+      }
+
+      if (window.DISQUS) disqusReset(disqus_config)
       else {
         const script = document.createElement('script')
         script.src = 'https://!{shortname}.disqus.com/embed.js'
         script.setAttribute('data-timestamp', +new Date())
         document.head.appendChild(script)
       }
+
+      btf.addGlobalFn('themeChange', () => disqusReset(disqus_config), 'disqus')
     }
 
     const getCount = async() => {
@@ -45,6 +59,13 @@ script.
       } catch (err) {
         console.error(err)
       }
+    }
+
+    if (isShuoshuo) {
+      '!{use[0]}' === 'Disqus'
+        ? window.shuoshuoComment = { loadComment: loadDisqus }
+        : window.loadOtherComment = loadDisqus
+      return
     }
 
     if ('!{use[0]}' === 'Disqus' || !!{lazyload}) {

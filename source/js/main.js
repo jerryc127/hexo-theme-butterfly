@@ -806,22 +806,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btf.addEventListenerPjax(cardCategory, 'click', handleToggleBtn, true)
   }
 
-  const switchComments = () => {
-    const switchBtn = document.getElementById('switch-btn')
-    if (!switchBtn) return
-
-    let switchDone = false
-    const postComment = document.getElementById('post-comment')
-    const handleSwitchBtn = () => {
-      postComment.classList.toggle('move')
-      if (!switchDone && typeof loadOtherComment === 'function') {
-        switchDone = true
-        loadOtherComment()
-      }
-    }
-    btf.addEventListenerPjax(switchBtn, 'click', handleSwitchBtn)
-  }
-
   const addPostOutdateNotice = () => {
     const { limitDay, messagePrev, messageNext, position } = GLOBAL_CONFIG.noticeOutdate
     const diffDay = btf.diffDate(GLOBAL_CONFIG_SITE.postUpdate)
@@ -924,7 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollFn()
 
     forPostFn()
-    switchComments()
+    !GLOBAL_CONFIG_SITE.isShuoshuo && btf.switchComments(document)
     openMobileMenu()
   }
 

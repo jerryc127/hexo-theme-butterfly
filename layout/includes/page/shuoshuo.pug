@@ -6,104 +6,180 @@
 //-     - tag1
 //-     - tag2
 
-
-- page.comments = false
 - page.toc = false
+
 #article-container
+  if page.comments !== false && theme.comments.use
+    - commentsJsLoad = true
+
+    script.
+      (() => {
+        const commentDiv = `!{partial('includes/third-party/comments/index', {}, {cache: true})}`
+
+        const runDestroy = (shuoshuoComment) => {
+          if (!shuoshuoComment) return
+
+          for (const [key, fn] of Object.entries(shuoshuoComment)) {
+            if (key.startsWith('destroy')) fn()
+          }
+        }
+
+        window.addCommentToShuoshuo = e => {
+          const btn = e.target.closest('.shuoshuo-comment-btn')
+          if (!btn) return
+
+          const ele = btn.parentNode.nextElementSibling
+          const { shuoshuoComment } = window
+          const isInclude = ele.classList.contains('no-comment')
+          runDestroy(shuoshuoComment)
+          if (isInclude) {
+            ele.classList.remove('no-comment')
+            ele.innerHTML = commentDiv
+            const key = `${location.pathname.replace(/\/$/, '')}?key=${ele.getAttribute('data-key')}`
+            btf.switchComments(ele, key)
+            shuoshuoComment.loadComment && shuoshuoComment.loadComment(ele, key)
+          }
+        }
+      })()
+
   if page.shuoshuo_url
     script.
       (() => {
+        const limitConfig = !{ JSON.stringify(page.limit || {}) }
+
+        const sortDataByDate = data => data.sort((a, b) => new Date(b.date) - new Date(a.date))
+
+        const filterDataByLimit = (data, limit) => {
+          if (!limit || !limit.type) return data
+          if (limit.type === 'num') return data.slice(0, limit.value)
+          if (limit.type === 'date') {
+            const limitDate = new Date(limit.value)
+            return data.filter(item => new Date(item.date) >= limitDate)
+          }
+          return data
+        };
+
+        const formatToTimeZone = (date) => {
+          const fullDate = date.length === 10 ? `${date} 00:00:00` : date
+          const visitorTimeZone = '#{config.timezone}' || Intl.DateTimeFormat().resolvedOptions().timeZone
+          const options = {
+            timeZone: visitorTimeZone,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+          }
+          const [day, month, year, hour, minute, second] = new Intl.DateTimeFormat('en-GB', options)
+            .format(new Date(fullDate))
+            .match(/\d+/g)
+          return `${year}-${month}-${day} ${hour}:${minute}:${second}`
+        }
+
         const loadShuoshuo = async () => {
           try {
-            const fetchContent = await fetch('!{url_for(page.shuoshuo_url)}')
-            const shuoshuo = await fetchContent.json()
+            const response = await fetch('!{url_for(page.shuoshuo_url)}')
+            let data = await response.json()
 
-            let start = 0
+            data = filterDataByLimit(sortDataByDate(data), limitConfig)
+
             const container = document.getElementById('article-container')
+            let start = 0
 
-            const showDateAndTine = date => new Date(date).toLocaleString()
+            const renderData = (dataSlice) => {
+              const content = dataSlice.map(item => {
+                const formattedDate = formatToTimeZone(item.date)
+                const tags = item.tags && item.tags.map(tag => `<span class="shuoshuo-tag">${tag}</span>`).join('') || ''
+                const commentButton = item.key && !{commentsJsLoad}
+                  ? `<div class="shuoshuo-comment-btn" onclick="addCommentToShuoshuo(event)">
+                      <i class="fa-solid fa-comments"></i>
+                    </div>`
+                  : ''
+                const commentContainer = item.key
+                  ? `<div class="shuoshuo-comment no-comment" data-key="${item.key}"></div>`
+                  : ''
 
-            const addData = data => {
-              const cLength = data.length
-              const end = start + 10 > cLength ? cLength : start + 10
-              let result = ''
-              data.slice(start, end).forEach((item) => {
-                result += `
-                      <div class="shuoshuo-item">
-                        <div class="shuoshuo-item-header">
-                          <div class="shuoshuo-avatar">
-                            <img class="no-lightbox" src="${item.avatar || '!{url_for(theme.avatar.img)}'}">
-                          </div>
-                          <div class="shuoshuo-info">
-                            <div class="shuoshuo-author">${item.author || '!{config.author}'}</div>
-                            <time class="shuoshuo-date" title="${showDateAndTine(item.date)}">${btf.diffDate(item.date, true)}</time>
-                          </div>
-                        </div>
-                        <div class="shuoshuo-content">
-                          ${item.content}
-                        </div>
-                        <div class="shuoshuo-footer">
-                          ${item.tags && item.tags.length ? `
-                            <div class="shuoshuo-footer">
-                              <div class="shuoshuo-tags">
-                                ${item.tags.map(tag => `<span class="shuoshuo-tag">${tag}</span>`).join('')}
-                              </div>
-                          </div>` : ''}
-                        </div>
+                return `
+                  <div class="shuoshuo-item">
+                    <div class="shuoshuo-item-header">
+                      <div class="shuoshuo-avatar">
+                        <img class="no-lightbox" src="${item.avatar || '!{url_for(theme.avatar.img)}'}">
                       </div>
-                      `
-              })
+                      <div class="shuoshuo-info">
+                        <div class="shuoshuo-author">${item.author || '!{config.author}'}</div>
+                        <time class="shuoshuo-date" title="${formattedDate}">
+                          ${btf.diffDate(formattedDate, true)}
+                        </time>
+                      </div>
+                    </div>
+                    <div class="shuoshuo-content">${item.content}</div>
+                    <div class="shuoshuo-footer ${tags ? 'flex-between' : 'flex-end'}">
+                      ${tags ? `<div class="shuoshuo-tags">${tags}</div>` : ''}
+                      ${commentButton}
+                    </div>
+                    ${commentContainer}
+                  </div>`
+              }).join('')
 
-              start = end
-              container.insertAdjacentHTML('beforeend', result)
-
-              if (start >= cLength) {
-                observer.disconnect()
-              } else {
-                setTimeout(() => observer.observe(container.lastElementChild), 100)
-              }
+              container.insertAdjacentHTML('beforeend', content)
 
               window.lazyLoadInstance.update()
               btf.loadLightbox(document.querySelectorAll('#article-container img:not(.no-lightbox)'))
             }
 
-            addData(shuoshuo)
+            const handleIntersection = (entries) => {
+              if (!entries[0].isIntersecting) return
+              observer.unobserve(entries[0].target)
 
-            const observer = new IntersectionObserver((entries) => {
-              if (entries[0].isIntersecting) {
-                observer.unobserve(entries[0].target)
-                addData(shuoshuo)
+              const slice = data.slice(start, start + 10)
+              renderData(slice)
+              start += 10
+
+              if (start < data.length) {
+                setTimeout(() => observer.observe(container.lastElementChild), 100)
+              } else {
+                observer.disconnect()
               }
-            }, {
+            };
+
+            const observer = new IntersectionObserver(handleIntersection, {
               root: null,
               rootMargin: '0px',
               threshold: 1.0
             })
 
-            if (container.lastElementChild) {
-              observer.observe(container.lastElementChild)
-            }
-          } catch (e) {
-            console.error(e)
+            renderData(data.slice(start, 10))
+            start += 10
+
+            if (container.lastElementChild) observer.observe(container.lastElementChild)
+          } catch (error) {
+            console.error(error)
           }
-        }
+        };
 
         window.pjax ? loadShuoshuo() : window.addEventListener('load', loadShuoshuo)
       })()
   else
     if site.data.shuoshuo
-      each i in site.data.shuoshuo
+      each i in shuoshuoFN(site.data.shuoshuo, page)
         .shuoshuo-item
           .shuoshuo-item-header
             .shuoshuo-avatar
               img.no-lightbox(src=i.avatar || url_for(theme.avatar.img))
             .shuoshuo-info
               .shuoshuo-author=i.author || config.author
-              time.shuoshuo-date(title=full_date(i.date))=date(i.date)
+              time.shuoshuo-date(title=i.date)=i.date
           .shuoshuo-content
             !=markdown(i.content)
-          .shuoshuo-footer
+          .shuoshuo-footer(class=i.tags && i.tags.length ? 'flex-between' : 'flex-end')
             if i.tags
               .shuoshuo-tags
                 each tag in i.tags
                   span.shuoshuo-tag=tag
+            if i.key && commentsJsLoad
+              .shuoshuo-comment-btn(onclick='addCommentToShuoshuo(event)')
+                i.fa-solid.fa-comments
+          if i.key && commentsJsLoad
+            .shuoshuo-comment.no-comment(data-key=i.key)

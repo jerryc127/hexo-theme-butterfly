@@ -55,7 +55,6 @@ hexo.extend.helper.register('inject_head_js', function () {
         if (!${pjax.enable} && key.startsWith('pjax')) return
         const globalFn = parent.globalFn || {}
         globalFn[key] = globalFn[key] || {}
-        if (name && globalFn[key][name]) return
         globalFn[key][name || Object.keys(globalFn[key]).length] = fn
         parent.globalFn = globalFn
       }
