@@ -1,36 +1,52 @@
-- let disqusjsPageTitle = page.title.replace(/'/ig,"\\'")
+- let disqusjsPageTitle = page.title && page.title.replace(/'/ig,"\\'")
 - const { shortname:dqShortname, apikey:dqApikey, option:dqOption } = theme.disqusjs
 
 script.
   (() => {
-    const initDisqusjs = () => {
+    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const dqOption = !{JSON.stringify(dqOption)}
+
+    const destroyDisqusjs = () => {
+      disqusjs.destroy()
       window.disqusjs = null
-      disqusjs = new DisqusJS(Object.assign({
+    }
+
+    const themeChange = (el, path) => {
+      destroyDisqusjs()
+      initDisqusjs(el, path)
+    }
+
+    const initDisqusjs = (el = document, path) => {
+      if (isShuoshuo) {
+        window.shuoshuoComment.destroyDisqusjs = () => {
+          destroyDisqusjs()
+          if (el.children.length) {
+            el.innerHTML = ''
+            el.classList.add('no-comment')
+          }
+        }
+      }
+
+      disqusjs = new DisqusJS({
         shortname: '!{dqShortname}',
-        identifier: '!{ url_for(page.path) }',
-        url: '!{ page.permalink }',
         title: '!{ disqusjsPageTitle }',
         apikey: '!{dqApikey}',
-      },!{JSON.stringify(dqOption)}))
+        ...dqOption,
+        identifier: isShuoshuo ? path : (dqOption && dqOption.identifier) || '!{ url_for(page.path) }',
+        url: isShuoshuo ? location.origin + path : (dqOption && dqOption.url) || '!{ page.permalink }'
+      })
 
-      disqusjs.render(document.getElementById('disqusjs-wrap'))
+      disqusjs.render(el.querySelector('#disqusjs-wrap'))
+
+      btf.addGlobalFn('themeChange', () => themeChange(el, path), 'disqusjs')
     }
 
-    const themeChange = () => {
-      const ele = document.getElementById('disqus_thread')
-      if(!ele) return
-      disqusjs.destroy()
-      initDisqusjs()
-    }
-
-    btf.addGlobalFn('themeChange', themeChange, 'disqusjs')
-
-    const loadDisqusjs = async() => {
-      if (window.disqusJsLoad) initDisqusjs()
+    const loadDisqusjs = async(el, path) => {
+      if (window.disqusJsLoad) initDisqusjs(el, path)
       else {
         await btf.getCSS('!{url_for(theme.asset.disqusjs_css)}')
         await btf.getScript('!{url_for(theme.asset.disqusjs)}')
-        initDisqusjs()
+        initDisqusjs(el, path)
         window.disqusJsLoad = true
       }
     }
@@ -50,6 +66,13 @@ script.
       } catch (err) {
         console.error(err)
       }
+    }
+
+    if (isShuoshuo) {
+      '!{theme.comments.use[0]}' === 'Disqusjs'
+        ? window.shuoshuoComment = { loadComment: loadDisqusjs }
+        : window.loadOtherComment = loadDisqusjs
+      return
     }
 
     if ('!{theme.comments.use[0]}' === 'Disqusjs' || !!{theme.comments.lazyload}) {

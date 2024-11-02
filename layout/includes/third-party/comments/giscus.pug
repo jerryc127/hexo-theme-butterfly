@@ -4,27 +4,50 @@
 - const giscusOriginUrl = new URL(giscusUrl).origin
 
 script.
-  (()=>{
+  (() => {
+    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const option = !{JSON.stringify(option)}
+
     const getGiscusTheme = theme => theme === 'dark' ? '!{dark_theme}' : '!{light_theme}'
 
-    const loadGiscus = () => {
-      const config = Object.assign({
+    const createScriptElement = config => {
+      const ele = document.createElement('script')
+      Object.entries(config).forEach(([key, value]) => {
+        ele.setAttribute(key, value)
+      })
+      return ele
+    }
+
+    const loadGiscus = (el = document, key) => {
+      const mappingConfig = isShuoshuo
+        ? { 'data-mapping': 'specific', 'data-term': key }
+        : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+      const giscusConfig = {
         src: '!{giscusUrl}',
         'data-repo': '!{repo}',
         'data-repo-id': '!{repo_id}',
         'data-category-id': '!{category_id}',
-        'data-mapping': 'pathname',
         'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
         'data-reactions-enabled': '1',
         crossorigin: 'anonymous',
-        async: true
-      },!{JSON.stringify(option)})
-
-      const ele = document.createElement('script')
-      for (let key in config) {
-        ele.setAttribute(key, config[key])
+        async: true,
+        ...option,
+        ...mappingConfig
       }
-      document.getElementById('giscus-wrap').appendChild(ele)
+
+      const scriptElement = createScriptElement(giscusConfig)
+
+      el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+      if (isShuoshuo) {
+        window.shuoshuoComment.destroyGiscus = () => {
+          if (el.children.length) {
+            el.innerHTML = ''
+            el.classList.add('no-comment')
+          }
+        }
+      }
     }
 
     const changeGiscusTheme = theme => {
@@ -43,10 +66,17 @@ script.
 
     btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
 
+    if (isShuoshuo) {
+      '!{use[0]}' === 'Giscus'
+        ? window.shuoshuoComment = { loadComment: loadGiscus }
+        : window.loadOtherComment = loadGiscus
+      return
+    }
+
     if ('!{use[0]}' === 'Giscus' || !!{lazyload}) {
       if (!{lazyload}) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
       else loadGiscus()
     } else {
-      window.loadOtherComment= loadGiscus
+      window.loadOtherComment = loadGiscus
     }
   })()

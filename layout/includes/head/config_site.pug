@@ -23,5 +23,6 @@ script#config-diff.
     isHome: !{is_home()},
     isHighlightShrink: !{isHighlightShrink},
     isToc: !{showToc},
-    postUpdate: '!{full_date(page.updated)}'
+    postUpdate: '!{full_date(page.updated)}',
+    isShuoshuo: !{page.type == 'shuoshuo'}
   }

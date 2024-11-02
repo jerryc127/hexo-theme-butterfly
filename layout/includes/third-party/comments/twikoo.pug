@@ -3,6 +3,9 @@
 
 script.
   (() => {
+    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const option = !{JSON.stringify(option)}
+
     const getCount = () => {
       const countELement = document.getElementById('twikoo-count')
       if(!countELement) return
@@ -18,22 +21,38 @@ script.
       })
     }
 
-    const init = () => {
-      twikoo.init(Object.assign({
-        el: '#twikoo-wrap',
+    const init = (el = document, path = location.pathname) => {
+      twikoo.init({
+        el: el.querySelector('#twikoo-wrap'),
         envId: '!{envId}',
         region: '!{region}',
         onCommentLoaded: () => {
           btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
-        }
-      }, !{JSON.stringify(option)}))
+        },
+        ...option,
+        path: isShuoshuo ? path : (option && option.path) || path
+      })
 
       !{count ? 'GLOBAL_CONFIG_SITE.isPost && getCount()' : ''}
+
+      isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      })
     }
 
-    const loadTwikoo = () => {
-      if (typeof twikoo === 'object') setTimeout(init,0)
-      else btf.getScript('!{url_for(theme.asset.twikoo)}').then(init)
+    const loadTwikoo = (el, path) => {
+      if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+      else btf.getScript('!{url_for(theme.asset.twikoo)}').then(() => init(el, path))
+    }
+
+    if (isShuoshuo) {
+      '!{use[0]}' === 'Twikoo'
+        ? window.shuoshuoComment = { loadComment: loadTwikoo }
+        : window.loadOtherComment = loadTwikoo
+      return
     }
 
     if ('!{use[0]}' === 'Twikoo' || !!{lazyload}) {

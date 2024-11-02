@@ -290,6 +290,22 @@
       Object.keys(keyObj).forEach(i => keyObj[i]())
 
       delete globalFn[key]
+    },
+
+    switchComments: (el = document, path) => {
+      const switchBtn = el.querySelector('#switch-btn')
+      if (!switchBtn) return
+
+      let switchDone = false
+      const postComment = el.querySelector('#post-comment')
+      const handleSwitchBtn = () => {
+        postComment.classList.toggle('move')
+        if (!switchDone && typeof loadOtherComment === 'function') {
+          switchDone = true
+          loadOtherComment(el, path)
+        }
+      }
+      btf.addEventListenerPjax(switchBtn, 'click', handleSwitchBtn)
     }
   }
 

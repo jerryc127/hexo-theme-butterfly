@@ -1,68 +1,78 @@
 - const { host, siteId, option } = theme.remark42
+
 script.
-  var remark_config = Object.assign({
-    host: '!{host}',
-    site_id: '!{siteId}',
-    components: ['embed'],
-    theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
-  },!{JSON.stringify(option)})
+  (() => {
+    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const option = !{JSON.stringify(option)}
 
-  function addRemark42(){
-    for (let i = 0; i < remark_config.components.length; i++) {
-      const s = document.createElement('script')
-      s.src = remark_config.host + '/web/' + remark_config.components[i] + '.js'
-      s.defer = true
-      document.head.appendChild(s)
+    const loadScript = src => {
+      const script = document.createElement('script')
+      script.src = src
+      script.defer = true
+      document.head.appendChild(script)
     }
-  }
 
-  function initRemark42() {
-    if (window.REMARK42) {
-      if (this.remark42Instance) {
-        this.remark42Instance.destroy()
+    const addRemark42 = () => loadScript('!{host}/web/embed.js')
+
+    const getCount = () => document.querySelector('.remark42__counter') && loadScript('!{host}/web/count.js')
+
+    const destroyRemark42 = () => window.remark42Instance && window.remark42Instance.destroy()
+
+    const initRemark42 = remark_config => {
+      if (window.REMARK42) {
+        destroyRemark42()
+        window.remark42Instance = window.REMARK42.createInstance({
+          ...remark_config
+        })
+      }
+    }
+
+    const loadRemark42 = (el, path) => {
+      if (isShuoshuo) {
+        window.shuoshuoComment.destroyRemark42 = () => {
+          destroyRemark42()
+          if (el.children.length) {
+            el.innerHTML = ''
+            el.classList.add('no-comment')
+          }
+        }
       }
 
-      this.remark42Instance = window.REMARK42.createInstance({
-        ...remark_config
-      })
-    }
-  }
+      window.remark_config = {
+        host: '!{host}',
+        site_id: '!{siteId}',
+        theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light',
+        ...option,
+        url: isShuoshuo ? window.location.origin + path : (option && option.url) || window.location.origin + window.location.pathname
+      }
 
-  function getCount () {
-    const ele = document.querySelector('.remark42__counter')
-    if (ele) {
-      const s = document.createElement('script')
-      s.src = remark_config.host + '/web/counter.js'
-      s.defer = true
-      document.head.appendChild(s)
-    }
-  }
-
-  function loadRemark42 () {
-    if (window.REMARK42) {
-      this.initRemark42()
-      getCount()
-    } else {
-      addRemark42()
-      window.addEventListener('REMARK42::ready', () => {
-        this.initRemark42()
+      if (window.REMARK42) {
+        initRemark42(remark_config)
         getCount()
-      })
+      } else {
+        addRemark42()
+        window.addEventListener('REMARK42::ready', () => {
+          initRemark42(remark_config)
+          getCount()
+        })
+      }
     }
-  }
 
-  function remarkChangeMode (theme) {
-    if (!window.REMARK42) return
-    window.REMARK42.changeTheme(theme)
-  }
+    const remarkChangeMode = theme => window.REMARK42 && window.REMARK42.changeTheme(theme)
 
-  btf.addGlobalFn('themeChange', remarkChangeMode, 'remark42')
+    btf.addGlobalFn('themeChange', remarkChangeMode, 'remark42')
 
-  if ('!{theme.comments.use[0]}' === 'Remark42' || !!{theme.comments.lazyload}) {
-    if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('remark42'), loadRemark42)
-    else loadRemark42()
-  } else {
-    function loadOtherComment () {
-      loadRemark42()
+    if (isShuoshuo) {
+      '!{theme.comments.use[0]}' === 'Remark42'
+        ? window.shuoshuoComment = { loadComment: loadRemark42 }
+        : window.loadOtherComment = loadRemark42
+      return
     }
-  }
+    
+    if ('!{theme.comments.use[0]}' === 'Remark42' || !!{theme.comments.lazyload}) {
+      if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('remark42'), loadRemark42)
+      else loadRemark42()
+    } else {
+      window.loadOtherComment = loadRemark42
+    }
+  })()

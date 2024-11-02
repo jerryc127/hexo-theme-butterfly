@@ -5,13 +5,6 @@ const { prettyUrls } = require('hexo-util')
 const crypto = require('crypto')
 const moment = require('moment-timezone')
 
-hexo.extend.helper.register('getTimeZoneDate', date => {
-  // This is a hack method, because hexo treats time as UTC time
-  // so you need to manually convert the time zone
-  const utcDate = moment.utc(date).format('YYYY-MM-DD HH:mm:ss')
-  return moment.tz(utcDate, hexo.config.timezone).format('YYYY-MM-DD HH:mm:ss')
-})
-
 hexo.extend.helper.register('truncate', truncateContent)
 
 hexo.extend.helper.register('postDesc', data => {
@@ -102,4 +95,32 @@ hexo.extend.helper.register('getBgPath', path => {
   } else {
     return `background: ${path};`
   }
+})
+
+hexo.extend.helper.register('shuoshuoFN', (data, page) => {
+  const { limit } = page
+  let finalResult = ''
+
+  // Check if limit.value is a valid date
+  const isValidDate = (date) => !isNaN(Date.parse(date))
+
+  // order by date
+  data.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+
+  // Apply number limit or time limit conditionally
+  if (limit && limit.type === 'num' && limit.value > 0) {
+    finalResult = data.slice(0, limit.value)
+  } else if (limit && limit.type === 'date' && isValidDate(limit.value)) {
+    const limitDate = Date.parse(limit.value)
+    finalResult = data.filter(item => Date.parse(item.date) >= limitDate)
+  }
+
+  // This is a hack method, because hexo treats time as UTC time
+  // so you need to manually convert the time zone
+  finalResult.forEach(item => {
+    const utcDate = moment.utc(item.date).format('YYYY-MM-DD HH:mm:ss')
+    item.date = moment.tz(utcDate, hexo.config.timezone).format('YYYY-MM-DD HH:mm:ss')
+  })
+
+  return finalResult
 })

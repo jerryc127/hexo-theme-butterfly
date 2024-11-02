@@ -928,16 +928,16 @@ chartjs:
   # The default settings are only used when the MD syntax is not specified.
   # General font color for the chart
   fontColor:
-    light: "rgba(0, 0, 0, 0.8)"
-    dark: "rgba(255, 255, 255, 0.8)"
+    light: 'rgba(0, 0, 0, 0.8)'
+    dark: 'rgba(255, 255, 255, 0.8)'
   # General border color for the chart
   borderColor:
-    light: "rgba(0, 0, 0, 0.1)"
-    dark: "rgba(255, 255, 255, 0.2)"
+    light: 'rgba(0, 0, 0, 0.1)'
+    dark: 'rgba(255, 255, 255, 0.2)'
   # Background color for scale labels on radar and polar area charts
   scale_ticks_backdropColor:
-    light: "transparent"
-    dark: "transparent"
+    light: 'transparent'
+    dark: 'transparent'
 
 # Note - Bootstrap Callout
 note:
