@@ -102,18 +102,25 @@ hexo.extend.helper.register('shuoshuoFN', (data, page) => {
   let finalResult = ''
 
   // Check if limit.value is a valid date
-  const isValidDate = (date) => !isNaN(Date.parse(date))
+  const isValidDate = date => !isNaN(Date.parse(date))
 
   // order by date
-  data.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+  const orderByDate = data => data.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
 
   // Apply number limit or time limit conditionally
-  if (limit && limit.type === 'num' && limit.value > 0) {
-    finalResult = data.slice(0, limit.value)
-  } else if (limit && limit.type === 'date' && isValidDate(limit.value)) {
-    const limitDate = Date.parse(limit.value)
-    finalResult = data.filter(item => Date.parse(item.date) >= limitDate)
+  const limitData = data => {
+    if (limit && limit.type === 'num' && limit.value > 0) {
+      return data.slice(0, limit.value)
+    } else if (limit && limit.type === 'date' && isValidDate(limit.value)) {
+      const limitDate = Date.parse(limit.value)
+      return data.filter(item => Date.parse(item.date) >= limitDate)
+    }
+
+    return data
   }
+
+  orderByDate(data)
+  finalResult = limitData(data)
 
   // This is a hack method, because hexo treats time as UTC time
   // so you need to manually convert the time zone
