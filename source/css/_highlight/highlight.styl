@@ -42,7 +42,7 @@ $code-block
     counter-reset: line
     white-space: pre-wrap
 
-#article-container
+.container
   pre,
   code
     font-size: $code-font-size
@@ -164,7 +164,7 @@ $code-block
       border: none
 
 if $highlight_macstyle
-  #article-container
+  .container
     figure.highlight
       margin: 0 0 24px
       border-radius: 7px
@@ -202,7 +202,7 @@ if $highlight_macstyle
               transform: rotate(90deg)
 
 if hexo-config('code_blocks.height_limit')
-  #article-container
+  .container
     .code-expand-btn
       position: absolute
       bottom: 0
@@ -243,7 +243,7 @@ if hexo-config('code_blocks.height_limit')
       opacity: .6
 
 if hexo-config('code_blocks.fullpage')
-  #article-container
+  .container
     figure.highlight.code-fullpage
       position: fixed
       top: 0

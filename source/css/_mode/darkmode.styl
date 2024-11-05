@@ -41,7 +41,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       background-color: alpha($dark-black, .7)
       content: ''
 
-    #article-container
+    .container
       code
         background: #2c2c2c
 
@@ -87,9 +87,9 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     .hide-button,
     .btn-beautify,
     .hl-label,
-    .post-outdate-notice,
+    #post-outdate-notice,
     .error-img,
-    #article-container iframe,
+    .container iframe,
     .gist,
     .ads-wrap
       filter: brightness(.8)

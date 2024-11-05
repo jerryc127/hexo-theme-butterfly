@@ -69,7 +69,7 @@ beautify()
   hr
     @extend .custom-hr
 
-#article-container
+.container
   word-wrap: break-word
   overflow-wrap: break-word
 
@@ -236,13 +236,16 @@ beautify()
           &:hover
             text-decoration: none
 
-  .post-outdate-notice
+  #post-outdate-notice
     position: relative
     margin: 0 0 20px
     padding: .5em 1.2em
     background-color: $noticeOutdate-bg
     color: $noticeOutdate-color
     addBorderRadius(3)
+
+    .num
+      padding: 0 4px
 
     if hexo-config('noticeOutdate.style') == 'flat'
       padding: .5em 1em .5em 2.6em
