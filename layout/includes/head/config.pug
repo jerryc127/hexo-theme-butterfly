@@ -69,16 +69,6 @@
     })
   }
 
-  let noticeOutdate = 'undefined'
-  if (theme.noticeOutdate && theme.noticeOutdate.enable) {
-    noticeOutdate = JSON.stringify({
-      limitDay: theme.noticeOutdate.limit_day,
-      position: theme.noticeOutdate.position,
-      messagePrev: theme.noticeOutdate.message_prev,
-      messageNext: theme.noticeOutdate.message_next,
-    })
-  }
-
   let highlight = 'undefined'
   let syntaxHighlighter = config.syntax_highlighter
   let highlightEnable = syntaxHighlighter ? ['highlight.js', 'prismjs'].includes(syntaxHighlighter) : (config.highlight.enable || config.prismjs.enable)
@@ -100,7 +90,6 @@ script.
     algolia: !{algolia},
     localSearch: !{localSearch},
     translate: !{translate},
-    noticeOutdate: !{noticeOutdate},
     highlight: !{highlight},
     copy: {
       success: '!{_p("copy.success")}',

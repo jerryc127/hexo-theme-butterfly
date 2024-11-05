@@ -28,7 +28,7 @@
           const btn = e.target.closest('.shuoshuo-comment-btn')
           if (!btn) return
 
-          const ele = btn.parentNode.nextElementSibling
+          const ele = btn.closest('.container').nextElementSibling
           const { shuoshuoComment } = window
           const isInclude = ele.classList.contains('no-comment')
           runDestroy(shuoshuoComment)
@@ -103,21 +103,23 @@
 
                 return `
                   <div class="shuoshuo-item">
-                    <div class="shuoshuo-item-header">
-                      <div class="shuoshuo-avatar">
-                        <img class="no-lightbox" src="${item.avatar || '!{url_for(theme.avatar.img)}'}">
+                    <div class="container">
+                      <div class="shuoshuo-item-header">
+                        <div class="shuoshuo-avatar">
+                          <img class="no-lightbox" src="${item.avatar || '!{url_for(theme.avatar.img)}'}">
+                        </div>
+                        <div class="shuoshuo-info">
+                          <div class="shuoshuo-author">${item.author || '!{config.author}'}</div>
+                          <time class="shuoshuo-date" title="${formattedDate}">
+                            ${btf.diffDate(formattedDate, true)}
+                          </time>
+                        </div>
                       </div>
-                      <div class="shuoshuo-info">
-                        <div class="shuoshuo-author">${item.author || '!{config.author}'}</div>
-                        <time class="shuoshuo-date" title="${formattedDate}">
-                          ${btf.diffDate(formattedDate, true)}
-                        </time>
+                      <div class="shuoshuo-content">${item.content}</div>
+                      <div class="shuoshuo-footer ${tags ? 'flex-between' : 'flex-end'}">
+                        ${tags ? `<div class="shuoshuo-tags">${tags}</div>` : ''}
+                        ${commentButton}
                       </div>
-                    </div>
-                    <div class="shuoshuo-content">${item.content}</div>
-                    <div class="shuoshuo-footer ${tags ? 'flex-between' : 'flex-end'}">
-                      ${tags ? `<div class="shuoshuo-tags">${tags}</div>` : ''}
-                      ${commentButton}
                     </div>
                     ${commentContainer}
                   </div>`
@@ -165,21 +167,22 @@
     if site.data.shuoshuo
       each i in shuoshuoFN(site.data.shuoshuo, page)
         .shuoshuo-item
-          .shuoshuo-item-header
-            .shuoshuo-avatar
-              img.no-lightbox(src=i.avatar || url_for(theme.avatar.img))
-            .shuoshuo-info
-              .shuoshuo-author=i.author || config.author
-              time.shuoshuo-date(title=i.date)=i.date
-          .shuoshuo-content
-            !=markdown(i.content)
-          .shuoshuo-footer(class=i.tags && i.tags.length ? 'flex-between' : 'flex-end')
-            if i.tags
-              .shuoshuo-tags
-                each tag in i.tags
-                  span.shuoshuo-tag=tag
-            if i.key && commentsJsLoad
-              .shuoshuo-comment-btn(onclick='addCommentToShuoshuo(event)')
-                i.fa-solid.fa-comments
+          .container
+            .shuoshuo-item-header
+              .shuoshuo-avatar
+                img.no-lightbox(src=i.avatar || url_for(theme.avatar.img))
+              .shuoshuo-info
+                .shuoshuo-author=i.author || config.author
+                time.shuoshuo-date(title=i.date)=i.date
+            .shuoshuo-content
+              !=markdown(i.content)
+            .shuoshuo-footer(class=i.tags && i.tags.length ? 'flex-between' : 'flex-end')
+              if i.tags
+                .shuoshuo-tags
+                  each tag in i.tags
+                    span.shuoshuo-tag=tag
+              if i.key && commentsJsLoad
+                .shuoshuo-comment-btn(onclick='addCommentToShuoshuo(event)')
+                  i.fa-solid.fa-comments
           if i.key && commentsJsLoad
             .shuoshuo-comment.no-comment(data-key=i.key)

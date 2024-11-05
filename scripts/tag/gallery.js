@@ -3,8 +3,8 @@
  * galleryGroup and gallery
  * {% galleryGroup [name] [descr] [url] [img] %}
  *
- * {% gallery [button],%}
- * {% gallery url,[url],[button]%}
+ * {% gallery [button] %}
+ * {% gallery url,[url],[button] %}
  */
 
 'use strict'
