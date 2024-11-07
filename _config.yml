@@ -1023,6 +1023,13 @@ Open_Graph_meta:
     # fb_admins:
     # fb_app_id:
 
+# Structured Data
+# https://developers.google.com/search/docs/guides/intro-structured-data
+structured_data:
+  enable: true
+  # Choose: json-ld / microdata
+  format: 'json-ld'
+
 # Add the vendor prefixes to ensure compatibility
 css_prefix: true
 
