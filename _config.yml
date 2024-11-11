@@ -1027,8 +1027,6 @@ Open_Graph_meta:
 # https://developers.google.com/search/docs/guides/intro-structured-data
 structured_data:
   enable: true
-  # Choose: json-ld / microdata
-  format: 'json-ld'
 
 # Add the vendor prefixes to ensure compatibility
 css_prefix: true

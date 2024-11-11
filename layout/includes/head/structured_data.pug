@@ -1,6 +1,6 @@
 if theme.structured_data.enable && page.layout === 'post'
   -
-    const format = theme.structured_data.format || 'json-ld'
+    // use json-ld to add structured data
 
     const title = page.title
     const url = page.permalink
@@ -12,47 +12,23 @@ if theme.structured_data.enable && page.layout === 'post'
     const authorHrefVal = page.copyright_author_href || theme.post_copyright.author_href || site.url;
     const authorHref = full_url_for(authorHrefVal);
 
-    if (format === 'json-ld') {
-      const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": title,
-        "url": url,
-        "image": image,
-        "datePublished": datePublished,
-        "dateModified": dateModified,
-        "author": [{
-          "@type": "Person",
-          "name": author,
-          "url": authorHref
-        }]
-      };
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": title,
+      "url": url,
+      "image": image,
+      "datePublished": datePublished,
+      "dateModified": dateModified,
+      "author": [{
+        "@type": "Person",
+        "name": author,
+        "url": authorHref
+      }]
+    };
 
-      jsonLdScript = JSON.stringify(jsonLd, null, 2);
-    } else if (format === 'microdata') {
-      microdata = {
-        headline: title,
-        url: url,
-        image: image,
-        datePublished: datePublished,
-        dateModified: dateModified,
-        authorName: author,
-        authorUrl: authorHref
-      };
-    }
+    jsonLdScript = JSON.stringify(jsonLd, null, 2);
   -
 
-  if (format === 'json-ld')
-    script(type="application/ld+json").
-      !{jsonLdScript}
-  else if (format === 'microdata')
-    div(itemscope itemtype="https://schema.org/BlogPosting")
-      meta(itemprop="headline" content=microdata.headline)
-      link(itemprop="url" href=microdata.url)
-      if microdata.image
-        img(itemprop="image" src=microdata.image alt=microdata.headline)
-      meta(itemprop="datePublished" content=microdata.datePublished)
-      meta(itemprop="dateModified" content=microdata.dateModified)
-      div(itemprop="author" itemscope itemtype="https://schema.org/Person")
-        meta(itemprop="name" content=microdata.authorName)
-        link(itemprop="url" href=microdata.authorUrl)
+  script(type="application/ld+json").
+    !{jsonLdScript}

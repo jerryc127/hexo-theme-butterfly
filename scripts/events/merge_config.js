@@ -568,8 +568,7 @@ hexo.extend.filter.register('before_generate', () => {
       option: null
     },
     structured_data: {
-      enable: true,
-      format: 'json-ld',
+      enable: true
     },
     css_prefix: true,
     inject: {
