@@ -6,7 +6,7 @@
 'use strict'
 
 hexo.extend.filter.register('before_post_render', data => {
-  const imgTestReg = /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/i
+  const imgTestReg = /\.(png|jpe?g|gif|svg|webp|avif)(\?.*)?$/i
   let { cover: coverVal, top_img: topImg } = data
 
   // Add path to top_img and cover if post_asset_folder is enabled
