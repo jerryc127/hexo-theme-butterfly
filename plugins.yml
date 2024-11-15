@@ -152,10 +152,6 @@ pace_js:
   other_name: pace
   file: pace.min.js
   version: 1.2.4
-pangu:
-  name: pangu
-  file: dist/browser/pangu.min.js
-  version: 4.0.7
 pjax:
   name: pjax
   file: pjax.min.js

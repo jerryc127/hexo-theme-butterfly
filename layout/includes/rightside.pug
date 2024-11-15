@@ -23,7 +23,7 @@ mixin rightsideItem(array)
             i.fas.fa-list-ul
       when 'chat'
         if chat.rightside_button && chat.use
-          button#chat-btn(type="button" title=_p("rightside.chat"))
+          button#chat-btn(type="button" title=_p("rightside.chat") style="display:none")
             i.fas.fa-message
       when 'comment'
         if commentsJsLoad

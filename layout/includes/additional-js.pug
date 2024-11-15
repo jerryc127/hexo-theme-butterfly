@@ -17,9 +17,6 @@ div
   if theme.snackbar.enable
     script(src=url_for(theme.asset.snackbar))
 
-  if theme.pangu.enable
-    != partial("includes/third-party/pangu.pug", {}, { cache: true })
-
   .js-pjax
     if needLoadCountJs
       != partial("includes/third-party/card-post-count/index", {}, { cache: true })

@@ -101,7 +101,7 @@ theme: butterfly
 - [x] Chart.js 圖表顯示
 - [x] 照片牆
 - [x] 圖片懶加載
-- [x] Instantpage/Pangu/Snackbar彈窗/PWA......
+- [x] Instantpage/Snackbar彈窗/PWA......
 
 ## ✨ 貢獻者
 

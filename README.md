@@ -101,7 +101,7 @@ npm i hexo-theme-butterfly
 - [x] Chart.js
 - [x] Justified Gallery
 - [x] Lazyload images
-- [x] Instantpage/Pangu/Snackbar notification toast/PWA......
+- [x] Instantpage/Snackbar notification toast/PWA......
 
 ## ✨ Contributors
 
