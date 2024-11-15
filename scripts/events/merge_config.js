@@ -563,6 +563,7 @@ hexo.extend.filter.register('before_generate', () => {
       enable: true,
       option: null
     },
+    structured_data: true,
     css_prefix: true,
     inject: {
       head: null,

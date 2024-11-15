@@ -25,6 +25,9 @@ meta(name="theme-color" content=themeColor)
 //- Open_Graph
 include ./head/Open_Graph.pug
 
+//- Structured Data
+include ./head/structured_data.pug
+
 !=favicon_tag(theme.favicon || config.favicon)
 link(rel="canonical" href=urlNoIndex(null,config.pretty_urls.trailing_index,config.pretty_urls.trailing_html))
 
