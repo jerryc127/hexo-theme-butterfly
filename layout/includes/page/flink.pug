@@ -30,7 +30,7 @@
                       <div class="flink-item-icon">
                         <img class="no-lightbox" src="${lists[j].avatar}" onerror='this.onerror=null;this.src="!{url_for(theme.error_img.flink)}"' alt="${lists[j].name}" />
                       </div>
-                      <div class="flink-item-name">${lists[j].name}</div> 
+                      <div class="flink-item-name">${lists[j].name}</div>
                       <div class="flink-item-desc" title="${lists[j].descr}">${lists[j].descr}</div>
                     </a>
                   </div>`
@@ -63,14 +63,14 @@
           - let listResult = ""
 
           each j in i.link_list
-            - 
+            -
               listResult += `
                 <div class="flink-list-item">
                   <a href="${j.link}" title="${j.name}" target="_blank">
                     <div class="flink-item-icon">
                       <img class="no-lightbox" src="${j.avatar}" onerror='this.onerror=null;this.src="${url_for(theme.error_img.flink)}"' alt="${j.name}" />
                     </div>
-                    <div class="flink-item-name">${j.name}</div> 
+                    <div class="flink-item-name">${j.name}</div>
                     <div class="flink-item-desc" title="${j.descr}">${j.descr}</div>
                   </a>
                 </div>`

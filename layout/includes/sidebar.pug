@@ -12,7 +12,7 @@ if theme.menu
           .headline= _p('aside.tags')
           .length-num= site.tags.length
         a(href=url_for(config.category_dir) + '/')
-          .headline= _p('aside.categories') 
+          .headline= _p('aside.categories')
           .length-num= site.categories.length
 
       !=partial('includes/header/menu_item', {}, {cache: true})

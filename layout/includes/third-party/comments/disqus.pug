@@ -4,7 +4,7 @@
 
 script.
   (() => {
-    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
 
     const disqusReset = conf => {
       window.DISQUS && window.DISQUS.reset({
@@ -72,7 +72,7 @@ script.
       if (!{lazyload}) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
       else {
         loadDisqus()
-        !{ count ? 'GLOBAL_CONFIG_SITE.isPost && getCount()' : '' }
+        !{ count ? `GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()` : '' }
       }
     } else {
       window.loadOtherComment = loadDisqus

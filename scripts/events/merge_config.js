@@ -547,6 +547,7 @@ hexo.extend.filter.register('before_generate', () => {
     instantpage: false,
     lazyload: {
       enable: false,
+      native: false,
       field: 'site',
       placeholder: null,
       blur: false

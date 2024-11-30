@@ -5,7 +5,7 @@ script.
   (() => {
     let artalkItem = null
     const option = !{JSON.stringify(option)}
-    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
 
     const destroyArtalk = () => {
       if (artalkItem) {

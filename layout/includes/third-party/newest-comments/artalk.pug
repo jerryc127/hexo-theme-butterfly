@@ -18,7 +18,7 @@ script.
       if (predefinedAvatarCdn && predefinedAvatarDefault) {
         return { avatarCdn: predefinedAvatarCdn, avatarDefault: avatarDefaultFormat(predefinedAvatarDefault) }
       }
-    
+
       try {
         const res = await fetch('!{server}/api/v2/conf')
         const result = await res.json()

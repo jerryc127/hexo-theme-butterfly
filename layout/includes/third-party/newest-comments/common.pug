@@ -6,7 +6,7 @@ script.
       content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
       content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[!{_p("aside.card_newest_comments.link")}]') // replace url
       content = content.replace(/<pre><code>.*?<\/pre>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
-      content = content.replace(/<code>.*?<\/code>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code      
+      content = content.replace(/<code>.*?<\/code>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
       content = content.replace(/<[^>]+>/g, "") // remove html tag
 
       if (content.length > 150) {
@@ -23,8 +23,9 @@ script.
           result += '<div class="aside-list-item">'
 
           if (!{theme.aside.card_newest_comments.avatar} && array[i].avatar) {
-            const imgAttr = '!{theme.lazyload.enable ? "data-lazy-src" : "src"}'
-            result += `<a href="${array[i].url}" class="thumbnail"><img ${imgAttr}="${array[i].avatar}" alt="${array[i].nick}"></a>`
+            const imgAttr = '!{theme.lazyload.enable && !theme.lazyload.native ? "data-lazy-src" : "src"}'
+            const lazyloadNative = '!{theme.lazyload.enable && theme.lazyload.native ? "loading=\"lazy\"" : ""}'
+            result += `<a href="${array[i].url}" class="thumbnail"><img ${imgAttr}="${array[i].avatar}" alt="${array[i].nick}" ${lazyloadNative}></a>`
           }
 
           result += `<div class="content">

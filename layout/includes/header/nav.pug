@@ -5,7 +5,7 @@ nav#nav
         img.site-icon(src=url_for(theme.nav.logo) alt='Logo')
       if theme.nav.display_title
         span.site-name=config.title
-    if is_post()
+    if globalPageType === 'post'
       a.nav-page-title(href=url_for('/'))
         span.site-name=(page.title || config.title)
   #menus

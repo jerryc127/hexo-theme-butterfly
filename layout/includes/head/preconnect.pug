@@ -10,7 +10,7 @@
 
 if internal_provider === third_party_provider && internal_provider !== 'local'
   link(rel="preconnect" href=providers[internal_provider])
-else 
+else
   if internal_provider !== 'local'
     link(rel="preconnect" href=providers[internal_provider])
   if third_party_provider !== 'local'

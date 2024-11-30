@@ -864,7 +864,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuMask && menuMask.addEventListener('click', () => { sidebarFn.close() })
 
     clickFnOfSubMenu()
-    GLOBAL_CONFIG.islazyload && lazyloadImg()
+    GLOBAL_CONFIG.islazyloadPlugin && lazyloadImg()
     GLOBAL_CONFIG.copyright !== undefined && addCopyright()
 
     if (GLOBAL_CONFIG.autoDarkmode) {
@@ -890,7 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAdjust()
     justifiedIndexPostUI()
 
-    if (GLOBAL_CONFIG_SITE.isPost) {
+    if (GLOBAL_CONFIG_SITE.pageType === 'post') {
       addPostOutdateNotice()
       GLOBAL_CONFIG.relativeDate.post && relativeDate(document.querySelectorAll('#post-meta time'))
     } else {
@@ -900,11 +900,11 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleCardCategory()
     }
 
-    GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()
+    GLOBAL_CONFIG_SITE.pageType === 'home' && scrollDownInIndex()
     scrollFn()
 
     forPostFn()
-    !GLOBAL_CONFIG_SITE.isShuoshuo && btf.switchComments(document)
+    GLOBAL_CONFIG_SITE.pageType !== 'shuoshuo' && btf.switchComments(document)
     openMobileMenu()
   }
 

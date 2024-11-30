@@ -7,7 +7,7 @@ if site.data.valine
 
 script.
   (() => {
-    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
     const option = !{JSON.stringify(option)}
 
     const initValine = (el, path) => {

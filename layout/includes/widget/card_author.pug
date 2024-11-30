@@ -13,14 +13,14 @@ if theme.aside.card_author.enable
         .headline= _p('aside.tags')
         .length-num= site.tags.length
       a(href=url_for(config.category_dir) + '/')
-        .headline= _p('aside.categories') 
+        .headline= _p('aside.categories')
         .length-num= site.categories.length
 
     if theme.aside.card_author.button.enable
       a#card-info-btn(href=theme.aside.card_author.button.link)
         i(class=theme.aside.card_author.button.icon)
         span=theme.aside.card_author.button.text
-  
+
     if(theme.social)
       .card-info-social-icons
         !=partial('includes/header/social', {}, {cache: true})
