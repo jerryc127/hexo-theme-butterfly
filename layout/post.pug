@@ -6,7 +6,7 @@ block content
       include includes/header/post-info.pug
 
     article#article-container.container.post-content
-      if theme.noticeOutdate.enable && page.noticeOutdate !== false 
+      if theme.noticeOutdate.enable && page.noticeOutdate !== false
         include includes/post/outdate-notice.pug
       else
         !=page.content

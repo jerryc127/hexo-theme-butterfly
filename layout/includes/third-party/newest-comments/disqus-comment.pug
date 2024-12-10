@@ -6,7 +6,7 @@ script.
     const { changeContent, generateHtml, run } = window.newestComments
 
     const getComment = ele => {
-      fetch('https://disqus.com/api/3.0/forums/listPosts.json?forum=!{forum}&related=thread&limit=!{theme.aside.card_newest_comments.limit}&api_key=!{apiKey}')
+      fetch('https://disqus.com/api/3.0/forums/listPosts.json?forum=!{forum}&related=thread&limit=!{newestCommentsLimit}&api_key=!{apiKey}')
         .then(response => response.json())
         .then(data => {
           const disqusArray = data.response.map(item => {

@@ -27,7 +27,7 @@ script.
         },
       }
 
-      fetch(`${serverURL}/1.1/classes/Comment?limit=!{theme.aside.card_newest_comments.limit}&order=-createdAt`,settings)
+      fetch(`${serverURL}/1.1/classes/Comment?limit=!{newestCommentsLimit}&order=-createdAt`,settings)
         .then(response => response.json())
         .then(data => {
           const valineArray = data.results.map(e => {
