@@ -7,7 +7,7 @@
         != `&copy;${sinceYear} - ${currentYear} By ${config.author}`
       else
         != `&copy;${currentYear} By ${config.author}`
-  if theme.footer.copyright
+  if theme.footer.copyright.enable
     .framework-info
       span= _p('footer.framework') + ' '
       a(href='https://hexo.io')= 'Hexo'
