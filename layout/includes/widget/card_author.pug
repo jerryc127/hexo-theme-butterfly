@@ -1,6 +1,7 @@
 if theme.aside.card_author.enable
-  .card-widget.card-info.text-center
-    div.card-info-avatar
+  .card-widget.card-info
+    .author_top.is-center
+      div.card-info-avatar
         .avatar-img
           img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
         div.author-status-box
