@@ -1,7 +1,12 @@
 if theme.aside.card_author.enable
   .card-widget.card-info.text-center
-    .avatar-img
-      img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+    div.card-info-avatar
+        .avatar-img
+          img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+        div.author-status-box
+          div.author-status
+            g-emoji.g-emoji(alias="palm_tree") 🐟
+            span 认真摸鱼中
     .author-info-name= config.author
     .author-info-description!= theme.aside.card_author.description || config.description
 
