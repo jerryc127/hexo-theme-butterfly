@@ -255,11 +255,11 @@ noticeOutdate:
 # --------------------------------------
 footer:
   owner:
-    enable: true
+    enable: false
     since: 2019
   custom_text:
   # Copyright of theme and framework
-  copyright: true
+  copyright: false
 
 # --------------------------------------
 # Aside Settings
