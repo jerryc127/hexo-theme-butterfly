@@ -1,0 +1,95 @@
+.Cuteen_DarkSky,
+.Cuteen_DarkSky:before
+  content ''
+  position fixed
+  left 0
+  right 0
+  top 0
+  bottom 0
+  z-index 88888888
+
+.Cuteen_DarkSky
+  background linear-gradient(to top, #f8cd71 0, #5bfde9 80%)
+  &:before
+    transition 2s ease all
+    opacity 0
+    background linear-gradient(to top, #30cfd0 0, #330867 100%)
+
+.DarkMode
+  .Cuteen_DarkSky
+    &:before
+      opacity 1
+
+.Cuteen_DarkPlanet
+  z-index 99999999
+  position fixed
+  left -50%
+  top -50%
+  width 200%
+  height 200%
+  -webkit-animation CuteenPlanetMove 2s cubic-bezier(0.7, 0, 0, 1)
+  animation CuteenPlanetMove 2s cubic-bezier(0.7, 0, 0, 1)
+  transform-origin center bottom
+
+
+@-webkit-keyframes CuteenPlanetMove {
+  0% {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes CuteenPlanetMove {
+  0% {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.Cuteen_DarkPlanet
+  #sun
+    position absolute
+    border-radius 100%
+    left 44%
+    top 30%
+    height 6rem
+    width 6rem
+    background #ffee94
+    box-shadow 0 0 40px #ffee94
+    // opacity 0
+
+  #moon
+    position absolute
+    border-radius 100%
+    left 44%
+    top 30%
+    position absolute
+    border-radius 100%
+    height 6rem
+    width 6rem
+    box-shadow -1.8em 1.8em 0 0.2em #fff
+    // opacity 1
+
+  // &:after
+  //   position absolute
+  //   left 42%
+  //   top 30%
+  //   width 6rem
+  //   height 6rem
+  //   border-radius 50%
+  //   content ''
+  //   background #ffef9e
+  //   box-shadow 0 0 30px #ffef9e
+
+.search
+  span
+    display none
+
+.menus_item
+  a
+    text-decoration none!important
+//按钮相关，对侧栏按钮做过魔改的可以调整这里的数值
+// .icon-V
+//   padding 5px
