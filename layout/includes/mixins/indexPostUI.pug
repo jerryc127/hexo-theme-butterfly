@@ -10,7 +10,7 @@ mixin indexPostUI()
           - const leftOrRight = indexLayout === 3 ? (index % 2 === 0 ? 'left' : 'right') : (indexLayout === 2 ? 'right' : '')
           - const post_cover = article.cover
           - const no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
-          
+
           if post_cover && theme.cover.index_enable
             .post_cover(class=leftOrRight)
               a(href=url_for(link) title=title)
@@ -20,7 +20,7 @@ mixin indexPostUI()
                   div.post-bg(style=`background: ${post_cover}`)
           .recent-post-info(class=no_cover)
             a.article-title(href=url_for(link) title=title)
-              if is_home() && (article.top || article.sticky > 0)
+              if globalPageType === 'home' && (article.top || article.sticky > 0)
                 i.fas.fa-thumbtack.sticky
               = title
             .article-meta-wrap
@@ -58,7 +58,7 @@ mixin indexPostUI()
                     a(href=url_for(item.path)).article-meta__tags #[=item.name]
                     if index < article.tags.data.length - 1
                       span.article-meta-link #[='•']
-              
+
               mixin countBlockInIndex
                 - needLoadCountJs = true
                 span.article-meta
@@ -67,7 +67,7 @@ mixin indexPostUI()
                   if block
                     block
                   span.article-meta-label= ' ' + _p('card_post_count')
-              
+
               if theme.comments.card_post_count && theme.comments.use
                 case theme.comments.use[0]
                   when 'Disqus'

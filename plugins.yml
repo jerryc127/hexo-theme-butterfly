@@ -9,7 +9,7 @@ activate_power_mode:
 algolia_search:
   name: algoliasearch
   file: dist/lite/builds/browser.umd.js
-  version: 5.12.0
+  version: 5.19.0
 aplayer_css:
   name: aplayer
   file: dist/APlayer.min.css
@@ -45,7 +45,7 @@ canvas_ribbon:
 chartjs:
   name: chart.js
   file: dist/chart.umd.js
-  version: 4.4.6
+  version: 4.4.7
 clickShowText:
   name: butterfly-extsrc
   file: dist/click-show-text.min.js
@@ -66,12 +66,12 @@ docsearch_css:
   name: '@docsearch/css'
   other_name: docsearch-css
   file: dist/style.css
-  version: 3.6.3
+  version: 3.8.2
 docsearch_js:
   name: '@docsearch/js'
   other_name: docsearch-js
   file: dist/umd/index.js
-  version: 3.6.3
+  version: 3.8.2
 egjs_infinitegrid:
   name: '@egjs/infinitegrid'
   other_name: egjs-infinitegrid
@@ -95,7 +95,7 @@ fontawesome:
   name: '@fortawesome/fontawesome-free'
   file: css/all.min.css
   other_name: font-awesome
-  version: 6.6.0
+  version: 6.7.2
 gitalk:
   name: gitalk
   file: dist/gitalk.min.js
@@ -111,17 +111,17 @@ instantpage:
 instantsearch:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.75.3
+  version: 4.75.7
 katex:
   name: katex
   file: dist/katex.min.css
   other_name: KaTeX
-  version: 0.16.11
+  version: 0.16.19
 katex_copytex:
   name: katex
   file: dist/contrib/copy-tex.min.js
   other_name: KaTeX
-  version: 0.16.11
+  version: 0.16.19
 lazyload:
   name: vanilla-lazyload
   file: dist/lazyload.iife.min.js
@@ -137,7 +137,7 @@ medium_zoom:
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
-  version: 11.4.0
+  version: 11.4.1
 meting_js:
   name: butterfly-extsrc
   file: metingjs/dist/Meting.min.js
@@ -152,10 +152,6 @@ pace_js:
   other_name: pace
   file: pace.min.js
   version: 1.2.4
-pangu:
-  name: pangu
-  file: dist/browser/pangu.min.js
-  version: 4.0.7
 pjax:
   name: pjax
   file: pjax.min.js
@@ -194,7 +190,7 @@ snackbar_css:
 twikoo:
   name: twikoo
   file: dist/twikoo.all.min.js
-  version: 1.6.39
+  version: 1.6.41
 typed:
   name: typed.js
   file: dist/typed.umd.js
@@ -202,14 +198,14 @@ typed:
 valine:
   name: valine
   file: dist/Valine.min.js
-  version: 1.5.2
+  version: 1.5.3
 waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 3.3.2
+  version: 3.4.3
 waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 3.3.2
+  version: 3.4.3

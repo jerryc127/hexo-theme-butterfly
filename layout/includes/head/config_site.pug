@@ -9,8 +9,8 @@
   var showToc = false
   if (theme.aside.enable && page.aside !== false) {
     let tocEnable = false
-    if (is_post() && theme.toc.post) tocEnable = true
-    else if (is_page() && theme.toc.page) tocEnable = true
+    if (globalPageType === 'post' && theme.toc.post) tocEnable = true
+    else if (globalPageType === 'page' && theme.toc.page) tocEnable = true
     const pageToc = typeof page.toc === 'boolean' ? page.toc : tocEnable
     showToc = pageToc && (toc(page.content) !== '' || page.encrypt === true)
   }
@@ -19,9 +19,7 @@
 script#config-diff.
   var GLOBAL_CONFIG_SITE = {
     title: '!{titleVal}',
-    isPost: !{is_post()},
-    isHome: !{is_home()},
     isHighlightShrink: !{isHighlightShrink},
     isToc: !{showToc},
-    isShuoshuo: !{page.type == 'shuoshuo'}
+    pageType: '!{page.type == 'shuoshuo' ? 'shuoshuo' : globalPageType}'
   }

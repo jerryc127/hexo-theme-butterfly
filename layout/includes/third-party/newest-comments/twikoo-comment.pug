@@ -10,7 +10,7 @@ script.
         twikoo.getRecentComments({
           envId: '!{theme.twikoo.envId}',
           region: '!{theme.twikoo.region}',
-          pageSize: !{theme.aside.card_newest_comments.limit},
+          pageSize: !{newestCommentsLimit},
           includeReply: true
         }).then(res => {
           const twikooArray = res.map(e => {

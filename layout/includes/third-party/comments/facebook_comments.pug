@@ -3,7 +3,7 @@
 
 script.
   (()=>{
-    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'== 'shuoshuo'
 
     const loadFBComment = (el = document, path) => {
       if (isShuoshuo) {

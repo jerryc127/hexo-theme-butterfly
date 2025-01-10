@@ -35,7 +35,7 @@ script.
 
     const insertData = async () => {
       try {
-        if (GLOBAL_CONFIG_SITE.isPost && config.page_pv) {
+        if (GLOBAL_CONFIG_SITE.pageType === 'post' && config.page_pv) {
           const pagePV = document.getElementById('umamiPV')
           if (pagePV) {
             const data = await getData(true)

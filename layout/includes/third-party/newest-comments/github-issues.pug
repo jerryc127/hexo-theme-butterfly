@@ -32,7 +32,7 @@ script.
     }
 
     const getComment = ele => {
-      fetch('https://api.github.com/repos/!{userRepo}/issues/comments?sort=updated&direction=desc&per_page=!{theme.aside.card_newest_comments.limit}&page=1',{
+      fetch('https://api.github.com/repos/!{userRepo}/issues/comments?sort=updated&direction=desc&per_page=!{newestCommentsLimit}&page=1',{
         "headers": {
           Accept: 'application/vnd.github.v3.html+json'
         }

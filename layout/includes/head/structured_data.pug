@@ -1,0 +1,34 @@
+if theme.structured_data && page.layout === 'post'
+  -
+    // use json-ld to add structured data
+
+    const title = page.title
+    const url = page.permalink
+    const imageVal = page.cover_type === 'img' ? page.cover : theme.avatar.img
+    const image = imageVal ? full_url_for(imageVal) : ''
+    const datePublished = page.date.toISOString()
+    const dateModified = (page.updated || page.date).toISOString()
+    const author = page.copyright_author || config.author
+    const authorHrefVal = page.copyright_author_href || theme.post_copyright.author_href || site.url;
+    const authorHref = full_url_for(authorHrefVal);
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": title,
+      "url": url,
+      "image": image,
+      "datePublished": datePublished,
+      "dateModified": dateModified,
+      "author": [{
+        "@type": "Person",
+        "name": author,
+        "url": authorHref
+      }]
+    };
+
+    jsonLdScript = JSON.stringify(jsonLd, null, 2);
+  -
+
+  script(type="application/ld+json").
+    !{jsonLdScript}

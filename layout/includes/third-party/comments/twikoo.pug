@@ -3,7 +3,7 @@
 
 script.
   (() => {
-    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
     const option = !{JSON.stringify(option)}
 
     const getCount = () => {
@@ -33,7 +33,7 @@ script.
         path: isShuoshuo ? path : (option && option.path) || path
       })
 
-      !{count ? 'GLOBAL_CONFIG_SITE.isPost && getCount()' : ''}
+      !{count ? `GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()` : ''}
 
       isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
         if (el.children.length) {

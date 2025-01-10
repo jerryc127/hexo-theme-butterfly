@@ -3,7 +3,7 @@
 
 script.
   (() => {
-    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'== 'shuoshuo'
     const dqOption = !{JSON.stringify(dqOption)}
 
     const destroyDisqusjs = () => {
@@ -79,7 +79,7 @@ script.
       if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('disqusjs-wrap'), loadDisqusjs)
       else {
         loadDisqusjs()
-        !{ theme.comments.count ? 'GLOBAL_CONFIG_SITE.isPost && getCount()' : '' }
+        !{ theme.comments.count ? `GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()` : '' }
       }
     } else {
       window.loadOtherComment = loadDisqusjs

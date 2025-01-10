@@ -16,7 +16,7 @@ $theme-toc-color = $themeColorEnable && hexo-config('theme_color.toc_color') ? c
 
 $chinseFont = $language == 'zh-CN' ? 'Microsoft YaHei' : 'Microsoft JhengHei'
 $dafault-font-family = -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', $chinseFont, sans-serif
-$dafault-code-font = consolas, Menlo, 'PingFang SC', $chinseFont, sans-serif
+$dafault-code-font = consolas, Menlo, monospace, 'PingFang SC', $chinseFont, sans-serif
 
 $font-family = hexo-config('font.font_family') ? unquote(hexo-config('font.font_family')) : $dafault-font-family
 $code-font-family = hexo-config('font.code_font_family') ? unquote(hexo-config('font.code_font_family')) : $dafault-code-font

@@ -5,7 +5,7 @@
 
 script.
   (() => {
-    const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+    const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
     const option = !{JSON.stringify(option)}
     const getUtterancesTheme = theme => theme === 'dark' ? '#{dark_theme}' : '#{light_theme}'
 

@@ -131,3 +131,17 @@ hexo.extend.helper.register('shuoshuoFN', (data, page) => {
 
   return finalResult
 })
+
+hexo.extend.helper.register('getPageType', (page, isHome) => {
+  const { layout, tag, category, type, archive } = page
+  if (layout) return layout
+  if (tag) return 'tag'
+  if (category) return 'category'
+  if (archive) return 'archive'
+  if (type) {
+    if (type === 'tags' || type === 'categories') return type
+    else return 'page'
+  }
+  if (isHome) return 'home'
+  return 'post'
+})

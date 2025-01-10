@@ -1,9 +1,9 @@
 /**
- * inlineImg 圖片
- * @param {Array} args 圖片名稱和高度
- * @param {string} args[0] 圖片名稱
- * @param {number} args[1] 圖片高度
- * @returns {string} 圖片標籤
+ * inlineImg
+ * @param {Array} args - Image name and height
+ * @param {string} args[0] - Image name
+ * @param {number} args[1] - Image height
+ * @returns {string} - Image tag
  */
 
 'use strict'

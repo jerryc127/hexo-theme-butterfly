@@ -11,14 +11,11 @@ div
   if theme.instantpage
     script(src=url_for(theme.asset.instantpage), type='module')
 
-  if theme.lazyload.enable
+  if theme.lazyload.enable && !theme.lazyload.native
     script(src=url_for(theme.asset.lazyload))
 
   if theme.snackbar.enable
     script(src=url_for(theme.asset.snackbar))
-
-  if theme.pangu.enable
-    != partial("includes/third-party/pangu.pug", {}, { cache: true })
 
   .js-pjax
     if needLoadCountJs
@@ -36,7 +33,7 @@ div
   != partial("includes/third-party/prismjs", {}, { cache: true })
 
   if theme.aside.enable && theme.aside.card_newest_comments.enable
-    if theme.pjax.enable || (!is_post() && page.aside !== false)
+    if theme.pjax.enable || (globalPageType !== 'post' && page.aside !== false)
       != partial("includes/third-party/newest-comments/index", {}, { cache: true })
 
   != fragment_cache('injectBottom', function(){return injectHtml(theme.inject.bottom)})

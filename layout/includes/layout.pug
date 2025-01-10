@@ -1,7 +1,8 @@
+- var globalPageType = getPageType(page, is_home)
 - var htmlClassHideAside = theme.aside.enable && theme.aside.hide ? 'hide-aside' : ''
-- page.aside = is_archive() ? theme.aside.display.archive: is_category() ? theme.aside.display.category : is_tag() ? theme.aside.display.tag : page.aside
+- page.aside = globalPageType === 'archive' ? theme.aside.display.archive: globalPageType === 'category' ? theme.aside.display.category : globalPageType === 'tag' ? theme.aside.display.tag : page.aside
 - var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
-- var pageType = is_post() ? 'post' : 'page'
+- var pageType = globalPageType === 'post' ? 'post' : 'page'
 - pageType = page.type ? pageType + ' type-' + page.type : pageType
 
 doctype html
@@ -13,7 +14,7 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
 
     if theme.background
       #web_bg(style=getBgPath(theme.background))
-      
+
     !=partial('includes/sidebar', {}, {cache: true})
 
     #body-wrap(class=pageType)

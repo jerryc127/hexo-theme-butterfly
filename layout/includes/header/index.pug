@@ -6,33 +6,32 @@
   var bg_img = ''
 
 if !theme.disable_top_img && page.top_img !== false
-  if is_post()
-    - top_img = page.top_img || page.cover || theme.default_top_img
-  else if is_page()
-    - top_img = page.top_img || theme.default_top_img
-  else if is_tag()
-    - top_img = theme.tag_per_img && theme.tag_per_img[page.tag]
-    - top_img = top_img || returnTopImg(theme.tag_img)
-  else if is_category()
-    - top_img = theme.category_per_img && theme.category_per_img[page.category]
-    - top_img = top_img || returnTopImg(theme.category_img)
-  else if is_home()
-    - top_img = returnTopImg(theme.index_img)
-  else if is_archive()
-    - top_img = returnTopImg(theme.archive_img)
-  else
-    - top_img = page.top_img || theme.default_top_img
+  case globalPageType
+    when 'post'
+      - top_img = page.top_img || page.cover || theme.default_top_img
+    when 'page'
+      - top_img = page.top_img || theme.default_top_img
+    when 'tag'
+      - top_img = theme.tag_per_img && theme.tag_per_img[page.tag] || returnTopImg(theme.tag_img)
+    when 'category'
+      - top_img = theme.category_per_img && theme.category_per_img[page.category] || returnTopImg(theme.category_img)
+    when 'home'
+      - top_img = returnTopImg(theme.index_img)
+    when 'archive'
+      - top_img = returnTopImg(theme.archive_img)
+    default
+      - top_img = page.top_img || theme.default_top_img
 
   if top_img !== false
     - bg_img = getBgPath(top_img)
-    - headerClassName = is_home() ? 'full_page' : is_post() ? 'post-bg' : 'not-home-page'
+    - headerClassName = globalPageType === 'home' ? 'full_page' : globalPageType === 'post' ? 'post-bg' : 'not-home-page'
 
 header#page-header(class=`${headerClassName + isFixedClass}` style=bg_img)
   include ./nav.pug
   if top_img !== false
-    if is_post()
+    if globalPageType === 'post'
       include ./post-info.pug
-    else if is_home()
+    else if globalPageType === 'home'
       #site-info
         h1#site-title=config.title
         if theme.subtitle.enable
@@ -48,6 +47,6 @@ header#page-header(class=`${headerClassName + isFixedClass}` style=bg_img)
       #page-site-info
         h1#site-title=page.title || page.tag || page.category
   else
-    //- improvement seo
-    if !is_post()
+    //- improve seo
+    if globalPageType !== 'post'
       h1.title-seo=page.title || page.tag || page.category || config.title

@@ -2,7 +2,7 @@ extends includes/layout.pug
 
 block content
   - const noCardLayout = ['shuoshuo', '404'].includes(page.type) ? 'nc' : ''
-  - var commentsJsLoad = false 
+  - var commentsJsLoad = false
 
   mixin commentLoad
     if page.comments !== false && theme.comments.use

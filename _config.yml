@@ -983,13 +983,6 @@ snackbar:
 # https://instant.page/
 instantpage: false
 
-# Pangu - Insert a space between Chinese character and English character
-# https://github.com/vinta/pangu.js
-pangu:
-  enable: false
-  # Specify the field to use pangu (site or post)
-  field: site
-
 # Lazyload
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
@@ -1022,6 +1015,10 @@ Open_Graph_meta:
     # google_plus:
     # fb_admins:
     # fb_app_id:
+
+# Structured Data
+# https://developers.google.com/search/docs/guides/intro-structured-data
+structured_data: true
 
 # Add the vendor prefixes to ensure compatibility
 css_prefix: true
@@ -1092,7 +1089,6 @@ CDN:
     # medium_zoom:
     # mermaid:
     # meting_js:
-    # pangu:
     # prismjs_autoloader:
     # prismjs_js:
     # prismjs_lineNumber_js:

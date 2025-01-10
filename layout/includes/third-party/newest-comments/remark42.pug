@@ -7,7 +7,7 @@ script.
     const { changeContent, generateHtml, run } = window.newestComments
 
     const getComment = ele => {
-      fetch('!{host}/api/v1/last/!{theme.aside.card_newest_comments.limit}?site=!{siteId}')
+      fetch('!{host}/api/v1/last/!{newestCommentsLimit}?site=!{siteId}')
         .then(response => response.json())
         .then(data => {
           const remark42 = data.map(e => {
