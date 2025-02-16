@@ -7,10 +7,12 @@ if theme.pjax.exclude
 
 - let choose = theme.comments.use
 if choose
-  if theme.Open_Graph_meta.enable && (choose.includes('Livere') || choose.includes('Utterances') || choose.includes('Giscus'))
-    - pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
-  if choose.includes('Utterances') || choose.includes('Giscus')
+  if choose.includes('Livere') || choose.includes('Utterances') || choose.includes('Giscus')
     - pjaxSelectors.unshift('link[rel="canonical"]')
+    if theme.Open_Graph_meta.enable
+      - pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]', 'meta[property="og:description"]')
+    else
+      - pjaxSelectors.unshift('meta[name="description"]')
 
 script(src=url_for(theme.asset.pjax))
 script.
@@ -57,7 +59,7 @@ script.
 
     document.addEventListener('pjax:error', e => {
       if (e.request.status === 404) {
-        pjax.loadUrl('!{url_for("/404.html")}')
+        window.location.href = e.request.responseURL
       }
     })
   })()
