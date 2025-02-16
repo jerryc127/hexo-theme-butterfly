@@ -8,11 +8,12 @@
       else
         != `&copy;${currentYear} By ${config.author}`
   if theme.footer.copyright
+    - const v = getVersion()
     .framework-info
       span= _p('footer.framework') + ' '
-      a(href='https://hexo.io')= 'Hexo'
+      a(href='https://hexo.io')= `Hexo ${v.hexo}`
       span.footer-separator |
       span= _p('footer.theme') + ' '
-      a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
+      a(href='https://github.com/jerryc127/hexo-theme-butterfly')= `Butterfly ${v.theme}`
   if theme.footer.custom_text
     .footer_custom_text!= theme.footer.custom_text
