@@ -9,7 +9,7 @@ activate_power_mode:
 algolia_search:
   name: algoliasearch
   file: dist/lite/builds/browser.umd.js
-  version: 5.20.2
+  version: 5.20.3
 aplayer_css:
   name: aplayer
   file: dist/APlayer.min.css
@@ -45,7 +45,7 @@ canvas_ribbon:
 chartjs:
   name: chart.js
   file: dist/chart.umd.js
-  version: 4.4.7
+  version: 4.4.8
 clickShowText:
   name: butterfly-extsrc
   file: dist/click-show-text.min.js
@@ -66,12 +66,12 @@ docsearch_css:
   name: '@docsearch/css'
   other_name: docsearch-css
   file: dist/style.css
-  version: 3.8.3
+  version: 3.9.0
 docsearch_js:
   name: '@docsearch/js'
   other_name: docsearch-js
   file: dist/umd/index.js
-  version: 3.8.3
+  version: 3.9.0
 egjs_infinitegrid:
   name: '@egjs/infinitegrid'
   other_name: egjs-infinitegrid
@@ -203,9 +203,9 @@ waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 3.5.2
+  version: 3.5.5
 waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 3.5.2
+  version: 3.5.5

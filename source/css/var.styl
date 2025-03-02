@@ -14,18 +14,18 @@ $code-background = $themeColorEnable && hexo-config('theme_color.code_background
 $theme-toc-color = $themeColorEnable && hexo-config('theme_color.toc_color') ? convert(hexo-config('theme_color.toc_color')) : $strong-cyan
 // font
 
-$chinseFont = $language == 'zh-CN' ? 'Microsoft YaHei' : 'Microsoft JhengHei'
-$dafault-font-family = -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', $chinseFont, sans-serif
-$dafault-code-font = consolas, Menlo, monospace, 'PingFang SC', $chinseFont, sans-serif
+$chineseFont = $language == 'zh-CN' ? 'Microsoft YaHei' : 'Microsoft JhengHei'
+$default-font-family = -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', $chineseFont, sans-serif
+$default-code-font = consolas, Menlo, monospace, 'PingFang SC', $chineseFont, sans-serif
 
-$font-family = hexo-config('font.font_family') ? unquote(hexo-config('font.font_family')) : $dafault-font-family
-$code-font-family = hexo-config('font.code_font_family') ? unquote(hexo-config('font.code_font_family')) : $dafault-code-font
+$font-family = hexo-config('font.font_family') ? unquote(hexo-config('font.font_family')) : $default-font-family
+$code-font-family = hexo-config('font.code_font_family') ? unquote(hexo-config('font.code_font_family')) : $default-code-font
 $site-name-font = hexo-config('blog_title_font.font_family') && unquote(hexo-config('blog_title_font.font_family'))
 // hr
 $hrEnable = hexo-config('hr_icon') && hexo-config('hr_icon.enable')
 $hr-icon = $hrEnable && hexo-config('hr_icon.icon') ? hexo-config('hr_icon.icon') : '\f0c4'
 $hr-icon-top = $hrEnable && hexo-config('hr_icon.icon_top') ? convert(hexo-config('hr_icon.icon_top')) : -10px
-// page beatutify
+// page beautify
 $beautifyEnable = hexo-config('beautify.enable')
 $title-prefix-icon = $beautifyEnable && hexo-config('beautify.title_prefix_icon') ? hexo-config('beautify.title_prefix_icon') : '\f0c1'
 $title-prefix-icon-color = $beautifyEnable && hexo-config('beautify.title_prefix_icon_color') ? convert(hexo-config('beautify.title_prefix_icon_color')) : $light-red
@@ -175,8 +175,8 @@ $tagsP-purple-color = #6f42c1
 $tagsP-green-color = #5cb85c
 // Tag Plugins - Tab
 $tab-border-color = #f0f0f0
-$tab-botton-bg = #f0f0f0
-$tab-botton-color = $font-color
+$tab-button-bg = #f0f0f0
+$tab-button-color = $font-color
 $tab-button-hover-bg = darken($tab-border-color, 8)
 $tab-active-border-color = $theme-color
 $tab-button-active-bg = $card-bg
