@@ -89,7 +89,7 @@ hexo.extend.helper.register('inject_head_js', function () {
         darkmodeJs += `
           const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
           const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
-          
+
           if (theme === undefined) {
             if (mediaQueryLight.matches) activateLightMode()
             else if (mediaQueryDark.matches) activateDarkMode()
