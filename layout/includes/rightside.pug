@@ -35,6 +35,9 @@ mixin rightsideItem(array)
   - const hideArray = enable ? hide && hide.split(',') : ['readmode','translate','darkmode','hideAside']
   - const showArray = enable ? show && show.split(',') : ['toc','chat','comment']
 
+  - const setting_animation = theme.rightside_config_animation
+  - var show_setting = false
+
 
   #rightside-config-hide
     if hideArray
@@ -42,16 +45,21 @@ mixin rightsideItem(array)
   #rightside-config-show
     if enable
       if hide
-        button#rightside-config(type="button" title=_p("rightside.setting"))
-          i.fas.fa-cog.fa-spin
+        - show_setting = true
     else
       if globalPageType === 'post'
         if (readmode || translate.enable || (darkmode.enable && darkmode.button))
-          button#rightside-config(type="button" title=_p("rightside.setting"))
-            i.fas.fa-cog.fa-spin
+          - show_setting = true
       else if translate.enable || (darkmode.enable && darkmode.button)
+        - show_setting = true
+
+    if show_setting
+      if setting_animation
         button#rightside-config(type="button" title=_p("rightside.setting"))
           i.fas.fa-cog.fa-spin
+      else 
+        button#rightside-config(type="button" title=_p("rightside.setting"))
+          i.fas.fa-cog
 
     if showArray
       +rightsideItem(showArray)
