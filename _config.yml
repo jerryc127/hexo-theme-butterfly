@@ -399,6 +399,9 @@ rightside_item_order:
   # Default: toc,chat,comment
   show:
 
+# Animation for the bottom right config button
+rightside_config_animation: true
+
 # --------------------------------------
 # Global Settings
 # --------------------------------------
