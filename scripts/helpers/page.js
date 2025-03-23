@@ -81,7 +81,7 @@ hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
   return loop(menu) || defaultTitle
 })
 
-hexo.extend.helper.register('getBgPath', path => {
+hexo.extend.helper.register('getBgPath', function(path) {
   if (!path) return ''
 
   const absoluteUrlPattern = /^(?:[a-z][a-z\d+.-]*:)?\/\//i
@@ -91,7 +91,7 @@ hexo.extend.helper.register('getBgPath', path => {
   if (colorPattern.test(path)) {
     return `background-color: ${path};`
   } else if (absoluteUrlPattern.test(path) || relativeUrlPattern.test(path)) {
-    return `background-image: url(${path});`
+    return `background-image: url(${this.url_for(path)});`
   } else {
     return `background: ${path};`
   }
