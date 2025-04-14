@@ -1,0 +1,121 @@
+footer:
+  framework: Фреймворк
+  theme: Тема
+
+copy:
+  success: Успешно скопировано
+  error: Ошибка копирования
+  noSupport: Браузер не поддерживается
+
+page:
+  articles: Все статьи
+  tag: Тег
+  category: Категория
+  archives: Архив
+
+card_post_count: комментариев
+
+no_title: Без названия
+
+post:
+  created: Создано
+  updated: Обновлено
+  wordcount: Количество слов
+  min2read: Время чтения
+  min2read_unit: мин
+  page_pv: Просмотров
+  comments: Комментарии
+  copyright:
+    author: Автор
+    link: Ссылка
+    copyright_notice: Уведомление об авторских правах
+    copyright_content: 'Все статьи в этом блоге лицензированы под <a href="%s">%s</a>, если не указано иное.'
+  recommend: Похожие статьи
+  edit: Редактировать
+
+search:
+  title: Поиск
+  load_data: Загрузка базы данных
+  input_placeholder: Поиск по статьям
+  algolia_search:
+    hits_empty: 'Ничего не найдено по запросу: ${query}'
+    hits_stats: 'Найдено результатов: ${hits} за ${time} мс'
+  local_search:
+    hits_empty: 'Ничего не найдено по запросу: ${query}'
+    hits_stats: 'Найдено статей: ${hits}'
+
+pagination:
+  prev: Назад
+  next: Вперёд
+
+comment: Комментарии
+
+aside:
+  articles: Статьи
+  tags: Теги
+  categories: Категории
+  card_announcement: Объявление
+  card_categories: Категории
+  card_tags: Теги
+  card_archives: Архив
+  card_recent_post: Недавние статьи
+  card_webinfo:
+    headline: Информация о сайте
+    article_name: Количество статей
+    runtime:
+      name: Время работы
+      unit: дней
+    last_push_date:
+      name: Последнее обновление
+    site_wordcount: Общее количество слов
+    site_uv_name: Уникальные посетители
+    site_pv_name: Просмотры страниц
+  more_button: Показать больше
+  card_newest_comments:
+    headline: Последние комментарии
+    loading_text: Загрузка...
+    error: Не удалось получить комментарии, проверьте настройки
+    zero: Нет комментариев
+    image: Изображение
+    link: Ссылка
+    code: Код
+  card_toc: Содержание
+  card_post_series: Серия статей
+
+date_suffix:
+  just: Только что
+  min: минут назад
+  hour: часов назад
+  day: дней назад
+  month: месяцев назад
+
+donate: Поддержать
+share: Поделиться
+
+rightside:
+  readmode_title: Режим чтения
+  translate_title: Переключение между традиционным и упрощённым китайским
+  night_mode_title: Переключение между светлой и тёмной темой
+  back_to_top: Наверх
+  toc: Оглавление
+  scroll_to_comment: Перейти к комментариям
+  setting: Настройки
+  aside: Переключение между одноколоночным и двухколоночным видом
+  chat: Чат
+
+copy_copyright:
+  author: Автор
+  link: Ссылка
+  source: Источник
+  info: Авторские права принадлежат автору. Для коммерческого использования свяжитесь с автором. Для некоммерческого использования указывайте источник.
+
+Snackbar:
+  chs_to_cht: Вы переключились на традиционный китайский
+  cht_to_chs: Вы переключились на упрощённый китайский
+  day_to_night: Вы включили тёмную тему
+  night_to_day: Вы включили светлую тему
+
+loading: Загрузка...
+load_more: Загрузить ещё
+
+error404: Страница не найдена
