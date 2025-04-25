@@ -702,6 +702,12 @@ umami_analytics:
     # Umami Cloud (API key) / self-hosted Umami (token)
     token:
 
+# https://www.googletagmanager.com/
+google_tag_manager:
+  tag_id: 
+  # optional
+  domain: 
+
 # --------------------------------------
 # Advertisement
 # --------------------------------------
