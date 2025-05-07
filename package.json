@@ -15,16 +15,18 @@
     "hexo-theme-butterfly"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/jerryc127/hexo-theme-butterfly.git"
+    "type": "git",
+    "url": "https://github.com/jerryc127/hexo-theme-butterfly.git"
   },
   "bugs": {
     "url": "https://github.com/jerryc127/hexo-theme-butterfly/issues",
     "email": "my@crazywong.com"
   },
   "dependencies": {
+    "hexo-renderer-pug": "^3.0.0",
     "hexo-renderer-stylus": "^3.0.1",
-    "hexo-renderer-pug": "^3.0.0"
+    "hexo-util": "^3.3.0",
+    "moment-timezone": "^0.5.48"
   },
   "homepage": "https://butterfly.js.org/",
   "author": "Jerry <my@crazywong.com>",
