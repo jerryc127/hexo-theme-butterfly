@@ -35,14 +35,11 @@ if theme.microsoft_clarity
 
 if (theme.google_tag_manager && theme.google_tag_manager.tag_id)
   script.
-    window.initGTM = function() {
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      "!{theme.google_tag_manager.domain ? theme.google_tag_manager.domain : 'https://www.googletagmanager.com'}/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','!{theme.google_tag_manager.tag_id}');
-    };
-    window.initGTM();
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    "!{theme.google_tag_manager.domain ? theme.google_tag_manager.domain : 'https://www.googletagmanager.com'}/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','!{theme.google_tag_manager.tag_id}');
     btf.addGlobalFn('pjaxComplete', () => {
-      window.initGTM();
+      dataLayer.push({'event': 'pjaxComplete', 'page_path': window.location.pathname, 'page_title': document.title});
     }, 'google_tag_manager');
