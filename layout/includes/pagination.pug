@@ -7,7 +7,7 @@
   }
 
 if globalPageType === 'post'
-  - let paginationOrder = theme.post_pagination === 1 ? { prev: page.prev, next: page.next } : { prev: page.next, next: page.prev }
+  - let paginationOrder = theme.post_pagination === 2 ? { prev: page.prev, next: page.next } : { prev: page.next, next: page.prev }
 
   nav#pagination.pagination-post
     each direction, key in paginationOrder

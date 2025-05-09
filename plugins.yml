@@ -9,7 +9,7 @@ activate_power_mode:
 algolia_search:
   name: algoliasearch
   file: dist/lite/builds/browser.umd.js
-  version: 5.20.3
+  version: 5.24.0
 aplayer_css:
   name: aplayer
   file: dist/APlayer.min.css
@@ -45,7 +45,7 @@ canvas_ribbon:
 chartjs:
   name: chart.js
   file: dist/chart.umd.js
-  version: 4.4.8
+  version: 4.4.9
 clickShowText:
   name: butterfly-extsrc
   file: dist/click-show-text.min.js
@@ -57,11 +57,11 @@ click_heart:
 disqusjs:
   name: disqusjs
   file: dist/browser/disqusjs.es2015.umd.min.js
-  version: 3.0.2
+  version: 3.1.0
 disqusjs_css:
   name: disqusjs
   file: dist/browser/styles/disqusjs.css
-  version: 3.0.2
+  version: 3.1.0
 docsearch_css:
   name: '@docsearch/css'
   other_name: docsearch-css
@@ -111,17 +111,17 @@ instantpage:
 instantsearch:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.77.3
+  version: 4.78.3
 katex:
   name: katex
   file: dist/katex.min.css
   other_name: KaTeX
-  version: 0.16.21
+  version: 0.16.22
 katex_copytex:
   name: katex
   file: dist/contrib/copy-tex.min.js
   other_name: KaTeX
-  version: 0.16.21
+  version: 0.16.22
 lazyload:
   name: vanilla-lazyload
   file: dist/lazyload.iife.min.js
@@ -137,7 +137,7 @@ medium_zoom:
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
-  version: 11.4.1
+  version: 11.6.0
 meting_js:
   name: butterfly-extsrc
   file: metingjs/dist/Meting.min.js
@@ -160,17 +160,17 @@ prismjs_autoloader:
   name: prismjs
   file: plugins/autoloader/prism-autoloader.min.js
   other_name: prism
-  version: 1.29.0
+  version: 1.30.0
 prismjs_js:
   name: prismjs
   file: prism.js
   other_name: prism
-  version: 1.29.0
+  version: 1.30.0
 prismjs_lineNumber_js:
   name: prismjs
   file: plugins/line-numbers/prism-line-numbers.min.js
   other_name: prism
-  version: 1.29.0
+  version: 1.30.0
 sharejs:
   name: butterfly-extsrc
   file: sharejs/dist/js/social-share.min.js
@@ -190,7 +190,7 @@ snackbar_css:
 twikoo:
   name: twikoo
   file: dist/twikoo.all.min.js
-  version: 1.6.41
+  version: 1.6.42
 typed:
   name: typed.js
   file: dist/typed.umd.js
@@ -203,9 +203,9 @@ waline_css:
   name: '@waline/client'
   file: dist/waline.css
   other_name: waline
-  version: 3.5.5
+  version: 3.5.7
 waline_js:
   name: '@waline/client'
   file: dist/waline.js
   other_name: waline
-  version: 3.5.5
+  version: 3.5.7

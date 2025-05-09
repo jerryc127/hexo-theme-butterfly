@@ -3,13 +3,14 @@
 const { stripHTML, truncate } = require('hexo-util')
 
 // Truncates the given content to a specified length, removing HTML tags and replacing newlines with spaces.
-const truncateContent = (content, length) => {
-  return truncate(stripHTML(content), { length, separator: ' ' }).replace(/\n/g, ' ')
+const truncateContent = (content, length, encrypt = false) => {
+  if (!content || encrypt) return ''
+  return truncate(stripHTML(content).replace(/\n/g, ' '), { length })
 }
 
 // Generates a post description based on the provided data and theme configuration.
 const postDesc = (data, hexo) => {
-  const { description, content, postDesc } = data
+  const { description, content, postDesc, encrypt } = data
 
   if (postDesc) return postDesc
 
@@ -23,10 +24,10 @@ const postDesc = (data, hexo) => {
       result = description
       break
     case 2:
-      result = description || truncateContent(content, length)
+      result = description || truncateContent(content, length, encrypt)
       break
     default:
-      result = truncateContent(content, length)
+      result = truncateContent(content, length, encrypt)
   }
 
   data.postDesc = result

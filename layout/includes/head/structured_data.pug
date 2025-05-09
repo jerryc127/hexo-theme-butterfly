@@ -9,8 +9,8 @@ if theme.structured_data && page.layout === 'post'
     const datePublished = page.date.toISOString()
     const dateModified = (page.updated || page.date).toISOString()
     const author = page.copyright_author || config.author
-    const authorHrefVal = page.copyright_author_href || theme.post_copyright.author_href || site.url;
-    const authorHref = full_url_for(authorHrefVal);
+    const authorHrefVal = page.copyright_author_href || theme.post_copyright.author_href || site.url
+    const authorHref = full_url_for(authorHrefVal)
 
     const jsonLd = {
       "@context": "https://schema.org",
@@ -25,9 +25,9 @@ if theme.structured_data && page.layout === 'post'
         "name": author,
         "url": authorHref
       }]
-    };
+    }
 
-    jsonLdScript = JSON.stringify(jsonLd, null, 2);
+    jsonLdScript = JSON.stringify(jsonLd, null, 2)
   -
 
   script(type="application/ld+json").
