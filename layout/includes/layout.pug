@@ -10,10 +10,6 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
   head
     include ./head.pug
   body
-    if (theme.google_tag_manager && theme.google_tag_manager.tag_id)
-      noscript
-        iframe(src=`${theme.google_tag_manager.domain ? theme.google_tag_manager.domain : 'https://www.googletagmanager.com'}/ns.html?id=${theme.google_tag_manager.tag_id}` height="0" width="0" style="display:none;visibility:hidden")
-
     !=partial('includes/loading/index', {}, {cache: true})
 
     if theme.background
