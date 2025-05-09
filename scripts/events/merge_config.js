@@ -388,6 +388,10 @@ hexo.extend.filter.register('before_generate', () => {
     crisp: {
       website_id: null
     },
+    google_tag_manager: {
+      tag_id: null,
+      domain: 'https://www.googletagmanager.com'
+    },
     baidu_analytics: null,
     google_analytics: null,
     cloudflare_analytics: null,
