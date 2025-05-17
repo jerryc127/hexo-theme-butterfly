@@ -71,13 +71,13 @@ avatar:
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img: https://img.picui.cn/free/2025/05/17/68289bd576cc2.jpg
+default_top_img: /img/top_img.jpg
 
 # The banner image of index page
-index_img: https://img.picui.cn/free/2025/05/17/68289cfadd42b.jpg
+index_img:
 
 # The banner image of archive page
-archive_img: https://img.picui.cn/free/2025/05/17/68289cb843c04.jpg
+archive_img:
 
 # Note: tag page, not tags page
 tag_img:
