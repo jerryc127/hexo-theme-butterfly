@@ -11,16 +11,25 @@
 
 nav:
   # Navigation bar logo image
-  logo:
+  logo: https://c-ssl.dtstatic.com/uploads/item/202004/14/20200414092536_qdcus.thumb.1000_0.jpg
   display_title: true
   # Whether to fix navigation bar
   fixed: false
 
 menu:
-  # Home: / || fas fa-home
-  # List||fas fa-list:
-  #   Music: /music/ || fas fa-music
-  #   Movie: /movies/ || fas fa-video
+  首页: / || fas fa-home
+  时间轴: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  清单||fa fa-heartbeat:
+    音乐: /music/ || fas fa-music
+    照片: /Gallery/ || fas fa-images
+    电影: /movies/ || fas fa-video
+  友链: /link/ || fas fa-link
+  关于: /about/ || fas fa-heart
+
+
+
 
 # --------------------------------------
 # Code Blocks Settings
@@ -28,17 +37,17 @@ menu:
 
 code_blocks:
   # Code block theme: darker / pale night / light / ocean / false
-  theme: light
-  macStyle: false
+  theme: darker
+  macStyle: true
   # Code block height limit (unit: px)
   height_limit: false
-  word_wrap: false
+  word_wrap: true
 
   # Toolbar
   copy: true
   language: true
   # true: shrink the code blocks | false: expand the code blocks | none: expand code blocks and hide the button
-  shrink: false
+  shrink: true
   fullpage: false
 
 # Social media links
@@ -52,7 +61,7 @@ social:
 # Image Settings
 # --------------------------------------
 
-favicon: /img/favicon.png
+favicon: /img/favicon.ico
 
 avatar:
   img: /img/butterfly-icon.png
@@ -100,7 +109,10 @@ cover:
   archives_enable: true
   # When cover is not set, the default cover is displayed
   default_cover:
-    # - xxx.jpg
+     - https://img.picui.cn/free/2025/05/17/68287fdb90b0f.jpg
+     - https://img.picui.cn/free/2025/05/17/68287fdbc06da.jpg
+     - https://img.picui.cn/free/2025/05/17/68287fdbba6da.jpg
+     - https://img.picui.cn/free/2025/05/17/68287fdc2c2ed.jpg
 
 # Replace Broken Images
 error_img:
@@ -117,7 +129,7 @@ post_meta:
   # Home Page
   page:
     # Choose: created / updated / both
-    date_type: created
+    date_type: both
     # Choose: date / relative
     date_format: date
     categories: true
