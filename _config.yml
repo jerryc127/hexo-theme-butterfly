@@ -40,7 +40,7 @@ code_blocks:
   theme: darker
   macStyle: true
   # Code block height limit (unit: px)
-  height_limit: false
+  height_limit: 230
   word_wrap: true
 
   # Toolbar
@@ -491,7 +491,7 @@ math:
 search:
   # Choose: algolia_search / local_search / docsearch
   # leave it empty if you don't need search
-  use:
+  use: local_search
   placeholder:
 
   # Algolia Search
