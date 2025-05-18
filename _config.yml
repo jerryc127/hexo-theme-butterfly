@@ -74,7 +74,7 @@ disable_top_img: false
 default_top_img: 
 
 # The banner image of index page
-index_img: https://img.picui.cn/free/2025/05/17/68289bd799ee9.jpg
+index_img: https://img.picui.cn/free/2025/05/17/68289c691c6dc.jpg
 
 # The banner image of archive page
 archive_img: https://img.picui.cn/free/2025/05/17/68289bd799ee9.jpg
@@ -100,7 +100,7 @@ footer_img: false
 
 # Website Background
 # Can set it to color or image url
-background: https://img.picui.cn/free/2025/05/17/68289bd799ee9.jpg
+background: https://img.picui.cn/free/2025/05/17/68289c691c6dc.jpg
 
 cover:
   # Disable the cover or not
