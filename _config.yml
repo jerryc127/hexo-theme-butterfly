@@ -23,7 +23,7 @@ menu:
   分类: /categories/ || fas fa-folder-open
   清单||fa fa-heartbeat:
     音乐: /music/ || fas fa-music
-    照片: /Gallery/ || fas fa-images
+    照片: /gallery/ || fas fa-images
     电影: /movies/ || fas fa-video
   友链: /link/ || fas fa-link
   关于: /about/ || fas fa-heart
@@ -71,36 +71,36 @@ avatar:
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img: /img/top_img.jpg
+default_top_img: 
 
 # The banner image of index page
-index_img:
+index_img: https://img.picui.cn/free/2025/05/17/68289bd799ee9.jpg
 
 # The banner image of archive page
-archive_img:
+archive_img: https://img.picui.cn/free/2025/05/17/68289bd799ee9.jpg
 
 # Note: tag page, not tags page
-tag_img:
+tag_img: https://img.picui.cn/free/2025/05/17/68289bd799ee9.jpg
 
 # The banner image of tag page, you can set the banner image for each tag
 # Format:
 #  - tag name: xxxxx
-tag_per_img:
+tag_per_img: https://img.picui.cn/free/2025/05/17/68289bd799ee9.jpg
 
 # Note: category page, not categories page
-category_img:
+category_img: https://img.picui.cn/free/2025/05/17/68289bd799ee9.jpg
 
 # The banner image of category page, you can set the banner image for each category
 # Format:
 #  - category name: xxxxx
-category_per_img:
+category_per_img: https://img.picui.cn/free/2025/05/17/68289bd799ee9.jpg
 
 # The background image of footer
 footer_img: false
 
 # Website Background
 # Can set it to color or image url
-background:
+background: https://img.picui.cn/free/2025/05/17/68289bd799ee9.jpg
 
 cover:
   # Disable the cover or not
