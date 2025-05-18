@@ -14,7 +14,7 @@ nav:
   logo: https://c-ssl.dtstatic.com/uploads/item/202004/14/20200414092536_qdcus.thumb.1000_0.jpg
   display_title: true
   # Whether to fix navigation bar
-  fixed: false
+  fixed: trues
 
 menu:
   首页: / || fas fa-home
