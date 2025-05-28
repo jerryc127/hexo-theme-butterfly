@@ -13,6 +13,7 @@ nav:
   # Navigation bar logo image
   logo:
   display_title: true
+  display_page_title: true
   # Whether to fix navigation bar
   fixed: false
 
