@@ -5,6 +5,7 @@ hexo.extend.filter.register('before_generate', () => {
     nav: {
       logo: null,
       display_title: true,
+      display_post_title: true,
       fixed: false
     },
     menu: null,

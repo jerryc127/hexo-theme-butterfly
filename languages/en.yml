@@ -32,6 +32,7 @@ post:
     copyright_content: 'All articles on this blog are licensed under <a href="%s">%s</a> unless otherwise stated.'
   recommend: Related Articles
   edit: Edit
+  back_to_home: Back to Home
 
 search:
   title: Search

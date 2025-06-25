@@ -704,9 +704,9 @@ umami_analytics:
 
 # https://www.googletagmanager.com/
 google_tag_manager:
-  tag_id: 
+  tag_id:
   # optional
-  domain: 
+  domain:
 
 # --------------------------------------
 # Advertisement

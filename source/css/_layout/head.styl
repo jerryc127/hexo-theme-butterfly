@@ -436,3 +436,28 @@
       &:hover
         &:after
           width: 100%
+
+  .nav-page-title
+    position: relative
+    overflow: hidden
+
+    & > :first-child,
+    & > :last-child
+      display: inline-block
+      transition: all .3s ease-in-out
+
+    & > :last-child
+      position: absolute
+      top: 50%
+      left: 0
+      opacity: 0
+      transform: translateY(-50%) translateY(-10px)
+
+    &:hover
+      & > :last-child
+        opacity: 1
+        transform: translateY(-50%) translateY(0)
+
+      & > :first-child
+        opacity: 0
+        transform: translateY(10px)

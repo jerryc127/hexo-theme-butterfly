@@ -41,5 +41,5 @@ if (theme.google_tag_manager && theme.google_tag_manager.tag_id)
     "!{theme.google_tag_manager.domain ? theme.google_tag_manager.domain : 'https://www.googletagmanager.com'}/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','!{theme.google_tag_manager.tag_id}');
     btf.addGlobalFn('pjaxComplete', () => {
-      dataLayer.push({'event': 'pjaxComplete', 'page_title': document.title, 'page_location': location.href, 'page_path': window.location.pathname});
-    }, 'google_tag_manager');
+      dataLayer.push({'event': 'pjaxComplete', 'page_title': document.title, 'page_location': location.href, 'page_path': window.location.pathname})
+    }, 'google_tag_manager')

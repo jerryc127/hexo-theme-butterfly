@@ -32,6 +32,7 @@ post:
     copyright_content: '이 블로그의 모든 글은 <a href="%s">%s</a> 라이선스를 따르며, 별도로 명시되지 않는 한 모든 권리를 보유합니다. 재배포 시 출처를 명시해 주세요: <a href="%s">%s</a>.'
   recommend: 관련 글
   edit: 편집
+  back_to_home: 홈으로 돌아가기
 
 search:
   title: 검색
