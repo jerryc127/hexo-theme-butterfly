@@ -1,7 +1,7 @@
 abcjs_basic_js:
   name: abcjs
   file: dist/abcjs-basic-min.js
-  version: 6.4.4
+  version: 6.5.1
 activate_power_mode:
   name: butterfly-extsrc
   file: dist/activate-power-mode.min.js
@@ -9,7 +9,7 @@ activate_power_mode:
 algolia_search:
   name: algoliasearch
   file: dist/lite/builds/browser.umd.js
-  version: 5.24.0
+  version: 5.30.0
 aplayer_css:
   name: aplayer
   file: dist/APlayer.min.css
@@ -45,7 +45,7 @@ canvas_ribbon:
 chartjs:
   name: chart.js
   file: dist/chart.umd.js
-  version: 4.4.9
+  version: 4.5.0
 clickShowText:
   name: butterfly-extsrc
   file: dist/click-show-text.min.js
@@ -80,12 +80,12 @@ egjs_infinitegrid:
 fancybox:
   name: '@fancyapps/ui'
   file: dist/fancybox/fancybox.umd.js
-  version: 5.0.36
+  version: 6.0.7
   other_name: fancyapps-ui
 fancybox_css:
   name: '@fancyapps/ui'
   file: dist/fancybox/fancybox.css
-  version: 5.0.36
+  version: 6.0.7
   other_name: fancyapps-ui
 fireworks:
   name: butterfly-extsrc
@@ -111,7 +111,7 @@ instantpage:
 instantsearch:
   name: instantsearch.js
   file: dist/instantsearch.production.min.js
-  version: 4.78.3
+  version: 4.79.0
 katex:
   name: katex
   file: dist/katex.min.css
@@ -137,7 +137,7 @@ medium_zoom:
 mermaid:
   name: mermaid
   file: dist/mermaid.min.js
-  version: 11.6.0
+  version: 11.8.0
 meting_js:
   name: butterfly-extsrc
   file: metingjs/dist/Meting.min.js
@@ -190,7 +190,7 @@ snackbar_css:
 twikoo:
   name: twikoo
   file: dist/twikoo.all.min.js
-  version: 1.6.42
+  version: 1.6.44
 typed:
   name: typed.js
   file: dist/typed.umd.js
