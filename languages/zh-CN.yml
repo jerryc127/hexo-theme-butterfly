@@ -33,6 +33,7 @@ post:
       <a href="%s" target="_blank">%s</a> 许可协议。转载请注明来源 <a href="%s" target="_blank">%s</a>！'
   recommend: 相关推荐
   edit: 编辑
+  back_to_home: 返回首页
 
 search:
   title: 搜索

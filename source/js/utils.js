@@ -186,6 +186,7 @@
 
       if (service === 'medium_zoom') {
         mediumZoom(ele, { background: 'var(--zoom-bg)' })
+        return
       }
 
       if (service === 'fancybox') {
@@ -198,35 +199,71 @@
         })
 
         if (!window.fancyboxRun) {
-          Fancybox.bind('[data-fancybox]', {
-            Hash: false,
-            Thumbs: {
-              showOnStart: false
-            },
-            Images: {
-              Panzoom: {
-                maxScale: 4
-              }
-            },
-            Carousel: {
-              transition: 'slide'
-            },
-            Toolbar: {
-              display: {
-                left: ['infobar'],
-                middle: [
-                  'zoomIn',
-                  'zoomOut',
-                  'toggle1to1',
-                  'rotateCCW',
-                  'rotateCW',
-                  'flipX',
-                  'flipY'
-                ],
-                right: ['slideshow', 'thumbs', 'close']
+          let options = ''
+          if (Fancybox.version < '6') {
+            options = {
+              Hash: false,
+              Thumbs: {
+                showOnStart: false
+              },
+              Images: {
+                Panzoom: {
+                  maxScale: 4
+                }
+              },
+              Carousel: {
+                transition: 'slide'
+              },
+              Toolbar: {
+                display: {
+                  left: ['infobar'],
+                  middle: [
+                    'zoomIn',
+                    'zoomOut',
+                    'toggle1to1',
+                    'rotateCCW',
+                    'rotateCW',
+                    'flipX',
+                    'flipY'
+                  ],
+                  right: ['slideshow', 'thumbs', 'close']
+                }
               }
             }
-          })
+          } else {
+            options = {
+              Hash: false,
+              Carousel: {
+                transition: 'slide',
+                Thumbs: {
+                  showOnStart: false
+                },
+                Toolbar: {
+                  display: {
+                    left: ['counter'],
+                    middle: [
+                      'zoomIn',
+                      'zoomOut',
+                      'toggle1to1',
+                      'rotateCCW',
+                      'rotateCW',
+                      'flipX',
+                      'flipY',
+                      "reset"
+                    ],
+                    right: ['autoplay', 'thumbs', 'close']
+                  }
+                },
+                Zoomable: {
+                  Panzoom: {
+                    maxScale: 4
+                  }
+                }
+              }
+            }
+          }
+
+          Fancybox.bind('[data-fancybox]', options)
           window.fancyboxRun = true
         }
       }

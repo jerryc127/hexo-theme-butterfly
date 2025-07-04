@@ -5,6 +5,7 @@ hexo.extend.filter.register('before_generate', () => {
     nav: {
       logo: null,
       display_title: true,
+      display_post_title: true,
       fixed: false
     },
     menu: null,
@@ -119,12 +120,16 @@ hexo.extend.filter.register('before_generate', () => {
       message_next: 'days since the last update, the content of the article may be outdated.'
     },
     footer: {
+      nav: null,
       owner: {
         enable: true,
-        since: 2019
+        since: 2024
       },
-      custom_text: null,
-      copyright: true
+      copyright: {
+        enable: true,
+        version: true
+      },
+      custom_text: null
     },
     aside: {
       enable: true,
@@ -223,6 +228,7 @@ hexo.extend.filter.register('before_generate', () => {
       hide: null,
       show: null
     },
+    rightside_config_animation: true,
     anchor: {
       auto_update: false,
       click_to_scroll: false
@@ -382,6 +388,10 @@ hexo.extend.filter.register('before_generate', () => {
     },
     crisp: {
       website_id: null
+    },
+    google_tag_manager: {
+      tag_id: null,
+      domain: 'https://www.googletagmanager.com'
     },
     baidu_analytics: null,
     google_analytics: null,

@@ -32,6 +32,7 @@ post:
     copyright_content: '除特別聲明外，本博客所有文章均採用<a href="%s">%s</a> 授權協議。轉載請註明出處：<a href="%s">%s</a>。'
   recommend: 相關文章
   edit: 編輯
+  back_to_home: 返回首頁
 
 search:
   title: 搜尋

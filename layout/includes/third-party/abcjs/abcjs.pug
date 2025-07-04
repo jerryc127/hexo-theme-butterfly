@@ -1,8 +1,8 @@
 script.
-  (function() {
-    const abcjsInit = function() {
-      const abcjsFn = function() {
-        setTimeout(function() {
+  (() = {
+    const abcjsInit = () => {
+      const abcjsFn = () => {
+        setTimeout(() => {
           const sheets = document.querySelectorAll(".abc-music-sheet")
           for (let i = 0; i < sheets.length; i++) {
             const ele = sheets[i]
