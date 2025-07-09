@@ -3,7 +3,7 @@
 script.
   (() => {
     const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
-    const option = !{JSON.stringify(option)}
+    const options = !{JSON.stringify(option)}
 
     const loadScript = src => {
       const script = document.createElement('script')
@@ -42,8 +42,8 @@ script.
         host: '!{host}',
         site_id: '!{siteId}',
         theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light',
-        ...option,
-        url: isShuoshuo ? window.location.origin + path : (option && option.url) || window.location.origin + window.location.pathname
+        ...options,
+        url: isShuoshuo ? window.location.origin + path : (options && options.url) || window.location.origin + window.location.pathname
       }
 
       if (window.REMARK42) {
@@ -68,7 +68,7 @@ script.
         : window.loadOtherComment = loadRemark42
       return
     }
-    
+
     if ('!{theme.comments.use[0]}' === 'Remark42' || !!{theme.comments.lazyload}) {
       if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('remark42'), loadRemark42)
       else loadRemark42()
