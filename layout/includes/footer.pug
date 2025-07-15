@@ -20,7 +20,6 @@ if nav
     if owner.enable
       - const currentYear = new Date().getFullYear()
       - const sinceYear = owner.since
-      - // Put a non breaking space after the copyright symbol to make good sense semantically, see https://practicaltypography.com/trademark-and-copyright-symbols.html
       span.copyright
         if sinceYear && sinceYear != currentYear
           != `&copy;&nbsp;${sinceYear} - ${currentYear} By ${config.author}`
