@@ -48,7 +48,7 @@ hexo.extend.helper.register('urlNoIndex', function (url = null, trailingIndex = 
 })
 
 hexo.extend.helper.register('md5', function (path) {
-  return crypto.createHash('md5').update(decodeURI(this.url_for(path))).digest('hex')
+  return crypto.createHash('md5').update(decodeURI(this.url_for(path, {relative: false}))).digest('hex')
 })
 
 hexo.extend.helper.register('injectHtml', data => {
