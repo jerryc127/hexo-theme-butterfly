@@ -40,10 +40,22 @@ if theme.structured_data
       const isRootOrSubdomain = currentPath.split('/').filter(Boolean).length === 0;
 
       if (isRootOrSubdomain) {
+        const domain = new URL(config.url).hostname;
+        const alternateNames = theme.structured_data.alternate_name || [];
+
+        if (config.subtitle) {
+          alternateNames.push(config.subtitle);
+        }
+
+        if (domain) {
+          alternateNames.push(domain);
+        }
+
         const jsonLd = {
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": config.title,
+          "alternateName": alternateNames,
           "url": full_url_for('/'),
         }
 
