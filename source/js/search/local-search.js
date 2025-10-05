@@ -103,14 +103,55 @@ class LocalSearch {
 
   getResultItems (keywords) {
     const resultItems = []
-    this.datas.forEach(({ title, content, url }) => {
+    let l_keywords = keywords[0].split('').length //- 获取搜索关键词的长度
+    //- 将#标签搜索的判断放在循环之外！！！
+    let tagSearch = 0 //-判断是否为标签搜索
+    if(keywords[0][0] === '#' && l_keywords > 1 && keywords[0][1] !== '#'){
+      tagSearch = 1
+      keywords[0] = keywords[0].substring(1)
+    }
+    //- 将@标题搜索的判断放在循环之外！！！
+    let titleSearch = 0 //-判断是否为标题搜索
+    if(keywords[0][0] === '@' && l_keywords > 1 && keywords[0][1] !== '@'){
+      titleSearch = 1
+      keywords[0] = keywords[0].substring(1)
+    }
+    //- 从下面一行开始，是文章遍历
+
+    this.datas.forEach(({ title, content, tags, url }) => {
+      // ---------------------定义了tags-------------------------------------------------------
+      let tags0 = ''
+      let space = 1
+      //-以双分号；；分割一篇文章内的标签
+      for(let i=0;i<tags.length;i++){
+        if(/\S/.test(tags[i])){
+          space = 0
+          tags0 += tags[i]
+        }else{
+          if(space === 0){
+            tags0 += '；；'
+            space = 1
+          }
+        }
+      }
+
       // The number of different keywords included in the article.
       const [indexOfTitle, keysOfTitle] = this.getIndexByWord(keywords, title)
       const [indexOfContent, keysOfContent] = this.getIndexByWord(keywords, content)
-      const includedCount = new Set([...keysOfTitle, ...keysOfContent]).size
+      const [indexOfTags0, keysOfTags0] = this.getIndexByWord(keywords,tags0)
+      const includedCount = new Set([...keysOfTitle, ...keysOfContent, ...keysOfTags0]).size
 
       // Show search results
-      const hitCount = indexOfTitle.length + indexOfContent.length
+      // const hitCount = indexOfTitle.length + indexOfContent.length
+      let hitCount = 0
+      if(tagSearch){
+        hitCount =  indexOfTags0.length
+      }else if(titleSearch){
+        hitCount =  indexOfTitle.length
+      }else{
+        hitCount = indexOfTitle.length + indexOfContent.length + indexOfTags0.length
+      }
+
       if (hitCount === 0) return
 
       const slicesOfTitle = []
@@ -150,16 +191,45 @@ class LocalSearch {
       url.searchParams.append('highlight', keywords.join(' '))
 
       if (slicesOfTitle.length !== 0) {
-        resultItem += `<li class="local-search-hit-item"><a href="${url.href}"><span class="search-result-title">${this.highlightKeyword(title, slicesOfTitle[0])}</span>`
+        resultItem += `<li class="local-search-hit-item"><div><a href="${url.href}" target='_blank'><span class="search-result-title">${this.highlightKeyword(title, slicesOfTitle[0])}</span>`
       } else {
-        resultItem += `<li class="local-search-hit-item"><a href="${url.href}"><span class="search-result-title">${title}</span>`
+        resultItem += `<li class="local-search-hit-item"><div><a href="${url.href}" target='_blank'><span class="search-result-title">${title}</span>`
       }
 
-      slicesOfContent.forEach(slice => {
-        resultItem += `<p class="search-result">${this.highlightKeyword(content, slice)}...</p>`
-      })
+      //给搜索结果加上tags，按照；；符号把一篇文章几个tag相分离
+      if (tags0.length === 0){
+        slicesOfContent.forEach(slice => {
+          resultItem += `</a><p class="search-result">${this.highlightKeyword(content, slice)}...</br></p></div>`
+        })
+      }else{
+        slicesOfContent.forEach(slice => {
+          //----------------------给tags的关键字强调------------------------------
+          let slicesOfTags0 = []
+          //将新生成的（带标签标志的）splitTags生成一个slice
+          while(indexOfTags0.length !== 0){
+            slicesOfTags0.push(this.mergeIntoSlice(0,tags0.length,indexOfTags0))
+         }
+          //将新的slice中的关键字强调
+          if(slicesOfTags0.length !== 0){
+            slicesOfTags0.forEach(slice => {
+              tags0 = `${this.highlightKeyword(tags0, slice)}`
+            })
+          } 
+          //----------------------给tags的关键字强调-----------------！！！！！！！！！
 
-      resultItem += '</a></li>'
+          let tags_split = tags0.split('；；') //-按；；把tags分开，得到的tags_split的类型是object
+          let tags_slice = '<div style="font-size:95%;font-family:kai">'
+          for(let i=0;i<tags_split.length;i++){
+            tags_slice += '<i class="fas fa-tag"></i>' + tags_split[i] + '&nbsp &nbsp'
+          }
+          tags_slice += '</div>'
+
+          resultItem += `</a><p class="search-result">${this.highlightKeyword(content, slice)}...</br>`
+          resultItem += `${tags_slice}</p></div>`
+      })
+      }
+
+      resultItem += '</li>'
       resultItems.push({
         item: resultItem,
         id: resultItems.length,
@@ -181,7 +251,8 @@ class LocalSearch {
           ? [...new DOMParser().parseFromString(res, 'text/xml').querySelectorAll('entry')].map(element => ({
               title: element.querySelector('title').textContent,
               content: element.querySelector('content').textContent,
-              url: element.querySelector('url').textContent
+              url: element.querySelector('url').textContent,
+              tags: element.querySelector('tags') && element.querySelector('tags').textContent
             }))
           : JSON.parse(res)
         // Only match articles with non-empty titles
@@ -189,6 +260,7 @@ class LocalSearch {
           data.title = data.title.trim()
           data.content = data.content ? data.content.trim().replace(/<[^>]+>/g, '') : ''
           data.url = decodeURIComponent(data.url).replace(/\/{2,}/g, '/')
+          data.tags = data.tags ? data.tags.trim().replace(/<[^>]+>/g, '') : ''
           return data
         })
         // Remove loading animation
