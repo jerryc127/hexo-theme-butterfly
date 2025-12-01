@@ -12,15 +12,6 @@ const removeKaTeX = (content) => {
     .replace(/<script[^>]*type="math\/tex[^"]*"[^>]*>.*?<\/script>/gis, '')
 }
 
-// Checks if content has meaningful text (not just numbers, punctuation, or whitespace)
-const hasMeaningfulContent = (text) => {
-  if (!text) return false
-  // Remove all whitespace, numbers, and common punctuation
-  const cleaned = text.replace(/[\s\d\.,;:!?\-_=+()[\]{}'"]/g, '')
-  // Check if there's at least one letter or meaningful character
-  return cleaned.length > 0
-}
-
 // Truncates the given content to a specified length, removing HTML tags and replacing newlines with spaces.
 const truncateContent = (content, length, encrypt = false) => {
   if (!content || encrypt) return ''
@@ -31,8 +22,11 @@ const truncateContent = (content, length, encrypt = false) => {
   // Strip HTML tags
   let strippedContent = stripHTML(processedContent).replace(/\n/g, ' ').trim()
   
-  // Check if content is meaningful (not just numbers/special chars)
-  if (!hasMeaningfulContent(strippedContent)) {
+  // If content is too short after stripping HTML, return empty string
+  // This prevents showing meaningless short excerpts (fixes #1755)
+  // Minimum meaningful length: 20 characters
+  const MIN_CONTENT_LENGTH = 20
+  if (strippedContent.length < MIN_CONTENT_LENGTH) {
     return ''
   }
   
