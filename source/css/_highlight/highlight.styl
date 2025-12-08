@@ -100,16 +100,17 @@ $code-block
   .highlight-tools
     display: flex
     align-items: center
+    overflow: hidden
     padding: 0 8px
     min-height: 24px
     height: 2.15em
     background: var(--hltools-bg)
     color: var(--hltools-color)
     font-size: $code-font-size
-    overflow: hidden
 
     & > *
-      padding: 5px
+      flex: 0 0 auto
+      margin: 2px
 
     i
       cursor: pointer
@@ -130,28 +131,25 @@ $code-block
         padding: 0
 
     .code-lang
-      flex: 1
+      flex: 1 1 auto
+      overflow: hidden
+      padding-right: 10px
       text-transform: uppercase
+      text-overflow: ellipsis
+      white-space: nowrap
       font-weight: bold
       font-size: 1.15em
       user-select: none
       -webkit-user-select: none
-      padding 2px
-
-    .copy-notice
-      padding-right: 2px
-      opacity: 0
-      transition: opacity .4s
 
     if hexo-config('code_blocks.language')
-      .code-lang
-        flex: 1
-    else if (!$highlight_macstyle && hexo-config('code_blocks.shrink') != 'none')
-      & > div:nth-child(2)
-        flex: 1
+      margin-right: auto
+    else if !$highlight_macstyle && hexo-config('code_blocks.shrink') != 'none'
+      & > :nth-child(2)
+        margin-right: auto
     else
-      .macStyle
-        flex: 1
+      & > :nth-child(1)
+        margin-right: auto
 
   .gutter
     user-select: none
@@ -163,11 +161,21 @@ $code-block
     td
       border: none
 
+.copy-notice
+  position: absolute
+  z-index: 99999
+  padding: 2px 6px
+  border-radius: 3px
+  background: var(--hltools-bg)
+  white-space: nowrap
+  font-size: 12px
+  pointer-events: none
+
 if $highlight_macstyle
   .container
     figure.highlight
       margin: 0 0 24px
-      border-radius: 7px
+      border-radius: 8px
       box-shadow: 0 5px 10px 0 $highlight-mac-border
       -webkit-transform: translateZ(0)
 
@@ -231,7 +239,7 @@ if hexo-config('code_blocks.height_limit')
         & ~ pre
           overflow: hidden
           height: unit(hexo-config('code_blocks.height_limit'), px)
-  
+
   @keyframes code-expand-key
     0%
       opacity: .6
@@ -264,8 +272,8 @@ if hexo-config('code_blocks.fullpage')
         & ~ table
           display: block
           overflow: auto
-          height: calc(100vh - 2.15em)
           margin-bottom: 0
+          height: calc(100vh - 2.15em)
 
   @keyframes code-fullpage
     0%,

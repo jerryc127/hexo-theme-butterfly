@@ -1,7 +1,7 @@
 'use strict'
 
 hexo.extend.helper.register('aside_archives', function (options = {}) {
-  const { config, page, site, url_for, _p } = this
+  const { config, page, site, url_for: urlFor, _p } = this
   const { archive_dir: archiveDir, timezone, language } = config
 
   // Destructure and set default options with object destructuring
@@ -74,7 +74,7 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
     if (type === 'monthly') {
       url += item.month < 10 ? `0${item.month}/` : `${item.month}/`
     }
-    return url_for(url)
+    return urlFor(url)
   }
 
   // Limit results efficiently
@@ -87,7 +87,7 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
       <span>${_p('aside.card_archives')}</span>
       ${
         data.length > limitedData.length
-          ? `<a class="card-more-btn" href="${url_for(archiveDir)}/"
+          ? `<a class="card-more-btn" href="${urlFor(archiveDir)}/"
             title="${_p('aside.more_button')}">
             <i class="fas fa-angle-right"></i>
           </a>`

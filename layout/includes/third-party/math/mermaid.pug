@@ -6,7 +6,11 @@ script.
 
       ele.forEach((item, index) => {
         const mermaidSrc = item.firstElementChild
-        const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+        const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+        if (!config.theme) {
+          config.theme = theme
+        }
+        const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
         const mermaidID = `mermaid-${index}`
         const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
 

@@ -49,6 +49,7 @@
     if !page.shuoshuo_url
       script(type='application/json' id='shuoshuo-data')!= safeJSON(localDate)
 
+    - const { enable, native, placeholder, field } = theme.lazyload
     script.
       (() => {
         const limitConfig = !{ JSON.stringify(page.limit || {}) }
@@ -84,6 +85,36 @@
           return `${year}-${month}-${day} ${hour}:${minute}:${second}`
         }
 
+        const addLazyload = str => {
+          const config = {
+            enable: !{Boolean(enable)},
+            native: !{Boolean(native)},
+            field: '!{field}',
+            placeholder: '!{url_for(placeholder)}',
+          }
+
+          if (!config.enable || config.field !== 'site') return str
+          const parser = new DOMParser()
+          const doc = parser.parseFromString(str, 'text/html')
+          const images = doc.querySelectorAll('img')
+
+          images.forEach(img => {
+            if (config.native) {
+              img.setAttribute('loading', 'lazy')
+            } else {
+              const src = img.getAttribute('src')
+              img.setAttribute('data-lazy-src', src)
+
+              if (config.placeholder) {
+                img.setAttribute('src', config.placeholder)
+              } else {
+                img.removeAttribute('src')
+              }
+            }
+          })
+          return doc.body.innerHTML
+        }
+
         let currentPage = 1
         const itemsPerPage = 8
         let totalPages = 0
@@ -117,7 +148,7 @@
                       </time>
                     </div>
                   </div>
-                  <div class="shuoshuo-content">${item.content}</div>
+                  <div class="shuoshuo-content">${addLazyload(item.content)}</div>
                   <div class="shuoshuo-footer ${tags ? 'flex-between' : 'flex-end'}">
                     ${tags ? `<div class="shuoshuo-tags">${tags}</div>` : ''}
                     ${commentButton}
