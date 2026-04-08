@@ -18,11 +18,23 @@ if page.total !== 1
           - className = getPostDesc ? className : className + ' no-desc'
 
           a.pagination-related(class=className href=url_for(direction.path) title=direction.title)
-            if direction.cover_type === 'img'
-              img.cover(src=url_for(direction.pagination_cover || direction.cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt=`cover of ${key === 'prev' ? 'previous' : 'next'} post`)
-            else
-              .cover(style=`background: ${direction.cover || 'var(--default-bg-color)'}`)
+            - const hasPaginationCover = direction.pagination_cover !== undefined
+            - const cover = hasPaginationCover ? direction.pagination_cover : direction.cover
+            - const coverType = hasPaginationCover ? direction.pagination_cover_type : direction.cover_type
+            - const coverMime = hasPaginationCover ? direction.pagination_cover_mime : direction.cover_mime
+            - const paginationVideoParameters = direction.pagination_video_parameters || {}
+            - const coverVideoParameters = direction.cover_video_parameters || {}
+            - const autoplay = hasPaginationCover ? paginationVideoParameters.autoplay : (paginationVideoParameters.autoplay ?? coverVideoParameters.autoplay)
+            - const loop = hasPaginationCover ? paginationVideoParameters.loop : (paginationVideoParameters.loop ?? coverVideoParameters.loop)
+            - const poster = hasPaginationCover ? paginationVideoParameters.poster : (paginationVideoParameters.poster ?? coverVideoParameters.poster)
 
+            if coverType === 'video'
+              video.cover(autoplay=autoplay loop=loop muted playsinline poster=poster ? url_for(poster) : undefined)
+                source(src=url_for(cover) type=coverMime || undefined)
+            else if coverType === 'img'
+              img.cover(src=url_for(cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=`cover of ${key === 'prev' ? 'previous' : 'next'} post`)
+            else
+              .cover(style=`background: ${cover || 'var(--default-bg-color)'}`)
             .info(class=key === 'prev' ? '' : 'text-right')
               .info-1
                 .info-item-1=_p(`pagination.${key}`)

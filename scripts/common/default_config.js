@@ -563,6 +563,11 @@ module.exports = {
     bg_dark: '#1f1f1f'
   },
   instantpage: false,
+  LCP_Optimization: {
+    enable: false,
+    main_page: 3,
+    articles_sort_page: 8,
+  },
   lazyload: {
     enable: false,
     native: false,

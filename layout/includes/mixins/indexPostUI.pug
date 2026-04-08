@@ -13,9 +13,18 @@ mixin indexPostUI()
 
           if postCover && theme.cover.index_enable
             .post_cover(class=leftOrRight)
+              - const eagerCoversCount = theme.LCP_Optimization.enable ? (theme.LCP_Optimization.main_page ?? 3) : 0
+              - const isEager = index < eagerCoversCount
+              - const coverVideoParameters = article.cover_video_parameters || {}
+              - const poster = coverVideoParameters.poster
+              if article.cover_type === 'video' && isEager && poster
+                link(rel='preload' as='image' href=url_for(poster) fetchpriority='high')
               a(href=url_for(link) title=title)
-                if article.cover_type === 'img'
-                  img.post-bg(src=url_for(postCover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
+                if article.cover_type === 'video'
+                  video.post-bg(autoplay=coverVideoParameters.autoplay loop=coverVideoParameters.loop muted playsinline poster=poster ? url_for(poster) : undefined)
+                    source(src=url_for(postCover) type=article.cover_mime || undefined)
+                else if article.cover_type === 'img'
+                  img.post-bg(src=url_for(postCover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title loading=isEager ? 'eager' : undefined fetchpriority=isEager ? 'high' : undefined decoding=isEager ? undefined : 'async')
                 else
                   div.post-bg(style=`background: ${postCover}`)
           .recent-post-info(class=noCover)

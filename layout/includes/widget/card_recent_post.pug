@@ -9,15 +9,26 @@ if theme.aside.card_recent_post.enable
       - site.posts.sort(sort, -1).limit(postLimit).each(function(article){
         - let link = article.link || article.path
         - let title = article.title || _p('no_title')
-        - let no_cover = article.cover === false || !theme.cover.aside_enable ? 'no-cover' : ''
-        - let post_cover = article.cover
-        .aside-list-item(class=no_cover)
-          if post_cover && theme.cover.aside_enable
+        - let hasRecentPostCover = article.recent_post_cover !== undefined
+        - let cover = hasRecentPostCover ? article.recent_post_cover : article.cover
+        - let coverType = hasRecentPostCover ? article.recent_post_cover_type : article.cover_type
+        - let coverMime = hasRecentPostCover ? article.recent_post_cover_mime : article.cover_mime
+        - let recentPostVideoParameters = article.recent_post_video_parameters || {}
+        - let coverVideoParameters = article.cover_video_parameters || {}
+        - let autoplay = hasRecentPostCover ? recentPostVideoParameters.autoplay : (recentPostVideoParameters.autoplay ?? coverVideoParameters.autoplay)
+        - let loop = hasRecentPostCover ? recentPostVideoParameters.loop : (recentPostVideoParameters.loop ?? coverVideoParameters.loop)
+        - let poster = hasRecentPostCover ? recentPostVideoParameters.poster : (recentPostVideoParameters.poster ?? coverVideoParameters.poster)
+        - let noCoverClass = cover === false || !theme.cover.aside_enable ? 'no-cover' : ''
+        .aside-list-item(class=noCoverClass)
+          if cover && theme.cover.aside_enable
             a.thumbnail(href=url_for(link) title=title)
-              if article.cover_type === 'img'
-                img(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
+              if coverType === 'video'
+                video(autoplay=autoplay loop=loop muted playsinline poster=poster ? url_for(poster) : undefined)
+                  source(src=url_for(cover) type=coverMime || undefined)
+              else if coverType === 'img'
+                img(src=url_for(cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
               else
-                div(style=`background: ${post_cover}`)
+                div(style=`background: ${cover}`)
           .content
             a.title(href=url_for(link) title=title)= title
             if theme.aside.card_recent_post.sort === 'updated'

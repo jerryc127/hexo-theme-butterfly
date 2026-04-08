@@ -1,20 +1,36 @@
 mixin articleSort(posts)
   .article-sort
     - let year
-    - posts.forEach(article => {
+    - posts.forEach((article, index) => {
       - const tempYear = date(article.date, 'YYYY')
-      - const noCoverClass = article.cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
+      - const hasArticleSortCover = article.article_sort_cover !== undefined
+      - const cover = hasArticleSortCover ? (article.article_sort_cover === false ? false : article.article_sort_cover) : article.cover
+      - const noCoverClass = cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
       - const title = article.title || _p('no_title')
       if tempYear !== year
         - year = tempYear
         .article-sort-item.year= year
       .article-sort-item(class=noCoverClass)
-        if article.cover && theme.cover.archives_enable
+        if cover && theme.cover.archives_enable
+          - const eagerCoversCount = theme.LCP_Optimization.enable ? (theme.LCP_Optimization.articles_sort_page ?? 0) : 0
+          - const isEager = index < eagerCoversCount
+          - const coverType = hasArticleSortCover ? article.article_sort_cover_type : article.cover_type
+          - const coverMime = hasArticleSortCover ? article.article_sort_cover_mime : article.cover_mime
+          - const articleSortVideoParameters = article.article_sort_video_parameters || {}
+          - const coverVideoParameters = article.cover_video_parameters || {}
+          - const autoplay = hasArticleSortCover ? articleSortVideoParameters.autoplay : (articleSortVideoParameters.autoplay ?? coverVideoParameters.autoplay)
+          - const loop = hasArticleSortCover ? articleSortVideoParameters.loop : (articleSortVideoParameters.loop ?? coverVideoParameters.loop)
+          - const poster = hasArticleSortCover ? articleSortVideoParameters.poster : (articleSortVideoParameters.poster ?? coverVideoParameters.poster)
+          if coverType === 'video' && isEager && poster
+            link(rel='preload' as='image' href=url_for(poster) fetchpriority='high')
           a.article-sort-item-img(href=url_for(article.path) title=title)
-            if article.cover_type === 'img'
-              img(src=url_for(article.cover) alt=title onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`)
+            if coverType === 'video'
+              video(autoplay=autoplay loop=loop muted playsinline poster=poster ? url_for(poster) : undefined)
+                source(src=url_for(cover) type=coverMime || undefined)
+            else if coverType === 'img'
+              img(src=url_for(cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title loading=isEager ? 'eager' : undefined fetchpriority=isEager ? 'high' : undefined decoding=isEager ? undefined : 'async')
             else
-              div(style=`background: ${article.cover}`)
+              div(style=`background: ${cover}`)
         .article-sort-item-info
           .article-sort-item-time
             i.far.fa-calendar-alt
