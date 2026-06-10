@@ -3,17 +3,25 @@ name: npm publish
 on:
   release:
     types: [created]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    # 這是 Trusted Publishing 必須的權限
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
-    - uses: actions/checkout@v2
-    # Setup .npmrc file to publish to npm
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v4 # 建議升級至較新版本的 checkout
+
+    - uses: actions/setup-node@v4 # 建議升級至較新版本的 setup-node
       with:
-        node-version: '12.x'
+        node-version: '20.x' # 建議換成你目前使用的 Node LTS 版本
         registry-url: 'https://registry.npmjs.org'
+
     - run: npm install
-    - run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    # 使用 --provenance 進行發布，OIDC 自動完成驗證，不再需要 env.NODE_AUTH_TOKEN
+    - run: npm publish --provenance
