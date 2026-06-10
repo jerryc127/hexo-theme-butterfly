@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-butterfly",
-  "version": "5.5.4",
+  "version": "5.5.5",
   "description": "A Simple and Card UI Design theme for Hexo",
   "main": "package.json",
   "scripts": {
@@ -26,7 +26,7 @@
     "hexo-renderer-pug": "^3.0.0",
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-util": "^4.0.0",
-    "moment-timezone": "^0.6.0"
+    "moment-timezone": "^0.6.2"
   },
   "homepage": "https://butterfly.js.org/",
   "author": "Jerry <my@crazywong.com>",

@@ -1,5 +1,5 @@
 - const { effect, source, sub, typed_option } = theme.subtitle
-- let subContent = sub || new Array()
+- let subContent = typeof sub === 'string' ? [sub] : (sub || new Array())
 
 script.
   window.typedJSFn = {
