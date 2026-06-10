@@ -567,7 +567,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateHeaderPositions()
-    btf.addEventListenerPjax(window, 'resize', btf.throttle(updateHeaderPositions, 200))
+    const throttledUpdate = btf.throttle(updateHeaderPositions, 200)
+    btf.addEventListenerPjax(window, 'resize', throttledUpdate)
+
+    if ('ResizeObserver' in window) {
+      const observer = new ResizeObserver(throttledUpdate)
+      observer.observe($article)
+      btf.addGlobalFn('pjaxSendOnce', () => { observer.disconnect() })
+    }
 
     const findHeadPosition = top => {
       if (top === 0) return false
