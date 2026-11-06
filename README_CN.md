@@ -1,5 +1,5 @@
 <div align="right">
-  <a title="English" href="/README.md">English</a>
+  <a title="English" href="./README.md">English</a>
 </div>
 
 <div align="center">
@@ -8,18 +8,18 @@
 
 # hexo-theme-butterfly
 
-一個適用於 Hexo 的現代化、美觀且功能豐富的主題
+一個現代、美觀且功能豐富的 Hexo 主題
 
 ![master version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly/master?color=%231ab1ad&label=master)
 ![dev version](https://img.shields.io/github/package-json/v/jerryc127/hexo-theme-butterfly/dev?label=dev)
-![npm version](https://img.shields.io/npm/v/hexo-theme-butterfly?color=%09%23bf00ff)
+![npm version](https://img.shields.io/npm/v/hexo-theme-butterfly?color=%23bf00ff)
 ![hexo version](https://img.shields.io/badge/hexo-5.3.0+-0e83cd)
 ![license](https://img.shields.io/github/license/jerryc127/hexo-theme-butterfly?color=FF5531)
 ![GitHub stars](https://img.shields.io/github/stars/jerryc127/hexo-theme-butterfly?style=social)
 
-📢 **在線預覽**: [Butterfly 官方](https://butterfly.js.org/) | [CrazyWong 博客](https://blog.crazywong.com/)
+📢 **線上預覽**：[Butterfly 官方](https://butterfly.js.org/) | [CrazyWong 部落格](https://blog.crazywong.com/)
 
-📖 **完整文檔**: [中文文檔](https://butterfly.js.org/posts/21cfbf15/) | [English Docs](https://butterfly.js.org/en/posts/butterfly-docs-en-get-started/)
+📖 **完整文檔**：[中文文檔](https://butterfly.js.org/posts/21cfbf15/) | [English](https://butterfly.js.org/en/posts/butterfly-docs-en-get-started/)
 
 ![Butterfly 主題預覽](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/theme-butterfly-readme.png)
 
@@ -27,166 +27,234 @@
 
 ---
 
+## 📑 目錄
+
+- [環境要求](#requirements)
+- [快速開始](#quick-start)
+- [升級](#upgrade)
+- [主題特色](#theme-features)
+- [主題截圖](#screenshots)
+- [取得協助](#get-help)
+- [授權條款](#license)
+
+<a id="requirements"></a>
+
+## 📋 環境要求
+
+- **Hexo**：5.3.0 或以上
+- **Node.js**：18 或以上（`hexo-util` 4.x 的要求）
+- **Git**：僅 Git 安裝需要
+
+<a id="quick-start"></a>
+
 ## 🚀 快速開始
 
 ### 💾 安裝方式
 
 #### 方式一：Git 安裝（推薦）
 
-> 💡 **提示**: 如果您在中國大陸訪問 GitHub 速度較慢，可以使用 [Gitee 鏡像](https://gitee.com/immyw/hexo-theme-butterfly.git)
+> 💡 **提示**：如果您在中國大陸連線 GitHub 較慢，可以使用 [Gitee 鏡像](https://gitee.com/immyw/hexo-theme-butterfly.git)。
 
-在您的 Hexo 博客根目錄下執行：
+在 Hexo 部落格根目錄執行以下指令：
 
 ```bash
 # 安裝穩定版本（推薦）
-git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
+git clone -b master --depth 1 https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
 ```
 
 ```bash
 # 安裝開發版本（搶先體驗新功能）
-git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
+git clone -b dev --depth 1 https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
 ```
 
-#### 方式二：NPM 安裝
+> 📁 如果 `themes/butterfly` 已存在，請先刪除或重新命名，否則目標資料夾不是空的，`git clone` 會失敗。
 
-> ⚠️ **注意**: NPM 安裝方式僅支援 Hexo 5.0.0 及以上版本
+#### 方式二：npm 安裝
 
 ```bash
 npm install hexo-theme-butterfly
 ```
 
-### ⚙️ 主題配置
+> ⚠️ **注意**：npm 安裝不會在 `themes/` 底下建立資料夾，主題會放在 `node_modules/` 中。
 
-1. **啟用主題**: 修改您的 Hexo 配置檔案 `_config.yml`：
+### ⚙️ 啟用與設定
 
-```yaml
-theme: butterfly
-```
+1. **啟用主題**：修改 Hexo 根目錄的 `_config.yml`：
 
-2. **安裝依賴**: 如果您尚未安裝 pug 和 stylus 渲染器，請執行：
+   ```yaml
+   theme: butterfly
+   ```
+
+2. **複製主題設定**（建議，這樣升級時才不會覆蓋您的設定）：
+
+   ```bash
+   # Git 安裝
+   cp themes/butterfly/_config.yml _config.butterfly.yml
+
+   # npm 安裝
+   cp node_modules/hexo-theme-butterfly/_config.yml _config.butterfly.yml
+   ```
+
+   > 💡 Hexo 5+ 會自動讀取根目錄的 `_config.butterfly.yml`。Windows 請使用 `copy themes\butterfly\_config.yml _config.butterfly.yml`（Git 安裝）或 `copy node_modules\hexo-theme-butterfly\_config.yml _config.butterfly.yml`（npm 安裝）。
+   >
+   > ⚠️ 之後只需修改 `_config.butterfly.yml`。請勿刪除主題內的 `_config.yml`，也不要將自訂檔案或圖片放進主題的 `source/` 資料夾，升級時可能會被覆蓋。
+
+3. **安裝渲染器並在本機預覽**：
+
+   ```bash
+   npm install hexo-renderer-pug hexo-renderer-stylus --save
+   hexo clean && hexo s
+   ```
+
+<a id="upgrade"></a>
+
+## 🔄 升級
+
+**Git 安裝**
 
 ```bash
-npm install hexo-renderer-pug hexo-renderer-stylus --save
+cd themes/butterfly
+git pull
 ```
+
+**npm 安裝**
+
+```bash
+npm update hexo-theme-butterfly
+```
+
+升級前請先備份設定。升級後請到 [Releases](https://github.com/jerryc127/hexo-theme-butterfly/releases) 查看 `_config` 的變更，並同步到 `_config.butterfly.yml`。
+
+<a id="theme-features"></a>
 
 ## ✨ 主題特色
 
-### 🎨 設計風格
-- [x] **卡片化設計** - 現代化的卡片式佈局
-- [x] **圓角/直角設計** - 支援自訂邊框樣式
-- [x] **響應式設計** - 完美適配各種螢幕尺寸
-- [x] **雙欄佈局** - 優化的閱讀體驗
-- [x] **深色模式** - 護眼的夜間模式
+> 💡 所有功能都能在 `_config.butterfly.yml` 中開啟、關閉與調整，詳見[主題設定文檔](https://butterfly.js.org/posts/4aa8abbe/)。
 
-### 📝 內容功能
-- [x] **多級選單** - 支援二級導航選單
-- [x] **閱讀模式** - 專注的文章閱讀體驗
-- [x] **目錄導航** - 電腦和手機雙端支援 TOC
-- [x] **字數統計** - 顯示文章字數和閱讀時間
-- [x] **相關文章** - 智能推薦相關內容
-- [x] **過期提醒** - 自動提示文章更新狀態
-- [x] **簡繁轉換** - 支援繁體中文和簡體中文切換
-- [x] **標籤外掛** - 豐富的標籤外掛支持
+### 🎨 設計
+- ✅ **卡片化設計**：現代卡片式佈局
+- ✅ **圓角或直角**：可自訂圓角大小
+- ✅ **響應式設計**：自動適應各種螢幕尺寸
+- ✅ **雙欄佈局**：優化閱讀體驗
+- ✅ **深色模式**：夜間閱讀更護眼
 
-### 🔍 搜尋與導航
-- [x] **多種搜尋** - Algolia 搜尋 / 本地搜尋 / Docsearch
-- [x] **內建 404** - 美觀的 404 錯誤頁面
-- [x] **Pjax 支援** - 流暢的頁面切換體驗
+### 📝 內容
+- ✅ **多層選單**：支援多層導覽
+- ✅ **閱讀模式**：專注閱讀
+- ✅ **目錄**：電腦與手機皆支援
+- ✅ **字數統計**：顯示字數與預估閱讀時間
+- ✅ **相關文章**：在文章底部推薦相關內容
+- ✅ **過期提醒**：文章可能過期時提醒讀者
+- ✅ **簡繁轉換**：在繁體與簡體中文之間切換
+- ✅ **標籤外掛**：提供多種實用外掛
+
+### 🔍 搜尋與導覽
+- ✅ **多種搜尋方式**：Algolia、本機搜尋或 DocSearch
+- ✅ **內建 404 頁面**：美觀的錯誤頁面
+- ✅ **PJAX**：流暢的頁面切換
 
 ### 🎨 程式碼展示
-- [x] **語法高亮** - 內建多種主題（darker/pale night/light/ocean）
-- [x] **程式碼功能** - 語言顯示/摺疊展開/複製按鈕/自動換行
-- [x] **數學公式** - 支援 Mathjax 和 Katex
+- ✅ **語法高亮**：內建多種主題（darker、pale night、light、ocean）
+- ✅ **程式碼區塊工具**：語言標示、摺疊、複製按鈕、自動換行
+- ✅ **數學公式**：支援 MathJax 與 KaTeX
 
-### 💬 社交互動
-- [x] **多元評論系統** - Disqus/Gitalk/Valine/Waline/Twikoo/Giscus/Artalk 等
-- [x] **雙評論支援** - 可同時啟用兩套評論系統
-- [x] **分享功能** - Sharejs/Addtoany 分享套件
-- [x] **線上客服** - Chatra/Tidio/Crisp 即時聊天
+### 💬 社群互動
+- ✅ **多種留言系統**：Disqus、Gitalk、Valine、Waline、Twikoo、Giscus、Artalk 等
+- ✅ **雙留言系統**：可同時啟用兩套
+- ✅ **分享**：Share.js 與 AddToAny
+- ✅ **即時客服**：Chatra、Tidio 或 Crisp
 
-### 📊 數據分析
-- [x] **訪問統計** - 不蒜子計數器
-- [x] **網站分析** - Google Analytics/百度統計/Cloudflare Analytics/Microsoft Clarity/Umami
-- [x] **站長驗證** - 各大搜尋引擎驗證
-- [x] **廣告支援** - Google AdSense/自訂廣告位
+### 📊 分析與統計
+- ✅ **瀏覽統計**：不蒜子計數器
+- ✅ **網站分析**：Google Analytics、百度統計、Cloudflare Analytics、Microsoft Clarity 或 Umami
+- ✅ **搜尋引擎驗證**：Google 與百度
+- ✅ **廣告**：Google AdSense 與自訂廣告版位
 
 ### 🎪 視覺效果
-- [x] **打字特效** - activate_power_mode 動畫
-- [x] **背景特效** - 靜態彩帶/動態彩帶/飄帶效果/Canvas Nest
-- [x] **滑鼠特效** - 煙花/愛心/文字點擊效果
-- [x] **載入動畫** - Preloader 和 pace.js 進度條
-- [x] **圖片效果** - Medium Zoom/Fancybox 圖片燈箱
-- [x] **懶載入** - 圖片延遲載入優化
+- ✅ **打字特效**：activate_power_mode 動畫
+- ✅ **背景特效**：靜態、動態或飄動彩帶，以及 Canvas Nest
+- ✅ **滑鼠特效**：點擊時顯示煙花、愛心或文字
+- ✅ **載入動畫**：Preloader 或 pace.js 進度條
+- ✅ **圖片燈箱**：medium-zoom 或 Fancybox
+- ✅ **延遲載入**：圖片進入視窗時才載入
 
 ### 🛠️ 進階功能
-- [x] **PWA 支援** - 漸進式網頁應用
-- [x] **複製保護** - 可關閉文字複製/版權資訊追加
-- [x] **主題定製** - 自訂網站配色方案
-- [x] **圖表支援** - Mermaid 流程圖/Chart.js 數據圖表
-- [x] **音樂符號** - ABCJS 音樂記譜法支援
-- [x] **系列文章** - 系列文章組織功能
-- [x] **Instantpage** - 頁面預載入加速
-- [x] **Snackbar** - 優雅的提示訊息
+- ✅ **PWA**：漸進式網頁應用
+- ✅ **複製保護**：停用複製或附加版權聲明
+- ✅ **主題自訂**：可更換網站配色
+- ✅ **圖表**：Mermaid 流程圖與 Chart.js 圖表
+- ✅ **樂譜**：支援 ABCJS 記譜
+- ✅ **文章系列**：將文章整理成系列
+- ✅ **instant.page**：預載頁面，加快導覽
+- ✅ **Snackbar**：優雅的提示通知
 
 ## 🤝 貢獻者
 
-感謝所有為 Butterfly 主題做出貢獻的開發者們！
+感謝每一位為 Butterfly 付出過的貢獻者！
 
 [![Contributors](https://contrib.rocks/image?repo=jerryc127/hexo-theme-butterfly)](https://github.com/jerryc127/hexo-theme-butterfly/graphs/contributors)
+
+<a id="screenshots"></a>
 
 ## 📸 主題截圖
 
 <div align="center">
-
-![主題展示](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-1.jpg)
-
-![主題展示](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-2.jpg)
-
-![主題展示](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-3.jpg)
-
-![主題展示](https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-4.jpg)
-
+  <table>
+    <tr>
+      <td><a href="https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-1.jpg"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-1.jpg" alt="淺色首頁在桌面、平板與手機上的響應式效果" width="440" loading="lazy" /></a></td>
+      <td><a href="https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-2.jpg"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-2.jpg" alt="淺色文章頁與全螢幕封面" width="440" loading="lazy" /></a></td>
+    </tr>
+    <tr>
+      <td><a href="https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-3.jpg"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-3.jpg" alt="深色模式首頁在桌面、平板與手機上的響應式效果" width="440" loading="lazy" /></a></td>
+      <td><a href="https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-4.jpg"><img src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@m2/img/butterfly-readme-screenshots-4.jpg" alt="深色模式文章頁與全螢幕封面" width="440" loading="lazy" /></a></td>
+    </tr>
+  </table>
 </div>
-
 
 ## ⭐ Star 趨勢
 
 [![Star History Chart](https://api.star-history.com/svg?repos=jerryc127/hexo-theme-butterfly&type=Date)](https://star-history.com/#jerryc127/hexo-theme-butterfly&Date)
 
-## 🤝 一起構建更美好的主題
+<a id="get-help"></a>
 
-我們相信，**開源的力量來自於每一個人的參與**！無論您是開發者、設計師還是用戶，都可以為 Butterfly 主題的發展貢獻力量。
+## 🤝 一起打造更美好的主題
 
-### 💬 獲取幫助與支援
+我們相信，**開源之所以能成長，是因為每個人願意參與**。不論您是開發者、設計師還是使用者，都能讓 Butterfly 變得更好。
 
-- 🐛 **發現問題？** → [GitHub Issues](https://github.com/jerryc127/hexo-theme-butterfly/issues) - 讓我們一起解決！
-- 💡 **有好想法？** → [GitHub Discussions](https://github.com/jerryc127/hexo-theme-butterfly/discussions) - 分享您的創意想法！
-- 📚 **學習使用？** → [官方文檔](https://butterfly.js.org/) - 詳細的使用指南
-- 💬 **即時討論？** → [Telegram 群組](https://t.me/bu2fly) - 與社群成員實時交流
+### 💬 取得協助
+
+- 🐛 **發現問題？** 開一個 [Issue](https://github.com/jerryc127/hexo-theme-butterfly/issues)，我們一起解決。
+- 💡 **有好想法？** 到 [Discussions](https://github.com/jerryc127/hexo-theme-butterfly/discussions) 分享。
+- 📚 **剛開始使用？** 閱讀[官方文檔](https://butterfly.js.org/)。
+- ❓ **卡住了？** 查看[主題問答](https://butterfly.js.org/posts/98d20436/)，那裡整理了常見問題與排錯方法。
+- 📦 **想了解更新？** 查看 [Releases](https://github.com/jerryc127/hexo-theme-butterfly/releases)，裡面有版本說明與 `_config` 變更。
+- 💬 **想聊聊？** 加入 [Telegram 群組](https://t.me/bu2fly)。
 
 ### 🎯 參與貢獻
 
-想要讓 Butterfly 變得更好嗎？我們歡迎您的任何形式的貢獻：
+想讓 Butterfly 更好嗎？我們歡迎各種形式的貢獻：
 
-- **🔧 代碼貢獻** - 修復 Bug、添加新功能、優化性能
-- **📝 文檔完善** - 改進文檔、翻譯內容、撰寫教程
-- **🎨 設計建議** - UI/UX 改進、主題配色、圖示設計
-- **🧪 測試反饋** - 測試新功能、回報問題、提供使用體驗
-- **💰 資金支援** - [贊助項目](https://buy.stripe.com/3cs6rP6YA91sbbG5kk) - 支持長期發展
+- **🔧 程式碼**：修復 Bug、新增功能、改善效能
+- **📝 文檔**：改進文檔、翻譯內容、撰寫教學
+- **🎨 設計**：UI/UX 改進、配色、圖示設計
+- **🧪 測試**：試用新功能、回報問題、分享使用心得
+- **💰 資金**：[贊助專案](https://buy.stripe.com/3cs6rP6YA91sbbG5kk)，支持專案長期發展
+
+<a id="license"></a>
 
 ## 📄 授權條款
 
-本專案採用 [Apache 2.0](LICENSE) 授權條款。
+本專案採用 [Apache 2.0 授權條款](LICENSE)。
 
 ## 🙏 致敬與感謝
 
-本主題基於 [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) 進行開發，感謝原作者的精彩創作為我們提供了靈感與基礎！
+本主題以 [hexo-theme-melody](https://github.com/Molunerfinn/hexo-theme-melody) 為基礎開發，感謝原作者提供靈感與基礎。
 
-感謝所有為 Butterfly 主題發展做出貢獻的朋友們，是你們的支持讓這個主題能夠不斷完善與進步。
+感謝每一位為 Butterfly 付出的人，因為有你們，這個主題才能持續進步。
 
 ---
 
 <div align="center">
 
-**✨ 如果這個主題對您有幫助，請給我們一個 ⭐ Star！✨**
+**✨ 如果這個主題對您有幫助，請給我們一顆 ⭐！**
 </div>

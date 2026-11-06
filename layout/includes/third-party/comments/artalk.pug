@@ -1,4 +1,4 @@
-- const { server, site, option } = theme.artalk
+- const { server, site, option, vote } = theme.artalk
 - const { use, lazyload } = theme.comments
 
 script.
@@ -17,8 +17,25 @@ script.
     const artalkChangeMode = theme => artalkItem && artalkItem.setDarkMode(theme === 'dark')
 
     const initArtalk = (el = document, pageKey = location.pathname) => {
+      const artalkWrap = el.querySelector('#artalk-wrap')
+
+      if (!{vote}) {
+        const vote = document.createElement('div')
+        vote.className = 'artalk-vote'
+        vote.innerHTML = `
+          <span class="artalk-page-vote-up">
+            <i class="fas fa-thumbs-up"></i>
+            <span class="artalk-page-vote-up-count"></span>
+          </span>
+          <span class="artalk-page-vote-down">
+            <i class="fas fa-thumbs-down"></i>
+            <span class="artalk-page-vote-down-count"></span>
+          </span>`
+        artalkWrap.before(vote)
+      }
+
       artalkItem = Artalk.init({
-        el: el.querySelector('#artalk-wrap'),
+        el: artalkWrap,
         server: '!{server}',
         site: '!{site}',
         darkMode: document.documentElement.getAttribute('data-theme') === 'dark',
