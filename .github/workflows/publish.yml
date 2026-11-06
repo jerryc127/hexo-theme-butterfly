@@ -13,7 +13,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'   # trusted publishing 需要 >= 22.14
-          # 不要設 registry-url：它會寫入 _authToken=${NODE_AUTH_TOKEN}，空值會干擾 OIDC
       - run: npm install -g npm@latest
       - run: npm install
-      - run: npm publish --access public   # 不用 NODE_AUTH_TOKEN
+      - name: Publish
+        run: |
+          echo "repo=$GITHUB_REPOSITORY"
+          npm publish --access public
