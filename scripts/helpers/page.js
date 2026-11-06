@@ -1,7 +1,7 @@
 'use strict'
 
 const { truncateContent, postDesc } = require('../common/postDesc')
-const { prettyUrls } = require('hexo-util')
+const { prettyUrls, stripHTML } = require('hexo-util')
 const crypto = require('crypto')
 const moment = require('moment-timezone')
 
@@ -9,7 +9,7 @@ const absoluteUrlPattern = /^(?:[a-z][a-z\d+.-]*:)?\/\//i
 const relativeUrlPattern = /^(\.\/|\.\.\/|\/|[^/]+\/).*$/
 const colorPattern = /^(#|rgb|rgba|hsl|hsla)/i
 const simpleFilePattern = /\.(png|jpg|jpeg|gif|bmp|webp|svg|tiff)$/i
-const archiveRegex = /\/archives\//
+const escapeRegex = value => String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 const { version: themeVersion } = require('../../package.json')
 
@@ -25,6 +25,16 @@ hexo.extend.helper.register('cloudTags', function (options = {}) {
 
   if (limit > 0) {
     source = source.limit(limit)
+  }
+
+  const shuffle = list => {
+    for (let i = list.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      const temp = list[i]
+      list[i] = list[j]
+      list[j] = temp
+    }
+    return list
   }
 
   const sizes = [...new Set(source.map(tag => tag.length).sort((a, b) => a - b))]
@@ -65,7 +75,11 @@ hexo.extend.helper.register('cloudTags', function (options = {}) {
     return `font-size: ${parseFloat(size.toFixed(2))}${unit}; ${colorStyle}`
   }
 
-  return source.sort(orderby, order).map((tag, idx) => {
+  const sortedSource = orderby === 'random'
+    ? shuffle(typeof source.toArray === 'function' ? source.toArray() : Array.from(source))
+    : source.sort(orderby, order)
+
+  return sortedSource.map((tag, idx) => {
     const ratio = length ? sizeMap.get(tag.length) / length : 0
     const size = minfontsize + ((maxfontsize - minfontsize) * ratio)
 
@@ -102,6 +116,11 @@ hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
 
   const defaultTitle = this._p('page.archives')
   if (!menu) return defaultTitle
+  const archiveDir = String(hexo.config.archive_dir || 'archives').replace(/^\/+|\/+$/g, '')
+  const archivePath = this.url_for(archiveDir)
+  const normalizedArchivePath = archivePath.endsWith('/') ? archivePath : `${archivePath}/`
+  const archivePathRegex = new RegExp(`${escapeRegex(normalizedArchivePath)}(?:$|[?#])`)
+  const archiveDirRegex = new RegExp(`/${escapeRegex(archiveDir)}/(?:$|[?#])`)
 
   const loop = m => {
     for (const [key, value] of Object.entries(m)) {
@@ -110,7 +129,7 @@ hexo.extend.helper.register('findArchivesTitle', function (page, menu, date) {
         if (result) return result
       }
 
-      if (typeof value === 'string' && archiveRegex.test(value)) {
+      if (typeof value === 'string' && (archivePathRegex.test(value) || archiveDirRegex.test(value))) {
         return key
       }
     }
@@ -156,7 +175,9 @@ hexo.extend.helper.register('shuoshuoFN', (data, page) => {
   const timezone = hexo.config.timezone
   processedData.forEach(item => {
     const parsed = moment.utc(item.date)
-    item.date = moment.tz(parsed.format('YYYY-MM-DD HH:mm:ss'), timezone).format('YYYY-MM-DD HH:mm:ss')
+    item.date = timezone
+      ? moment.tz(parsed.format('YYYY-MM-DD HH:mm:ss'), timezone).format('YYYY-MM-DD HH:mm:ss')
+      : parsed.format('YYYY-MM-DD HH:mm:ss')
 
     // Render the content using Hexo's rendering engine to process any tags or markdown
     const mockPost = {
@@ -221,4 +242,44 @@ hexo.extend.helper.register('safeJSON', data => {
     .replace(/>/g, '\\u003e')
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029')
+})
+
+const charBasedRange = /[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af\u1100-\u11ff]/g
+
+const countWords = text => {
+  if (!text) return 0
+  const charCount = (text.match(charBasedRange) || []).length
+  const remaining = text.replace(charBasedRange, ' ').trim()
+  const wordCount = remaining ? remaining.split(/\s+/).length : 0
+  return charCount + wordCount
+}
+
+const formatCount = num => {
+  if (num >= 100000) {
+    return Math.round(num / 1000) + 'k'
+  }
+  return num
+}
+
+hexo.extend.helper.register('wordcount', page => {
+  return formatCount(countWords(stripHTML(page.encrypt ? page.origin : page.content || '')))
+})
+
+hexo.extend.helper.register('min2read', (page, options = {}) => {
+  const { cn = 300, en = 160 } = options
+  const text = stripHTML(page.encrypt ? page.origin : page.content || '')
+  const charCount = (text.match(charBasedRange) || []).length
+  const remaining = text.replace(charBasedRange, ' ').trim()
+  const wordCount = remaining ? remaining.split(/\s+/).length : 0
+  const minutes = Math.ceil(charCount / cn + wordCount / en)
+  return minutes < 1 ? 1 : minutes
+})
+
+hexo.extend.helper.register('totalcount', site => {
+  if (!site || !site.posts) return 0
+  let total = 0
+  site.posts.forEach(post => {
+    total += countWords(stripHTML(post.encrypt ? post.origin : post.content || ''))
+  })
+  return formatCount(total)
 })

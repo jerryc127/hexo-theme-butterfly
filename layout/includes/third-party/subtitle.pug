@@ -3,6 +3,7 @@
 
 script.
   window.typedJSFn = {
+    _seq: 0,
     init: str => {
       window.typed = new Typed('#subtitle', Object.assign({
         strings: str,
@@ -13,15 +14,32 @@ script.
       }, !{JSON.stringify(typed_option)}))
     },
     run: subtitleType => {
-      if (!{effect}) {
-        if (typeof Typed === 'function') {
-          subtitleType()
-        } else {
-          btf.getScript('!{url_for(theme.asset.typed)}').then(subtitleType)
-        }
-      } else {
-        subtitleType()
+      const seq = ++window.typedJSFn._seq
+      const invoke = () => {
+        if (seq === window.typedJSFn._seq) subtitleType()
       }
+
+      if (!{effect}) {
+        if (typeof Typed === 'function') invoke()
+        else btf.getScript('!{url_for(theme.asset.typed)}').then(invoke)
+      } else {
+        invoke()
+      }
+    },
+    fetchSubtitle: (fetcher, parser) => {
+      const seq = window.typedJSFn._seq
+      Promise.resolve()
+        .then(fetcher)
+        .then(parser)
+        .then(({ content, extra = [] }) => {
+          if (seq !== window.typedJSFn._seq) return
+          typedJSFn.processSubtitle(content, extra)
+        })
+        .catch(err => {
+          if (seq !== window.typedJSFn._seq) return
+          console.error('Failed to get the subtitle API:', err)
+          typedJSFn.processSubtitle(!{JSON.stringify(subContent)})
+        })
     },
     processSubtitle: (content, extraContents = []) => {
       if (!{effect}) {
@@ -44,63 +62,52 @@ script.
       }
     }
   }
-  btf.addGlobalFn('pjaxSendOnce', () => { typed && typed.destroy() }, 'typedDestroy')
+  btf.addGlobalFn('pjaxSendOnce', () => {
+    window.typedJSFn._seq++
+    typed && typed.destroy()
+    window.typed = null
+  }, 'typedDestroy')
 
 case source
   when 1
     script.
       function subtitleType () {
-        fetch('https://v1.hitokoto.cn')
-          .then(response => response.json())
-          .then(data => {
-            const from = data.from ? '出自 ' + data.from : ''
-            typedJSFn.processSubtitle(data.hitokoto, from ? [from] : [])
-          })
-          .catch(err => {
-            console.error('Failed to get the Hitokoto API:', err)
-            typedJSFn.processSubtitle(!{JSON.stringify(subContent)})
-          })
+        typedJSFn.fetchSubtitle(
+          () => fetch('https://v1.hitokoto.cn').then(response => response.json()),
+          data => ({ content: data.hitokoto, extra: data.from ? ['出自 ' + data.from] : [] })
+        )
       }
       typedJSFn.run(subtitleType)
 
   when 2
     script.
       function subtitleType () {
-        fetch('https://v.api.aa1.cn/api/yiyan/index.php')
-          .then(response => response.text())
-          .then(data => {
+        typedJSFn.fetchSubtitle(
+          () => fetch('https://v.api.aa1.cn/api/yiyan/index.php').then(response => response.text()),
+          data => {
             const reg = /<p>(.*?)<\/p>/g
             const result = reg.exec(data)
-            if (result && result[1]) {
-              typedJSFn.processSubtitle(result[1])
-            } else {
-              throw new Error('Failed to parse the return value of the Yiyan API')
-            }
-          })
-          .catch(err => {
-            console.error('Failed to get the Yiyan API:', err)
-            typedJSFn.processSubtitle(!{JSON.stringify(subContent)})
-          })
+            if (result && result[1]) return { content: result[1] }
+            throw new Error('Failed to parse the return value of the Yiyan API')
+          }
+        )
       }
       typedJSFn.run(subtitleType)
 
   when 3
     script.
       function subtitleType () {
-        btf.getScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js')
-          .then(() => {
-            jinrishici.load(result => {
-              if (result && result.data && result.data.content) {
-                typedJSFn.processSubtitle(result.data.content)
-              } else {
-                throw new Error('Failed to parse the return value of Jinrishici API')
-              }
+        typedJSFn.fetchSubtitle(
+          () => btf.getScript('https://sdk.jinrishici.com/v2/browser/jinrishici.js').then(() =>
+            new Promise((resolve, reject) => {
+              jinrishici.load(result => {
+                if (result && result.data && result.data.content) resolve(result.data.content)
+                else reject(new Error('Failed to parse the return value of Jinrishici API'))
+              })
             })
-          })
-          .catch(err => {
-            console.error('Failed to get the Jinrishici API:', err)
-            typedJSFn.processSubtitle(!{JSON.stringify(subContent)})
-          })
+          ),
+          content => ({ content })
+        )
       }
       typedJSFn.run(subtitleType)
 

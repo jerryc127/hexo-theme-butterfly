@@ -6,11 +6,16 @@ script.
 
     if (!window.katex_js_css) {
       window.katex_js_css = true
-      await btf.getCSS('!{url_for(theme.asset.katex)}')
-      if (!{theme.math.katex.copy_tex}) {
-        await btf.getScript('!{url_for(theme.asset.katex_copytex)}')
+      try {
+        await btf.getCSS('!{url_for(theme.asset.katex)}')
+        if (!{theme.math.katex.copy_tex}) {
+          await btf.getScript('!{url_for(theme.asset.katex_copytex)}')
+        }
+      } catch (e) {
+        console.error('[katex] failed to load assets, showing formulas anyway:', e)
       }
     }
 
     showKatex()
+    btf.addGlobalFn('encrypt', showKatex, 'katex')
   })()

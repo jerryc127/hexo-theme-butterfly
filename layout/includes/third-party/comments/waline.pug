@@ -20,8 +20,29 @@ script.
         path: isShuoshuo ? path : (option && option.path) || path
       })
 
+      let lightboxObserver = null
+      if (GLOBAL_CONFIG.lightbox !== 'null') {
+        const wrap = el.querySelector('#waline-wrap')
+        if (wrap) {
+          lightboxObserver = new MutationObserver(mutations => {
+            const imgs = []
+            mutations.forEach(mutation => {
+              mutation.addedNodes.forEach(node => {
+                if (node.nodeType !== 1) return
+                const nodeImgs = node.matches && node.matches('img') ? [node] : node.querySelectorAll('img')
+                nodeImgs.forEach(img => imgs.push(img))
+              })
+            })
+            const lightboxImgs = imgs.filter(img => img.closest('.wl-content') && !img.classList.contains('wl-emoji'))
+            if (lightboxImgs.length) btf.loadLightbox(lightboxImgs)
+          })
+          lightboxObserver.observe(wrap, { childList: true, subtree: true })
+        }
+      }
+
       if (isShuoshuo) {
         window.shuoshuoComment.destroyWaline = () => {
+          lightboxObserver && lightboxObserver.disconnect()
           destroyWaline(waline)
           if (el.children.length) {
             el.innerHTML = ''
@@ -46,7 +67,7 @@ script.
 
     if (isShuoshuo) {
       '!{use[0]}' === 'Waline'
-        ? window.shuoshuoComment = { loadComment: loadWaline } 
+        ? window.shuoshuoComment = { loadComment: loadWaline }
         : window.loadOtherComment = loadWaline
       return
     }

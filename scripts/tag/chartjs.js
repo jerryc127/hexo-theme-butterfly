@@ -31,7 +31,7 @@ const chartjs = (args, content) => {
     return
   }
 
-  const chartConfig = chartMatch && chartMatch[1] ? chartMatch[1] : ''
+  const chartConfig = chartMatch[1] || ''
   const descContent = descMatch && descMatch[1] ? descMatch[1] : ''
 
   const renderedDesc = descContent ? hexo.render.renderSync({ text: descContent, engine: 'markdown' }).trim() : ''

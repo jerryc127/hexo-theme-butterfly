@@ -1,38 +1,59 @@
 script.
   window.newestComments = {
-    changeContent: content => {
-      if (content === '') return content
+    ready: fn => {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fn, { once: true })
+      } else {
+        fn()
+      }
+    },
 
-      content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
-      content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[!{_p("aside.card_newest_comments.link")}]') // replace url
-      content = content.replace(/<pre><code>.*?<\/pre>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
-      content = content.replace(/<code>.*?<\/code>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
-      content = content.replace(/<[^>]+>/g, "") // remove html tag
+    escapeHtml: str => {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+    },
+
+    changeContent: content => {
+      if (!content) return ''
+
+      content = content.replace(/<img[^>]*>/gis, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
+      content = content.replace(/<pre><code>[\s\S]*?<\/pre>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code block
+      content = content.replace(/<a[^>]+?>[\s\S]*?<\/a>/gi, '[!{_p("aside.card_newest_comments.link")}]') // replace url
+      content = content.replace(/<code[^>]*?>[\s\S]*?<\/code>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
+      content = content.replace(/<[^>]+>/g, '') // remove html tag
 
       if (content.length > 150) {
-        content = content.substring(0, 150) + '...'
+        content = Array.from(content).slice(0, 150).join('') + '...'
       }
+
       return content
     },
 
     generateHtml: (array, ele) => {
+      const { escapeHtml } = window.newestComments
       let result = ''
 
       if (array.length) {
-        for (let i = 0; i < array.length; i++) {
-          result += '<div class="aside-list-item">'
+        result = array.map(item => {
+          let html = '<div class="aside-list-item">'
 
-          if (!{theme.aside.card_newest_comments.avatar} && array[i].avatar) {
+          if (!{theme.aside.card_newest_comments.avatar} && item.avatar) {
             const imgAttr = '!{theme.lazyload.enable && !theme.lazyload.native ? "data-lazy-src" : "src"}'
             const lazyloadNative = '!{theme.lazyload.enable && theme.lazyload.native ? "loading=\"lazy\"" : ""}'
-            result += `<a href="${array[i].url}" class="thumbnail"><img ${imgAttr}="${array[i].avatar}" alt="${array[i].nick}" ${lazyloadNative}></a>`
+            html += `<a href="${escapeHtml(item.url)}" class="thumbnail"><img ${imgAttr}="${escapeHtml(item.avatar)}" alt="${escapeHtml(item.nick)}" ${lazyloadNative}></a>`
           }
 
-          result += `<div class="content">
-          <a class="comment" href="${array[i].url}" title="${array[i].content}">${array[i].content}</a>
-          <div class="name"><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+          html += `<div class="content">
+          <a class="comment" href="${escapeHtml(item.url)}" title="${escapeHtml(item.content)}">${escapeHtml(item.content)}</a>
+          <div class="name"><span>${escapeHtml(item.nick)} / </span><time datetime="${escapeHtml(item.date)}">${btf.diffDate(item.date, true)}</time></div>
           </div></div>`
-        }
+
+          return html
+        }).join('')
       } else {
         result += '!{_p("aside.card_newest_comments.zero")}'
       }
@@ -42,6 +63,21 @@ script.
       window.pjax && window.pjax.refresh(ele)
     },
 
+    fetchAndRender: (keyName, ele, getComment) => {
+      Promise.resolve(getComment(ele)).then(array => {
+        btf.saveToLocal.set(keyName, JSON.stringify(array), !{theme.aside.card_newest_comments.storage}/(60*24))
+        newestComments.generateHtml(array, ele)
+      }).catch(e => {
+        console.error(e)
+        const data = btf.saveToLocal.get(keyName)
+        if (data) {
+          newestComments.generateHtml(JSON.parse(data), ele)
+        } else {
+          ele.textContent = '!{_p("aside.card_newest_comments.error")}'
+        }
+      })
+    },
+
     newestCommentInit: (name, getComment) => {
       const $dom = document.querySelector('#card-newest-comments .aside-list')
       if ($dom) {
@@ -49,7 +85,7 @@ script.
         if (data) {
           newestComments.generateHtml(JSON.parse(data), $dom)
         } else {
-          getComment($dom)
+          newestComments.fetchAndRender(name, $dom, getComment)
         }
       }
     },

@@ -11,13 +11,17 @@ hexo.extend.helper.register('inject_head_js', function () {
   const createCustomJs = () => `
     const saveToLocal = {
       set: (key, value, ttl) => {
-        const data = { value }
+        try {
+          const data = { value }
 
-        if (ttl != null) {
-          data.expiry = Date.now() + ttl * 86400000
+          if (ttl != null) {
+            data.expiry = Date.now() + ttl * 86400000
+          }
+
+          localStorage.setItem(key, JSON.stringify(data))
+        } catch (e) {
+          console.error(e)
         }
-
-        localStorage.setItem(key, JSON.stringify(data))
       },
       get: key => {
         const itemStr = localStorage.getItem(key)

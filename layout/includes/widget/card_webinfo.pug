@@ -1,3 +1,7 @@
+- const bsz = theme.busuanzi || {}
+- const bszId = (key, fallback) => (bsz.element_id && bsz.element_id[key]) || fallback
+- const bszClass = key => (bsz.element_class && bsz.element_class[key]) || ''
+
 if theme.aside.card_webinfo.enable
   .card-widget.card-webinfo
     .item-headline
@@ -25,7 +29,7 @@ if theme.aside.card_webinfo.enable
       else if theme.busuanzi.site_uv
         .webinfo-item
           .item-name= `${_p('aside.card_webinfo.site_uv_name')} :`
-          .item-count#busuanzi_value_site_uv
+          .item-count(id=bszId('site_uv', 'busuanzi_value_site_uv') class=bszClass('site_uv'))
             i.fa-solid.fa-spinner.fa-spin
       if theme.umami_analytics.enable && theme.umami_analytics.UV_PV.site_pv
         .webinfo-item
@@ -35,7 +39,7 @@ if theme.aside.card_webinfo.enable
       else if theme.busuanzi.site_pv
         .webinfo-item
           .item-name= `${_p('aside.card_webinfo.site_pv_name')} :`
-          .item-count#busuanzi_value_site_pv
+          .item-count(id=bszId('site_pv', 'busuanzi_value_site_pv') class=bszClass('site_pv'))
             i.fa-solid.fa-spinner.fa-spin
       if theme.aside.card_webinfo.last_push_date
         .webinfo-item

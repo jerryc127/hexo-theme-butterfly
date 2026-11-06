@@ -19,12 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return txt
   }
 
+  const skippedTranslateTags = ['BR', 'HR', 'SCRIPT', 'STYLE', 'NOSCRIPT', 'TEXTAREA', 'CODE', 'PRE']
+
   const translateBody = fobj => {
     const nodes = typeof fobj === 'object' ? fobj.childNodes : document.body.childNodes
 
     for (const node of nodes) {
-      // Skip BR, HR tags, or the translate button object
-      if (['BR', 'HR'].includes(node.tagName) || node === translateButtonObject) continue
+      // Skip non-translatable tags or the translate button object
+      if (skippedTranslateTags.includes(node.tagName) || node === translateButtonObject) continue
 
       if (node.nodeType === Node.ELEMENT_NODE) {
         const { tagName, title, alt, placeholder, value, type } = node

@@ -282,12 +282,14 @@ script.
       const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '!{theme.mermaid.theme.dark}' : '!{theme.mermaid.theme.light}'
       ele.forEach((item, index) => {
         const mermaidSrc = item.firstElementChild
-        // Clean up event listeners before removing old SVG
+        // Clean up event listeners and stale content before re-rendering
         if (item.__mermaidAbortController) {
           item.__mermaidAbortController.abort()
         }
         const oldSvg = item.querySelector('svg')
         if (oldSvg) oldSvg.remove()
+        const oldError = item.querySelector('.mermaid-error')
+        if (oldError) oldError.remove()
         let config = {}
         try {
           config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}

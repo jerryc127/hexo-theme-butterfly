@@ -57,7 +57,7 @@ hexo.extend.filter.register('before_generate', () => {
     return Object.keys(data).reduce((result, key) => {
       let { name, version, file, other_name: otherName } = data[key]
       const cdnjsName = otherName || name
-      const cdnjsFile = file.replace(/^[lib|dist]*\/|browser\//g, '')
+      const cdnjsFile = file.replace(/^(?:lib|dist)\/|^browser\//, '')
       const minCdnjsFile = minFile(cdnjsFile)
       if (cond === 'internal') file = `source/${file}`
       const minFilePath = minFile(file)

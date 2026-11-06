@@ -22,7 +22,7 @@ script.
         const value = obj[key]
         // If the property is an object and has theme-specific options, apply them
         if (typeof value === 'object' && value !== null) {
-          if (value[theme]) {
+          if (theme in value) {
             obj[key] = value[theme] // Apply the value for the current theme
           } else {
             // Recursively process child objects
@@ -30,6 +30,11 @@ script.
           }
         }
       })
+    }
+
+    const destroyChart = canvas => {
+      const chart = canvas && window.Chart && Chart.getChart(canvas)
+      if (chart) chart.destroy()
     }
 
     const runChartJS = ele => {
@@ -41,9 +46,10 @@ script.
         const width = item.getAttribute('data-width')
         const existingCanvas = document.getElementById(chartID)
 
-        // If a canvas already exists, remove it to avoid rendering duplicates
+        // If a canvas already exists, destroy its chart and remove it to avoid rendering duplicates
         if (existingCanvas) {
-            existingCanvas.parentNode.remove()
+          destroyChart(existingCanvas)
+          existingCanvas.parentNode.remove()
         }
 
         const chartDefinition = chartSrc.textContent
@@ -82,6 +88,11 @@ script.
 
       window.loadChartJS ? runChartJS(chartJSEle) : btf.getScript('!{url_for(theme.asset.chartjs)}').then(() => runChartJS(chartJSEle))
     }
+
+    // Destroy all charts before navigating away to avoid leaks
+    btf.addGlobalFn('pjaxSendOnce', () => {
+      document.querySelectorAll('.chartjs-wrap canvas').forEach(destroyChart)
+    }, 'chartjs')
 
     // Listen for theme change events
     btf.addGlobalFn('themeChange', loadChartJS, 'chartjs')

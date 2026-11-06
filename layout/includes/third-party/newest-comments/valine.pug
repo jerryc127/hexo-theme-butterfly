@@ -4,9 +4,9 @@ script(src=url_for(theme.asset.blueimp_md5))
 != partial("includes/third-party/newest-comments/common.pug", {}, { cache: true })
 
 script.
-  window.addEventListener('load', () => {
+  window.newestComments.ready(() => {
     const keyName = 'valine-newest-comments'
-    const { changeContent, generateHtml, run } = window.newestComments
+    const { changeContent, run } = window.newestComments
 
     const getIcon = (icon, mail) => {
       if (icon) return icon
@@ -15,10 +15,10 @@ script.
       return iconUrl
     }
 
-    const getComment = ele => {
+    const getComment = async () => {
       const serverURL = '!{theme.valine.serverURLs || `https://${theme.valine.appId.substring(0,8)}.api.lncldglobal.com` }'
 
-      var settings = {
+      const settings = {
         "method": "GET",
         "headers": {
           "X-LC-Id": '!{theme.valine.appId}',
@@ -27,24 +27,17 @@ script.
         },
       }
 
-      fetch(`${serverURL}/1.1/classes/Comment?limit=!{newestCommentsLimit}&order=-createdAt`,settings)
-        .then(response => response.json())
-        .then(data => {
-          const valineArray = data.results.map(e => {
-            return {
-              'avatar': getIcon(e.QQAvatar, e.mail),
-              'content': changeContent(e.comment),
-              'nick': e.nick,
-              'url': e.url + '#' + e.objectId,
-              'date': e.updatedAt,
-            }
-          })
-          btf.saveToLocal.set(keyName, JSON.stringify(valineArray), !{theme.aside.card_newest_comments.storage}/(60*24))
-          generateHtml(valineArray, ele)
-        }).catch(e => {
-          console.error(e)
-          ele.textContent= "!{_p('aside.card_newest_comments.error')}"
-        })
+      const res = await fetch(`${serverURL}/1.1/classes/Comment?limit=!{newestCommentsLimit}&order=-createdAt`, settings)
+      const data = await res.json()
+      return data.results.map(e => {
+        return {
+          'avatar': getIcon(e.QQAvatar, e.mail),
+          'content': changeContent(e.comment),
+          'nick': e.nick,
+          'url': (e.url || '') + '#' + e.objectId,
+          'date': e.updatedAt,
+        }
+      })
     }
 
     run(keyName, getComment)

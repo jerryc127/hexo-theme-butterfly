@@ -1,4 +1,7 @@
 - let comments = theme.comments
+- const bsz = theme.busuanzi || {}
+- const bszId = (key, fallback) => (bsz.element_id && bsz.element_id[key]) || fallback
+- const bszClass = key => (bsz.element_class && bsz.element_class[key]) || ''
 #post-info
   h1.post-title= page.title || _p('no_title')
     if theme.post_edit.enable
@@ -43,13 +46,13 @@
           if theme.wordcount.post_wordcount
             i.far.fa-file-word.fa-fw.post-meta-icon
             span.post-meta-label= _p('post.wordcount') + ':'
-            span.word-count= wordcount(page.content)
+            span.word-count= wordcount(page)
             if theme.wordcount.min2read
               span.post-meta-separator |
           if theme.wordcount.min2read
             i.far.fa-clock.fa-fw.post-meta-icon
             span.post-meta-label= _p('post.min2read') + ':'
-            span= min2read(page.content, {cn: 350, en: 160}) + _p('post.min2read_unit')
+            span= min2read(page) + ' ' + _p('post.min2read_unit')
 
       //- for pv and count
       mixin pvBlock(parent_id, parent_class, parent_title)
@@ -67,7 +70,7 @@
               i.fa-solid.fa-spinner.fa-spin
         else if theme.busuanzi.page_pv
           +pvBlock('', 'post-meta-pv-cv', '')
-            span#busuanzi_value_page_pv
+            span(id=bszId('page_pv', 'busuanzi_value_page_pv') class=bszClass('page_pv'))
               i.fa-solid.fa-spinner.fa-spin
 
       - const commentUse = comments.use && comments.use[0]

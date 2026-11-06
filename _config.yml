@@ -427,7 +427,6 @@ copy:
     enable: false
     limit_count: 150
 
-# Need to install the hexo-wordcount plugin
 wordcount:
   enable: false
   # Display the word count of the article in post meta
@@ -442,6 +441,16 @@ busuanzi:
   site_uv: true
   site_pv: true
   page_pv: true
+  # Some third-party providers look for different element IDs/classes.
+  # Leave blank to keep the default busuanzi IDs (`busuanzi_value_*`).
+  element_id:
+    site_uv:
+    site_pv:
+    page_pv:
+  element_class:
+    site_uv:
+    site_pv:
+    page_pv:
 
 # --------------------------------------
 # Math
@@ -502,7 +511,9 @@ search:
   docsearch:
     appId:
     apiKey:
-    indexName:
+    # DocSearch v4/v5 index list. Accepts a string, a list of index names,
+    # or a list of { name, searchParameters } objects.
+    indices:
     option:
 
 # --------------------------------------
@@ -652,6 +663,7 @@ artalk:
   site:
   # Use Artalk visitor count as the page view count
   visitor: false
+  vote: false
   option:
 
 # --------------------------------------

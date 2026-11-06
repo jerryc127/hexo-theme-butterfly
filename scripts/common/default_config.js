@@ -251,7 +251,17 @@ module.exports = {
   busuanzi: {
     site_uv: true,
     site_pv: true,
-    page_pv: true
+    page_pv: true,
+    element_id: {
+      site_uv: null,
+      site_pv: null,
+      page_pv: null
+    },
+    element_class: {
+      site_uv: null,
+      site_pv: null,
+      page_pv: null
+    }
   },
   math: {
     use: null,
@@ -284,7 +294,7 @@ module.exports = {
     docsearch: {
       appId: null,
       apiKey: null,
-      indexName: null,
+      indices: null,
       option: null
     }
   },
