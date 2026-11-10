@@ -270,7 +270,8 @@ if hexo-config('math.use')
 
   if hexo-config('math.hide_scrollbar')
     .katex-display,
-    mjx-container
+    mjx-container,
+    #article-container :is(p, li):has(mjx-container:not([display]))
       scrollbar-width: none
 
       &::-webkit-scrollbar
@@ -287,8 +288,16 @@ if hexo-config('math.use')
       display: block !important
       min-width: auto !important
 
+    // MathJax 4 会把一条行内公式拆成多个 <svg> + <mjx-break>，
+    // 只有内联排版能保留段间距和每段自己的 vertical-align，
+    // 用 nowrap 保证它不换行，超长时交给外层段落横向滚动
     &:not([display])
-      display: inline-grid !important
+      display: inline !important
+      white-space: nowrap
+
+  // 行内公式过长时让所在段落/列表项横向滚动，而不是撑破页面
+  #article-container :is(p, li):has(mjx-container:not([display]))
+    overflow-x: auto
 
   mjx-assistive-mml
     right: 0
