@@ -288,16 +288,34 @@ if hexo-config('math.use')
       display: block !important
       min-width: auto !important
 
-    // MathJax 4 会把一条行内公式拆成多个 <svg> + <mjx-break>，
-    // 只有内联排版能保留段间距和每段自己的 vertical-align，
-    // 用 nowrap 保证它不换行，超长时交给外层段落横向滚动
+    // MathJax 4 splits an inline formula into several <svg> + <mjx-break>.
+    // Inline layout keeps the line spacing and each part's vertical-align,
+    // and nowrap keeps these parts on one line.
     &:not([display])
       display: inline !important
       white-space: nowrap
 
-  // 行内公式过长时让所在段落/列表项横向滚动，而不是撑破页面
-  #article-container :is(p, li):has(mjx-container:not([display]))
+  // Let the block-level parent scroll instead of overflowing the page.
+  // p / li alone is not enough: headings and note bodies overflow too,
+  // because max-width no longer applies once mjx-container is inline.
+  #article-container :is(p, h1, h2, h3, h4, h5, h6):has(mjx-container:not([display]))
     overflow-x: auto
+
+  // A scrolling li clips its outside-positioned ::marker.
+  #article-container li:has(mjx-container:not([display]))
+    overflow-x: auto
+    list-style-position: inside
+
+  // Without :has() the rules above are dropped while inline still applies.
+  // Fall back to the previous inline-grid rather than an unclipped inline.
+  @css {
+    @supports not selector(:has(a)) {
+      mjx-container:not([display]) {
+        display: inline-grid !important;
+        white-space: normal;
+      }
+    }
+  }
 
   mjx-assistive-mml
     right: 0
